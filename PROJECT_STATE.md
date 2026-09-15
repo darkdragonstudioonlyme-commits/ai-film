@@ -1,13 +1,12 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V15
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V16
 
-> **READ THIS FILE FIRST IN EVERY NEW CHAT.**  
-> Current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; immutable history lives in versioned checkpoints.
+> Read this file first in every new chat. It contains current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; exact next work lives in `NEXT_WORK_ITEM.md`.
 
-## 1. Fast resume snapshot
+## Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 15
+STATE_VERSION: 16
 REPOSITORY: darkdragonstudioonlyme-commits/ai-film
 DEFAULT_BRANCH: main
 
@@ -21,257 +20,142 @@ MODE_TRANSITION: NONE
 
 REQUIREMENTS_BASELINE: "AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2"
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
-CURRENT_VERIFIED_DELIVERY: "0.1.0.dev7 / PARTIAL_SOURCE_DROP_DEV7"
+FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
+APPROVED_PHASE00_DESIGN: "D00-01…D00-14 exact V2"
+APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
+
+CURRENT_VERIFIED_DELIVERY: "0.1.0.dev8 / PARTIAL_SOURCE_DROP_DEV8"
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
 
-DEV7_PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V7.zip
-DEV7_SIZE_BYTES: 1119033
-DEV7_SHA256: 63f9a8ce948ff0bb80de5d0dc37cc75a0c37723579ac1930098cca7e4de49312
-DEV7_DRIVE_FILE_ID: 1lplraFWFeDhdV6jl4aJgJOTpfjBoXHlH
+DEV8_PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip
+DEV8_SIZE_BYTES: 1091121
+DEV8_SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
+DEV8_DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
 RAW_REDOWNLOAD_SHA_VERIFIED: true
+SOURCE_DIFF_SHA256: c9c519dc4bb0cc99135ffdd6884f31a573bbd191f9141ac9ad2484a4b030560e
 
-WORKSPACE_AUTHOR_TESTS: "673 PASS / 0 failure / 0 error / 0 skip"
-STATIC_AUTHOR_CHECKS: "90 PASS"
+WORKSPACE_AUTHOR_TESTS: "683 PASS / 0 failure / 0 error / 0 skip"
+STATIC_AUTHOR_CHECKS: "92 PASS / 0 failed"
+SOURCE_CONTENT_DIGEST: e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08
+TEST_CONTENT_DIGEST: f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021
 NATIVE_WINDOWS_WSL: NOT_RUN
 LAB: NOT_RUN
 SITE: NOT_RUN
 QUALIFICATION_ISSUED: false
+CODE_REVIEW: NOT_PERFORMED
 HOST_READY: NOT_EVALUATED
 
 DEV_WORKSPACE_READY: true
 WSL_WORKSPACE_ROOT: /home/dragon/ai-film-dev
 CANONICAL_REPO_CLONE: /home/dragon/ai-film-dev/repo
-DEV7_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev7
-DEV7_LOCAL_GIT_BASELINE: b937649c1344baef3eb7b221ddd0347f5954ed85
+ACTIVE_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev8
+ACTIVE_SOURCE_LOCAL_GIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+ROLLBACK_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev7
 DEV_VENV: /home/dragon/ai-film-dev/.venv
 DIRECT_WSL_GITHUB_PUSH_AUTH: NOT_CONFIGURED
+
+OPEN_FINDINGS: []
+OPEN_DESIGN_GAPS: []
+OPEN_VALIDATION_FAILURES: []
+OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08 at full-item scope"
+IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
 
 AUTO_DOCUMENTATION_SYNC: true
 NO_SILENT_KNOWLEDGE: true
 LIVING_MEMORY_FILE: PROJECT_MEMORY.md
 WORKSPACE_DOC: WORKSPACE_WSL.md
-NEXT_ACTION: "Continue IMPL-P00-001 from dev7: analyze/complete service-OOBE-restart-resume-factory lifecycle behavior, then persist the next coherent increment."
+NEXT_ACTION: "Prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics."
 ```
 
-**Do not transition to CODE_REVIEW.** Dev7 is a verified author delivery but the work item remains partial.
+**Do not transition to CODE_REVIEW.** Dev8 is verified author work, not an author-complete Phase00 candidate.
 
-## 2. Persistence and recovery model
+## Persistence model
 
-The project uses explicit hybrid persistence:
+- **GitHub** is canonical for project state, living memory, next work, workflow, delivery records and review history.
+- **Google Drive raw artifacts** are the byte-exact packaged-delivery recovery anchors.
+- **WSL local Git** is the authoring diff/rollback workspace; local commits are not remote approval.
 
-- **GitHub** — canonical current state, living memory, workflow, next work, review records and durable text/change ledger.
-- **Google Drive raw artifact storage** — byte-exact packaged delivery recovery anchor.
-- **WSL local Git** — local diff/rollback during authoring; it is not remote approval or persistence by itself.
+The dev8 artifact was uploaded by file reference, downloaded again as raw bytes, and re-hashed. Size and SHA-256 matched exactly. A duplicate accidental Drive upload was deleted; `125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD` is the canonical dev8 file ID.
 
-Every packaged delivery used as a recovery baseline must be identified by file name, size and SHA-256 and must be re-downloaded raw and re-hashed after upload.
+## Dev8 lifecycle increment
 
-Current exact delivery anchor:
+Dev8 changed implementation behavior only; reviewed plan operations/contracts remain unchanged.
+
+Implemented/hardened:
+
+1. `ENABLE_PREREQUISITES` / `INSTALL_RUNTIME` cannot advance from process exit alone if Windows observations show pending reboot; the durable step waits at `AWAITING_REBOOT/20`.
+2. Existing `3010 → AWAITING_REBOOT` is preserved.
+3. Reconciliation from reboot wait requires a changed host boot witness and cleared pending-reboot indicators before the original step can commit.
+4. C3 actions completed after reboot consume affected-resource owner postchecks before terminal commit.
+5. Missing owner postcondition evidence may retain/relabel only an existing operator-wait fence as `AWAITING_OWNER_VERIFICATION/20`; mutation is not replayed.
+6. OOBE owner verification remains distinct and does not invent reboot semantics.
+7. The explicit final `AWAIT_OWNER_RESTART` remains in reviewed plans. Design V2/T00-05 requires an owner-planned host restart lifecycle; an earlier engine-required reboot is not silently treated as the same reviewed boundary.
+
+Targeted dev8 lifecycle suite: **10 PASS**. Full workspace regression: **683 PASS**. Static checks: **92 PASS**.
+
+These are synthetic/POSIX author results only. They do not establish Windows/WSL/LAB/SITE behavior, qualification, CODE_REVIEW_PASS or HOST_READY.
+
+## WSL workspace
+
+Active author workspace:
 
 ```text
-IMPL-P00-001_IMPLEMENTATION_PACKAGE_V7.zip
-Drive file ID: 1lplraFWFeDhdV6jl4aJgJOTpfjBoXHlH
-Size: 1119033
-SHA-256: 63f9a8ce948ff0bb80de5d0dc37cc75a0c37723579ac1930098cca7e4de49312
+/home/dragon/ai-film-dev/source-dev8
+branch: dev8-baseline
+commit: c44c2f87084f8082ce29af5935c6b47d03f7b96c
 ```
 
-## 3. WSL development workspace
+Rollback dev7 remains preserved at `/home/dragon/ai-film-dev/source-dev7` and was reset clean to its exact dev7 baseline.
 
-Current prepared workspace:
+Use:
 
-```text
-/home/dragon/ai-film-dev
+```bash
+source /home/dragon/ai-film-dev/env.sh
+/home/dragon/ai-film-dev/test.sh
 ```
 
-Layout:
+The helper stores actual run evidence outside the source tree and restores tracked generated evidence so verification-only runs keep source Git clean. Direct WSL `git push` is not authenticated; remote writes continue through the connected GitHub connector. Do not store PATs/tokens in plaintext.
 
-```text
-repo/         canonical GitHub state/handoff clone
-source-dev7/  exact dev7 extracted source + local Git baseline
-artifacts/    exact downloaded delivery archives
-.venv/        isolated Python 3.12 author-test environment
-env.sh        enter environment
-test.sh       workspace regression + static checks
-```
+## Open implementation scope
 
-Read `WORKSPACE_WSL.md` before using Desktop Commander or modifying the WSL source tree.
+All full-item REM entries remain OPEN despite dev7/dev8 progress:
 
-Verified environment result after setup:
-
-```text
-673 workspace tests PASS
-90 static checks PASS
-source digest 93e28ed77c132ad032cf8bf951e7d51627f6f8d007aa4179bb5696f0d6f1c6e8
-test digest   1c79354e63bdc76de157621547a7f92eb97d98fa90a6e53856619861103a3799
-```
-
-The isolated venv currently has no pip because Ubuntu `python3.12-venv`/ensurepip is not installed and sudo requires interactive authorization. Dev7 has no external Python dependencies, so `.pth` bindings to exact `src/` and `tests/` are sufficient for the present author baseline. See `MEM-20260915-013`.
-
-Direct WSL `git push` is not currently authenticated. Clone/fetch/local commits work. Remote writes continue through the connected GitHub connector until an explicit secure WSL authentication setup is performed. See `MEM-20260915-014`.
-
-## 4. New-chat bootstrap
-
-A new chat should:
-
-1. Read this file.
-2. Read `NEXT_WORK_ITEM.md`.
-3. Scan relevant active entries in `PROJECT_MEMORY.md`.
-4. Read `WORKSPACE_WSL.md` if Desktop Commander/WSL will be used.
-5. Verify current GitHub `main` head.
-6. Read `GIT_WORKFLOW.md` before persistent changes.
-7. Verify the current exact delivery artifact identity before restoring a fresh workspace.
-8. Run `/home/dragon/ai-film-dev/test.sh` before source changes when the prepared WSL workspace is available.
-9. Continue only the current recorded implementation increment.
-
-Do not depend on previous chat history.
-
-## 5. Authority and approved baseline
-
-Precedence:
-
-1. authoritative Blueprint V2;
-2. frozen `FD-01…FD-08`;
-3. exact Phase00 Design V2 contracts;
-4. `REVIEW-P00-002` approval;
-5. exact implementation source/delivery candidate;
-6. actual test/evidence reports;
-7. this current state;
-8. reusable project memory;
-9. historical checkpoints.
-
-```yaml
-FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
-APPROVED_PHASE00_DESIGN: "D00-01…D00-14 exact V2"
-DESIGN_REVIEW_PASS: SATISFIED_EXACT_V2
-APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
-```
-
-No design gap is currently established.
-
-## 6. Phase00 implementation invariants
-
-- establish correct host/principal/target identity before mutation;
-- preserve existing Windows/WSL state unless exact reviewed plan authorizes change;
-- treat shared/global WSL effects as host-wide where applicable;
-- use durable admission/fence/read/journal semantics;
-- process exit is not native postcondition proof;
-- timeout/interruption may produce `UNCERTAIN`; never blind-retry or erase durable state;
-- require reviewed protection/recovery evidence before relevant C3 mutation;
-- SITE active operations require qualification evidence; LAB evidence generation is separate;
-- terminal/gate assertions correspond to final effective lifecycle state;
-- prove restore isolation before first boot where required;
-- evidence completeness, public bundle completeness and gate eligibility remain distinct;
-- `APPLIED != VERIFIED != HOST_READY`;
-- no destructive default recovery merely to make retry succeed.
-
-## 7. Dev7 delta and verified evidence
-
-Dev7 completed one coherent author increment:
-
-- executable-policy pins scoped to host/build/contract;
-- exact executable path/size/SHA-256 verification under pinned handles;
-- administrative owner/writer constraints;
-- mandatory production-supervisor executable trust before child creation;
-- process witnesses record policy reference/hash/size/kind;
-- native bindings require `executable_policy_ref`;
-- authority refresh reloads executable policy and checks effective profile;
-- production factory enables mandatory executable trust.
-
-Do not overclaim: guest interpreter/rootfs provenance and remaining bootstrap/dependency trust are still open.
-
-Verified evidence:
-
-```yaml
-AUTHOR_WORKSPACE_REGRESSION: "673 PASS / 0 failures / 0 errors / 0 skipped"
-STATIC_AUTHOR_CHECKS: "90 PASS"
-WINDOWS_WSL_NATIVE: NOT_RUN
-POWERSHELL_NATIVE: NOT_RUN
-GUEST_AGENT_LIVE: NOT_RUN
-LIVE_NETWORK: NOT_RUN
-LAB_NATIVE_SUITE: NOT_RUN
-SITE_VALIDATION: NOT_RUN
-QUALIFICATION_RECEIPT: NOT_ISSUED
-AC00_01_TO_08: NOT_EVALUATED
-NATIVE_T_F_SUBCASE_INVENTORY: NOT_RUN
-CODE_REVIEW: NOT_PERFORMED
-HOST_READY: NOT_EVALUATED
-```
-
-Author regression is not native validation. See `MEM-20260915-003`.
-
-## 8. Open implementation items
-
-All full-item REMs remain OPEN, but dev7 advanced `REM-01/03/04` subcomponents.
-
-- `IMPL-REM-01`: remaining effective-profile/eligibility integration and full native-factory route flows.
-- `IMPL-REM-02`: exhaustion/interrupted-reader/lifecycle journal procedures without implicit reset.
-- `IMPL-REM-03`: remaining guest interpreter/rootfs/bootstrap dependency trust, source epochs, prior pre-C3/checkpoint proof selection.
-- `IMPL-REM-04`: service/OOBE/restart/resume and production-factory execution-path author tests.
+- `IMPL-REM-01`: remaining effective-profile/eligibility/native-factory route closure.
+- `IMPL-REM-02`: remaining exhaustion/interrupted-reader/lifecycle journal procedures.
+- `IMPL-REM-03`: remaining guest/bootstrap dependency trust, source epochs and prior pre-C3/checkpoint proof selection.
+- `IMPL-REM-04`: remaining service/OOBE/restart/resume/factory combinations and actual native coverage.
 - `IMPL-REM-05`: prolonged/multi-stage resume/later request/recovery-publication interactions.
-- `IMPL-REM-06`: non-DIRECT transport and effective-profile/terminal/restore integration.
-- `IMPL-REM-07`: nested cross-stage semantics, prior pre-C3/checkpoint selection, temp/incomplete publication recovery and remaining E17 integration.
-- `IMPL-REM-08`: causal preparations/controllers/oracles for normative 86-case inventory plus production-factory integration tests.
+- `IMPL-REM-06`: non-DIRECT transport + terminal/restore integration.
+- `IMPL-REM-07`: nested cross-stage E00, prior pre-C3/checkpoint selection, temp/incomplete publication and remaining E17 integration.
+- `IMPL-REM-08`: causal preparations/controllers/oracles for all normative 86 T/F/subcases + production-factory author integration.
 
-Open blocker groups remain `IMPL-BLOCK-01…03`; they are source/integration/harness work, not missing user data.
-
-## 9. Exact current implementation order
+## Exact next implementation order
 
 Next coherent increment:
 
-1. inspect reviewed lifecycle contract and current ENGINE plan/recovery behavior;
-2. determine whether `AWAIT_OWNER_RESTART` plus `3010 → AWAITING_REBOOT` can cause duplicate restart semantics or whether the current two-stage behavior is intentional;
-3. complete service/OOBE/restart/resume/factory branches only where reviewed behavior is clear;
-4. add targeted positive/negative author tests;
-5. run full author regression/static checks;
-6. Documentation Sync Gate;
-7. package exact delivery, upload raw artifact, re-download/hash verify;
-8. update Git state/memory/next work and verify remote persistence.
+1. inspect E00 stage semantics, prior-evidence graph and pre-C3/checkpoint requirements;
+2. implement exact prior pre-C3/checkpoint provenance selection without using envelope labels as proof;
+3. close nested cross-stage E00 field/source selection that can be resolved without contract change;
+4. add targeted positive/negative author tests for unrelated/tampered/ambiguous/stale prior evidence and stage applicability;
+5. run full regression/static checks;
+6. Documentation Sync Gate + exact artifact persistence + remote state verification.
 
-Then proceed to prior pre-C3/checkpoint + nested E00, publication/E17 recovery, non-DIRECT transport, causal 86-case suite and production-factory integration tests as separate increments where practical.
+Then proceed separately to temp/incomplete bundle/E17 recovery, reviewed non-DIRECT transport, full causal 86-case controller work, and production-factory author integration.
 
 See `NEXT_WORK_ITEM.md` for executable detail.
 
-## 10. Forbidden in current mode
+## Current-mode prohibitions
 
-- no FD/D00/public-contract changes;
-- no acceptance lowering;
-- no Windows/WSL/LAB/SITE/guest/live-network validation/provisioning during authoring;
-- no fixture/fake active production backend;
-- no process-exit/fixture/test-count/envelope-label substitution for native proof;
-- no deletion of unresolved durable state as a shortcut;
-- no self-approved code review/qualification/HOST_READY;
-- no user host data requested as substitute for missing implementation;
-- no fabricated DESIGN_GAP for incomplete source;
-- no unverified source restoration;
-- no plaintext GitHub credentials/PATs in WSL;
-- no useful reusable knowledge left only in chat.
+- no FD/D00/public/reviewed-contract changes or acceptance lowering;
+- no native Windows/WSL/LAB/SITE/guest/live-network provisioning/validation during authoring;
+- no process exit, fixture flag, author test count or envelope label treated as native proof;
+- no deletion of unresolved durable state as a recovery shortcut;
+- no fake production backend;
+- no self-approved code review, qualification or HOST_READY;
+- no user host data requested as substitute for missing source work;
+- no useful reusable discovery left only in chat.
 
-## 11. Documentation Sync Gate
+## Exit condition
 
-At every meaningful increment, automatically update as applicable:
-
-```text
-state/gates/tests/blockers       → PROJECT_STATE.md
-exact next work                  → NEXT_WORK_ITEM.md
-reusable discovery/optimization  → PROJECT_MEMORY.md
-workspace/environment change     → WORKSPACE_WSL.md + PROJECT_MEMORY.md
-workflow improvement             → GIT_WORKFLOW.md + PROJECT_MEMORY.md
-implementation progress          → implementation/remaining/traceability/evidence docs
-milestone                        → new checkpoint MD + JSON
-```
-
-Then diff review, secret scan, exact artifact persistence if packaged, Git commit/push, remote verification, and only then continue.
-
-## 12. Implementation exit
-
-`IMPL-P00-001` may exit only when source/harness/docs/tests are truly author-complete, `IMPL-REM-01…08` are closed or correctly managed, no hidden stub remains in reviewed scope, full required author regression/static checks are clean, exact candidate is durably addressable/reviewable, and `CODE_REVIEW_HANDOFF_READY=true` is evidence-backed.
-
-Only then:
-
-```text
-MODE TRANSITION
-FROM: IMPLEMENTATION
-TO: CODE_REVIEW
-TASK: CODE-REVIEW-P00-001
-EXIT GATE: CODE_REVIEW_PASS
-```
+`IMPL-P00-001` exits IMPLEMENTATION only when the full source/harness/docs/test candidate is author-complete, all REM scope is actually closed or correctly managed, no hidden stub remains in reviewed scope, required author tests are clean, exact candidate is durably reviewable, and `CODE_REVIEW_HANDOFF_READY=true` is evidence-backed. Only then transition to `CODE_REVIEW / CODE-REVIEW-P00-001`.
