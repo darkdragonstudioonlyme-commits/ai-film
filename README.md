@@ -10,10 +10,12 @@ This repository is the cross-chat control plane for **AI-FILM-SERVER**. A fresh 
 4. `EXECUTION_LANES.md` — independent workflow trust boundaries and immutable handoffs.
 5. `DOCUMENTATION_MAP.md` — source-of-truth map, update triggers and freshness rules.
 6. Read the selected lane's remote `LANE_STATE.md` after a fresh fetch.
-7. Scan relevant `PROJECT_MEMORY.md` entries.
-8. `GIT_WORKFLOW.md` before any persistent change.
-9. `WORKSPACE_WSL.md` when using WSL/Desktop Commander.
-10. Read only task-specific contracts/source/evidence referenced by state/next-work.
+7. Scan relevant `PROJECT_MEMORY.md` entries and `SELF_LEARNING.md` when work produced reusable lessons.
+8. `GIT_WORKFLOW.md` + `POLICY_REGISTRY.md` before persistent/policy changes.
+9. `TEST_STRATEGY.md` before changing test expectations or harness semantics.
+10. `WORKSPACE_WSL.md`; use `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` for benchmark/model work.
+11. Use `WORKFLOW_HEALTH.md` / `RECOVERY_PLAYBOOK.md` when degraded, blocked or recovering.
+12. Read only task-specific contracts/source/evidence referenced by state/next-work.
 
 Never use an old checkpoint, cached remote-tracking ref, directory name or conversation summary as current truth.
 
@@ -22,7 +24,7 @@ Never use an old checkpoint, cached remote-tracking ref, directory name or conve
 - “continue / tiếp tục” → follow `WORKFLOW_ROUTER.md`; do not ask what to do if state is sufficient.
 - source/finding fix → IMPLEMENT workflow.
 - immutable candidate review → REVIEW workflow.
-- documentation architecture change → DOC-DESIGN → DOC-REVIEW.
+- documentation architecture change → DOC-DESIGN → DOC-REVIEW → DOC-AUDIT.
 - genuine reviewed-behavior conflict → DESIGN_GAP route; do not redesign in IMPLEMENTATION.
 
 ## No-silent-knowledge rule

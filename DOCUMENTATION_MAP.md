@@ -13,8 +13,11 @@ PROJECT_STATE
 → EXECUTION_LANES
 → DOCUMENTATION_MAP
 → selected remote LANE_STATE
-→ relevant PROJECT_MEMORY
-→ GIT_WORKFLOW / WORKSPACE_WSL
+→ relevant PROJECT_MEMORY / SELF_LEARNING
+→ GIT_WORKFLOW / POLICY_REGISTRY / WORKSPACE_WSL
+→ TEST_STRATEGY when judging/changing tests
+→ SERVER_ENVIRONMENT / MODEL_EVALUATION for benchmark/model work
+→ RECOVERY_PLAYBOOK / WORKFLOW_HEALTH when degraded or recovering
 → task-specific contracts/source/evidence
 ```
 
@@ -28,9 +31,22 @@ PROJECT_STATE
 | `WORKFLOW_ROUTER.md` | deterministic task routing and return paths | routing/process policy changes | source implementation details |
 | `EXECUTION_LANES.md` | workflow permissions, independence, handoff contracts | lane/trust model changes | current candidate result details |
 | lane `LANE_STATE.md` | lane-local active/waiting candidate and lane output | lane state changes | global gate authority |
-| `PROJECT_MEMORY.md` | reusable learnings/optimizations/failure patterns | useful learning discovered/superseded | transient candidate status |
+| `PROJECT_MEMORY.md` | compact active learning index/provenance | useful learning activated/superseded | detailed historical learning/policy/procedure |
+| `learning/*` | immutable detailed standalone learning records | reusable learning needs durable provenance/follow-up | current state |
+| `SELF_LEARNING.md` | learning lifecycle, promotion, measurement and compaction | learning process changes | candidate state |
+| `TEST_STRATEGY.md` | business-first test authority and test-change rules | test philosophy/oracle policy changes | candidate-specific test results |
+| `WORKFLOW_HEALTH.md` | deadlock/inefficiency triggers and meta-review | workflow health policy changes | implementation fixes |
+| `POLICY_REGISTRY.md` | active/deprecated/superseded/retired operating policy index | policy lifecycle changes | historical full text |
+| `SERVER_ENVIRONMENT.md` | environment methodology + current development-environment pointer | environment methodology/current pointer changes | historical snapshot details/model recommendations |
+| `environments/*` | immutable exact environment snapshots | new material environment identity | mutable methodology |
+| `MODEL_EVALUATION.md` | reproducible model benchmark methodology/result schema | model-eval methodology changes | historical results/current server facts |
+| `model-evaluations/*` | immutable reviewed model evaluation results | evaluation completes | methodology |
+| `RECOVERY_PLAYBOOK.md` | recovery routes for context/state/tool/artifact failures | recovery policy changes | normal next-work queue |
+| `OPERATING_ARCHITECTURE.md` | process/trust architecture and separation of concerns | operating architecture changes | mutable status |
 | `GIT_WORKFLOW.md` | commit/branch/artifact/persistence rules | persistence policy changes | project roadmap |
-| `WORKSPACE_WSL.md` | current local paths/tools/environment facts | workspace changes | gate decisions |
+| `WORKSPACE_WSL.md` | stable local paths/tools/worktree capabilities | workspace changes | mutable candidate version/commit/test state or gate decisions |
+| `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records | material test governance event | active test policy |
+| `workflow-health/*` | immutable health/meta-review records | workflow meta-review completes | current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
 | `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |
@@ -42,7 +58,7 @@ PROJECT_STATE
 3. A durable candidate is a commit/package identity; a WIP is never promoted by wording alone.
 4. `NEXT_WORK_ITEM.md` must point at the actual active WIP/candidate, not an older delivery number.
 5. README/CHAT_HANDOFF must remain version-agnostic; they route to current state rather than repeating mutable versions.
-6. Historical checkpoints/review records are evidence, not current pointers.
+6. Historical checkpoints/review records are evidence, not current pointers. Superseded documentation-system designs live under `history/` and must not be used as active policy.
 
 ## Documentation Sync Gate
 
@@ -53,8 +69,13 @@ Did global truth change?      → PROJECT_STATE
 Did exact next action change? → NEXT_WORK_ITEM
 Did roadmap/closure change?   → PROJECT_ROADMAP
 Did routing/process change?   → WORKFLOW_ROUTER / EXECUTION_LANES / GIT_WORKFLOW
-Did reusable knowledge emerge?→ PROJECT_MEMORY
-Did workspace facts change?   → WORKSPACE_WSL
+Did reusable knowledge emerge?→ PROJECT_MEMORY + SELF_LEARNING + `learning/*` when durable standalone provenance is needed
+Did test philosophy/oracle change?→ TEST_STRATEGY + `test-governance/*` + independent TEST_REVIEW
+Did policy become stale/duplicate? → POLICY_REGISTRY + prune active docs
+Did workflow become ineffective?   → WORKFLOW_HEALTH + `workflow-health/*` meta-review
+Did environment/model context change?→ SERVER_ENVIRONMENT + `environments/*` / MODEL_EVALUATION + `model-evaluations/*`
+Did recovery behavior change?       → RECOVERY_PLAYBOOK
+Did workspace facts change?         → WORKSPACE_WSL
 Did review/delivery finish?   → immutable review/delivery record
 Did a milestone occur?        → checkpoint MD + JSON
 ```

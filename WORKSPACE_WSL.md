@@ -16,22 +16,34 @@ repo/         canonical GitHub control-plane clone
 source-dev8/  immutable historical dev8 baseline
 implement/    writable source lane, branch impl/p00
 review/       detached exact source review candidate
-docs-design/  documentation architecture authoring lane
-docs-review/  independent documentation review lane
+docs-v2-design/  Documentation System V2 design worktree; current activity is determined by PROJECT_STATE/lane state
+docs-v2-review/  V2 detailed-review worktree; may be retained after governance for audit history
+docs-v2-audit/   V2 holistic-audit worktree; may be retained after governance for audit history
+docs-design/     historical V1 design worktree; not active
+docs-review/     historical V1 review worktree; not active
 artifacts/    exact delivery ZIPs
 run-evidence/implement/
 run-evidence/review/
 ```
 
-## Current source lane facts
+## Workflow-state ownership
 
-- IMPLEMENT HEAD/base durable candidate: dev17 commit `64ea95bf10e05e856a009be9204983182f520b45`.
-- IMPLEMENT currently has dev18 WIP in four modified files; do not discard it.
-- Latest dev18 WIP author run: 756 PASS / 100 static PASS.
-- REVIEW worktree is detached at dev17 while dev18 remains uncommitted.
-- Direct WSL HTTPS push remains unauthenticated; connected GitHub tools persist remote control-plane state.
+Worktree existence does not mean its workflow is active. Current workflow/lane activity is owned by `PROJECT_STATE.md` plus freshly fetched lane state. This file records only local workspace purpose/capability.
 
-Exact current details belong in `PROJECT_STATE.md`; this file owns paths/tooling facts.
+## Source-state ownership
+
+This file intentionally does **not** pin current delivery versions, source commit SHAs, WIP dirty files, review target or test counts. Those mutable facts are owned by `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and freshly fetched lane state.
+
+Before source work:
+
+```bash
+python3 /home/dragon/ai-film-dev/repo/tools/check_runtime_state.py
+
+git -C /home/dragon/ai-film-dev/implement status --short --branch
+git -C /home/dragon/ai-film-dev/review status --short --branch
+```
+
+Direct WSL HTTPS push is currently not configured for unattended use; connected GitHub tools persist remote control-plane state. If that capability changes, update this workspace/tooling fact but still keep mutable candidate identity in `PROJECT_STATE.md`.
 
 ## Lane helpers
 
@@ -55,3 +67,7 @@ Current Python environment is `/home/dragon/ai-film-dev/.venv` (Python 3.12, no 
 6. Test helpers keep lane evidence separate and restore tracked generated evidence.
 
 No plaintext GitHub credentials are stored in this workspace.
+
+## Benchmark/environment ownership
+
+This file owns workspace paths/tools only. Hardware/model benchmark identity is owned by `SERVER_ENVIRONMENT.md`; model comparison procedure is `MODEL_EVALUATION.md`. Do not copy mutable benchmark hardware facts here as a second authority.

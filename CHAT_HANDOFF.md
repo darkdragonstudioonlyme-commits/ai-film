@@ -10,9 +10,11 @@ Use `darkdragonstudioonlyme-commits/ai-film` as the persistent project control p
 4. Read `WORKFLOW_ROUTER.md`.
 5. Read `EXECUTION_LANES.md` and select exactly one workflow/lane.
 6. Read `DOCUMENTATION_MAP.md` and the selected lane's freshly fetched `LANE_STATE.md`.
-7. Scan relevant `PROJECT_MEMORY.md` entries.
-8. Read `GIT_WORKFLOW.md`; read `WORKSPACE_WSL.md` if using WSL.
-9. Read only task-specific contracts/source/evidence.
+7. Scan relevant `PROJECT_MEMORY.md`; use `SELF_LEARNING.md` for new reusable learning.
+8. Read `GIT_WORKFLOW.md` + `POLICY_REGISTRY.md`; read `TEST_STRATEGY.md` before changing test behavior.
+9. Read `WORKSPACE_WSL.md`; for model/benchmark work verify `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md`.
+10. If degraded/recovering read `WORKFLOW_HEALTH.md` / `RECOVERY_PLAYBOOK.md`.
+11. Read only task-specific contracts/source/evidence.
 
 ## If user says only “continue”
 
@@ -20,7 +22,7 @@ Do not ask them to repeat project context. Apply the routing algorithm in `WORKF
 
 ## Trust boundary
 
-Do not trust another workflow's PASS label. Verify immutable input identities and rerun the checks required by the consuming workflow. IMPLEMENT cannot review itself; REVIEW cannot patch source. Documentation governance likewise uses DOC-DESIGN → DOC-REVIEW.
+Do not trust another workflow's PASS label. Verify immutable input identities and rerun the checks required by the consuming workflow. IMPLEMENT cannot review itself; REVIEW cannot patch source. Documentation governance V2 uses DOC-DESIGN → DOC-REVIEW → DOC-AUDIT.
 
 ## Self-learning
 

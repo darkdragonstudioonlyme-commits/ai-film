@@ -11,6 +11,7 @@ fetch origin/main + relevant lane refs
 → read NEXT_WORK_ITEM
 → verify local selected worktree identity/status if used
 → read selected lane LANE_STATE
+→ evaluate WORKFLOW_HEALTH triggers
 → route
 ```
 
@@ -26,15 +27,18 @@ A workflow output is trusted only through its declared immutable output contract
 
 Use the first matching rule:
 
-1. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
-2. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
-3. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
-4. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
-5. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
-6. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
-7. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-8. **Runtime-state checker or fresh lane-state comparison fails** → create `STATE_DRIFT` blocker; preserve documented/local WIP and reconcile control-plane state before routing work.
-9. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+1. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
+2. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
+3. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
+4. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
+5. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
+6. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
+7. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
+8. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
+9. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
+10. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
+11. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
+12. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
 
 ## 4. Block protocol
 
@@ -108,3 +112,19 @@ EXIT_CONDITION:
 ```
 
 This contract is what enables accurate cross-chat continuation.
+
+## 9. Workflow meta-review route
+
+When `WORKFLOW_HEALTH.md` triggers `META_REVIEW_REQUIRED`:
+
+```text
+preserve WIP/evidence
+→ stop affected loop
+→ create health review
+→ classify root cause
+→ update workflow/test/policy/docs/tooling if systemic
+→ independent review of correction
+→ RETURN_TO original workflow
+```
+
+Repeated failure is information about the workflow itself; do not merely increase patch count.
