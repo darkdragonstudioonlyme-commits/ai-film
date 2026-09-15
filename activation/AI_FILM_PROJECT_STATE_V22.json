@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "state_version": 22,
+  "project": "AI-FILM-SERVER",
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "documentation_system": "V2_REVIEWED_AUDITED",
+  "next_workflow": "WF-P00-IMPL-DEV18",
+  "durable_source_commit": "64ea95bf10e05e856a009be9204983182f520b45",
+  "planned_delivery": "0.1.0.dev18",
+  "implement_wip_files": [
+    "config/required-native-test-inventory.json",
+    "src/aifilm_p00/native/harness_cases.py",
+    "src/aifilm_p00/native/harness_controller.py",
+    "tests/test_dev15_harness.py"
+  ],
+  "author_tests": "756 PASS",
+  "static_checks": "100 PASS",
+  "open_review_findings": ["CR-P00-001", "CR-P00-012", "CR-P00-013"],
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "model_evaluation_ready": false,
+  "host_ready": "NOT_EVALUATED"
+}

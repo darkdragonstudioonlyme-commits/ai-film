@@ -35,6 +35,7 @@ Pre-V2 detail: `memory/archive/PROJECT_MEMORY_V1_BEFORE_V2.md` plus Git history.
 | MEM-20260915-049 | FULL_COMMAND evidence must cover PASS_MEANS exactly; subset checks cannot overclaim | `TEST_STRATEGY.md` / wrapper |
 | MEM-20260915-050 | unowned current-looking status docs are drift hazards; archive/delete them from active root | documentation ownership checker |
 | MEM-20260915-051 | governance interpreter identity must be explicit; ambient PATH Python from another project is not authority | tool provenance policy |
+| MEM-20260915-052 | gate/policy activation state must be pre-reviewed; never improvise post-PASS current state | activation payload / workflow policy |
 
 ## Learning rule
 

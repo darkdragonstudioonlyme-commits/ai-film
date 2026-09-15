@@ -16,7 +16,7 @@ DOC-AUDIT-V2 starts only after an exact candidate passed DOC-REVIEW-V2. It does 
 | D2A-10 | Are server/environment claims honest about observation boundaries, freshness and tool provenance? |
 | D2A-11 | Would model benchmark results be reproducible/comparable only under bound environment/model identities? |
 | D2A-12 | Are all producer/consumer workflows independent, and can final audit find issues despite earlier review PASS? |
-| D2A-13 | Are recovery/rollback paths available for state drift, broken governance, failed candidate and cold-chat recovery? |
+| D2A-13 | Are recovery/rollback paths available for state drift, broken governance, failed candidate and cold-chat recovery, and is the post-PASS activation payload pre-reviewed rather than improvised? |
 | D2A-14 | Search for analogous blind spots not explicitly named above: stale caches, shared assumptions, hidden authority, mislabeled evidence, silent defaults, ambiguous ownership. |
 
 The auditor must run the governance checks, inspect active docs for contradictions/duplication, fresh-fetch runtime state, inspect server snapshot, test workspace-helper synchronization in an isolated temporary root, and attempt adversarial/cold-start scenarios. After promotion, the real helper must be synchronized and runtime reconciliation re-run before returning to product work. PASS is required before V2 promotion to `main`.

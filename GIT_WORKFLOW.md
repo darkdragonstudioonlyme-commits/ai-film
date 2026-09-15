@@ -43,6 +43,8 @@ DOC-DESIGN exact commit
 
 Any FAIL returns findings to DOC-DESIGN and requires a new immutable commit.
 
+After DOC-REVIEW and DOC-AUDIT both PASS, promotion is mechanical: apply the exact reviewed `activation/PROJECT_STATE_V22.md` and `activation/NEXT_WORK_ITEM_WF_P00_IMPL_DEV18.md` as the canonical root files, add the reviewed checkpoint payload, persist the immutable review/audit records, then synchronize the workspace helper and run post-promotion governance/runtime checks. Do not author new state semantics during activation.
+
 ## Artifact identity
 
 For binary artifacts: upload byte-preserving file reference/raw bytes → raw-download → recompute SHA-256 → compare → record store ID/size/hash. Upload success alone is not identity proof.

@@ -34,6 +34,7 @@ PROJECT_STATE
 | lane `LANE_STATE.md` | lane-local active target/output | lane state changes |
 | `reviews/*` / `deliveries/*` | immutable exact review/delivery history | completion only |
 | checkpoints | immutable milestone snapshot | milestone only |
+| `activation/*` | pre-reviewed mechanical promotion payload; not current truth until applied | material governance activation |
 
 ## Freshness and anti-drift rules
 

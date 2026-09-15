@@ -15,7 +15,7 @@ EXIT_CONDITION: "All V2 review/audit criteria pass and canonical main/runtimes r
 
 ## Review scope
 
-Review all proposed V2 policies, scripts and cross-links. Do not review only the new files. Specifically challenge whether tests are business-derived, learning changes future behavior, obsolete rules are pruned, server/model-evaluation facts are honest/fresh, and three documentation workflows are independent.
+Review all proposed V2 policies, scripts, cross-links and the exact `activation/*` payload that will become canonical after PASS. Do not review only the new files. Specifically challenge whether tests are business-derived, learning changes future behavior, obsolete rules are pruned, server/model-evaluation facts are honest/fresh, and three documentation workflows are independent.
 
 ## TEST_CONTRACT
 
