@@ -35,8 +35,8 @@ TEST_CONTRACT:
   VIEWPOINTS: [business_outcome, negative_failure, recovery, independence, freshness, knowledge_hygiene, environment_provenance]
   POSITIVE_CASES: "cold start, auto-continue, policy promotion, environment capture, test routing"
   NEGATIVE_CASES: "stale version, stale lane cache, code-derived oracle, repeated deadlock, obsolete active rule, wrong tool environment"
-  TARGETED_COMMAND: "python3 tools/run_governance_checks.py"
-  FULL_COMMAND: "python3 tools/run_test_workflow.py docs"
+  TARGETED_COMMAND: "/usr/bin/python3 tools/run_governance_checks.py"
+  FULL_COMMAND: "/usr/bin/python3 tools/run_test_workflow.py docs"
   ENVIRONMENT_CLASS: WSL_DEVELOPMENT_AUTHORING
   TEST_DATA_CLASS: SYNTHETIC_AND_PROJECT_METADATA
   NATIVE_EXECUTION_ALLOWED: false

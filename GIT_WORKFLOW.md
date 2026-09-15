@@ -30,7 +30,7 @@ verify state/base/WIP
 
 A changed expected result must identify `APPROVED_BEHAVIOR_CHANGE` or `TEST_DEFECT` authority. Harness/executor changes are separate from oracle changes. The current source cannot be cited as the reason a test expectation changed.
 
-Use `tools/run_test_workflow.py`; WSL `lane-test.sh` is only a low-level executor.
+Use `tools/run_test_workflow.py`; WSL `test.sh` is a managed compatibility entrypoint that delegates to it, while `lane-test.sh` is only a low-level executor. Workspace helper content is managed by `tools/sync_workspace_helpers.py` and verified at runtime.
 
 ## Documentation-system changes
 

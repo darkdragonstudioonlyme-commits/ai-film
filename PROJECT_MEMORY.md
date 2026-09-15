@@ -31,6 +31,10 @@ Pre-V2 detail: `memory/archive/PROJECT_MEMORY_V1_BEFORE_V2.md` plus Git history.
 | MEM-20260915-045 | test-oracle authority must be machine-classified, not guarded by a fragile keyword blacklist | `TEST_STRATEGY.md` / checker |
 | MEM-20260915-046 | canonical test wrapper must bind requested executor to active workflow/lane/environment permission | test workflow |
 | MEM-20260915-047 | memory compaction ratios exclude already-compacted provenance pointers | `KNOWLEDGE_LIFECYCLE.md` |
+| MEM-20260915-048 | compatibility entrypoints must not bypass policy-governed test wrappers | workspace/runtime test policy |
+| MEM-20260915-049 | FULL_COMMAND evidence must cover PASS_MEANS exactly; subset checks cannot overclaim | `TEST_STRATEGY.md` / wrapper |
+| MEM-20260915-050 | unowned current-looking status docs are drift hazards; archive/delete them from active root | documentation ownership checker |
+| MEM-20260915-051 | governance interpreter identity must be explicit; ambient PATH Python from another project is not authority | tool provenance policy |
 
 ## Learning rule
 

@@ -2,7 +2,7 @@
 
 Use `darkdragonstudioonlyme-commits/ai-film` as the persistent control plane; do not depend on transcript history.
 
-Fresh-fetch relevant refs, then follow the cold-start order in `README.md`. Run `tools/run_governance_checks.py` when the prepared WSL workspace is available.
+Fresh-fetch relevant refs, then follow the cold-start order in `README.md`. Run `/usr/bin/python3 tools/run_governance_checks.py` when the prepared WSL workspace is available.
 
 When the user says `continue`, use `WORKFLOW_ROUTER.md`. Preserve documented WIP. Do not ask the user to restate context already present in state/work-item/lane records.
 

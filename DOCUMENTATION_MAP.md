@@ -43,6 +43,7 @@ PROJECT_STATE
 4. WIP must be labeled mutable/non-reviewable with a durable base identity.
 5. Environment facts are observations with timestamp/fingerprint; absence of a tool is not proof that the physical host lacks the capability.
 6. README/CHAT_HANDOFF route; they do not duplicate current version/state.
+7. Every root Markdown file must be an active mapped control-plane document or match the immutable checkpoint naming pattern; obsolete status files are removed from the active tree and remain recoverable through Git history.
 
 ## Documentation Sync Gate
 
@@ -62,4 +63,4 @@ workspace changed?           → WORKSPACE_WSL
 review/delivery/milestone?   → immutable record/checkpoint
 ```
 
-Run `tools/run_governance_checks.py`. Automated checks are guardrails; independent review/audit remains required for material governance change.
+Run `/usr/bin/python3 tools/run_governance_checks.py`. Automated checks are guardrails; independent review/audit remains required for material governance change.

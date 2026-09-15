@@ -30,17 +30,17 @@ Control plane:
 
 ```bash
 cd /home/dragon/ai-film-dev/repo
-python3 tools/run_governance_checks.py
+/usr/bin/python3 tools/run_governance_checks.py
 ```
 
 Business-governed source/review tests:
 
 ```bash
-python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py implement
-python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py review
+/usr/bin/python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py implement
+/usr/bin/python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py review
 ```
 
-`lane-test.sh` is an executor and does not own expected business behavior.
+`test.sh` is a managed compatibility entrypoint and must delegate to the canonical business-governed wrapper through `/usr/bin/python3`. `lane-test.sh` remains an explicit low-level source-test executor. Before V2 promotion, audit `tools/sync_workspace_helpers.py` against an isolated `--root`; after V2 is promoted to canonical `main`, run the sync tool on the real workspace and verify with `--check`. Runtime reconciliation then enforces exact helper content.
 
 ## Safety
 
