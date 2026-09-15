@@ -20,6 +20,7 @@ WORKSPACE_ROOT: /home/dragon/ai-film-dev
 ├── repo/                 # clone of darkdragonstudioonlyme-commits/ai-film
 ├── source-dev7/          # exact extracted implementation package 0.1.0.dev7
 ├── artifacts/            # exact downloaded delivery archives
+├── run-evidence/         # per-run author-test outputs outside source Git
 ├── .venv/                # isolated Python 3.12 author-test environment
 ├── env.sh                # enter source + environment variables
 ├── test.sh               # workspace regression + static checks
@@ -137,6 +138,15 @@ source digest:   93e28ed77c132ad032cf8bf951e7d51627f6f8d007aa4179bb5696f0d6f1c6e
 test digest:     1c79354e63bdc76de157621547a7f92eb97d98fa90a6e53856619861103a3799
 ```
 
+The package's official runners rewrite three evidence files inside the source tree. The workspace `test.sh` therefore:
+
+1. runs the official workspace test runner;
+2. copies generated test log/report into `/home/dragon/ai-film-dev/run-evidence/<UTC timestamp>/`;
+3. runs static checks and copies their report to the same run directory;
+4. restores the three package evidence files from the local Git baseline on exit.
+
+This keeps `source-dev7` clean after a verification run while preserving the actual WSL-run evidence externally. A verified run after this optimization produced the same 673 PASS + 90 static result and left `git status` clean.
+
 These are author/workspace checks only. They are not Windows/WSL native validation, LAB/SITE evidence, qualification, CODE_REVIEW_PASS, or HOST_READY.
 
 ## Safety boundaries
@@ -158,5 +168,6 @@ A future chat with Desktop Commander should:
 2. Verify `/home/dragon/ai-film-dev/repo` and `/home/dragon/ai-film-dev/source-dev7` exist.
 3. Run `git status` in both local Git repositories.
 4. Run `/home/dragon/ai-film-dev/test.sh` before changing source when practical.
-5. Continue only the current recorded implementation increment.
-6. Persist reusable discoveries automatically through the Documentation Sync Gate.
+5. Confirm the source Git returns clean after the test helper completes.
+6. Continue only the current recorded implementation increment.
+7. Persist reusable discoveries automatically through the Documentation Sync Gate.
