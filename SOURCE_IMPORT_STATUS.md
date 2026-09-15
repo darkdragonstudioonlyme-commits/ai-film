@@ -1,13 +1,17 @@
-# AI-FILM-SERVER — Source Import Status
+# AI-FILM-SERVER — Historical Source Import / Recovery Status
+
+## Scope
+
+This file records the one-time dev6 recovery/persistence incident. It is **not current source-visibility or CODE_REVIEW handoff policy**. Current persistence/addressability rules are owned by `GIT_WORKFLOW.md`; current candidate/source-visibility facts are owned by `PROJECT_STATE.md` and the owning lane state.
 
 ## Status: RESOLVED FOR CROSS-CHAT RECOVERY
 
-The one-time persistence blocker for `0.1.0.dev6` is resolved using a **verified hybrid persistence model**:
+The one-time persistence blocker for `0.1.0.dev6` was resolved using a verified hybrid persistence model:
 
-- **GitHub repository** `darkdragonstudioonlyme-commits/ai-film` is the canonical state, memory, workflow and commit ledger.
-- **Google Drive raw artifact** is the byte-preserving recovery anchor for the exact dev6 implementation package.
+- GitHub repository `darkdragonstudioonlyme-commits/ai-film` is the canonical state/memory/workflow ledger.
+- Google Drive raw artifact is the byte-preserving recovery anchor for the exact dev6 implementation package.
 
-This distinction is intentional. Do not claim that the complete dev6 source tree is already materialized as ordinary GitHub source files; the exact binary delivery is durable and recoverable, while future source increments should be committed to Git whenever byte-preserving Git writes are available.
+Do not claim that the complete dev6 source tree is materialized as ordinary GitHub source files. The exact historical binary delivery is durable/recoverable; current source visibility must be read from current state, not inferred from this dev6 record.
 
 ## Exact dev6 recovery anchor
 
@@ -26,17 +30,15 @@ DOWNLOADED_SIZE_BYTES: 1178410
 DOWNLOADED_SHA256: 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
 ```
 
-Verification procedure actually performed:
+Verification performed at the time:
 
-1. Upload local V6 ZIP through Google Drive's file-reference upload path, which transfers file bytes rather than rendering them as model text.
-2. Fetch/download the stored Drive file again as raw bytes.
-3. Recompute SHA-256 on the downloaded artifact in the current runtime.
-4. Compare to the original verified V6 SHA-256.
-5. Result: **exact match**.
+1. Upload V6 ZIP using a raw/file-reference transfer path.
+2. Download the stored file again as raw bytes.
+3. Recompute SHA-256.
+4. Compare with the original V6 SHA-256.
+5. Exact match.
 
-Therefore a future chat with the connected Google Drive plugin can recover the exact dev6 delivery by file ID and verify the same SHA before extraction.
-
-## Persistence state
+## Historical persistence state
 
 ```yaml
 EXACT_DEV6_DELIVERY_DURABLE: true
@@ -46,52 +48,31 @@ GITHUB_STATE_PERSISTENCE: true
 GITHUB_FULL_DEV6_SOURCE_TREE_MATERIALIZED: false
 DRIVE_BINARY_RECOVERY_ANCHOR: true
 PERSISTENCE_BLOCKER: RESOLVED
-DESIGN_GAP: false
-VALIDATION_FAILURE: false
-CODE_REVIEW_FINDING: false
 ```
 
-`EXACT_DEV6_SOURCE_MIRRORED` is retired because it incorrectly implied that durability requires the full tree to live only in GitHub. The project now distinguishes:
+The historical lesson remains valid: durability of exact bytes, canonical state persistence and source-tree browseability are separate properties.
 
-- **source/delivery durability** — satisfied by an exact byte-verified artifact;
-- **Git current-state durability** — satisfied by the repository Markdown/state ledger;
-- **Git source-tree materialization** — desirable and required for normal code-review/diff workflows, but not a reason to lose or reconstruct an exact baseline.
+## Recovery procedure for the dev6 anchor
 
-## Recovery procedure for a new chat
+If dev6 itself must be recovered:
 
-1. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, `PROJECT_MEMORY.md`, and `GIT_WORKFLOW.md`.
-2. Fetch Drive file ID `1nYtbxJ3p0A0Oo_QyYgAc3zdyLbQYCSc4` as raw bytes.
-3. Verify size `1178410` and SHA-256 `41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e`.
-4. Extract into a fresh workspace.
-5. Verify the package manifest/source identities before modification.
-6. Continue only the work recorded by `NEXT_WORK_ITEM.md`.
+1. Verify the raw artifact ID/size/SHA above.
+2. Extract into a fresh workspace.
+3. Verify package manifest/source identities before modification.
+4. Route current work using current `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`; never use this historical file as a current work cursor.
 
-Never reconstruct dev6 from prose if this exact artifact is available.
+Never reconstruct dev6 from prose if the exact artifact is available.
 
-## GitHub connector lesson
+## Current-policy pointer
 
-During bootstrap, text-oriented and large base64 payload paths were tested. Git blob uploads were byte-stable at a small payload but larger model-rendered payloads were not reliable enough for a one-time 1.18 MB archive. Experimental incorrect trees were removed rather than accepted.
+For any current/future implementation candidate, follow `GIT_WORKFLOW.md`:
 
-The reusable lesson is recorded in `PROJECT_MEMORY.md`: use **file-reference/raw-file connectors for binary artifacts**, and use GitHub for source/state commits that can be independently verified.
-
-## Future delivery rule
-
-For every coherent implementation increment:
-
-```text
-work on exact recovered/current source
-→ targeted tests
-→ delivery-boundary regression/static checks
-→ Documentation Sync Gate
-→ diff review + secret scan
-→ persist exact delivery artifact to byte-preserving store when a binary package is produced
-→ commit/push GitHub state/source/diffs that can be verified
-→ verify remote Git commit and artifact hash
-→ only then start the next increment
-```
-
-Before CODE_REVIEW, the exact candidate must be addressable by a Git commit and/or exact artifact identity sufficient for the reviewer to review the same bytes. Any source-tree materialization still missing must be resolved before declaring `CODE_REVIEW_HANDOFF_READY=true`.
+- exact source/package identity is mandatory;
+- remote source addressability/visibility is declared explicitly;
+- a partial review snapshot is labeled non-authoritative;
+- full Git source materialization is preferred when tooling permits because it improves diff/review ergonomics;
+- `CODE_REVIEW_HANDOFF_READY` is determined by the current reviewed handoff policy/state, not by this historical dev6 record.
 
 ## Security
 
-The Drive artifact is currently not shared publicly. The GitHub repository was public at bootstrap, so do not commit credentials, private keys, tokens, private licensed assets or customer data. Synthetic test canaries are not credentials but should remain labeled as fixtures.
+The historical Drive artifact is not public. The GitHub repository is public, so never commit credentials, private keys, tokens, private licensed assets or customer data. Synthetic test canaries must remain labeled as fixtures.
