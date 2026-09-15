@@ -1,0 +1,55 @@
+{
+  "PROJECT": "AI-FILM-SERVER",
+  "STATE_VERSION": 16,
+  "CURRENT_MODE": "IMPLEMENTATION",
+  "CURRENT_PHASE": "00 — Host / WSL",
+  "CURRENT_TASK": {
+    "ID": "IMPL-P00-001",
+    "STATUS": "IN_PROGRESS",
+    "AUTHOR_COMPLETE": false
+  },
+  "TARGET_GATE": "CODE_REVIEW_PASS",
+  "PHASE_GATE": "HOST_READY",
+  "REVIEWED_DESIGN": "Phase00 exact Design V2 — REVIEW-P00-002 PASS",
+  "FROZEN_DECISIONS": "FD-01…FD-08",
+  "APPROVED_DESIGN_DECISIONS": "D00-01…D00-14",
+  "CURRENT_VERIFIED_DELIVERY": {
+    "VERSION": "0.1.0.dev8",
+    "STATUS": "PARTIAL_SOURCE_DROP_DEV8",
+    "PACKAGE": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip",
+    "SIZE_BYTES": 1091121,
+    "SHA256": "d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5",
+    "DRIVE_FILE_ID": "125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD",
+    "RAW_REDOWNLOAD_SHA_VERIFIED": true,
+    "SOURCE_DIFF_SHA256": "c9c519dc4bb0cc99135ffdd6884f31a573bbd191f9141ac9ad2484a4b030560e"
+  },
+  "LAST_TEST_RESULT": {
+    "TARGETED_DEV8_LIFECYCLE": "10 PASS",
+    "WORKSPACE": "683 PASS / 0 failures / 0 errors / 0 skipped",
+    "STATIC": "92 PASS / 0 failed",
+    "SOURCE_DIGEST": "e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08",
+    "TEST_DIGEST": "f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021",
+    "NATIVE_WINDOWS_WSL": "NOT_RUN",
+    "LAB": "NOT_RUN",
+    "SITE": "NOT_RUN",
+    "QUALIFICATION_ISSUED": false
+  },
+  "WSL_WORKSPACE": {
+    "ROOT": "/home/dragon/ai-film-dev",
+    "ACTIVE_SOURCE": "/home/dragon/ai-film-dev/source-dev8",
+    "ACTIVE_LOCAL_GIT": "c44c2f87084f8082ce29af5935c6b47d03f7b96c",
+    "ROLLBACK_SOURCE": "/home/dragon/ai-film-dev/source-dev7",
+    "VENV": "/home/dragon/ai-film-dev/.venv",
+    "DIRECT_GITHUB_PUSH_AUTH": "NOT_CONFIGURED"
+  },
+  "OPEN_FINDINGS": [],
+  "OPEN_DESIGN_GAPS": [],
+  "OPEN_VALIDATION_FAILURES": [],
+  "OPEN_IMPLEMENTATION_ITEMS": "IMPL-REM-01…08 remain OPEN at full-item scope",
+  "IMPLEMENTATION_BLOCKERS": "IMPL-BLOCK-01…03",
+  "CODE_REVIEW_HANDOFF_READY": false,
+  "CODE_REVIEW": "NOT_PERFORMED",
+  "HOST_READY": "NOT_EVALUATED",
+  "NEXT_MODE": "IMPLEMENTATION",
+  "NEXT_ACTION": "Prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics."
+}
