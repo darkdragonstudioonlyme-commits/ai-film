@@ -41,7 +41,7 @@ PROJECT_STATE
 | `RECOVERY_PLAYBOOK.md` | recovery routes for context/state/tool/artifact failures | recovery policy changes | normal next-work queue |
 | `OPERATING_ARCHITECTURE.md` | process/trust architecture and separation of concerns | operating architecture changes | mutable status |
 | `GIT_WORKFLOW.md` | commit/branch/artifact/persistence rules | persistence policy changes | project roadmap |
-| `WORKSPACE_WSL.md` | current local paths/tools/worktree facts | workspace changes | gate decisions |
+| `WORKSPACE_WSL.md` | stable local paths/tools/worktree capabilities | workspace changes | mutable candidate version/commit/test state or gate decisions |
 | `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records | material test governance event | active test policy |
 | `workflow-health/*` | immutable health/meta-review records | workflow meta-review completes | current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |

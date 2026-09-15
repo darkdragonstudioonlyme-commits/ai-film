@@ -9,9 +9,14 @@ active=['README.md','PROJECT_STATE.md','NEXT_WORK_ITEM.md','PROJECT_ROADMAP.md',
 errors=[]
 texts={p:(ROOT/p).read_text(encoding='utf-8') for p in active if (ROOT/p).is_file()}
 # Active protocol docs must be version agnostic except state/task/workspace/environment/roadmap/memory.
-allow_version={'PROJECT_STATE.md','NEXT_WORK_ITEM.md','WORKSPACE_WSL.md','SERVER_ENVIRONMENT.md','PROJECT_ROADMAP.md','PROJECT_MEMORY.md'}
+allow_version={'PROJECT_STATE.md','NEXT_WORK_ITEM.md','SERVER_ENVIRONMENT.md','PROJECT_ROADMAP.md','PROJECT_MEMORY.md'}
 for p,t in texts.items():
     if p not in allow_version and re.search(r'0\.1\.0\.dev\d+',t): errors.append('stale-version-risk:'+p)
+# Workspace map must not duplicate mutable source candidate identities.
+workspace=texts.get('WORKSPACE_WSL.md','')
+if re.search(r'0\.1\.0\.dev\d+',workspace): errors.append('workspace-mutable-version')
+if re.search(r'\b[0-9a-f]{40}\b',workspace): errors.append('workspace-source-commit-pin')
+if re.search(r'\b\d+ PASS\b',workspace): errors.append('workspace-test-count-pin')
 # Checkers cannot hard-code a delivery file/hash.
 for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/audit_documentation_v2.py']:
     t=(ROOT/p).read_text(encoding='utf-8')

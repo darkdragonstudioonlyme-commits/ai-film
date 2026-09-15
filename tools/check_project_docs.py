@@ -39,7 +39,7 @@ for key,needle,name in checks:
 # Mutable versions are forbidden in routing/policy/bootstrap docs.
 version_agnostic=['README.md','CHAT_HANDOFF.md','WORKFLOW_ROUTER.md','EXECUTION_LANES.md',
  'DOCUMENTATION_MAP.md','TEST_STRATEGY.md','WORKFLOW_HEALTH.md','POLICY_REGISTRY.md',
- 'MODEL_EVALUATION.md','SELF_LEARNING.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md']
+ 'MODEL_EVALUATION.md','SELF_LEARNING.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md']
 for name in version_agnostic:
     if re.search(r'0\.1\.0\.dev\d+',text.get(name,'')): errors.append('version-pin:'+name)
 if errors:

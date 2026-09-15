@@ -26,15 +26,20 @@ run-evidence/implement/
 run-evidence/review/
 ```
 
-## Current source lane facts
+## Source-state ownership
 
-- IMPLEMENT HEAD/base durable candidate: dev17 commit `64ea95bf10e05e856a009be9204983182f520b45`.
-- IMPLEMENT currently has dev18 WIP in four modified files; do not discard it.
-- Latest dev18 WIP author run: 756 PASS / 100 static PASS.
-- REVIEW worktree is detached at dev17 while dev18 remains uncommitted.
-- Direct WSL HTTPS push remains unauthenticated; connected GitHub tools persist remote control-plane state.
+This file intentionally does **not** pin current delivery versions, source commit SHAs, WIP dirty files, review target or test counts. Those mutable facts are owned by `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and freshly fetched lane state.
 
-Exact current details belong in `PROJECT_STATE.md`; this file owns paths/tooling facts.
+Before source work:
+
+```bash
+python3 /home/dragon/ai-film-dev/repo/tools/check_runtime_state.py
+
+git -C /home/dragon/ai-film-dev/implement status --short --branch
+git -C /home/dragon/ai-film-dev/review status --short --branch
+```
+
+Direct WSL HTTPS push is currently not configured for unattended use; connected GitHub tools persist remote control-plane state. If that capability changes, update this workspace/tooling fact but still keep mutable candidate identity in `PROJECT_STATE.md`.
 
 ## Lane helpers
 

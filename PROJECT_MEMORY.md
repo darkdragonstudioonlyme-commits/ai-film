@@ -23,6 +23,7 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-039 | LEARNING | Learning is complete only when future behavior/detection improves and recurrence is measured. | `SELF_LEARNING.md` |
 | MEM-20260915-040 | RECOVERY | Preserve WIP/evidence before repair; recovery returns to a verified decision point. | `RECOVERY_PLAYBOOK.md` |
 | MEM-20260915-041 | TOOLING | Checkers must parse current identity from canonical state; hard-coded delivery versions become drift bugs. | checker policy |
+| MEM-20260915-042 | PROCESS | Workspace/tool docs must not duplicate mutable candidate/version/test state owned by PROJECT_STATE/NEXT_WORK_ITEM. | documentation audit/checker |
 
 ## Compaction rule
 
