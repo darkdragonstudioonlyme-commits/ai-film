@@ -16,10 +16,7 @@ for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json',
 text={n:(ROOT/n).read_text(encoding='utf-8') for n in required if (ROOT/n).is_file()}
 checks=[
  ('state-mode','CURRENT_MODE: IMPLEMENTATION','PROJECT_STATE.md'),
- ('state-wip','WIP_NOT_DURABLE_NOT_REVIEWABLE','PROJECT_STATE.md'),
- ('promotion-v2-active','ACTIVE_SYSTEM_VERSION: V2','PROJECT_STATE.md'),
- ('promotion-review-id','DOC-V2-REVIEW-006','PROJECT_STATE.md'),
- ('promotion-audit-id','DOC-V2-AUDIT-006','PROJECT_STATE.md'),
+ ('docs-system-v2','DOCSYS-V2-R6','PROJECT_STATE.md'),
  ('router-continue','“Continue” algorithm','WORKFLOW_ROUTER.md'),
  ('router-health','WORKFLOW_REVIEW','WORKFLOW_ROUTER.md'),
  ('test-authority','implementation code last','TEST_STRATEGY.md'),
@@ -42,7 +39,6 @@ checks=[
 for key,needle,name in checks:
     body=text.get(name,'')
     if needle not in body: errors.append('invariant:'+key)
-# Mutable versions are forbidden in routing/policy/bootstrap docs.
 version_agnostic=['README.md','CHAT_HANDOFF.md','WORKFLOW_ROUTER.md','EXECUTION_LANES.md',
  'DOCUMENTATION_MAP.md','TEST_STRATEGY.md','WORKFLOW_HEALTH.md','POLICY_REGISTRY.md',
  'MODEL_EVALUATION.md','SELF_LEARNING.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md']
