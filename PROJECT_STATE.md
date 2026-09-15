@@ -1,171 +1,192 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V12
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V13
 
 > **READ THIS FILE FIRST IN EVERY NEW CHAT.**  
-> This file is the canonical human-readable cross-chat handoff. It is intentionally detailed so a new chat can identify the exact project phase, active mode, approved baseline, verified implementation status, blockers and next action without reading the previous conversation transcript.
+> This file contains the current operational truth only: where the project is, what is approved, what is verified, what is blocked and what happens next.
+>
+> Reusable lessons/optimizations live in `PROJECT_MEMORY.md`. Historical milestone snapshots live in `AI_FILM_STATE_CHECKPOINT_Vn.md` and must not be mistaken for current state.
 
 ---
 
-## 1. Repository identity and persistence status
-
-```yaml
-REPOSITORY: darkdragonstudioonlyme-commits/ai-film
-DEFAULT_BRANCH: main
-VISIBILITY_AT_BOOTSTRAP: PUBLIC
-GIT_PERSISTENCE_INITIALIZED: true
-CANONICAL_STATE_FILE: PROJECT_STATE.md
-CANONICAL_NEXT_WORK: NEXT_WORK_ITEM.md
-GIT_POLICY: GIT_WORKFLOW.md
-SOURCE_IMPORT_STATUS_FILE: SOURCE_IMPORT_STATUS.md
-```
-
-The repository is now the persistent location for project state/handoff and, after the one-time exact source seed is completed, will also be the persistent development source of truth.
-
-**Security rule:** because the repository was public at initialization, never commit real passwords, API keys, private keys, access tokens, private customer material, licensed private assets, or production secrets. Synthetic test strings such as `CANARY_SECRET` are test fixtures, not credentials, but should remain clearly identified as synthetic.
-
----
-
-## 2. New-chat bootstrap order
-
-A new chat MUST do this before project work:
-
-1. Read `PROJECT_STATE.md` completely.
-2. Read `NEXT_WORK_ITEM.md` completely.
-3. Read `GIT_WORKFLOW.md`.
-4. Read `SOURCE_IMPORT_STATUS.md`.
-5. Read `CHAT_HANDOFF.md`.
-6. Verify the latest commit on `main`.
-7. If exact source has been seeded since this state file was written, verify its hashes/manifest before editing it.
-8. Read the authoritative Blueprint and exact approved Phase 00 V2 contracts when they are available in the repository/source seed.
-9. Do not infer a later gate PASS from prose, test counts or implementation intent.
-
-If repository state and an old chat transcript disagree, prefer the latest verified repository state plus reviewed artifacts/evidence. Never reconstruct missing source from conversation summaries when an exact package/tree should be used.
-
----
-
-## 3. Mode-state-machine position
-
-```text
-ACTIVE MODE: IMPLEMENTATION
-PHASE: 00 — Host / WSL
-WORK ITEM: IMPL-P00-001
-TARGET GATE: CODE_REVIEW_PASS
-PHASE GATE: HOST_READY
-MODE TRANSITION: NONE
-```
-
-Current task status:
+## 1. Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 12
+STATE_VERSION: 13
+REPOSITORY: darkdragonstudioonlyme-commits/ai-film
+DEFAULT_BRANCH: main
+
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK:
-  ID: IMPL-P00-001
-  STATUS: IN_PROGRESS
-  AUTHOR_COMPLETE: false
-CURRENT_VERIFIED_DELIVERY: PARTIAL_SOURCE_DROP_DEV6
+CURRENT_TASK: IMPL-P00-001
+TASK_STATUS: IN_PROGRESS_PAUSED_FOR_GIT_PERSISTENCE
+TARGET_GATE: CODE_REVIEW_PASS
+PHASE_GATE: HOST_READY
+MODE_TRANSITION: NONE
+
+REQUIREMENTS_BASELINE: "AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2"
+REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
+CURRENT_VERIFIED_DELIVERY: "0.1.0.dev6 / PARTIAL_SOURCE_DROP_DEV6"
+AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
-QUALIFICATION_ISSUED: false
-HOST_READY: NOT_EVALUATED
-```
 
-**Do not transition to CODE_REVIEW.** The implementation exit condition has not been satisfied.
-
----
-
-## 4. Temporary repository-persistence prerequisite
-
-The project implementation is currently **paused before further coding** for one reason: the exact `0.1.0.dev6` source bytes have not yet been accepted as a verified GitHub mirror.
-
-```yaml
 EXACT_DEV6_SOURCE_MIRRORED: false
 SOURCE_IMPORT_VERIFIED: false
 IMPLEMENTATION_MAY_RESUME: false
-PERSISTENCE_PREREQUISITE: OPEN
-PERSISTENCE_BLOCKER_KIND: REPOSITORY_PERSISTENCE
+
+WORKSPACE_AUTHOR_TESTS: "666 PASS / 0 failure / 0 error / 0 skip"
+STATIC_AUTHOR_CHECKS: "88 PASS"
+NATIVE_WINDOWS_WSL: NOT_RUN
+LAB: NOT_RUN
+SITE: NOT_RUN
+QUALIFICATION_ISSUED: false
+HOST_READY: NOT_EVALUATED
+
+AUTO_DOCUMENTATION_SYNC: true
+LIVING_MEMORY_FILE: PROJECT_MEMORY.md
+GIT_POLICY: GIT_WORKFLOW.md
+NEXT_ACTION: "Resolve exact dev6 Git persistence per SOURCE_IMPORT_STATUS.md; synchronize state; then resume NEXT_WORK_ITEM.md."
 ```
 
-This is **not** a design gap, validation failure, code-review finding or statement that the implementation source did not exist. Dev6 is a verified implementation delivery from the authoring workspace; only its durable Git mirror is incomplete.
+**Do not transition to CODE_REVIEW. Do not author new implementation while `IMPLEMENTATION_MAY_RESUME=false`.**
 
-Why it is blocked:
+---
 
-- GitHub connector/repository access works and commits work.
-- Detailed MD state/handoff files have been committed successfully.
-- Experimental chunk/source import paths were tested against local Git-blob/SHA identities.
-- At least one copied blob was not byte-identical to local dev6.
-- All experimental `src/` and `snapshots/` mirrors were removed from `main` rather than being accepted as a false baseline.
+## 2. Canonical document model
 
-Read `SOURCE_IMPORT_STATUS.md` for exact resolution requirements.
+The documentation system is intentionally layered to reduce duplicate reading and prevent drift.
 
-**No new implementation should be authored until the exact dev6 source is seeded through a byte-preserving Git/file path and verified.**
+| File | Canonical responsibility |
+|---|---|
+| `PROJECT_STATE.md` | **Current operational truth** — mode, phase, baseline, blockers, gate/test/review status, next action |
+| `NEXT_WORK_ITEM.md` | **Exact next executable work** — order, scope, inputs, forbidden actions, exit condition |
+| `PROJECT_MEMORY.md` | **Accumulated reusable knowledge** — discoveries, optimizations, tooling lessons, risks, test/security/process lessons |
+| `GIT_WORKFLOW.md` | **Standing persistence + automatic documentation synchronization protocol** |
+| `CHAT_HANDOFF.md` | Compact bootstrap prompt/template; not another state database |
+| `SOURCE_IMPORT_STATUS.md` | Temporary exact-source bootstrap status while the current persistence prerequisite is open |
+| `AI_FILM_STATE_CHECKPOINT_Vn.md` + matching JSON | Immutable milestone/history snapshot |
+| Git commits/diffs | Exact change history; do not duplicate full diffs in current-state MD |
+
+### Automatic documentation rule
+
+The project now has a standing **no-silent-knowledge** rule.
+
+If work discovers a reusable optimization, constraint, failure pattern, tooling behavior, safety lesson, test oracle, risk or important clarification, the assistant must update `PROJECT_MEMORY.md` automatically. If that discovery changes current state, next work or workflow, update the corresponding canonical MD in the same increment.
+
+No meaningful increment is considered durable until the Documentation Sync Gate in `GIT_WORKFLOW.md` has been evaluated.
+
+---
+
+## 3. New-chat bootstrap
+
+A new chat should minimize unnecessary context while still recovering exact state:
+
+1. Read `PROJECT_STATE.md` completely.
+2. Read `NEXT_WORK_ITEM.md` completely.
+3. Read relevant active entries in `PROJECT_MEMORY.md`.
+4. Query/verify the current remote `main` head.
+5. Read `GIT_WORKFLOW.md` before making persistent changes.
+6. Read conditional files referenced by current state — currently `SOURCE_IMPORT_STATUS.md`.
+7. Read the authoritative Blueprint/approved contracts required by the current task after the exact source seed makes them available in the repository/source tree.
+8. Do not depend on the previous chat transcript.
+
+If an old chat transcript and the latest verified repository state conflict, prefer the authoritative/reviewed artifacts plus latest verified repository state/evidence.
+
+---
+
+## 4. Current persistence prerequisite
+
+Implementation is paused because exact dev6 source bytes have not yet been accepted as a verified GitHub mirror.
+
+```yaml
+PERSISTENCE_PREREQUISITE: OPEN
+PERSISTENCE_BLOCKER_KIND: REPOSITORY_PERSISTENCE
+EXACT_DEV6_SOURCE_MIRRORED: false
+SOURCE_IMPORT_VERIFIED: false
+IMPLEMENTATION_MAY_RESUME: false
+DESIGN_GAP: false
+VALIDATION_FAILURE: false
+CODE_REVIEW_FINDING: false
+```
+
+This does **not** mean dev6 implementation did not exist. Dev6 is the verified author delivery; only its byte-preserving Git persistence is incomplete.
+
+Repository bootstrap established that:
+
+- GitHub connector access and text documentation commits work.
+- State/handoff Markdown is durable on `main`.
+- Experimental source/archive import paths were checked against dev6 identities.
+- At least one experimental copied blob was not byte-identical to local dev6.
+- Experimental `src/`/`snapshots/` trees were removed instead of being accepted as a false baseline.
+
+Read `SOURCE_IMPORT_STATUS.md` and memory entry `MEM-20260915-002` before resolving this prerequisite.
+
+**Required before new implementation:** exact byte-preserving seed + manifest/hash verification + state update + commit/push/remote verification.
 
 ---
 
 ## 5. Authority and precedence
 
-When artifacts conflict, use this precedence unless a later reviewed artifact explicitly supersedes an earlier one:
+When artifacts conflict, use this order unless a later reviewed artifact explicitly supersedes an earlier one:
 
 1. `AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2`.
-2. Frozen project decisions `FD-01…FD-08`.
+2. Frozen decisions `FD-01…FD-08`.
 3. Exact Phase 00 Design V2 contracts.
-4. `REVIEW-P00-002` Design Review approval for exact V2.
+4. `REVIEW-P00-002` approval of exact Design V2.
 5. Exact implementation source candidate.
 6. Actual test/evidence reports.
-7. This current-state handoff.
-8. Historical delivery summaries/checkpoints.
+7. Current `PROJECT_STATE.md` operational handoff.
+8. `PROJECT_MEMORY.md` reusable knowledge.
+9. Historical checkpoints/delivery summaries.
 
-IMPLEMENTATION must not redesign, change public/reviewed contracts, lower acceptance criteria, or self-approve gates.
+A memory entry does not approve architecture, pass a gate or replace evidence.
 
-If implementation proves that reviewed behavior cannot be implemented without changing a reviewed contract, create a genuine DESIGN_GAP and leave implementation for the affected scope before redesigning it.
+IMPLEMENTATION must not redesign, change reviewed/public contracts, lower acceptance criteria or self-approve gates.
+
+If implementation proves a reviewed behavior cannot be implemented without changing the contract, create a genuine DESIGN_GAP and leave affected implementation scope before redesign.
 
 ---
 
-## 6. Approved design history
+## 6. Approved design baseline
+
+History relevant to current work:
 
 ```text
-Phase 00 Design V1
+Phase00 Design V1
 → REVIEW-P00-001
-→ FAIL
-→ findings DR-P00-001…006
-
-Phase 00 Design V2
+→ FAIL: DR-P00-001…006
+→ Design V2 revision
 → REVIEW-P00-002
 → PASS exact V2
 ```
 
-Approved state:
+Approved status:
 
-- `FD-01…FD-08`: frozen, unchanged.
-- `D00-01…D00-14`: approved for Phase 00 implementation only.
-- `DESIGN_REVIEW_PASS`: satisfied for exact Design V2.
-- Approved contract-set digest recorded by the implementation deliveries:
-
-```text
-f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
+```yaml
+FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
+APPROVED_PHASE00_DESIGN_DECISIONS: "D00-01…D00-14"
+DESIGN_REVIEW_PASS: SATISFIED_EXACT_V2
+APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
 ```
 
-The design approval does **not** establish implementation completeness, native validation, qualification or `HOST_READY`.
+Design approval opens authoring for the exact Phase 00 scope. It does not establish implementation completeness, native validation, qualification or `HOST_READY`.
 
 ---
 
-## 7. Phase 00 invariants that implementation must preserve
+## 7. Phase 00 invariants implementation must preserve
 
-The implementation must continue respecting these reviewed safety/correctness properties:
-
-- Correct host, principal and target identity before mutation.
-- Preserve existing Windows/WSL distributions/data unless the exact reviewed plan authorizes a change.
-- Shared WSL runtime/global effects are treated as host-wide impact where applicable.
-- Active operations use host-global admission semantics and durable unresolved-state handling.
-- Native process exit is not proof that intended Windows/WSL postconditions are true.
-- Timeout/interruption may produce `UNCERTAIN`; do not blind retry or erase durable state.
+- Correct host/principal/target identity before mutation.
+- Preserve existing Windows/WSL distributions/data unless the exact reviewed plan authorizes change.
+- Treat shared WSL runtime/global effects as host-wide impact where applicable.
+- Use host-global admission semantics and durable unresolved-state handling for active operations.
+- Native process exit is not proof of Windows/WSL postcondition success.
+- Timeout/interruption may produce `UNCERTAIN`; do not blind-retry or erase durable state.
 - Recovery/protection evidence must exist before relevant C3/shared-runtime mutation.
 - SITE active operations require matching qualification evidence; LAB evidence production is a separate path.
-- Terminal/gate assertions must correspond to the final effective lifecycle state, not stale pre-restart observations.
-- Restore isolation must be proven before first boot when the reviewed route requires it.
-- Evidence-record completeness, public support-bundle completeness and gate eligibility are separate concepts.
+- Terminal/gate assertions must correspond to final effective lifecycle state, not stale pre-restart observations.
+- Restore isolation must be proven before first boot where the reviewed route requires it.
+- Evidence-record completeness, public support-bundle completeness and gate eligibility are distinct.
 - `APPLIED != VERIFIED != HOST_READY`.
-- No destructive default recovery such as unregistering an existing distro merely to make a retry succeed.
+- No destructive default recovery such as unregistering an existing distro just to make retry succeed.
 
 ---
 
@@ -180,7 +201,7 @@ VERIFIED_INFRA_BASELINE: NOT_ESTABLISHED
 PROMOTED_BASELINE: NONE
 ```
 
-Original verified delivery artifact:
+Verified artifact identity:
 
 ```text
 IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip
@@ -188,171 +209,147 @@ SHA-256:
 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
 ```
 
-### Major capabilities authored through dev6
-
-The verified implementation already contained substantial work. A future chat must not interpret the temporary missing Git source mirror as evidence these components are unimplemented:
+### Already authored through dev6 — do not redo as if absent
 
 - bounded/canonical input handling and plan hashing;
-- plan/approval/qualification/trust policy core;
-- resource floors, capacity and profile predicates;
-- host-global admission concepts, durable fence/read-set/journal behavior;
-- native Windows identity/filesystem/trust adapters and source-byte pinning components;
-- native process supervision ordering with durable witnesses;
-- native actuator components for reviewed Phase 00 actions;
-- session runner and native session driver;
-- operation postcondition observers;
+- approval/qualification/trust policy core;
+- resource floors/capacity/profile predicates;
+- host-global admission concepts and durable fence/read-set/journal behavior;
+- Windows identity/filesystem/trust adapters and source-byte pinning components;
+- native process supervision with durable witnesses;
+- reviewed Phase 00 actuator components;
+- session runner/native driver and postcondition observers;
 - original mutation-fence recovery;
-- pre-mutation detached C0-read recovery;
-- live committed-run NOOP revalidation components;
-- protected C0 observation capture and observation-to-plan proposal binding;
-- primary native CLI dispatch to the concrete factory;
-- guest-agent/inventory/content/sentinel observation components;
+- detached C0-read recovery before mutation fence;
+- committed-run live NOOP revalidation components;
+- protected C0 observation capture → plan proposal binding;
+- primary native CLI dispatch to concrete factory;
+- guest inventory/content/sentinel components;
 - terminal sweep components;
-- evidence catalog and protected snapshot/support-bundle components;
-- snapshot stage identity and exact archive re-observation;
+- evidence catalog/protected snapshot/support-bundle components;
+- snapshot stage identity and exact final archive re-observation;
 - publication write-ahead/recovery components;
-- E17 proposal write-ahead/read-only recovery added in dev6;
-- prior-guest/C3 provenance selection from exact hash-linked operation history added in dev6;
-- bounded early-failure journal capsule before the first usable snapshot added in dev6;
-- registered-LAB route-controller contribution and route oracles;
+- E17 proposal write-ahead/read-only recovery;
+- prior-guest/C3 provenance selection from exact hash-linked operation history;
+- bounded early-failure journal capsule before first usable snapshot;
+- registered-LAB route-controller contribution/oracles;
 - extensive author regression tests.
 
-Existence of these components does not imply every supported route/failure case has full integration or native validation.
+Presence of a component does not imply full reviewed-route integration or native validation.
 
 ---
 
-## 9. Verified author test baseline
+## 9. Verified evidence baseline
 
-Latest verified dev6 author results:
-
-```text
-Workspace regression: 666 PASS
-Failures:             0
-Errors:               0
-Skipped:              0
-Static author checks: 88 PASS
+```yaml
+AUTHOR_WORKSPACE_REGRESSION: "666 PASS / 0 failures / 0 errors / 0 skipped"
+STATIC_AUTHOR_CHECKS: "88 PASS"
+WINDOWS_WSL_NATIVE: NOT_RUN
+POWERSHELL_NATIVE: NOT_RUN
+GUEST_AGENT_LIVE: NOT_RUN
+LIVE_NETWORK: NOT_RUN
+LAB_NATIVE_SUITE: NOT_RUN
+SITE_VALIDATION: NOT_RUN
+QUALIFICATION_RECEIPT: NOT_ISSUED
+AC00_01_TO_08: NOT_EVALUATED
+NATIVE_T_F_SUBCASE_INVENTORY: NOT_RUN
+CODE_REVIEW: NOT_PERFORMED
+HOST_READY: NOT_EVALUATED
 ```
 
-Not established:
-
-```text
-Windows/WSL native execution: NOT_RUN
-PowerShell native execution:  NOT_RUN
-Guest-agent live execution:   NOT_RUN
-Live network tests:           NOT_RUN
-LAB native suite:             NOT_RUN
-SITE validation:              NOT_RUN
-Qualification receipt:        NOT_ISSUED
-AC00-01…08:                    NOT_EVALUATED
-Native T/F/subcase inventory: NOT_RUN
-CODE_REVIEW:                   NOT_PERFORMED
-HOST_READY:                    NOT_EVALUATED
-```
-
-Never translate `666 PASS`, static-check counts, fixture results or route inventories into qualification/native-validation/HOST_READY evidence.
+Reusable rule: author regression/static results are not qualification/native-validation/HOST_READY evidence. See `MEM-20260915-003`.
 
 ---
 
 ## 10. Open implementation items
 
-All eight full-work-item REM entries remain OPEN. The table records progress so the next chat does not redo completed subcomponents.
+All eight full-item entries remain OPEN.
 
-| ID | Authored progress through dev6 | Remaining full-item closure |
+| ID | Authored progress through dev6 | Remaining closure |
 |---|---|---|
-| `IMPL-REM-01` | Native observations plus protected C0 capture and observation-to-proposal binding | Complete effective-profile/eligibility integration across supported contexts and full native-factory route flows. |
-| `IMPL-REM-02` | Native single guard, durable fence/read set, original-request recovery, logical/physical journal byte checks | Complete source integration/fault procedures around exhaustion, interrupted readers and lifecycle boundaries without implicit journal reset. |
-| `IMPL-REM-03` | Exact source scripts, native trust/proof graph, per-entry/per-step authorization, pinned execution/selection records | Complete bootstrap/executable/dependency byte-trust integration, source epochs and prior pre-C3/checkpoint proof selection. |
-| `IMPL-REM-04` | Primary native CLI wired to concrete factory; service/reboot preconditions; first-user wait vs actual receipt | Complete remaining service/OOBE/restart/resume interactions and production-factory execution-path author tests. |
-| `IMPL-REM-05` | Mutation-fence recovery, detached-read recovery, safe non-success cancellation/pause and committed live NOOP | Complete prolonged/multi-stage resume, later request boundaries and remaining recovery/publication interactions. |
-| `IMPL-REM-06` | Guest/content/assets/terminal readers and native proof consumers | Complete non-DIRECT transport contexts plus effective-profile/terminal/restore integration and causal harness assertions. |
-| `IMPL-REM-07` | Immutable snapshot stage, field checks, failure capture hook, publication intent/readback, E17 recovery, prior-guest provenance and early-failure capsule | Complete nested cross-stage semantics, prior pre-C3/checkpoint selectors, temp/incomplete output recovery, applicability and remaining recovery-path integration. |
-| `IMPL-REM-08` | Foundations + registered-LAB route controller/oracles and expanded author regression | Full supported-route/failure preparations/controllers, per-T/F/subcase oracles and production-factory integration author tests. |
+| `IMPL-REM-01` | Native observations + protected C0 capture/observation-to-proposal binding | Effective-profile/eligibility integration across supported contexts and full native-factory route flows |
+| `IMPL-REM-02` | Native guard, durable fence/read set, original-request recovery, journal byte checks | Exhaustion/interrupted-reader/lifecycle source integration without implicit journal reset |
+| `IMPL-REM-03` | Source scripts, native trust/proof graph, per-entry/per-step authorization, pinned records | Bootstrap/executable/dependency byte-trust, source epochs, prior pre-C3/checkpoint proof selection |
+| `IMPL-REM-04` | Primary native CLI to concrete factory; service/reboot preconditions; first-user wait vs receipt | Remaining service/OOBE/restart/resume interactions and production-factory execution-path author tests |
+| `IMPL-REM-05` | Mutation-fence + detached-read recovery; safe cancellation/pause; live NOOP | Prolonged/multi-stage resume, later request boundaries, remaining recovery/publication interactions |
+| `IMPL-REM-06` | Guest/content/assets/terminal readers and native proof consumers | Non-DIRECT transport + effective-profile/terminal/restore integration + causal harness assertions |
+| `IMPL-REM-07` | Snapshot stage/field checks, failure capture hook, publication intent/readback, E17 recovery, prior-guest provenance, early-failure capsule | Nested cross-stage semantics, prior pre-C3/checkpoint selectors, temp/incomplete output recovery, applicability/recovery integration |
+| `IMPL-REM-08` | Foundation + registered-LAB route controller/oracles + regression | Full supported-route/failure preparations/controllers, per-T/F/subcase oracles and production-factory integration author tests |
 
 ---
 
-## 11. Current implementation blockers
+## 11. Open implementation blockers
 
 ### IMPL-BLOCK-01 — Remaining native integration
-
-Scope: REM-01…06.
-
-Still source work, not missing user data:
 
 - effective-profile/eligibility behavior across supported contexts;
 - interpreter/executable/dependency byte-trust/bootstrap integration;
 - remaining service/OOBE/restart/resume/multi-stage recovery interactions;
-- remaining production-factory execution paths and author tests;
+- remaining production-factory execution paths/author tests;
 - supported non-DIRECT transport adapter path.
 
 ### IMPL-BLOCK-02 — Remaining evidence/recovery semantics
 
-Scope: REM-03/06/07.
-
-Dev6 already had prior-guest operation provenance, early-failure capsule and E17 recovery. Remaining work includes:
-
 - full nested cross-stage field semantics;
 - prior pre-C3/checkpoint selection/provenance;
 - incomplete/temp support-bundle output recovery;
-- remaining E17/recovery-path applicability and integration;
+- remaining E17/recovery applicability/integration;
 - terminal/restore/effective-profile context integration.
 
 ### IMPL-BLOCK-03 — Full causal failure/controller harness
 
-Scope: REM-08.
-
-The existing route controller is a real contribution, but not the whole normative suite. Remaining work includes:
-
-- causal environment fault preparations;
-- cross-principal and concurrency orchestration;
+- causal environment fault preparation;
+- cross-principal/concurrency orchestration;
 - lifecycle/restart/OOBE cases;
 - restore-isolation scenarios;
-- required route/failure oracles for the 86 normative T/F/subcases;
+- required oracles for 86 normative T/F/subcases;
 - production-factory integration author tests.
 
-A registry of case IDs is not an executable causal test suite.
+A case-ID registry is not an executable causal suite.
 
 ---
 
-## 12. Exact implementation order after source persistence is resolved
+## 12. Exact next sequence after persistence gate closes
 
-Do not start this list until `EXACT_DEV6_SOURCE_MIRRORED=true`.
+Do not start until `IMPLEMENTATION_MAY_RESUME=true`.
 
-1. Complete executable/interpreter/dependency byte-trust and remaining effective-profile behavior.
-2. Complete remaining service/OOBE/restart/resume/factory branches.
-3. Complete prior pre-C3/checkpoint selection and nested cross-stage E00 semantics.
-4. Complete incomplete/temp publication recovery and remaining E17 recovery integration.
-5. Complete reviewed non-DIRECT transport support where required.
-6. Finish causal supported-route/failure controller procedures for the complete normative inventory.
-7. Add production-factory integration author tests using explicit author test ports only.
-8. Run full workspace regression/static checks.
-9. Update implementation status, remaining-work register, traceability, evidence, state and checkpoint.
-10. Inspect diff and run secret scan.
-11. Commit and push exact candidate.
-12. Verify remote commit SHA.
-13. Only if source/harness/docs/tests are genuinely author-complete and no hidden stub remains, set `CODE_REVIEW_HANDOFF_READY=true` and transition to CODE_REVIEW.
+1. executable/interpreter/dependency byte-trust + remaining effective-profile behavior;
+2. service/OOBE/restart/resume/factory branches;
+3. prior pre-C3/checkpoint selection + nested cross-stage E00 semantics;
+4. incomplete/temp publication recovery + remaining E17 recovery integration;
+5. reviewed non-DIRECT transport support;
+6. complete causal supported-route/failure controller procedures;
+7. production-factory integration author tests using explicit author-test ports;
+8. full workspace regression/static checks;
+9. update implementation/remaining/traceability/evidence docs;
+10. run Documentation Sync Gate: state/task/memory/workflow/checkpoint updates as applicable;
+11. diff review + secret scan;
+12. commit + push + remote verification;
+13. only when truly author-complete: set `CODE_REVIEW_HANDOFF_READY=true` and transition to CODE_REVIEW.
+
+See `NEXT_WORK_ITEM.md` for executable detail.
 
 ---
 
 ## 13. Forbidden actions in current mode
 
-Until the implementation work item exits:
-
 - Do not change FD/D00/public/reviewed contracts.
-- Do not lower acceptance criteria or delete negative/failure cases to make a gate pass.
-- Do not execute Windows/WSL/LAB/SITE/guest/live-network operations during authoring unless a later explicit authorized work item permits it.
-- Do not register fixture/fake ports as the production/active CLI backend.
-- Do not treat fixture flags, inventory, process exit or author-test count as actual proof.
-- Do not erase unresolved journal/fence/read state as an implementation shortcut.
+- Do not lower acceptance or delete negative/failure cases to force PASS.
+- Do not execute Windows/WSL/LAB/SITE/guest/live-network work during authoring unless a later explicit authorized work item permits it.
+- Do not register fixture/fake ports as production/active CLI backend.
+- Do not treat fixture flags, inventory, process exit or author-test counts as actual proof.
+- Do not erase unresolved journal/fence/read state as a shortcut.
 - Do not self-approve code review, qualification, HOST_READY or production readiness.
-- Do not ask the user for host data as a substitute for writing missing source.
-- Do not create a fake DESIGN_GAP merely because code is incomplete.
-- While the persistence prerequisite is open, do not write new implementation code on top of a reconstructed/non-byte-identical baseline.
+- Do not request host data as a substitute for missing source work.
+- Do not create a fake DESIGN_GAP because implementation is incomplete.
+- Do not author new implementation while exact-source persistence is unresolved.
+- Do not allow durable project learning to remain only in chat; update `PROJECT_MEMORY.md` when applicable.
 
 ---
 
 ## 14. Design-gap rule
 
-Only if implementation evidence proves a reviewed behavior must change:
+Only if implementation evidence proves reviewed behavior must change:
 
 ```text
 DESIGN_GAP
@@ -366,100 +363,99 @@ RECOMMENDATION:
 STATUS: OPEN
 ```
 
-Then stop implementation for that affected scope and return to the appropriate design/review path. Implementation may not close its own design gap.
+Stop implementation for the affected scope and return to design/review. A memory entry may document the discovery but cannot authorize the contract change.
 
-Current state: **no design gap established**.
+Current open design gaps: **none**.
 
 ---
 
-## 15. Mandatory Git persistence workflow
+## 15. Persistent self-improving project-memory rule
 
-After the one-time dev6 seed succeeds, Git becomes a hard cross-chat persistence boundary.
+From V13 onward, the assistant must automatically persist durable project learning.
 
-For every coherent implementation increment:
+At the end of each meaningful increment evaluate:
 
 ```text
-verify latest remote state
-→ implement one coherent part
-→ targeted author tests
-→ full workspace regression at delivery boundary
-→ update docs/evidence/state/checkpoint
+STATE CHANGED?             → PROJECT_STATE.md
+NEXT ACTION CHANGED?       → NEXT_WORK_ITEM.md
+REUSABLE LEARNING FOUND?   → PROJECT_MEMORY.md
+WORKFLOW IMPROVED?         → GIT_WORKFLOW.md + PROJECT_MEMORY.md
+IMPLEMENTATION MOVED?      → implementation/remaining/traceability/evidence docs
+MILESTONE REACHED?         → new immutable checkpoint MD + JSON
+```
+
+Do not wait for the user to say “update the MD”. Documentation synchronization is part of the work itself.
+
+Memory entries must distinguish facts/evidence from hypothesis/proposal and must not bypass the mode state machine.
+
+---
+
+## 16. Git persistence rule
+
+For every coherent increment after the source seed:
+
+```text
+verify remote
+→ work in correct mode
+→ targeted tests/evidence
+→ full regression at delivery boundary
+→ Documentation Sync Gate
 → diff review
 → secret scan
 → commit
 → push
-→ verify remote SHA
-→ only then start the next coherent part
+→ verify remote
+→ next increment
 ```
 
-Do not call local work durable until the remote commit is verified.
+Do not call local work durable until remote verification succeeds. Do not force-push/rewrite published history by default.
 
-Do not force-push or rewrite published history by default.
-
-The final author-complete candidate must have an exact committed/pushed SHA before CODE_REVIEW begins. CODE_REVIEW must review that exact committed candidate, not an uncommitted workspace.
-
-Read `GIT_WORKFLOW.md` for the standing policy.
+The exact committed/pushed author-complete candidate is the future CODE_REVIEW target.
 
 ---
 
-## 16. Git bootstrap history
+## 17. Current risks
 
-Repository bootstrap performed on 2026-09-15:
-
-- GitHub connector authenticated as repository owner/admin-capable account.
-- Repository `darkdragonstudioonlyme-commits/ai-film` confirmed accessible with push/admin permission.
-- Repository initialized on `main`.
-- Canonical handoff files created:
-  - `README.md`
-  - `PROJECT_STATE.md`
-  - `NEXT_WORK_ITEM.md`
-  - `GIT_WORKFLOW.md`
-  - `CHAT_HANDOFF.md`
-  - `SOURCE_IMPORT_STATUS.md`
-  - `.gitignore`
-  - `pyproject.toml` metadata
-- A bootstrap secret scan of the local dev6 package found only synthetic test canaries/token-pattern fixtures; no private key, GitHub token or AWS access key was identified by that scan.
-- Experimental source/archive mirrors that failed byte-identity checks were removed from `main`.
-- No force push was used.
-
-This history is persistence evidence, not code review or validation evidence.
+- Reconstructing/accepting non-byte-identical source as dev6 baseline.
+- Confusing author tests with native validation/qualification.
+- Public repository accidentally receiving real secrets/private assets.
+- Duplicated mutable state drifting across multiple MD files.
+- Reusable findings/optimizations being lost in chat instead of promoted to `PROJECT_MEMORY.md`.
+- Starting implementation before the persistence prerequisite is verified.
 
 ---
 
-## 17. Milestone history needed by a new chat
+## 18. Milestone pointers
 
-- MASTER state initialized; Phase 00 selected.
-- Phase 00 Design V1 authored.
-- `REVIEW-P00-001`: design FAIL with six findings.
-- Design V2 revised the contracts.
-- `REVIEW-P00-002`: exact Design V2 PASS.
-- dev1: policy/core foundations, partial.
-- dev2: native identity/trust/guard/supervision foundations, partial.
-- dev3: native session/evidence integration, partial.
-- dev4: original-fence diagnostics/cancel/pause + live NOOP, partial.
-- dev5: C0 binding, detached-read recovery, primary native CLI and route-controller contribution, partial.
-- dev6: E17 recovery, prior-guest provenance selection and early-failure capture, current verified implementation baseline, partial.
-- Git repository initialized for durable cross-chat state and future source commits.
-- Exact dev6 Git source seeding remains an explicit persistence prerequisite before implementation resumes.
+Detailed historical snapshots remain immutable in checkpoint files. Current relevant milestones:
+
+- master state initialized; Phase 00 selected;
+- Design V1 → `REVIEW-P00-001` FAIL with six findings;
+- Design V2 → `REVIEW-P00-002` PASS;
+- implementation dev1…dev6 authored incrementally;
+- dev6 = current verified partial author baseline;
+- Git cross-chat persistence initialized;
+- V13 = living project-memory + automatic documentation-sync protocol established;
+- exact dev6 Git source seed remains open.
 
 ---
 
-## 18. Definition of implementation exit
+## 19. Definition of implementation exit
 
 `IMPL-P00-001` may exit IMPLEMENTATION only when all are true:
 
 - exact baseline/current source is durably persisted in Git;
-- source/harness/docs/test candidate is author-complete;
-- all `IMPL-REM-01…08` are actually closed or a genuine blocker is managed by the mode system;
+- source/harness/docs/tests are author-complete;
+- all `IMPL-REM-01…08` are closed or legitimately managed through the mode system;
 - no known hidden native stub remains in supported reviewed scope;
-- primary supported CLI path is wired to production components, not fixtures;
+- supported primary CLI path is production-component backed, not fixtures;
 - supported causal failure/controller harness exists for reviewed scope;
-- author regression and static checks are clean;
-- traceability/evidence/docs are updated;
-- exact candidate commit has been pushed and remote SHA verified;
-- `CODE_REVIEW_HANDOFF_READY=true` is supported by evidence.
+- author regression/static checks are clean;
+- traceability/evidence/docs/current state/memory are synchronized;
+- exact candidate is committed/pushed and remote state verified;
+- `CODE_REVIEW_HANDOFF_READY=true` is evidence-supported.
 
-Then and only then:
+Only then:
 
 ```text
 MODE TRANSITION
@@ -467,66 +463,4 @@ FROM: IMPLEMENTATION
 TO: CODE_REVIEW
 TASK: CODE-REVIEW-P00-001
 EXIT GATE: CODE_REVIEW_PASS
-```
-
----
-
-## 19. Current state ledger summary
-
-```yaml
-PROJECT: AI-FILM-SERVER
-STATE_VERSION: 12
-CURRENT_MODE: IMPLEMENTATION
-CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_BASELINE:
-  REQUIREMENTS: Blueprint_V2
-  REVIEWED_DESIGN: "Exact Phase00 V2 — REVIEW-P00-002 PASS"
-  SOURCE: "0.1.0.dev6 — partial, verified author delivery, exact Git mirror pending"
-  VERIFIED_INFRA: NOT_ESTABLISHED
-  PROMOTED_BASELINE: NONE
-CURRENT_TASK:
-  ID: IMPL-P00-001
-  STATUS: IN_PROGRESS_PAUSED_FOR_GIT_PERSISTENCE
-TARGET_GATE: CODE_REVIEW_PASS
-PHASE_GATE: HOST_READY
-APPROVED_ARCHITECTURE: "Phase00 exact Design V2 only"
-FROZEN_DECISIONS: "FD-01…FD-08"
-OPEN_FINDINGS: []
-OPEN_DESIGN_GAPS: []
-OPEN_VALIDATION_FAILURES: []
-OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08"
-IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
-PERSISTENCE_PREREQUISITE:
-  EXACT_DEV6_SOURCE_MIRRORED: false
-  SOURCE_IMPORT_VERIFIED: false
-  IMPLEMENTATION_MAY_RESUME: false
-LAST_TEST_RESULT:
-  WORKSPACE: "666 PASS / 0 failures / 0 errors / 0 skipped"
-  STATIC: "88 PASS"
-  NATIVE_WINDOWS_WSL: NOT_RUN
-  LAB: NOT_RUN
-  SITE: NOT_RUN
-LAST_REVIEW_RESULT:
-  DESIGN: "REVIEW-P00-002 PASS exact V2"
-  CODE: NOT_PERFORMED
-QUALIFICATION_ISSUED: false
-HOST_READY: NOT_EVALUATED
-CODE_REVIEW_HANDOFF_READY: false
-NEXT_MODE: IMPLEMENTATION
-NEXT_ACTION: "Resolve exact dev6 Git source persistence per SOURCE_IMPORT_STATUS.md; then continue NEXT_WORK_ITEM.md."
-```
-
----
-
-## 20. Prompt to use in a new chat
-
-```text
-Use GitHub repository darkdragonstudioonlyme-commits/ai-film as the persistent project handoff.
-Read PROJECT_STATE.md, NEXT_WORK_ITEM.md, GIT_WORKFLOW.md and SOURCE_IMPORT_STATUS.md before doing anything else.
-Do not rely on the old chat transcript.
-Follow the AI-FILM-SERVER one-active-mode state machine.
-The expected current mode is IMPLEMENTATION, Phase 00, work item IMPL-P00-001, but implementation is paused until the repository confirms an exact verified dev6 source mirror.
-Do not reconstruct dev6 source from prose. Do not skip review/validation gates. Do not treat author tests as native evidence.
-After the exact source seed is verified, continue only the open REM/blocker scope recorded in PROJECT_STATE.md and NEXT_WORK_ITEM.md.
-For every coherent implementation increment: test, update state/evidence/docs, diff review, secret scan, commit, push, verify remote SHA, then continue.
 ```
