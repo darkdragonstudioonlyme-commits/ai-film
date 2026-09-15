@@ -632,6 +632,7 @@ test_query_not_echoed (test_network_snapshot.NetworkTests.test_query_not_echoed)
 test_retry_two_then_success (test_network_snapshot.NetworkTests.test_retry_two_then_success) ... ok
 test_incomplete_marked_filename (test_network_snapshot.PublisherTests.test_incomplete_marked_filename) ... ok
 test_incomplete_suffix_required (test_network_snapshot.PublisherTests.test_incomplete_suffix_required) ... ok
+test_no_archive_rejects_preexisting_final_without_delete (test_network_snapshot.PublisherTests.test_no_archive_rejects_preexisting_final_without_delete) ... ok
 test_output_failure_maps18 (test_network_snapshot.PublisherTests.test_output_failure_maps18) ... ok
 test_privacy_does_not_write (test_network_snapshot.PublisherTests.test_privacy_does_not_write) ... ok
 test_safe_publish (test_network_snapshot.PublisherTests.test_safe_publish) ... ok
@@ -728,6 +729,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 728 tests in 1.504s
+Ran 729 tests in 1.474s
 
 OK

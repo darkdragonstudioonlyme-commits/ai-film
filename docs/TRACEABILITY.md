@@ -1,3 +1,9 @@
+# Traceability — dev13 stale-output ownership fix
+
+Added one negative case proving a pre-existing final path blocks no-archive publication without deletion/overwrite. Final author regression: **729 PASS**, static **95 PASS**.
+
+---
+
 # Traceability — dev12 publication/E17 recovery increment
 
 | Author coverage | Cases added/expanded | Related reviewed scope |

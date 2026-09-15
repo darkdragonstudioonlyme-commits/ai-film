@@ -90,7 +90,8 @@ class ScanTests(unittest.TestCase):
         self.assertEqual(b.exit,0);self.assertIsNotNone(b.archive);self.assertFalse(b.component_eligible)
 
 class PublishedPaths:
-    def __init__(self,fail=None):self.writes=[];self.fail=fail
+    def __init__(self,fail=None):self.writes=[];self.fail=fail;self.existing=set()
+    def file_exists(self,path):return path in self.existing
     def publish_new(self,path,data,*,pending_path):
         if self.fail:raise self.fail
         self.writes.append((path,data,pending_path))
@@ -110,6 +111,11 @@ class PublisherTests(unittest.TestCase):
     def test_privacy_does_not_write(self):
         paths,p=self.setup();b=Bundle(23,'BLOCKED_REDACTION',False,False,None,{})
         r=self.publish(p,b);self.assertEqual(r['exit'],23);self.assertEqual(paths.writes,[])
+    def test_no_archive_rejects_preexisting_final_without_delete(self):
+        paths,p=self.setup();path=r'C:\Evidence\bundle.zip';paths.existing.add(path)
+        b=Bundle(23,'BLOCKED_REDACTION',False,False,None,{})
+        with self.assertRaises(P00Error) as cm:self.publish(p,b,path)
+        self.assertEqual(int(cm.exception.code),16);self.assertIn(path,paths.existing);self.assertEqual(paths.writes,[])
     def test_incomplete_suffix_required(self):
         paths,p=self.setup();b=assemble('FAILED_RUN',[],Sanitizer(b'x'*16),context={},scanner=strict_safe_scan)
         with self.assertRaises(P00Error):self.publish(p,b)

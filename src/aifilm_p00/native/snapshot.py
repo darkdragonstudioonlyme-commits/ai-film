@@ -117,6 +117,7 @@ class NativeBundlePublisher:
         budget_check(budgets,free_by_volume)
         if bundle.archive is None:
             require(bundle.exit in (15,22,23),15,'BUNDLE_NO_ARCHIVE_OUTCOME')
+            require(not self.paths.file_exists(approved_path),16,'PUBLISH_UNEXPECTED_FINAL')
             publication={'path':approved_path,'temp_path':None,'sha256':None,'bytes':0,
                          'exit':bundle.exit,'outcome':bundle.outcome,'archive_expected':False,
                          'component_eligible':False}

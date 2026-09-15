@@ -61,6 +61,17 @@ class WindowsPaths:
         require(bool(attrs&DIRECTORY),16,'PATH_KIND_MISMATCH')
         return True
 
+    def file_exists(self,path):
+        """Observed regular-file presence; denied/unknown/reparse is never absence."""
+        path=windows_path(path);attrs=self.api.file_attributes(path)
+        if attrs==0xffffffff:
+            error=C.get_last_error()
+            if error in (2,3):return False
+            raise P00Error(12 if error==5 else 18,'PATH_STAT_FAILED')
+        require(not attrs&REPARSE,12,'REPARSE_POINT_FORBIDDEN')
+        require(not attrs&DIRECTORY,16,'PATH_KIND_MISMATCH')
+        return True
+
     def volume(self,path):
         mount=C.create_unicode_buffer(32768)
         self.api.ok(self.api.get_volume_path(path,mount,len(mount)),'VOLUME_PATH',11)

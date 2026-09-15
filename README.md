@@ -1,14 +1,14 @@
 # AI-FILM Phase00 — implementation source drop dev8
 
-**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev12 · PARTIAL_SOURCE_DROP_DEV12**
+**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev13 · PARTIAL_SOURCE_DROP_DEV13**
 
 **Full author-complete: false. Full-scope CODE_REVIEW handoff: NOT_READY.**
 
-Dev12 adds deterministic write-ahead staging and read-only crash recovery for E16 bundle publication and the separate E17 proposal. Temp-only bytes remain protected FAILED_OUTPUT/18; exact final-only bytes may be re-observed; both paths are ambiguous/drift; no-archive outcomes are durably recoverable without creating output. E17 applicability is reconciled with the recovered GATE bundle without granting MASTER authority. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
+Dev13 preserves dev12 staged E16/E17 recovery and closes review finding CR-P00-006: a no-archive E16 outcome is accepted only if the exact approved final output path is currently absent. Pre-existing stale output is rejected without delete/overwrite. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
 
 ## Read first
 
-Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV11_TO_DEV12.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
+Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV12_TO_DEV13.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
 
 ## Workspace-only checks
 

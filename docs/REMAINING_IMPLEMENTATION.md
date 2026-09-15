@@ -1,3 +1,11 @@
+# DEV13 Remaining-Work Delta
+
+- `CR-P00-006`: implementation fix authored — no-archive normal path rejects pre-existing approved final output and preserves it untouched.
+- Dev12 staged E16/E17 recovery semantics otherwise unchanged.
+- Independent REVIEW disposition required. CR-P00-001 remains OPEN_BLOCKER.
+
+---
+
 # DEV12 Remaining-Work Delta
 
 - **REM-07 progress:** deterministic temp identity, temp/final/no-output recovery state, incomplete bundle recovery, and E17 recovery applicability are now implemented at source level.

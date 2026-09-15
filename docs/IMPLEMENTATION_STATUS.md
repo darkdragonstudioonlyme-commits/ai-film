@@ -1,3 +1,13 @@
+# IMPL-P00-001 Implementation Status — dev13 increment
+
+`0.1.0.dev13 / PARTIAL_SOURCE_DROP_DEV13`
+
+Dev13 remediates REVIEW finding CR-P00-006. No-archive E16 outcomes now require observed absence of the exact approved final output path before their durable no-archive intent is accepted. Existing stale output is never deleted or overwritten.
+
+Final author evidence: **729 PASS / 0 failure/error/skip**, static **95 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev12 increment
 
 `0.1.0.dev12 / PARTIAL_SOURCE_DROP_DEV12`

@@ -87,6 +87,7 @@ class StageTests(Check):
 
 class PublicationPaths:
     def __init__(self):self.blobs={};self.writes=[];self.fail=False;self.fail_after_temp=False
+    def file_exists(self,path):return path in self.blobs
     def publish_new(self,path,raw,*,pending_path):
         if self.fail:raise P00Error(18,'SIMULATED_PUBLISH_CRASH')
         if pending_path in self.blobs or path in self.blobs:raise P00Error(16,'EXISTS')
