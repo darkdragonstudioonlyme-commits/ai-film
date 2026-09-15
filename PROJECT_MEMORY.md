@@ -29,6 +29,7 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-045 | LEARNING | Compact active memory requires durable standalone learning records when no review/health record already owns provenance. | `learning/` |
 | MEM-20260915-046 | PROCESS | Worktree existence must not be described as current workflow activity; mutable activity belongs to PROJECT_STATE/lane state. | workspace audit/checker |
 | MEM-20260915-047 | GOVERNANCE | Promotion state/checkpoint must be inside the exact reviewed/audited tree; post-audit policy/state edits reopen review. | documentation promotion policy/checker |
+| MEM-20260915-048 | REVIEW | Causal controller action→route binding belongs to the reviewed procedure authority/digest; post-run evidence may prove the mapping but must never choose it. | native harness procedure/review rule |
 
 ## Compaction rule
 

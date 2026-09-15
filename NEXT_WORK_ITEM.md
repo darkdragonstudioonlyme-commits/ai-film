@@ -1,56 +1,45 @@
-# NEXT WORK ITEM — Resume IMPL-P00-001
+# NEXT WORK ITEM — Independent dev18 delta review
 
 ```yaml
-WORKFLOW_ID: WF-P00-IMPL-DEV18
-LANE: IMPLEMENT
-STATUS: WIP
+WORKFLOW_ID: WF-P00-REVIEW-DEV18
+LANE: REVIEW
+STATUS: READY
 MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-WORK_ITEM: IMPL-P00-001
+WORK_ITEM: CODE-REVIEW-P00-001-DEV18-DELTA
 TARGET_GATE: CODE_REVIEW_PASS
 INPUT_IDENTITY:
-  DURABLE_BASE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
-  DURABLE_BASE_VERSION: 0.1.0.dev17
-  WORKTREE: /home/dragon/ai-film-dev/implement
-  LOCAL_BRANCH: impl/p00
-  WIP_DIRTY: true
-GOAL: "Finalize the existing dev18 remediation for CR-P00-012/013 and hand an immutable candidate to independent REVIEW."
-SUCCESS_OUTPUT: "Committed + packaged dev18 candidate with exact SHA/digests and REVIEW handoff."
-ON_SUCCESS: WF-P00-REVIEW-DEV18
-ON_FAIL: WF-P00-IMPL-DEV18
+  CANDIDATE_ID: IMPL-P00-001-DEV18
+  SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
+  PACKAGE_SIZE_BYTES: 1180358
+  PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
+  MANIFEST_SHA256: 20de57e98170f1af1847e40aa49588d5186ee1e223f2bd943df5f16e10a9c599
+  SOURCE_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
+  TEST_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
+  AUTHOR_TESTS: "757 PASS"
+  STATIC_CHECKS: "100 PASS"
+GOAL: "Independently verify dev18 remediation of CR-P00-012/013 and the V2-governed harness/test changes without editing source."
+SUCCESS_OUTPUT: "Immutable review verdict + test-governance disposition bound to exact dev18 identity."
+ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+ON_FAIL: WF-P00-IMPL-DEV19-REVIEW-FIX
 ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
-EXIT_CONDITION: "REVIEW receives exact immutable dev18 candidate; no uncommitted handoff."
 ```
 
-## Resume, do not restart
+## REVIEW steps
 
-Current WIP already changes four files and last full author run reports **756 PASS / 100 static PASS**. A fresh chat must first inspect this WIP and preserve it. Do not reset to dev17 unless evidence proves the WIP is corrupt and the rollback is explicitly documented.
+1. Fresh-fetch canonical state/lane refs and verify package SHA/size/manifest against the exact local artifact.
+2. Reset `/home/dragon/ai-film-dev/review` detached to source commit `f680067c...`; confirm source is clean.
+3. Independently run review workspace/static checks.
+4. Reproduce former CR-P00-012/013 negatives: wrong build/contract collector, expired preparation continuity, controller temporal mismatch, wrong action→route rebinding.
+5. Verify the reviewed procedure itself owns exact `controller_stage_indices`, all 86 procedure digests/mirrors match, and T07-H binds CREATE to `INVOKE_PRODUCTION_REQUEST` before reconciliation.
+6. Review `TEST_CHANGE-P00-DEV18-HARNESS-001`: confirm `ORACLE_CHANGED=false`, upstream authority is review findings/reviewed harness behavior, and business acceptance was not weakened.
+7. Review the full dev17→dev18 delta for new failure modes, provenance gaps, stale claims or hidden native-proof substitutions.
+8. Verify REVIEW did not modify candidate source.
+9. Persist review/test-review records and update canonical finding/lane state.
 
-## Exact next steps
+## Result routing
 
-1. Fetch canonical `main` and fresh lane refs; read current IMPLEMENT lane state.
-2. Verify `/home/dragon/ai-film-dev/implement` is branch `impl/p00`, base ancestry contains `64ea95b...`, and only the documented dev18 WIP changes are present.
-3. Review the WIP diff specifically for CR-P00-012 collector build/contract binding and CR-P00-013 stage-window continuity/controller coverage.
-4. Bump/finalize dev18 version + implementation/changelog/remaining/traceability docs as needed.
-5. Run targeted harness tests, then full `lane-test.sh implement`.
-6. Write tracked final evidence; secret scan; change inventory/diff audit.
-7. Commit exact source candidate. Package **from that commit**, not from a mutable working tree.
-8. Verify package manifest/hash; persist exact artifact identity.
-9. Create immutable IMPLEMENT→REVIEW handoff with commit/package/source/test identities.
-10. REVIEW lane checks out detached exact commit, independently reruns tests and former CR-P00-012/013 scenarios, then searches new failures.
-11. If REVIEW FAIL: findings route back to IMPLEMENT through `WORKFLOW_ROUTER.md`; do not patch in REVIEW.
-12. If delta PASS but `CR-P00-001` remains: continue next roadmap closure node rather than claiming CODE_REVIEW_PASS.
-
-## Forbidden
-
-- discard the current dev18 WIP merely because dev17 is the last durable package;
-- review uncommitted dev18 as formal candidate;
-- let IMPLEMENT self-close findings;
-- let REVIEW patch source;
-- change FD/D00/public contracts or lower acceptance;
-- treat author/review tests or harness inventory as native validation;
-- run native Windows/WSL/LAB/SITE/guest/live-network validation during current authoring.
-
-## If user only says “continue”
-
-Follow this file and `WORKFLOW_ROUTER.md` automatically. Do not ask what task is next unless a persisted blocker explicitly requires user action.
+- If CR-P00-012/013 pass and no new blocking delta finding exists: close them independently, keep overall CODE_REVIEW FAIL because CR-P00-001 remains, and route to residual author-completeness audit.
+- If FAIL: create exact findings and return to IMPLEMENT; REVIEW must not patch source.
+- Dev18 remote artifact-store persistence remains pending and must not be mislabeled as complete; it does not prevent local exact delta review on the authorized WSL workspace.

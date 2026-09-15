@@ -1,12 +1,12 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V22
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V23
 
-> Read first in every new chat. This is current global truth. Routing: `WORKFLOW_ROUTER.md`. Documentation ownership: `DOCUMENTATION_MAP.md`.
+> Read first in every new chat. Current global truth only. Routing: `WORKFLOW_ROUTER.md`.
 
 ## Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 22
+STATE_VERSION: 23
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
@@ -17,56 +17,64 @@ EXECUTION_MODEL: INDEPENDENT_LANES_WITH_IMMUTABLE_HANDOFFS
 DOCUMENTATION_GOVERNANCE:
   ACTIVE_SYSTEM_VERSION: V2
   SYSTEM_RELEASE_ID: DOCSYS-V2-R6
-  PREVIOUS_SYSTEM_VERSION: V1
-  ACTIVATION_CONDITION: "Promote this exact tree only if DOC-V2-REVIEW-006 and DOC-V2-AUDIT-006 both PASS"
   DETAILED_REVIEW_ID: DOC-V2-REVIEW-006
-  DETAILED_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_V2_REVIEW_R6_PASS.md
   HOLISTIC_AUDIT_ID: DOC-V2-AUDIT-006
-  HOLISTIC_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_V2_AUDIT_R6_PASS.md
-  PORTABLE_DOCS_CHECK: PASS
-  HOLISTIC_DOC_AUDIT_CHECK: PASS
-  RUNTIME_STATE_CHECK: PASS
-  FINAL_PROMOTION_RULE: "Main promotion may add only the exact immutable review/audit records named above; no policy/state edits after audit."
 
-REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
-APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
-FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
-APPROVED_PHASE00_DESIGN: "D00-01…D00-14 exact V2"
-
-LAST_DURABLE_IMPLEMENT_CANDIDATE:
+LAST_REMOTELY_DURABLE_IMPLEMENT_CANDIDATE:
   VERSION: 0.1.0.dev17
   SOURCE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
-  PACKAGE_NAME: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V17.zip
-  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V17.zip
   PACKAGE_SHA256: 130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e
-  AUTHOR_TESTS: "753 PASS / 0 failure / 0 error / 0 skip"
-  STATIC_CHECKS: "100 PASS / 0 failed"
 
-IMPLEMENT_WIP:
-  STATUS: WIP_NOT_DURABLE_NOT_REVIEWABLE
+CURRENT_REVIEW_CANDIDATE:
+  CANDIDATE_ID: IMPL-P00-001-DEV18
+  VERSION: 0.1.0.dev18
+  SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+  SOURCE_WORKTREE: /home/dragon/ai-film-dev/implement
+  PACKAGE_NAME: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
+  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
+  PACKAGE_SIZE_BYTES: 1180358
+  PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
+  MANIFEST_SHA256: 20de57e98170f1af1847e40aa49588d5186ee1e223f2bd943df5f16e10a9c599
+  SOURCE_CONTENT_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
+  TEST_CONTENT_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
+  AUTHOR_TESTS: "757 PASS / 0 failure / 0 error / 0 skip"
+  STATIC_CHECKS: "100 PASS / 0 failed"
+  SECRET_SCAN: "PASS / 0 high-confidence hits"
+  SOURCE_COMMIT_CLEAN: true
+  DELTA_REVIEW_ELIGIBLE: true
+  AUTHOR_COMPLETE: false
+  CODE_REVIEW_HANDOFF_READY: false
+
+ARTIFACT_PERSISTENCE:
+  LOCAL_WSL_PACKAGE_VERIFIED: true
+  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+  REMOTE_STORE_BLOCKS_DELTA_REVIEW: false
+  REMOTE_STORE_BLOCKS_REMOTE_DURABILITY_CLAIM: true
+  NOTE: "Drive upload requires a connector file-reference; current Remote Desktop tool exposes no binary export/file-reference primitive. Do not claim remote artifact persistence until byte-native transfer and raw hash re-verification occur."
+
+IMPLEMENT_LANE:
+  STATUS: HANDED_OFF_EXACT_CANDIDATE
   WORKTREE: /home/dragon/ai-film-dev/implement
   BRANCH: impl/p00
-  BASE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
-  PLANNED_VERSION: 0.1.0.dev18
-  DIRTY_FILES:
-    - config/required-native-test-inventory.json
-    - src/aifilm_p00/native/harness_cases.py
-    - src/aifilm_p00/native/harness_controller.py
-    - tests/test_dev15_harness.py
-  LATEST_AUTHOR_TESTS: "756 PASS / 0 failure / 0 error / 0 skip"
-  LATEST_STATIC_CHECKS: "100 PASS / 0 failed"
-  LATEST_SOURCE_DIGEST: 44633115f00e1611a4851ece8cef5f27b455f0031f1b26970c9486bf8940cbb1
-  LATEST_TEST_DIGEST: 8f65ebed7ccc5eee4a91e4df9f8c0c851a79f8719e230e75b98f104bd61ea5f7
-  NOTE: "CR-P00-012/013 implementation fixes authored; must be finalized/committed/packaged before REVIEW."
+  HEAD: f680067c2f23d7eea4c016247015359ffe431971
+  WORKTREE_CLEAN: true
 
 LAST_REVIEW:
   TARGET_VERSION: 0.1.0.dev17
   TARGET_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
   DELTA_VERDICT: FAIL
-  INDEPENDENT_TESTS: "753 PASS"
-  INDEPENDENT_STATIC: "100 PASS"
-  CLOSED_FINDINGS: [CR-P00-002, CR-P00-003, CR-P00-004, CR-P00-005, CR-P00-007, CR-P00-008, CR-P00-009, CR-P00-010, CR-P00-011]
   OPEN_FINDINGS: [CR-P00-001, CR-P00-012, CR-P00-013]
+
+FINDING_STATUS:
+  CR-P00-001: OPEN_BLOCKER
+  CR-P00-012: FIXED_PENDING_REVIEW
+  CR-P00-013: FIXED_PENDING_REVIEW
+
+TEST_GOVERNANCE:
+  CHANGE_ID: TEST_CHANGE-P00-DEV18-HARNESS-001
+  ORACLE_CHANGED: false
+  REVIEW_STATUS: PENDING
+  RECORD: test-governance/TEST_CHANGE-P00-DEV18-HARNESS-001.md
 
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
@@ -77,25 +85,21 @@ SITE: NOT_RUN
 HOST_READY: NOT_EVALUATED
 
 ACTIVE_WORKFLOW:
-  WORKFLOW_ID: WF-P00-IMPL-DEV18
-  LANE: IMPLEMENT
-  STATUS: WIP
-  ON_SUCCESS: WF-P00-REVIEW-DEV18
-  ON_FAIL: WF-P00-IMPL-DEV18
+  WORKFLOW_ID: WF-P00-REVIEW-DEV18
+  LANE: REVIEW
+  STATUS: READY
+  INPUT_IDENTITY: f680067c2f23d7eea4c016247015359ffe431971
+  ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+  ON_FAIL: WF-P00-IMPL-DEV19-REVIEW-FIX
   ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
 
-NEXT_ACTION: "Resume existing dev18 WIP; finalize version/docs/evidence, full regression, secret/diff audit, commit/package immutable candidate, then hand exact candidate to REVIEW."
+NEXT_ACTION: "REVIEW exact dev18 candidate independently; verify CR-P00-012/013, exact action→route binding/T07-H, test-governance change, package identity, and search new failure modes without editing source."
 ```
 
-## Important distinction
+## Non-claims
 
-`dev17` is the last durable committed/reviewed candidate. `dev18` is real implementation progress but remains **uncommitted WIP**; a fresh chat must resume it, not discard it and not formally review it yet.
-
-## Global blockers
-
-- `CR-P00-001 OPEN_BLOCKER` — full Phase00 author completeness not yet established.
-- `CR-P00-012/013` are open review findings on dev17; dev18 WIP contains intended fixes pending immutable handoff/review.
-
-## State verification rule
-
-Before work, fetch remote `main` and relevant lane refs and run `tools/check_runtime_state.py` when the prepared WSL workspace is available. If local worktree state conflicts with this file, stop and classify whether the difference is a documented WIP, a newer durable handoff, or `STATE_DRIFT`. Never silently overwrite WIP.
+- The 86 native inventory cases remain `NOT_RUN` and `acceptance_closed=false`.
+- 757 author tests are not Windows/WSL/LAB/SITE validation.
+- CR-P00-012/013 are not closed until REVIEW verifies dev18.
+- CR-P00-001 remains the umbrella author-completeness blocker.
+- Remote package persistence is not established for dev18; only the exact local WSL package is currently verified.

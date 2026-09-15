@@ -1,0 +1,40 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 23,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "target_gate": "CODE_REVIEW_PASS",
+  "documentation_system": "DOCSYS-V2-R6",
+  "last_remotely_durable_implementation": {
+    "version": "0.1.0.dev17",
+    "source_commit": "64ea95bf10e05e856a009be9204983182f520b45"
+  },
+  "current_review_candidate": {
+    "version": "0.1.0.dev18",
+    "source_commit": "f680067c2f23d7eea4c016247015359ffe431971",
+    "package_path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip",
+    "package_size_bytes": 1180358,
+    "package_sha256": "4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09",
+    "manifest_sha256": "20de57e98170f1af1847e40aa49588d5186ee1e223f2bd943df5f16e10a9c599",
+    "source_content_digest": "9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8",
+    "test_content_digest": "2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329",
+    "author_tests": 757,
+    "static_checks": 100,
+    "remote_artifact_store": "PENDING_TOOL_CAPABILITY"
+  },
+  "finding_status": {
+    "CR-P00-001": "OPEN_BLOCKER",
+    "CR-P00-012": "FIXED_PENDING_REVIEW",
+    "CR-P00-013": "FIXED_PENDING_REVIEW"
+  },
+  "test_change": "TEST_CHANGE-P00-DEV18-HARNESS-001",
+  "active_workflow": "WF-P00-REVIEW-DEV18",
+  "author_complete": false,
+  "code_review_handoff_ready": false,
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}
