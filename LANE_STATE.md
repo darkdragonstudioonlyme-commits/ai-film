@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: IMPLEMENT-P00
 LANE_ROLE: IMPLEMENT
-STATUS: HANDED_OFF_EXACT_CANDIDATE
+STATUS: ACTIVE_REVIEW_FIX
 GLOBAL_MODE: IMPLEMENTATION
 GLOBAL_WORK_ITEM: IMPL-P00-001
 REMOTE_BRANCH: lane/implement-p00
@@ -12,26 +12,20 @@ LOCAL_SOURCE_BRANCH: impl/p00
 SOURCE_WRITABLE: true
 REVIEW_WRITABLE: false
 
-CURRENT_CANDIDATE:
+BASE_CANDIDATE:
   VERSION: 0.1.0.dev18
   SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
-  WORKTREE_CLEAN: true
-  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
-  PACKAGE_SIZE_BYTES: 1180358
-  PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
-  SOURCE_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
-  TEST_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
-  AUTHOR_TESTS: "757 PASS"
-  STATIC_CHECKS: "100 PASS"
-  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+  REVIEW_VERDICT: FAIL
 
 FINDINGS:
   CR-P00-001: OPEN_BLOCKER
-  CR-P00-012: FIXED_PENDING_REVIEW
-  CR-P00-013: FIXED_PENDING_REVIEW
+  CR-P00-012: OPEN_REMEDIATION_INSUFFICIENT
+  CR-P00-013: CLOSED_DEV18
+  CR-P00-014: OPEN_HIGH
 
-TEST_CHANGE: TEST_CHANGE-P00-DEV18-HARNESS-001
-NEXT_WORKFLOW: WF-P00-REVIEW-DEV18
+WORKFLOW_HEALTH: DEGRADED
+NEXT_CANDIDATE: 0.1.0.dev19
+NEXT_WORKFLOW: WF-P00-IMPL-DEV19-REVIEW-FIX
 ```
 
-IMPLEMENT is frozen at this exact handoff for review identity. New source changes require a new candidate; do not amend `f680067c...` after REVIEW starts. Remote artifact-store persistence remains pending and must not be overclaimed.
+Required correction: preserve production collector-release authority shape, bind contract at suite/causal evidence boundary rather than inventing `collector_release.contract_digest`, restore production-shaped test fixtures, preserve all accepted CR-P00-013 behavior, then produce a new exact candidate for independent REVIEW.
