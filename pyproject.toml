@@ -1,7 +1,7 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev9"
-description = "Partial Phase00 implementation: closes dev8 review findings CR-P00-002/003/004 with renewed recovery authority and typed bounded wait context; remaining evidence/transport/harness work pending"
+version = "0.1.0.dev10"
+description = "Partial Phase00 implementation: adds exact prior pre-C3/checkpoint provenance and field-level cross-stage E00 source binding; remaining publication/transport/harness work pending"
 requires-python = ">=3.11"
 dependencies = []
 

@@ -1,14 +1,14 @@
 # AI-FILM Phase00 — implementation source drop dev8
 
-**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev9 · PARTIAL_SOURCE_DROP_DEV9**
+**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev10 · PARTIAL_SOURCE_DROP_DEV10**
 
 **Full author-complete: false. Full-scope CODE_REVIEW handoff: NOT_READY.**
 
-Dev9 closes the concrete dev8 review findings CR-P00-002/003/004: durable owner-wait relabel now re-authorizes immediately before persistence; operator waits retain only typed/bounded safe context and a result/prior-wait digest; actual pending-reboot cause is no longer discarded. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
+Dev10 adds exact cross-stage provenance for prior guest, pre-C3 protection and post-apply checkpoint evidence. Historical E00 cells preserve their original source ref/time/source kind; E12 revalidates exact pre-C3 proof receipts; E15 keeps CPK-PRE-C3 refs distinct from the committed RESTORE_EXPORT checkpoint. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
 
 ## Read first
 
-Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV8_TO_DEV9.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
+Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV9_TO_DEV10.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
 
 ## Workspace-only checks
 

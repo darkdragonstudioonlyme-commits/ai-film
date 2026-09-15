@@ -1,3 +1,13 @@
+# Traceability — dev10 prior/nested evidence increment
+
+| New author test module | Cases | Parent specifications | Scope |
+|---|---:|---|---|
+| `test_dev10_prior_nested` | 18 | D00-10/D00-12/D00-14; E00-04/05/07/12/15; T00-05/09/10/13 | Exact historical source/target/time binding, pre-C3 boundary/proof provenance, checkpoint history integrity, field-specific source metadata — synthetic author coverage only |
+
+Final author regression: **710 PASS**, static **94 PASS**. Native/LAB/SITE parent cases remain NOT_RUN.
+
+---
+
 # Traceability — dev9 review-finding fixes
 
 | Module | New cases | Review linkage | Scope |

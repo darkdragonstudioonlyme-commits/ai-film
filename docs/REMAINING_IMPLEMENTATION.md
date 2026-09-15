@@ -1,3 +1,12 @@
+# DEV10 Remaining-Work Delta
+
+- **REM-03/07 progress:** prior guest/pre-C3/checkpoint consumers now retain and validate exact cross-stage provenance rather than stamping historical facts as current capture.
+- **REM-07 progress:** E12 pre-C3 provenance and E15 pre-C3-vs-post-apply checkpoint separation are implemented at source level.
+- **Still open:** complete remaining nested/applicability semantics beyond these source selectors, incomplete/temp publication + remaining E17 integration, non-DIRECT transport, full causal 86-case harness and production-factory author integration.
+- All full-item REM entries remain OPEN; CR-P00-001 remains OPEN_BLOCKER.
+
+---
+
 # DEV9 Remaining-Work Delta
 
 - `CR-P00-002`: implementation fix authored — renewed authority/fence/request checks precede durable owner-wait relabel.

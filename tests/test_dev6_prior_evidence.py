@@ -10,7 +10,7 @@ G={'uid':1000,'gid':1000,'user':'film','home':'/home/film','os_id':'ubuntu','ver
 
 def plan(pd=D):return {'plan_digest':pd}
 def event(pd=D,step='step-1',guest=G):
-    evidence={'details':{'actual_result':{'guest':{'inventory':{'actual':guest},'admin':{'actual':{'ready':True}}}}}}
+    evidence={'timestamp_utc':'2026-09-14T00:00:00Z','source_kind':'SITE','details':{'actual_result':{'guest':{'inventory':{'actual':guest},'admin':{'actual':{'ready':True}}}}}}
     return {'event':{'kind':'OPERATION_AFTER_OBSERVED','plan_digest':pd,'step_id':step,
                      'evidence':evidence,'evidence_digest':digest(evidence)}}
 

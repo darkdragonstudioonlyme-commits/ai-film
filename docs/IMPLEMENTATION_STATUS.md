@@ -1,3 +1,20 @@
+# IMPL-P00-001 Implementation Status — dev10 increment
+
+`0.1.0.dev10 / PARTIAL_SOURCE_DROP_DEV10`
+
+Dev10 advances REM-03/07 cross-stage evidence semantics without changing reviewed contracts.
+
+- Prior guest facts selected from exact current/history plans now bind host, execution class, target registration, timestamp and content-addressed journal provenance.
+- E04/E05/E07 cells sourced from prior guest evidence retain the original `source_ref`, `observed_at`, and `source_kind` instead of being relabeled as current capture.
+- PRE_C3 events are selected only from exact current/host-restart C3 plans, boundary-hash checked, deduplicated, and their protection receipts revalidated at recorded time under current trust/withdrawal state.
+- E12 stores validated nested pre-C3 provenance and owner/proof linkage.
+- E15 separates CPK-PRE-C3 protection refs from the post-apply committed RESTORE_EXPORT checkpoint provenance.
+- Added 18 focused prior/nested provenance tests.
+
+Final author evidence: **710 PASS / 0 failure/error/skip**, static **94 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN; overall CODE_REVIEW remains blocked by CR-P00-001/full REM scope.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev9 increment
 
 `0.1.0.dev9 / PARTIAL_SOURCE_DROP_DEV9`

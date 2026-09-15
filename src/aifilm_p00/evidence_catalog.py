@@ -161,11 +161,22 @@ def group_check(eid,body,stage,*,downstream=False):
             'body_digest':digest(body),'host_ready':False}
 
 
-def new_body(eid,values,*,at,source_ref,source_kind,missing_status='UNAVAILABLE',missing_reason='NOT_COLLECTED'):
+def new_body(eid,values,*,at,source_ref,source_kind,field_sources=None,
+             missing_status='UNAVAILABLE',missing_reason='NOT_COLLECTED'):
     require(eid in CATALOG and set(values)<=set(CATALOG[eid]),15,'CATALOG_FIELD_UNKNOWN')
-    return {'schema_version':1,'evidence_id':eid,'fields':{name:
-        cell(values[name],source_ref,at,source_kind=source_kind) if name in values else
-        pending(missing_status,missing_reason,at) for name in CATALOG[eid]},'evaluations':[]}
+    field_sources={} if field_sources is None else field_sources
+    require(type(field_sources) is dict and set(field_sources)<=set(values),15,'CATALOG_FIELD_SOURCE_UNKNOWN')
+    actual={}
+    for name in CATALOG[eid]:
+        if name not in values:
+            actual[name]=pending(missing_status,missing_reason,at);continue
+        meta=field_sources.get(name,{'source_ref':source_ref,'observed_at':at,'source_kind':source_kind})
+        require(type(meta) is dict and set(meta)=={'source_ref','observed_at','source_kind'}
+                and type(meta['source_ref']) is str and bool(meta['source_ref'])
+                and meta['source_kind'] in ('SITE','LAB','DOCUMENT'),15,'CATALOG_FIELD_SOURCE_SCHEMA')
+        instant(meta['observed_at'])
+        actual[name]=cell(values[name],meta['source_ref'],meta['observed_at'],source_kind=meta['source_kind'])
+    return {'schema_version':1,'evidence_id':eid,'fields':actual,'evaluations':[]}
 
 
 def evaluated(body,name,passed,expected_ref,reason=None):

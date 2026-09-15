@@ -1,3 +1,20 @@
+# DEV10 Cross-stage evidence provenance boundary
+
+Historical facts now keep their historical provenance instead of inheriting the current snapshot source:
+
+```text
+exact current/history plan graph
+→ hash-linked durable operation/pre-C3/checkpoint observation
+→ host/actor/target/time/source checks
+→ current trust/withdrawal revalidation for proof receipts
+→ field-specific protected source_ref + original observed_at/source_kind
+→ current snapshot seals the cross-stage reference without re-observing/relabeling history
+```
+
+E15 distinguishes the pre-C3 protection checkpoint/reference set from the later post-apply RESTORE_EXPORT checkpoint. No PASS envelope, filename, timestamp alone or intended digest is promoted into proof.
+
+---
+
 # DEV9 Durable wait / recovery authority boundary
 
 Operator wait persistence is now a separate typed boundary:

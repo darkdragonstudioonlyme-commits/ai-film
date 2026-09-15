@@ -117,6 +117,24 @@ test_terminal_mixed_epoch (test_core.PolicyTests.test_terminal_mixed_epoch) ... 
 test_terminal_network_fail (test_core.PolicyTests.test_terminal_network_fail) ... ok
 test_terminal_old_network (test_core.PolicyTests.test_terminal_old_network) ... ok
 test_terminal_too_long (test_core.PolicyTests.test_terminal_too_long) ... ok
+test_authenticated_pre_c3_proof_yields_target_checkpoint_ref (test_dev10_prior_nested.AuthenticatedPreC3Tests.test_authenticated_pre_c3_proof_yields_target_checkpoint_ref) ... ok
+test_wrong_owner_receipt_rejected_by_consumer (test_dev10_prior_nested.AuthenticatedPreC3Tests.test_wrong_owner_receipt_rejected_by_consumer) ... ok
+test_checkpoint_history_binds_exact_source (test_dev10_prior_nested.CheckpointHistoryTests.test_checkpoint_history_binds_exact_source) ... ok
+test_tampered_checkpoint_observation_rejected (test_dev10_prior_nested.CheckpointHistoryTests.test_tampered_checkpoint_observation_rejected) ... ok
+test_wrong_checkpoint_rejected (test_dev10_prior_nested.CheckpointHistoryTests.test_wrong_checkpoint_rejected) ... ok
+test_wrong_target_rejected (test_dev10_prior_nested.CheckpointHistoryTests.test_wrong_target_rejected) ... ok
+test_field_specific_source_is_preserved (test_dev10_prior_nested.NestedFieldSourceTests.test_field_specific_source_is_preserved) ... ok
+test_producer_prior_guest_fields_use_prior_source (test_dev10_prior_nested.NestedFieldSourceTests.test_producer_prior_guest_fields_use_prior_source) ... ok
+test_unknown_field_source_rejected (test_dev10_prior_nested.NestedFieldSourceTests.test_unknown_field_source_rejected) ... ok
+test_conflicting_duplicate_rejected (test_dev10_prior_nested.PreC3EventTests.test_conflicting_duplicate_rejected) ... ok
+test_exact_pre_c3_event_selected (test_dev10_prior_nested.PreC3EventTests.test_exact_pre_c3_event_selected) ... ok
+test_tampered_boundary_rejected (test_dev10_prior_nested.PreC3EventTests.test_tampered_boundary_rejected) ... ok
+test_wrong_host_rejected (test_dev10_prior_nested.PreC3EventTests.test_wrong_host_rejected) ... ok
+test_exact_prior_guest_preserves_source_time_and_ref (test_dev10_prior_nested.PriorGuestScopeTests.test_exact_prior_guest_preserves_source_time_and_ref) ... ok
+test_future_prior_observation_rejected (test_dev10_prior_nested.PriorGuestScopeTests.test_future_prior_observation_rejected) ... ok
+test_unrelated_plan_is_not_adopted (test_dev10_prior_nested.PriorGuestScopeTests.test_unrelated_plan_is_not_adopted) ... ok
+test_wrong_host_rejected (test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_host_rejected) ... ok
+test_wrong_target_rejected (test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_target_rejected) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -692,6 +710,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 692 tests in 1.441s
+Ran 710 tests in 1.531s
 
 OK

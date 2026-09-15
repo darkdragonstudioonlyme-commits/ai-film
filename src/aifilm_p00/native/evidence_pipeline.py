@@ -11,13 +11,13 @@ from pathlib import PureWindowsPath
 import os,time
 
 from .. import CONTRACT_DIGEST
-from ..codec import digest,canonical,loads,sha256,instant,token
+from ..codec import digest,canonical,loads,sha256,instant,token,hash_value
 from ..errors import require,P00Error
 from ..evidence import (Collected,Sanitizer,assemble,requiredness,COLLECTOR_CAP,PATHS,
                         bundle_integrity,record_check)
 from ..evidence_catalog import Stage,CATALOG,new_body,group_check,evaluated,pending
 from ..authority import authorize,qualification
-from ..policy import terminal,budget_check,c3_postconditions
+from ..policy import terminal,budget_check,c3_postconditions,protection
 from ..resume import completed_steps
 from ..evidence_stage import scoped_stage,require_bundle_context
 from .artifacts import SnapshotWriter,committed_snapshot
@@ -52,50 +52,118 @@ def selected_events(rows,kind,plan_digest=None):
             and (plan_digest is None or r['event'].get('plan_digest')==plan_digest)]
 
 
+def _history_entries(result):
+    history=result.get('history',{}) if type(result) is dict else {}
+    entries=history.get('entries',{}) if type(history) is dict else {}
+    require(type(entries) is dict,15,'PRIOR_EVIDENCE_HISTORY_SCHEMA')
+    return entries
+
+
 def _history_plan_digests(plan,result):
     """Only exact durable source sessions named by this execution history."""
     values=[plan['plan_digest']]
-    history=result.get('history',{}) if type(result) is dict else {}
-    entries=history.get('entries',{}) if type(history) is dict else {}
-    for row in entries.values():
+    for row in _history_entries(result).values():
         if type(row) is dict and type(row.get('plan_digest')) is str:
-            values.append(row['plan_digest'])
-    # preserve order while rejecting an unbounded/ambiguous source graph
+            hash_value(row['plan_digest']);values.append(row['plan_digest'])
     out=[]
     for value in values:
+        hash_value(value)
         if value not in out:out.append(value)
     require(len(out)<=8,15,'PRIOR_EVIDENCE_PLAN_CAP')
     return tuple(out)
 
 
-def _prior_guest_from_events(rows,plan,result):
-    """Select prior guest facts only from hash-linked operation observations.
-
-    This is used by C3/gate stages where the source guest was quiesced before the
-    current operation.  We never boot the guest merely to fill an evidence cell,
-    and never infer guest facts from a binding or a PASS envelope.
-    """
-    plans=set(_history_plan_digests(plan,result));candidates=[]
+def _prior_guest_from_events(rows,plan,result,not_after=None):
+    """Select prior guest facts only from hash-linked exact source history."""
+    plans=set(_history_plan_digests(plan,result));candidates=[];semantic=plan.get('semantic')
     for row in rows:
         event=row.get('event',{})
         if event.get('kind')!='OPERATION_AFTER_OBSERVED' or event.get('plan_digest') not in plans:continue
         evidence=event.get('evidence')
         require(type(evidence) is dict and event.get('evidence_digest')==digest(evidence),15,'PRIOR_GUEST_EVENT_INTEGRITY')
+        step=event.get('step_id');require(type(step) is str and step.startswith('step-') and step[5:].isdigit(),15,'PRIOR_GUEST_STEP')
+        when=evidence.get('timestamp_utc');require(type(when) is str,15,'PRIOR_GUEST_TIME')
+        observed=instant(when)
+        if not_after is not None:require(observed<=not_after,16,'PRIOR_GUEST_FUTURE')
+        if type(semantic) is dict:
+            require(evidence.get('kind')=='NATIVE_OPERATION_AFTER'
+                    and evidence.get('host_id')==semantic['host_id']
+                    and evidence.get('source_kind')==semantic['execution_class'],16,'PRIOR_GUEST_SOURCE_SCOPE')
+            target=semantic.get('target',{});rid=target.get('registration_id') if type(target) is dict else None
+            metadata=evidence.get('metadata',{});prior_target=metadata.get('target') if type(metadata) is dict else None
+            if rid is not None:
+                require(type(prior_target) is dict and prior_target.get('registration_id')==rid,
+                        16,'PRIOR_GUEST_TARGET_SCOPE')
         details=evidence.get('details',{});actual=details.get('actual_result') if type(details) is dict else None
         guest,admin=_actual_guest(actual if type(actual) is dict else {})
         if guest:
-            candidates.append((event.get('step_id',''),event['plan_digest'],deepcopy(guest),deepcopy(admin),event['evidence_digest']))
+            candidates.append({'step_id':step,'plan_digest':event['plan_digest'],'guest':deepcopy(guest),
+                'admin':deepcopy(admin),'evidence_digest':event['evidence_digest'],'observed_at':when,
+                'source_kind':evidence.get('source_kind','SITE'),
+                'source_ref':'journal:'+event['plan_digest']+':'+event['evidence_digest']+'#'+step})
     if not candidates:return None,None,None
-    # Step IDs are deterministic within a plan.  The latest durable event in the
-    # journal is authoritative for that exact source graph; duplicates for the
-    # same plan/step with different evidence are integrity errors.
     seen={}
     for row in candidates:
-        key=(row[1],row[0])
-        if key in seen:require(seen[key][4]==row[4],15,'PRIOR_GUEST_EVENT_AMBIGUOUS')
+        key=(row['plan_digest'],row['step_id'])
+        if key in seen:require(seen[key]['evidence_digest']==row['evidence_digest'],15,'PRIOR_GUEST_EVENT_AMBIGUOUS')
         seen[key]=row
     chosen=candidates[-1]
-    return chosen[2],chosen[3],{'plan_digest':chosen[1],'step_id':chosen[0],'evidence_digest':chosen[4]}
+    ref={k:deepcopy(chosen[k]) for k in ('plan_digest','step_id','evidence_digest','observed_at','source_kind','source_ref')}
+    return chosen['guest'],chosen['admin'],ref
+
+
+def _pre_c3_plan_digests(plan,result):
+    semantic=plan.get('semantic',{});values=[]
+    if semantic.get('purpose') in ('ENGINE','HOST_RESTART'):values.append(plan['plan_digest'])
+    row=_history_entries(result).get('host_restart')
+    if type(row) is dict and type(row.get('plan_digest')) is str:values.append(row['plan_digest'])
+    out=[]
+    for value in values:
+        hash_value(value)
+        if value not in out:out.append(value)
+    return tuple(out)
+
+
+def _pre_c3_events(rows,plan,result):
+    """Return validated PRE_C3 journal events for exact current/history C3 plans."""
+    allowed=set(_pre_c3_plan_digests(plan,result));out=[];seen={};semantic=plan.get('semantic',{})
+    for row in rows:
+        event=row.get('event',{})
+        if event.get('kind')!='PRE_C3_PROOF_OBSERVED' or event.get('plan_digest') not in allowed:continue
+        required={'kind','plan_digest','scope','proof_ref','checked_at','boundary','claim_digest'}
+        require(required<=set(event),15,'PRE_C3_EVENT_SCHEMA')
+        hash_value(event['plan_digest']);hash_value(event['proof_ref']);hash_value(event['claim_digest']);instant(event['checked_at'])
+        scope=event['scope'];require(type(scope) is dict and set(scope)=={'host_id','source_witness'},15,'PRE_C3_SCOPE_SCHEMA')
+        hash_value(scope['source_witness']);require(digest(event['boundary'])==scope['source_witness'],15,'PRE_C3_BOUNDARY_INTEGRITY')
+        if type(semantic) is dict and semantic:
+            require(scope['host_id']==semantic['host_id'],16,'PRE_C3_HOST_SCOPE')
+        identity=(event['plan_digest'],event['proof_ref'],event['checked_at'])
+        body=digest({k:event[k] for k in required})
+        if identity in seen:
+            require(seen[identity]==body,15,'PRE_C3_EVENT_AMBIGUOUS');continue
+        seen[identity]=body;out.append(deepcopy(event))
+    return out
+
+
+def _checkpoint_history_ref(plan,result,expected_checkpoint):
+    """Bind E15 post-apply checkpoint provenance to committed RESTORE_EXPORT."""
+    row=_history_entries(result).get('checkpoint')
+    require(type(row) is dict and {'plan_digest','evidence_digest','observation'}<=set(row),15,'CHECKPOINT_HISTORY_MISSING')
+    hash_value(row['plan_digest']);hash_value(row['evidence_digest']);hash_value(expected_checkpoint)
+    observation=row['observation'];require(type(observation) is dict and digest(observation)==row['evidence_digest'],15,'CHECKPOINT_HISTORY_INTEGRITY')
+    s=plan['semantic']
+    require(observation.get('kind')=='NATIVE_OPERATION_AFTER'
+            and observation.get('host_id')==s['host_id']
+            and observation.get('source_kind')==s['execution_class'],16,'CHECKPOINT_HISTORY_SCOPE')
+    metadata=observation.get('metadata',{});target=metadata.get('target') if type(metadata) is dict else None
+    require(type(target) is dict and target.get('registration_id')==s['target']['registration_id'],
+            16,'CHECKPOINT_HISTORY_TARGET')
+    checkpoint=observation.get('details',{}).get('checkpoint',{})
+    require(type(checkpoint) is dict and checkpoint.get('sha256')==expected_checkpoint,15,'CHECKPOINT_HISTORY_MISMATCH')
+    when=observation.get('timestamp_utc');instant(when)
+    return {'plan_digest':row['plan_digest'],'evidence_digest':row['evidence_digest'],
+            'checkpoint_digest':expected_checkpoint,'observed_at':when,'source_kind':observation['source_kind'],
+            'source_ref':'journal:'+row['plan_digest']+':'+row['evidence_digest']+'#checkpoint'}
 
 
 class NativeCatalogProducer:
@@ -105,7 +173,7 @@ class NativeCatalogProducer:
         self.at=fresh.context.now.isoformat();self.guest,self.admin=_actual_guest(self.result)
         self.events=coordinator.storage.read_events();self.prior_guest_ref=None
         if self.guest is None and (self.stage.name in ('C3','GATE') or self.stage.c3):
-            self.guest,self.admin,self.prior_guest_ref=_prior_guest_from_events(self.events,plan,self.result)
+            self.guest,self.admin,self.prior_guest_ref=_prior_guest_from_events(self.events,plan,self.result,not_after=fresh.context.now)
         self.capture_ref='journal:'+plan['plan_digest']+':'+digest(self.result)
 
     def _source(self):
@@ -122,6 +190,67 @@ class NativeCatalogProducer:
         require(set(value['assertions'])==set(actual),15,'TERMINAL_DETAIL_SET')
         require(all(v['evidence_digest']==digest(actual[k]) for k,v in value['assertions'].items()),15,'TERMINAL_DETAIL_HASH')
         return value,actual
+
+    def _validated_pre_c3(self):
+        """Re-read every exact pre-C3 proof at its recorded observation time."""
+        if hasattr(self,'_pre_c3_cache'):return self._pre_c3_cache
+        events=_pre_c3_events(self.events,self.plan,self.result)
+        require(bool(events),11,'PRE_C3_EVIDENCE_UNAVAILABLE')
+        from .proofs import ProofReader
+        target=self.s.get('target',{});target_id=target.get('registration_id') if type(target) is dict else None
+        verified=[]
+        for event in events:
+            checked=instant(event['checked_at'])
+            proof=ProofReader(self.f.store,self.s['host_id'],self.s['owner_sid'],checked).receipt(
+                'protection',event['proof_ref'],event['scope'],owner_assertion=True)
+            require(proof['owner_sid']==self.s['owner_sid'],12,'PRE_C3_OWNER_SCOPE')
+            require(digest(proof['claim'])==event['claim_digest'],15,'PRE_C3_PROOF_DRIFT')
+            protection(proof['claim'],self.s['host_id'],target_id,checked,event['scope']['source_witness'])
+            checkpoint=None
+            if target_id is not None:
+                rows=[r for r in proof['claim']['rows'] if r.get('resource_id')==target_id]
+                require(len(rows)==1,15,'PRE_C3_TARGET_ROW')
+                checkpoint=rows[0].get('checkpoint_digest');hash_value(checkpoint)
+            event_digest=digest(event)
+            ref={'plan_digest':event['plan_digest'],'proof_ref':proof['ref'],
+                 'source_witness':event['scope']['source_witness'],'claim_digest':event['claim_digest'],
+                 'checked_at':event['checked_at'],'event_digest':event_digest,
+                 'target_checkpoint_digest':checkpoint,
+                 'source_ref':'journal:'+event['plan_digest']+':'+event_digest+'#PRE_C3_PROOF_OBSERVED'}
+            verified.append({'event':event,'proof':proof,'ref':ref})
+        self._pre_c3_cache=verified
+        return verified
+
+    def _field_sources(self,eid,values):
+        """Preserve original source/time for cross-stage cells."""
+        sources={}
+        if self.prior_guest_ref:
+            meta={'source_ref':self.prior_guest_ref['source_ref'],
+                  'observed_at':self.prior_guest_ref['observed_at'],
+                  'source_kind':self.prior_guest_ref['source_kind']}
+            if eid=='E00-04':
+                for name in ('identity','home_admin','init'):
+                    if name in values:sources[name]=meta
+                if 'startup' in values and values['startup'].get('prior_guest_source'):
+                    sources['startup']=meta
+            elif eid=='E00-05' and 'guest' in values:sources['guest']=meta
+            elif eid=='E00-07' and 'guest_config' in values:sources['guest_config']=meta
+        if eid=='E00-12' and values:
+            verified=self._validated_pre_c3();refs=[x['ref'] for x in verified]
+            latest=verified[-1];meta={'source_ref':latest['ref']['source_ref'],
+                'observed_at':latest['event']['checked_at'],'source_kind':self.s['execution_class']}
+            for name in ('impact','pre_c3','owner_coverage'):
+                if name in values:sources[name]=meta
+        if eid=='E00-15' and 'terminal' in self.result:
+            checkpoint=_checkpoint_history_ref(self.plan,self.result,self.s['expected_checkpoint'])
+            if 'checkpoint' in values:
+                sources['checkpoint']={'source_ref':checkpoint['source_ref'],'observed_at':checkpoint['observed_at'],
+                                       'source_kind':checkpoint['source_kind']}
+            if 'pre_c3_refs' in values:
+                verified=self._validated_pre_c3();latest=verified[-1]
+                sources['pre_c3_refs']={'source_ref':latest['ref']['source_ref'],
+                    'observed_at':latest['event']['checked_at'],'source_kind':self.s['execution_class']}
+        return sources
 
     def values(self,eid):
         d=self.d;s=self.s;f=self.f;o=f.observed;b=d.binding;store=f.store
@@ -210,19 +339,14 @@ class NativeCatalogProducer:
                     'state':self.c.fence['state'] if self.c.fence else 'TERMINAL',
                     'no_other_fence':True,'failure':self.failure}}
         if eid=='E00-12':
-            plans={self.plan['plan_digest']}
-            if 'history' in self.result:plans.add(self.result['history']['entries']['host_restart']['plan_digest'])
-            pre=[r['event'] for r in self.events if r['event'].get('kind')=='PRE_C3_PROOF_OBSERVED' and r['event'].get('plan_digest') in plans]
-            require(bool(pre),11,'PRE_C3_EVIDENCE_UNAVAILABLE')
-            old=pre[-1];reader=d._reader(f)
-            # Preserve original precondition time while checking current trust.
-            from .proofs import ProofReader
-            proof=ProofReader(store,s['host_id'],s['owner_sid'],instant(old['checked_at'])).receipt('protection',old['proof_ref'],old['scope'],owner_assertion=True)
+            verified=self._validated_pre_c3();latest=verified[-1];proof=latest['proof']
             post=[]
             if 'history' in self.result:post.append(self.result['assertion_evidence']['affected_resources'])
             elif self.result.get('affected_resources'):post.append(self.result['affected_resources'])
-            return {'impact':proof['claim'],'pre_c3':pre,'pre_post':post,
-                    'owner_coverage':{'scope':proof['scope'],'owner_sid':proof['owner_sid'],'measurements':proof['measurements']}}
+            return {'impact':proof['claim'],'pre_c3':[x['ref'] for x in verified],'pre_post':post,
+                    'owner_coverage':{'proof_ref':proof['ref'],'scope':proof['scope'],
+                        'owner_sid':proof['owner_sid'],'measurements':proof['measurements'],
+                        'claim_digest':latest['event']['claim_digest']}}
         if eid=='E00-13':
             require('qualification' in s['refs'],11,'QUALIFICATION_NOT_ESTABLISHED')
             # Uses actual pinned LAB records via native trust; not a receipt
@@ -240,12 +364,14 @@ class NativeCatalogProducer:
         if eid=='E00-15':
             if 'terminal' in self.result:
                 actual=self._terminal()[1]['clone_stopped_retained'];claim=actual['claim']
+                checkpoint=_checkpoint_history_ref(self.plan,self.result,s['expected_checkpoint'])
+                pre_c3=[x['ref'] for x in self._validated_pre_c3()]
                 return {'source':{'host_id':claim['source_host_id'],'target_registration':claim['source_target_registration'],
                                   'source_class':s['source_class']},
-                    'checkpoint':{'sha256':claim['checkpoint_digest']},
+                    'checkpoint':{'sha256':claim['checkpoint_digest'],'history_ref':checkpoint},
                     'destination':{'host_id':claim['destination_host_id'],'registration':claim['destination_registration']},
                     'envelope':{'receipt':actual,'preboot_verified':claim['preboot_envelope_verified']},
-                    'actual_restore':actual,'pre_c3_refs':[self.result['history']['entries']['host_restart']['evidence_digest']]}
+                    'actual_restore':actual,'pre_c3_refs':pre_c3}
             envelope=d.proofs.get('envelope');source=d.proofs.get('source')
             value={}
             if envelope:value.update({'checkpoint':{'sha256':envelope['claim']['checkpoint_digest']},'envelope':envelope,
@@ -258,12 +384,16 @@ class NativeCatalogProducer:
     def collect(self):
         groups={};envelopes={};outcomes=[]
         for eid in PATHS:
-            begin=time.monotonic();error=None;values={}
-            try:values=self.values(eid)
-            except P00Error as e:error=e.safe()
-            except (KeyError,ValueError,TypeError,OSError):error={'exit':18,'reason':'COLLECTOR_SCHEMA_OR_IO'}
+            begin=time.monotonic();error=None;values={};field_sources={}
+            try:
+                values=self.values(eid);field_sources=self._field_sources(eid,values)
+            except P00Error as e:
+                error=e.safe();values={};field_sources={}
+            except (KeyError,ValueError,TypeError,OSError):
+                error={'exit':18,'reason':'COLLECTOR_SCHEMA_OR_IO'};values={};field_sources={}
             elapsed=int((time.monotonic()-begin)*1000)
-            body=new_body(eid,values,at=self.at,source_ref=self.capture_ref,source_kind=self.s['execution_class'])
+            body=new_body(eid,values,at=self.at,source_ref=self.capture_ref,source_kind=self.s['execution_class'],
+                          field_sources=field_sources)
             from ..evidence_catalog import required_fields
             modes=required_fields(self.stage)[eid]
             for name,c in body['fields'].items():
