@@ -34,6 +34,9 @@ Reviewer can explain what each core MD owns, what is historical, and what to upd
 ### DR-10 Anti-duplication
 README and CHAT_HANDOFF do not pin mutable delivery versions; mutable facts have clear owning docs.
 
+### DR-11 Runtime state reconciliation
+After a fresh fetch, canonical state, selected remote lane state and prepared local worktree agree on durable base/WIP/review target. A mismatch is detected as `STATE_DRIFT` before routing.
+
 ## Verdict
 
-`PASS` requires DR-01…DR-10 all pass. Findings return to DOC-DESIGN and require a new immutable design commit before re-review.
+`PASS` requires DR-01…DR-11 all pass. Findings return to DOC-DESIGN and require a new immutable design commit before re-review.

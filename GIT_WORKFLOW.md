@@ -12,7 +12,7 @@ Before reading lane state or starting work:
 git -C /home/dragon/ai-film-dev/repo fetch origin main lane/implement-p00 lane/review-p00
 ```
 
-Fetch any additional active workflow branches. Do not treat stale `origin/*` cache as current state.
+Fetch any additional active workflow branches. Do not treat stale `origin/*` cache as current state. In the prepared WSL workspace, run `python3 tools/check_runtime_state.py` before destructive checkout/reset or formal handoff decisions.
 
 ## Branch roles
 

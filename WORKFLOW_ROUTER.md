@@ -6,6 +6,7 @@ This is the deterministic routing policy for a fresh chat. It exists so a user c
 
 ```text
 fetch origin/main + relevant lane refs
+→ run runtime-state reconciliation when the prepared WSL workspace exists
 → read PROJECT_STATE
 → read NEXT_WORK_ITEM
 → verify local selected worktree identity/status if used
@@ -32,7 +33,8 @@ Use the first matching rule:
 5. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
 6. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
 7. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-8. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+8. **Runtime-state checker or fresh lane-state comparison fails** → create `STATE_DRIFT` blocker; preserve documented/local WIP and reconcile control-plane state before routing work.
+9. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
 
 ## 4. Block protocol
 

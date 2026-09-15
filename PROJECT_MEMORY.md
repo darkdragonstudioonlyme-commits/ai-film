@@ -38,6 +38,8 @@ A memory entry cannot approve architecture, close a gate or override reviewed co
 | MEM-20260915-030 | LEARNING | Reusable discoveries graduate from memory into standing policy when recurring/safety-critical. | docs/git/router policy |
 | MEM-20260915-031 | PROCESS | “Continue” is deterministic state routing, not a request for the user to restate the task. | `WORKFLOW_ROUTER.md` |
 | MEM-20260915-032 | GOVERNANCE | Documentation design and documentation review must be independent like source implement/review. | `EXECUTION_LANES.md` |
+| MEM-20260915-033 | TOOLING | Preserve Git porcelain leading XY columns; whole-output `.strip()` can corrupt the first path. | review/tooling parsers |
+| MEM-20260915-034 | PROCESS | Canonical state and freshly fetched lane state must reconcile before routing; drift is a blocker, not a tie to guess. | runtime checker / router |
 
 ## New governance lessons
 
@@ -60,6 +62,14 @@ When state is sufficient, a fresh chat should resume the active WIP, review hand
 ### MEM-20260915-032 — Documentation governance also needs independent review
 
 The same author-bias problem applies to project-control Markdown. Material documentation-system changes use DOC-DESIGN → immutable commit → DOC-REVIEW before `main` promotion.
+
+### MEM-20260915-033 — Preserve Git porcelain status columns
+
+DOC-REVIEW initially parsed `git status --porcelain` with whole-output `.strip()`, which removed the first line's leading status column and corrupted `config/...` into `onfig/...`. Parsers must preserve the two-character XY status prefix and trim per field, not strip the whole stream.
+
+### MEM-20260915-034 — State drift is an explicit blocker
+
+DOC-REVIEW found canonical state accurately describing dev18 WIP while the freshly fetched IMPLEMENT lane state still advertised dev14. Fresh chats must reconcile canonical state, lane state and local worktree before routing. A mismatch becomes `STATE_DRIFT`; never silently choose whichever document looks newer.
 
 ## Entry format for future learning
 

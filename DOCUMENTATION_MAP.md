@@ -67,10 +67,16 @@ Mutable facts should have one owner. Other docs link to the owner. If the same v
 
 ## Automated check
 
-Run:
+Run the portable documentation check:
 
 ```bash
 python3 tools/check_project_docs.py
 ```
 
-It checks core-file presence and critical cross-document state/routing invariants. It is a guardrail, not a substitute for DOC-REVIEW.
+In the prepared WSL workspace also run the runtime-state reconciliation check:
+
+```bash
+python3 tools/check_runtime_state.py
+```
+
+The first checks document structure/invariants. The second fresh-fetches lane refs and compares canonical state with remote lane state, local worktree identity/dirty set and the current durable artifact. Both are guardrails, not substitutes for DOC-REVIEW.
