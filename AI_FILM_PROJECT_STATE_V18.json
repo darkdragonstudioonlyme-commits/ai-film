@@ -1,0 +1,54 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 18,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "task_status": "IN_PROGRESS",
+  "execution_model": "DUAL_LANE",
+  "target_gate": "CODE_REVIEW_PASS",
+  "phase_gate": "HOST_READY",
+  "current_delivery": {
+    "version": "0.1.0.dev8",
+    "status": "PARTIAL_SOURCE_DROP_DEV8",
+    "source_commit": "c44c2f87084f8082ce29af5935c6b47d03f7b96c",
+    "package_sha256": "d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5",
+    "author_complete": false,
+    "code_review_handoff_ready": false
+  },
+  "implement_lane": {
+    "remote_branch": "lane/implement-p00",
+    "lane_state_commit": "7a2c02c358f2f889700bdd33d3238a66900b622b",
+    "wsl_worktree": "/home/dragon/ai-film-dev/implement",
+    "local_source_branch": "impl/p00",
+    "base_commit": "c44c2f87084f8082ce29af5935c6b47d03f7b96c",
+    "status": "ACTIVE",
+    "source_writable": true
+  },
+  "review_lane": {
+    "remote_branch": "lane/review-p00",
+    "lane_state_commit": "254deff90b43f57b6dff352f7ee3866889a93b15",
+    "wsl_worktree": "/home/dragon/ai-film-dev/review",
+    "source_mode": "DETACHED_EXACT_CANDIDATE",
+    "candidate_commit": "c44c2f87084f8082ce29af5935c6b47d03f7b96c",
+    "status": "WAITING_FOR_NEXT_CANDIDATE",
+    "source_writable": false,
+    "last_verdict": "FAIL"
+  },
+  "author_evidence": {
+    "workspace_tests": "683 PASS / 0 failure / 0 error / 0 skip",
+    "static_checks": "92 PASS / 0 failed",
+    "native_windows_wsl": "NOT_RUN",
+    "lab": "NOT_RUN",
+    "site": "NOT_RUN"
+  },
+  "open_code_review_findings": [
+    "CR-P00-001",
+    "CR-P00-002",
+    "CR-P00-003",
+    "CR-P00-004"
+  ],
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED",
+  "next_action": "IMPLEMENT lane fixes CR-P00-002/003/004 and continues remaining source scope; REVIEW lane waits for immutable next candidate."
+}
