@@ -1,0 +1,31 @@
+{
+  "work_item": "CODE-REVIEW-P00-001",
+  "mode": "CODE_REVIEW",
+  "phase": "00 — Host / WSL",
+  "target_delivery": "0.1.0.dev8 / PARTIAL_SOURCE_DROP_DEV8",
+  "target_package_sha256": "d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5",
+  "review_kind": "EARLY_OWNER_REQUESTED_REVIEW",
+  "verdict": "FAIL",
+  "code_review_pass": false,
+  "formal_gate_transition": "NOT_ACTIVATED",
+  "source_modified_during_review": false,
+  "independent_review_checks": {
+    "workspace_tests": "683 PASS / 0 failure / 0 error / 0 skip",
+    "static_checks": "92 PASS / 0 failed",
+    "source_digest": "e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08",
+    "test_digest": "f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021"
+  },
+  "findings": [
+    {"id":"CR-P00-001","severity":"BLOCKER","title":"Formal review handoff is premature","status":"OPEN"},
+    {"id":"CR-P00-002","severity":"HIGH","title":"Durable owner-wait relabel occurs without renewed authority","status":"OPEN"},
+    {"id":"CR-P00-003","severity":"HIGH","title":"Actual pending-reboot observation is discarded at durable wait boundary","status":"OPEN"},
+    {"id":"CR-P00-004","severity":"MEDIUM","title":"Coordinator.awaiting accepts arbitrary unbounded wait context","status":"OPEN"}
+  ],
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED",
+  "required_next_mode": "IMPLEMENTATION",
+  "required_next_action": "Fix CR-P00-002/003/004, finish IMPL-REM-01…08, produce an author-complete exact candidate, then run CODE-REVIEW-P00-001 again."
+}
