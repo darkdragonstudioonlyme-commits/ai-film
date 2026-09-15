@@ -35,8 +35,24 @@ IN_FLIGHT_OUTPUT:
   PACKAGE_SHA256: 8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff
   PACKAGE_MEMBER_VERIFY: PASS
   PACKAGE_GIT_BYTE_IDENTITY_VERIFY: PASS
+  TEST_CHANGE: TEST_CHANGE-P00-DEV20-FACTORY-003
   TEST_REVIEW_STATUS: PENDING
   CODE_REVIEW_STATUS: NOT_HANDED_OFF
+
+SOURCE_VISIBILITY:
+  BRANCH: snapshot/dev20-source
+  SNAPSHOT_HEAD: 0c7c32ff2f84442531f7df0c371229acdffc5d5d
+  STATUS: PARTIAL_REVIEW_SNAPSHOT
+  EXACT_LOCAL_SOURCE_COMMIT: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
+  FULL_SOURCE_GIT_MIRROR: false
+  MATERIALIZED_PATHS:
+    - src/aifilm_p00/__init__.py
+    - src/aifilm_p00/session.py
+    - src/aifilm_p00/admission.py
+    - src/aifilm_p00/native/request_entry.py
+    - src/aifilm_p00/native/actuator.py
+    - src/aifilm_p00/native/trust.py
+    - tests/test_dev20_factory_integration.py
 
 FINDINGS:
   CR-P00-001: OPEN_PENDING_INDEPENDENT_FINAL_REVIEW
@@ -48,4 +64,4 @@ NEXT_WORKFLOW: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
 NEXT_STEP: S07_TEST_REVIEW_DEV20
 ```
 
-Dev20 source remains the clean local `impl/p00` commit above. S06 packaging was completed and independently byte-verified against that exact commit. Continue with S07 test-governance review preparation; do not rebuild the package unless identity verification fails or source changes. R8 continuity policy remains pending independent documentation review/audit and grants no product gate authority.
+Dev20 source remains the clean local `impl/p00` commit above. S06 packaging was completed and byte-verified against that exact commit. A browseable GitHub snapshot now exposes the dev20 production composition paths and the new integration test without claiming that the full local source history is remotely mirrored. Continue with independent S07 TEST_REVIEW; do not rebuild S06 unless identity verification fails or source changes.
