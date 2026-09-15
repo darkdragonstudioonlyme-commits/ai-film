@@ -1,4 +1,4 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V14
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V15
 
 > **READ THIS FILE FIRST IN EVERY NEW CHAT.**  
 > Current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; immutable history lives in versioned checkpoints.
@@ -7,7 +7,7 @@
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 14
+STATE_VERSION: 15
 REPOSITORY: darkdragonstudioonlyme-commits/ai-film
 DEFAULT_BRANCH: main
 
@@ -21,66 +21,111 @@ MODE_TRANSITION: NONE
 
 REQUIREMENTS_BASELINE: "AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2"
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
-CURRENT_VERIFIED_DELIVERY: "0.1.0.dev6 / PARTIAL_SOURCE_DROP_DEV6"
+CURRENT_VERIFIED_DELIVERY: "0.1.0.dev7 / PARTIAL_SOURCE_DROP_DEV7"
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
 
-EXACT_DEV6_DELIVERY_DURABLE: true
-SOURCE_RECOVERY_VERIFIED: true
-IMPLEMENTATION_MAY_RESUME: true
-GITHUB_FULL_DEV6_SOURCE_TREE_MATERIALIZED: false
-DRIVE_BINARY_RECOVERY_ANCHOR: true
-
-DEV6_PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip
-DEV6_SIZE_BYTES: 1178410
-DEV6_SHA256: 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
-DEV6_DRIVE_FILE_ID: 1nYtbxJ3p0A0Oo_QyYgAc3zdyLbQYCSc4
+DEV7_PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V7.zip
+DEV7_SIZE_BYTES: 1119033
+DEV7_SHA256: 63f9a8ce948ff0bb80de5d0dc37cc75a0c37723579ac1930098cca7e4de49312
+DEV7_DRIVE_FILE_ID: 1lplraFWFeDhdV6jl4aJgJOTpfjBoXHlH
 RAW_REDOWNLOAD_SHA_VERIFIED: true
 
-WORKSPACE_AUTHOR_TESTS: "666 PASS / 0 failure / 0 error / 0 skip"
-STATIC_AUTHOR_CHECKS: "88 PASS"
+WORKSPACE_AUTHOR_TESTS: "673 PASS / 0 failure / 0 error / 0 skip"
+STATIC_AUTHOR_CHECKS: "90 PASS"
 NATIVE_WINDOWS_WSL: NOT_RUN
 LAB: NOT_RUN
 SITE: NOT_RUN
 QUALIFICATION_ISSUED: false
 HOST_READY: NOT_EVALUATED
 
+DEV_WORKSPACE_READY: true
+WSL_WORKSPACE_ROOT: /home/dragon/ai-film-dev
+CANONICAL_REPO_CLONE: /home/dragon/ai-film-dev/repo
+DEV7_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev7
+DEV7_LOCAL_GIT_BASELINE: b937649c1344baef3eb7b221ddd0347f5954ed85
+DEV_VENV: /home/dragon/ai-film-dev/.venv
+DIRECT_WSL_GITHUB_PUSH_AUTH: NOT_CONFIGURED
+
 AUTO_DOCUMENTATION_SYNC: true
 NO_SILENT_KNOWLEDGE: true
 LIVING_MEMORY_FILE: PROJECT_MEMORY.md
-NEXT_ACTION: "Resume IMPL-P00-001 from exact dev6: executable/dependency trust + effective-profile/service/OOBE/restart/resume/factory increment."
+WORKSPACE_DOC: WORKSPACE_WSL.md
+NEXT_ACTION: "Continue IMPL-P00-001 from dev7: analyze/complete service-OOBE-restart-resume-factory lifecycle behavior, then persist the next coherent increment."
 ```
 
-**Do not transition to CODE_REVIEW.** Implementation may resume, but the work item remains partial.
+**Do not transition to CODE_REVIEW.** Dev7 is a verified author delivery but the work item remains partial.
 
-## 2. Canonical persistence model
+## 2. Persistence and recovery model
 
 The project uses explicit hybrid persistence:
 
-- **GitHub** is canonical for current state, living memory, workflow, next work, reviewable source/diffs that can be reliably written, and commit history.
-- **Google Drive raw artifact storage** is the exact binary recovery anchor for packaged deliveries when needed.
-- Every exact external artifact is linked from Git by file ID/name, size and SHA-256.
+- **GitHub** — canonical current state, living memory, workflow, next work, review records and durable text/change ledger.
+- **Google Drive raw artifact storage** — byte-exact packaged delivery recovery anchor.
+- **WSL local Git** — local diff/rollback during authoring; it is not remote approval or persistence by itself.
 
-The dev6 persistence blocker is resolved because the exact V6 ZIP was uploaded by file reference, downloaded again as raw bytes, and its SHA-256 reverified equal to the original. This is persistence evidence only; it is not code review or native validation.
+Every packaged delivery used as a recovery baseline must be identified by file name, size and SHA-256 and must be re-downloaded raw and re-hashed after upload.
 
-`GITHUB_FULL_DEV6_SOURCE_TREE_MATERIALIZED=false` remains explicit. A future chat should recover dev6 from the verified Drive artifact instead of reconstructing it from prose.
+Current exact delivery anchor:
 
-## 3. New-chat bootstrap
+```text
+IMPL-P00-001_IMPLEMENTATION_PACKAGE_V7.zip
+Drive file ID: 1lplraFWFeDhdV6jl4aJgJOTpfjBoXHlH
+Size: 1119033
+SHA-256: 63f9a8ce948ff0bb80de5d0dc37cc75a0c37723579ac1930098cca7e4de49312
+```
+
+## 3. WSL development workspace
+
+Current prepared workspace:
+
+```text
+/home/dragon/ai-film-dev
+```
+
+Layout:
+
+```text
+repo/         canonical GitHub state/handoff clone
+source-dev7/  exact dev7 extracted source + local Git baseline
+artifacts/    exact downloaded delivery archives
+.venv/        isolated Python 3.12 author-test environment
+env.sh        enter environment
+test.sh       workspace regression + static checks
+```
+
+Read `WORKSPACE_WSL.md` before using Desktop Commander or modifying the WSL source tree.
+
+Verified environment result after setup:
+
+```text
+673 workspace tests PASS
+90 static checks PASS
+source digest 93e28ed77c132ad032cf8bf951e7d51627f6f8d007aa4179bb5696f0d6f1c6e8
+test digest   1c79354e63bdc76de157621547a7f92eb97d98fa90a6e53856619861103a3799
+```
+
+The isolated venv currently has no pip because Ubuntu `python3.12-venv`/ensurepip is not installed and sudo requires interactive authorization. Dev7 has no external Python dependencies, so `.pth` bindings to exact `src/` and `tests/` are sufficient for the present author baseline. See `MEM-20260915-013`.
+
+Direct WSL `git push` is not currently authenticated. Clone/fetch/local commits work. Remote writes continue through the connected GitHub connector until an explicit secure WSL authentication setup is performed. See `MEM-20260915-014`.
+
+## 4. New-chat bootstrap
+
+A new chat should:
 
 1. Read this file.
 2. Read `NEXT_WORK_ITEM.md`.
-3. Read Active Memory Index/relevant entries in `PROJECT_MEMORY.md`.
-4. Verify current GitHub `main` head.
-5. Read `GIT_WORKFLOW.md`.
-6. Read `SOURCE_IMPORT_STATUS.md` for exact recovery procedure.
-7. Fetch Drive file `1nYtbxJ3p0A0Oo_QyYgAc3zdyLbQYCSc4` as raw bytes.
-8. Verify size `1178410` and SHA-256 `41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e` before extraction/modification.
-9. Read the authoritative Blueprint and exact approved Phase00 V2 contracts from the recovered package.
-10. Continue only `IMPL-P00-001` in IMPLEMENTATION mode unless this state has advanced.
+3. Scan relevant active entries in `PROJECT_MEMORY.md`.
+4. Read `WORKSPACE_WSL.md` if Desktop Commander/WSL will be used.
+5. Verify current GitHub `main` head.
+6. Read `GIT_WORKFLOW.md` before persistent changes.
+7. Verify the current exact delivery artifact identity before restoring a fresh workspace.
+8. Run `/home/dragon/ai-film-dev/test.sh` before source changes when the prepared WSL workspace is available.
+9. Continue only the current recorded implementation increment.
 
-Do not depend on previous chat history and do not reconstruct dev6 from summaries.
+Do not depend on previous chat history.
 
-## 4. Authority and approved baseline
+## 5. Authority and approved baseline
 
 Precedence:
 
@@ -103,7 +148,7 @@ APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf64
 
 No design gap is currently established.
 
-## 5. Phase00 implementation invariants
+## 6. Phase00 implementation invariants
 
 - establish correct host/principal/target identity before mutation;
 - preserve existing Windows/WSL state unless exact reviewed plan authorizes change;
@@ -119,35 +164,26 @@ No design gap is currently established.
 - `APPLIED != VERIFIED != HOST_READY`;
 - no destructive default recovery merely to make retry succeed.
 
-## 6. Dev6 implementation baseline
+## 7. Dev7 delta and verified evidence
 
-Already authored through dev6; do not redo as absent:
+Dev7 completed one coherent author increment:
 
-- canonical inputs/plan hashing, approval/qualification/trust policy core;
-- resource/capacity/profile predicates;
-- host-global admission and durable fence/read-set/journal concepts;
-- Windows identity/filesystem/trust/source-pinning adapters;
-- native process supervision and actuator components;
-- session runner/native driver and postcondition observers;
-- mutation-fence and detached-read recovery;
-- live committed-run NOOP;
-- protected C0 capture → plan proposal;
-- primary native CLI to concrete factory;
-- guest inventory/content/sentinel and terminal sweep components;
-- evidence catalog/snapshot/support-bundle components;
-- stage identity/final archive re-observation;
-- publication write-ahead/recovery;
-- E17 write-ahead/read-only recovery;
-- prior-guest/C3 provenance selection;
-- bounded early-failure capsule;
-- partial registered-LAB route controller/oracles;
-- extensive author regression.
+- executable-policy pins scoped to host/build/contract;
+- exact executable path/size/SHA-256 verification under pinned handles;
+- administrative owner/writer constraints;
+- mandatory production-supervisor executable trust before child creation;
+- process witnesses record policy reference/hash/size/kind;
+- native bindings require `executable_policy_ref`;
+- authority refresh reloads executable policy and checks effective profile;
+- production factory enables mandatory executable trust.
 
-## 7. Verified evidence baseline
+Do not overclaim: guest interpreter/rootfs provenance and remaining bootstrap/dependency trust are still open.
+
+Verified evidence:
 
 ```yaml
-AUTHOR_WORKSPACE_REGRESSION: "666 PASS / 0 failures / 0 errors / 0 skipped"
-STATIC_AUTHOR_CHECKS: "88 PASS"
+AUTHOR_WORKSPACE_REGRESSION: "673 PASS / 0 failures / 0 errors / 0 skipped"
+STATIC_AUTHOR_CHECKS: "90 PASS"
 WINDOWS_WSL_NATIVE: NOT_RUN
 POWERSHELL_NATIVE: NOT_RUN
 GUEST_AGENT_LIVE: NOT_RUN
@@ -165,37 +201,33 @@ Author regression is not native validation. See `MEM-20260915-003`.
 
 ## 8. Open implementation items
 
-All full-item REMs remain OPEN:
+All full-item REMs remain OPEN, but dev7 advanced `REM-01/03/04` subcomponents.
 
-- `IMPL-REM-01`: finish effective-profile/eligibility integration and full native-factory route flows.
-- `IMPL-REM-02`: finish exhaustion/interrupted-reader/lifecycle journal procedures without implicit reset.
-- `IMPL-REM-03`: finish executable/dependency byte trust, source epochs, prior pre-C3/checkpoint proof selection.
-- `IMPL-REM-04`: finish service/OOBE/restart/resume and production-factory execution-path author tests.
-- `IMPL-REM-05`: finish prolonged/multi-stage resume/later request/recovery-publication interactions.
-- `IMPL-REM-06`: finish non-DIRECT transport and effective-profile/terminal/restore integration.
-- `IMPL-REM-07`: finish nested cross-stage semantics, prior pre-C3/checkpoint selection, temp/incomplete publication recovery and remaining E17 integration.
-- `IMPL-REM-08`: finish causal preparations/controllers/oracles for normative 86-case inventory plus production-factory integration tests.
+- `IMPL-REM-01`: remaining effective-profile/eligibility integration and full native-factory route flows.
+- `IMPL-REM-02`: exhaustion/interrupted-reader/lifecycle journal procedures without implicit reset.
+- `IMPL-REM-03`: remaining guest interpreter/rootfs/bootstrap dependency trust, source epochs, prior pre-C3/checkpoint proof selection.
+- `IMPL-REM-04`: service/OOBE/restart/resume and production-factory execution-path author tests.
+- `IMPL-REM-05`: prolonged/multi-stage resume/later request/recovery-publication interactions.
+- `IMPL-REM-06`: non-DIRECT transport and effective-profile/terminal/restore integration.
+- `IMPL-REM-07`: nested cross-stage semantics, prior pre-C3/checkpoint selection, temp/incomplete publication recovery and remaining E17 integration.
+- `IMPL-REM-08`: causal preparations/controllers/oracles for normative 86-case inventory plus production-factory integration tests.
 
 Open blocker groups remain `IMPL-BLOCK-01…03`; they are source/integration/harness work, not missing user data.
 
 ## 9. Exact current implementation order
 
-First coherent increment:
+Next coherent increment:
 
-1. executable/interpreter/dependency byte-trust integration;
-2. remaining effective-profile behavior;
-3. directly coupled service/OOBE/restart/resume/factory branches;
-4. targeted positive/negative author tests;
-5. full author regression/static checks at delivery boundary;
-6. documentation sync + exact delivery persistence + Git state update.
+1. inspect reviewed lifecycle contract and current ENGINE plan/recovery behavior;
+2. determine whether `AWAIT_OWNER_RESTART` plus `3010 → AWAITING_REBOOT` can cause duplicate restart semantics or whether the current two-stage behavior is intentional;
+3. complete service/OOBE/restart/resume/factory branches only where reviewed behavior is clear;
+4. add targeted positive/negative author tests;
+5. run full author regression/static checks;
+6. Documentation Sync Gate;
+7. package exact delivery, upload raw artifact, re-download/hash verify;
+8. update Git state/memory/next work and verify remote persistence.
 
-Then, as separate coherent increments where practical:
-
-- prior pre-C3/checkpoint + nested cross-stage E00;
-- temp/incomplete bundle + remaining E17 recovery;
-- reviewed non-DIRECT transport;
-- causal 86-case controller suite;
-- production-factory integration author tests.
+Then proceed to prior pre-C3/checkpoint + nested E00, publication/E17 recovery, non-DIRECT transport, causal 86-case suite and production-factory integration tests as separate increments where practical.
 
 See `NEXT_WORK_ITEM.md` for executable detail.
 
@@ -203,7 +235,7 @@ See `NEXT_WORK_ITEM.md` for executable detail.
 
 - no FD/D00/public-contract changes;
 - no acceptance lowering;
-- no Windows/WSL/LAB/SITE/guest/live-network execution during authoring;
+- no Windows/WSL/LAB/SITE/guest/live-network validation/provisioning during authoring;
 - no fixture/fake active production backend;
 - no process-exit/fixture/test-count/envelope-label substitution for native proof;
 - no deletion of unresolved durable state as a shortcut;
@@ -211,6 +243,7 @@ See `NEXT_WORK_ITEM.md` for executable detail.
 - no user host data requested as substitute for missing implementation;
 - no fabricated DESIGN_GAP for incomplete source;
 - no unverified source restoration;
+- no plaintext GitHub credentials/PATs in WSL;
 - no useful reusable knowledge left only in chat.
 
 ## 11. Documentation Sync Gate
@@ -221,12 +254,13 @@ At every meaningful increment, automatically update as applicable:
 state/gates/tests/blockers       → PROJECT_STATE.md
 exact next work                  → NEXT_WORK_ITEM.md
 reusable discovery/optimization  → PROJECT_MEMORY.md
+workspace/environment change     → WORKSPACE_WSL.md + PROJECT_MEMORY.md
 workflow improvement             → GIT_WORKFLOW.md + PROJECT_MEMORY.md
 implementation progress          → implementation/remaining/traceability/evidence docs
 milestone                        → new checkpoint MD + JSON
 ```
 
-Then diff review, secret scan, exact artifact persistence (if packaged), Git commit/push, remote verification, and only then continue.
+Then diff review, secret scan, exact artifact persistence if packaged, Git commit/push, remote verification, and only then continue.
 
 ## 12. Implementation exit
 
