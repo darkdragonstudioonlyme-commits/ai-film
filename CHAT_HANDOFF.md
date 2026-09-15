@@ -1,62 +1,27 @@
 # New Chat Handoff — AI-FILM-SERVER
 
-Use GitHub repository `darkdragonstudioonlyme-commits/ai-film` as the persistent project handoff.
+Use `darkdragonstudioonlyme-commits/ai-film` as the persistent project control plane. Do not rely on previous chat history.
 
-## Minimal bootstrap
+## Cold start
 
-1. Read `PROJECT_STATE.md` completely.
-2. Read `NEXT_WORK_ITEM.md` completely.
-3. Read `EXECUTION_LANES.md`.
-4. Choose exactly one lane from the user's requested task:
-   - source changes / finding fixes / implementation → `IMPLEMENT`;
-   - candidate review / verdict → `REVIEW`.
-5. Read that branch's `LANE_STATE.md` (`lane/implement-p00` or `lane/review-p00`).
-6. Scan relevant `PROJECT_MEMORY.md` entries.
-7. Verify current remote `main` head.
-8. Read `GIT_WORKFLOW.md` before persistent changes.
-9. If using WSL/Desktop Commander, read `WORKSPACE_WSL.md` and verify the selected worktree Git status.
-10. Read only the exact contracts/source/evidence required by the selected lane/work item.
+1. Fresh-fetch `main` and relevant lane refs.
+2. Read `PROJECT_STATE.md`.
+3. Read `NEXT_WORK_ITEM.md`.
+4. Read `WORKFLOW_ROUTER.md`.
+5. Read `EXECUTION_LANES.md` and select exactly one workflow/lane.
+6. Read `DOCUMENTATION_MAP.md` and the selected lane's freshly fetched `LANE_STATE.md`.
+7. Scan relevant `PROJECT_MEMORY.md` entries.
+8. Read `GIT_WORKFLOW.md`; read `WORKSPACE_WSL.md` if using WSL.
+9. Read only task-specific contracts/source/evidence.
 
-Do **not** rely on the previous chat transcript and do not use an old checkpoint summary as current state.
+## If user says only “continue”
 
-## Lane discipline
+Do not ask them to repeat project context. Apply the routing algorithm in `WORKFLOW_ROUTER.md`. Current state may include uncommitted WIP; preserve/resume it when state says so.
 
-### IMPLEMENT
+## Trust boundary
 
-Use `/home/dragon/ai-film-dev/implement` / branch `impl/p00`. This lane may modify source/tests/docs, run author tests, create commits/packages and fix review findings. It may not issue CODE_REVIEW verdicts.
+Do not trust another workflow's PASS label. Verify immutable input identities and rerun the checks required by the consuming workflow. IMPLEMENT cannot review itself; REVIEW cannot patch source. Documentation governance likewise uses DOC-DESIGN → DOC-REVIEW.
 
-### REVIEW
+## Self-learning
 
-Use `/home/dragon/ai-film-dev/review`, detached at the exact handed-off candidate. This lane may inspect/retest/write findings and verdicts. It must not patch candidate source.
-
-Candidate exchange is by exact source commit + package/artifact identity. REVIEW never auto-follows IMPLEMENT head.
-
-## Global mode rule
-
-`PROJECT_STATE.md` on `main` remains the only canonical mode/gate authority. The existence of two lanes does not allow two independent gate transitions.
-
-Do not:
-
-- mix IMPLEMENT and REVIEW permissions inside one work increment;
-- change reviewed contracts inside IMPLEMENTATION;
-- infer native/LAB/SITE validation from author/review tests;
-- review uncommitted IMPLEMENT changes as a formal candidate;
-- patch source in REVIEW;
-- use memory entries to bypass design/review gates.
-
-## Standing self-improving-memory rule
-
-Persist reusable learning automatically:
-
-```text
-global state/gate change         → PROJECT_STATE.md
-next executable work             → NEXT_WORK_ITEM.md
-lane status/candidate            → selected lane LANE_STATE.md
-reusable discovery/optimization  → PROJECT_MEMORY.md
-workspace/environment change     → WORKSPACE_WSL.md + memory
-lane/workflow improvement        → EXECUTION_LANES.md / GIT_WORKFLOW.md + memory
-review finding/verdict           → reviews/* + state
-milestone                        → new checkpoint MD + JSON
-```
-
-A meaningful increment is not complete until Documentation Sync Gate and remote identity verification are complete.
+Persist reusable learning automatically. Candidate-specific defects become findings; reusable lessons become memory; recurring/safety-critical lessons are promoted into standing policy. A chat should leave the project easier to resume than it found it.

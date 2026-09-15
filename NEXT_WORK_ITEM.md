@@ -1,91 +1,56 @@
-# NEXT WORK ITEM — IMPL-P00-001 after dev9 delta review
+# NEXT WORK ITEM — Resume IMPL-P00-001
 
 ```yaml
-PROJECT_MODE: IMPLEMENTATION
+WORKFLOW_ID: WF-P00-IMPL-DEV18
+LANE: IMPLEMENT
+STATUS: WIP
+MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV9
+WORK_ITEM: IMPL-P00-001
 TARGET_GATE: CODE_REVIEW_PASS
-EXECUTION_MODEL: DUAL_LANE
-IMPLEMENT_LANE: lane/implement-p00
-REVIEW_LANE: lane/review-p00
-LAST_DELTA_REVIEW: PASS_CR_P00_002_003_004
-OVERALL_CODE_REVIEW: FAIL_CR_P00_001
+INPUT_IDENTITY:
+  DURABLE_BASE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+  DURABLE_BASE_VERSION: 0.1.0.dev17
+  WORKTREE: /home/dragon/ai-film-dev/implement
+  LOCAL_BRANCH: impl/p00
+  WIP_DIRTY: true
+GOAL: "Finalize the existing dev18 remediation for CR-P00-012/013 and hand an immutable candidate to independent REVIEW."
+SUCCESS_OUTPUT: "Committed + packaged dev18 candidate with exact SHA/digests and REVIEW handoff."
+ON_SUCCESS: WF-P00-REVIEW-DEV18
+ON_FAIL: WF-P00-IMPL-DEV18
+ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
+EXIT_CONDITION: "REVIEW receives exact immutable dev18 candidate; no uncommitted handoff."
 ```
 
-Read `EXECUTION_LANES.md` before work.
+## Resume, do not restart
 
-## IMPLEMENT lane — ACTIVE NEXT INCREMENT
+Current WIP already changes four files and last full author run reports **756 PASS / 100 static PASS**. A fresh chat must first inspect this WIP and preserve it. Do not reset to dev17 unless evidence proves the WIP is corrupt and the rollback is explicitly documented.
 
-```yaml
-WORK_ITEM_ID: IMPL-P00-001
-WSL_WORKTREE: /home/dragon/ai-film-dev/implement
-LOCAL_SOURCE_BRANCH: impl/p00
-CURRENT_SOURCE_COMMIT: 3da3ddc771c15d175a2c5045c86a7c1ff9987dbd
-SOURCE_WRITABLE: true
-```
+## Exact next steps
 
-### Immediate scope
-
-Complete **prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics**.
-
-Required order:
-
-1. Read exact dev9 `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, Evidence Register V2, Design V2 D00-10/D00-12/D00-14, `evidence_stage`, `evidence_catalog`, `native/evidence_pipeline`, `native/proofs`, `native/assessment`, session/recovery source and existing prior-evidence tests.
-2. Map which later stages may consume which prior protected records and which source/provenance links are mandatory.
-3. Implement prior **pre-C3/checkpoint** selection using exact host/plan/run/step/target/checkpoint/source identity; do not infer eligibility from PASS labels, filenames, timestamps, intended hashes or envelope status.
-4. Complete nested cross-stage E00 field/source selection required by the reviewed catalog/stage rules.
-5. Reject unrelated, tampered, ambiguous, stale, wrong-host/wrong-plan and provenance-incomplete prior evidence.
-6. Preserve prior immutable evidence versus current observations; do not boot/launch a guest merely to fill prior-stage evidence.
-7. Add focused positive/negative author tests.
-8. Run targeted tests and full `lane-test.sh implement`.
-9. Commit/package immutable next candidate and publish handoff identity to REVIEW lane.
-
-## REVIEW lane — WAITING
-
-Last reviewed candidate: dev9 commit `3da3ddc...`.
-
-Delta disposition:
-
-```yaml
-CR-P00-002: CLOSED
-CR-P00-003: CLOSED
-CR-P00-004: CLOSED
-CR-P00-001: OPEN_BLOCKER
-```
-
-REVIEW waits detached until IMPLEMENT publishes a new immutable candidate. It must not follow `impl/p00` automatically.
-
-## Dev9 candidate identity
-
-```yaml
-SOURCE_COMMIT: 3da3ddc771c15d175a2c5045c86a7c1ff9987dbd
-PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V9.zip
-PACKAGE_LOCATION: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V9.zip
-SIZE_BYTES: 1114609
-SHA256: d6f83dc3ff60f73acd54750f58db34d817c7bb492c83088693f7c47c65d510cb
-AUTHOR_BASELINE: "692 PASS / 93 static PASS"
-```
-
-## Following increments
-
-After the evidence-semantics increment is independently reviewed:
-
-1. incomplete/temp support-bundle publication recovery + remaining E17 integration/applicability;
-2. reviewed non-DIRECT transport support;
-3. causal supported-route/failure controller procedures for all 86 normative T/F/subcases;
-4. production-factory integration author tests;
-5. final source/harness/docs/test closure;
-6. formal author-complete handoff and full CODE_REVIEW.
+1. Fetch canonical `main` and fresh lane refs; read current IMPLEMENT lane state.
+2. Verify `/home/dragon/ai-film-dev/implement` is branch `impl/p00`, base ancestry contains `64ea95b...`, and only the documented dev18 WIP changes are present.
+3. Review the WIP diff specifically for CR-P00-012 collector build/contract binding and CR-P00-013 stage-window continuity/controller coverage.
+4. Bump/finalize dev18 version + implementation/changelog/remaining/traceability docs as needed.
+5. Run targeted harness tests, then full `lane-test.sh implement`.
+6. Write tracked final evidence; secret scan; change inventory/diff audit.
+7. Commit exact source candidate. Package **from that commit**, not from a mutable working tree.
+8. Verify package manifest/hash; persist exact artifact identity.
+9. Create immutable IMPLEMENT→REVIEW handoff with commit/package/source/test identities.
+10. REVIEW lane checks out detached exact commit, independently reruns tests and former CR-P00-012/013 scenarios, then searches new failures.
+11. If REVIEW FAIL: findings route back to IMPLEMENT through `WORKFLOW_ROUTER.md`; do not patch in REVIEW.
+12. If delta PASS but `CR-P00-001` remains: continue next roadmap closure node rather than claiming CODE_REVIEW_PASS.
 
 ## Forbidden
 
-- Change FD/D00/public/reviewed contracts or lower acceptance.
-- Execute Phase00 native Windows/WSL/LAB/SITE/guest/live-network provisioning/validation during authoring.
-- Treat process exit, fixture flags, author-test counts, PASS envelopes, timestamps or filenames as native proof.
-- Boot a guest just to manufacture missing prior-stage evidence.
-- Delete unresolved durable state.
-- IMPLEMENT self-approving review or REVIEW patching source.
+- discard the current dev18 WIP merely because dev17 is the last durable package;
+- review uncommitted dev18 as formal candidate;
+- let IMPLEMENT self-close findings;
+- let REVIEW patch source;
+- change FD/D00/public contracts or lower acceptance;
+- treat author/review tests or harness inventory as native validation;
+- run native Windows/WSL/LAB/SITE/guest/live-network validation during current authoring.
 
-## Exit condition
+## If user only says “continue”
 
-`CR-P00-001` closes only when the complete author source/harness/docs/test scope exists and `CODE_REVIEW_HANDOFF_READY=true`. Only then may the exact final candidate enter full CODE_REVIEW for `CODE_REVIEW_PASS`.
+Follow this file and `WORKFLOW_ROUTER.md` automatically. Do not ask what task is next unless a persisted blocker explicitly requires user action.

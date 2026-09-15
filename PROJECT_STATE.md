@@ -1,91 +1,85 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V20
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V21
 
-> Read first in every new chat. Global truth only. Lane protocol: `EXECUTION_LANES.md`.
+> Read first in every new chat. This is current global truth. Routing: `WORKFLOW_ROUTER.md`. Documentation ownership: `DOCUMENTATION_MAP.md`.
 
 ## Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 20
+STATE_VERSION: 21
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-EXECUTION_MODEL: DUAL_LANE
-
-IMPLEMENT_LANE:
-  BRANCH: lane/implement-p00
-  WORKTREE: /home/dragon/ai-film-dev/implement
-  STATUS: ACTIVE_NEXT_INCREMENT
-  CURRENT_SOURCE_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
-REVIEW_LANE:
-  BRANCH: lane/review-p00
-  WORKTREE: /home/dragon/ai-film-dev/review
-  STATUS: REVIEW_COMPLETE_WAITING_FOR_NEXT_CANDIDATE
-  LAST_REVIEWED_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
+EXECUTION_MODEL: INDEPENDENT_LANES_WITH_IMMUTABLE_HANDOFFS
 
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
 APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
 FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
 APPROVED_PHASE00_DESIGN: "D00-01…D00-14 exact V2"
 
-CURRENT_VERIFIED_DELIVERY: "0.1.0.dev11 / PARTIAL_SOURCE_DROP_DEV11"
-DEV11_SOURCE_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
-DEV11_PACKAGE_LOCATION: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V11.zip
-DEV11_PACKAGE_SIZE_BYTES: 1117382
-DEV11_PACKAGE_SHA256: a77d9fee285678fe2321f41e05110d14f60cd1ad9803cc9a00dbcf662f924316
-DEV11_MANIFEST_SHA256: fcf96024cee12fc7c8f35329f651b4c260f0b4a4142d9d9a57fc85b2fd8cc3e8
-SOURCE_CONTENT_DIGEST: 4f24e01469357e5a4716cc1e55ef7de8bbe085bbdabc1892778cd67c21269193
-TEST_CONTENT_DIGEST: a7e0c8c18b1e70bcd122b4818cfc59fa98f6e4e23311ff37bb2531c5ed6d1227
-AUTHOR_TESTS: "711 PASS / 0 failure / 0 error / 0 skip"
-STATIC_CHECKS: "94 PASS / 0 failed"
-NATIVE_WINDOWS_WSL: NOT_RUN
-LAB: NOT_RUN
-SITE: NOT_RUN
+LAST_DURABLE_IMPLEMENT_CANDIDATE:
+  VERSION: 0.1.0.dev17
+  SOURCE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+  PACKAGE_SHA256: 130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e
+  AUTHOR_TESTS: "753 PASS / 0 failure / 0 error / 0 skip"
+  STATIC_CHECKS: "100 PASS / 0 failed"
+
+IMPLEMENT_WIP:
+  STATUS: WIP_NOT_DURABLE_NOT_REVIEWABLE
+  WORKTREE: /home/dragon/ai-film-dev/implement
+  BRANCH: impl/p00
+  BASE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+  PLANNED_VERSION: 0.1.0.dev18
+  DIRTY_FILES:
+    - config/required-native-test-inventory.json
+    - src/aifilm_p00/native/harness_cases.py
+    - src/aifilm_p00/native/harness_controller.py
+    - tests/test_dev15_harness.py
+  LATEST_AUTHOR_TESTS: "756 PASS / 0 failure / 0 error / 0 skip"
+  LATEST_STATIC_CHECKS: "100 PASS / 0 failed"
+  LATEST_SOURCE_DIGEST: 44633115f00e1611a4851ece8cef5f27b455f0031f1b26970c9486bf8940cbb1
+  LATEST_TEST_DIGEST: 8f65ebed7ccc5eee4a91e4df9f8c0c851a79f8719e230e75b98f104bd61ea5f7
+  NOTE: "CR-P00-012/013 implementation fixes authored; must be finalized/committed/packaged before REVIEW."
+
+LAST_REVIEW:
+  TARGET_VERSION: 0.1.0.dev17
+  TARGET_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+  DELTA_VERDICT: FAIL
+  INDEPENDENT_TESTS: "753 PASS"
+  INDEPENDENT_STATIC: "100 PASS"
+  CLOSED_FINDINGS: [CR-P00-002, CR-P00-003, CR-P00-004, CR-P00-005, CR-P00-007, CR-P00-008, CR-P00-009, CR-P00-010, CR-P00-011]
+  OPEN_FINDINGS: [CR-P00-001, CR-P00-012, CR-P00-013]
+
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
 CODE_REVIEW_PASS: false
+NATIVE_WINDOWS_WSL: NOT_RUN
+LAB: NOT_RUN
+SITE: NOT_RUN
 HOST_READY: NOT_EVALUATED
 
-LAST_REVIEW:
-  TARGET: dev11
-  DELTA_SCOPE: "prior guest/pre-C3/checkpoint provenance + CR-P00-005 remediation"
-  DELTA_VERDICT: PASS
-  OVERALL_VERDICT: FAIL
-  RECORD: reviews/CODE-REVIEW-P00-001_DEV11_DELTA.md
+ACTIVE_WORKFLOW:
+  WORKFLOW_ID: WF-P00-IMPL-DEV18
+  LANE: IMPLEMENT
+  STATUS: WIP
+  ON_SUCCESS: WF-P00-REVIEW-DEV18
+  ON_FAIL: WF-P00-IMPL-DEV18
+  ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
 
-FINDING_STATUS:
-  CR-P00-001: OPEN_BLOCKER
-  CR-P00-002: CLOSED
-  CR-P00-003: CLOSED
-  CR-P00-004: CLOSED
-  CR-P00-005: CLOSED
-
-OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08 at full-item scope"
-IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
-NEXT_ACTION: "IMPLEMENT incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability; REVIEW waits for immutable candidate."
+NEXT_ACTION: "Resume existing dev18 WIP; finalize version/docs/evidence, full regression, secret/diff audit, commit/package immutable candidate, then hand exact candidate to REVIEW."
 ```
 
-## Dev10/dev11 evidence cycle
+## Important distinction
 
-IMPLEMENT added exact prior guest/pre-C3/checkpoint provenance and field-specific historical E00 source/time binding. REVIEW of dev10 found CR-P00-005: PRE_C3 time was not bounded by current capture time. IMPLEMENT dev11 added `checked_at <= current capture time` without introducing a TTL. REVIEW independently reran 711 tests + 94 static checks and reproduced `16/PRE_C3_FUTURE`; the evidence delta passed.
+`dev17` is the last durable committed/reviewed candidate. `dev18` is real implementation progress but remains **uncommitted WIP**; a fresh chat must resume it, not discard it and not formally review it yet.
 
-The full code gate still fails only at umbrella level because CR-P00-001 remains: Phase00 implementation is not author-complete.
+## Global blockers
 
-## Next order
+- `CR-P00-001 OPEN_BLOCKER` — full Phase00 author completeness not yet established.
+- `CR-P00-012/013` are open review findings on dev17; dev18 WIP contains intended fixes pending immutable handoff/review.
 
-1. Incomplete/temp support-bundle publication recovery.
-2. Remaining E17 assessment recovery integration/applicability.
-3. Independent REVIEW handoff.
-4. Reviewed non-DIRECT transport.
-5. Full causal 86-case controller/oracles.
-6. Production-factory author integration and final closure.
+## State verification rule
 
-## Rules
-
-- IMPLEMENT never self-approves review.
-- REVIEW never edits candidate source and only reviews immutable handoffs.
-- No contract/FD/D00 changes in IMPLEMENT.
-- No author/review test result is native Windows/WSL/LAB/SITE proof.
-- CR-P00-001 closes only with actual full author completion.
+Before work, fetch remote `main` and relevant lane refs. If local worktree state conflicts with this file, stop and classify whether the difference is a documented WIP, a newer durable handoff, or state drift. Never silently overwrite WIP.
