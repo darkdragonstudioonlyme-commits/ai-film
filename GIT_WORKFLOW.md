@@ -1,73 +1,76 @@
 # AI-FILM-SERVER Git + Documentation Persistence Workflow
 
-This repository is the persistent cross-chat handoff for AI-FILM-SERVER.
+This repository is the persistent cross-chat project ledger for AI-FILM-SERVER.
 
-## 1. Mandatory persistence rule
+## 1. Durable-increment rule
 
-A coherent project increment is **not durable** until all applicable source/tests/evidence/docs have been synchronized, committed, pushed, and the remote state has been verified.
-
-The standing workflow is:
+A meaningful increment is not durable until all applicable source/tests/evidence/docs and exact delivery artifacts have been persisted and independently verified.
 
 ```text
-VERIFY REMOTE STATE
-→ WORK IN THE CURRENT MODE ONLY
-→ TEST / COLLECT EVIDENCE
+VERIFY CURRENT REMOTE + EXACT SOURCE/ARTIFACT
+→ WORK IN ONE ACTIVE MODE ONLY
+→ TARGETED TEST / EVIDENCE
+→ DELIVERY-BOUNDARY REGRESSION WHEN APPLICABLE
 → DOCUMENTATION SYNC GATE
 → DIFF REVIEW
 → SECRET SCAN
-→ COMMIT
-→ PUSH
-→ VERIFY REMOTE
+→ PERSIST EXACT ARTIFACT IF PRODUCED
+→ COMMIT/PUSH GIT STATE/SOURCE/DIFFS
+→ VERIFY ARTIFACT HASH + REMOTE GIT
 → ONLY THEN CONTINUE
 ```
 
-This applies to code, design, review, validation, research, incident analysis and workflow improvements—not only implementation.
+## 2. Persistence roles
 
----
+- **GitHub `darkdragonstudioonlyme-commits/ai-film`**: canonical current state, living memory, workflow, next-work, reviewable source/diffs that can be written reliably, and commit history.
+- **Byte-preserving artifact store**: exact packaged delivery bytes when a binary artifact is produced. Current store: connected Google Drive.
+- **Cryptographic identity in Git**: every external exact artifact must be referenced by stable file ID/name, byte size, and SHA-256 in Git documentation/state.
 
-## 2. Canonical documentation roles
+A binary artifact is not considered persisted merely because upload succeeded. Required pattern:
 
-Do not duplicate mutable information everywhere. Each living file has one primary responsibility:
+```text
+UPLOAD FILE REFERENCE / RAW BYTES
+→ DOWNLOAD RAW BYTES AGAIN
+→ RECOMPUTE SHA-256
+→ COMPARE WITH SOURCE HASH
+→ RECORD STORE ID + SIZE + HASH IN GIT
+```
 
-| File | Primary responsibility | Update style |
-|---|---|---|
-| `PROJECT_STATE.md` | **Current truth:** mode, phase, baseline, task, gates, blockers, test/review status, next action | Replace/update current state |
-| `NEXT_WORK_ITEM.md` | **Next executable work:** exact scope, order, inputs, forbidden actions, exit condition | Replace when next work changes |
-| `PROJECT_MEMORY.md` | **Reusable knowledge:** discoveries, optimizations, tooling lessons, risks and process knowledge | Append/supersede entries; do not erase history |
-| `GIT_WORKFLOW.md` | **Standing persistence/documentation protocol** | Change only when the workflow itself improves |
-| `CHAT_HANDOFF.md` | **Compact new-chat bootstrap instructions** | Keep short; point to canonical files |
-| `SOURCE_IMPORT_STATUS.md` | Temporary exact-source bootstrap status while that prerequisite is open | Update only while source-import prerequisite exists |
-| `AI_FILM_STATE_CHECKPOINT_Vn.md` + JSON | **Immutable milestone snapshot** | Create new version; never rewrite old checkpoint history |
-| Git commits/diffs | Source/document change history | Do not copy full diffs into state files |
+## 3. Canonical documentation roles
 
-If information appears in more than one file, the table above determines which copy is authoritative and which copy is only a summary/history pointer.
-
----
-
-## 3. Automatic Documentation Sync Gate
-
-Before a meaningful work increment can be considered complete, the assistant MUST evaluate the following matrix and update every applicable file **without waiting for the user to request it**.
-
-| Trigger discovered during work | Mandatory update |
+| File | Primary responsibility |
 |---|---|
-| Mode, phase, baseline, gate, blocker, status or test/review result changed | `PROJECT_STATE.md` |
-| Exact next action/scope/order changed | `NEXT_WORK_ITEM.md` |
-| Reusable optimization, lesson, constraint, tooling behavior, failure pattern, risk or clarification discovered | `PROJECT_MEMORY.md` |
-| Git/document process itself improved | `GIT_WORKFLOW.md` **and** a `PROJECT_MEMORY.md` entry |
-| Source-import persistence state changed | `SOURCE_IMPORT_STATUS.md`, `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` |
-| Implementation progress/remaining scope changed after source is in Git | `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, traceability/evidence as applicable |
-| Review finding/disposition changed | Correct review/finding artifact **and** `PROJECT_STATE.md` |
-| Validation failure changed | Correct `VALIDATION_FAILURE` artifact **and** `PROJECT_STATE.md` |
-| A milestone/gate transition occurred | New immutable checkpoint MD + JSON, plus living state/task updates |
-| Workflow or tool limitation could cause future duplicate work | `PROJECT_MEMORY.md` even if current task status did not change |
+| `PROJECT_STATE.md` | Current operational truth |
+| `NEXT_WORK_ITEM.md` | Exact next executable work |
+| `PROJECT_MEMORY.md` | Reusable discoveries/optimizations/tooling/risk/testing/process knowledge |
+| `GIT_WORKFLOW.md` | Standing persistence and automatic documentation-sync protocol |
+| `CHAT_HANDOFF.md` | Compact bootstrap template |
+| `SOURCE_IMPORT_STATUS.md` | Source/binary recovery-anchor status and procedure |
+| `AI_FILM_STATE_CHECKPOINT_Vn.md` + JSON | Immutable milestone snapshots |
+| Git commits/diffs | Reviewable source/document change history |
 
-### No-silent-knowledge rule
+Do not duplicate mutable state unnecessarily. Historical checkpoints are not current truth.
 
-If ending the current chat would cause a future chat to lose a fact that could prevent duplicated work, a wrong decision, a repeated failure, wasted investigation or a safety regression, the increment is **not documentation-complete** until that fact is persisted.
+## 4. Automatic Documentation Sync Gate
 
-### Evidence discipline
+Before a meaningful increment is durable, evaluate without waiting for the user:
 
-A documentation update must preserve the distinction between:
+| Trigger | Mandatory persistent update |
+|---|---|
+| mode/phase/baseline/gate/blocker/test/review status changed | `PROJECT_STATE.md` |
+| exact next scope/order changed | `NEXT_WORK_ITEM.md` |
+| reusable optimization, discovery, tooling behavior, failure pattern, risk, clarification | `PROJECT_MEMORY.md` |
+| persistence/document workflow improved | `GIT_WORKFLOW.md` + `PROJECT_MEMORY.md` |
+| implementation progress changed | implementation status/remaining/traceability/evidence docs as applicable |
+| source/artifact recovery status changed | `SOURCE_IMPORT_STATUS.md` + state/task docs |
+| finding/validation failure changed | correct review/validation artifact + state |
+| milestone or gate transition | new immutable checkpoint MD + JSON |
+
+**No silent knowledge:** if a fresh chat would lose information that prevents duplicated work, a wrong decision, a repeated failure, wasted investigation, or safety/reproducibility regression, documentation sync is incomplete.
+
+## 5. Evidence discipline
+
+Every persistent claim must remain classified as one of:
 
 - observed/tested fact;
 - reviewed/approved decision;
@@ -75,138 +78,58 @@ A documentation update must preserve the distinction between:
 - proposed optimization;
 - unresolved blocker.
 
-Do not promote a hypothesis into a fact merely because it is written into Markdown.
+Writing a claim into Markdown does not make it evidence. Author workspace tests are not Windows/WSL/LAB/SITE proof.
 
----
+## 6. Commit/delivery sequence
 
-## 4. Documentation Sync Checklist
-
-Run this checklist before every delivery commit and after any milestone:
-
-```text
-[ ] Did project state change?           → PROJECT_STATE.md
-[ ] Did next work change?               → NEXT_WORK_ITEM.md
-[ ] Did we learn something reusable?    → PROJECT_MEMORY.md
-[ ] Did workflow improve?               → GIT_WORKFLOW.md + PROJECT_MEMORY.md
-[ ] Did implementation status change?   → implementation/remaining/traceability docs
-[ ] Did review/validation state change? → relevant artifact + PROJECT_STATE.md
-[ ] Is a checkpoint warranted?          → new Vn checkpoint MD/JSON
-[ ] Are facts labeled by evidence level?
-[ ] Are obsolete memory entries marked SUPERSEDED instead of silently deleted?
-[ ] Would a fresh chat know exactly what to do next?
-```
-
-A commit is not considered delivery-ready while an applicable box is unresolved.
-
----
-
-## 5. Commit sequence
-
-1. Verify `main` remote head and current canonical state.
-2. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, and relevant `PROJECT_MEMORY.md` entries.
+1. Verify current `main` and canonical state.
+2. Verify exact current source/artifact identity.
 3. Work only in the active mode/work-item scope.
-4. Run targeted tests/evidence collection appropriate to the mode.
-5. At a delivery boundary, run the required full regression/static checks for the current authoring environment.
-6. Run the **Documentation Sync Gate** above.
-7. Inspect the diff for unrelated changes and accidental contract drift.
-8. Run a secret scan. Never commit real credentials, private keys, tokens, private customer material, licensed private assets or production secrets.
-9. Commit with a message identifying the work item/coherent increment.
-10. Push to GitHub.
-11. Re-fetch/verify the remote commit/changed files.
-12. If remote verification reveals drift/corruption, treat persistence as incomplete and do not continue on a false baseline.
-13. Only then start the next coherent increment.
+4. Run targeted author tests/evidence collection.
+5. At a delivery boundary run full required author regression/static checks.
+6. Run Documentation Sync Gate.
+7. Review diff for unrelated changes or reviewed-contract drift.
+8. Secret-scan all material intended for Git/artifact persistence.
+9. If producing a binary delivery package, upload through a byte-preserving file-reference/raw-file action and raw-re-download/hash-verify it.
+10. Commit/push GitHub source/state/docs/diffs that can be verified reliably.
+11. Re-fetch/verify remote commit and relevant files.
+12. Record external artifact identity in Git state/checkpoint.
+13. Only then begin the next coherent increment.
 
----
+## 7. Binary/tooling safety
 
-## 6. Commit granularity
+Do not send a large binary archive through model-rendered text and call it exact. GitHub `create_blob(base64)` can be used only with per-blob identity verification; small 4 KiB chunks were proven exact during bootstrap, while larger/model-rendered payloads were not consistently safe. Prefer file-native connector operations.
 
-Prefer one commit per coherent, tested increment. Examples:
+Unreferenced experimental Git blobs are not project state. Never attach an unverified blob/tree to the canonical branch.
 
-- `feat(p00): complete executable trust integration`
-- `feat(p00): add pre-C3 checkpoint evidence selection`
-- `test(p00): complete causal lifecycle controller cases`
-- `docs(memory): record non-direct transport constraint`
-- `docs(state): checkpoint IMPL-P00-001 dev7`
+## 8. Branch and history policy
 
-A delivery may contain several commits, but the final delivery state must let a new chat resolve exact mode/task/baseline without consulting conversation history.
+Current workflow uses `main` directly because this is a single-user implementation flow. Do not force-push or rewrite published history by default.
 
----
+If parallel contributors, protected branches, CI requirements, or mandatory PRs are introduced later, record that as an explicit workflow change and update this file plus `PROJECT_MEMORY.md`.
 
-## 7. Default branch policy
+## 9. CODE_REVIEW boundary
 
-Current project initialization uses `main` directly because the project is a single-user workflow.
+`CODE_REVIEW_PASS` may only be produced in CODE_REVIEW mode against the exact committed/addressable candidate. Before `CODE_REVIEW_HANDOFF_READY=true`:
 
-Do not force-push or rewrite published history by default.
+- exact candidate source/diff must be reviewable;
+- exact binary package, if used, must have a verified artifact identity;
+- state/traceability/tests must refer to the same candidate;
+- no hidden source-materialization blocker may prevent independent review.
 
-If future work introduces parallel contributors, protected branches, CI requirements or mandatory pull requests, record that as a workflow change and update this file plus `PROJECT_MEMORY.md`; do not silently switch development models.
+Implementation commits/artifact uploads never self-approve code.
 
----
+## 10. Cross-chat bootstrap
 
-## 8. State to preserve at delivery boundaries
+A new chat should:
 
-`PROJECT_STATE.md` should always expose at least:
+1. read `PROJECT_STATE.md`;
+2. read `NEXT_WORK_ITEM.md`;
+3. read Active Memory Index/relevant `PROJECT_MEMORY.md` entries;
+4. verify current GitHub `main` head;
+5. read this workflow before persistent changes;
+6. use `SOURCE_IMPORT_STATUS.md` to recover the exact binary/source baseline when needed;
+7. verify artifact hashes before extraction/modification;
+8. read current approved contracts/source docs needed by the work item.
 
-- repository/branch and persistence status;
-- current mode and phase;
-- current work item;
-- authoritative/reviewed baseline;
-- current implementation/delivery baseline;
-- author-complete boolean;
-- gate status;
-- test/static/native/LAB/SITE status;
-- open findings/design gaps/validation failures;
-- open implementation items/blockers;
-- exact next action;
-- source/snapshot identity when applicable;
-- whether implementation may resume.
-
-Do not embed a self-referential "latest commit SHA" that becomes stale merely because the state file itself is committed. A new chat should query the current remote head directly.
-
----
-
-## 9. Cross-chat startup
-
-A new chat should use a layered bootstrap to minimize token waste:
-
-1. Read `PROJECT_STATE.md` — current truth.
-2. Read `NEXT_WORK_ITEM.md` — exact action.
-3. Read relevant active entries in `PROJECT_MEMORY.md` — reusable lessons/optimizations.
-4. Verify remote `main` head.
-5. Read `GIT_WORKFLOW.md` before making persistent changes.
-6. Read conditional files only when referenced by state, e.g. `SOURCE_IMPORT_STATUS.md` while that blocker is open.
-7. Read authoritative design/contracts required by the current task.
-
-`CHAT_HANDOFF.md` is a compact prompt/template, not another canonical state database.
-
----
-
-## 10. Code-review boundary
-
-Implementation commits are not review approval.
-
-`CODE_REVIEW_PASS` can only be produced in `CODE_REVIEW` mode after reviewing the exact committed candidate. If fixes are required, follow the state machine (`PATCH` or the directed implementation path), then commit/push the fixes before re-review.
-
-The review target must be identifiable by repository state and commit history, not an uncommitted workspace.
-
----
-
-## 11. Native evidence boundary
-
-Author workspace tests, synthetic ports, fixture controllers, static checks and Git persistence are not Windows/WSL/LAB/SITE validation evidence.
-
-Every state/checkpoint must preserve this distinction.
-
----
-
-## 12. Self-improving documentation rule
-
-Documentation itself is a maintained system.
-
-When work reveals that a file structure, checklist, naming convention, memory schema, bootstrap sequence or persistence rule could be improved:
-
-1. record the reusable lesson in `PROJECT_MEMORY.md`;
-2. update the standing workflow/document responsible for that behavior;
-3. do not alter reviewed architecture/public contracts unless the mode system authorizes it;
-4. commit/push the documentation improvement like any other project increment.
-
-The goal is that **the repository becomes easier—not harder—to resume as the project grows**.
+Do not reconstruct an exact baseline from conversation prose when a verified artifact exists.
