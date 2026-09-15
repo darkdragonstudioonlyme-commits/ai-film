@@ -10,4 +10,6 @@ This branch is a browseable source snapshot for the Phase00 dev20 author-complet
 - Native Windows/WSL/LAB/SITE validation: NOT_RUN
 - CODE_REVIEW: pending
 
-Files materialized under this branch are copied from the exact local dev20 Git commit for browse/review visibility. This snapshot does not grant gate authority and does not replace the exact verified package identity.
+The materialized paths on this branch are a browse/review visibility snapshot derived from the exact local dev20 Git commit. The exact candidate authority remains the verified package plus local source commit above. The snapshot is intentionally partial and is not a claim that the entire local source history has been mirrored to GitHub.
+
+Selected snapshot paths have not yet been independently byte-reverified after the remote text write, so this branch is not used as the immutable CODE_REVIEW candidate identity. The verified V20 package has already passed member-hash verification and byte comparison against `git show` for the exact local source commit.
