@@ -23,10 +23,10 @@ Git history and immutable review records preserve history. Active docs should re
 | POL-ROUTE-001 | workflow | project-control | 2026-09-15 | routing ambiguity/deadlock | `continue` routes deterministically from verified state | `WORKFLOW_ROUTER.md` |
 | POL-LANE-001 | trust | governance | 2026-09-15 | workflow/lane model changes | producer/reviewer are independent; immutable handoff | `EXECUTION_LANES.md` |
 | POL-TEST-001 | testing | test-governance | 2026-09-15 | business/test authority change or repeated test debt | reviewed business behavior, not code, owns the oracle | `TEST_STRATEGY.md` |
-| POL-LEARN-001 | learning | governance | 2026-09-15 | learning loop fails to reduce recurrence | reusable discoveries promote to reviewed policy/checkers | `SELF_LEARNING.md` |
-| POL-HEALTH-001 | process | governance | 2026-09-15 | repeated inefficient/deadlocked cycles | workflow health triggers meta-review | `WORKFLOW_HEALTH.md` |
+| POL-LEARN-001 | learning | governance | 2026-09-15 | learning recurrence or activation backlog | reusable discoveries are complete only after reviewed correction is canonically active and measured | `SELF_LEARNING.md` |
+| POL-HEALTH-001 | process | governance | 2026-09-15 | repeated inefficient/deadlocked cycles or learned-but-not-active backlog | workflow health triggers meta-review and activation follow-through | `WORKFLOW_HEALTH.md` |
 | POL-ENV-001 | environment | model-evaluation | 2026-09-15 | material benchmark environment change | benchmark/model claims bind an exact environment snapshot | `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` |
-| POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling changes | exact identity + remote/artifact verification before durability | `GIT_WORKFLOW.md` |
+| POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling/source-visibility changes | exact identity + remote/artifact verification before durability; handoff states remote source addressability and never treats partial snapshot as full mirror | `GIT_WORKFLOW.md` |
 | POL-RECOVERY-001 | recovery | project-control | 2026-09-15 | recovery failure/state-loss incident | preserve WIP/evidence before repair; never guess current truth | `RECOVERY_PLAYBOOK.md` |
 | POL-CONTINUITY-001 | continuity | project-control | 2026-09-15 | interruption/duplicate-work incident | one logical RUN_ID; write-ahead step INTENT/COMPLETE; reconcile and reuse exact outputs | `WORKFLOW_CONTINUITY.md` |
 
@@ -66,7 +66,7 @@ A larger documentation corpus is not automatically better. The target is maximum
 
 ## Review triggers
 
-Review a policy when its assumptions change, it causes repeated exceptions/workarounds, a newer rule covers the same scope better, it references stale versions/paths, or a health review shows it contributes to rework.
+Review a policy when its assumptions change, it causes repeated exceptions/workarounds, a newer rule covers the same scope better, it references stale versions/paths, or a health review shows it contributes to rework. A reviewed policy change that remains unactivated while affected work proceeds is itself a review trigger.
 
 ## Historical-guidance placement
 
