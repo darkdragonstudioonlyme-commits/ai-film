@@ -1,0 +1,236 @@
+test_approval_expired (test_core.AuthorityTests.test_approval_expired) ... ok
+test_discovery_qualification_not_create (test_core.AuthorityTests.test_discovery_qualification_not_create) ... ok
+test_exact_profile_mismatch (test_core.AuthorityTests.test_exact_profile_mismatch) ... ok
+test_fake_native_result_no_match (test_core.AuthorityTests.test_fake_native_result_no_match) ... ok
+test_lab_id_mismatch (test_core.AuthorityTests.test_lab_id_mismatch) ... ok
+test_missing_qualification (test_core.AuthorityTests.test_missing_qualification) ... ok
+test_no_self_extended_approval (test_core.AuthorityTests.test_no_self_extended_approval) ... ok
+test_qualification_expired (test_core.AuthorityTests.test_qualification_expired) ... ok
+test_qualification_failed (test_core.AuthorityTests.test_qualification_failed) ... ok
+test_qualification_future (test_core.AuthorityTests.test_qualification_future) ... ok
+test_qualification_missing_results (test_core.AuthorityTests.test_qualification_missing_results) ... ok
+test_qualification_new_blocker (test_core.AuthorityTests.test_qualification_new_blocker) ... ok
+test_qualification_withdrawn (test_core.AuthorityTests.test_qualification_withdrawn) ... ok
+test_qualification_wrong_build (test_core.AuthorityTests.test_qualification_wrong_build) ... ok
+test_qualification_wrong_testset (test_core.AuthorityTests.test_qualification_wrong_testset) ... ok
+test_receipt_bytes_tampered (test_core.AuthorityTests.test_receipt_bytes_tampered) ... ok
+test_registered_lab_needs_no_prior_qualification (test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification) ... ok
+test_site_faked_lab_flag (test_core.AuthorityTests.test_site_faked_lab_flag) ... ok
+test_site_valid_synthetic_chain (test_core.AuthorityTests.test_site_valid_synthetic_chain) ... ok
+test_untrusted_receipt (test_core.AuthorityTests.test_untrusted_receipt) ... ok
+test_wrong_sid (test_core.AuthorityTests.test_wrong_sid) ... ok
+test_bool_not_integer (test_core.CodecTests.test_bool_not_integer) ... ok
+test_depth_cap (test_core.CodecTests.test_depth_cap) ... ok
+test_duplicate_key (test_core.CodecTests.test_duplicate_key) ... ok
+test_invalid_utf8 (test_core.CodecTests.test_invalid_utf8) ... ok
+test_key_order_deterministic (test_core.CodecTests.test_key_order_deterministic) ... ok
+test_local_timestamp (test_core.CodecTests.test_local_timestamp) ... ok
+test_non_utc_timestamp (test_core.CodecTests.test_non_utc_timestamp) ... ok
+test_nonfinite (test_core.CodecTests.test_nonfinite) ... ok
+test_reject_relative_00 (test_core.CodecTests.test_reject_relative_00) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_00>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_01 (test_core.CodecTests.test_reject_relative_01) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_01>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_02 (test_core.CodecTests.test_reject_relative_02) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_02>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_03 (test_core.CodecTests.test_reject_relative_03) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_03>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_04 (test_core.CodecTests.test_reject_relative_04) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_04>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_05 (test_core.CodecTests.test_reject_relative_05) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_05>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_relative_06 (test_core.CodecTests.test_reject_relative_06) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_relative_06>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_00 (test_core.CodecTests.test_reject_windows_path_00) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_00>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_01 (test_core.CodecTests.test_reject_windows_path_01) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_01>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_02 (test_core.CodecTests.test_reject_windows_path_02) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_02>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_03 (test_core.CodecTests.test_reject_windows_path_03) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_03>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_04 (test_core.CodecTests.test_reject_windows_path_04) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_04>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_05 (test_core.CodecTests.test_reject_windows_path_05) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_05>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_06 (test_core.CodecTests.test_reject_windows_path_06) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_06>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_07 (test_core.CodecTests.test_reject_windows_path_07) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_07>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_08 (test_core.CodecTests.test_reject_windows_path_08) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_08>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_09 (test_core.CodecTests.test_reject_windows_path_09) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_09>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_10 (test_core.CodecTests.test_reject_windows_path_10) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_10>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_11 (test_core.CodecTests.test_reject_windows_path_11) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_11>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_12 (test_core.CodecTests.test_reject_windows_path_12) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_12>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_13 (test_core.CodecTests.test_reject_windows_path_13) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_13>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_14 (test_core.CodecTests.test_reject_windows_path_14) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_14>>)
+  return self.run(*args, **kwds)
+ok
+test_reject_windows_path_15 (test_core.CodecTests.test_reject_windows_path_15) ... /usr/lib/python3.13/unittest/case.py:707: DeprecationWarning: It is deprecated to return a value that is not None from a test case (<bound method <lambda> of <test_core.CodecTests testMethod=test_reject_windows_path_15>>)
+  return self.run(*args, **kwds)
+ok
+test_safe_error_no_raw_value (test_core.CodecTests.test_safe_error_no_raw_value) ... ok
+test_size_cap (test_core.CodecTests.test_size_cap) ... ok
+test_unicode_round_trip (test_core.CodecTests.test_unicode_round_trip) ... ok
+test_unicode_space_windows_path (test_core.CodecTests.test_unicode_space_windows_path) ... ok
+test_approval_detached_no_self_hash (test_core.PlanTests.test_approval_detached_no_self_hash) ... ok
+test_approval_inside_semantic_rejected (test_core.PlanTests.test_approval_inside_semantic_rejected) ... ok
+test_change_semantic_changes_hash (test_core.PlanTests.test_change_semantic_changes_hash) ... ok
+test_create_future_guest_not_required (test_core.PlanTests.test_create_future_guest_not_required) ... ok
+test_duplicate_volume_rejected (test_core.PlanTests.test_duplicate_volume_rejected) ... ok
+test_extra_cli_namespace_cannot_bind (test_core.PlanTests.test_extra_cli_namespace_cannot_bind) ... ok
+test_no_arbitrary_operation (test_core.PlanTests.test_no_arbitrary_operation) ... ok
+test_plan_tamper (test_core.PlanTests.test_plan_tamper) ... ok
+test_root_user_rejected (test_core.PlanTests.test_root_user_rejected) ... ok
+test_scratch_cap (test_core.PlanTests.test_scratch_cap) ... ok
+test_timestamp_not_semantic (test_core.PlanTests.test_timestamp_not_semantic) ... ok
+test_verify_cannot_import (test_core.PlanTests.test_verify_cannot_import) ... ok
+test_affected_postcheck_failed (test_core.PolicyTests.test_affected_postcheck_failed) ... ok
+test_affected_postcheck_missing (test_core.PolicyTests.test_affected_postcheck_missing) ... ok
+test_budget_adds_allocations_not_max (test_core.PolicyTests.test_budget_adds_allocations_not_max) ... ok
+test_budget_backup_volume_separate (test_core.PolicyTests.test_budget_backup_volume_separate) ... ok
+test_clean_target_still_needs_backup (test_core.PolicyTests.test_clean_target_still_needs_backup) ... ok
+test_envelope_changed (test_core.PolicyTests.test_envelope_changed) ... ok
+test_exact_budget (test_core.PolicyTests.test_exact_budget) ... ok
+test_floor_guest_fs_available_bytes_0 (test_core.PolicyTests.test_floor_guest_fs_available_bytes_0) ... ok
+test_floor_guest_fs_available_bytes_1 (test_core.PolicyTests.test_floor_guest_fs_available_bytes_1) ... ok
+test_floor_guest_fs_available_bytes_2 (test_core.PolicyTests.test_floor_guest_fs_available_bytes_2) ... ok
+test_floor_guest_logical_cpu_0 (test_core.PolicyTests.test_floor_guest_logical_cpu_0) ... ok
+test_floor_guest_logical_cpu_1 (test_core.PolicyTests.test_floor_guest_logical_cpu_1) ... ok
+test_floor_guest_logical_cpu_2 (test_core.PolicyTests.test_floor_guest_logical_cpu_2) ... ok
+test_floor_guest_mem_available_bytes_0 (test_core.PolicyTests.test_floor_guest_mem_available_bytes_0) ... ok
+test_floor_guest_mem_available_bytes_1 (test_core.PolicyTests.test_floor_guest_mem_available_bytes_1) ... ok
+test_floor_guest_mem_available_bytes_2 (test_core.PolicyTests.test_floor_guest_mem_available_bytes_2) ... ok
+test_floor_guest_mem_total_bytes_0 (test_core.PolicyTests.test_floor_guest_mem_total_bytes_0) ... ok
+test_floor_guest_mem_total_bytes_1 (test_core.PolicyTests.test_floor_guest_mem_total_bytes_1) ... ok
+test_floor_guest_mem_total_bytes_2 (test_core.PolicyTests.test_floor_guest_mem_total_bytes_2) ... ok
+test_floor_host_available_ram_bytes_0 (test_core.PolicyTests.test_floor_host_available_ram_bytes_0) ... ok
+test_floor_host_available_ram_bytes_1 (test_core.PolicyTests.test_floor_host_available_ram_bytes_1) ... ok
+test_floor_host_available_ram_bytes_2 (test_core.PolicyTests.test_floor_host_available_ram_bytes_2) ... ok
+test_floor_host_installed_ram_bytes_0 (test_core.PolicyTests.test_floor_host_installed_ram_bytes_0) ... ok
+test_floor_host_installed_ram_bytes_1 (test_core.PolicyTests.test_floor_host_installed_ram_bytes_1) ... ok
+test_floor_host_installed_ram_bytes_2 (test_core.PolicyTests.test_floor_host_installed_ram_bytes_2) ... ok
+test_floor_host_logical_cpu_0 (test_core.PolicyTests.test_floor_host_logical_cpu_0) ... ok
+test_floor_host_logical_cpu_1 (test_core.PolicyTests.test_floor_host_logical_cpu_1) ... ok
+test_floor_host_logical_cpu_2 (test_core.PolicyTests.test_floor_host_logical_cpu_2) ... ok
+test_host_profile (test_core.PolicyTests.test_host_profile) ... ok
+test_no_ttl_plan_drift (test_core.PolicyTests.test_no_ttl_plan_drift) ... ok
+test_no_writes_boundary_drift (test_core.PolicyTests.test_no_writes_boundary_drift) ... ok
+test_protection_checkpoint_exact (test_core.PolicyTests.test_protection_checkpoint_exact) ... ok
+test_protection_independent (test_core.PolicyTests.test_protection_independent) ... ok
+test_protection_ok (test_core.PolicyTests.test_protection_ok) ... ok
+test_restore_dirty_same_host (test_core.PolicyTests.test_restore_dirty_same_host) ... ok
+test_restore_external (test_core.PolicyTests.test_restore_external) ... ok
+test_restore_same_host_not_pre_c3 (test_core.PolicyTests.test_restore_same_host_not_pre_c3) ... ok
+test_restore_sensitive_block (test_core.PolicyTests.test_restore_sensitive_block) ... ok
+test_restore_synthetic_not_site (test_core.PolicyTests.test_restore_synthetic_not_site) ... ok
+test_runtime_floor (test_core.PolicyTests.test_runtime_floor) ... ok
+test_runtime_old (test_core.PolicyTests.test_runtime_old) ... ok
+test_support_margin_exact (test_core.PolicyTests.test_support_margin_exact) ... ok
+test_support_margin_under (test_core.PolicyTests.test_support_margin_under) ... ok
+test_target_not_hidden_by_empty_rows (test_core.PolicyTests.test_target_not_hidden_by_empty_rows) ... ok
+test_terminal_current (test_core.PolicyTests.test_terminal_current) ... ok
+test_terminal_expired (test_core.PolicyTests.test_terminal_expired) ... ok
+test_terminal_host_mismatch (test_core.PolicyTests.test_terminal_host_mismatch) ... ok
+test_terminal_mixed_epoch (test_core.PolicyTests.test_terminal_mixed_epoch) ... ok
+test_terminal_network_fail (test_core.PolicyTests.test_terminal_network_fail) ... ok
+test_terminal_old_network (test_core.PolicyTests.test_terminal_old_network) ... ok
+test_terminal_too_long (test_core.PolicyTests.test_terminal_too_long) ... ok
+test_actual_fixture_execution_with_journal (test_engine.EngineTests.test_actual_fixture_execution_with_journal) ... ok
+test_authorization_before_any_backend_action (test_engine.EngineTests.test_authorization_before_any_backend_action) ... ok
+test_invalid_zip_normalized (test_engine.EngineTests.test_invalid_zip_normalized) ... ok
+test_new_run_blocked_on_uncertainty (test_engine.EngineTests.test_new_run_blocked_on_uncertainty) ... ok
+test_noop_does_not_invoke_mutation (test_engine.EngineTests.test_noop_does_not_invoke_mutation) ... ok
+test_pending_oobe_not_success (test_engine.EngineTests.test_pending_oobe_not_success) ... ok
+test_scanner_exception_blocks_publication (test_engine.EngineTests.test_scanner_exception_blocks_publication) ... ok
+test_timeout_preserves_fence (test_engine.EngineTests.test_timeout_preserves_fence) ... ok
+test_unknown_native_exit_never_zero (test_engine.EngineTests.test_unknown_native_exit_never_zero) ... ok
+test_verify_cannot_dispatch_export (test_engine.EngineTests.test_verify_cannot_dispatch_export) ... ok
+test_wrong_before_rejected_before_mutation (test_engine.EngineTests.test_wrong_before_rejected_before_mutation) ... ok
+test_awaiting_reboot_fence_retained (test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained) ... ok
+test_busy_no_other_fence (test_state_evidence.AdmissionTests.test_busy_no_other_fence) ... ok
+test_explicit_reconciliation_clears_after_journal (test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal) ... ok
+test_journal_failure_preserves_fence (test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence) ... ok
+test_native_witness_required (test_state_evidence.AdmissionTests.test_native_witness_required) ... ok
+test_no_age_based_unlock (test_state_evidence.AdmissionTests.test_no_age_based_unlock) ... ok
+test_no_same_run_nested_acquire (test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire) ... ok
+test_other_owner_cannot_reconcile (test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile) ... ok
+test_reconcile_still_needs_terminal_observation (test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation) ... ok
+test_terminal_append_failure_does_not_clear (test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear) ... ok
+test_timeout_fence_survives_os_lock_release (test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release) ... ok
+test_wrong_native_witness_not_terminal (test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal) ... ok
+test_native_apply_explicitly_unimplemented (test_state_evidence.CLITests.test_native_apply_explicitly_unimplemented) ... ok
+test_native_preflight_explicitly_unimplemented (test_state_evidence.CLITests.test_native_preflight_explicitly_unimplemented) ... ok
+test_native_support_bundle_explicitly_unimplemented (test_state_evidence.CLITests.test_native_support_bundle_explicitly_unimplemented) ... ok
+test_native_verify_explicitly_unimplemented (test_state_evidence.CLITests.test_native_verify_explicitly_unimplemented) ... ok
+test_recovery_notes_no_mutation (test_state_evidence.CLITests.test_recovery_notes_no_mutation) ... ok
+test_workspace_preflight_not_host (test_state_evidence.CLITests.test_workspace_preflight_not_host) ... ok
+test_create_literals_unicode_spaces (test_state_evidence.CommandTests.test_create_literals_unicode_spaces) ... ok
+test_feature_allowlist (test_state_evidence.CommandTests.test_feature_allowlist) ... ok
+test_feature_no_restart (test_state_evidence.CommandTests.test_feature_no_restart) ... ok
+test_import_explicit_v2 (test_state_evidence.CommandTests.test_import_explicit_v2) ... ok
+test_no_unregister_compiler (test_state_evidence.CommandTests.test_no_unregister_compiler) ... ok
+test_runtime_no_restart (test_state_evidence.CommandTests.test_runtime_no_restart) ... ok
+test_target_control_rejected (test_state_evidence.CommandTests.test_target_control_rejected) ... ok
+test_aggregate_cap (test_state_evidence.EvidenceTests.test_aggregate_cap) ... ok
+test_at_collector_cap_with_eof (test_state_evidence.EvidenceTests.test_at_collector_cap_with_eof) ... ok
+test_at_collector_cap_without_eof (test_state_evidence.EvidenceTests.test_at_collector_cap_without_eof) ... ok
+test_complete_inventory_not_gate (test_state_evidence.EvidenceTests.test_complete_inventory_not_gate) ... ok
+test_document_records_cannot_be_site_gate (test_state_evidence.EvidenceTests.test_document_records_cannot_be_site_gate) ... ok
+test_eof_missing_even_below_cap (test_state_evidence.EvidenceTests.test_eof_missing_even_below_cap) ... ok
+test_future_guest_inventory_only (test_state_evidence.EvidenceTests.test_future_guest_inventory_only) ... ok
+test_gate_component_only_not_host_ready (test_state_evidence.EvidenceTests.test_gate_component_only_not_host_ready) ... ok
+test_gate_no_e17_recursion (test_state_evidence.EvidenceTests.test_gate_no_e17_recursion) ... ok
+test_hash_mismatch (test_state_evidence.EvidenceTests.test_hash_mismatch) ... ok
+test_known_nested_raw_redacted (test_state_evidence.EvidenceTests.test_known_nested_raw_redacted) ... ok
+test_mandatory_missing (test_state_evidence.EvidenceTests.test_mandatory_missing) ... ok
+test_mandatory_over_cap (test_state_evidence.EvidenceTests.test_mandatory_over_cap) ... ok
+test_mandatory_timeout (test_state_evidence.EvidenceTests.test_mandatory_timeout) ... ok
+test_member_hash_tamper (test_state_evidence.EvidenceTests.test_member_hash_tamper) ... ok
+test_no_auto_scope_change (test_state_evidence.EvidenceTests.test_no_auto_scope_change) ... ok
+test_no_required_to_optional (test_state_evidence.EvidenceTests.test_no_required_to_optional) ... ok
+test_optional_missing (test_state_evidence.EvidenceTests.test_optional_missing) ... ok
+test_optional_timeout (test_state_evidence.EvidenceTests.test_optional_timeout) ... ok
+test_privacy_beats_missing_and_optional (test_state_evidence.EvidenceTests.test_privacy_beats_missing_and_optional) ... ok
+test_protected_access_unavailable (test_state_evidence.EvidenceTests.test_protected_access_unavailable) ... ok
+test_scanner_unavailable_blocks (test_state_evidence.EvidenceTests.test_scanner_unavailable_blocks) ... ok
+test_unknown_nested_key_blocks_all_publication (test_state_evidence.EvidenceTests.test_unknown_nested_key_blocks_all_publication) ... ok
+test_cannot_clear_uncertain (test_state_evidence.JournalTests.test_cannot_clear_uncertain) ... ok
+test_fence_tamper (test_state_evidence.JournalTests.test_fence_tamper) ... ok
+test_hash_chain_reload (test_state_evidence.JournalTests.test_hash_chain_reload) ... ok
+test_persist_reload_fence (test_state_evidence.JournalTests.test_persist_reload_fence) ... ok
+test_symlink_fence_rejected_before_read (test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read) ... ok
+test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_archive_retained) ... ok
+test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
+
+----------------------------------------------------------------------
+Ran 185 tests in 8.506s
+
+OK

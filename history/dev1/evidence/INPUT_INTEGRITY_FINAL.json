@@ -1,0 +1,248 @@
+{
+  "source_kind": "DOCUMENT",
+  "checked_files": 40,
+  "inputs_unchanged": true,
+  "rows": [
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1.zip",
+      "before": "a4c48d55d64e5b7296dbf04f6afb8525a5e85f0e82796172895e3fd0bc079eae",
+      "after": "a4c48d55d64e5b7296dbf04f6afb8525a5e85f0e82796172895e3fd0bc079eae",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1.zip",
+      "before": "47e808fad130c31cdffdae6555545bdfe4d7ea602f4474b702d0bac4a49509cd",
+      "after": "47e808fad130c31cdffdae6555545bdfe4d7ea602f4474b702d0bac4a49509cd",
+      "unchanged": true
+    },
+    {
+      "path": "AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md",
+      "before": "adc4a1fcd77fe8e70ad8beb6e6a53e218399c22a397ab6bfeb04c589cf910a14",
+      "after": "adc4a1fcd77fe8e70ad8beb6e6a53e218399c22a397ab6bfeb04c589cf910a14",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2.zip",
+      "before": "983598d6692e2f4f490a14ef609920a5c0a2c2fec1ab499944673bafa733f1eb",
+      "after": "983598d6692e2f4f490a14ef609920a5c0a2c2fec1ab499944673bafa733f1eb",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2.zip",
+      "before": "99b5dbcae76785e0e0409c29b1114a1f742d891e291d62f2ea466326181f6661",
+      "after": "99b5dbcae76785e0e0409c29b1114a1f742d891e291d62f2ea466326181f6661",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md",
+      "before": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc",
+      "after": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/MANIFEST.json",
+      "before": "97d9e3b209f1935362fabf7c22fd0f5a24913aa9b98a5aaf4479040efa8dbd90",
+      "after": "97d9e3b209f1935362fabf7c22fd0f5a24913aa9b98a5aaf4479040efa8dbd90",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/FINDING_RESPONSE_MATRIX_V1.md",
+      "before": "899003666dc535a5042d82298ca2e1f473ded45044ac5417a27ab148948386e6",
+      "after": "899003666dc535a5042d82298ca2e1f473ded45044ac5417a27ab148948386e6",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/AI_FILM_STATE_CHECKPOINT_V4.md",
+      "before": "5a65a658b7d47a87fb747abab67de76aed1aa8c18f905650c616c4e1f67885f2",
+      "after": "5a65a658b7d47a87fb747abab67de76aed1aa8c18f905650c616c4e1f67885f2",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/PHASE00_INFRA_DESIGN_V2.md",
+      "before": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d",
+      "after": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/PHASE00_ACCEPTANCE_MATRIX_V2.md",
+      "before": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407",
+      "after": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/PHASE00_FAILURE_RECOVERY_PLAN_V2.md",
+      "before": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060",
+      "after": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/CHANGELOG_V1_TO_V2.md",
+      "before": "4f76d20c14de41a1e527120241eb74175bedd9b2ef128172d47820894cff5dc4",
+      "after": "4f76d20c14de41a1e527120241eb74175bedd9b2ef128172d47820894cff5dc4",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/NEXT_WORK_ITEM_REVIEW-P00-002.md",
+      "before": "d321d27a475fba696a5b2bf47786936b367b1495d2fcb3e9eaebb8c43e7e036c",
+      "after": "d321d27a475fba696a5b2bf47786936b367b1495d2fcb3e9eaebb8c43e7e036c",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/AI_FILM_PROJECT_STATE_V4.json",
+      "before": "d3743bb244abd11e3b196647450055f965c569e9aca040b07e951c385a6e6fb2",
+      "after": "d3743bb244abd11e3b196647450055f965c569e9aca040b07e951c385a6e6fb2",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/AI_FILM_PROJECT_STATE_V3.json",
+      "before": "f1a56de6cea91df6199b78553fb1c7d91c764880e5f9340f1d66d3164c3b8b35",
+      "after": "f1a56de6cea91df6199b78553fb1c7d91c764880e5f9340f1d66d3164c3b8b35",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/AI_FILM_STATE_CHECKPOINT_V3.md",
+      "before": "4c8d2f042c4a1d927c5f35c826c2b0e2dd9f8b3324521dd6113bc2b40f09d39f",
+      "after": "4c8d2f042c4a1d927c5f35c826c2b0e2dd9f8b3324521dd6113bc2b40f09d39f",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/PHASE00_DESIGN_REVIEW_V1.md",
+      "before": "1eb249e471086fb8291afacd436363ca92265f7643d3b74209de141138ddbb32",
+      "after": "1eb249e471086fb8291afacd436363ca92265f7643d3b74209de141138ddbb32",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/REQUIRED_CHANGES_V1.md",
+      "before": "c62d3701db40055fabd1cafff46b474b1643412efdad0ce82d5db5e9326134b8",
+      "after": "c62d3701db40055fabd1cafff46b474b1643412efdad0ce82d5db5e9326134b8",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/NEXT_WORK_ITEM_INFRA-P00-002.md",
+      "before": "6530a31c1ab65cd638a11516d425ecff2985eeada7c02e93576428eb71df01cd",
+      "after": "6530a31c1ab65cd638a11516d425ecff2985eeada7c02e93576428eb71df01cd",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/FINDINGS_WITH_EVIDENCE_V1.json",
+      "before": "a8a888032765d6fb5b49e2e68ddcc50bba408f11a9cc6951e4310d9cf3a0d44d",
+      "after": "a8a888032765d6fb5b49e2e68ddcc50bba408f11a9cc6951e4310d9cf3a0d44d",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V1.md",
+      "before": "ef1e99f5e8c7979f1f7028f1b15070589730c3ef94b1616e19713668fe4fb2a1",
+      "after": "ef1e99f5e8c7979f1f7028f1b15070589730c3ef94b1616e19713668fe4fb2a1",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/AI_FILM_STATE_CHECKPOINT_V2.md",
+      "before": "05c8b922eeb519831c7e71cac5b65ae47789c9919074c147ec4aff7cc9ad580c",
+      "after": "05c8b922eeb519831c7e71cac5b65ae47789c9919074c147ec4aff7cc9ad580c",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/PHASE00_FAILURE_RECOVERY_PLAN_V1.md",
+      "before": "14a7756b6092bfb6f5186c148a9447128423f7e132a5ea349d30a6163b5e3737",
+      "after": "14a7756b6092bfb6f5186c148a9447128423f7e132a5ea349d30a6163b5e3737",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/AI_FILM_PROJECT_STATE_V2.json",
+      "before": "7353d43add5585c7607ca6738b9b4d56d7228a9f2b0b84418bd494ac3ff2aec5",
+      "after": "7353d43add5585c7607ca6738b9b4d56d7228a9f2b0b84418bd494ac3ff2aec5",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/PHASE00_ACCEPTANCE_MATRIX_V1.md",
+      "before": "55c4ee7c14044899746f3d78a245a54c5a98d9d305c33aceddca02196ef082b9",
+      "after": "55c4ee7c14044899746f3d78a245a54c5a98d9d305c33aceddca02196ef082b9",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/NEXT_WORK_ITEM_REVIEW-P00-001.md",
+      "before": "0d8da4553f449ecd2fb1279524bc11bd7a35aa979f372406640fe6b51fd245a6",
+      "after": "0d8da4553f449ecd2fb1279524bc11bd7a35aa979f372406640fe6b51fd245a6",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-001_DESIGN_PACKAGE_V1/PHASE00_INFRA_DESIGN_V1.md",
+      "before": "814a5920d3df7bef65b5596e2cfedc15d5e21af95a5563f61af0e7b54001ccb7",
+      "after": "814a5920d3df7bef65b5596e2cfedc15d5e21af95a5563f61af0e7b54001ccb7",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/AI_FILM_PROJECT_STATE_V5.json",
+      "before": "51dd00237744694852829a2ba1a9fddadf8caddb338368c34e5075f03ce46342",
+      "after": "51dd00237744694852829a2ba1a9fddadf8caddb338368c34e5075f03ce46342",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/PHASE00_DESIGN_REVIEW_V2.md",
+      "before": "755beeb35d313d6c409b3164dd7ecee11f72ebdbe90ed0b43d7ca124df39af8c",
+      "after": "755beeb35d313d6c409b3164dd7ecee11f72ebdbe90ed0b43d7ca124df39af8c",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/FINDING_DISPOSITIONS_V2.json",
+      "before": "efbf05fad0c822880effce6db60410a0d4e7858149b579d81ac7af3d5411cd87",
+      "after": "efbf05fad0c822880effce6db60410a0d4e7858149b579d81ac7af3d5411cd87",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/REQUIRED_CHANGES_V2.md",
+      "before": "89645e7f426be38fb71d44c283e12c6058f0e28a340deef30f163aa758085456",
+      "after": "89645e7f426be38fb71d44c283e12c6058f0e28a340deef30f163aa758085456",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/DESIGN_REVIEW_APPROVAL_V2.json",
+      "before": "35e344375349c7aa83696648a5b87c06a20329bfda3b6ecdb71558f7ed758f78",
+      "after": "35e344375349c7aa83696648a5b87c06a20329bfda3b6ecdb71558f7ed758f78",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/AI_FILM_STATE_CHECKPOINT_V5.md",
+      "before": "1a26636d044cca3899f8e0d74c34bde74cfaedece5ab7112dace0990555e4dbb",
+      "after": "1a26636d044cca3899f8e0d74c34bde74cfaedece5ab7112dace0990555e4dbb",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/NEXT_WORK_ITEM_IMPL-P00-001.md",
+      "before": "8bfc7a40cca48e4ee63db401e37411eca069438be71aca59f7180893922fd139",
+      "after": "8bfc7a40cca48e4ee63db401e37411eca069438be71aca59f7180893922fd139",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/evidence/DIFF_AND_REFERENCE_AUDIT.json",
+      "before": "16cbab4140504d1394c256c233d231462b90f6d2dc1422ba524ac55bb1ab88af",
+      "after": "16cbab4140504d1394c256c233d231462b90f6d2dc1422ba524ac55bb1ab88af",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-002_REVIEW_PACKAGE_V2/evidence/INPUT_INTEGRITY_AUDIT.json",
+      "before": "c3fb999fe96bd4f8acb5f7931a84911445adee17423c735ae1f0f42b1261c7a3",
+      "after": "c3fb999fe96bd4f8acb5f7931a84911445adee17423c735ae1f0f42b1261c7a3",
+      "unchanged": true
+    },
+    {
+      "path": "REVIEW-P00-001_REVIEW_PACKAGE_V1/evidence/INPUT_INTEGRITY_AUDIT.json",
+      "before": "64d4a31bec443d1668f79a04b15a9de96ed056e45528e5642fd457256b65e06d",
+      "after": "64d4a31bec443d1668f79a04b15a9de96ed056e45528e5642fd457256b65e06d",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/evidence/AUTHOR_PACKAGE_CHECKS_V1.json",
+      "before": "1e8c06e2b2e413defb896940c8733f290b0cd2e1e84adcd0298287b59d33c19c",
+      "after": "1e8c06e2b2e413defb896940c8733f290b0cd2e1e84adcd0298287b59d33c19c",
+      "unchanged": true
+    },
+    {
+      "path": "INFRA-P00-002_DESIGN_PACKAGE_V2/evidence/INPUT_IDENTITY_AUDIT.json",
+      "before": "b2dd2f0580fef7eea92012723eeec64aa1b186b94fd60982e783917093eea733",
+      "after": "b2dd2f0580fef7eea92012723eeec64aa1b186b94fd60982e783917093eea733",
+      "unchanged": true
+    }
+  ],
+  "host_validation": false
+}

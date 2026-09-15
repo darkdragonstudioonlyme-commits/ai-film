@@ -1,0 +1,796 @@
+{
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "rows": [
+    {
+      "requirement_id": "T00-01",
+      "source_files": [
+        "src/aifilm_p00/plans.py",
+        "src/aifilm_p00/authority.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.AuthorityTests.test_approval_expired",
+        "test_core.AuthorityTests.test_discovery_qualification_not_create",
+        "test_core.AuthorityTests.test_exact_profile_mismatch",
+        "test_core.AuthorityTests.test_fake_native_result_no_match",
+        "test_core.AuthorityTests.test_lab_id_mismatch",
+        "test_core.AuthorityTests.test_missing_qualification",
+        "test_core.AuthorityTests.test_no_self_extended_approval",
+        "test_core.AuthorityTests.test_qualification_expired",
+        "test_core.AuthorityTests.test_qualification_failed",
+        "test_core.AuthorityTests.test_qualification_future",
+        "test_core.AuthorityTests.test_qualification_missing_results",
+        "test_core.AuthorityTests.test_qualification_new_blocker",
+        "test_core.AuthorityTests.test_qualification_withdrawn",
+        "test_core.AuthorityTests.test_qualification_wrong_build",
+        "test_core.AuthorityTests.test_qualification_wrong_testset",
+        "test_core.AuthorityTests.test_receipt_bytes_tampered",
+        "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
+        "test_core.AuthorityTests.test_site_faked_lab_flag",
+        "test_core.AuthorityTests.test_site_valid_synthetic_chain",
+        "test_core.AuthorityTests.test_untrusted_receipt",
+        "test_core.AuthorityTests.test_wrong_sid",
+        "test_core.PlanTests.test_approval_detached_no_self_hash",
+        "test_core.PlanTests.test_approval_inside_semantic_rejected",
+        "test_core.PlanTests.test_change_semantic_changes_hash",
+        "test_core.PlanTests.test_create_future_guest_not_required",
+        "test_core.PlanTests.test_duplicate_volume_rejected",
+        "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
+        "test_core.PlanTests.test_no_arbitrary_operation",
+        "test_core.PlanTests.test_plan_tamper",
+        "test_core.PlanTests.test_root_user_rejected",
+        "test_core.PlanTests.test_scratch_cap",
+        "test_core.PlanTests.test_timestamp_not_semantic",
+        "test_core.PlanTests.test_verify_cannot_import"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Exact source/design byte identity exists; code review remains NOT_PERFORMED."
+    },
+    {
+      "requirement_id": "T00-02",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/codec.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_host_profile",
+        "test_core.PolicyTests.test_runtime_floor",
+        "test_core.PolicyTests.test_runtime_old",
+        "test_core.PolicyTests.test_support_margin_exact",
+        "test_core.PolicyTests.test_support_margin_under",
+        "test_state_evidence.CommandTests.test_runtime_no_restart"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Native Windows/guest/principal collectors absent; only selected profile predicates tested."
+    },
+    {
+      "requirement_id": "T00-03",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/admission.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_budget_adds_allocations_not_max",
+        "test_core.PolicyTests.test_budget_backup_volume_separate",
+        "test_core.PolicyTests.test_exact_budget",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_2",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_0",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_1",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_2",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_2",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_2",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_0",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_1",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_2",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_0",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_1",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_2",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_0",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_1",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_2"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "No actual host capacity measurement or Windows physical-volume mapping."
+    },
+    {
+      "requirement_id": "T00-04",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_terminal_network_fail"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Network aggregation negative only; DNS/TCP/TLS/HTTPS native collectors NOT_IMPLEMENTED."
+    },
+    {
+      "requirement_id": "T00-05",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_terminal_current",
+        "test_core.PolicyTests.test_terminal_expired",
+        "test_core.PolicyTests.test_terminal_host_mismatch",
+        "test_core.PolicyTests.test_terminal_mixed_epoch",
+        "test_core.PolicyTests.test_terminal_network_fail",
+        "test_core.PolicyTests.test_terminal_old_network",
+        "test_core.PolicyTests.test_terminal_too_long",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "No actual sentinel/lifecycle/host restart; epoch/time predicates only."
+    },
+    {
+      "requirement_id": "T00-06",
+      "source_files": [
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/plans.py",
+        "src/aifilm_p00/__main__.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PlanTests.test_approval_detached_no_self_hash",
+        "test_core.PlanTests.test_approval_inside_semantic_rejected",
+        "test_core.PlanTests.test_change_semantic_changes_hash",
+        "test_core.PlanTests.test_create_future_guest_not_required",
+        "test_core.PlanTests.test_duplicate_volume_rejected",
+        "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
+        "test_core.PlanTests.test_no_arbitrary_operation",
+        "test_core.PlanTests.test_plan_tamper",
+        "test_core.PlanTests.test_root_user_rejected",
+        "test_core.PlanTests.test_scratch_cap",
+        "test_core.PlanTests.test_timestamp_not_semantic",
+        "test_core.PlanTests.test_verify_cannot_import",
+        "test_state_evidence.CLITests.test_workspace_preflight_not_host"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Workspace metadata and deterministic plan only; native passive collector absent."
+    },
+    {
+      "requirement_id": "T00-07",
+      "source_files": [
+        "src/aifilm_p00/admission.py",
+        "src/aifilm_p00/journal_files.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
+        "test_engine.EngineTests.test_timeout_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
+        "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
+        "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
+        "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_native_witness_required",
+        "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
+        "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
+        "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
+        "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
+        "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
+        "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
+        "test_state_evidence.JournalTests.test_fence_tamper",
+        "test_state_evidence.JournalTests.test_hash_chain_reload",
+        "test_state_evidence.JournalTests.test_persist_reload_fence",
+        "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained",
+        "test_state_evidence.JournalTests.test_truncated_journal_blocks"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Memory concurrency and POSIX durability; no Windows global/cross-SID proof."
+    },
+    {
+      "requirement_id": "T00-08",
+      "source_files": [
+        "src/aifilm_p00/evidence.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_invalid_zip_normalized",
+        "test_engine.EngineTests.test_scanner_exception_blocks_publication",
+        "test_state_evidence.EvidenceTests.test_aggregate_cap",
+        "test_state_evidence.EvidenceTests.test_at_collector_cap_with_eof",
+        "test_state_evidence.EvidenceTests.test_at_collector_cap_without_eof",
+        "test_state_evidence.EvidenceTests.test_complete_inventory_not_gate",
+        "test_state_evidence.EvidenceTests.test_document_records_cannot_be_site_gate",
+        "test_state_evidence.EvidenceTests.test_eof_missing_even_below_cap",
+        "test_state_evidence.EvidenceTests.test_future_guest_inventory_only",
+        "test_state_evidence.EvidenceTests.test_gate_component_only_not_host_ready",
+        "test_state_evidence.EvidenceTests.test_gate_no_e17_recursion",
+        "test_state_evidence.EvidenceTests.test_hash_mismatch",
+        "test_state_evidence.EvidenceTests.test_known_nested_raw_redacted",
+        "test_state_evidence.EvidenceTests.test_mandatory_missing",
+        "test_state_evidence.EvidenceTests.test_mandatory_over_cap",
+        "test_state_evidence.EvidenceTests.test_mandatory_timeout",
+        "test_state_evidence.EvidenceTests.test_member_hash_tamper",
+        "test_state_evidence.EvidenceTests.test_no_auto_scope_change",
+        "test_state_evidence.EvidenceTests.test_no_required_to_optional",
+        "test_state_evidence.EvidenceTests.test_optional_missing",
+        "test_state_evidence.EvidenceTests.test_optional_timeout",
+        "test_state_evidence.EvidenceTests.test_privacy_beats_missing_and_optional",
+        "test_state_evidence.EvidenceTests.test_protected_access_unavailable",
+        "test_state_evidence.EvidenceTests.test_scanner_unavailable_blocks",
+        "test_state_evidence.EvidenceTests.test_unknown_nested_key_blocks_all_publication"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "In-memory snapshots/synthetic data; native safe reader/publisher/field catalogs incomplete."
+    },
+    {
+      "requirement_id": "T00-09",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/windows_commands.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_envelope_changed",
+        "test_core.PolicyTests.test_restore_dirty_same_host",
+        "test_core.PolicyTests.test_restore_external",
+        "test_core.PolicyTests.test_restore_same_host_not_pre_c3",
+        "test_core.PolicyTests.test_restore_sensitive_block",
+        "test_core.PolicyTests.test_restore_synthetic_not_site",
+        "test_state_evidence.CommandTests.test_import_explicit_v2"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Envelope predicates and argv only; actual export/import/boot/content/observer not implemented."
+    },
+    {
+      "requirement_id": "T00-10",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_affected_postcheck_failed",
+        "test_core.PolicyTests.test_affected_postcheck_missing"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Owner-health aggregation predicates only; no actual affected-resource checks."
+    },
+    {
+      "requirement_id": "T00-11",
+      "source_files": [
+        "src/aifilm_p00/plans.py",
+        "src/aifilm_p00/windows_commands.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PlanTests.test_create_future_guest_not_required",
+        "test_state_evidence.CommandTests.test_create_literals_unicode_spaces"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "New-target planning and argv only; native create/OOBE/workspace absent."
+    },
+    {
+      "requirement_id": "T00-12",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/plans.py"
+      ],
+      "workspace_actual_test_ids": [],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Guest eligibility predicate source exists; actual ADOPT source and native harness pending."
+    },
+    {
+      "requirement_id": "T00-13",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/windows_commands.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_clean_target_still_needs_backup",
+        "test_core.PolicyTests.test_no_writes_boundary_drift",
+        "test_core.PolicyTests.test_protection_checkpoint_exact",
+        "test_core.PolicyTests.test_protection_independent",
+        "test_core.PolicyTests.test_protection_ok",
+        "test_core.PolicyTests.test_target_not_hidden_by_empty_rows",
+        "test_state_evidence.CommandTests.test_feature_allowlist",
+        "test_state_evidence.CommandTests.test_feature_no_restart",
+        "test_state_evidence.CommandTests.test_runtime_no_restart"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Protection predicates/feature argv only; no ENGINE/C3 execution or recovery drill."
+    },
+    {
+      "requirement_id": "T00-14",
+      "source_files": [
+        "src/aifilm_p00/authority.py",
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.AuthorityTests.test_approval_expired",
+        "test_core.AuthorityTests.test_discovery_qualification_not_create",
+        "test_core.AuthorityTests.test_exact_profile_mismatch",
+        "test_core.AuthorityTests.test_fake_native_result_no_match",
+        "test_core.AuthorityTests.test_lab_id_mismatch",
+        "test_core.AuthorityTests.test_missing_qualification",
+        "test_core.AuthorityTests.test_no_self_extended_approval",
+        "test_core.AuthorityTests.test_qualification_expired",
+        "test_core.AuthorityTests.test_qualification_failed",
+        "test_core.AuthorityTests.test_qualification_future",
+        "test_core.AuthorityTests.test_qualification_missing_results",
+        "test_core.AuthorityTests.test_qualification_new_blocker",
+        "test_core.AuthorityTests.test_qualification_withdrawn",
+        "test_core.AuthorityTests.test_qualification_wrong_build",
+        "test_core.AuthorityTests.test_qualification_wrong_testset",
+        "test_core.AuthorityTests.test_receipt_bytes_tampered",
+        "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
+        "test_core.AuthorityTests.test_site_faked_lab_flag",
+        "test_core.AuthorityTests.test_site_valid_synthetic_chain",
+        "test_core.AuthorityTests.test_untrusted_receipt",
+        "test_core.AuthorityTests.test_wrong_sid",
+        "test_engine.EngineTests.test_authorization_before_any_backend_action",
+        "test_engine.EngineTests.test_verify_cannot_dispatch_export"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Synthetic trusted models only; native trust/normalization/renewal/registration adapters pending."
+    },
+    {
+      "requirement_id": "F00-01",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/codec.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_host_profile",
+        "test_core.PolicyTests.test_runtime_floor",
+        "test_core.PolicyTests.test_runtime_old",
+        "test_core.PolicyTests.test_support_margin_exact",
+        "test_core.PolicyTests.test_support_margin_under",
+        "test_state_evidence.CommandTests.test_runtime_no_restart"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Native Windows/guest/principal collectors absent; only selected profile predicates tested."
+    },
+    {
+      "requirement_id": "F00-02",
+      "source_files": [
+        "src/aifilm_p00/authority.py",
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.AuthorityTests.test_approval_expired",
+        "test_core.AuthorityTests.test_discovery_qualification_not_create",
+        "test_core.AuthorityTests.test_exact_profile_mismatch",
+        "test_core.AuthorityTests.test_fake_native_result_no_match",
+        "test_core.AuthorityTests.test_lab_id_mismatch",
+        "test_core.AuthorityTests.test_missing_qualification",
+        "test_core.AuthorityTests.test_no_self_extended_approval",
+        "test_core.AuthorityTests.test_qualification_expired",
+        "test_core.AuthorityTests.test_qualification_failed",
+        "test_core.AuthorityTests.test_qualification_future",
+        "test_core.AuthorityTests.test_qualification_missing_results",
+        "test_core.AuthorityTests.test_qualification_new_blocker",
+        "test_core.AuthorityTests.test_qualification_withdrawn",
+        "test_core.AuthorityTests.test_qualification_wrong_build",
+        "test_core.AuthorityTests.test_qualification_wrong_testset",
+        "test_core.AuthorityTests.test_receipt_bytes_tampered",
+        "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
+        "test_core.AuthorityTests.test_site_faked_lab_flag",
+        "test_core.AuthorityTests.test_site_valid_synthetic_chain",
+        "test_core.AuthorityTests.test_untrusted_receipt",
+        "test_core.AuthorityTests.test_wrong_sid",
+        "test_engine.EngineTests.test_authorization_before_any_backend_action",
+        "test_engine.EngineTests.test_verify_cannot_dispatch_export"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Synthetic trusted models only; native trust/normalization/renewal/registration adapters pending."
+    },
+    {
+      "requirement_id": "F00-03",
+      "source_files": [
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/plans.py",
+        "src/aifilm_p00/__main__.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PlanTests.test_approval_detached_no_self_hash",
+        "test_core.PlanTests.test_approval_inside_semantic_rejected",
+        "test_core.PlanTests.test_change_semantic_changes_hash",
+        "test_core.PlanTests.test_create_future_guest_not_required",
+        "test_core.PlanTests.test_duplicate_volume_rejected",
+        "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
+        "test_core.PlanTests.test_no_arbitrary_operation",
+        "test_core.PlanTests.test_plan_tamper",
+        "test_core.PlanTests.test_root_user_rejected",
+        "test_core.PlanTests.test_scratch_cap",
+        "test_core.PlanTests.test_timestamp_not_semantic",
+        "test_core.PlanTests.test_verify_cannot_import",
+        "test_state_evidence.CLITests.test_workspace_preflight_not_host"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Workspace metadata and deterministic plan only; native passive collector absent."
+    },
+    {
+      "requirement_id": "F00-04",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/codec.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_host_profile",
+        "test_core.PolicyTests.test_runtime_floor",
+        "test_core.PolicyTests.test_runtime_old",
+        "test_core.PolicyTests.test_support_margin_exact",
+        "test_core.PolicyTests.test_support_margin_under",
+        "test_state_evidence.CommandTests.test_runtime_no_restart"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Native Windows/guest/principal collectors absent; only selected profile predicates tested."
+    },
+    {
+      "requirement_id": "F00-05",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/admission.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_budget_adds_allocations_not_max",
+        "test_core.PolicyTests.test_budget_backup_volume_separate",
+        "test_core.PolicyTests.test_exact_budget",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_fs_available_bytes_2",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_0",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_1",
+        "test_core.PolicyTests.test_floor_guest_logical_cpu_2",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_mem_available_bytes_2",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_0",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_1",
+        "test_core.PolicyTests.test_floor_guest_mem_total_bytes_2",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_0",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_1",
+        "test_core.PolicyTests.test_floor_host_available_ram_bytes_2",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_0",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_1",
+        "test_core.PolicyTests.test_floor_host_installed_ram_bytes_2",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_0",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_1",
+        "test_core.PolicyTests.test_floor_host_logical_cpu_2"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "No actual host capacity measurement or Windows physical-volume mapping."
+    },
+    {
+      "requirement_id": "F00-06",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_terminal_network_fail"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Network aggregation negative only; DNS/TCP/TLS/HTTPS native collectors NOT_IMPLEMENTED."
+    },
+    {
+      "requirement_id": "F00-07",
+      "source_files": [
+        "src/aifilm_p00/authority.py",
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.AuthorityTests.test_approval_expired",
+        "test_core.AuthorityTests.test_discovery_qualification_not_create",
+        "test_core.AuthorityTests.test_exact_profile_mismatch",
+        "test_core.AuthorityTests.test_fake_native_result_no_match",
+        "test_core.AuthorityTests.test_lab_id_mismatch",
+        "test_core.AuthorityTests.test_missing_qualification",
+        "test_core.AuthorityTests.test_no_self_extended_approval",
+        "test_core.AuthorityTests.test_qualification_expired",
+        "test_core.AuthorityTests.test_qualification_failed",
+        "test_core.AuthorityTests.test_qualification_future",
+        "test_core.AuthorityTests.test_qualification_missing_results",
+        "test_core.AuthorityTests.test_qualification_new_blocker",
+        "test_core.AuthorityTests.test_qualification_withdrawn",
+        "test_core.AuthorityTests.test_qualification_wrong_build",
+        "test_core.AuthorityTests.test_qualification_wrong_testset",
+        "test_core.AuthorityTests.test_receipt_bytes_tampered",
+        "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
+        "test_core.AuthorityTests.test_site_faked_lab_flag",
+        "test_core.AuthorityTests.test_site_valid_synthetic_chain",
+        "test_core.AuthorityTests.test_untrusted_receipt",
+        "test_core.AuthorityTests.test_wrong_sid",
+        "test_engine.EngineTests.test_authorization_before_any_backend_action",
+        "test_engine.EngineTests.test_verify_cannot_dispatch_export"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Synthetic trusted models only; native trust/normalization/renewal/registration adapters pending."
+    },
+    {
+      "requirement_id": "F00-08",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_terminal_current",
+        "test_core.PolicyTests.test_terminal_expired",
+        "test_core.PolicyTests.test_terminal_host_mismatch",
+        "test_core.PolicyTests.test_terminal_mixed_epoch",
+        "test_core.PolicyTests.test_terminal_network_fail",
+        "test_core.PolicyTests.test_terminal_old_network",
+        "test_core.PolicyTests.test_terminal_too_long",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "No actual sentinel/lifecycle/host restart; epoch/time predicates only."
+    },
+    {
+      "requirement_id": "F00-09",
+      "source_files": [
+        "src/aifilm_p00/admission.py",
+        "src/aifilm_p00/journal_files.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
+        "test_engine.EngineTests.test_timeout_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
+        "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
+        "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
+        "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_native_witness_required",
+        "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
+        "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
+        "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
+        "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
+        "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
+        "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
+        "test_state_evidence.JournalTests.test_fence_tamper",
+        "test_state_evidence.JournalTests.test_hash_chain_reload",
+        "test_state_evidence.JournalTests.test_persist_reload_fence",
+        "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained",
+        "test_state_evidence.JournalTests.test_truncated_journal_blocks"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Memory concurrency and POSIX durability; no Windows global/cross-SID proof."
+    },
+    {
+      "requirement_id": "F00-10",
+      "source_files": [
+        "src/aifilm_p00/admission.py",
+        "src/aifilm_p00/journal_files.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
+        "test_engine.EngineTests.test_timeout_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
+        "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
+        "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
+        "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_native_witness_required",
+        "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
+        "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
+        "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
+        "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
+        "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
+        "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
+        "test_state_evidence.JournalTests.test_fence_tamper",
+        "test_state_evidence.JournalTests.test_hash_chain_reload",
+        "test_state_evidence.JournalTests.test_persist_reload_fence",
+        "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained",
+        "test_state_evidence.JournalTests.test_truncated_journal_blocks"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Memory concurrency and POSIX durability; no Windows global/cross-SID proof."
+    },
+    {
+      "requirement_id": "F00-11",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/windows_commands.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_clean_target_still_needs_backup",
+        "test_core.PolicyTests.test_no_writes_boundary_drift",
+        "test_core.PolicyTests.test_protection_checkpoint_exact",
+        "test_core.PolicyTests.test_protection_independent",
+        "test_core.PolicyTests.test_protection_ok",
+        "test_core.PolicyTests.test_target_not_hidden_by_empty_rows",
+        "test_state_evidence.CommandTests.test_feature_allowlist",
+        "test_state_evidence.CommandTests.test_feature_no_restart",
+        "test_state_evidence.CommandTests.test_runtime_no_restart"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Protection predicates/feature argv only; no ENGINE/C3 execution or recovery drill."
+    },
+    {
+      "requirement_id": "F00-12",
+      "source_files": [
+        "src/aifilm_p00/policy.py",
+        "src/aifilm_p00/windows_commands.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_envelope_changed",
+        "test_core.PolicyTests.test_restore_dirty_same_host",
+        "test_core.PolicyTests.test_restore_external",
+        "test_core.PolicyTests.test_restore_same_host_not_pre_c3",
+        "test_core.PolicyTests.test_restore_sensitive_block",
+        "test_core.PolicyTests.test_restore_synthetic_not_site",
+        "test_state_evidence.CommandTests.test_import_explicit_v2"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Envelope predicates and argv only; actual export/import/boot/content/observer not implemented."
+    },
+    {
+      "requirement_id": "F00-13",
+      "source_files": [
+        "src/aifilm_p00/evidence.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_invalid_zip_normalized",
+        "test_engine.EngineTests.test_scanner_exception_blocks_publication",
+        "test_state_evidence.EvidenceTests.test_aggregate_cap",
+        "test_state_evidence.EvidenceTests.test_at_collector_cap_with_eof",
+        "test_state_evidence.EvidenceTests.test_at_collector_cap_without_eof",
+        "test_state_evidence.EvidenceTests.test_complete_inventory_not_gate",
+        "test_state_evidence.EvidenceTests.test_document_records_cannot_be_site_gate",
+        "test_state_evidence.EvidenceTests.test_eof_missing_even_below_cap",
+        "test_state_evidence.EvidenceTests.test_future_guest_inventory_only",
+        "test_state_evidence.EvidenceTests.test_gate_component_only_not_host_ready",
+        "test_state_evidence.EvidenceTests.test_gate_no_e17_recursion",
+        "test_state_evidence.EvidenceTests.test_hash_mismatch",
+        "test_state_evidence.EvidenceTests.test_known_nested_raw_redacted",
+        "test_state_evidence.EvidenceTests.test_mandatory_missing",
+        "test_state_evidence.EvidenceTests.test_mandatory_over_cap",
+        "test_state_evidence.EvidenceTests.test_mandatory_timeout",
+        "test_state_evidence.EvidenceTests.test_member_hash_tamper",
+        "test_state_evidence.EvidenceTests.test_no_auto_scope_change",
+        "test_state_evidence.EvidenceTests.test_no_required_to_optional",
+        "test_state_evidence.EvidenceTests.test_optional_missing",
+        "test_state_evidence.EvidenceTests.test_optional_timeout",
+        "test_state_evidence.EvidenceTests.test_privacy_beats_missing_and_optional",
+        "test_state_evidence.EvidenceTests.test_protected_access_unavailable",
+        "test_state_evidence.EvidenceTests.test_scanner_unavailable_blocks",
+        "test_state_evidence.EvidenceTests.test_unknown_nested_key_blocks_all_publication"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "In-memory snapshots/synthetic data; native safe reader/publisher/field catalogs incomplete."
+    },
+    {
+      "requirement_id": "F00-14",
+      "source_files": [
+        "src/aifilm_p00/codec.py",
+        "src/aifilm_p00/plans.py",
+        "src/aifilm_p00/__main__.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PlanTests.test_approval_detached_no_self_hash",
+        "test_core.PlanTests.test_approval_inside_semantic_rejected",
+        "test_core.PlanTests.test_change_semantic_changes_hash",
+        "test_core.PlanTests.test_create_future_guest_not_required",
+        "test_core.PlanTests.test_duplicate_volume_rejected",
+        "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
+        "test_core.PlanTests.test_no_arbitrary_operation",
+        "test_core.PlanTests.test_plan_tamper",
+        "test_core.PlanTests.test_root_user_rejected",
+        "test_core.PlanTests.test_scratch_cap",
+        "test_core.PlanTests.test_timestamp_not_semantic",
+        "test_core.PlanTests.test_verify_cannot_import",
+        "test_state_evidence.CLITests.test_workspace_preflight_not_host"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Workspace metadata and deterministic plan only; native passive collector absent."
+    },
+    {
+      "requirement_id": "F00-15",
+      "source_files": [
+        "src/aifilm_p00/policy.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_core.PolicyTests.test_affected_postcheck_failed",
+        "test_core.PolicyTests.test_affected_postcheck_missing"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Owner-health aggregation predicates only; no actual affected-resource checks."
+    },
+    {
+      "requirement_id": "F00-16",
+      "source_files": [
+        "src/aifilm_p00/admission.py",
+        "src/aifilm_p00/journal_files.py",
+        "src/aifilm_p00/engine.py"
+      ],
+      "workspace_actual_test_ids": [
+        "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
+        "test_engine.EngineTests.test_timeout_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
+        "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
+        "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
+        "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
+        "test_state_evidence.AdmissionTests.test_native_witness_required",
+        "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
+        "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
+        "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
+        "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
+        "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+        "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
+        "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
+        "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
+        "test_state_evidence.JournalTests.test_fence_tamper",
+        "test_state_evidence.JournalTests.test_hash_chain_reload",
+        "test_state_evidence.JournalTests.test_persist_reload_fence",
+        "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
+        "test_state_evidence.JournalTests.test_terminal_archive_retained",
+        "test_state_evidence.JournalTests.test_truncated_journal_blocks"
+      ],
+      "workspace_scope": "PARTIAL_SYNTHETIC_OR_POSIX_ONLY",
+      "native_status": "NOT_RUN",
+      "official_acceptance_status": "NOT_EVALUATED",
+      "limitation": "Memory concurrency and POSIX durability; no Windows global/cross-SID proof."
+    }
+  ],
+  "full_coverage_claim": false
+}

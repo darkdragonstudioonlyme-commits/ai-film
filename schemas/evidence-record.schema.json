@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Group E00-01..15 envelope; native group field catalogs pending",
+  "properties": {
+    "route": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "expected_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_alias": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ABSENT",
+        "BLOCKED",
+        "FAIL",
+        "NOT_APPLICABLE",
+        "NOT_RUN",
+        "NOT_YET_CREATED",
+        "OBSERVED",
+        "PASS",
+        "REQUIRES_ACTIVE_PROBE",
+        "UNAVAILABLE",
+        "UNKNOWN"
+      ]
+    },
+    "collector_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "protected_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_id": {
+      "enum": [
+        "E00-01",
+        "E00-02",
+        "E00-03",
+        "E00-04",
+        "E00-05",
+        "E00-06",
+        "E00-07",
+        "E00-08",
+        "E00-09",
+        "E00-10",
+        "E00-11",
+        "E00-12",
+        "E00-13",
+        "E00-14",
+        "E00-15"
+      ]
+    },
+    "epoch_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_kind": {
+      "enum": [
+        "DOCUMENT",
+        "LAB",
+        "SITE"
+      ]
+    },
+    "host_alias": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actual_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "protected_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "work_item": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp_utc": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "step_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "normalized_exit": {
+      "type": "integer"
+    },
+    "contract_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "safe_summary": {
+      "type": "object"
+    },
+    "record_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "operation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "build_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sensitivity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "native_exit": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "actual_ref",
+    "build_digest",
+    "collector_digest",
+    "contract_digest",
+    "epoch_ref",
+    "evidence_id",
+    "expected_ref",
+    "host_alias",
+    "native_exit",
+    "normalized_exit",
+    "operation",
+    "protected_digest",
+    "protected_ref",
+    "record_id",
+    "route",
+    "run_id",
+    "safe_summary",
+    "schema_version",
+    "sensitivity",
+    "source_kind",
+    "stage",
+    "status",
+    "step_id",
+    "target_alias",
+    "timestamp_utc",
+    "work_item"
+  ],
+  "additionalProperties": false
+}

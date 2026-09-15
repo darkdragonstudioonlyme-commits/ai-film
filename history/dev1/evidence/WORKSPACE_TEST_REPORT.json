@@ -1,0 +1,1442 @@
+{
+  "report_kind": "AUTHOR_WORKSPACE_TEST_REPORT",
+  "source_kind": "WORKSPACE",
+  "environment": {
+    "os": "Linux",
+    "release": "6.18.44",
+    "python": "3.13.5",
+    "implementation": "CPython",
+    "machine": "x86_64"
+  },
+  "started_at": "2026-09-14T01:30:06.550090+00:00",
+  "ended_at": "2026-09-14T01:30:14.930635+00:00",
+  "duration_seconds": 8.380503,
+  "source_content_digest": "fd8cbe765b7a9842871de0a22a97550c3b0b29eaecadb2567b9dd719224b42f0",
+  "test_content_digest": "3e78bb61c4c8f628abe9a907f913691a0f128e7256bc383d935bb725dcd184fa",
+  "source_members": [
+    {
+      "path": "src/aifilm_p00/__init__.py",
+      "bytes": 226,
+      "sha256": "8680ff604e644cf308d4eb33cee5ef67f4af23fc10c34a28f68017d8b80c2b6f"
+    },
+    {
+      "path": "src/aifilm_p00/__main__.py",
+      "bytes": 2363,
+      "sha256": "edca805421578c57f1fc17fbb20b91ebbee37242fff227f684aa8c60a88ad138"
+    },
+    {
+      "path": "src/aifilm_p00/admission.py",
+      "bytes": 5511,
+      "sha256": "2626672271fd85de924b5ef95caa864ef3cf28c729b85523b86782383a4ba50a"
+    },
+    {
+      "path": "src/aifilm_p00/authority.py",
+      "bytes": 8003,
+      "sha256": "f7893d7e51bc5ec7cc14877797a05932e85bd6383a3350f888a8b601f8e9327d"
+    },
+    {
+      "path": "src/aifilm_p00/codec.py",
+      "bytes": 5220,
+      "sha256": "177f5ed6ac95ed658315a3bffe1ee17a4e63f689eb85a8189fac7118df9f875e"
+    },
+    {
+      "path": "src/aifilm_p00/engine.py",
+      "bytes": 4164,
+      "sha256": "7b8c6263da8a7e14e2b01495922c83b1ed56977fdf38fd58f5c3bd56fdb3e511"
+    },
+    {
+      "path": "src/aifilm_p00/errors.py",
+      "bytes": 900,
+      "sha256": "5bf43f29e8001d938d9c59242179be72ece856b116d548221589502e31222348"
+    },
+    {
+      "path": "src/aifilm_p00/evidence.py",
+      "bytes": 13690,
+      "sha256": "53ae80287153cca8e51966bb5b3df74b94b332aabac3ebe9adb5c09023c3a184"
+    },
+    {
+      "path": "src/aifilm_p00/journal_files.py",
+      "bytes": 4507,
+      "sha256": "81d33d306e2ce15e01042a3fdc1c2b16c314c4a886157be53a943edfc22c0773"
+    },
+    {
+      "path": "src/aifilm_p00/plans.py",
+      "bytes": 5621,
+      "sha256": "d778029ba6d104200b9fbd3951e031a4c35600829edbe949ddbe7c4f6c8d706a"
+    },
+    {
+      "path": "src/aifilm_p00/policy.py",
+      "bytes": 9990,
+      "sha256": "687de1712a6680e21ab1ae31825eda07ee6636528fcc2108b367c6981af8bbfa"
+    },
+    {
+      "path": "src/aifilm_p00/windows_commands.py",
+      "bytes": 2219,
+      "sha256": "7abd56259ffbdacb4f27c2a101ba81a64c823549ee7077569d8cbc72661423d0"
+    },
+    {
+      "path": "schemas/binding.schema.json",
+      "bytes": 4535,
+      "sha256": "21a983366163ad4bd323bc194ed146d15089d656754cbf988bebd5383cbcafd9"
+    },
+    {
+      "path": "schemas/evidence-record.schema.json",
+      "bytes": 3279,
+      "sha256": "9230c568e353e6638a54d95ebcafdeab4ebb50060adecdfcb7f7495ce64ce12a"
+    },
+    {
+      "path": "schemas/plan.schema.json",
+      "bytes": 6766,
+      "sha256": "e7e9760d2c8d31d66585bc14df10bf035539f014d5a828460414dd67f4a413f6"
+    },
+    {
+      "path": "config/dependencies.json",
+      "bytes": 401,
+      "sha256": "4a3bb7042d2ca3688a599b4c31df0a1a03aa377312cf2cf973692fb403be7807"
+    },
+    {
+      "path": "config/host-binding.template.json",
+      "bytes": 346,
+      "sha256": "da510bfe93237fb9e83b4238168f543edd35313972cd92b9da8e912eda657e7d"
+    },
+    {
+      "path": "config/required-native-test-inventory.json",
+      "bytes": 16411,
+      "sha256": "4c33b4c7264a876bcb1e4cc3a82119d1b669b64f7774bad4e48dc3f0095ae0ca"
+    }
+  ],
+  "test_members": [
+    {
+      "path": "tests/helpers.py",
+      "bytes": 9719,
+      "sha256": "22e61b7c40c167f64ec8af5e889bf541b2230fa6fa8ab327e453108ea017ebf0"
+    },
+    {
+      "path": "tests/test_core.py",
+      "bytes": 12145,
+      "sha256": "5bfba0f8899fc10a64520ac5f7e9a4bcd0200518b3810c2cd8616a4441735b9a"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "bytes": 4575,
+      "sha256": "46c4b3d3dc0073d03f2cc19868c5220e3c91e7aa2d291deaf602a1adcdd04372"
+    },
+    {
+      "path": "tests/test_state_evidence.py",
+      "bytes": 13110,
+      "sha256": "93bc3de48cb12718fbbd87e9954ea4fa3186f1ea6cc03f1c24e181095dd64a7b"
+    },
+    {
+      "path": "tools/run_workspace_tests.py",
+      "bytes": 3475,
+      "sha256": "e2dd4e88e5fb6dc56d0d220566297ceb1bf2c52b7b544a99a2253a655341fc7f"
+    }
+  ],
+  "tests_run": 185,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "actual_results": [
+    {
+      "test_id": "test_core.AuthorityTests.test_approval_expired",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00306,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_discovery_qualification_not_create",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002298,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_exact_profile_mismatch",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002058,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_fake_native_result_no_match",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002806,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_lab_id_mismatch",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002361,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_missing_qualification",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001824,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_no_self_extended_approval",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00202,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_expired",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002076,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_failed",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002101,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_future",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001971,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_missing_results",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001967,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_new_blocker",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002005,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_withdrawn",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001994,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_wrong_build",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002009,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_qualification_wrong_testset",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002047,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_receipt_bytes_tampered",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001953,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001837,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_site_faked_lab_flag",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001838,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_site_valid_synthetic_chain",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002948,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_untrusted_receipt",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001947,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.AuthorityTests.test_wrong_sid",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00187,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_bool_not_integer",
+      "actual_status": "PASS",
+      "duration_seconds": 5.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_depth_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_duplicate_key",
+      "actual_status": "PASS",
+      "duration_seconds": 4.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_invalid_utf8",
+      "actual_status": "PASS",
+      "duration_seconds": 4.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_key_order_deterministic",
+      "actual_status": "PASS",
+      "duration_seconds": 5.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_local_timestamp",
+      "actual_status": "PASS",
+      "duration_seconds": 3.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_non_utc_timestamp",
+      "actual_status": "PASS",
+      "duration_seconds": 3.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_nonfinite",
+      "actual_status": "PASS",
+      "duration_seconds": 8.6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_00",
+      "actual_status": "PASS",
+      "duration_seconds": 8.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_01",
+      "actual_status": "PASS",
+      "duration_seconds": 4.6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_02",
+      "actual_status": "PASS",
+      "duration_seconds": 5.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_03",
+      "actual_status": "PASS",
+      "duration_seconds": 4.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_04",
+      "actual_status": "PASS",
+      "duration_seconds": 3.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_05",
+      "actual_status": "PASS",
+      "duration_seconds": 3.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_relative_06",
+      "actual_status": "PASS",
+      "duration_seconds": 5.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_00",
+      "actual_status": "PASS",
+      "duration_seconds": 4.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_01",
+      "actual_status": "PASS",
+      "duration_seconds": 3.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_02",
+      "actual_status": "PASS",
+      "duration_seconds": 3.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_03",
+      "actual_status": "PASS",
+      "duration_seconds": 5.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_04",
+      "actual_status": "PASS",
+      "duration_seconds": 5.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_05",
+      "actual_status": "PASS",
+      "duration_seconds": 5.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_06",
+      "actual_status": "PASS",
+      "duration_seconds": 6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_07",
+      "actual_status": "PASS",
+      "duration_seconds": 5.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_08",
+      "actual_status": "PASS",
+      "duration_seconds": 5.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_09",
+      "actual_status": "PASS",
+      "duration_seconds": 5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_10",
+      "actual_status": "PASS",
+      "duration_seconds": 4.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_11",
+      "actual_status": "PASS",
+      "duration_seconds": 3.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_12",
+      "actual_status": "PASS",
+      "duration_seconds": 4.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_13",
+      "actual_status": "PASS",
+      "duration_seconds": 3.6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_14",
+      "actual_status": "PASS",
+      "duration_seconds": 3.6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_reject_windows_path_15",
+      "actual_status": "PASS",
+      "duration_seconds": 3.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_safe_error_no_raw_value",
+      "actual_status": "PASS",
+      "duration_seconds": 3.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_size_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 0.041632,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_unicode_round_trip",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000249,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.CodecTests.test_unicode_space_windows_path",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000382,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_approval_detached_no_self_hash",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002336,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_approval_inside_semantic_rejected",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000352,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_change_semantic_changes_hash",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000464,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_create_future_guest_not_required",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000262,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_duplicate_volume_rejected",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000337,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
+      "actual_status": "PASS",
+      "duration_seconds": 6.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_no_arbitrary_operation",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000341,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_plan_tamper",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000378,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_root_user_rejected",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00019,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_scratch_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000198,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_timestamp_not_semantic",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000439,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PlanTests.test_verify_cannot_import",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000447,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_affected_postcheck_failed",
+      "actual_status": "PASS",
+      "duration_seconds": 9.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_affected_postcheck_missing",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000101,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_budget_adds_allocations_not_max",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00011,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_budget_backup_volume_separate",
+      "actual_status": "PASS",
+      "duration_seconds": 9.6e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_clean_target_still_needs_backup",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000124,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_envelope_changed",
+      "actual_status": "PASS",
+      "duration_seconds": 4.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_exact_budget",
+      "actual_status": "PASS",
+      "duration_seconds": 5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_fs_available_bytes_0",
+      "actual_status": "PASS",
+      "duration_seconds": 6.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_fs_available_bytes_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_fs_available_bytes_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_logical_cpu_0",
+      "actual_status": "PASS",
+      "duration_seconds": 3.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_logical_cpu_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_logical_cpu_2",
+      "actual_status": "PASS",
+      "duration_seconds": 3.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_available_bytes_0",
+      "actual_status": "PASS",
+      "duration_seconds": 3.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_available_bytes_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_available_bytes_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_total_bytes_0",
+      "actual_status": "PASS",
+      "duration_seconds": 3.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_total_bytes_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2.4e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_guest_mem_total_bytes_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_available_ram_bytes_0",
+      "actual_status": "PASS",
+      "duration_seconds": 3.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_available_ram_bytes_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_available_ram_bytes_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_installed_ram_bytes_0",
+      "actual_status": "PASS",
+      "duration_seconds": 2.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_installed_ram_bytes_1",
+      "actual_status": "PASS",
+      "duration_seconds": 3.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_installed_ram_bytes_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_0",
+      "actual_status": "PASS",
+      "duration_seconds": 3.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_1",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_2",
+      "actual_status": "PASS",
+      "duration_seconds": 2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_host_profile",
+      "actual_status": "PASS",
+      "duration_seconds": 5.4e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_no_ttl_plan_drift",
+      "actual_status": "PASS",
+      "duration_seconds": 3.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_no_writes_boundary_drift",
+      "actual_status": "PASS",
+      "duration_seconds": 3.4e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_protection_checkpoint_exact",
+      "actual_status": "PASS",
+      "duration_seconds": 4.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_protection_independent",
+      "actual_status": "PASS",
+      "duration_seconds": 3.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_protection_ok",
+      "actual_status": "PASS",
+      "duration_seconds": 3.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_restore_dirty_same_host",
+      "actual_status": "PASS",
+      "duration_seconds": 4.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_restore_external",
+      "actual_status": "PASS",
+      "duration_seconds": 5.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_restore_same_host_not_pre_c3",
+      "actual_status": "PASS",
+      "duration_seconds": 4.4e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_restore_sensitive_block",
+      "actual_status": "PASS",
+      "duration_seconds": 3.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_restore_synthetic_not_site",
+      "actual_status": "PASS",
+      "duration_seconds": 3.7e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_runtime_floor",
+      "actual_status": "PASS",
+      "duration_seconds": 3.1e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_runtime_old",
+      "actual_status": "PASS",
+      "duration_seconds": 3.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_support_margin_exact",
+      "actual_status": "PASS",
+      "duration_seconds": 4.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_support_margin_under",
+      "actual_status": "PASS",
+      "duration_seconds": 7.3e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_target_not_hidden_by_empty_rows",
+      "actual_status": "PASS",
+      "duration_seconds": 3.8e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_current",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000305,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_expired",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000169,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_host_mismatch",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000151,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_mixed_epoch",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00016,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_network_fail",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000235,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_old_network",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000284,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_core.PolicyTests.test_terminal_too_long",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000158,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_actual_fixture_execution_with_journal",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00414,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_authorization_before_any_backend_action",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002164,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_invalid_zip_normalized",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000118,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
+      "actual_status": "PASS",
+      "duration_seconds": 0.005145,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_noop_does_not_invoke_mutation",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003186,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_pending_oobe_not_success",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003558,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_scanner_exception_blocks_publication",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000337,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_timeout_preserves_fence",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003556,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_unknown_native_exit_never_zero",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003485,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_verify_cannot_dispatch_export",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001992,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_engine.EngineTests.test_wrong_before_rejected_before_mutation",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003211,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003128,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002902,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003118,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003026,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_native_witness_required",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003046,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003044,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002922,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002985,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003186,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003087,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003089,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002958,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_native_apply_explicitly_unimplemented",
+      "actual_status": "PASS",
+      "duration_seconds": 1.352978,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_native_preflight_explicitly_unimplemented",
+      "actual_status": "PASS",
+      "duration_seconds": 1.349335,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_native_support_bundle_explicitly_unimplemented",
+      "actual_status": "PASS",
+      "duration_seconds": 1.365424,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_native_verify_explicitly_unimplemented",
+      "actual_status": "PASS",
+      "duration_seconds": 1.38047,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_recovery_notes_no_mutation",
+      "actual_status": "PASS",
+      "duration_seconds": 1.350105,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CLITests.test_workspace_preflight_not_host",
+      "actual_status": "PASS",
+      "duration_seconds": 1.336395,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_create_literals_unicode_spaces",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000274,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_feature_allowlist",
+      "actual_status": "PASS",
+      "duration_seconds": 8.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_feature_no_restart",
+      "actual_status": "PASS",
+      "duration_seconds": 7.5e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_import_explicit_v2",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000132,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_no_unregister_compiler",
+      "actual_status": "PASS",
+      "duration_seconds": 9.2e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_runtime_no_restart",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000105,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.CommandTests.test_target_control_rejected",
+      "actual_status": "PASS",
+      "duration_seconds": 6.9e-05,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_aggregate_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001722,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_at_collector_cap_with_eof",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003165,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_at_collector_cap_without_eof",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002177,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_complete_inventory_not_gate",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003524,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_document_records_cannot_be_site_gate",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003048,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_eof_missing_even_below_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00217,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_future_guest_inventory_only",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002087,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_gate_component_only_not_host_ready",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003765,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_gate_no_e17_recursion",
+      "actual_status": "PASS",
+      "duration_seconds": 0.005081,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_hash_mismatch",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001383,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_known_nested_raw_redacted",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002578,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_mandatory_missing",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002054,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_mandatory_over_cap",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001967,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_mandatory_timeout",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002025,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_member_hash_tamper",
+      "actual_status": "PASS",
+      "duration_seconds": 0.003914,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_no_auto_scope_change",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002178,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_no_required_to_optional",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000452,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_optional_missing",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002013,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_optional_timeout",
+      "actual_status": "PASS",
+      "duration_seconds": 0.002125,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_privacy_beats_missing_and_optional",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001345,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_protected_access_unavailable",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001961,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_scanner_unavailable_blocks",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001252,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.EvidenceTests.test_unknown_nested_key_blocks_all_publication",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001302,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001263,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_fence_tamper",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001292,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_hash_chain_reload",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001131,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_persist_reload_fence",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000609,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
+      "actual_status": "PASS",
+      "duration_seconds": 0.00044,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_terminal_archive_retained",
+      "actual_status": "PASS",
+      "duration_seconds": 0.001375,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_state_evidence.JournalTests.test_truncated_journal_blocks",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000965,
+      "reason": null,
+      "native_execution": false
+    }
+  ],
+  "windows_wsl_native": "NOT_RUN",
+  "site_tests": "NOT_RUN",
+  "code_review": "NOT_PERFORMED",
+  "qualification_issued": false,
+  "host_ready": false
+}

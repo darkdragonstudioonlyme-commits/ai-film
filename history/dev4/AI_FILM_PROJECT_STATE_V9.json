@@ -1,0 +1,443 @@
+{
+  "PROJECT": "AI-FILM-SERVER",
+  "STATE_VERSION": 9,
+  "CURRENT_MODE": "IMPLEMENTATION",
+  "CURRENT_PHASE": {
+    "ID": "00",
+    "NAME": "Host / WSL",
+    "STATUS": "IMPLEMENTATION_IN_PROGRESS_PARTIAL"
+  },
+  "CURRENT_BASELINE": {
+    "REQUIREMENTS": "AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2",
+    "SOURCE_CODE": {
+      "PACKAGE": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V4",
+      "STATUS": "PARTIAL_AUTHOR_DROP_NOT_REVIEWED",
+      "VERSION": "0.1.0.dev4",
+      "SOURCE_CONTENT_DIGEST": "a1b4299b2088ca58b7656c6cfc89f4df57c70b088cd163b406ba8961c2b1af3d",
+      "NATIVE_EXECUTABLE_BASELINE": false,
+      "TEST_CONTENT_DIGEST": "612970a21fd113d6ee15fb52025f37ee952f3117c409ec5914dfadb283fcd47e",
+      "NATIVE_COMPONENT_SOURCE_AUTHORED": true,
+      "FULL_NATIVE_BACKEND_AVAILABLE": false,
+      "NATIVE_SESSION_SOURCE_AUTHORED": true,
+      "ORIGINAL_FENCE_RECOVERY_SOURCE_AUTHORED": true,
+      "LIVE_REVALIDATION_SOURCE_AUTHORED": true,
+      "FULL_SCOPE_AUTHOR_COMPLETE": false
+    },
+    "INFRASTRUCTURE": "UNKNOWN_NOT_VERIFIED",
+    "MODEL_WORKFLOWS": "UNKNOWN_NOT_PROVIDED",
+    "QUALITY": "UNKNOWN_NOT_MEASURED",
+    "PROMOTED_BASELINE": "NONE_RECORDED",
+    "REVIEWED_DESIGN": {
+      "REVISION": "V2",
+      "SCOPE": "Phase00 Host / WSL only",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "REVIEW": "REVIEW-P00-002",
+      "VERDICT": "PASS",
+      "EXECUTABLE_OR_PROMOTED_BASELINE": false
+    }
+  },
+  "CURRENT_TASK": {
+    "ID": "IMPL-P00-001",
+    "STATUS": "IN_PROGRESS",
+    "RESULT": "PARTIAL_SOURCE_DROP_DEV4",
+    "AUTHOR_COMPLETE": false,
+    "CODE_REVIEW_HANDOFF_READY": false,
+    "REMAINING_ITEMS": [
+      "IMPL-REM-01",
+      "IMPL-REM-02",
+      "IMPL-REM-03",
+      "IMPL-REM-04",
+      "IMPL-REM-05",
+      "IMPL-REM-06",
+      "IMPL-REM-07",
+      "IMPL-REM-08"
+    ]
+  },
+  "TARGET_GATE": {
+    "ACTIVE_GATE": "CODE_REVIEW_PASS",
+    "ACTIVE_GATE_STATUS": "NOT_EVALUATED",
+    "ENTRY_DESIGN_GATE": "SATISFIED_EXACT_V2",
+    "PHASE_GATE": "HOST_READY",
+    "STATUS": "NOT_EVALUATED"
+  },
+  "APPROVED_ARCHITECTURE": {
+    "REQUIRED_TARGET": "Blueprint V2; FD-01 through FD-08 unchanged",
+    "REVIEWED_IMPLEMENTATION_DESIGN": {
+      "SCOPE": "Phase00 Host / WSL only",
+      "REVISION": "V2",
+      "NORMATIVE_FILES": [
+        {
+          "path": "PHASE00_ACCEPTANCE_MATRIX_V2.md",
+          "bytes": 28191,
+          "sha256": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407"
+        },
+        {
+          "path": "PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md",
+          "bytes": 22218,
+          "sha256": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc"
+        },
+        {
+          "path": "PHASE00_FAILURE_RECOVERY_PLAN_V2.md",
+          "bytes": 19669,
+          "sha256": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060"
+        },
+        {
+          "path": "PHASE00_INFRA_DESIGN_V2.md",
+          "bytes": 61146,
+          "sha256": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d"
+        }
+      ],
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "REVIEW": "REVIEW-P00-002",
+      "APPROVAL_RECORD": "DESIGN_REVIEW_APPROVAL_V2.json"
+    },
+    "IMPLEMENTATION_AUTHORIZED": true,
+    "AUTHORIZATION_SCOPE": "AUTHOR_CODE_CONFIG_FIXTURES_DOCS_AND_WORKSPACE_TESTS_ONLY; not LAB/SITE native execution",
+    "SITE_EXECUTION_AUTHORIZED": false,
+    "LAB_NATIVE_EXECUTION_AUTHORIZED": false,
+    "WHOLE_FILM_PLATFORM_IMPLEMENTATION_DESIGN_APPROVED": false
+  },
+  "FROZEN_DECISIONS": {
+    "FD-01": "Single main chat; one active mode; MASTER maintains state.",
+    "FD-02": "Stage A WSL2 + rented GPU; B local NVIDIA; C multi-GPU/distributed.",
+    "FD-03": "Separate control/GPU compute; adapters; no single GPU/model/vendor/cloud/UI hardcoding.",
+    "FD-04": "Project/Series/Episode/Scene/Shot/Take; stateful shot; independent shot regeneration.",
+    "FD-05": "Identity distinct from costume/expression/lighting; continuity managed.",
+    "FD-06": "Important assets have provenance; retry/requeue/resume/regenerate/checkpoint/partial failure/worker replacement.",
+    "FD-07": "Correctness, reproducibility, quality, observability, maintainability, performance, scalability, security, cost; gates retained.",
+    "FD-08": "Evidence-controlled model/workflow promotion; quality experiments; rights review; hardware selected using measured workload."
+  },
+  "OPEN_FINDINGS": [],
+  "OPEN_DESIGN_GAPS": [],
+  "OPEN_VALIDATION_FAILURES": [],
+  "CURRENT_INFRA": {
+    "TARGET_STAGE": "A",
+    "TARGET_CONTROL_PLANE": "Windows / WSL2 / Ubuntu LTS",
+    "TARGET_GPU_COMPUTE": "Rented GPU through secure link",
+    "OBSERVED_HOST": "NOT_PROVIDED",
+    "OBSERVED_WSL_DISTRO": "NOT_PROVIDED",
+    "VERIFIED_DEPLOYMENT": "NONE_RECORDED",
+    "APPROVED_DESIGN_PROFILE": "Windows 11 x64 supported profile; compatible packaged stable WSL; Ubuntu 24.04 LTS amd64 WSL2. D00-01/04 parameters approved in design only; actual host NOT_VERIFIED."
+  },
+  "CURRENT_MODEL_STACK": {
+    "OBSERVED_STACK": "UNKNOWN_NOT_PROVIDED",
+    "APPROVED_SELECTION": "NONE_RECORDED",
+    "REQUIRED_INTERFACE": "MODEL_ADAPTERS"
+  },
+  "CURRENT_QUALITY_BASELINE": {
+    "STATUS": "NOT_ESTABLISHED_IN_LEDGER",
+    "BENCHMARK_DATASET": "NOT_PROVIDED",
+    "GENERATED_SAMPLES": "NOT_PROVIDED",
+    "METRICS_AND_THRESHOLDS": "NOT_APPROVED",
+    "HUMAN_REVIEW_RESULTS": "NOT_PROVIDED"
+  },
+  "FILES_IN_SCOPE": {
+    "IMMUTABLE_INPUTS": "91 mounted input files checked against before-authoring hashes; details evidence/INPUT_INTEGRITY_FINAL.json",
+    "AUTHOR_WORKSPACE": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V4",
+    "PRODUCTION_HOST_FILES_MODIFIED": [],
+    "SOURCE": "src/aifilm_p00",
+    "TESTS": "tests/",
+    "SCHEMAS": "schemas/",
+    "CONFIG": "config/",
+    "DOCS": "docs/",
+    "EVIDENCE": "evidence/",
+    "NATIVE_SCRIPTS": "native/",
+    "HISTORY": "history/dev1, history/dev2, history/dev3; evidence/dev4-history contains actual baseline/failing author reports"
+  },
+  "LAST_TEST_RESULT": {
+    "SOURCE": "evidence/WORKSPACE_TEST_REPORT.json",
+    "ENVIRONMENT_KIND": "POSIX_WORKSPACE",
+    "TESTS_RUN": 534,
+    "FAILURES": 0,
+    "ERRORS": 0,
+    "SKIPPED": 0,
+    "AUTHOR_WORKSPACE_RESULT": "PASS_FOR_EXECUTED_CASES_ONLY",
+    "NATIVE_LAB": "NOT_RUN",
+    "SITE": "NOT_RUN",
+    "QUALIFICATION_ISSUED": false,
+    "NATIVE_ACCEPTANCE_ENTRIES": 86,
+    "NATIVE_ACCEPTANCE_STATUS": "NOT_RUN",
+    "SOURCE_CONTENT_DIGEST": "a1b4299b2088ca58b7656c6cfc89f4df57c70b088cd163b406ba8961c2b1af3d",
+    "TEST_CONTENT_DIGEST": "612970a21fd113d6ee15fb52025f37ee952f3117c409ec5914dfadb283fcd47e",
+    "LIVE_NETWORK": "NOT_RUN",
+    "POWERSHELL_PARSE": "NOT_RUN",
+    "POWERSHELL_EXECUTION": "NOT_RUN",
+    "GUEST_SCRIPT_EXECUTION": "NOT_RUN",
+    "STATIC_CHECKS": "71 successful Python AST / JSON parse / shell syntax checks only",
+    "FOUNDATION_NATIVE_CASES": "5 original procedures retained; NONE executed natively",
+    "DEV3_BASELINE_REEXECUTED": "458 PASS in this authoring turn",
+    "TEST_HISTORY": "evidence/dev4-history; initial new-NOOP source serialization defect fixed before final regression"
+  },
+  "LAST_REVIEW_RESULT": {
+    "DESIGN": "REVIEW-P00-002: PASS exact V2, unchanged",
+    "HISTORICAL_V1_DESIGN": "REVIEW-P00-001: FAIL, unchanged",
+    "CODE": "NOT_PERFORMED",
+    "CODE_REVIEW_HANDOFF": "NOT_READY_FULL_SCOPE"
+  },
+  "P0": {
+    "P0-01": "REVIEW-P00-002 complete: design V2 PASS; RC-01…06 satisfied; DR001…006 REVIEW_PASS design-only.",
+    "P0-02": "Continue IMPL-P00-001 to complete exact approved V2 implementation; then CODE_REVIEW. No native execution authorization in authoring.",
+    "P0-03": "Architecture contracts for later phases: planned, not approved by this P00 review.",
+    "P0-04": "Approved RC→contract→test/evidence mapping; actual implementation/LAB/SITE evidence still required.",
+    "IMPL-P00-001": "IN_PROGRESS: dev4 original-fence recovery/live revalidation/source-byte pinning added; C0 entry, lifecycle/evidence/CLI and full harness source still block completion."
+  },
+  "P1": {
+    "P1-01": "Phase 01-02 Linux and core services: planned",
+    "P1-02": "Phase 03-05 jobs/GPU abstraction/remote GPU: planned",
+    "P1-03": "Phase 06-08 generation/character/shot: planned",
+    "P1-04": "Phase 09-11 audio/episode/novel: planned",
+    "P1-05": "Quality system: planned",
+    "P1-06": "Production readiness and promotion: planned"
+  },
+  "P2": {
+    "P2-01": "Local GPU production after measured workload",
+    "P2-02": "Multi-GPU/distributed scale",
+    "P2-03": "Continuous R&D with controlled promotion"
+  },
+  "RESEARCH": {
+    "R-01A": "DOCUMENTARY_RESEARCH_COMPLETE; Microsoft/Canonical; no host test",
+    "R-01B": "Linux/systemd/Docker Phase 01: NOT_STARTED",
+    "R-02": "Rented GPU: NOT_STARTED",
+    "R-03": "Models/adapters: NOT_STARTED",
+    "R-04": "Quality metrics/benchmarks: NOT_STARTED",
+    "R-05": "Commercial rights: NOT_STARTED",
+    "R-06": "Workload/hardware sizing: NOT_STARTED",
+    "REVIEW_EXTERNAL_VERIFICATION": "Primary-source spot checks recorded in EXTERNAL_VERIFICATION_REGISTER_V1; no new version selection and no host compatibility test.",
+    "V2_SOURCE_CHECKS": "Narrow read of existing Microsoft configuration/basic-commands/networking sources; no new version/model/provider selection, no new R&D or host validation.",
+    "REVIEW_V2_EXTERNAL_VERIFICATION": "Narrow existing Microsoft configuration/basic-commands/networking sources corroborated; see EXTERNAL_VERIFICATION_REGISTER_V2.md. No new version/model/provider choice; no compatibility execution.",
+    "IMPLEMENTATION_API_LOOKUP": "Narrow Microsoft API documentation lookup for native features/installer/jobs/WSL/proxy source only; no version/design/model/provider change; docs/IMPLEMENTATION_API_REFERENCES.md"
+  },
+  "MISSING_EVIDENCE": [
+    "E00-01",
+    "E00-02",
+    "E00-03",
+    "E00-04",
+    "E00-05",
+    "E00-06",
+    "E00-07",
+    "E00-08",
+    "E00-09",
+    "E00-10",
+    "E00-11",
+    "E00-12",
+    "E00-13",
+    "E00-14",
+    "E00-15",
+    "E00-16",
+    "E00-17"
+  ],
+  "NEXT_ACTION": {
+    "WORK_ITEM": "IMPL-P00-001",
+    "MODE": "IMPLEMENTATION",
+    "STATUS": "CONTINUE",
+    "GOAL": "Finish C0 binding and original-request recovery for detached reads without mutation fence; complete lifecycle/evidence/primary CLI and full route/failure harness before CODE_REVIEW.",
+    "NEXT_REVIEW": "CODE-REVIEW-P00-001",
+    "TRANSITION_STATUS": "NO_TRANSITION"
+  },
+  "MODE_HISTORY_THIS_WORK_ITEM": [
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev1 historical partial"
+    },
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev2 partial continuation"
+    },
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev3 historical partial, state V8"
+    },
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "prior continuation had no verified new source; V8 retained"
+    },
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev4 verified partial source; state V9"
+    }
+  ],
+  "DATE": "2026-09-14",
+  "TIMEZONE": "Asia/Ho_Chi_Minh",
+  "PRIOR_STATE_REFERENCE": "history/dev3/AI_FILM_PROJECT_STATE_V8.json",
+  "ARTIFACT_INTEGRITY_RESULT": {
+    "MOUNTED_INPUT_FILES": 91,
+    "UNCHANGED": true,
+    "PARENT_IMPLEMENTATION_MANIFEST_MEMBERS": 151,
+    "SCOPE": "Content identity only; see final audit. No code review/host-validation verdict."
+  },
+  "FINDING_HISTORY": [
+    {
+      "ID": "DR-P00-001",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-001",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-002",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-002",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-003",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-003",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-004",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-004",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-005",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-005",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-006",
+      "SEVERITY": "P2",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-006",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    }
+  ],
+  "MISSING_EVIDENCE_SCOPE": "Execution/SITE binding and actual test records; E10 design-review document subcomponent is available but E10 full execution binding remains incomplete.",
+  "DOCUMENT_EVIDENCE_AVAILABLE": [
+    "REVIEW-P00-002 exact V2 design PASS",
+    "DESIGN_REVIEW_APPROVAL_V2.json",
+    "DR-P00-001…006 reviewer dispositions",
+    "Document-only input/diff/source audits"
+  ],
+  "CURRENT_APPROVED_DESIGN_DECISIONS": {
+    "D00-01_TO_14": "APPROVED_FOR_PHASE00_IMPLEMENTATION via REVIEW-P00-002 exact four-document contract set",
+    "FROZEN_FD_CHANGES": [],
+    "ARTIFACT_TEXT_PRESERVED": true,
+    "PUBLIC_CONTRACT_CHANGES_REQUIRE_DESIGN_REVIEW": true
+  },
+  "IMPLEMENTATION_AUTHORIZED": true,
+  "SITE_EXECUTION_AUTHORIZED": false,
+  "LAB_NATIVE_EXECUTION_AUTHORIZED": false,
+  "REQUIRED_CHANGES": [],
+  "OPEN_IMPLEMENTATION_ITEMS": [
+    {
+      "ID": "IMPL-REM-01",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-02",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-03",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-04",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-05",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-06",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-07",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    },
+    {
+      "ID": "IMPL-REM-08",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_RECOVERY_LIVE_REVALIDATION_SOURCE_PINNING_DEV4"
+    }
+  ],
+  "IMPLEMENTATION_BLOCKERS": [
+    {
+      "ID": "IMPL-BLOCK-01",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "STATUS": "OPEN",
+      "SCOPE": "REM-01…06",
+      "DETAIL": "C0 binding, interrupted-detached-read original-request recovery without mutation fence, full service/OOBE/resume/factory integration and primary active CLI still unfinished; original-fence recovery/NOOP component source now exists."
+    },
+    {
+      "ID": "IMPL-BLOCK-02",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "STATUS": "OPEN",
+      "SCOPE": "REM-07",
+      "DETAIL": "Complete cross-stage nested evidence semantics, prior guest/C3 binding, failure-stage snapshot, publication recovery, applicability and full E17 safe handoff."
+    },
+    {
+      "ID": "IMPL-BLOCK-03",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "STATUS": "OPEN",
+      "SCOPE": "REM-08",
+      "DETAIL": "Full route/failure native controller harness still unwritten; five foundations and 86 inventory rows do not satisfy it."
+    }
+  ],
+  "INPUT_ARTIFACTS_MODIFIED": [],
+  "HOST_FILES_MODIFIED": [],
+  "NEXT_MODE": "IMPLEMENTATION",
+  "CODE_REVIEW_HANDOFF_READY": false,
+  "CHECKPOINT_DATE": "2026-09-14",
+  "CHECKPOINT_TIMEZONE": "Asia/Ho_Chi_Minh"
+}

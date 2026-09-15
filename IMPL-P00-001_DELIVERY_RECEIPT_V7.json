@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "delivery": "0.1.0.dev7",
+  "status": "PARTIAL_SOURCE_DROP_DEV7",
+  "work_item": "IMPL-P00-001",
+  "author_complete": false,
+  "code_review_handoff_ready": false,
+  "source_content_digest": "93e28ed77c132ad032cf8bf951e7d51627f6f8d007aa4179bb5696f0d6f1c6e8",
+  "test_content_digest": "1c79354e63bdc76de157621547a7f92eb97d98fa90a6e53856619861103a3799",
+  "workspace_tests": 673,
+  "static_checks": 90,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED",
+  "source_diff_sha256": "da64912b0b0c27c7d3486b3e471beb6a966c593030d5d056092c4513e0cdd6b2"
+}

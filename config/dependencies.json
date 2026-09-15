@@ -1,0 +1,13 @@
+{
+  "runtime_dependencies": [],
+  "workspace_python_observed": "3.13.5",
+  "workspace_python_implementation": "CPython",
+  "native_windows_python_runtime": "NOT_SELECTED_OR_DEPLOYED",
+  "automatic_dependency_install": false,
+  "target_host_supported_by_this_release": false,
+  "native_runtime_prerequisite_resolution": "A separately authorized existing/pinned Python x64 runtime is required. Package does not install it or claim it is already available. Full route delivery remains partial.",
+  "native_component_source_authored": true,
+  "native_windows_execution": "NOT_RUN",
+  "native_active_route_backend_registered": true,
+  "full_native_backend_complete": false
+}

@@ -1,0 +1,790 @@
+{
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "description": "Approved native acceptance inventory. Foundation harness is a partial contribution, not full T/F automation or qualification.",
+  "cases": [
+    {
+      "case_id": "T00-01",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-02",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [
+        "NF-IDENTITY"
+      ],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-03",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [
+        "NF-PATH-ROUNDTRIP",
+        "NF-HARDLINK-REJECT"
+      ],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-04",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-05",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-06",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-07",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [
+        "NF-JOURNAL-APPEND",
+        "NF-GUARD-CONTENDER"
+      ],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-08",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-09",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-10",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-11",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-12",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-13",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T00-14",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-01",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-02",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-03",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-04",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-05",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-06",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-07",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [
+        "NF-GUARD-CONTENDER"
+      ],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-08",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-09",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-10",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-11",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-12",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-13",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-14",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-15",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "F00-16",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T05-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-G",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-H",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-I",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T07-J",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-G",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-H",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-I",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-J",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-K",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-L",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-M",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T08-N",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-G",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-H",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-I",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T09-J",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T13-G",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-A",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-B",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-C",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-D",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-E",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-F",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-G",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-H",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    },
+    {
+      "case_id": "T14-I",
+      "status": "NOT_RUN",
+      "evidence": null,
+      "native_harness": "NOT_IMPLEMENTED",
+      "author_workspace_tests_do_not_close_case": true,
+      "foundation_harness_contributions": [],
+      "acceptance_closed": false
+    }
+  ]
+}

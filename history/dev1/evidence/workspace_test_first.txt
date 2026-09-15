@@ -1,0 +1,22 @@
+test_core (unittest.loader._FailedTest.test_core) ... ERROR
+
+======================================================================
+ERROR: test_core (unittest.loader._FailedTest.test_core)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_core
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V1/tests/test_core.py", line 35
+    BAD_PATHS=[r'\\server\share',r'\\?\C:\x',r'C:\x:secret',r'C:\..\x',r'C:\folder\..',r'C:\NUL',r'C:\CON.txt',r'C:\COM1',r'C:\a.',r'C:\a ',r'C:\','relative','C:/x','C:\x\n',r'C:\a?b',r'C:\a|b']
+                                                                                                                                            ^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

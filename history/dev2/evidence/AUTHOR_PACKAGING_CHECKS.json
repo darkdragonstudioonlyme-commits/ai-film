@@ -1,0 +1,19 @@
+{
+  "kind": "AUTHOR_PACKAGING_CHECKS",
+  "native_execution": false,
+  "code_review_verdict": null,
+  "input_files_unchanged": 55,
+  "parent_manifest_entries_verified": 53,
+  "approved_design_entries_verified": 19,
+  "immutable_normative_contracts": 4,
+  "source_and_test_digests_match_report": true,
+  "traceability_parent_rows": 30,
+  "native_inventory_entries": 86,
+  "native_entries_status": "NOT_RUN",
+  "source_changes_added": 24,
+  "source_changes_modified": 8,
+  "source_changes_removed": 0,
+  "no_bytecode_packaged": true,
+  "full_implementation_complete": false,
+  "limitations": "Source parsing/digests/links are not semantic code review or host validation."
+}

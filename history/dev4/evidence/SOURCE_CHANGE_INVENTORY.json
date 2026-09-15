@@ -1,0 +1,180 @@
+{
+  "kind": "EXACT_PARENT_SOURCE_DIFF",
+  "parent_zip_sha256": "796e46238dbfe9bf7673c81c65ae0a20226bd249332ce858438a80415834b1b6",
+  "scope": [
+    "src",
+    "tests",
+    "native",
+    "schemas",
+    "tools",
+    "config",
+    "pyproject.toml"
+  ],
+  "counts": {
+    "MODIFIED": 12,
+    "ADDED": 8
+  },
+  "changes": [
+    {
+      "path": "pyproject.toml",
+      "change": "MODIFIED",
+      "old_sha256": "edbf11cbf05285089105ad6b2e93a15be3181c72adfe5cb6de411bfe691124ed",
+      "new_sha256": "24e9cea3714d82f1ce01e66ac27b2db8fa7975af5556e19972af927d708c8e72",
+      "old_bytes": 350,
+      "new_bytes": 350
+    },
+    {
+      "path": "src/aifilm_p00/__init__.py",
+      "change": "MODIFIED",
+      "old_sha256": "fdb01c15ddd15012e14a01a4a52dd4be258d3582368eed1aecaa1c24af24dc40",
+      "new_sha256": "a5f6f1a5162a53541f31e5df58f0a323a3a98e43f417a8d886fbc0ae3fd87402",
+      "old_bytes": 252,
+      "new_bytes": 252
+    },
+    {
+      "path": "src/aifilm_p00/__main__.py",
+      "change": "MODIFIED",
+      "old_sha256": "78672769fdb8ad7f97dfb8131bda8b6464e6849c8efd0a40f84241ca4d7080cb",
+      "new_sha256": "7be7ff61398a4888bafcaa38e7eae106637e5df244c97fcf853d265e4b771848",
+      "old_bytes": 2863,
+      "new_bytes": 2867
+    },
+    {
+      "path": "src/aifilm_p00/admission.py",
+      "change": "MODIFIED",
+      "old_sha256": "6106cc1f844ec8d7d01e6804c1ce0322dac2cdb554088215d1c5b0da4766994a",
+      "new_sha256": "acebefe810274f010149fdb7569b22d733040864d4f6052e43387bbf7900ee4d",
+      "old_bytes": 7537,
+      "new_bytes": 9198
+    },
+    {
+      "path": "src/aifilm_p00/native/coordination.py",
+      "change": "MODIFIED",
+      "old_sha256": "62b0990ce6d0faba409ce3d16978adbcbb8126fa9a63352b5639e0210bf17056",
+      "new_sha256": "fa1b153dd08a92a7988b9c79a8ac419a9222b1cce634a329a4de4a76ba9d7168",
+      "old_bytes": 7781,
+      "new_bytes": 7996
+    },
+    {
+      "path": "src/aifilm_p00/native/guest.py",
+      "change": "MODIFIED",
+      "old_sha256": "1342da739536e0d2aecb612be8ebcf930fa73a75be8a623ab736074217fab99e",
+      "new_sha256": "63f224d62413792e53798b845002e8d19cf35ab652814b722c84e9fa2c8d513c",
+      "old_bytes": 2852,
+      "new_bytes": 2727
+    },
+    {
+      "path": "src/aifilm_p00/native/network.py",
+      "change": "MODIFIED",
+      "old_sha256": "b45c9ada4d2e97b71055ca870c2b86b7eb434d5e2851e7adb6466e55e4265d75",
+      "new_sha256": "5b2266a2da81efa2e1a7d51360800d27491a2f143d9425530056f4497caa2a22",
+      "old_bytes": 7875,
+      "new_bytes": 8031
+    },
+    {
+      "path": "src/aifilm_p00/native/noop.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "ab84123cf482ad39a0d5079d1a07cf90612e076430792f51b0ac8b7475862a4e",
+      "old_bytes": null,
+      "new_bytes": 11221
+    },
+    {
+      "path": "src/aifilm_p00/native/observations.py",
+      "change": "MODIFIED",
+      "old_sha256": "cc91b2568dffe057542dc880d88103ae0665bb50118710d13654740cfc3a11a5",
+      "new_sha256": "ab21b51a1ed398a5902c2f6fdeb6aac52c67d2e79ff325e1c0fad0f11bfeae87",
+      "old_bytes": 11234,
+      "new_bytes": 10935
+    },
+    {
+      "path": "src/aifilm_p00/native/read_recovery.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "3883050ede85bbc23fac8a1b6f3590b0e2a72c563e53f11158b1a518fe1093fd",
+      "old_bytes": null,
+      "new_bytes": 2566
+    },
+    {
+      "path": "src/aifilm_p00/native/recovery_driver.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "2b228bb496553df1c99087f0078d678cfe8c99146562e10b31c35de1041e4922",
+      "old_bytes": null,
+      "new_bytes": 7697
+    },
+    {
+      "path": "src/aifilm_p00/native/session_driver.py",
+      "change": "MODIFIED",
+      "old_sha256": "f486d30cce30b236ef29409efe3e4ad27927933cdc6d577898258d94f4bd33fa",
+      "new_sha256": "befdd5ea5159794ef363c71cd5343384b4f2c0a3e7c95523f30ec02a8df7087c",
+      "old_bytes": 35987,
+      "new_bytes": 37622
+    },
+    {
+      "path": "src/aifilm_p00/native/source_pin.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "c39e7a86b0f905ec610704160b4b620f019cbf781ed3d4d87809cbd25155f6dd",
+      "old_bytes": null,
+      "new_bytes": 1836
+    },
+    {
+      "path": "src/aifilm_p00/recovery.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "798d00c0550954b621ef4210ab181c2b1c522c2f78729df40dde21483a89943c",
+      "old_bytes": null,
+      "new_bytes": 9082
+    },
+    {
+      "path": "src/aifilm_p00/resume.py",
+      "change": "MODIFIED",
+      "old_sha256": "f31cb45e9710e157e67f1df0bed9b36086213cb37fe81d71c2cc01add4042ed0",
+      "new_sha256": "93660b7b66a44b4335e8d171933f6678b8a690aafc13bcefbadc9d46ec8f99db",
+      "old_bytes": 3378,
+      "new_bytes": 4570
+    },
+    {
+      "path": "src/aifilm_p00/session.py",
+      "change": "MODIFIED",
+      "old_sha256": "deafdc6b6ef7e71d3776c2029f3852a2fd26b3671174c5a935504612250a739a",
+      "new_sha256": "e455b53cc0c2017afdb4112fdc254ecab2340a1e30310ffb6572bf257a8b2960",
+      "old_bytes": 12709,
+      "new_bytes": 13492
+    },
+    {
+      "path": "tests/test_dev3_proof_observer_integration.py",
+      "change": "MODIFIED",
+      "old_sha256": "27d79b43ad9ef72ce507e06781e310bfe390e724bfe5169c8d0d0c9c508fc3a9",
+      "new_sha256": "f17f657320f9b608b4a73041eb37677da3a870d351e406506bcd8aec5f8ece7f",
+      "old_bytes": 12889,
+      "new_bytes": 12880
+    },
+    {
+      "path": "tests/test_dev4_noop.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "2540bf5bb6c4fa6c166e6ec799ab5a4ed79c100be316d1431c162395279a4910",
+      "old_bytes": null,
+      "new_bytes": 11546
+    },
+    {
+      "path": "tests/test_dev4_recovery.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "14981bda752eb23050d343864dc1e4fa57dcb118c1f8995c50c98ebeb13c5a15",
+      "old_bytes": null,
+      "new_bytes": 14456
+    },
+    {
+      "path": "tests/test_dev4_source_and_journal.py",
+      "change": "ADDED",
+      "old_sha256": null,
+      "new_sha256": "786a502720ec508ba4b3f71262d2c5f4ed65bf6741ab46b3ff674b5216349a71",
+      "old_bytes": null,
+      "new_bytes": 6109
+    }
+  ],
+  "review_verdict": "NOT_PERFORMED"
+}

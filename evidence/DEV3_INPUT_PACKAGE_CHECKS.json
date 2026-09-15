@@ -1,0 +1,17 @@
+[
+  {
+    "zip": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V2.zip",
+    "sha256": "6affa22508c02db4a3c6fda404ab17575494c9dbdc93dda2eb896e79f92a29c1",
+    "members_verified": 100
+  },
+  {
+    "zip": "INFRA-P00-002_DESIGN_PACKAGE_V2.zip",
+    "sha256": "99b5dbcae76785e0e0409c29b1114a1f742d891e291d62f2ea466326181f6661",
+    "members_verified": 19
+  },
+  {
+    "zip": "REVIEW-P00-002_REVIEW_PACKAGE_V2.zip",
+    "sha256": "983598d6692e2f4f490a14ef609920a5c0a2c2fec1ab499944673bafa733f1eb",
+    "members_verified": 15
+  }
+]

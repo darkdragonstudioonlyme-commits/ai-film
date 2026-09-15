@@ -1,0 +1,17 @@
+{
+  "kind": "DEV8_INPUT_INTEGRITY_FINAL",
+  "parent_delivery": "0.1.0.dev7",
+  "parent_package_sha256": "63f9a8ce948ff0bb80de5d0dc37cc75a0c37723579ac1930098cca7e4de49312",
+  "approved_contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "contract_file_sha256": {
+    "AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md": "adc4a1fcd77fe8e70ad8beb6e6a53e218399c22a397ab6bfeb04c589cf910a14",
+    "DESIGN_REVIEW_APPROVAL_V2.json": "35e344375349c7aa83696648a5b87c06a20329bfda3b6ecdb71558f7ed758f78",
+    "NEXT_WORK_ITEM_IMPL-P00-001.md": "8bfc7a40cca48e4ee63db401e37411eca069438be71aca59f7180893922fd139",
+    "PHASE00_ACCEPTANCE_MATRIX_V2.md": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407",
+    "PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc",
+    "PHASE00_FAILURE_RECOVERY_PLAN_V2.md": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060",
+    "PHASE00_INFRA_DESIGN_V2.md": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d"
+  },
+  "contracts_modified_by_dev8": false,
+  "note": "Dev8 changes lifecycle/recovery implementation/tests/docs only; approved contract files are byte-identical to dev7 package."
+}

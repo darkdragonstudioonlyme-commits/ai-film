@@ -1,0 +1,93 @@
+{
+  "kind": "AUTHOR_DOCUMENT_PACKAGING_CHECKS",
+  "timestamp_utc": "2026-09-14T15:54:50.093727+00:00",
+  "status": "CHECKS_COMPLETED",
+  "tested_member_bytes_match": true,
+  "workspace_test_count": 534,
+  "static_check_count": 71,
+  "traceability_references_exist": true,
+  "new_component_actual_test_count": 76,
+  "native_inventory_entries": 86,
+  "native_inventory_all_not_run": true,
+  "parsed_json_files_before_this_report": [
+    "AI_FILM_PROJECT_STATE_V9.json",
+    "MANIFEST.json",
+    "config/dependencies.json",
+    "config/host-binding.template.json",
+    "config/required-native-test-inventory.json",
+    "contracts/DESIGN_REVIEW_APPROVAL_V2.json",
+    "docs/TRACEABILITY.json",
+    "evidence/AUTHOR_PACKAGING_CHECKS.json",
+    "evidence/AUTHOR_STATIC_CHECKS.json",
+    "evidence/DEV3_INPUT_PACKAGE_CHECKS.json",
+    "evidence/INPUT_INTEGRITY_FINAL.json",
+    "evidence/SOURCE_CHANGE_INVENTORY.json",
+    "evidence/WORKSPACE_TEST_REPORT.json",
+    "evidence/dev2-history/first-260-tests.json",
+    "evidence/dev3-history/baseline_312.json",
+    "evidence/dev3-history/pre_catalog_tests/WORKSPACE_TEST_REPORT.json",
+    "evidence/dev3-history/pre_final_version/WORKSPACE_TEST_REPORT.json",
+    "evidence/dev3-history/pre_pipeline/WORKSPACE_TEST_REPORT.json",
+    "evidence/dev3-history/pre_proof_observer_tests/WORKSPACE_TEST_REPORT.json",
+    "evidence/dev4-history/baseline_458.json",
+    "evidence/dev4-history/dev3_AUTHOR_STATIC_CHECKS.json",
+    "evidence/dev4-history/dev3_WORKSPACE_TEST_REPORT.json",
+    "evidence/dev4-history/noop_first_report.json",
+    "history/dev1/AI_FILM_PROJECT_STATE_V6.json",
+    "history/dev1/MANIFEST.json",
+    "history/dev1/docs/TRACEABILITY.json",
+    "history/dev1/evidence/AUTHOR_PACKAGING_CHECKS.json",
+    "history/dev1/evidence/INPUT_INTEGRITY_FINAL.json",
+    "history/dev1/evidence/WORKSPACE_TEST_REPORT.json",
+    "history/dev1/evidence/input_identity_before.json",
+    "history/dev2/AI_FILM_PROJECT_STATE_V7.json",
+    "history/dev2/MANIFEST.json",
+    "history/dev2/docs/TRACEABILITY.json",
+    "history/dev2/evidence/AUTHOR_PACKAGING_CHECKS.json",
+    "history/dev2/evidence/AUTHOR_STATIC_CHECKS.json",
+    "history/dev2/evidence/INPUT_INTEGRITY_FINAL.json",
+    "history/dev2/evidence/SOURCE_CHANGE_INVENTORY.json",
+    "history/dev2/evidence/WORKSPACE_TEST_REPORT.json",
+    "history/dev2/evidence/dev2-history/first-260-tests.json",
+    "history/dev3/AI_FILM_PROJECT_STATE_V8.json",
+    "history/dev3/MANIFEST.json",
+    "history/dev3/docs/TRACEABILITY.json",
+    "schemas/binding.schema.json",
+    "schemas/evidence-record.schema.json",
+    "schemas/native-trust-anchor.schema.json",
+    "schemas/plan.schema.json",
+    "schemas/protected-snapshot-index.schema.json"
+  ],
+  "current_markdown_links": [
+    {
+      "document": "README.md",
+      "target": "docs/IMPLEMENTATION_STATUS.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "docs/REMAINING_IMPLEMENTATION.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "docs/NATIVE_INTEGRATION_BOUNDARY.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "docs/RECOVERY.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "docs/CHANGELOG_DEV3_TO_DEV4.md",
+      "exists": true
+    }
+  ],
+  "parent_diff_source": "Verified exact dev3 ZIP",
+  "not_a_code_review": true,
+  "native_execution": "NOT_RUN",
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED"
+}

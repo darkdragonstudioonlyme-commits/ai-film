@@ -1,0 +1,11 @@
+[project]
+name = "aifilm-p00-contracts"
+version = "0.1.0.dev8"
+description = "Partial Phase00 implementation: hardens reboot/OOBE owner-wait reconciliation and C3 lifecycle resume; remaining evidence/transport/harness work pending"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.aifilm-p00]
+status = "IMPLEMENTATION_PARTIAL"
+native-backend-available = false
+code-review-status = "NOT_PERFORMED"

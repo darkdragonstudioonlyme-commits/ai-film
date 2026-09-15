@@ -1,0 +1,265 @@
+{
+  "parent_zip_sha256": "a4a74a31f84116c1c86a1847a9582efab6c92bf87d925ba54a0ec5ffa6bc799e",
+  "scope": "source/config/schemas/native/tests/tools/pyproject; not a code review",
+  "changes": [
+    {
+      "path": "config/dependencies.json",
+      "status": "MODIFIED",
+      "before_sha256": "4a3bb7042d2ca3688a599b4c31df0a1a03aa377312cf2cf973692fb403be7807",
+      "after_sha256": "d61f0c5f223580405a23c65cabbb713505485c29c4bef6f427094620cc55c266",
+      "before_bytes": 401,
+      "after_bytes": 630
+    },
+    {
+      "path": "config/required-native-test-inventory.json",
+      "status": "MODIFIED",
+      "before_sha256": "4c33b4c7264a876bcb1e4cc3a82119d1b669b64f7774bad4e48dc3f0095ae0ca",
+      "after_sha256": "065a3a6c20625298e4f5bdf0f37b2c270a6db6b4b45f2e4823689f6ddb90288c",
+      "before_bytes": 16411,
+      "after_bytes": 23560
+    },
+    {
+      "path": "native/guest-observe.sh",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "37e0f51db2eb05152152bf9c2e8ff359ce008a945b3ba3b3be115685c45aad05",
+      "before_bytes": 0,
+      "after_bytes": 1869
+    },
+    {
+      "path": "native/host-observe.ps1",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "94e6cf0ef5cfd8040ca83779cea91481a183294dc2e5cc9966581ea9c3fe7a53",
+      "before_bytes": 0,
+      "after_bytes": 3212
+    },
+    {
+      "path": "pyproject.toml",
+      "status": "MODIFIED",
+      "before_sha256": "4e006beeefa9ee8aa7f26f19aeb4328bcefd589fd2a272a430e1b9888ba0021b",
+      "after_sha256": "5874ae6d6d47e92aeb7148ba660236858f1d3a31ea8e8cc87207b6513f65dd70",
+      "before_bytes": 331,
+      "after_bytes": 345
+    },
+    {
+      "path": "schemas/native-trust-anchor.schema.json",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "c1f6fef8e8dd861c38e5b202439ce8fafc3f44895f8ebd74f7d70cd59804e945",
+      "before_bytes": 0,
+      "after_bytes": 1331
+    },
+    {
+      "path": "schemas/protected-snapshot-index.schema.json",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "77276dfcf9b8800e1e1f473a8beb7aab1c7386add3c6969c21c336e17c9a0a22",
+      "before_bytes": 0,
+      "after_bytes": 1284
+    },
+    {
+      "path": "src/aifilm_p00/__init__.py",
+      "status": "MODIFIED",
+      "before_sha256": "8680ff604e644cf308d4eb33cee5ef67f4af23fc10c34a28f68017d8b80c2b6f",
+      "after_sha256": "84f1012d95bf9fef50cc7aff4ba3a201aef738b7bfe2b7196428afb924e307ab",
+      "before_bytes": 226,
+      "after_bytes": 248
+    },
+    {
+      "path": "src/aifilm_p00/__main__.py",
+      "status": "MODIFIED",
+      "before_sha256": "edca805421578c57f1fc17fbb20b91ebbee37242fff227f684aa8c60a88ad138",
+      "after_sha256": "661681aa08036ea27e53e6140a3886ac1670033ff0dac649ac53b1a0480715bb",
+      "before_bytes": 2363,
+      "after_bytes": 2857
+    },
+    {
+      "path": "src/aifilm_p00/admission.py",
+      "status": "MODIFIED",
+      "before_sha256": "2626672271fd85de924b5ef95caa864ef3cf28c729b85523b86782383a4ba50a",
+      "after_sha256": "15f49de3a82e40f1caa6d431d990ec4eeef8d2ff1f74e545d15352c02cb2f431",
+      "before_bytes": 5511,
+      "after_bytes": 6523
+    },
+    {
+      "path": "src/aifilm_p00/content.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "2e8935d80439cf78328559483deba1955b7473a41d6d2981ea59a7a7f2dbd076",
+      "before_bytes": 0,
+      "after_bytes": 1073
+    },
+    {
+      "path": "src/aifilm_p00/native/__init__.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "1d47614ca1e5298bfe297a84f04481d9ca890320a70ab3d33d8192ed20ff1e4d",
+      "before_bytes": 0,
+      "after_bytes": 249
+    },
+    {
+      "path": "src/aifilm_p00/native/actuator.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "75a357a8110cabb80b5f5002bec6a3f9ed210f694d7764d979b00c98b6676594",
+      "before_bytes": 0,
+      "after_bytes": 5409
+    },
+    {
+      "path": "src/aifilm_p00/native/coordination.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "62b0990ce6d0faba409ce3d16978adbcbb8126fa9a63352b5639e0210bf17056",
+      "before_bytes": 0,
+      "after_bytes": 7781
+    },
+    {
+      "path": "src/aifilm_p00/native/entry.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "a5bf9fb3c8639c62da52d9d06db7a88dbc1f34e4a98192c4d1aff2e5e7de953f",
+      "before_bytes": 0,
+      "after_bytes": 4050
+    },
+    {
+      "path": "src/aifilm_p00/native/filesystem.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "c580708732ca00e02c7c3a72d451b3c850f564726e821b676370d1f7f114c6bc",
+      "before_bytes": 0,
+      "after_bytes": 9179
+    },
+    {
+      "path": "src/aifilm_p00/native/inventory.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "c7441b9b2d1790cf51d4b03a4701308f7c7d5c6d1cac7031ab4fc675328ebaec",
+      "before_bytes": 0,
+      "after_bytes": 4311
+    },
+    {
+      "path": "src/aifilm_p00/native/probes.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "dd715da3df08ee2093c7811cf95800570d9e25de95bea3f264af5908f14a0d61",
+      "before_bytes": 0,
+      "after_bytes": 5182
+    },
+    {
+      "path": "src/aifilm_p00/native/process.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "7e8255629d033816321f09b265f335d63d54537be6c64809e17de6c3b8d0fdbb",
+      "before_bytes": 0,
+      "after_bytes": 9503
+    },
+    {
+      "path": "src/aifilm_p00/native/security.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "5a6e0e449b58aebdac626d9b5ccbbbdb4eff26372065afc59aa0c554e5d81b10",
+      "before_bytes": 0,
+      "after_bytes": 3173
+    },
+    {
+      "path": "src/aifilm_p00/native/snapshot.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "11bc7a16efee2d7403e1856446379c1bab4531955efefae0b070b5d6023e1804",
+      "before_bytes": 0,
+      "after_bytes": 7441
+    },
+    {
+      "path": "src/aifilm_p00/native/trust.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "b8bae468152d6d57bd4497cd3b9ec3baaa639d0f6803ddc05161451e9212f2e5",
+      "before_bytes": 0,
+      "after_bytes": 7634
+    },
+    {
+      "path": "src/aifilm_p00/native/winapi.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "90889461a0d7b39ef2218d8070c5fe14f56eb69c3a966b34ec8a88e8332815a7",
+      "before_bytes": 0,
+      "after_bytes": 14210
+    },
+    {
+      "path": "src/aifilm_p00/network_probe.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "2ec3e8c977203c146c9ec862506640510ab0b216b8afda088c09982648b6ef44",
+      "before_bytes": 0,
+      "after_bytes": 7058
+    },
+    {
+      "path": "src/aifilm_p00/resume.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "f31cb45e9710e157e67f1df0bed9b36086213cb37fe81d71c2cc01add4042ed0",
+      "before_bytes": 0,
+      "after_bytes": 3378
+    },
+    {
+      "path": "tests/test_native_foundations.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "7943bbd0ebc4c12721a1c57f58ca977b12420689055b489abb7fcc3c7ac7dc1b",
+      "before_bytes": 0,
+      "after_bytes": 14786
+    },
+    {
+      "path": "tests/test_native_supervision.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "eba15d02cf96de0e1b6ef9a048cff4386098ebb50e5476eb5f1fb02e83d8fe1b",
+      "before_bytes": 0,
+      "after_bytes": 11099
+    },
+    {
+      "path": "tests/test_network_snapshot.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "2f2a30742b4c37ca46d2c15afed360dfda269281f7b96834735cb480de855a24",
+      "before_bytes": 0,
+      "after_bytes": 8351
+    },
+    {
+      "path": "tests/test_state_evidence.py",
+      "status": "MODIFIED",
+      "before_sha256": "93bc3de48cb12718fbbd87e9954ea4fa3186f1ea6cc03f1c24e181095dd64a7b",
+      "after_sha256": "3dcca6679744d5f39f606e746ff916b84d9f3984af2909ec213a2e19079f264c",
+      "before_bytes": 13110,
+      "after_bytes": 13160
+    },
+    {
+      "path": "tools/check_source.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "80b8924592cf1ff9ee310c03ad36d1b36427127288d1dc0045c6015e294858dc",
+      "before_bytes": 0,
+      "after_bytes": 2000
+    },
+    {
+      "path": "tools/run_native_foundation_tests.py",
+      "status": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "6a6312b195c84b2351fd622d63a1052ffcf214ab68ce318c544fe1c581aa4bfb",
+      "before_bytes": 0,
+      "after_bytes": 7429
+    },
+    {
+      "path": "tools/run_workspace_tests.py",
+      "status": "MODIFIED",
+      "before_sha256": "e2dd4e88e5fb6dc56d0d220566297ceb1bf2c52b7b544a99a2253a655341fc7f",
+      "after_sha256": "9d34680d6578c0444d8a1eaae33e874ee8a9cdf2dfe8fd05e539d430bbac4a24",
+      "before_bytes": 3475,
+      "after_bytes": 3490
+    }
+  ],
+  "added": 24,
+  "modified": 8,
+  "removed": 0
+}

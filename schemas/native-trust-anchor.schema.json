@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Native HKLM trust anchor syntax; NOT an approval or a trust establishment mechanism",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "host_id",
+    "operator_sids",
+    "role_pins",
+    "blobs",
+    "withdrawn_refs",
+    "generation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "host_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operator_sids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^S-1-\\d+(?:-\\d+){1,15}$"
+      }
+    },
+    "role_pins": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "blobs": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/hash"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "withdrawn_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hash"
+      }
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

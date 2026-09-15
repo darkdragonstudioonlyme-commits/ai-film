@@ -1,0 +1,3067 @@
+diff --git a/src/aifilm_p00/__init__.py b/src/aifilm_p00/__init__.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/__init__.py
+@@ -0,0 +1,4 @@
++"""Phase00 contract implementation. No native host backend is registered yet."""
++__version__ = '0.1.0.dev1'
++CONTRACT_DIGEST = 'f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee'
++NATIVE_BACKEND_AVAILABLE = False
+diff --git a/src/aifilm_p00/__main__.py b/src/aifilm_p00/__main__.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/__main__.py
+@@ -0,0 +1,41 @@
++"""Workspace-only front end. Host backends are explicitly unavailable in dev1."""
++import argparse
++import json
++import sys
++from pathlib import Path
++from datetime import datetime,timezone
++from . import __version__,CONTRACT_DIGEST
++from .codec import read_json,canonical
++from .plans import make_plan
++from .errors import P00Error
++from .engine import NativeUnavailable
++
++def main(argv=None):
++    parser=argparse.ArgumentParser(description='Phase00 dev1: offline contracts; native execution NOT IMPLEMENTED')
++    parser.add_argument('--version',action='version',version=__version__)
++    sub=parser.add_subparsers(dest='interface',required=True)
++    for name in ('preflight','dry-run','apply','verify','support-bundle','recovery-notes'):
++        p=sub.add_parser(name)
++        if name=='dry-run': p.add_argument('--binding',type=Path,required=True)
++        if name=='preflight': p.add_argument('--workspace-only',action='store_true')
++    try:
++        args=parser.parse_args(argv)
++        if args.interface=='dry-run':
++            plan=make_plan(read_json(args.binding),datetime.now(timezone.utc).isoformat())
++            result={'source_kind':'DOCUMENT','analysis_only':True,'native_backend_available':False,'plan':plan,'host_ready':False}
++        elif args.interface=='preflight' and args.workspace_only:
++            result={'source_kind':'DOCUMENT','interface':'preflight','package_version':__version__,
++                    'contract_digest':CONTRACT_DIGEST,'observed_windows_host':'NOT_COLLECTED',
++                    'guest_status':'REQUIRES_ACTIVE_PROBE','native_backend_available':False,'host_ready':False}
++        elif args.interface=='recovery-notes':
++            result={'source_kind':'DOCUMENT','runbook':'docs/RECOVERY.md','native_execution':False,
++                    'rules':['PRESERVE_UNRESOLVED_FENCE','NO_BLIND_RETRY','NO_UNREGISTER','NO_AUTOMATIC_REBOOT','NO_SECRET_UPLOAD'],'host_ready':False}
++        else:
++            NativeUnavailable().execute()
++        sys.stdout.buffer.write(canonical(result)+b'\n'); return 0
++    except P00Error as error:
++        sys.stdout.buffer.write(canonical(error.safe())+b'\n'); return int(error.code)
++    except (OSError,ValueError,TypeError,KeyError):
++        sys.stdout.buffer.write(canonical({'exit':18,'reason':'INTERNAL_ERROR','host_ready':False})+b'\n'); return 18
++
++if __name__=='__main__': raise SystemExit(main())
+diff --git a/src/aifilm_p00/admission.py b/src/aifilm_p00/admission.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/admission.py
+@@ -0,0 +1,103 @@
++"""D00-07 durable journal/fence protocol with injected storage and guard ports.
++MemoryGuard/MemoryStorage are test doubles only, not Windows host coordination.
++No wall-clock expiry or automatic deletion of unresolved fences.
++"""
++from copy import deepcopy
++from dataclasses import asdict
++from typing import Protocol
++from .authority import Admission
++from .codec import digest,token
++from .errors import P00Error,require
++
++GUARD_NAME='AI-FILM-P00-HOST-ADMISSION'
++TERMINAL_STATES={'TERMINAL','SAFE_PAUSE'}
++
++class Guard(Protocol):
++    def acquire(self)->bool: ...
++    def release(self)->None: ...
++
++class Storage(Protocol):
++    def load_fence(self)->dict|None: ...
++    def write_fence(self,record:dict)->None: ...
++    def append_event(self,event:dict)->None: ...
++    def clear_fence(self)->None: ...
++
++class Coordinator:
++    """Synchronous admission. Only original run may inspect/reconcile a live fence."""
++    def __init__(self,guard:Guard,storage:Storage):
++        self.guard=guard; self.storage=storage; self.held=False; self.admission=None; self.fence=None
++
++    def acquire(self,authority:Admission,*,reconciliation=False):
++        require(not self.held,21,'NESTED_ADMISSION_FORBIDDEN')
++        require(self.guard.acquire(),21,'LOCK_BUSY')
++        self.held=True; self.admission=authority
++        try:
++            self.fence=self.storage.load_fence()
++            if self.fence is not None:
++                require(reconciliation,21,'UNRESOLVED_FENCE')
++                require(self.fence.get('run_id')==authority.run_id and self.fence.get('owner_sid')==authority.owner_sid and self.fence.get('host_id')==authority.host_id and self.fence.get('plan_digest')==authority.plan_digest,12,'RECONCILIATION_ACTOR')
++                require(authority.purpose=='RECONCILIATION_ONLY',12,'RECONCILIATION_SCOPE')
++            else:
++                require(not reconciliation,11,'NO_FENCE_TO_RECONCILE')
++        except BaseException:
++            self.guard.release(); self.held=False; raise
++        return self
++
++    def intent(self,action:str,reservations:list,witness:dict):
++        require(self.held and self.admission is not None,18,'GUARD_NOT_HELD')
++        require(self.fence is None,21,'UNRESOLVED_FENCE')
++        token(action)
++        required={'host_boot','controller_pid','controller_start','build_digest','step_id'}
++        require(type(witness) is dict and required<=set(witness) and all(witness[k] is not None for k in required),11,'PROCESS_WITNESS_MISSING')
++        a=self.admission
++        self.fence={'schema_version':1,'guard_name':GUARD_NAME,'run_id':a.run_id,'host_id':a.host_id,'owner_sid':a.owner_sid,
++                    'plan_digest':a.plan_digest,'action':action,'state':'INTENT','reservations':deepcopy(reservations),'witness':deepcopy(witness),'native':None,'event_sequence':0}
++        # Write-ahead fence first; a journal append failure must not erase it.
++        self.storage.write_fence(self.fence)
++        self._event('INTENT')
++
++    def native_started(self,native_witness:dict):
++        self._require_fence()
++        require(self.fence['state']=='INTENT',18,'INVALID_FENCE_TRANSITION')
++        require(type(native_witness) is dict and {'pid','start','action_id'}<=set(native_witness),11,'NATIVE_WITNESS_MISSING')
++        self.fence['native']=deepcopy(native_witness); self.fence['state']='RUNNING'; self._persist('NATIVE_STARTED')
++
++    def uncertain(self,reason='NATIVE_TIMEOUT'):
++        self._require_fence(); token(reason)
++        self.fence['state']='UNCERTAIN'; self.fence['reason']=reason; self._persist('UNCERTAIN')
++
++    def awaiting(self,kind:str):
++        self._require_fence()
++        require(kind in ('AWAITING_REBOOT','AWAITING_USER_INIT','AWAITING_OWNER_VERIFICATION'),10,'INVALID_PAUSE')
++        self.fence['state']=kind; self._persist(kind)
++
++    def terminal(self,observation:dict):
++        self._require_fence()
++        self._terminal_proof(observation)
++        self.fence['state']='TERMINAL'; self.fence['terminal_observation']=deepcopy(observation)
++        self._persist('TERMINAL')
++        # Journal commit precedes clear. Failure retains a fence for explicit reconciliation.
++        self.storage.clear_fence(); self.fence=None
++
++    def reconcile(self,observation:dict):
++        self._require_fence()
++        require(self.admission.purpose=='RECONCILIATION_ONLY',12,'RECONCILIATION_SCOPE')
++        self.terminal(observation)
++
++    def _terminal_proof(self,observation):
++        require(type(observation) is dict and observation.get('action')==self.fence['action'],19,'TERMINAL_ACTION_MISMATCH')
++        require(observation.get('no_pending_writer') is True and observation.get('terminal_observed') is True and observation.get('postconditions_observed') is True and bool(observation.get('evidence_digest')),21,'NATIVE_STATE_UNCERTAIN')
++        require(observation.get('native_witness')==self.fence.get('native'),19,'NATIVE_WITNESS_MISMATCH')
++
++    def _require_fence(self): require(self.held and self.fence is not None,18,'NO_ACTIVE_FENCE')
++    def _persist(self,kind):
++        self.storage.write_fence(self.fence); self._event(kind)
++    def _event(self,kind):
++        event={'kind':kind,'run_id':self.admission.run_id,'plan_digest':self.admission.plan_digest,'fence_digest':digest(self.fence)}
++        self.storage.append_event(event)
++    def close(self):
++        # Releasing a process primitive NEVER implies clearing its durable fence.
++        if self.held:
++            self.guard.release(); self.held=False
++    def __enter__(self): return self
++    def __exit__(self,*exc): self.close()
+diff --git a/src/aifilm_p00/authority.py b/src/aifilm_p00/authority.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/authority.py
+@@ -0,0 +1,115 @@
++"""Pure admission authority verification. Native trust-store bootstrap is pending.
++PinnedStore requires out-of-band role/digest pins. No input document can pin itself.
++Workspace tests inject synthetic pins; they are never native execution authority.
++"""
++from dataclasses import dataclass
++from datetime import timedelta
++from . import CONTRACT_DIGEST
++from .codec import loads,sha256,instant,hash_value,digest,token
++from .plans import interface_check
++from .errors import require,P00Error
++
++@dataclass(frozen=True)
++class PinnedStore:
++    pins: dict[str,frozenset[str]]
++    blobs: dict[str,bytes]
++    provenance: str
++
++    def get(self,role:str,ref:str)->dict:
++        hash_value(ref)
++        require(ref in self.pins.get(role,frozenset()),15,'UNTRUSTED_DOCUMENT')
++        blob=self.blobs.get(ref)
++        require(blob is not None and sha256(blob)==ref,15,'DOCUMENT_INTEGRITY')
++        data=loads(blob)
++        require(type(data) is dict and data.get('role')==role,15,'DOCUMENT_ROLE_MISMATCH')
++        return data
++
++@dataclass(frozen=True)
++class Context:
++    host_id: str
++    execution_sid: str
++    registered_class: str
++    build_digest: str
++    test_set_digest: str
++    profile: dict
++    elevated: bool
++    now: object
++
++@dataclass(frozen=True)
++class Admission:
++    plan_digest: str
++    run_id: str
++    host_id: str
++    owner_sid: str
++    classes: frozenset[str]
++    execution_class: str
++    purpose: str
++    authority_document_digests: tuple[str,...]
++
++
++def authorize(interface:str,plan:dict,ctx:Context,store:PinnedStore)->Admission:
++    s=interface_check(interface,plan)
++    require(ctx.host_id==s['host_id'] and ctx.execution_sid==s['owner_sid'],12,'WRONG_HOST_OR_PRINCIPAL')
++    require(ctx.registered_class==s['execution_class'],12,'EXECUTION_CLASS_NOT_REGISTERED')
++    refs=s['refs']; classes=frozenset(o['class'] for o in s['operations']); active=bool(classes-{'C0'})
++    require({'registration','design','code'}<=refs.keys() and 'approval_ref' in plan,12,'AUTHORITY_REFERENCES_MISSING')
++    registration=store.get('registration',refs['registration'])
++    require(registration.get('host_id')==ctx.host_id and registration.get('execution_class')==ctx.registered_class and ctx.execution_sid in registration.get('operator_sids',[]),12,'HOST_REGISTRATION_MISMATCH')
++    require(registration.get('withdrawn') is False,12,'HOST_REGISTRATION_WITHDRAWN')
++    approval=store.get('approval',plan['approval_ref'])
++    require(approval.get('plan_digest')==plan['plan_digest'] and approval.get('owner_sid')==ctx.execution_sid,12,'APPROVAL_SCOPE')
++    require(approval.get('interface')==interface and approval.get('purpose')==s['purpose'] and approval.get('withdrawn') is False,12,'APPROVAL_SCOPE')
++    require(set(approval.get('classes',[]))==classes,12,'APPROVAL_CLASS')
++    issued=instant(approval['issued_at']); expires=instant(approval['expires_at'])
++    require(issued<=ctx.now<=expires and expires-issued<=timedelta(hours=24),12,'APPROVAL_EXPIRED')
++    require(instant(approval['maintenance_start'])<=ctx.now<=instant(approval['maintenance_end']),12,'OUTSIDE_MAINTENANCE')
++    if 'C3' in classes: require(ctx.elevated,12,'ELEVATION_REQUIRED')
++    require(ctx.build_digest==s['build_digest'] and ctx.test_set_digest==s['test_set_digest'],16,'EXECUTABLE_CONTENT_MISMATCH')
++    design=store.get('design',refs['design']); code=store.get('code',refs['code'])
++    require(design.get('verdict')=='PASS' and design.get('contract_digest')==CONTRACT_DIGEST and design.get('withdrawn') is False,15,'DESIGN_CHAIN_INVALID')
++    require(code.get('verdict')=='PASS' and code.get('withdrawn') is False,11,'CODE_REVIEW_REQUIRED')
++    require(code.get('build_digest')==ctx.build_digest and code.get('test_set_digest')==ctx.test_set_digest and code.get('contract_digest')==CONTRACT_DIGEST,16,'CODE_REVIEW_CONTENT_MISMATCH')
++    if s['payload_digest'] is not None:
++        require('payload' in refs,15,'PAYLOAD_TRUST_MISSING')
++        payload=store.get('payload',refs['payload'])
++        require(payload.get('payload_digest')==s['payload_digest'] and payload.get('trusted_metadata_digest') is not None and payload.get('trust_anchor') is not None and payload.get('withdrawn') is False,15,'PAYLOAD_TRUST_INVALID')
++    if ctx.registered_class=='LAB':
++        require(registration.get('controller_external') is True and registration.get('disposable') is True and registration.get('no_real_credentials') is True and registration.get('no_production_mappings') is True,12,'LAB_REGISTRATION_INCOMPLETE')
++        require('lab_plan' in refs,12,'LAB_PLAN_REQUIRED')
++        lab=store.get('lab_plan',refs['lab_plan'])
++        require(lab.get('host_id')==ctx.host_id and lab.get('build_digest')==ctx.build_digest and lab.get('approved') is True and lab.get('withdrawn') is False and s['purpose'] in lab.get('purposes',[]),12,'LAB_PLAN_INVALID')
++        # LAB is allowed to create regression evidence; no qualification prerequisite.
++    elif active:
++        require('qualification' in refs,11,'QUALIFICATION_MISSING')
++        qualification(store,refs['qualification'],s,ctx)
++    require(ctx.profile==s['profile'],16,'LIVE_PROFILE_MISMATCH')
++    return Admission(plan['plan_digest'],s['run_id'],ctx.host_id,ctx.execution_sid,classes,ctx.registered_class,s['purpose'],tuple(sorted([*refs.values(),plan['approval_ref']])))
++
++
++def qualification(store:PinnedStore,ref:str,s:dict,ctx:Context):
++    q=store.get('qualification',ref)
++    require(q.get('status')=='PASS' and q.get('withdrawn') is False and q.get('gate_blockers')==[],11,'QUALIFICATION_FAILED_OR_WITHDRAWN')
++    issued=instant(q['issued_at']); require(issued<=ctx.now<=issued+timedelta(days=30),11,'QUALIFICATION_EXPIRED')
++    for key,expected in [('contract_digest',CONTRACT_DIGEST),('build_digest',ctx.build_digest),('test_set_digest',ctx.test_set_digest)]:
++        require(q.get(key)==expected,16,'QUALIFICATION_CONTENT_MISMATCH')
++    require(q.get('source_kind')=='LAB' and q.get('issuer_role')=='VALIDATION' and q.get('master_recorded') is True,15,'QUALIFICATION_CHAIN_INVALID')
++    require(q.get('code_review_ref')==s['refs']['code'],16,'QUALIFICATION_CODE_REVIEW_MISMATCH')
++    rows=q.get('profile_rows',[])
++    require(any(row.get('purpose')==s['purpose'] and row.get('profile')==ctx.profile and row.get('payload_digest')==s['payload_digest'] for row in rows),16,'PROFILE_NOT_QUALIFIED')
++    require('test_set' in s['refs'],15,'TEST_SET_REFERENCE_MISSING')
++    spec=store.get('test_set',s['refs']['test_set'])
++    require(spec.get('test_set_digest')==ctx.test_set_digest,16,'TEST_SET_MISMATCH')
++    mandatory=spec.get('mandatory_cases'); require(type(mandatory) is list and mandatory and len(set(mandatory))==len(mandatory),15,'MANDATORY_TEST_SET_INVALID')
++    # Broad suites cannot disappear merely because a receipt uses a short test list.
++    require({f'T00-{i:02d}' for i in range(1,15)}|{f'F00-{i:02d}' for i in range(1,17)}<=set(mandatory),15,'MANDATORY_SUITE_INCOMPLETE')
++    results=q.get('results'); require(type(results) is dict and set(results)==set(mandatory),11,'REGRESSION_RESULTS_MISSING')
++    for case in mandatory:
++        result=store.get('test_result',results[case])
++        require(result.get('test_id')==case and result.get('source_kind')=='LAB' and result.get('status')=='PASS' and result.get('actual_evidence_digest') is not None,11,'REGRESSION_RESULT_NOT_ACTUAL_PASS')
++        require(result.get('build_digest')==ctx.build_digest and result.get('test_set_digest')==ctx.test_set_digest and result.get('contract_digest')==CONTRACT_DIGEST,16,'REGRESSION_CONTENT_MISMATCH')
++        require(result.get('lab_id')==q.get('lab_id'),16,'REGRESSION_LAB_MISMATCH')
++        if case in spec.get('native_required_cases',[]):
++            require(result.get('environment_kind')=='WINDOWS_WSL_NATIVE',11,'NATIVE_REGRESSION_REQUIRED')
++        actual=store.get('measurement',result['actual_evidence_digest'])
++        require(actual.get('source_kind')=='LAB' and actual.get('lab_id')==q.get('lab_id') and actual.get('test_id')==case,15,'ACTUAL_EVIDENCE_MISMATCH')
++    return q
+diff --git a/src/aifilm_p00/codec.py b/src/aifilm_p00/codec.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/codec.py
+@@ -0,0 +1,121 @@
++"""Bounded, deterministic data handling. JSON is data, never code."""
++import hashlib
++import json
++import re
++from datetime import datetime,timezone
++from pathlib import Path,PurePosixPath,PureWindowsPath
++from .errors import P00Error,Exit,require
++
++MAX_JSON=10*1024*1024
++HEX=re.compile(r'[0-9a-f]{64}')
++TOKEN=re.compile(r'[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}')
++
++def _pairs(pairs):
++    obj={}
++    for k,v in pairs:
++        require(k not in obj,Exit.INPUT,'DUPLICATE_JSON_KEY')
++        obj[k]=v
++    return obj
++
++def _finite(_):
++    raise P00Error(Exit.INPUT,'NONFINITE_JSON')
++
++def loads(data: bytes|str):
++    if isinstance(data,str):
++        try: data=data.encode('utf-8')
++        except UnicodeError: raise P00Error(10,'INVALID_UNICODE') from None
++    require(isinstance(data,bytes) and len(data)<=MAX_JSON,10,'JSON_SIZE_LIMIT')
++    try:
++        obj=json.loads(data.decode('utf-8'),object_pairs_hook=_pairs,parse_constant=_finite)
++        _depth(obj)
++        return obj
++    except P00Error: raise
++    except (UnicodeError,ValueError,RecursionError,TypeError):
++        raise P00Error(10,'INVALID_JSON') from None
++
++def _depth(obj,level=0):
++    require(level<=32,10,'JSON_DEPTH_LIMIT')
++    if isinstance(obj,dict):
++        for k,v in obj.items():
++            require(isinstance(k,str),10,'INVALID_JSON_KEY')
++            _depth(v,level+1)
++    elif isinstance(obj,list):
++        require(len(obj)<=10000,10,'JSON_ITEMS_LIMIT')
++        for v in obj: _depth(v,level+1)
++
++def canonical(obj) -> bytes:
++    _depth(obj)
++    try:
++        return json.dumps(obj,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False).encode('utf-8')
++    except (ValueError,TypeError,UnicodeError,RecursionError):
++        raise P00Error(10,'NONCANONICAL_VALUE') from None
++
++def digest(obj) -> str: return hashlib.sha256(canonical(obj)).hexdigest()
++def sha256(data: bytes) -> str: return hashlib.sha256(data).hexdigest()
++
++def fields(obj: dict,required:set,optional:set=frozenset()) -> dict:
++    require(type(obj) is dict,10,'OBJECT_REQUIRED')
++    require(required<=obj.keys() and obj.keys()<=required|optional,10,'SCHEMA_FIELDS')
++    return obj
++
++def token(value) -> str:
++    require(type(value) is str and TOKEN.fullmatch(value) is not None,10,'INVALID_TOKEN')
++    return value
++
++def hash_value(value) -> str:
++    require(type(value) is str and HEX.fullmatch(value) is not None,10,'INVALID_DIGEST')
++    return value
++
++def integer(value,minimum=0,maximum=2**63-1):
++    require(type(value) is int and minimum<=value<=maximum,10,'INVALID_INTEGER')
++    return value
++
++def instant(value: str) -> datetime:
++    require(type(value) is str,10,'INVALID_TIMESTAMP')
++    try:
++        dt=datetime.fromisoformat(value.replace('Z','+00:00'))
++        require(dt.tzinfo is not None and dt.utcoffset().total_seconds()==0,10,'UTC_REQUIRED')
++        return dt.astimezone(timezone.utc)
++    except (ValueError,TypeError,OverflowError):
++        raise P00Error(10,'INVALID_TIMESTAMP') from None
++
++def relative(value: str) -> str:
++    require(type(value) is str and 0<len(value)<=240,10,'INVALID_RELATIVE_PATH')
++    require('\\' not in value and ':' not in value and '#' not in value,10,'INVALID_RELATIVE_PATH')
++    p=PurePosixPath(value)
++    require(not p.is_absolute() and p.as_posix()==value and all(x not in ('','.','..') for x in value.split('/')),10,'PATH_ESCAPE')
++    require(all(ord(c)>=32 and ord(c)!=127 for c in value),10,'PATH_CONTROL')
++    return value
++
++def windows_path(value: str) -> str:
++    require(type(value) is str and 3<=len(value)<=240,10,'INVALID_WINDOWS_PATH')
++    require(not any(ord(c)<32 or ord(c)==127 for c in value),10,'PATH_CONTROL')
++    require(not any(c in value for c in '"<>|?*'),10,'PATH_SYNTAX')
++    require(re.match(r'^[A-Za-z]:\\',value) is not None and '/' not in value,10,'LOCAL_ABSOLUTE_PATH_REQUIRED')
++    require(':' not in value[2:] and '\\\\' not in value,10,'PATH_DEVICE_OR_ADS')
++    parts=PureWindowsPath(value).parts[1:]
++    require(bool(parts),10,'VOLUME_ROOT_FORBIDDEN')
++    for part in parts:
++        require(part not in ('.','..') and not part.endswith(('.', ' ')),10,'PATH_AMBIGUOUS')
++        require(re.fullmatch(r'(?i)(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9])(?:\..*)?',part) is None,10,'RESERVED_PATH')
++    require('\\.\\' not in value and '\\..\\' not in value and not value.endswith(('\\.','\\..')),10,'PATH_ESCAPE')
++    return str(PureWindowsPath(value))
++
++def distro_name(value):
++    require(type(value) is str and 1<=len(value)<=64,10,'INVALID_DISTRO_NAME')
++    require(not value.startswith(('-', ' ')) and value==value.strip(),10,'INVALID_DISTRO_NAME')
++    require(all(c.isalnum() or c in ' _-.' for c in value),10,'INVALID_DISTRO_NAME')
++    return value
++
++def user_name(value):
++    require(type(value) is str and re.fullmatch(r'[a-z_][a-z0-9_-]{0,31}',value) is not None,10,'INVALID_USER_NAME')
++    require(value!='root',10,'NONROOT_USER_REQUIRED')
++    return value
++
++def read_json(path: Path):
++    # Workspace input only. Host ACL/reparse-safe reader is not registered in this revision.
++    require(not path.is_symlink() and path.is_file(),10,'INPUT_FILE_REQUIRED')
++    try:
++        with path.open('rb') as f: data=f.read(MAX_JSON+1)
++        return loads(data)
++    except OSError: raise P00Error(18,'INPUT_IO') from None
+diff --git a/src/aifilm_p00/engine.py b/src/aifilm_p00/engine.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/engine.py
+@@ -0,0 +1,66 @@
++"""Executable orchestration against explicit ports; no production port is registered.
++The TEST backend implements only deterministic fixture transitions, never native WSL.
++"""
++from .authority import authorize
++from .codec import digest
++from .plans import interface_check
++from .policy import floors,budget_check,drift,protection,restore_envelope,host_profile,runtime_profile,guest_profile
++from .errors import P00Error,require
++
++class OperationEngine:
++    def __init__(self,backend,coordinator,store):
++        self.backend=backend; self.coordinator=coordinator; self.store=store
++
++    def execute(self,interface,plan,ctx):
++        s=interface_check(interface,plan)
++        admission=authorize(interface,plan,ctx,self.store)
++        # No operation can use the workspace backend as a native backend through CLI.
++        with self.coordinator.acquire(admission):
++            observed=self.backend.refresh(s)
++            drift(s['before'],observed['material'])
++            host_profile(observed['host'],ctx.now)
++            floors(observed['resources'])
++            reservations=budget_check(s['budgets'],observed['free_bytes'])
++            if s['purpose'] not in ('ENGINE','PASSIVE'):
++                runtime_profile(observed['runtime'])
++            if s['purpose']=='ADOPT':
++                guest_profile(observed['guest']); floors(observed['guest_resources'],guest=True)
++            if 'C3' in admission.classes:
++                pack=self.store.get('protection',s['refs']['protection']) if 'protection' in s['refs'] else None
++                protection(pack,s['host_id'],s['target']['registration_id'],ctx.now,observed.get('source_witness'))
++            if s['purpose'] in ('RESTORE_IMPORT','RESTORE_VERIFY'):
++                proof=self.store.get('isolation',s['refs']['isolation']) if 'isolation' in s['refs'] else None
++                restore_envelope(proof,s['source_class'],s['execution_class'],s.get('expected_checkpoint'),ctx.now,s.get('expected_envelope'))
++            if self.backend.postconditions_hold(s):
++                # NOOP requires backend assertions of material/content/identity, never a marker alone.
++                return {'exit':0,'state':'NOOP','source_kind':self.backend.source_kind,'host_ready':False}
++            current_material=s['before']
++            for n,operation in enumerate(s['operations']):
++                refreshed=self.backend.refresh(s)
++                drift(current_material,refreshed['material'])
++                floors(refreshed['resources']); reservations=budget_check(s['budgets'],refreshed['free_bytes'])
++                witness=self.backend.controller_witness(s,n)
++                self.coordinator.intent(operation['action'],reservations,witness)
++                try:
++                    outcome=self.backend.run(operation,s,self.coordinator.native_started)
++                except P00Error as error:
++                    self.coordinator.uncertain(error.reason)
++                    raise
++                except BaseException:
++                    # Preserve the write-ahead fence even for cancellation/crash-like interruption.
++                    self.coordinator.uncertain('BACKEND_INTERRUPTED')
++                    raise
++                if outcome.get('state') in ('AWAITING_REBOOT','AWAITING_USER_INIT','AWAITING_OWNER_VERIFICATION'):
++                    self.coordinator.awaiting(outcome['state'])
++                    return {'exit':20,'state':outcome['state'],'source_kind':self.backend.source_kind,'host_ready':False}
++                require(outcome.get('exit')==0,18,'NATIVE_OUTCOME_UNMAPPED')
++                self.coordinator.terminal(self.backend.terminal_observation(operation,s,outcome))
++                current_material=outcome['material_after']
++            require(self.backend.postconditions_hold(s),19,'POSTCONDITIONS_FAILED')
++            return {'exit':0,'state':'APPLIED' if interface=='apply' else 'VERIFIED','source_kind':self.backend.source_kind,'host_ready':False}
++
++class NativeUnavailable:
++    """Explicit release boundary, not a simulator and not a supported native backend."""
++    source_kind='DOCUMENT'
++    def execute(self,*args,**kwargs):
++        raise P00Error(11,'NATIVE_BACKEND_NOT_IMPLEMENTED')
+diff --git a/src/aifilm_p00/errors.py b/src/aifilm_p00/errors.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/errors.py
+@@ -0,0 +1,35 @@
++"""D00-09 normalized failures; exception text must never include raw input."""
++from enum import IntEnum
++import re
++
++class Exit(IntEnum):
++    OK=0
++    PARTIAL_OPTIONAL=2
++    INPUT=10
++    PREREQUISITE=11
++    PERMISSION=12
++    RESOURCE=13
++    NETWORK=14
++    INTEGRITY=15
++    DRIFT=16
++    TIMEOUT=17
++    IO=18
++    ASSERTION=19
++    OPERATOR=20
++    BUSY=21
++    INCOMPLETE=22
++    REDACTION=23
++
++class P00Error(Exception):
++    def __init__(self, code: int, reason: str):
++        self.code=Exit(code)
++        if not re.fullmatch(r'[A-Z][A-Z0-9_]{0,79}',reason):
++            raise ValueError('INVALID_INTERNAL_REASON_CODE')
++        self.reason=reason
++        super().__init__(reason)
++    def safe(self) -> dict:
++        return {'exit':int(self.code),'reason':self.reason,'host_ready':False}
++
++def require(condition: bool, code: int, reason: str) -> None:
++    if not condition:
++        raise P00Error(code,reason)
+diff --git a/src/aifilm_p00/evidence.py b/src/aifilm_p00/evidence.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/evidence.py
+@@ -0,0 +1,225 @@
++"""D00-14 evidence schemas and in-memory safe bundle assembly.
++Scope completeness is separate from phase readiness. The native snapshot reader,
++ACL-aware publisher and MASTER assessment integration are NOT implemented yet.
++"""
++from dataclasses import dataclass
++from datetime import datetime
++from io import BytesIO
++from zipfile import ZipFile,ZIP_DEFLATED
++from .codec import canonical,sha256,fields,hash_value,token,integer,instant,digest
++from .errors import P00Error,require
++
++COLLECTOR_CAP=10*1024**2
++BUNDLE_CAP=100*1024**2
++PATHS={
++ 'E00-01':'host','E00-02':'runtime','E00-03':'distros','E00-04':'guest',
++ 'E00-05':'resources','E00-06':'storage','E00-07':'config','E00-08':'network',
++ 'E00-09':'source_manifest','E00-10':'execution_binding','E00-11':'admission',
++ 'E00-12':'c3_protection','E00-13':'qualification','E00-14':'terminal','E00-15':'restore',
++}
++STATUSES={'PASS','FAIL','BLOCKED','NOT_RUN','NOT_YET_CREATED','REQUIRES_ACTIVE_PROBE','UNKNOWN','UNAVAILABLE','NOT_APPLICABLE','OBSERVED','ABSENT'}
++ROLES={'DOCUMENT','LAB','SITE'}
++RECORD_FIELDS={'schema_version','evidence_id','record_id','status','source_kind','work_item','run_id','step_id','operation','host_alias','target_alias','collector_digest','build_digest','contract_digest','timestamp_utc','stage','route','expected_ref','actual_ref','native_exit','normalized_exit','epoch_ref','protected_ref','protected_digest','safe_summary','sensitivity'}
++
++@dataclass(frozen=True)
++class Collected:
++    evidence_id:str
++    record:dict|None
++    expected_bytes_digest:str|None
++    duration_ms:int=0
++    bytes_seen:int=0
++    eof:bool=True
++    status:str='COMPLETE'
++    protected_access:bool=False
++    protected_integrity:bool=False
++
++@dataclass(frozen=True)
++class Bundle:
++    exit:int
++    outcome:str
++    mandatory_complete:bool
++    component_eligible:bool
++    archive:bytes|None
++    report:dict
++
++def record_check(record:dict):
++    fields(record,RECORD_FIELDS)
++    require(record['schema_version']==1 and record['evidence_id'] in PATHS,10,'EVIDENCE_SCHEMA')
++    require(record['status'] in STATUSES and record['source_kind'] in ROLES,10,'EVIDENCE_STATUS')
++    for key in ('record_id','work_item','run_id','step_id','operation','host_alias','target_alias','stage','route'): token(record[key])
++    for key in ('collector_digest','build_digest','contract_digest','protected_digest'): hash_value(record[key])
++    instant(record['timestamp_utc'])
++    for key in ('expected_ref','actual_ref','epoch_ref','protected_ref'):
++        require(record[key] is None or type(record[key]) is str,10,'EVIDENCE_REFERENCE')
++    require(record['sensitivity'] in ('SAFE','PROTECTED'),10,'SENSITIVITY_REQUIRED')
++    require(type(record['safe_summary']) is dict,10,'SUMMARY_OBJECT_REQUIRED')
++    require(record['native_exit'] is None or type(record['native_exit']) is int,10,'NATIVE_EXIT_INVALID')
++    integer(record['normalized_exit'],0,255)
++
++# Narrow allowlist: unknown strings or keys are never forwarded as diagnostics.
++# Known raw diagnostics are suppressed wholesale instead of regex-scrubbing stderr.
++REDACT_KEYS={'password','token','secret','credential','private_key','stderr','message','error_message','raw','environment','query','userinfo','command_line'}
++ALIAS_KEYS={'path','sid','url','endpoint','owner','name','host','target','record_id','resource_id'}
++HASH_KEYS={'digest','sha256','checkpoint_digest','config_digest','evidence_digest','epoch_digest','build_digest','contract_digest','plan_digest','manifest_digest'}
++BOOL_KEYS={'passed','eligible','complete','owner_match','home_writable','admin_ready','startup_known','no_pending_writer','retained','scan_pass','trusted','witnesses_valid','eof'}
++INT_KEYS={'count','bytes','free_bytes','peak_bytes','reserve_bytes','duration_ms','logical_cpu','installed_ram_bytes','available_ram_bytes','mem_total_bytes','mem_available_bytes','fs_available_bytes','uid','gid','mode','normalized_exit','native_exit'}
++STRUCT_KEYS={'assertions','results','volumes','errors','items','measurements','network','resource','details','values'}
++ENUM_KEYS={'status','source_kind','class','kind','context','purpose','code','category'}
++ENUM_VALUES=STATUSES|ROLES|{'C0','C1','C2','C3','WINDOWS','GUEST','DOCUMENT','SAFE','PROTECTED','SITE_VERIFY','RESTORE','DISCOVERY','ENGINE','CREATE','ADOPT','RESTORE_EXPORT','RESTORE_IMPORT','COMPLETE','INCOMPLETE','TIMEOUT','TRUNCATED','NETWORK','RESOURCE','INPUT','PERMISSION','INTEGRITY','IO','REDACTED','MISSING','NATIVE','NOT_GATE','NOT_ISOLATION_SANDBOX'}
++
++class Sanitizer:
++    def __init__(self,salt:bytes):
++        require(type(salt) is bytes and len(salt)>=16,10,'ALIAS_SALT_REQUIRED')
++        self.salt=salt; self.alias_map={}
++    def alias(self,value):
++        opaque='a_'+sha256(self.salt+canonical(value))[:24]
++        self.alias_map[opaque]=value
++        return opaque
++    def summary(self,obj,depth=0):
++        require(depth<=20,23,'REDACTION_DEPTH')
++        require(type(obj) is dict,23,'UNSAFE_SUMMARY_STRUCTURE')
++        safe={}
++        for key,value in obj.items():
++            if key in REDACT_KEYS:
++                safe[key]='[REDACTED]'
++            elif key in ALIAS_KEYS:
++                safe[key]=self.alias(value)
++            elif key in HASH_KEYS:
++                try: hash_value(value)
++                except P00Error: raise P00Error(23,'UNSAFE_HASH_FIELD') from None
++                safe[key]=value
++            elif key in BOOL_KEYS:
++                require(type(value) is bool,23,'UNSAFE_BOOLEAN_FIELD'); safe[key]=value
++            elif key in INT_KEYS:
++                require(type(value) is int and -2**31<=value<=2**63-1,23,'UNSAFE_NUMBER_FIELD'); safe[key]=value
++            elif key in ENUM_KEYS:
++                require(type(value) is str and value in ENUM_VALUES,23,'UNSAFE_ENUM_FIELD'); safe[key]=value
++            elif key in STRUCT_KEYS:
++                if isinstance(value,list):
++                    require(len(value)<=10000,23,'REDACTION_ITEMS')
++                    safe[key]=[self.summary(x,depth+1) for x in value]
++                else: safe[key]=self.summary(value,depth+1)
++            else:
++                raise P00Error(23,'UNALLOWLISTED_FIELD')
++        return safe
++    def record(self,record):
++        # No protected raw reference, source SID, path, or alias map goes into the archive.
++        return {'schema_version':1,'evidence_id':record['evidence_id'],
++                'record_alias':self.alias(record['record_id']), 'host_alias':self.alias(record['host_alias']),
++                'target_alias':self.alias(record['target_alias']), 'status':record['status'],
++                'source_kind':record['source_kind'],'timestamp_utc':record['timestamp_utc'],
++                'build_digest':record['build_digest'],'contract_digest':record['contract_digest'],
++                'protected_artifact_alias':self.alias(record['protected_ref']),
++                'protected_digest':record['protected_digest'],
++                'summary':self.summary(record['safe_summary'])}
++
++def requiredness(scope:str,*,persistent_output=True,mutation_attempted=False,c3_attempted=False,restore_attempted=False):
++    require(scope in ('INVENTORY','FAILED_RUN','GATE_HANDOFF'),10,'BUNDLE_SCOPE_REQUIRED')
++    if scope=='GATE_HANDOFF': return set(PATHS)
++    if scope=='INVENTORY': return {f'E00-{n:02d}' for n in range(1,11)}|({'E00-11'} if persistent_output else set())
++    needed={'E00-10'}
++    if mutation_attempted: needed.add('E00-11')
++    if c3_attempted: needed.add('E00-12')
++    if restore_attempted: needed.add('E00-15')
++    return needed
++
++def complete_for_scope(record,scope):
++    status=record['status']; eid=record['evidence_id']
++    if scope=='GATE_HANDOFF':
++        # Conditional subfields are handled in the substantive host catalog integration;
++        # this core requires PASS per group and does not invent group-wide N/A waivers.
++        allowed={'SITE'} if eid not in {'E00-10','E00-13','E00-15'} else ({'LAB','DOCUMENT'} if eid=='E00-13' else {'SITE','LAB','DOCUMENT'})
++        return status=='PASS' and record['actual_ref'] is not None and record['source_kind'] in allowed
++    if scope=='INVENTORY':
++        if eid in {'E00-04','E00-08','E00-09'}:
++            return status in STATUSES-{'FAIL','NOT_RUN'}
++        return status in {'OBSERVED','PASS','ABSENT'}
++    return status in STATUSES-{'NOT_RUN'}
++
++
++def assemble(scope:str,records:list[Collected],sanitizer:Sanitizer,*,context:dict,optional_ids:frozenset[str]=frozenset(),scanner=None,bundle_cap=BUNDLE_CAP)->Bundle:
++    """Pure bytes-in/bytes-out. No filesystem access, collector side effect or upload.
++    The caller must have authorized/locked native snapshot I/O before using this core.
++    """
++    needed=requiredness(scope,**context)
++    require(not needed&set(optional_ids),10,'MANDATORY_CANNOT_BECOME_OPTIONAL')
++    require(type(bundle_cap) is int and 1024<=bundle_cap<=BUNDLE_CAP,10,'BUNDLE_CAP_INVALID')
++    byid={}; bad_integrity=False; privacy=False; missing=[]; optional_fail=[]; reasons=[]; members={}
++    for c in records:
++        require(c.evidence_id in PATHS and c.evidence_id not in byid,10,'EVIDENCE_ID_DUPLICATE_OR_INVALID')
++        byid[c.evidence_id]=c
++    require(set(byid)<=needed|set(optional_ids),10,'UNDECLARED_COLLECTOR')
++    for eid in sorted(needed|set(optional_ids)):
++        c=byid.get(eid); failure=None
++        if c is None or c.record is None: failure='MISSING'
++        else:
++            integer(c.duration_ms); integer(c.bytes_seen)
++            if c.duration_ms>30000: failure='TIMEOUT'
++            if c.status!='COMPLETE': failure='INCOMPLETE'
++            if c.bytes_seen>COLLECTOR_CAP or not c.eof: failure='TRUNCATED'
++            raw=canonical(c.record)
++            if len(raw)>COLLECTOR_CAP: failure='TRUNCATED'
++            if c.expected_bytes_digest!=sha256(raw) or not c.protected_integrity: bad_integrity=True
++            try:
++                record_check(c.record)
++                require(c.record['evidence_id']==eid,15,'EVIDENCE_ID_MISMATCH')
++                safe=sanitizer.record(c.record)
++                encoded=canonical(safe)
++                try:
++                    if scanner is None or scanner(encoded) is not True: privacy=True
++                except Exception:
++                    privacy=True
++                if not privacy: members['summaries/'+PATHS[eid]+'.json']=encoded
++            except P00Error as error:
++                if error.code==23: privacy=True
++                else: bad_integrity=True
++            if not c.protected_access: failure='PROTECTED_UNAVAILABLE'
++            if not complete_for_scope(c.record,scope): failure='SEMANTIC_INCOMPLETE'
++        if failure:
++            (missing if eid in needed else optional_fail).append(eid)
++            reasons.append({'evidence_id':eid,'reason':failure})
++    report={'scope':scope,'mandatory_complete':not missing,'component_eligible':scope=='GATE_HANDOFF' and not missing,
++            'inventory_complete':scope=='INVENTORY' and not missing,'missing':missing,'optional_failures':optional_fail,
++            'collector_reasons':reasons,'host_ready':False,'master_acceptance':False}
++    if privacy: return Bundle(23,'BLOCKED_REDACTION',False,False,None,{'outcome':'BLOCKED_REDACTION','host_ready':False})
++    if bad_integrity: return Bundle(15,'FAILED_INTEGRITY',False,False,None,{'outcome':'FAILED_INTEGRITY','host_ready':False})
++    code=22 if missing else 2 if optional_fail else 0
++    outcome={0:'COMPLETE',2:'PARTIAL_OPTIONAL',22:'INCOMPLETE_MANDATORY'}[code]
++    report.update({'exit':code,'outcome':outcome,'scan':'PASS','scanner_contract':'STRICT_SAFE_SCHEMA_PLUS_CALLER_SCAN'})
++    members['support/collection_report.json']=canonical(report)
++    member_manifest={'schema_version':1,'members':[{'path':p,'bytes':len(b),'sha256':sha256(b)} for p,b in sorted(members.items())]}
++    members['member_manifest.json']=canonical(member_manifest)
++    if sum(len(b) for b in members.values())>bundle_cap:
++        return Bundle(22,'INCOMPLETE_MANDATORY',False,False,None,{'outcome':'INCOMPLETE_MANDATORY','reason':'AGGREGATE_CAP','host_ready':False})
++    out=BytesIO()
++    with ZipFile(out,'w',ZIP_DEFLATED) as z:
++        for name,data in sorted(members.items()): z.writestr(name,data)
++    if len(out.getvalue())>bundle_cap:
++        return Bundle(22,'INCOMPLETE_MANDATORY',False,False,None,{'outcome':'INCOMPLETE_MANDATORY','reason':'AGGREGATE_CAP','host_ready':False})
++    return Bundle(code,outcome,not missing,report['component_eligible'],out.getvalue(),report)
++
++
++def _bundle_integrity(archive:bytes):
++    from .codec import loads,relative
++    with ZipFile(BytesIO(archive)) as z:
++        names=z.namelist()
++        require(len(names)==len(set(names)) and 'member_manifest.json' in names,15,'BUNDLE_MEMBERS_INVALID')
++        require(sum(i.file_size for i in z.infolist())<=BUNDLE_CAP and len(names)<=100,15,'BUNDLE_SIZE_LIMIT')
++        manifest=loads(z.read('member_manifest.json'))
++        listed={r['path'] for r in manifest['members']}
++        require(listed==set(names)-{'member_manifest.json'} and len(listed)==len(manifest['members']),15,'BUNDLE_MEMBER_SET')
++        for row in manifest['members']:
++            relative(row['path']); data=z.read(row['path'])
++            require(len(data)==row['bytes'] and sha256(data)==row['sha256'],15,'BUNDLE_MEMBER_HASH')
++        require(all('gate_assessment' not in name for name in names),15,'GATE_SELF_REFERENCE')
++        return {'sha256':sha256(archive),'members':len(listed),'integrity':True,'host_ready':False}
++
++
++def bundle_integrity(archive:bytes):
++    from zipfile import BadZipFile
++    from zlib import error as ZlibError
++    try:
++        return _bundle_integrity(archive)
++    except P00Error: raise
++    except (BadZipFile,ZlibError,KeyError,TypeError,ValueError,RuntimeError):
++        raise P00Error(15,'BUNDLE_INVALID') from None
+diff --git a/src/aifilm_p00/journal_files.py b/src/aifilm_p00/journal_files.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/journal_files.py
+@@ -0,0 +1,90 @@
++"""Durable storage exercised in an isolated POSIX workspace only.
++Windows ACL, handle/reparse checks and host-global root initialization remain pending.
++This storage class is not wired to native entrypoints.
++"""
++import os
++from pathlib import Path
++from uuid import uuid4
++from .codec import canonical,loads,sha256
++from .errors import P00Error,require
++
++class FileJournal:
++    def __init__(self,root:Path):
++        require(os.name=='posix',11,'WINDOWS_DURABILITY_ADAPTER_PENDING')
++        self.root=root
++        require(root.is_dir() and not root.is_symlink(),12,'JOURNAL_ROOT_NOT_PREPARED')
++        self.fence_path=root/'fence.json'; self.events_path=root/'events.jsonl'
++        self._validated_root=root.resolve(strict=True)
++
++    def _path(self,path:Path):
++        require(self.root.resolve(strict=True)==self._validated_root and not self.root.is_symlink() and not path.is_symlink(),16,'JOURNAL_PATH_DRIFT')
++        require(path.parent.resolve(strict=True)==self._validated_root,16,'JOURNAL_PATH_ESCAPE')
++
++    def _sync_root(self):
++        if os.name!='posix':
++            raise P00Error(11,'WINDOWS_DURABILITY_ADAPTER_PENDING')
++        fd=os.open(self.root,os.O_RDONLY|os.O_DIRECTORY)
++        try: os.fsync(fd)
++        finally: os.close(fd)
++
++    def _atomic(self,path,data):
++        self._path(path); tmp=self.root/(uuid4().hex+'.tmp')
++        try:
++            fd=os.open(tmp,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
++            with os.fdopen(fd,'wb') as f: f.write(data); f.flush(); os.fsync(f.fileno())
++            self._path(path); os.replace(tmp,path); self._sync_root()
++        except P00Error: raise
++        except OSError: raise P00Error(18,'JOURNAL_IO') from None
++        # Never erase arbitrary leftover artifacts on failure. They remain protected.
++
++    def load_fence(self):
++        self._path(self.fence_path)
++        if not self.fence_path.exists(): return None
++        try:
++            fd=os.open(self.fence_path,os.O_RDONLY|os.O_NOFOLLOW)
++            with os.fdopen(fd,'rb') as f: raw=f.read(10*1024**2+1)
++            wrapper=loads(raw)
++            require(wrapper['sha256']==sha256(canonical(wrapper['record'])),15,'FENCE_INTEGRITY')
++            return wrapper['record']
++        except (KeyError,TypeError): raise P00Error(15,'FENCE_INVALID') from None
++        except OSError: raise P00Error(18,'JOURNAL_IO') from None
++
++    def write_fence(self,record):
++        self._atomic(self.fence_path,canonical({'record':record,'sha256':sha256(canonical(record))}))
++
++    def read_events(self):
++        self._path(self.events_path)
++        if not self.events_path.exists(): return []
++        try:
++            fd=os.open(self.events_path,os.O_RDONLY|os.O_NOFOLLOW)
++            with os.fdopen(fd,'rb') as f: raw=f.read(10*1024**2+1)
++            require(len(raw)<=10*1024**2 and (not raw or raw.endswith(b'\n')),15,'JOURNAL_TRUNCATED')
++            rows=[]; prev=None
++            for line in raw.splitlines():
++                wrapper=loads(line)
++                require(wrapper['prev']==prev and wrapper['sha256']==sha256(canonical({'event':wrapper['event'],'prev':prev})),15,'JOURNAL_CHAIN')
++                prev=wrapper['sha256']; rows.append(wrapper)
++            return rows
++        except (KeyError,TypeError): raise P00Error(15,'JOURNAL_INVALID') from None
++        except OSError: raise P00Error(18,'JOURNAL_IO') from None
++
++    def append_event(self,event):
++        rows=self.read_events(); prev=rows[-1]['sha256'] if rows else None
++        record={'event':event,'prev':prev}; record['sha256']=sha256(canonical(record))
++        self._path(self.events_path)
++        try:
++            fd=os.open(self.events_path,os.O_WRONLY|os.O_APPEND|os.O_CREAT|os.O_NOFOLLOW,0o600)
++            with os.fdopen(fd,'ab') as f: f.write(canonical(record)+b'\n'); f.flush(); os.fsync(f.fileno())
++            self._sync_root()
++        except P00Error: raise
++        except OSError: raise P00Error(18,'JOURNAL_IO') from None
++
++    def clear_fence(self):
++        fence=self.load_fence()
++        require(fence is not None and fence.get('state') in ('TERMINAL','SAFE_PAUSE'),21,'FENCE_NOT_TERMINAL')
++        # Keep a sealed terminal fence, rather than deleting recovery evidence.
++        archived=self.root/('terminal-'+sha256(canonical(fence))+'.json')
++        self._atomic(archived,canonical(fence))
++        self.append_event({'kind':'FENCE_RELEASE','fence_digest':sha256(canonical(fence))})
++        try: self.fence_path.unlink(); self._sync_root()
++        except OSError: raise P00Error(18,'JOURNAL_IO') from None
+diff --git a/src/aifilm_p00/plans.py b/src/aifilm_p00/plans.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/plans.py
+@@ -0,0 +1,96 @@
++"""Deterministic D00-08 plans. This module never invokes a host command."""
++from copy import deepcopy
++from . import CONTRACT_DIGEST
++from .codec import fields,token,hash_value,integer,digest,windows_path,distro_name,user_name
++from .errors import require
++
++OPERATIONS={
++ 'PASSIVE': [('OBSERVE_HOST','C0')],
++ 'DISCOVERY': [('PROBE_GUEST','C1')],
++ 'ENGINE': [('ENABLE_PREREQUISITES','C3'),('INSTALL_RUNTIME','C3'),('AWAIT_OWNER_RESTART','C3')],
++ 'CREATE': [('INSTALL_DISTRO','C2'),('AWAIT_OWNER_USER_INIT','C2'),('CREATE_WORKSPACE','C2')],
++ 'ADOPT': [('CREATE_WORKSPACE','C2')],
++ 'RESTORE_EXPORT': [('EXPORT_CHECKPOINT','C1')],
++ 'RESTORE_IMPORT': [('IMPORT_NEW_CLONE','C2')],
++ 'SITE_VERIFY': [('VERIFY_TERMINAL','C1')],
++ 'TARGET_LIFECYCLE': [('STOP_START_TARGET','C1')],
++ 'HOST_RESTART': [('AWAIT_OWNER_RESTART','C3')],
++ 'RESTORE_VERIFY': [('VERIFY_CLONE','C1'),('STOP_RETAIN_CLONE','C1')],
++ 'RECONCILIATION_ONLY': [('OBSERVE_PENDING_ACTION','C0')],
++ 'SUPPORT_BUNDLE': [('PUBLISH_SAFE_BUNDLE','C0')],
++}
++INTERFACES={
++ 'preflight':{'PASSIVE','DISCOVERY'},
++ 'apply':{'ENGINE','CREATE','ADOPT','RESTORE_EXPORT','RESTORE_IMPORT'},
++ 'verify':{'SITE_VERIFY','TARGET_LIFECYCLE','HOST_RESTART','RESTORE_VERIFY','RECONCILIATION_ONLY'},
++ 'support-bundle':{'SUPPORT_BUNDLE'},
++}
++REQUIRED={'schema_version','run_id','work_item','execution_class','host_id','owner_sid','target',
++          'purpose','contract_digest','build_digest','test_set_digest','profile','before',
++          'expected_after','budgets','payload_digest','source_class','refs','final_state'}
++OPTIONAL={'endpoints','bundle_scope','expected_checkpoint','expected_envelope','scratch_bytes'}
++
++def check_plan(plan:dict)->dict:
++    fields(plan,{'semantic','plan_digest','report'},{'approval_ref'})
++    s=fields(plan['semantic'],REQUIRED|{'operations'},OPTIONAL)
++    require(s['schema_version']==1,10,'UNSUPPORTED_SCHEMA')
++    for key in ('run_id','work_item','host_id'): token(s[key])
++    require(s['execution_class'] in ('LAB','SITE'),10,'EXECUTION_CLASS_REQUIRED')
++    for sid in [s['owner_sid']]:
++        require(type(sid) is str and sid.startswith('S-1-') and all(c.isdigit() or c in 'S-' for c in sid),10,'INVALID_SID')
++    for key in ('contract_digest','build_digest','test_set_digest'): hash_value(s[key])
++    require(s['contract_digest']==CONTRACT_DIGEST,16,'CONTRACT_MISMATCH')
++    require(s['purpose'] in OPERATIONS,10,'PURPOSE_NOT_ALLOWED')
++    require(s['operations']==[{'action':a,'class':c} for a,c in OPERATIONS[s['purpose']]],10,'OPERATION_SCOPE_MISMATCH')
++    fields(s['target'],{'name','base_path','registration_id','user'})
++    if s['purpose']=='ENGINE':
++        require(all(v is None for v in s['target'].values()),10,'ENGINE_TARGET_MUST_BE_ABSENT')
++    else:
++        distro_name(s['target']['name']); windows_path(s['target']['base_path']); user_name(s['target']['user'])
++        rid=s['target']['registration_id']
++        require(rid is None or type(rid) is str,10,'INVALID_REGISTRATION_ID')
++        if s['purpose'] in ('CREATE','RESTORE_IMPORT'):
++            require(rid is None,16,'NEW_TARGET_ALREADY_BOUND')
++    for key in ('profile','before','expected_after','refs'):
++        require(type(s[key]) is dict,10,'OBJECT_REQUIRED')
++    require(s['final_state'] in ('RUNNING','STOPPED_RETAINED','OPERATOR_PENDING'),10,'INVALID_FINAL_STATE')
++    require(s['source_class'] in ('NOT_YET_CREATED','CLEAN_P00','ADOPT_NONSENSITIVE_QUIESCED','SYNTHETIC_LAB','UNKNOWN','SENSITIVE'),10,'INVALID_SOURCE_CLASS')
++    if s['payload_digest'] is not None: hash_value(s['payload_digest'])
++    require(type(s['budgets']) is list and bool(s['budgets']),10,'BUDGET_REQUIRED')
++    seen=set()
++    for b in s['budgets']:
++        fields(b,{'volume_id','roles','allocations'})
++        token(b['volume_id']); require(b['volume_id'] not in seen,10,'DUPLICATE_VOLUME'); seen.add(b['volume_id'])
++        require(type(b['roles']) is list and bool(b['roles']) and set(b['roles'])<={'OS','DISTRO','EVIDENCE','BACKUP'},10,'INVALID_VOLUME_ROLE')
++        require(type(b['allocations']) is dict and bool(b['allocations']),10,'ALLOCATION_REQUIRED')
++        for name,size in b['allocations'].items(): token(name); integer(size)
++    require('approval' not in s['refs'],10,'APPROVAL_MUST_BE_DETACHED')
++    for role,ref in s['refs'].items(): token(role); hash_value(ref)
++    if 'approval_ref' in plan: hash_value(plan['approval_ref'])
++    require(type(s.get('scratch_bytes',0)) is int and 0<=s.get('scratch_bytes',0)<=64*1024**2,10,'SCRATCH_LIMIT')
++    require(plan['plan_digest']==digest(s),15,'PLAN_INTEGRITY')
++    fields(plan['report'],{'created_at'})
++    return s
++
++def make_plan(binding:dict,created_at:str)->dict:
++    fields(binding,REQUIRED,OPTIONAL)
++    s=deepcopy(binding)
++    require(s['purpose'] in OPERATIONS,10,'PURPOSE_NOT_ALLOWED')
++    s['operations']=[{'action':a,'class':c} for a,c in OPERATIONS[s['purpose']]]
++    plan={'semantic':s,'plan_digest':digest(s),'report':{'created_at':created_at}}
++    check_plan(plan)
++    return plan
++
++def interface_check(interface:str,plan:dict):
++    s=check_plan(plan)
++    require(interface in INTERFACES and s['purpose'] in INTERFACES[interface],10,'PURPOSE_NOT_ALLOWED')
++    return s
++
++def semantic_diff(before:dict,after:dict)->list:
++    """Actual structural difference; no interpolation or shell expressions."""
++    result=[]
++    for key in sorted(set(before)|set(after)):
++        if before.get(key)!=after.get(key) or (key in before)!=(key in after):
++            result.append({'field':key,'before_present':key in before,'after_present':key in after,
++                           'before':before.get(key),'after':after.get(key)})
++    return result
+diff --git a/src/aifilm_p00/policy.py b/src/aifilm_p00/policy.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/policy.py
+@@ -0,0 +1,129 @@
++"""D00-01/02/04/08/10/12/13 pure policy. Observations must come from trusted ports.
++These predicates do NOT turn caller-supplied facts into actual host evidence.
++"""
++from datetime import timedelta
++from .codec import integer,instant,digest,fields
++from .errors import require,P00Error
++GIB=1024**3
++HOST_FLOORS={'installed_ram_bytes':8*GIB,'logical_cpu':4,'available_ram_bytes':2*GIB}
++GUEST_FLOORS={'logical_cpu':2,'mem_total_bytes':3*GIB,'mem_available_bytes':GIB,'fs_available_bytes':20*GIB}
++
++def floors(actual:dict,guest:bool=False):
++    require(type(actual) is dict,11,'RESOURCE_OBSERVATION_MISSING')
++    for key,minimum in (GUEST_FLOORS if guest else HOST_FLOORS).items():
++        require(key in actual,11,'RESOURCE_OBSERVATION_MISSING')
++        integer(actual[key]); require(actual[key]>=minimum,13,'RESOURCE_FLOOR')
++
++def budget_check(budgets:list,free:dict)->list:
++    require(type(free) is dict,11,'CAPACITY_OBSERVATION_MISSING')
++    result=[]; seen=set()
++    for b in budgets:
++        volume=b['volume_id']
++        require(volume not in seen,10,'DUPLICATE_VOLUME'); seen.add(volume)
++        require(volume in free,11,'CAPACITY_OBSERVATION_MISSING'); integer(free[volume])
++        reserve=(20 if set(b['roles'])&{'OS','DISTRO'} else 5)*GIB
++        peak=sum(integer(x) for x in b['allocations'].values())
++        require(free[volume]>=reserve+peak,13,'VOLUME_CAPACITY')
++        result.append({'volume_id':volume,'reserve':reserve,'remaining_peak':peak,'free':free[volume]})
++    return result
++
++def host_profile(host:dict,now):
++    require(host.get('os')=='Windows 11' and host.get('architecture')=='x64',11,'UNSUPPORTED_HOST')
++    require(host.get('edition') in ('Home','Pro','Enterprise','Education') and host.get('channel')=='stable',11,'UNSUPPORTED_HOST')
++    require(host.get('support_end') is not None,11,'SUPPORT_EVIDENCE_MISSING')
++    require(instant(host['support_end'])-now>=timedelta(days=90),11,'SUPPORT_MARGIN')
++    require(host.get('virtualization') is True,11,'VIRTUALIZATION_PREREQUISITE')
++
++def runtime_profile(runtime:dict):
++    require(runtime.get('status')=='PRESENT' and runtime.get('packaged') is True and runtime.get('channel')=='stable',11,'RUNTIME_PREREQUISITE')
++    try:
++        version=tuple(int(x) for x in runtime['version'].split('.'))
++        require(len(version)>=3 and all(x>=0 for x in version),11,'RUNTIME_VERSION')
++    except (ValueError,KeyError,AttributeError): raise P00Error(11,'RUNTIME_VERSION') from None
++    require(version[:3]>=(2,4,10),11,'RUNTIME_FLOOR')
++
++def guest_profile(guest:dict):
++    require(guest.get('os_id')=='ubuntu' and guest.get('version_id')=='24.04' and guest.get('architecture') in ('amd64','x86_64') and guest.get('wsl_version')==2,11,'GUEST_PROFILE')
++    require(type(guest.get('uid')) is int and guest['uid']>0,11,'NONROOT_USER_REQUIRED')
++    require(guest.get('home_writable') is True and guest.get('admin_ready') is True,11,'GUEST_USER_PREREQUISITE')
++    require(guest.get('startup_known') is True and guest.get('quiesce_possible') is True,11,'GUEST_STARTUP_UNKNOWN')
++    require(guest.get('source_class') in ('CLEAN_P00','ADOPT_NONSENSITIVE_QUIESCED'),11,'SOURCE_CLASS_FORBIDDEN')
++
++def drift(expected:dict,observed:dict):
++    # Equality is deliberately on material facts only, not free RAM, free disk or IP.
++    require(type(observed) is dict and expected==observed,16,'MATERIAL_DRIFT')
++
++def protection(pack:dict|None,host_id:str,target_id:str|None,now,source_witness:str):
++    require(type(pack) is dict,11,'PROTECTION_INCOMPLETE')
++    require(pack.get('host_id')==host_id and pack.get('coverage_complete') is True,11,'IMPACT_COVERAGE_UNKNOWN')
++    require(pack.get('owner_authorized') is True,12,'PROTECTION_OWNER_PERMISSION')
++    require(pack.get('source_witness')==source_witness,16,'CONSISTENCY_BOUNDARY_DRIFT')
++    require(pack.get('sealed_at') is not None and instant(pack['sealed_at'])<=now,11,'PROTECTION_NOT_PREEXISTING')
++    rows=pack.get('rows'); require(type(rows) is list,11,'IMPACT_ROWS_MISSING')
++    if not rows:
++        require(target_id is None and pack.get('clean_host_absent') is True and pack.get('windows_writers_safe') is True,11,'PROTECTION_INCOMPLETE')
++    require(pack.get('windows_writers_safe') is True,11,'WINDOWS_WRITERS_UNPROTECTED')
++    seen=set()
++    for row in rows:
++        rid=row.get('resource_id'); require(type(rid) is str and rid not in seen,11,'IMPACT_ROW_ID'); seen.add(rid)
++        require(row.get('authorized') is True,12,'RESOURCE_OWNER_PERMISSION')
++        require(bool(row.get('post_assertions')) and bool(row.get('post_actor')),11,'POSTCHECKS_UNDEFINED')
++        disposition=row.get('disposition')
++        require(disposition in ('CLEAN_REPRODUCIBLE_NON_TARGET','DATA_BEARING_NONSENSITIVE','NON_TARGET_SENSITIVE_OR_MANAGED'),11,'RESOURCE_UNPROTECTED')
++        require(row.get('no_writes_since_boundary') is True and row.get('retention_bound') is True,11,'PROTECTION_INCOMPLETE')
++        # Target never uses the clean NON_TARGET exception.
++        needs_checkpoint=rid==target_id or disposition!='CLEAN_REPRODUCIBLE_NON_TARGET'
++        if not needs_checkpoint:
++            require(row.get('trusted_seed') is True and row.get('recreation_proof') is True,11,'CLEAN_RECREATION_UNPROVEN')
++        else:
++            require(row.get('checkpoint_digest') is not None and row.get('restore_checkpoint_digest')==row.get('checkpoint_digest'),15,'CHECKPOINT_PROOF_MISMATCH')
++            require(row.get('restore_pass') is True and row.get('independent_ready') is True and row.get('accessible_without_source_runtime') is True,11,'RECOVERY_DEPENDS_ON_SOURCE_RUNTIME')
++            require(row.get('restore_environment')=='ISO-EXTERNAL' or disposition=='NON_TARGET_SENSITIVE_OR_MANAGED',11,'INDEPENDENT_PROOF_REQUIRED')
++            require(row.get('proof_completed_at') is not None and instant(row['proof_completed_at'])<=instant(pack['sealed_at']),11,'RECOVERY_PROOF_NOT_PREEXISTING')
++    require(target_id is None or target_id in seen,11,'TARGET_PROTECTION_MISSING')
++    return True
++
++def c3_postconditions(expected_rows:list,actual_rows:list):
++    actual={r['resource_id']:r for r in actual_rows}
++    for row in expected_rows:
++        item=actual.get(row['resource_id'])
++        require(item is not None and item.get('authorized') is True,20,'AWAITING_OWNER_VERIFICATION')
++        require(item.get('assertions')==row['post_assertions'] and item.get('status')=='PASS',19,'AFFECTED_RESOURCE_POSTCHECK')
++
++def restore_envelope(proof:dict|None,source_class:str,execution_class:str,checkpoint_digest:str,now,expected_envelope:str,pre_c3=False):
++    require(source_class in ('CLEAN_P00','ADOPT_NONSENSITIVE_QUIESCED','SYNTHETIC_LAB'),11,'SOURCE_CLASS_FORBIDDEN')
++    require(type(proof) is dict,11,'ENVELOPE_MISSING')
++    require(proof.get('data_authorized') is True and proof.get('controller_authorized') is True,12,'RESTORE_PERMISSION')
++    require(proof.get('checkpoint_digest')==checkpoint_digest,15,'CHECKPOINT_PROOF_MISMATCH')
++    require(proof.get('envelope_digest')==expected_envelope,16,'ENVELOPE_DRIFT')
++    require(proof.get('no_auto_launch_qualified') is True,11,'NO_AUTO_LAUNCH_UNPROVEN')
++    require(proof.get('issued_at') is not None and instant(proof['issued_at'])<=now,11,'PREBOOT_PROOF_MISSING')
++    if source_class=='SYNTHETIC_LAB': require(execution_class=='LAB',12,'SYNTHETIC_SITE_FORBIDDEN')
++    if proof.get('kind')=='SAME_HOST_CLEAN':
++        require(not pre_c3 and source_class=='CLEAN_P00',11,'INDEPENDENT_PROOF_REQUIRED')
++        for key in ('trusted_seed','complete_provenance','allowlisted_changes_only','no_custom_startup','no_credentials','ordinary_access_consented','unused_destination'):
++            require(proof.get(key) is True,11,'SAME_HOST_DIRTY_OR_UNKNOWN')
++        return 'NOT_ISOLATION_SANDBOX'
++    require(proof.get('kind')=='ISO-EXTERNAL',11,'ENVELOPE_UNSUPPORTED')
++    for key in ('controller_external','network_uplinks_blocked','no_production_writable_mapping','backup_of_record_protected','no_credential_forwarding','device_inventory_verified','allowed_write_surfaces_bound','registered_session','unused_destination'):
++        require(proof.get(key) is True,11,'ISOLATION_INCOMPLETE')
++    return 'ISO_EXTERNAL_PREBOOT_PROOF'
++
++TERMINAL_ASSERTIONS={'identity','profile','resources','network','config_preserved','sentinel','affected_resources','source_running','clone_stopped_retained'}
++
++def terminal(report:dict,now,host_id:str,target_id:str,build:str,contract:str,last_source_effect,checkpoint_digest:str):
++    require(report.get('source_kind')=='SITE' and report.get('host_id')==host_id and report.get('target_id')==target_id,19,'TERMINAL_SOURCE_MISMATCH')
++    require(report.get('build_digest')==build and report.get('contract_digest')==contract,16,'TERMINAL_BUILD_MISMATCH')
++    start=instant(report['started_at']); end=instant(report['ended_at'])
++    require(last_source_effect<=start<=end<=now and end-start<=timedelta(minutes=30),19,'TERMINAL_WINDOW')
++    require(now-end<=timedelta(minutes=15),19,'TERMINAL_SEAL_EXPIRED')
++    required={'host_boot','runtime','target_registration','guest_boot','init_session','config_digest','activation_sequence'}
++    a=report.get('start_witness'); b=report.get('end_witness')
++    require(type(a) is dict and required==set(a) and a==b and all(v is not None and v!='' for v in a.values()),19,'TERMINAL_EPOCH_UNVERIFIABLE')
++    require(report.get('observed_boundary_during_sweep') is False and report.get('unresolved_source_operations')==0,19,'TERMINAL_BOUNDARY')
++    require(report.get('checkpoint_digest')==checkpoint_digest,15,'TERMINAL_CHECKPOINT_MISMATCH')
++    assertions=report.get('assertions')
++    require(type(assertions) is dict and set(assertions)==TERMINAL_ASSERTIONS,19,'TERMINAL_ASSERTIONS_MISSING')
++    for v in assertions.values():
++        require(type(v) is dict and v.get('status')=='PASS' and v.get('evidence_digest') is not None and v.get('epoch_digest')==digest(a),19,'TERMINAL_ASSERTION')
++    return {'eligible_as_of':report['ended_at'],'host_ready':False,'requires_master_acceptance':True}
+diff --git a/src/aifilm_p00/windows_commands.py b/src/aifilm_p00/windows_commands.py
+new file mode 100644
+--- /dev/null
++++ b/src/aifilm_p00/windows_commands.py
+@@ -0,0 +1,34 @@
++"""Pure command-vector compiler, NOT a command executor. Native lab proof pending.
++Inputs are literal argument elements. No shell, eval, script interpolation or fallbacks.
++"""
++from .codec import windows_path,distro_name,user_name
++from .errors import P00Error,require
++
++def compile_wsl(action:str,*,system_directory:str,target:str,payload:str|None=None,base_path:str|None=None,user:str|None=None)->list[str]:
++    system_directory=windows_path(system_directory); target=distro_name(target)
++    exe=system_directory+'\\wsl.exe'
++    if action=='INSTALL_DISTRO':
++        require(payload is not None and base_path is not None,10,'PAYLOAD_AND_LOCATION_REQUIRED')
++        payload=windows_path(payload); base_path=windows_path(base_path)
++        require(payload.lower().endswith('.wsl'),10,'WSL_PAYLOAD_EXTENSION')
++        return [exe,'--install','--from-file',payload,'--name',target,'--location',base_path,'--no-launch']
++    if action=='EXPORT_CHECKPOINT':
++        require(payload is not None,10,'CHECKPOINT_PATH_REQUIRED')
++        return [exe,'--export',target,windows_path(payload)]
++    if action=='IMPORT_NEW_CLONE':
++        require(payload is not None and base_path is not None,10,'CHECKPOINT_AND_LOCATION_REQUIRED')
++        return [exe,'--import',target,windows_path(base_path),windows_path(payload),'--version','2']
++    if action in ('STOP_TARGET','STOP_RETAIN_CLONE'):
++        return [exe,'--terminate',target]
++    if action=='PROBE_GUEST':
++        require(user is not None,10,'NONROOT_USER_REQUIRED')
++        return [exe,'--distribution',target,'--user',user_name(user),'--exec','/usr/bin/id','-u']
++    raise P00Error(10,'PURPOSE_NOT_ALLOWED')
++
++def compile_feature(feature:str,system_directory:str)->list[str]:
++    require(feature in ('VirtualMachinePlatform','Microsoft-Windows-Subsystem-Linux'),10,'FEATURE_NOT_ALLOWED')
++    return [windows_path(system_directory)+'\\dism.exe','/Online','/Enable-Feature','/FeatureName:'+feature,'/All','/NoRestart']
++
++def compile_runtime(payload:str,system_directory:str)->list[str]:
++    payload=windows_path(payload); require(payload.lower().endswith('.msi'),10,'RUNTIME_PAYLOAD_EXTENSION')
++    return [windows_path(system_directory)+'\\msiexec.exe','/i',payload,'/qn','/norestart']
+diff --git a/tests/helpers.py b/tests/helpers.py
+new file mode 100644
+--- /dev/null
++++ b/tests/helpers.py
+@@ -0,0 +1,123 @@
++"""SYNTHETIC WORKSPACE FIXTURES ONLY. Not LAB registration or SITE evidence.
++Every receipt, SID, host identifier and measurement below is fabricated test input.
++There is NO host backend in this revision that can accept this store as authority.
++"""
++from copy import deepcopy
++from datetime import datetime,timezone
++from aifilm_p00 import CONTRACT_DIGEST
++from aifilm_p00.codec import canonical,sha256,digest
++from aifilm_p00.plans import make_plan
++from aifilm_p00.authority import PinnedStore,Context
++from aifilm_p00.evidence import Collected
++from aifilm_p00.errors import P00Error
++from aifilm_p00.policy import GIB,TERMINAL_ASSERTIONS
++NOW=datetime(2026,9,14,0,0,0,tzinfo=timezone.utc)
++B=sha256(b'SYNTHETIC BUILD'); T=sha256(b'SYNTHETIC TEST SET'); CP=sha256(b'SYNTHETIC CHECKPOINT')
++SID='S-1-5-21-101-202-303-1001'
++PROFILE={'windows_build':'SYNTHETIC_BUILD','wsl_version':'2.7.14','kernel':'SYNTHETIC_KERNEL','network':'NAT','storage':'NTFS','startup':'CLEAN_P00'}
++
++def binding(purpose='CREATE',execution_class='SITE'):
++    return {'schema_version':1,'run_id':'synthetic-run','work_item':'IMPL-P00-001','execution_class':execution_class,
++        'host_id':'synthetic-host','owner_sid':SID,'target':{'name':'AI Film thử','base_path':r'D:\Phim thử\Control','registration_id':None if purpose in ('CREATE','RESTORE_IMPORT') else 'SYNTHETIC-REG','user':'film'},
++        'purpose':purpose,'contract_digest':CONTRACT_DIGEST,'build_digest':B,'test_set_digest':T,'profile':deepcopy(PROFILE),
++        'before':{'target':'ABSENT','config_digest':sha256(b'config')},'expected_after':{'target':'SYNTHETIC-REG','config_digest':sha256(b'config')},
++        'budgets':[{'volume_id':'volume1','roles':['OS','DISTRO'],'allocations':{'distro':20*GIB,'logs':1024}}],
++        'payload_digest':None,'source_class':'CLEAN_P00','refs':{},'final_state':'RUNNING'}
++
++def authority_case(purpose='CREATE',execution_class='SITE',omit=None,modify=None):
++    pins={}; blobs={}
++    def put(role,obj):
++        value={'role':role,**deepcopy(obj)}; raw=canonical(value); ref=sha256(raw)
++        blobs[ref]=raw; pins.setdefault(role,set()).add(ref); return ref
++    reg={'host_id':'synthetic-host','execution_class':execution_class,'operator_sids':[SID],'withdrawn':False,
++         'controller_external':True,'disposable':True,'no_real_credentials':True,'no_production_mappings':True}
++    if modify and modify[0]=='registration': modify[1](reg)
++    refs={
++        'registration':put('registration',reg),
++        'design':put('design',{'verdict':'PASS','contract_digest':CONTRACT_DIGEST,'withdrawn':False}),
++        'code':put('code',{'verdict':'PASS','build_digest':B,'test_set_digest':T,'contract_digest':CONTRACT_DIGEST,'withdrawn':False})}
++    mandatory=[f'T00-{i:02d}' for i in range(1,15)]+[f'F00-{i:02d}' for i in range(1,17)]
++    refs['test_set']=put('test_set',{'test_set_digest':T,'mandatory_cases':mandatory,'native_required_cases':['T00-07']})
++    results={}
++    for case in mandatory:
++        actual=put('measurement',{'source_kind':'LAB','lab_id':'SYNTHETIC_LAB','test_id':case,'fixture_only':True})
++        obj={'test_id':case,'source_kind':'LAB','status':'PASS','actual_evidence_digest':actual,'build_digest':B,'test_set_digest':T,'contract_digest':CONTRACT_DIGEST,'lab_id':'SYNTHETIC_LAB','environment_kind':'WINDOWS_WSL_NATIVE','fixture_only':True}
++        if modify and modify[0]=='test_result': modify[1](obj)
++        results[case]=put('test_result',obj)
++    q={'source_kind':'LAB','issuer_role':'VALIDATION','master_recorded':True,'status':'PASS','withdrawn':False,'gate_blockers':[],
++       'issued_at':'2026-09-13T00:00:00Z','build_digest':B,'test_set_digest':T,'contract_digest':CONTRACT_DIGEST,
++       'code_review_ref':refs['code'],'profile_rows':[{'purpose':purpose,'profile':deepcopy(PROFILE),'payload_digest':None}],
++       'results':results,'lab_id':'SYNTHETIC_LAB','fixture_only':True}
++    if modify and modify[0]=='qualification': modify[1](q)
++    if omit!='qualification': refs['qualification']=put('qualification',q)
++    refs['lab_plan']=put('lab_plan',{'host_id':'synthetic-host','build_digest':B,'approved':True,'withdrawn':False,'purposes':[purpose],'fixture_only':True})
++    s=binding(purpose,execution_class); s['refs']=refs
++    if purpose=='ENGINE': s['target']={k:None for k in s['target']}
++    plan=make_plan(s,'2026-09-13T23:00:00Z')
++    interface={'PASSIVE':'preflight','DISCOVERY':'preflight','SITE_VERIFY':'verify','TARGET_LIFECYCLE':'verify','HOST_RESTART':'verify','RESTORE_VERIFY':'verify','RECONCILIATION_ONLY':'verify','SUPPORT_BUNDLE':'support-bundle'}.get(purpose,'apply')
++    approval={'plan_digest':plan['plan_digest'],'owner_sid':SID,'interface':interface,'purpose':purpose,
++              'classes':sorted({op['class'] for op in s.get('operations',plan['semantic']['operations'])}),
++              'issued_at':'2026-09-13T23:00:00Z','expires_at':'2026-09-14T23:00:00Z',
++              'maintenance_start':'2026-09-13T23:00:00Z','maintenance_end':'2026-09-14T23:00:00Z','withdrawn':False}
++    if modify and modify[0]=='approval': modify[1](approval)
++    plan['approval_ref']=put('approval',approval)
++    store=PinnedStore({k:frozenset(v) for k,v in pins.items()},blobs,'SYNTHETIC_WORKSPACE_ONLY')
++    ctx=Context('synthetic-host',SID,execution_class,B,T,deepcopy(PROFILE),True,NOW)
++    return interface,plan,ctx,store
++
++def host():
++    return {'os':'Windows 11','architecture':'x64','edition':'Pro','channel':'stable','support_end':'2027-09-14T00:00:00Z','virtualization':True}
++def host_resources(): return {'installed_ram_bytes':8*GIB,'logical_cpu':4,'available_ram_bytes':2*GIB}
++def guest_resources(): return {'logical_cpu':2,'mem_total_bytes':3*GIB,'mem_available_bytes':GIB,'fs_available_bytes':20*GIB}
++def protection_pack():
++    return {'host_id':'synthetic-host','coverage_complete':True,'owner_authorized':True,'source_witness':'quiesced','sealed_at':'2026-09-13T23:00:00Z','windows_writers_safe':True,'rows':[
++        {'resource_id':'reg','authorized':True,'disposition':'DATA_BEARING_NONSENSITIVE','post_assertions':['content','health'],'post_actor':'owner',
++         'no_writes_since_boundary':True,'retention_bound':True,'checkpoint_digest':CP,'restore_checkpoint_digest':CP,'restore_pass':True,'independent_ready':True,
++         'accessible_without_source_runtime':True,'restore_environment':'ISO-EXTERNAL','proof_completed_at':'2026-09-13T22:00:00Z'}]}
++
++def envelope(kind='ISO-EXTERNAL'):
++    p={'kind':kind,'data_authorized':True,'controller_authorized':True,'checkpoint_digest':CP,'envelope_digest':sha256(b'envelope'),
++       'no_auto_launch_qualified':True,'issued_at':'2026-09-13T23:00:00Z'}
++    for k in ('controller_external','network_uplinks_blocked','no_production_writable_mapping','backup_of_record_protected','no_credential_forwarding','device_inventory_verified','allowed_write_surfaces_bound','registered_session','unused_destination','trusted_seed','complete_provenance','allowlisted_changes_only','no_custom_startup','no_credentials','ordinary_access_consented'): p[k]=True
++    return p
++
++def terminal_report():
++    w={'host_boot':'b','runtime':'r','target_registration':'reg','guest_boot':'gb','init_session':'init','config_digest':sha256(b'config'),'activation_sequence':2}
++    return {'source_kind':'SITE','host_id':'synthetic-host','target_id':'reg','build_digest':B,'contract_digest':CONTRACT_DIGEST,
++            'started_at':'2026-09-13T23:40:00Z','ended_at':'2026-09-13T23:50:00Z','start_witness':w,'end_witness':deepcopy(w),
++            'observed_boundary_during_sweep':False,'unresolved_source_operations':0,'checkpoint_digest':CP,
++            'assertions':{name:{'status':'PASS','evidence_digest':sha256(name.encode()),'epoch_digest':digest(w)} for name in TERMINAL_ASSERTIONS}}
++
++def evidence_record(eid,status='PASS'):
++    return {'schema_version':1,'evidence_id':eid,'record_id':'synthetic-record-'+eid,'status':status,'source_kind':'DOCUMENT','work_item':'IMPL-P00-001',
++            'run_id':'synthetic-run','step_id':'s0','operation':'FIXTURE','host_alias':'synthetic-host','target_alias':'synthetic-target',
++            'collector_digest':B,'build_digest':B,'contract_digest':CONTRACT_DIGEST,'timestamp_utc':'2026-09-14T00:00:00Z','stage':'TERMINAL','route':'CREATE',
++            'expected_ref':'synthetic/expected','actual_ref':'synthetic/actual','native_exit':0,'normalized_exit':0,'epoch_ref':None,
++            'protected_ref':'synthetic/protected','protected_digest':CP,'safe_summary':{'status':status,'passed':status=='PASS'},'sensitivity':'PROTECTED'}
++
++def collected(eid,status='PASS',summary=None,**kw):
++    record=evidence_record(eid,status)
++    if summary is not None: record['safe_summary']=summary
++    raw=canonical(record)
++    values={'evidence_id':eid,'record':record,'expected_bytes_digest':sha256(raw),'duration_ms':1,'bytes_seen':len(raw),'eof':True,'status':'COMPLETE','protected_access':True,'protected_integrity':True}
++    values.update(kw); return Collected(**values)
++
++class MemoryGuard:
++    def __init__(self): self.busy=False
++    def acquire(self):
++        if self.busy: return False
++        self.busy=True; return True
++    def release(self): self.busy=False
++
++class MemoryStorage:
++    def __init__(self): self.fence=None; self.events=[]; self.fail_append=False; self.fail_write=False; self.fail_clear=False
++    def load_fence(self): return deepcopy(self.fence)
++    def write_fence(self,record):
++        if self.fail_write: raise P00Error(18,'JOURNAL_IO')
++        self.fence=deepcopy(record)
++    def append_event(self,event):
++        if self.fail_append: raise P00Error(18,'JOURNAL_IO')
++        self.events.append(deepcopy(event))
++    def clear_fence(self):
++        if self.fail_clear: raise P00Error(18,'JOURNAL_IO')
++        self.fence=None
+diff --git a/tests/test_core.py b/tests/test_core.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_core.py
+@@ -0,0 +1,159 @@
++import unittest
++from copy import deepcopy
++from dataclasses import replace
++from datetime import timedelta
++from aifilm_p00.codec import *
++from aifilm_p00.errors import P00Error
++from aifilm_p00.plans import *
++from aifilm_p00.policy import *
++from aifilm_p00.authority import authorize
++from aifilm_p00.admission import Coordinator
++from aifilm_p00.windows_commands import *
++from helpers import *
++
++class Checks(unittest.TestCase):
++    def reject(self,code,fn,*args,**kwargs):
++        with self.assertRaises(P00Error) as cm: fn(*args,**kwargs)
++        self.assertEqual(int(cm.exception.code),code)
++        return cm.exception.reason
++
++class CodecTests(Checks):
++    def test_unicode_round_trip(self): self.assertEqual(loads(canonical({'phim':'Việt Nam'})),{'phim':'Việt Nam'})
++    def test_key_order_deterministic(self): self.assertEqual(digest({'a':1,'b':2}),digest({'b':2,'a':1}))
++    def test_duplicate_key(self): self.reject(10,loads,b'{"a":1,"a":2}')
++    def test_nonfinite(self): self.reject(10,loads,b'{"x":NaN}')
++    def test_invalid_utf8(self): self.reject(10,loads,b'\xff')
++    def test_size_cap(self): self.reject(10,loads,b' '*(MAX_JSON+1))
++    def test_depth_cap(self): self.reject(10,loads,'['*40+'0'+']'*40)
++    def test_bool_not_integer(self): self.reject(10,integer,True)
++    def test_local_timestamp(self): self.reject(10,instant,'2026-09-14T12:00:00')
++    def test_non_utc_timestamp(self): self.reject(10,instant,'2026-09-14T12:00:00+07:00')
++    def test_unicode_space_windows_path(self): self.assertEqual(windows_path(r'D:\Phim Việt\Control'),r'D:\Phim Việt\Control')
++    def test_safe_error_no_raw_value(self):
++        reason=self.reject(10,windows_path,'MY_SECRET\n'); self.assertNotIn('MY_SECRET',reason)
++
++BAD_PATHS=['\\\\server\\share', '\\\\?\\C:\\x', 'C:\\x:secret', 'C:\\..\\x', 'C:\\folder\\..', 'C:\\NUL', 'C:\\CON.txt', 'C:\\COM1', 'C:\\a.', 'C:\\a ', 'C:\\', 'relative', 'C:/x', 'C:\\x\n', 'C:\\a?b', 'C:\\a|b']
++for i,p in enumerate(BAD_PATHS):
++    setattr(CodecTests,f'test_reject_windows_path_{i:02}',lambda self,p=p:self.reject(10,windows_path,p))
++for i,p in enumerate(('../secret','/absolute','dir/../secret','dir//file','dir\\file','file#record','file:ads')):
++    setattr(CodecTests,f'test_reject_relative_{i:02}',lambda self,p=p:self.reject(10,relative,p))
++
++class PlanTests(Checks):
++    def test_timestamp_not_semantic(self):
++        s=binding(); a=make_plan(s,'2026-01-01T00:00:00Z'); b=make_plan(s,'2026-01-02T00:00:00Z'); self.assertEqual(a['plan_digest'],b['plan_digest'])
++    def test_approval_detached_no_self_hash(self):
++        _,p,_,_=authority_case(); self.assertEqual(check_plan(p),p['semantic'])
++    def test_change_semantic_changes_hash(self):
++        s=binding(); a=make_plan(s,'x'); s['target']['name']='other'; self.assertNotEqual(a['plan_digest'],make_plan(s,'x')['plan_digest'])
++    def test_plan_tamper(self):
++        p=make_plan(binding(),'x'); p['semantic']['target']['name']='other'; self.reject(15,check_plan,p)
++    def test_no_arbitrary_operation(self):
++        p=make_plan(binding(),'x'); p['semantic']['operations']=[{'action':'UNREGISTER','class':'C2'}]; p['plan_digest']=digest(p['semantic']); self.reject(10,check_plan,p)
++    def test_verify_cannot_import(self): self.reject(10,interface_check,'verify',make_plan(binding('RESTORE_IMPORT'),'x'))
++    def test_create_future_guest_not_required(self): self.assertEqual(make_plan(binding(),'x')['semantic']['target']['registration_id'],None)
++    def test_duplicate_volume_rejected(self):
++        b=binding(); b['budgets']*=2; self.reject(10,make_plan,b,'x')
++    def test_scratch_cap(self):
++        b=binding(); b['scratch_bytes']=64*1024**2+1; self.reject(10,make_plan,b,'x')
++    def test_approval_inside_semantic_rejected(self):
++        b=binding(); b['refs']['approval']=B; self.reject(10,make_plan,b,'x')
++    def test_root_user_rejected(self):
++        b=binding(); b['target']['user']='root'; self.reject(10,make_plan,b,'x')
++    def test_extra_cli_namespace_cannot_bind(self):
++        b=binding(); b['lock_path']='fake'; self.reject(10,make_plan,b,'x')
++
++class PolicyTests(Checks):
++    def test_host_profile(self): host_profile(host(),NOW)
++    def test_support_margin_under(self):
++        h=host(); h['support_end']=(NOW+timedelta(days=90,seconds=-1)).isoformat(); self.reject(11,host_profile,h,NOW)
++    def test_support_margin_exact(self):
++        h=host(); h['support_end']=(NOW+timedelta(days=90)).isoformat(); host_profile(h,NOW)
++    def test_runtime_floor(self): runtime_profile({'status':'PRESENT','packaged':True,'channel':'stable','version':'2.4.10'})
++    def test_runtime_old(self): self.reject(11,runtime_profile,{'status':'PRESENT','packaged':True,'channel':'stable','version':'2.4.9'})
++    def test_no_ttl_plan_drift(self): self.reject(16,drift,{'a':1},{'a':2})
++    def test_exact_budget(self):
++        b=binding()['budgets']; needed=20*GIB+20*GIB+1024; self.assertEqual(budget_check(b,{'volume1':needed})[0]['reserve'],20*GIB)
++    def test_budget_backup_volume_separate(self):
++        b=binding()['budgets']+[{'volume_id':'backup','roles':['BACKUP'],'allocations':{'export':GIB}}]; self.reject(13,budget_check,b,{'volume1':100*GIB,'backup':6*GIB-1})
++    def test_budget_adds_allocations_not_max(self):
++        b=[{'volume_id':'v','roles':['BACKUP'],'allocations':{'export':2*GIB,'clone':2*GIB}}]; self.reject(13,budget_check,b,{'v':8*GIB})
++    def test_protection_ok(self): protection(protection_pack(),'synthetic-host','reg',NOW,'quiesced')
++    def test_target_not_hidden_by_empty_rows(self):
++        p=protection_pack(); p['rows']=[]; p['clean_host_absent']=True; self.reject(11,protection,p,'synthetic-host','reg',NOW,'quiesced')
++    def test_no_writes_boundary_drift(self): self.reject(16,protection,protection_pack(),'synthetic-host','reg',NOW,'writer-resumed')
++    def test_protection_independent(self):
++        p=protection_pack(); p['rows'][0]['accessible_without_source_runtime']=False; self.reject(11,protection,p,'synthetic-host','reg',NOW,'quiesced')
++    def test_protection_checkpoint_exact(self):
++        p=protection_pack(); p['rows'][0]['restore_checkpoint_digest']=B; self.reject(15,protection,p,'synthetic-host','reg',NOW,'quiesced')
++    def test_clean_target_still_needs_backup(self):
++        p=protection_pack(); p['rows'][0]['disposition']='CLEAN_REPRODUCIBLE_NON_TARGET'; p['rows'][0]['restore_pass']=False; self.reject(11,protection,p,'synthetic-host','reg',NOW,'quiesced')
++    def test_affected_postcheck_missing(self): self.reject(20,c3_postconditions,protection_pack()['rows'],[])
++    def test_affected_postcheck_failed(self): self.reject(19,c3_postconditions,protection_pack()['rows'],[{'resource_id':'reg','authorized':True,'status':'FAIL','assertions':['content','health']}])
++    def test_restore_external(self):
++        p=envelope(); self.assertEqual(restore_envelope(p,'ADOPT_NONSENSITIVE_QUIESCED','SITE',CP,NOW,p['envelope_digest']),'ISO_EXTERNAL_PREBOOT_PROOF')
++    def test_restore_dirty_same_host(self):
++        p=envelope('SAME_HOST_CLEAN'); p['no_custom_startup']=False; self.reject(11,restore_envelope,p,'CLEAN_P00','SITE',CP,NOW,p['envelope_digest'])
++    def test_restore_sensitive_block(self):
++        p=envelope(); self.reject(11,restore_envelope,p,'SENSITIVE','SITE',CP,NOW,p['envelope_digest'])
++    def test_restore_same_host_not_pre_c3(self):
++        p=envelope('SAME_HOST_CLEAN'); self.reject(11,restore_envelope,p,'CLEAN_P00','SITE',CP,NOW,p['envelope_digest'],pre_c3=True)
++    def test_restore_synthetic_not_site(self):
++        p=envelope(); self.reject(12,restore_envelope,p,'SYNTHETIC_LAB','SITE',CP,NOW,p['envelope_digest'])
++    def test_envelope_changed(self):
++        p=envelope(); self.reject(16,restore_envelope,p,'CLEAN_P00','SITE',CP,NOW,B)
++    def terminal_call(self,r): return terminal(r,NOW,'synthetic-host','reg',B,CONTRACT_DIGEST,NOW-timedelta(hours=1),CP)
++    def test_terminal_current(self): self.assertFalse(self.terminal_call(terminal_report())['host_ready'])
++    def test_terminal_old_network(self):
++        r=terminal_report(); r['assertions']['network']['epoch_digest']=B; self.reject(19,self.terminal_call,r)
++    def test_terminal_mixed_epoch(self):
++        r=terminal_report(); r['end_witness']['guest_boot']='different'; self.reject(19,self.terminal_call,r)
++    def test_terminal_host_mismatch(self):
++        r=terminal_report(); r['source_kind']='LAB'; self.reject(19,self.terminal_call,r)
++    def test_terminal_expired(self):
++        r=terminal_report(); r['started_at']='2026-09-13T23:10:00Z'; r['ended_at']='2026-09-13T23:20:00Z'; self.reject(19,self.terminal_call,r)
++    def test_terminal_too_long(self):
++        r=terminal_report(); r['started_at']='2026-09-13T23:00:00Z'; self.reject(19,self.terminal_call,r)
++    def test_terminal_network_fail(self):
++        r=terminal_report(); r['assertions']['network']['status']='FAIL'; self.reject(19,self.terminal_call,r)
++
++for group,factory,thresholds in [('host',host_resources,HOST_FLOORS),('guest',guest_resources,GUEST_FLOORS)]:
++    for key,value in thresholds.items():
++        for offset in (-1,0,1):
++            def check(self,key=key,value=value,offset=offset,factory=factory,guest=(group=='guest')):
++                data=factory(); data[key]=value+offset
++                if offset<0:self.reject(13,floors,data,guest)
++                else:floors(data,guest)
++            setattr(PolicyTests,f'test_floor_{group}_{key}_{offset+1}',check)
++
++class AuthorityTests(Checks):
++    def test_site_valid_synthetic_chain(self):
++        i,p,c,s=authority_case(); self.assertEqual(authorize(i,p,c,s).purpose,'CREATE')
++    def test_registered_lab_needs_no_prior_qualification(self):
++        i,p,c,s=authority_case(execution_class='LAB',omit='qualification'); authorize(i,p,c,s)
++    def test_missing_qualification(self):
++        i,p,c,s=authority_case(omit='qualification'); self.reject(11,authorize,i,p,c,s)
++    def test_site_faked_lab_flag(self):
++        i,p,c,s=authority_case(execution_class='LAB'); c=replace(c,registered_class='SITE'); self.reject(12,authorize,i,p,c,s)
++    def test_wrong_sid(self):
++        i,p,c,s=authority_case(); c=replace(c,execution_sid='S-1-5-99'); self.reject(12,authorize,i,p,c,s)
++    def test_untrusted_receipt(self):
++        i,p,c,s=authority_case(); del s.pins['qualification']; self.reject(15,authorize,i,p,c,s)
++    def test_receipt_bytes_tampered(self):
++        i,p,c,s=authority_case(); s.blobs[p['semantic']['refs']['qualification']]=b'{}'; self.reject(15,authorize,i,p,c,s)
++    def test_fake_native_result_no_match(self):
++        i,p,c,s=authority_case(modify=('test_result',lambda x:x.update(environment_kind='WORKSPACE'))); self.reject(11,authorize,i,p,c,s)
++    def test_lab_id_mismatch(self):
++        i,p,c,s=authority_case(modify=('test_result',lambda x:x.update(lab_id='another'))); self.reject(16,authorize,i,p,c,s)
++    def test_exact_profile_mismatch(self):
++        i,p,c,s=authority_case(); c=replace(c,profile={**c.profile,'network':'mirrored'}); self.reject(16,authorize,i,p,c,s)
++    def test_discovery_qualification_not_create(self):
++        i,p,c,s=authority_case(modify=('qualification',lambda x:x['profile_rows'][0].update(purpose='DISCOVERY'))); self.reject(16,authorize,i,p,c,s)
++    def test_approval_expired(self):
++        i,p,c,s=authority_case(modify=('approval',lambda x:x.update(expires_at='2026-09-13T23:59:59Z'))); self.reject(12,authorize,i,p,c,s)
++    def test_no_self_extended_approval(self):
++        i,p,c,s=authority_case(modify=('approval',lambda x:x.update(expires_at='2026-10-13T23:59:59Z'))); self.reject(12,authorize,i,p,c,s)
++
++for name,changes,expected in [('failed',{'status':'FAIL'},11),('withdrawn',{'withdrawn':True},11),('expired',{'issued_at':'2026-07-01T00:00:00Z'},11),('future',{'issued_at':'2026-09-15T00:00:00Z'},11),('new_blocker',{'gate_blockers':['synthetic']},11),('wrong_build',{'build_digest':T},16),('wrong_testset',{'test_set_digest':B},16),('missing_results',{'results':{}},11)]:
++    def check(self,changes=changes,expected=expected):
++        i,p,c,s=authority_case(modify=('qualification',lambda x:x.update(changes))); self.reject(expected,authorize,i,p,c,s)
++    setattr(AuthorityTests,'test_qualification_'+name,check)
+diff --git a/tests/test_engine.py b/tests/test_engine.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_engine.py
+@@ -0,0 +1,59 @@
++"""Actual workspace execution of orchestration with a strictly in-memory fixture backend.
++No native registration, network access, process launch or synthetic qualification export.
++"""
++from copy import deepcopy
++from helpers import *
++from test_core import Checks
++from aifilm_p00.engine import OperationEngine
++from aifilm_p00.admission import Coordinator
++from aifilm_p00.errors import P00Error
++from aifilm_p00.evidence import assemble,Sanitizer,bundle_integrity
++
++class FixtureBackend:
++    source_kind='DOCUMENT'
++    def __init__(self,plan,fail=None,noop=False):
++        self.plan=plan; self.fail=fail; self.noop=noop; self.calls=[]; self.material=deepcopy(plan['semantic']['before']); self.finished=False; self.native=None
++    def refresh(self,s):
++        self.calls.append('refresh')
++        return {'material':deepcopy(self.material),'host':host(),'resources':host_resources(),
++                'free_bytes':{'volume1':100*GIB},'runtime':{'status':'PRESENT','packaged':True,'channel':'stable','version':'2.7.14'}}
++    def postconditions_hold(self,s): return self.noop or self.finished
++    def controller_witness(self,s,n): return {'host_boot':'boot','controller_pid':1,'controller_start':'start','build_digest':B,'step_id':f's{n}'}
++    def run(self,operation,s,on_native):
++        self.calls.append(operation['action']); self.native={'pid':2,'start':'synthetic-start','action_id':operation['action']}; on_native(self.native)
++        if self.fail=='timeout': raise P00Error(17,'NATIVE_TIMEOUT')
++        if self.fail=='pause': return {'state':'AWAITING_USER_INIT'}
++        if self.fail=='unknown_exit': return {'exit':1000}
++        self.material=deepcopy(s['expected_after']); self.finished=True
++        return {'exit':0,'material_after':deepcopy(self.material)}
++    def terminal_observation(self,op,s,result):
++        return {'action':op['action'],'native_witness':self.native,'no_pending_writer':True,'terminal_observed':True,'postconditions_observed':True,'evidence_digest':CP}
++
++class EngineTests(Checks):
++    def setup(self,fail=None,omit=None,noop=False):
++        i,p,c,s=authority_case(purpose='RESTORE_EXPORT',omit=omit); backend=FixtureBackend(p,fail,noop)
++        storage=MemoryStorage();guard=MemoryGuard();engine=OperationEngine(backend,Coordinator(guard,storage),s)
++        return engine,backend,storage,guard,i,p,c
++    def test_authorization_before_any_backend_action(self):
++        e,b,st,g,i,p,c=self.setup(omit='qualification');self.reject(11,e.execute,i,p,c);self.assertEqual(b.calls,[]);self.assertIsNone(st.fence)
++    def test_actual_fixture_execution_with_journal(self):
++        e,b,st,g,i,p,c=self.setup();r=e.execute(i,p,c);self.assertEqual(r['state'],'APPLIED');self.assertFalse(r['host_ready']);self.assertIsNone(st.fence);self.assertIn('EXPORT_CHECKPOINT',b.calls)
++    def test_timeout_preserves_fence(self):
++        e,b,st,g,i,p,c=self.setup(fail='timeout');self.reject(17,e.execute,i,p,c);self.assertEqual(st.fence['state'],'UNCERTAIN');self.assertFalse(g.busy)
++    def test_new_run_blocked_on_uncertainty(self):
++        e,b,st,g,i,p,c=self.setup(fail='timeout');self.reject(17,e.execute,i,p,c);b.calls.clear();self.reject(21,e.execute,i,p,c);self.assertEqual(b.calls,[])
++    def test_noop_does_not_invoke_mutation(self):
++        e,b,st,g,i,p,c=self.setup(noop=True);r=e.execute(i,p,c);self.assertEqual(r['state'],'NOOP');self.assertEqual(b.calls,['refresh']);self.assertIsNone(st.fence)
++    def test_pending_oobe_not_success(self):
++        e,b,st,g,i,p,c=self.setup(fail='pause');r=e.execute(i,p,c);self.assertEqual(r['exit'],20);self.assertEqual(st.fence['state'],'AWAITING_USER_INIT')
++    def test_unknown_native_exit_never_zero(self):
++        e,b,st,g,i,p,c=self.setup(fail='unknown_exit');self.reject(18,e.execute,i,p,c);self.assertIsNotNone(st.fence)
++    def test_wrong_before_rejected_before_mutation(self):
++        e,b,st,g,i,p,c=self.setup();b.material={'different':'state'};self.reject(16,e.execute,i,p,c);self.assertEqual(b.calls,['refresh']);self.assertIsNone(st.fence)
++    def test_verify_cannot_dispatch_export(self):
++        e,b,st,g,i,p,c=self.setup();self.reject(10,e.execute,'verify',p,c);self.assertEqual(b.calls,[])
++    def test_scanner_exception_blocks_publication(self):
++        def broken(_):raise RuntimeError('CANARY_SECRET')
++        r=assemble('FAILED_RUN',[collected('E00-10')],Sanitizer(b'x'*16),context={},scanner=broken)
++        self.assertEqual(r.exit,23);self.assertIsNone(r.archive);self.assertNotIn('CANARY_SECRET',str(r.report))
++    def test_invalid_zip_normalized(self):self.reject(15,bundle_integrity,b'not a zip')
+diff --git a/tests/test_state_evidence.py b/tests/test_state_evidence.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_state_evidence.py
+@@ -0,0 +1,162 @@
++import unittest
++import tempfile
++import subprocess
++import sys
++from pathlib import Path
++from dataclasses import replace
++from io import BytesIO
++from zipfile import ZipFile,ZIP_DEFLATED
++from aifilm_p00.errors import P00Error
++from aifilm_p00.codec import canonical,sha256,loads
++from aifilm_p00.authority import authorize,Admission
++from aifilm_p00.admission import Coordinator
++from aifilm_p00.evidence import *
++from aifilm_p00.journal_files import FileJournal
++from aifilm_p00.windows_commands import *
++from helpers import *
++from test_core import Checks
++
++class AdmissionTests(Checks):
++    def setup_admission(self):
++        i,p,ctx,store=authority_case(); return authorize(i,p,ctx,store)
++    def setup_coord(self):
++        g=MemoryGuard(); st=MemoryStorage(); a=self.setup_admission(); c=Coordinator(g,st); c.acquire(a); return c,st,g,a
++    def intent(self,c):
++        c.intent('INSTALL_DISTRO',[{'volume_id':'v','reserve':5*GIB}],{'host_boot':'boot','controller_pid':1,'controller_start':'start','build_digest':B,'step_id':'s1'})
++    def proof(self,c): return {'action':c.fence['action'],'no_pending_writer':True,'terminal_observed':True,'postconditions_observed':True,'evidence_digest':CP,'native_witness':c.fence['native']}
++    def test_busy_no_other_fence(self):
++        c,st,g,a=self.setup_coord(); other=Coordinator(g,st); self.reject(21,other.acquire,a); c.close()
++    def test_timeout_fence_survives_os_lock_release(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); c.native_started({'pid':2,'start':'s','action_id':'native'}); c.uncertain(); c.close()
++        self.assertFalse(g.busy); self.assertEqual(st.fence['state'],'UNCERTAIN'); self.reject(21,Coordinator(g,st).acquire,a)
++    def test_no_age_based_unlock(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); st.fence['ancient_time']='2000-01-01'; c.close(); self.reject(21,Coordinator(g,st).acquire,a)
++    def test_other_owner_cannot_reconcile(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); c.close(); wrong=replace(a,owner_sid='S-1-5-99',purpose='RECONCILIATION_ONLY'); self.reject(12,Coordinator(g,st).acquire,wrong,reconciliation=True)
++    def test_reconcile_still_needs_terminal_observation(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); c.close(); a=replace(a,purpose='RECONCILIATION_ONLY'); rec=Coordinator(g,st).acquire(a,reconciliation=True)
++        proof=self.proof(rec); proof['no_pending_writer']=False; self.reject(21,rec.reconcile,proof); self.assertIsNotNone(st.fence); rec.close()
++    def test_explicit_reconciliation_clears_after_journal(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); c.close(); rec=Coordinator(g,st).acquire(replace(a,purpose='RECONCILIATION_ONLY'),reconciliation=True)
++        rec.reconcile(self.proof(rec)); self.assertIsNone(st.fence); self.assertEqual(st.events[-1]['kind'],'TERMINAL'); rec.close()
++    def test_journal_failure_preserves_fence(self):
++        c,st,g,a=self.setup_coord(); st.fail_append=True; self.reject(18,self.intent,c); self.assertIsNotNone(st.fence); c.close()
++    def test_terminal_append_failure_does_not_clear(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); st.fail_append=True; self.reject(18,c.terminal,self.proof(c)); self.assertIsNotNone(st.fence); c.close()
++    def test_no_same_run_nested_acquire(self):
++        c,st,g,a=self.setup_coord(); self.reject(21,c.acquire,a); self.assertTrue(g.busy); c.close()
++    def test_native_witness_required(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); self.reject(11,c.native_started,{'pid':2}); c.close()
++    def test_awaiting_reboot_fence_retained(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); c.awaiting('AWAITING_REBOOT'); c.close(); self.assertEqual(st.fence['state'],'AWAITING_REBOOT')
++    def test_wrong_native_witness_not_terminal(self):
++        c,st,g,a=self.setup_coord(); self.intent(c); proof=self.proof(c); proof['native_witness']={'pid':123}; self.reject(19,c.terminal,proof); c.close()
++
++class JournalTests(Checks):
++    def test_persist_reload_fence(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.write_fence({'state':'UNCERTAIN','action':'synthetic'}); self.assertEqual(FileJournal(Path(d)).load_fence()['state'],'UNCERTAIN')
++    def test_hash_chain_reload(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.append_event({'a':1}); st.append_event({'a':2}); self.assertEqual(len(FileJournal(Path(d)).read_events()),2)
++    def test_truncated_journal_blocks(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.append_event({'a':1}); p=Path(d)/'events.jsonl'; p.write_bytes(p.read_bytes()[:-1]); self.reject(15,st.read_events)
++    def test_fence_tamper(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.write_fence({'state':'UNCERTAIN'}); p=Path(d)/'fence.json'; p.write_bytes(p.read_bytes().replace(b'UNCERTAIN',b'TERMINAL')); self.reject(15,st.load_fence)
++    def test_cannot_clear_uncertain(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.write_fence({'state':'UNCERTAIN'}); self.reject(21,st.clear_fence)
++    def test_terminal_archive_retained(self):
++        with tempfile.TemporaryDirectory() as d:
++            st=FileJournal(Path(d)); st.write_fence({'state':'TERMINAL'}); st.clear_fence(); self.assertIsNone(st.load_fence()); self.assertEqual(len(list(Path(d).glob('terminal-*'))),1)
++    def test_symlink_fence_rejected_before_read(self):
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d); (root/'secret').write_text('CANARY'); (root/'fence.json').symlink_to(root/'secret'); st=FileJournal(root); self.reject(16,st.load_fence)
++
++class EvidenceTests(Checks):
++    def inventory(self,scope='INVENTORY'):
++        records=[]
++        for eid in sorted(requiredness(scope)):
++            c=collected(eid)
++            if scope=='GATE_HANDOFF':
++                rec=deepcopy(c.record); rec['source_kind']='LAB' if eid=='E00-13' else 'SITE'
++                c=replace(c,record=rec,expected_bytes_digest=sha256(canonical(rec)),bytes_seen=len(canonical(rec)))
++            records.append(c)
++        return records
++    def bundle(self,records=None,scope='INVENTORY',**kw):
++        return assemble(scope,self.inventory(scope) if records is None else records,Sanitizer(b'workspace-salt-not-host-1234'),context={},scanner=lambda b:b'CANARY_SECRET' not in b,**kw)
++    def test_complete_inventory_not_gate(self):
++        result=self.bundle(); self.assertEqual(result.exit,0); self.assertFalse(result.component_eligible); self.assertFalse(result.report['host_ready']); bundle_integrity(result.archive)
++    def test_document_records_cannot_be_site_gate(self):
++        records=[collected(eid) for eid in requiredness('GATE_HANDOFF')]; self.assertEqual(self.bundle(records,'GATE_HANDOFF').exit,22)
++    def test_gate_component_only_not_host_ready(self):
++        r=self.bundle(scope='GATE_HANDOFF'); self.assertEqual(r.exit,0); self.assertTrue(r.component_eligible); self.assertFalse(r.report['host_ready'])
++    def test_optional_missing(self): self.assertEqual(self.bundle(optional_ids=frozenset({'E00-15'})).exit,2)
++    def test_mandatory_missing(self): self.assertEqual(self.bundle(self.inventory()[:-1]).exit,22)
++    def test_mandatory_timeout(self):
++        r=self.inventory(); r[0]=replace(r[0],duration_ms=30001); self.assertEqual(self.bundle(r).exit,22)
++    def test_optional_timeout(self):
++        r=self.inventory()+[collected('E00-15',duration_ms=30001)]; self.assertEqual(self.bundle(r,optional_ids=frozenset({'E00-15'})).exit,2)
++    def test_at_collector_cap_with_eof(self):
++        r=self.inventory(); r[0]=replace(r[0],bytes_seen=COLLECTOR_CAP,eof=True); self.assertEqual(self.bundle(r).exit,0)
++    def test_at_collector_cap_without_eof(self):
++        r=self.inventory(); r[0]=replace(r[0],bytes_seen=COLLECTOR_CAP,eof=False); self.assertEqual(self.bundle(r).exit,22)
++    def test_eof_missing_even_below_cap(self):
++        r=self.inventory(); r[0]=replace(r[0],eof=False); self.assertEqual(self.bundle(r).exit,22)
++    def test_mandatory_over_cap(self):
++        r=self.inventory(); r[0]=replace(r[0],bytes_seen=COLLECTOR_CAP+1); self.assertEqual(self.bundle(r).exit,22)
++    def test_aggregate_cap(self): self.assertEqual(self.bundle(bundle_cap=1024).exit,22)
++    def test_protected_access_unavailable(self):
++        r=self.inventory(); r[0]=replace(r[0],protected_access=False); self.assertEqual(self.bundle(r).exit,22)
++    def test_known_nested_raw_redacted(self):
++        summary={'errors':[{'message':'CANARY_SECRET','details':{'url':'https://u:CANARY_SECRET@example.invalid/?token=CANARY_SECRET','path':r'C:\CANARY_SECRET\x','password':'CANARY_SECRET'}}]}
++        r=self.inventory(); r[0]=collected('E00-01',summary=summary); result=self.bundle(r); self.assertEqual(result.exit,0)
++        with ZipFile(BytesIO(result.archive)) as z:
++            for name in z.namelist(): self.assertNotIn(b'CANARY_SECRET',z.read(name))
++    def test_unknown_nested_key_blocks_all_publication(self):
++        r=self.inventory(); r[0]=collected('E00-01',summary={'errors':[{'unallowlisted':'CANARY_SECRET'}]}); result=self.bundle(r); self.assertEqual(result.exit,23); self.assertIsNone(result.archive)
++    def test_scanner_unavailable_blocks(self):
++        result=assemble('INVENTORY',self.inventory(),Sanitizer(b'x'*16),context={},scanner=None); self.assertEqual(result.exit,23)
++    def test_privacy_beats_missing_and_optional(self):
++        r=self.inventory()[1:]; r[0]=collected(r[0].evidence_id,summary={'oops':'CANARY_SECRET'}); self.assertEqual(self.bundle(r,optional_ids=frozenset({'E00-15'})).exit,23)
++    def test_hash_mismatch(self):
++        r=self.inventory(); r[0]=replace(r[0],expected_bytes_digest=B); self.assertEqual(self.bundle(r).exit,15)
++    def test_no_required_to_optional(self): self.reject(10,self.bundle,optional_ids=frozenset({'E00-01'}))
++    def test_no_auto_scope_change(self):
++        r=self.bundle(self.inventory()[:-1]); self.assertEqual(r.report['scope'],'INVENTORY')
++    def test_future_guest_inventory_only(self):
++        r=self.inventory(); idx=[c.evidence_id for c in r].index('E00-04'); r[idx]=collected('E00-04',status='NOT_YET_CREATED'); self.assertEqual(self.bundle(r).exit,0)
++    def test_gate_no_e17_recursion(self):
++        r=self.bundle(scope='GATE_HANDOFF'); result=bundle_integrity(r.archive); self.assertTrue(result['integrity'])
++        with ZipFile(BytesIO(r.archive)) as z: self.assertFalse(any('gate_assessment' in name for name in z.namelist()))
++    def test_member_hash_tamper(self):
++        r=self.bundle(); out=BytesIO()
++        with ZipFile(BytesIO(r.archive)) as src,ZipFile(out,'w',ZIP_DEFLATED) as dst:
++            for name in src.namelist(): dst.writestr(name,src.read(name)+b' ' if name=='summaries/host.json' else src.read(name))
++        self.reject(15,bundle_integrity,out.getvalue())
++
++class CommandTests(Checks):
++    def test_create_literals_unicode_spaces(self):
++        args=compile_wsl('INSTALL_DISTRO',system_directory=r'C:\Windows\System32',target='AI Film Việt',payload=r'D:\Tải về\Ubuntu.wsl',base_path=r'D:\Phim Việt\Target')
++        self.assertEqual(args[-1],'--no-launch'); self.assertIn('AI Film Việt',args); self.assertIn(r'D:\Tải về\Ubuntu.wsl',args)
++    def test_import_explicit_v2(self):
++        args=compile_wsl('IMPORT_NEW_CLONE',system_directory=r'C:\Windows\System32',target='clone',payload=r'D:\backup.tar',base_path=r'D:\clone'); self.assertEqual(args[-2:],['--version','2'])
++    def test_no_unregister_compiler(self): self.reject(10,compile_wsl,'UNREGISTER',system_directory=r'C:\Windows\System32',target='x')
++    def test_target_control_rejected(self): self.reject(10,compile_wsl,'STOP_TARGET',system_directory=r'C:\Windows\System32',target='x;evil')
++    def test_feature_no_restart(self): self.assertIn('/NoRestart',compile_feature('VirtualMachinePlatform',r'C:\Windows\System32'))
++    def test_feature_allowlist(self): self.reject(10,compile_feature,'DisableFirewall',r'C:\Windows\System32')
++    def test_runtime_no_restart(self): self.assertIn('/norestart',compile_runtime(r'D:\wsl.msi',r'C:\Windows\System32'))
++
++class CLITests(Checks):
++    def runcli(self,*args):
++        return subprocess.run([sys.executable,'-m','aifilm_p00',*args],capture_output=True,timeout=10)
++    def test_workspace_preflight_not_host(self):
++        p=self.runcli('preflight','--workspace-only'); self.assertEqual(p.returncode,0); self.assertEqual(loads(p.stdout)['observed_windows_host'],'NOT_COLLECTED')
++    def test_recovery_notes_no_mutation(self):
++        p=self.runcli('recovery-notes'); self.assertEqual(p.returncode,0); self.assertFalse(loads(p.stdout)['native_execution'])
++for interface in ('preflight','apply','verify','support-bundle'):
++    def test(self,interface=interface):
++        p=self.runcli(interface); self.assertEqual(p.returncode,11); self.assertEqual(loads(p.stdout)['reason'],'NATIVE_BACKEND_NOT_IMPLEMENTED')
++    setattr(CLITests,'test_native_'+interface.replace('-','_')+'_explicitly_unimplemented',test)
+diff --git a/tools/run_workspace_tests.py b/tools/run_workspace_tests.py
+new file mode 100644
+--- /dev/null
++++ b/tools/run_workspace_tests.py
+@@ -0,0 +1,52 @@
++"""Run author tests and record actual results; never issue qualification receipts."""
++import hashlib
++import json
++import os
++import platform
++import sys
++import time
++import unittest
++from pathlib import Path
++from datetime import datetime,timezone
++ROOT=Path(__file__).resolve().parents[1]
++sys.path[:0]=[str(ROOT/'src'),str(ROOT/'tests')]
++
++def inventory(paths):
++    files=[]
++    for directory in paths:
++        for p in sorted((ROOT/directory).rglob('*')):
++            if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc':
++                data=p.read_bytes(); files.append({'path':str(p.relative_to(ROOT)),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
++    return files
++
++def dg(value): return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
++
++class Result(unittest.TextTestResult):
++    def __init__(self,*a,**kw):super().__init__(*a,**kw);self.actual=[];self.started={}
++    def startTest(self,test):self.started[test.id()]=time.monotonic();super().startTest(test)
++    def record(self,test,status,reason=None):
++        self.actual.append({'test_id':test.id(),'actual_status':status,'duration_seconds':round(time.monotonic()-self.started.get(test.id(),time.monotonic()),6),'reason':reason,'native_execution':False})
++    def addSuccess(self,test):super().addSuccess(test);self.record(test,'PASS')
++    def addFailure(self,test,err):super().addFailure(test,err);self.record(test,'FAIL',err[0].__name__)
++    def addError(self,test,err):super().addError(test,err);self.record(test,'ERROR',err[0].__name__)
++    def addSkip(self,test,reason):super().addSkip(test,reason);self.record(test,'SKIP',reason)
++
++def main():
++    if os.name!='posix':
++        print('This runner currently covers isolated POSIX workspace tests, not native Windows.');return 11
++    os.environ['PYTHONPATH']=str(ROOT/'src')
++    source=inventory(['src','schemas','config']); tests=inventory(['tests','fixtures','tools'])
++    start=datetime.now(timezone.utc).isoformat(); tic=time.monotonic()
++    suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'))
++    out=ROOT/'evidence';out.mkdir(exist_ok=True)
++    with (out/'WORKSPACE_TEST_LOG.txt').open('w') as f:
++        result=unittest.TextTestRunner(stream=f,verbosity=2,resultclass=Result).run(suite)
++    report={'report_kind':'AUTHOR_WORKSPACE_TEST_REPORT','source_kind':'WORKSPACE','environment':{'os':platform.system(),'release':platform.release(),'python':platform.python_version(),'implementation':platform.python_implementation(),'machine':platform.machine()},
++        'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'duration_seconds':round(time.monotonic()-tic,6),
++        'source_content_digest':dg(source),'test_content_digest':dg(tests),'source_members':source,'test_members':tests,
++        'tests_run':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'skipped':len(result.skipped),'successful':result.wasSuccessful(),'actual_results':result.actual,
++        'windows_wsl_native':'NOT_RUN','site_tests':'NOT_RUN','code_review':'NOT_PERFORMED','qualification_issued':False,'host_ready':False}
++    (out/'WORKSPACE_TEST_REPORT.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
++    print(json.dumps({k:report[k] for k in ['tests_run','failures','errors','skipped','successful','source_content_digest','test_content_digest']}))
++    return 0 if result.wasSuccessful() else 1
++if __name__=='__main__':raise SystemExit(main())
+diff --git a/schemas/binding.schema.json b/schemas/binding.schema.json
+new file mode 100644
+--- /dev/null
++++ b/schemas/binding.schema.json
+@@ -0,0 +1,225 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "title": "Phase00 binding v1 (draft application schema, partial adapters)",
++  "properties": {
++    "schema_version": {
++      "const": 1
++    },
++    "run_id": {
++      "type": "string",
++      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++    },
++    "work_item": {
++      "type": "string",
++      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++    },
++    "execution_class": {
++      "enum": [
++        "LAB",
++        "SITE"
++      ]
++    },
++    "host_id": {
++      "type": "string",
++      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++    },
++    "owner_sid": {
++      "type": "string",
++      "pattern": "^S-1-[0-9-]+$"
++    },
++    "target": {
++      "type": "object",
++      "required": [
++        "name",
++        "base_path",
++        "registration_id",
++        "user"
++      ],
++      "properties": {
++        "name": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "base_path": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "registration_id": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "user": {
++          "type": [
++            "string",
++            "null"
++          ]
++        }
++      },
++      "additionalProperties": false
++    },
++    "purpose": {
++      "enum": [
++        "PASSIVE",
++        "DISCOVERY",
++        "ENGINE",
++        "CREATE",
++        "ADOPT",
++        "RESTORE_EXPORT",
++        "RESTORE_IMPORT",
++        "SITE_VERIFY",
++        "TARGET_LIFECYCLE",
++        "HOST_RESTART",
++        "RESTORE_VERIFY",
++        "RECONCILIATION_ONLY",
++        "SUPPORT_BUNDLE"
++      ]
++    },
++    "contract_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "build_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "test_set_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "profile": {
++      "type": "object"
++    },
++    "before": {
++      "type": "object"
++    },
++    "expected_after": {
++      "type": "object"
++    },
++    "budgets": {
++      "type": "array",
++      "minItems": 1,
++      "items": {
++        "type": "object",
++        "required": [
++          "volume_id",
++          "roles",
++          "allocations"
++        ],
++        "properties": {
++          "volume_id": {
++            "type": "string",
++            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++          },
++          "roles": {
++            "type": "array",
++            "minItems": 1,
++            "items": {
++              "enum": [
++                "OS",
++                "DISTRO",
++                "EVIDENCE",
++                "BACKUP"
++              ]
++            }
++          },
++          "allocations": {
++            "type": "object",
++            "minProperties": 1,
++            "additionalProperties": {
++              "type": "integer",
++              "minimum": 0
++            }
++          }
++        },
++        "additionalProperties": false
++      }
++    },
++    "payload_digest": {
++      "anyOf": [
++        {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        {
++          "type": "null"
++        }
++      ]
++    },
++    "source_class": {
++      "enum": [
++        "NOT_YET_CREATED",
++        "CLEAN_P00",
++        "ADOPT_NONSENSITIVE_QUIESCED",
++        "SYNTHETIC_LAB",
++        "UNKNOWN",
++        "SENSITIVE"
++      ]
++    },
++    "refs": {
++      "type": "object",
++      "additionalProperties": {
++        "type": "string",
++        "pattern": "^[0-9a-f]{64}$"
++      }
++    },
++    "final_state": {
++      "enum": [
++        "RUNNING",
++        "STOPPED_RETAINED",
++        "OPERATOR_PENDING"
++      ]
++    },
++    "endpoints": {
++      "type": "array"
++    },
++    "bundle_scope": {
++      "enum": [
++        "INVENTORY",
++        "FAILED_RUN",
++        "GATE_HANDOFF"
++      ]
++    },
++    "expected_checkpoint": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "expected_envelope": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "scratch_bytes": {
++      "type": "integer",
++      "minimum": 0,
++      "maximum": 67108864
++    }
++  },
++  "required": [
++    "schema_version",
++    "run_id",
++    "work_item",
++    "execution_class",
++    "host_id",
++    "owner_sid",
++    "target",
++    "purpose",
++    "contract_digest",
++    "build_digest",
++    "test_set_digest",
++    "profile",
++    "before",
++    "expected_after",
++    "budgets",
++    "payload_digest",
++    "source_class",
++    "refs",
++    "final_state"
++  ],
++  "additionalProperties": false
++}
+diff --git a/schemas/evidence-record.schema.json b/schemas/evidence-record.schema.json
+new file mode 100644
+--- /dev/null
++++ b/schemas/evidence-record.schema.json
+@@ -0,0 +1,198 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "title": "Group E00-01..15 envelope; native group field catalogs pending",
++  "properties": {
++    "route": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "expected_ref": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "target_alias": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "run_id": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "status": {
++      "enum": [
++        "ABSENT",
++        "BLOCKED",
++        "FAIL",
++        "NOT_APPLICABLE",
++        "NOT_RUN",
++        "NOT_YET_CREATED",
++        "OBSERVED",
++        "PASS",
++        "REQUIRES_ACTIVE_PROBE",
++        "UNAVAILABLE",
++        "UNKNOWN"
++      ]
++    },
++    "collector_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "protected_ref": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "stage": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "evidence_id": {
++      "enum": [
++        "E00-01",
++        "E00-02",
++        "E00-03",
++        "E00-04",
++        "E00-05",
++        "E00-06",
++        "E00-07",
++        "E00-08",
++        "E00-09",
++        "E00-10",
++        "E00-11",
++        "E00-12",
++        "E00-13",
++        "E00-14",
++        "E00-15"
++      ]
++    },
++    "epoch_ref": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "source_kind": {
++      "enum": [
++        "DOCUMENT",
++        "LAB",
++        "SITE"
++      ]
++    },
++    "host_alias": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "actual_ref": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "schema_version": {
++      "const": 1
++    },
++    "protected_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "work_item": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "timestamp_utc": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "step_id": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "normalized_exit": {
++      "type": "integer"
++    },
++    "contract_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "safe_summary": {
++      "type": "object"
++    },
++    "record_id": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "operation": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "build_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "sensitivity": {
++      "type": [
++        "string",
++        "null"
++      ]
++    },
++    "native_exit": {
++      "type": [
++        "integer",
++        "null"
++      ]
++    }
++  },
++  "required": [
++    "actual_ref",
++    "build_digest",
++    "collector_digest",
++    "contract_digest",
++    "epoch_ref",
++    "evidence_id",
++    "expected_ref",
++    "host_alias",
++    "native_exit",
++    "normalized_exit",
++    "operation",
++    "protected_digest",
++    "protected_ref",
++    "record_id",
++    "route",
++    "run_id",
++    "safe_summary",
++    "schema_version",
++    "sensitivity",
++    "source_kind",
++    "stage",
++    "status",
++    "step_id",
++    "target_alias",
++    "timestamp_utc",
++    "work_item"
++  ],
++  "additionalProperties": false
++}
+diff --git a/schemas/plan.schema.json b/schemas/plan.schema.json
+new file mode 100644
+--- /dev/null
++++ b/schemas/plan.schema.json
+@@ -0,0 +1,285 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "title": "Detached-approval plan envelope",
++  "properties": {
++    "semantic": {
++      "$schema": "https://json-schema.org/draft/2020-12/schema",
++      "type": "object",
++      "title": "Phase00 binding v1 (draft application schema, partial adapters)",
++      "properties": {
++        "schema_version": {
++          "const": 1
++        },
++        "run_id": {
++          "type": "string",
++          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++        },
++        "work_item": {
++          "type": "string",
++          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++        },
++        "execution_class": {
++          "enum": [
++            "LAB",
++            "SITE"
++          ]
++        },
++        "host_id": {
++          "type": "string",
++          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++        },
++        "owner_sid": {
++          "type": "string",
++          "pattern": "^S-1-[0-9-]+$"
++        },
++        "target": {
++          "type": "object",
++          "required": [
++            "name",
++            "base_path",
++            "registration_id",
++            "user"
++          ],
++          "properties": {
++            "name": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "base_path": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "registration_id": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "user": {
++              "type": [
++                "string",
++                "null"
++              ]
++            }
++          },
++          "additionalProperties": false
++        },
++        "purpose": {
++          "enum": [
++            "PASSIVE",
++            "DISCOVERY",
++            "ENGINE",
++            "CREATE",
++            "ADOPT",
++            "RESTORE_EXPORT",
++            "RESTORE_IMPORT",
++            "SITE_VERIFY",
++            "TARGET_LIFECYCLE",
++            "HOST_RESTART",
++            "RESTORE_VERIFY",
++            "RECONCILIATION_ONLY",
++            "SUPPORT_BUNDLE"
++          ]
++        },
++        "contract_digest": {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        "build_digest": {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        "test_set_digest": {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        "profile": {
++          "type": "object"
++        },
++        "before": {
++          "type": "object"
++        },
++        "expected_after": {
++          "type": "object"
++        },
++        "budgets": {
++          "type": "array",
++          "minItems": 1,
++          "items": {
++            "type": "object",
++            "required": [
++              "volume_id",
++              "roles",
++              "allocations"
++            ],
++            "properties": {
++              "volume_id": {
++                "type": "string",
++                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++              },
++              "roles": {
++                "type": "array",
++                "minItems": 1,
++                "items": {
++                  "enum": [
++                    "OS",
++                    "DISTRO",
++                    "EVIDENCE",
++                    "BACKUP"
++                  ]
++                }
++              },
++              "allocations": {
++                "type": "object",
++                "minProperties": 1,
++                "additionalProperties": {
++                  "type": "integer",
++                  "minimum": 0
++                }
++              }
++            },
++            "additionalProperties": false
++          }
++        },
++        "payload_digest": {
++          "anyOf": [
++            {
++              "type": "string",
++              "pattern": "^[0-9a-f]{64}$"
++            },
++            {
++              "type": "null"
++            }
++          ]
++        },
++        "source_class": {
++          "enum": [
++            "NOT_YET_CREATED",
++            "CLEAN_P00",
++            "ADOPT_NONSENSITIVE_QUIESCED",
++            "SYNTHETIC_LAB",
++            "UNKNOWN",
++            "SENSITIVE"
++          ]
++        },
++        "refs": {
++          "type": "object",
++          "additionalProperties": {
++            "type": "string",
++            "pattern": "^[0-9a-f]{64}$"
++          }
++        },
++        "final_state": {
++          "enum": [
++            "RUNNING",
++            "STOPPED_RETAINED",
++            "OPERATOR_PENDING"
++          ]
++        },
++        "endpoints": {
++          "type": "array"
++        },
++        "bundle_scope": {
++          "enum": [
++            "INVENTORY",
++            "FAILED_RUN",
++            "GATE_HANDOFF"
++          ]
++        },
++        "expected_checkpoint": {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        "expected_envelope": {
++          "type": "string",
++          "pattern": "^[0-9a-f]{64}$"
++        },
++        "scratch_bytes": {
++          "type": "integer",
++          "minimum": 0,
++          "maximum": 67108864
++        },
++        "operations": {
++          "type": "array",
++          "minItems": 1,
++          "items": {
++            "type": "object",
++            "properties": {
++              "action": {
++                "type": "string",
++                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
++              },
++              "class": {
++                "enum": [
++                  "C0",
++                  "C1",
++                  "C2",
++                  "C3"
++                ]
++              }
++            },
++            "required": [
++              "action",
++              "class"
++            ],
++            "additionalProperties": false
++          }
++        }
++      },
++      "required": [
++        "schema_version",
++        "run_id",
++        "work_item",
++        "execution_class",
++        "host_id",
++        "owner_sid",
++        "target",
++        "purpose",
++        "contract_digest",
++        "build_digest",
++        "test_set_digest",
++        "profile",
++        "before",
++        "expected_after",
++        "budgets",
++        "payload_digest",
++        "source_class",
++        "refs",
++        "final_state",
++        "operations"
++      ],
++      "additionalProperties": false
++    },
++    "plan_digest": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    },
++    "report": {
++      "type": "object",
++      "required": [
++        "created_at"
++      ],
++      "properties": {
++        "created_at": {
++          "type": "string"
++        }
++      },
++      "additionalProperties": false
++    },
++    "approval_ref": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    }
++  },
++  "required": [
++    "semantic",
++    "plan_digest",
++    "report"
++  ],
++  "additionalProperties": false
++}
+diff --git a/config/dependencies.json b/config/dependencies.json
+new file mode 100644
+--- /dev/null
++++ b/config/dependencies.json
+@@ -0,0 +1,9 @@
++{
++  "runtime_dependencies": [],
++  "workspace_python_observed": "3.13.5",
++  "workspace_python_implementation": "CPython",
++  "native_windows_python_runtime": "NOT_SELECTED_OR_DEPLOYED",
++  "automatic_dependency_install": false,
++  "target_host_supported_by_this_release": false,
++  "native_runtime_prerequisite_resolution": "Required before a native candidate; no unreviewed host software installation."
++}
+diff --git a/config/host-binding.template.json b/config/host-binding.template.json
+new file mode 100644
+--- /dev/null
++++ b/config/host-binding.template.json
+@@ -0,0 +1,13 @@
++{
++  "TEMPLATE_ONLY": true,
++  "NOT_EXECUTABLE": true,
++  "host_id": null,
++  "owner_sid": null,
++  "target_name": null,
++  "target_path": null,
++  "runtime_profile": null,
++  "trust_store": null,
++  "qualification_ref": null,
++  "approval_ref": null,
++  "note": "Do not replace unknown values with fixtures. Native binding adapters are not implemented."
++}
+diff --git a/config/required-native-test-inventory.json b/config/required-native-test-inventory.json
+new file mode 100644
+--- /dev/null
++++ b/config/required-native-test-inventory.json
+@@ -0,0 +1,608 @@
++{
++  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
++  "description": "Future approved acceptance coverage, NOT executable native harness or qualification",
++  "cases": [
++    {
++      "case_id": "T00-01",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-02",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-03",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-04",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-05",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-06",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-07",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-08",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-09",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-10",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-11",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-12",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-13",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T00-14",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-01",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-02",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-03",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-04",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-05",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-06",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-07",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-08",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-09",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-10",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-11",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-12",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-13",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-14",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-15",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "F00-16",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T05-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-G",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-H",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-I",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T07-J",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-G",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-H",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-I",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-J",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-K",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-L",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-M",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T08-N",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-G",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-H",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-I",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T09-J",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T13-G",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-A",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-B",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-C",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-D",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-E",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-F",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-G",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-H",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    },
++    {
++      "case_id": "T14-I",
++      "status": "NOT_RUN",
++      "evidence": null,
++      "native_harness": "NOT_IMPLEMENTED",
++      "author_workspace_tests_do_not_close_case": true
++    }
++  ]
++}

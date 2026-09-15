@@ -1,0 +1,14 @@
+{
+  "report_kind": "AUTHOR_PACKAGING_CHECKS",
+  "inputs_unchanged": true,
+  "input_files_checked": 40,
+  "python_files_ast_parsed": 17,
+  "json_files_parsed_before_seal": 12,
+  "last_actual_test_report_matches_packaged_source_and_tests": true,
+  "tests_run": 185,
+  "code_review_performed": false,
+  "native_execution": false,
+  "implementation_complete": false,
+  "source_content_digest": "fd8cbe765b7a9842871de0a22a97550c3b0b29eaecadb2567b9dd719224b42f0",
+  "test_content_digest": "3e78bb61c4c8f628abe9a907f913691a0f128e7256bc383d935bb725dcd184fa"
+}

@@ -1,0 +1,473 @@
+{
+  "kind": "AUTHOR_STATIC_CHECKS",
+  "timestamp_utc": "2026-09-15T02:30:21.957484+00:00",
+  "checks": [
+    {
+      "path": "src/aifilm_p00/__init__.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/__main__.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/admission.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/authority.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/codec.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/content.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/engine.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/errors.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/evidence.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/evidence_catalog.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/evidence_stage.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/journal_budget.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/journal_files.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/__init__.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/actuator.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/artifacts.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/assessment.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/bindings.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/coordination.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/entry.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/evidence_pipeline.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/executable_trust.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/filesystem.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/guest.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/inventory.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/lifecycle.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/network.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/noop.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/observations.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/probes.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/process.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/proofs.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/publication_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/read_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/read_request_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/recovery_driver.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/request_entry.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/security.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/session_driver.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/snapshot.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/source_pin.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/system_state.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/terminal_sweep.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/transitions.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/trust.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/winapi.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/network_probe.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/observation_binding.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/plans.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/policy.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/read_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/resume.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/route_observation.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/session.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/windows_commands.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/helpers.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_core.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev3_catalog_native_helpers.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev3_proof_observer_integration.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev4_noop.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev4_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev4_source_and_journal.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev5_evidence_cli.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev5_observation_binding.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev5_read_recovery.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev5_route_harness.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev6_assessment.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev6_early_failure.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev6_prior_evidence.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev7_executable_trust.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev8_lifecycle.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_native_foundations.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_native_supervision.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_network_snapshot.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_session_integration.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_state_evidence.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/check_source.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/run_native_foundation_tests.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/run_native_route_tests.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/run_workspace_tests.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "native/guest-agent.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/binding.schema.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/evidence-record.schema.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/native-trust-anchor.schema.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/plan.schema.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/protected-snapshot-index.schema.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "config/dependencies.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "config/host-binding.template.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "config/required-native-test-inventory.json",
+      "check": "JSON_PARSE",
+      "status": "PASS"
+    },
+    {
+      "path": "native/guest-observe.sh",
+      "check": "SHELL_SYNTAX_ONLY",
+      "status": "PASS",
+      "script_executed": false
+    }
+  ],
+  "powershell_parse": "NOT_RUN",
+  "powershell_execution": "NOT_RUN",
+  "windows_native": "NOT_RUN",
+  "guest_script_execution": "NOT_RUN",
+  "code_review_verdict": null,
+  "qualification_issued": false
+}

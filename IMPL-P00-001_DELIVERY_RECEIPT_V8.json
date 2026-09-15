@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "delivery": "0.1.0.dev8",
+  "status": "PARTIAL_SOURCE_DROP_DEV8",
+  "work_item": "IMPL-P00-001",
+  "author_complete": false,
+  "code_review_handoff_ready": false,
+  "source_content_digest": "e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08",
+  "test_content_digest": "f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021",
+  "workspace_tests": 683,
+  "static_checks": 92,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED",
+  "source_diff_sha256": "c9c519dc4bb0cc99135ffdd6884f31a573bbd191f9141ac9ad2484a4b030560e",
+  "increment": "C3 reboot/OOBE owner-wait reconciliation and lifecycle resume hardening",
+  "static_failed": 0
+}

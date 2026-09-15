@@ -1,0 +1,15 @@
+{
+  "kind": "AUTHOR_PACKAGING_CHECKS",
+  "delivery": "0.1.0.dev8",
+  "workspace_tests": 683,
+  "workspace_successful": true,
+  "static_checks": 92,
+  "static_failed": 0,
+  "source_content_digest": "e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08",
+  "test_content_digest": "f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021",
+  "secret_scan_pass": true,
+  "approved_contracts_unchanged": true,
+  "code_review": "NOT_PERFORMED",
+  "native_windows_wsl": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}

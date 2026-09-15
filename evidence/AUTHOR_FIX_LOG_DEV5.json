@@ -1,0 +1,22 @@
+{
+  "kind": "AUTHOR_SOURCE_REGRESSION_FIX_LOG",
+  "active_mode": "IMPLEMENTATION",
+  "item": "AUTHOR-DEV5-ORACLE-01",
+  "area": "src/aifilm_p00/route_observation.py: released PAUSE oracle",
+  "problem": "Earlier oracle accepted an unrelated SAFE_PAUSE or lacked evidence-digest and matching-CLEAR checks.",
+  "first_actual_report": "evidence/dev5-history/PAUSE_ORACLE_IDENTITY_FIRST_REPORT.json",
+  "failed_tests_before_fix": [
+    "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_another_original_run_rejected",
+    "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_another_request_rejected",
+    "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_evidence_digest_mismatch_rejected",
+    "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_missing_matching_clear_rejected"
+  ],
+  "change": "Match immutable original plan and recovery request, pause observation integrity, and corresponding durable release; require no remaining reads.",
+  "actual_after": "Four formerly failing tests plus exact-match positive pass in final 653-case workspace report.",
+  "source_content_digest_after": "953de476ce5fc1610c49172c8ddf8b6698bb6dcc3f8a5f98735a4d61bd30135e",
+  "test_content_digest_after": "7100cc014babf8cad40941dcfba8e5fa2d841b0dad3383022ab44416faca493c",
+  "native_execution": false,
+  "code_review": "NOT_PERFORMED",
+  "phase_validation_failure_created": false,
+  "qualification_issued": false
+}

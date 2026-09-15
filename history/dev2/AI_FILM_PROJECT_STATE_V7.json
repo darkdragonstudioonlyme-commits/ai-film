@@ -1,0 +1,417 @@
+{
+  "PROJECT": "AI-FILM-SERVER",
+  "STATE_VERSION": 7,
+  "CURRENT_MODE": "IMPLEMENTATION",
+  "CURRENT_PHASE": {
+    "ID": "00",
+    "NAME": "Host / WSL",
+    "STATUS": "IMPLEMENTATION_IN_PROGRESS_PARTIAL"
+  },
+  "CURRENT_BASELINE": {
+    "REQUIREMENTS": "AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2",
+    "SOURCE_CODE": {
+      "PACKAGE": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V2",
+      "STATUS": "PARTIAL_AUTHOR_DROP_NOT_REVIEWED",
+      "VERSION": "0.1.0.dev2",
+      "SOURCE_CONTENT_DIGEST": "6e65ad94128e5ddca94493195e849d7099a1bdcf8f40ac33aeff8544fd3041f9",
+      "NATIVE_EXECUTABLE_BASELINE": false,
+      "TEST_CONTENT_DIGEST": "13e3ec9a4089465605014874637e4cab480c68a30750a324275eae7e44bcbb1f",
+      "NATIVE_COMPONENT_SOURCE_AUTHORED": true,
+      "FULL_NATIVE_BACKEND_AVAILABLE": false
+    },
+    "INFRASTRUCTURE": "UNKNOWN_NOT_VERIFIED",
+    "MODEL_WORKFLOWS": "UNKNOWN_NOT_PROVIDED",
+    "QUALITY": "UNKNOWN_NOT_MEASURED",
+    "PROMOTED_BASELINE": "NONE_RECORDED",
+    "REVIEWED_DESIGN": {
+      "REVISION": "V2",
+      "SCOPE": "Phase00 Host / WSL only",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "REVIEW": "REVIEW-P00-002",
+      "VERDICT": "PASS",
+      "EXECUTABLE_OR_PROMOTED_BASELINE": false
+    }
+  },
+  "CURRENT_TASK": {
+    "ID": "IMPL-P00-001",
+    "STATUS": "IN_PROGRESS",
+    "RESULT": "PARTIAL_SOURCE_DROP_DEV2",
+    "AUTHOR_COMPLETE": false,
+    "CODE_REVIEW_HANDOFF_READY": false,
+    "REMAINING_ITEMS": [
+      "IMPL-REM-01",
+      "IMPL-REM-02",
+      "IMPL-REM-03",
+      "IMPL-REM-04",
+      "IMPL-REM-05",
+      "IMPL-REM-06",
+      "IMPL-REM-07",
+      "IMPL-REM-08"
+    ]
+  },
+  "TARGET_GATE": {
+    "ACTIVE_GATE": "CODE_REVIEW_PASS",
+    "ACTIVE_GATE_STATUS": "NOT_EVALUATED",
+    "ENTRY_DESIGN_GATE": "SATISFIED_EXACT_V2",
+    "PHASE_GATE": "HOST_READY",
+    "STATUS": "NOT_EVALUATED"
+  },
+  "APPROVED_ARCHITECTURE": {
+    "REQUIRED_TARGET": "Blueprint V2; FD-01 through FD-08 unchanged",
+    "REVIEWED_IMPLEMENTATION_DESIGN": {
+      "SCOPE": "Phase00 Host / WSL only",
+      "REVISION": "V2",
+      "NORMATIVE_FILES": [
+        {
+          "path": "PHASE00_ACCEPTANCE_MATRIX_V2.md",
+          "bytes": 28191,
+          "sha256": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407"
+        },
+        {
+          "path": "PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md",
+          "bytes": 22218,
+          "sha256": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc"
+        },
+        {
+          "path": "PHASE00_FAILURE_RECOVERY_PLAN_V2.md",
+          "bytes": 19669,
+          "sha256": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060"
+        },
+        {
+          "path": "PHASE00_INFRA_DESIGN_V2.md",
+          "bytes": 61146,
+          "sha256": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d"
+        }
+      ],
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "REVIEW": "REVIEW-P00-002",
+      "APPROVAL_RECORD": "DESIGN_REVIEW_APPROVAL_V2.json"
+    },
+    "IMPLEMENTATION_AUTHORIZED": true,
+    "AUTHORIZATION_SCOPE": "AUTHOR_CODE_CONFIG_FIXTURES_DOCS_AND_WORKSPACE_TESTS_ONLY; not LAB/SITE native execution",
+    "SITE_EXECUTION_AUTHORIZED": false,
+    "LAB_NATIVE_EXECUTION_AUTHORIZED": false,
+    "WHOLE_FILM_PLATFORM_IMPLEMENTATION_DESIGN_APPROVED": false
+  },
+  "FROZEN_DECISIONS": {
+    "FD-01": "Single main chat; one active mode; MASTER maintains state.",
+    "FD-02": "Stage A WSL2 + rented GPU; B local NVIDIA; C multi-GPU/distributed.",
+    "FD-03": "Separate control/GPU compute; adapters; no single GPU/model/vendor/cloud/UI hardcoding.",
+    "FD-04": "Project/Series/Episode/Scene/Shot/Take; stateful shot; independent shot regeneration.",
+    "FD-05": "Identity distinct from costume/expression/lighting; continuity managed.",
+    "FD-06": "Important assets have provenance; retry/requeue/resume/regenerate/checkpoint/partial failure/worker replacement.",
+    "FD-07": "Correctness, reproducibility, quality, observability, maintainability, performance, scalability, security, cost; gates retained.",
+    "FD-08": "Evidence-controlled model/workflow promotion; quality experiments; rights review; hardware selected using measured workload."
+  },
+  "OPEN_FINDINGS": [],
+  "OPEN_DESIGN_GAPS": [],
+  "OPEN_VALIDATION_FAILURES": [],
+  "CURRENT_INFRA": {
+    "TARGET_STAGE": "A",
+    "TARGET_CONTROL_PLANE": "Windows / WSL2 / Ubuntu LTS",
+    "TARGET_GPU_COMPUTE": "Rented GPU through secure link",
+    "OBSERVED_HOST": "NOT_PROVIDED",
+    "OBSERVED_WSL_DISTRO": "NOT_PROVIDED",
+    "VERIFIED_DEPLOYMENT": "NONE_RECORDED",
+    "APPROVED_DESIGN_PROFILE": "Windows 11 x64 supported profile; compatible packaged stable WSL; Ubuntu 24.04 LTS amd64 WSL2. D00-01/04 parameters approved in design only; actual host NOT_VERIFIED."
+  },
+  "CURRENT_MODEL_STACK": {
+    "OBSERVED_STACK": "UNKNOWN_NOT_PROVIDED",
+    "APPROVED_SELECTION": "NONE_RECORDED",
+    "REQUIRED_INTERFACE": "MODEL_ADAPTERS"
+  },
+  "CURRENT_QUALITY_BASELINE": {
+    "STATUS": "NOT_ESTABLISHED_IN_LEDGER",
+    "BENCHMARK_DATASET": "NOT_PROVIDED",
+    "GENERATED_SAMPLES": "NOT_PROVIDED",
+    "METRICS_AND_THRESHOLDS": "NOT_APPROVED",
+    "HUMAN_REVIEW_RESULTS": "NOT_PROVIDED"
+  },
+  "FILES_IN_SCOPE": {
+    "IMMUTABLE_INPUTS": "55 mounted input files unchanged; parent 53 member hashes and approved design 19 member hashes verified",
+    "AUTHOR_WORKSPACE": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V2",
+    "PRODUCTION_HOST_FILES_MODIFIED": [],
+    "SOURCE": "src/aifilm_p00",
+    "TESTS": "tests/",
+    "SCHEMAS": "schemas/",
+    "CONFIG": "config/",
+    "DOCS": "docs/",
+    "EVIDENCE": "evidence/",
+    "NATIVE_SCRIPTS": "native/",
+    "HISTORY": "history/dev1/"
+  },
+  "LAST_TEST_RESULT": {
+    "SOURCE": "evidence/WORKSPACE_TEST_REPORT.json",
+    "ENVIRONMENT_KIND": "POSIX_WORKSPACE",
+    "TESTS_RUN": 312,
+    "FAILURES": 0,
+    "ERRORS": 0,
+    "SKIPPED": 0,
+    "AUTHOR_WORKSPACE_RESULT": "PASS_FOR_EXECUTED_CASES_ONLY",
+    "NATIVE_LAB": "NOT_RUN",
+    "SITE": "NOT_RUN",
+    "QUALIFICATION_ISSUED": false,
+    "NATIVE_ACCEPTANCE_ENTRIES": 86,
+    "NATIVE_ACCEPTANCE_STATUS": "NOT_RUN",
+    "SOURCE_CONTENT_DIGEST": "6e65ad94128e5ddca94493195e849d7099a1bdcf8f40ac33aeff8544fd3041f9",
+    "TEST_CONTENT_DIGEST": "13e3ec9a4089465605014874637e4cab480c68a30750a324275eae7e44bcbb1f",
+    "LIVE_NETWORK": "NOT_RUN",
+    "POWERSHELL_PARSE": "NOT_RUN",
+    "POWERSHELL_EXECUTION": "NOT_RUN",
+    "GUEST_SCRIPT_EXECUTION": "NOT_RUN",
+    "STATIC_CHECKS": "46 successful Python AST / JSON parse / shell syntax checks only",
+    "FOUNDATION_NATIVE_CASES": "5 authored; NONE executed natively"
+  },
+  "LAST_REVIEW_RESULT": {
+    "DESIGN": "REVIEW-P00-002: PASS exact V2, unchanged",
+    "HISTORICAL_V1_DESIGN": "REVIEW-P00-001: FAIL, unchanged",
+    "CODE": "NOT_PERFORMED",
+    "CODE_REVIEW_HANDOFF": "NOT_READY_FULL_SCOPE"
+  },
+  "P0": {
+    "P0-01": "REVIEW-P00-002 complete: design V2 PASS; RC-01…06 satisfied; DR001…006 REVIEW_PASS design-only.",
+    "P0-02": "Continue IMPL-P00-001 to complete exact approved V2 implementation; then CODE_REVIEW. No native execution authorization in authoring.",
+    "P0-03": "Architecture contracts for later phases: planned, not approved by this P00 review.",
+    "P0-04": "Approved RC→contract→test/evidence mapping; actual implementation/LAB/SITE evidence still required.",
+    "IMPL-P00-001": "IN_PROGRESS: partial source dev2; concrete native foundation components authored; REM-01…08 still open for integration/harness; no full-scope code-review handoff"
+  },
+  "P1": {
+    "P1-01": "Phase 01-02 Linux and core services: planned",
+    "P1-02": "Phase 03-05 jobs/GPU abstraction/remote GPU: planned",
+    "P1-03": "Phase 06-08 generation/character/shot: planned",
+    "P1-04": "Phase 09-11 audio/episode/novel: planned",
+    "P1-05": "Quality system: planned",
+    "P1-06": "Production readiness and promotion: planned"
+  },
+  "P2": {
+    "P2-01": "Local GPU production after measured workload",
+    "P2-02": "Multi-GPU/distributed scale",
+    "P2-03": "Continuous R&D with controlled promotion"
+  },
+  "RESEARCH": {
+    "R-01A": "DOCUMENTARY_RESEARCH_COMPLETE; Microsoft/Canonical; no host test",
+    "R-01B": "Linux/systemd/Docker Phase 01: NOT_STARTED",
+    "R-02": "Rented GPU: NOT_STARTED",
+    "R-03": "Models/adapters: NOT_STARTED",
+    "R-04": "Quality metrics/benchmarks: NOT_STARTED",
+    "R-05": "Commercial rights: NOT_STARTED",
+    "R-06": "Workload/hardware sizing: NOT_STARTED",
+    "REVIEW_EXTERNAL_VERIFICATION": "Primary-source spot checks recorded in EXTERNAL_VERIFICATION_REGISTER_V1; no new version selection and no host compatibility test.",
+    "V2_SOURCE_CHECKS": "Narrow read of existing Microsoft configuration/basic-commands/networking sources; no new version/model/provider selection, no new R&D or host validation.",
+    "REVIEW_V2_EXTERNAL_VERIFICATION": "Narrow existing Microsoft configuration/basic-commands/networking sources corroborated; see EXTERNAL_VERIFICATION_REGISTER_V2.md. No new version/model/provider choice; no compatibility execution.",
+    "IMPLEMENTATION_API_LOOKUP": "Narrow primary Microsoft Win32 mutex/security/path/token/process API checks for source authoring; no design/runtime/model/provider change; docs/IMPLEMENTATION_API_REFERENCES.md"
+  },
+  "MISSING_EVIDENCE": [
+    "E00-01",
+    "E00-02",
+    "E00-03",
+    "E00-04",
+    "E00-05",
+    "E00-06",
+    "E00-07",
+    "E00-08",
+    "E00-09",
+    "E00-10",
+    "E00-11",
+    "E00-12",
+    "E00-13",
+    "E00-14",
+    "E00-15",
+    "E00-16",
+    "E00-17"
+  ],
+  "NEXT_ACTION": {
+    "WORK_ITEM": "IMPL-P00-001",
+    "NEXT_MODE": "IMPLEMENTATION",
+    "TRANSITION_STATUS": "NO_TRANSITION_CONTINUE_CURRENT_MODE",
+    "GOAL": "Complete concrete native active session/route driver first; then E00 field-level integration and full native harness for REM-01…08",
+    "NEXT_REVIEW_WORK_ITEM": "CODE-REVIEW-P00-001",
+    "NEXT_REVIEW_MODE": "CODE_REVIEW",
+    "REVIEW_ENTRY": "BLOCKED_BY_INCOMPLETE_IMPLEMENTATION"
+  },
+  "MODE_HISTORY_THIS_WORK_ITEM": [
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev1 historical partial"
+    },
+    {
+      "MODE": "IMPLEMENTATION",
+      "TRANSITION": "NONE",
+      "DELIVERY": "dev2 partial continuation"
+    }
+  ],
+  "DATE": "2026-09-14",
+  "TIMEZONE": "Asia/Ho_Chi_Minh",
+  "PRIOR_STATE_REFERENCE": "history/dev1/AI_FILM_PROJECT_STATE_V6.json (exact parent source-drop state)",
+  "ARTIFACT_INTEGRITY_RESULT": {
+    "MOUNTED_INPUT_FILES": 55,
+    "UNCHANGED": true,
+    "PARENT_IMPLEMENTATION_MANIFEST_MEMBERS": 53,
+    "APPROVED_DESIGN_MANIFEST_MEMBERS": 19,
+    "SCOPE": "Content identity only; no correctness/code review verdict"
+  },
+  "FINDING_HISTORY": [
+    {
+      "ID": "DR-P00-001",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-001",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-002",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-002",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-003",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-003",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-004",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-004",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-005",
+      "SEVERITY": "P1",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-005",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    },
+    {
+      "ID": "DR-P00-006",
+      "SEVERITY": "P2",
+      "ORIGINAL_REVIEW": "REVIEW-P00-001",
+      "ORIGINAL_STATUS": "OPEN",
+      "STATUS": "REVIEW_PASS",
+      "CLOSURE_REVIEW": "REVIEW-P00-002",
+      "CLOSURE_SCOPE": "DESIGN_ONLY_EXACT_V2",
+      "CONTRACT_SET_DIGEST": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+      "DETAILS": "FINDING_DISPOSITIONS_V2.json#DR-P00-006",
+      "RUNTIME_TEST_RESULT": "NOT_RUN"
+    }
+  ],
+  "MISSING_EVIDENCE_SCOPE": "Execution/SITE binding and actual test records; E10 design-review document subcomponent is available but E10 full execution binding remains incomplete.",
+  "DOCUMENT_EVIDENCE_AVAILABLE": [
+    "REVIEW-P00-002 exact V2 design PASS",
+    "DESIGN_REVIEW_APPROVAL_V2.json",
+    "DR-P00-001…006 reviewer dispositions",
+    "Document-only input/diff/source audits"
+  ],
+  "CURRENT_APPROVED_DESIGN_DECISIONS": {
+    "D00-01_TO_14": "APPROVED_FOR_PHASE00_IMPLEMENTATION via REVIEW-P00-002 exact four-document contract set",
+    "FROZEN_FD_CHANGES": [],
+    "ARTIFACT_TEXT_PRESERVED": true,
+    "PUBLIC_CONTRACT_CHANGES_REQUIRE_DESIGN_REVIEW": true
+  },
+  "IMPLEMENTATION_AUTHORIZED": true,
+  "SITE_EXECUTION_AUTHORIZED": false,
+  "LAB_NATIVE_EXECUTION_AUTHORIZED": false,
+  "REQUIRED_CHANGES": [],
+  "OPEN_IMPLEMENTATION_ITEMS": [
+    {
+      "ID": "IMPL-REM-01",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-02",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-03",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-04",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-05",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-06",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-07",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    },
+    {
+      "ID": "IMPL-REM-08",
+      "STATUS": "OPEN",
+      "DETAILS": "docs/REMAINING_IMPLEMENTATION.md",
+      "AUTHOR_PROGRESS": "PARTIAL_NATIVE_COMPONENTS_DEV2"
+    }
+  ],
+  "IMPLEMENTATION_BLOCKERS": [
+    {
+      "ID": "IMPL-BLOCK-01",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "SCOPE": "REM-01…06",
+      "DETAIL": "Native active session driver, live proof normalization, per-step binding, service completion, resume/OOBE and C3/restore orchestration missing."
+    },
+    {
+      "ID": "IMPL-BLOCK-02",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "SCOPE": "REM-07",
+      "DETAIL": "Full E00-01…17 field catalogs/stage integration, optional collectors, trusted snapshot source, terminal assessment and CLI wiring missing."
+    },
+    {
+      "ID": "IMPL-BLOCK-03",
+      "TYPE": "UNFINISHED_IMPLEMENTATION",
+      "SCOPE": "REM-08",
+      "DETAIL": "Five foundation paths are not the complete supported-route/failure harness."
+    }
+  ],
+  "INPUT_ARTIFACTS_MODIFIED": [],
+  "HOST_FILES_MODIFIED": []
+}

@@ -1,0 +1,558 @@
+--- a/NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md
++++ b/NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md
+@@ -1,20 +1,17 @@
++# NEXT_WORK_ITEM — continue IMPL-P00-001 from dev8
++
++```yaml
+ WORK_ITEM_ID: IMPL-P00-001
+ MODE: IMPLEMENTATION
+ PHASE: "00 — Host / WSL"
+-STATUS: IN_PROGRESS
+-CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV6
++CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV8
++AUTHOR_COMPLETE: false
+ TARGET_GATE: CODE_REVIEW_PASS
+-MODE_TRANSITION_NOW: NONE
++NEXT_INCREMENT: "prior pre-C3/checkpoint proof selection + nested cross-stage E00 semantics"
++```
+ 
+-FIRST_INTEGRATION:
+-  - "Complete executable/dependency trust and remaining effective-profile/service/OOBE/restart/resume/factory branches."
+-  - "Complete prior pre-C3/checkpoint and nested cross-stage E00 semantics plus remaining bundle/E17 recovery integration."
+-THEN:
+-  - "Finish causal 86-case supported-route/failure controller procedures and production-factory integration tests."
+-FORBIDDEN:
+-  - "Change FD/D00/public contracts or lower acceptance."
+-  - "Execute Windows/WSL/LAB/SITE/guest/network during authoring."
+-  - "Treat author tests, process exit, fixtures or evidence envelopes as native proof."
+-EXIT_CONDITION: "Full author-complete source/harness/docs/test candidate, no hidden stubs."
+-NEXT_MODE_AFTER_EXIT: CODE_REVIEW
+-NEXT_REVIEW_WORK_ITEM: CODE-REVIEW-P00-001
++Dev8 completed an author-level lifecycle hardening increment: C3 pending-reboot classification, changed-host-boot resume boundary, post-reboot affected-resource checks, and owner-verification wait retention without mutation replay. The reviewed final owner-planned restart remains unchanged.
++
++Next: finish prior pre-C3/checkpoint provenance and nested cross-stage E00 semantics, then temp/incomplete publication/E17 recovery, non-DIRECT transport, causal 86-case controllers, and production-factory author integration.
++
++No native Windows/WSL/LAB/SITE execution is authorized by this package. Do not change FD/D00/public contracts in IMPLEMENTATION.
+--- a/README.md
++++ b/README.md
+@@ -1,16 +1,14 @@
+-# AI-FILM Phase00 — implementation source drop dev5
++# AI-FILM Phase00 — implementation source drop dev8
+ 
+-**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev5 · PARTIAL_SOURCE_DROP_DEV5**
++**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev8 · PARTIAL_SOURCE_DROP_DEV8**
+ 
+ **Full author-complete: false. Full-scope CODE_REVIEW handoff: NOT_READY.**
+ 
+-Dev5 connects protected C0 capture to plan proposals, original-request recovery before any mutation fence, native journal byte reservations, digest-bound primary CLI entry, publication re-observation and immutable evidence-stage context. It adds a registered-LAB route controller and author tests. No native Windows/WSL/guest/network/LAB/SITE execution occurred during authoring.
+-
+-This is still incomplete source, not merely an untested complete Windows package. The remaining work includes cross-stage prior-guest/pre-C3/nested evidence semantics, complete failure/publication/E17 recovery, non-DIRECT transport contexts, bootstrap/dependency trust integration, full lifecycle/factory integration and the full native failure-controller suite. See [remaining source work](docs/REMAINING_IMPLEMENTATION.md).
++Dev8 builds on dev7 executable-byte trust and adds explicit C3 lifecycle wait/resume hardening: successful native C3 processes cannot bypass an observed Windows pending-reboot condition; reconciliation of a reboot wait requires a changed host boot witness and cleared pending-reboot state; post-reboot affected-resource owner evidence is attached before a C3 step can commit; OOBE/post-C3 missing owner evidence remains a durable `AWAITING_OWNER_VERIFICATION` operator wait without replaying mutation. No native Windows/WSL/LAB/SITE execution occurred during authoring.
+ 
+ ## Read first
+ 
+-[Implementation status](docs/IMPLEMENTATION_STATUS.md), [native integration boundary](docs/NATIVE_INTEGRATION_BOUNDARY.md), [request contracts](docs/DEV5_NATIVE_REQUEST_CONTRACTS.md), [recovery](docs/RECOVERY.md), [dev4 → dev5 changes](docs/CHANGELOG_DEV4_TO_DEV5.md) and [traceability](docs/TRACEABILITY.md). Historical parent documents under `history/dev4/` are not current status.
++Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV7_TO_DEV8.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
+ 
+ ## Workspace-only checks
+ 
+@@ -22,14 +20,8 @@
+ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m aifilm_p00 preflight --workspace-only
+ ```
+ 
+-Actual per-test results and content hashes are in `evidence/WORKSPACE_TEST_REPORT.json`; static results are separate. Workspace tests use explicit synthetic ports/records or POSIX files. They do not close the eight ACs or 86 native T/F/subcase entries. PowerShell/guest scripts are not executed. Foundation and route-harness `--list` only reports metadata.
+-
+-## Native interface state
+-
+-Native `apply`, `verify`, `support-bundle` and plan-bound `preflight` now require `--plan-ref` and dispatch to the production factory. The reference addresses a pinned `execution_plan` document; it does not select a backend. `dry-run --selection-ref ... --capture-digest ...` derives a proposal from committed protected C0 observations. Offline `dry-run --binding` remains document analysis only. Native execution still requires exact code review, external trust/registration/permissions and the applicable LAB/SITE qualification gates, none issued by this source drop.
+-
+-The former unconditional `NATIVE_BACKEND_NOT_IMPLEMENTED` entry stub is removed. This does **not** make the entire backend complete or authorize calling it. On POSIX, a well-formed native reference is rejected as `WINDOWS_X64_REQUIRED` before a native API is constructed. Missing required references are input errors. No MemoryGuard/fake CLI backend or fixture trust fallback exists.
++Workspace tests are author evidence only. They do not close AC00-01…08, the native T/F inventory, qualification, CODE_REVIEW_PASS, or HOST_READY.
+ 
+ ## Delivery boundaries
+ 
+-Immutable approved contract digest: `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`. Design PASS remains exact V2 only. Code review NOT_PERFORMED; HOST_READY NOT_EVALUATED; qualification not issued; baseline not promoted. State V10 continues the same IMPLEMENTATION work item.
++Immutable approved contract digest: `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`. Design PASS remains exact V2 only. Code review NOT_PERFORMED; HOST_READY NOT_EVALUATED; qualification not issued; baseline not promoted.
+--- a/docs/CHANGELOG_DEV7_TO_DEV8.md
++++ b/docs/CHANGELOG_DEV7_TO_DEV8.md
+@@ -0,0 +1,24 @@
++# CHANGELOG — dev7 → dev8
++
++## Source
++
++- Added `src/aifilm_p00/native/lifecycle.py`.
++- Extended `Coordinator.awaiting()` with bounded durable wait context.
++- Hardened C3 run classification for observed pending reboot after native process completion.
++- Hardened reboot reconciliation with host-boot/pending-state boundary checks.
++- Added post-reboot affected-resource checks for C3 mutation completion.
++- Preserved OOBE owner wait separately from reboot-origin owner wait.
++- Recovery now returns `AWAITING_OWNER_VERIFICATION/20` only from existing operator-wait states when owner postcondition evidence is missing.
++
++## Tests
++
++- Added `tests/test_dev8_lifecycle.py` with 10 focused synthetic author tests.
++- Final author regression: 683 PASS / 0 failure/error/skip.
++- Static checks: 92 PASS / 0 failed.
++- No Windows/WSL/LAB/SITE native execution.
++
++## Contracts
++
++- No FD/D00/public-contract change.
++- ENGINE and HOST_RESTART operation lists are unchanged.
++- Final owner-planned restart is intentionally retained.
+--- a/docs/CODE_REVIEW_HANDOFF_DRAFT.md
++++ b/docs/CODE_REVIEW_HANDOFF_DRAFT.md
+@@ -1,3 +1,9 @@
++# DEV8 handoff status
++
++**NOT_READY.** Dev8 is a partial lifecycle increment; REM-01…08 remain open at full-item scope. Do not start CODE_REVIEW-P00-001 yet.
++
++---
++
+ # CODE-REVIEW-P00-001 — DRAFT / NOT_READY
+ 
+ Exact V2 design remains approved. This dev5 source drop is partial and has not met the full author-complete exit condition. The companion diff, per-test actual reports, native request contracts and precise remaining-source register are supplied for continuation, not as an activated code review.
+--- a/docs/IMPLEMENTATION_STATUS.md
++++ b/docs/IMPLEMENTATION_STATUS.md
+@@ -1,3 +1,35 @@
++# IMPL-P00-001 Implementation Status — dev8 increment
++
++## Current verified author candidate
++
++`0.1.0.dev8 / PARTIAL_SOURCE_DROP_DEV8`
++
++Dev8 hardens reviewed service/reboot/OOBE/reconciliation behavior without changing Phase00 operations or public contracts.
++
++### Added in dev8
++
++- `native/lifecycle.py`: pure classification of observed C3 pending-reboot state and actual reboot-resume boundaries.
++- Native `ENABLE_PREREQUISITES` / `INSTALL_RUNTIME`: exit 0 no longer implies the step may continue when Windows reports a pending reboot; the original fence becomes `AWAITING_REBOOT`. Native exit 3010 remains an explicit reboot wait.
++- Reconciliation of a reboot-wait requires a different host boot witness and cleared pending-reboot indicators before the original step can commit.
++- When a C3 action is completed only after reboot, affected-resource post-C3 owner checks are consumed before terminal commit.
++- Missing owner postcondition evidence on an existing operator-wait fence returns/retains `AWAITING_OWNER_VERIFICATION/20`; it does not replay the mutation or relabel the step successful.
++- OOBE owner-verification waits remain distinct from reboot waits; they do not invent a host-reboot requirement.
++- Added 10 focused lifecycle author tests.
++
++### Author evidence
++
++- Workspace regression: **683 PASS / 0 failure / 0 error / 0 skip**.
++- Static author checks: **92 PASS / 0 fail**.
++- Source content digest: `e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08`.
++- Test content digest: `f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021`.
++- Windows/WSL/LAB/SITE native execution: **NOT_RUN**.
++- Code review: **NOT_PERFORMED**.
++- HOST_READY: **NOT_EVALUATED**.
++
++### Boundaries
++
++The reviewed final `AWAIT_OWNER_RESTART` operation remains in ENGINE/HOST_RESTART plans. Dev8 does not remove or coalesce that planned owner restart. Remaining service/OOBE/restart/resume/factory and native causal coverage is still OPEN under REM-04/05/08.
++
+ # IMPL-P00-001 Implementation Status — dev7 increment
+ 
+ ## Current verified author candidate
+--- a/docs/NATIVE_INTEGRATION_BOUNDARY.md
++++ b/docs/NATIVE_INTEGRATION_BOUNDARY.md
+@@ -1,3 +1,26 @@
++# DEV8 Lifecycle / resume boundary update
++
++A C3 child process is not sufficient lifecycle proof. Dev8 adds this control flow:
++
++```text
++C3 native process terminal
++→ if native result already requests reboot: retain AWAITING_REBOOT
++→ else read current Windows pending-reboot indicators
++→ pending=true: retain AWAITING_REBOOT
++→ operator reboot / renewed RECONCILIATION_ONLY authority
++→ require host boot witness changed
++→ require pending-reboot indicators cleared
++→ require process/job/service and action postconditions
++→ require affected-resource post-C3 owner evidence when applicable
++→ only then TERMINAL + CLEAR original step
++```
++
++If postcondition evidence is not yet available, only an existing operator-wait fence may move to `AWAITING_OWNER_VERIFICATION`. The mutation is not replayed. OOBE owner-waits do not acquire a reboot requirement unless they originated from a reboot wait.
++
++This is author source behavior, not proof that Windows service/reboot/OOBE behavior has passed native LAB/SITE tests.
++
++---
++
+ # DEV7 Integration Boundary Update
+ 
+ Production child processes now have a separate executable-byte trust boundary in addition to project-source and payload trust:
+--- a/docs/REMAINING_IMPLEMENTATION.md
++++ b/docs/REMAINING_IMPLEMENTATION.md
+@@ -1,3 +1,15 @@
++# DEV8 Remaining-Work Delta
++
++- **REM-04/05 progress:** pending reboot after a C3 process is now a durable operator wait even when the process returned exit 0; reboot reconciliation requires a changed host boot witness and cleared pending state.
++- **REM-04 progress:** missing post-C3/OOBE owner evidence can remain `AWAITING_OWNER_VERIFICATION` without replaying mutation; reboot-origin owner waits preserve their reboot-boundary requirement.
++- **REM-04 progress:** post-reboot completion of `ENABLE_PREREQUISITES`, `INSTALL_RUNTIME`, and `AWAIT_OWNER_RESTART` consumes affected-resource postchecks before commit.
++- **Still open:** full service/OOBE/restart/resume production-factory integration across supported native profiles, approval-expiry/continuation combinations, and causal Windows/LAB execution; no native validation is claimed.
++- **REM-06…08 and remaining REM-01/02/03 scope:** unchanged except where dev7/dev8 progress is explicitly noted.
++
++Do not remove the reviewed final owner-planned restart merely because an earlier C3 step separately required reboot. Design V2/T00-05 requires planned host-restart lifecycle coverage; dev8 only prevents false continuation/commit across reboot boundaries.
++
++---
++
+ # DEV7 Remaining-Work Delta
+ 
+ The full REM register remains authoritative below. Dev7 changes the progress interpretation as follows:
+--- a/docs/TRACEABILITY.md
++++ b/docs/TRACEABILITY.md
+@@ -1,3 +1,17 @@
++# Traceability — dev8 lifecycle increment
++
++Approved contract remains `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`.
++
++Final author result: **683 PASS / 0 failures/errors/skipped**, static **92 PASS**. Source digest `e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08`; test digest `f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021`.
++
++| New author test module | Cases | Parent specifications | What it demonstrates |
++|---|---:|---|---|
++| `test_dev8_lifecycle` | 10 | T00-05, T00-07, T00-13, T00-14-I; F00-09/10/11 | Synthetic control-flow/oracle coverage for pending reboot, changed boot witness, owner-verification wait and no mutation replay. It is not native lifecycle validation. |
++
++Broad parent IDs remain NOT_RUN at native/LAB/SITE scope. AC00-01…08 remain NOT_EVALUATED.
++
++---
++
+ # Traceability — dev5 partial implementation
+ 
+ Approved contract: `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`.
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,7 +1,7 @@
+ [project]
+ name = "aifilm-p00-contracts"
+-version = "0.1.0.dev7"
+-description = "Partial Phase00 implementation: adds exact executable byte trust and native effective-profile hardening; remaining lifecycle/evidence/harness work pending"
++version = "0.1.0.dev8"
++description = "Partial Phase00 implementation: hardens reboot/OOBE owner-wait reconciliation and C3 lifecycle resume; remaining evidence/transport/harness work pending"
+ requires-python = ">=3.11"
+ dependencies = []
+ 
+--- a/src/aifilm_p00/__init__.py
++++ b/src/aifilm_p00/__init__.py
+@@ -1,4 +1,4 @@
+ """Phase00 contract implementation. Native interfaces registered; full source/test closure remains partial."""
+-__version__ = '0.1.0.dev7'
++__version__ = '0.1.0.dev8'
+ CONTRACT_DIGEST = 'f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee'
+ NATIVE_BACKEND_AVAILABLE = False
+--- a/src/aifilm_p00/admission.py
++++ b/src/aifilm_p00/admission.py
+@@ -126,9 +126,12 @@
+         self._require_fence(); token(reason)
+         self.fence['state']='UNCERTAIN'; self.fence['reason']=reason; self._persist('UNCERTAIN')
+ 
+-    def awaiting(self,kind:str):
++    def awaiting(self,kind:str,observation:dict|None=None):
+         self._require_fence()
+         require(kind in ('AWAITING_REBOOT','AWAITING_USER_INIT','AWAITING_OWNER_VERIFICATION'),10,'INVALID_PAUSE')
++        if observation is not None:
++            require(type(observation) is dict and bool(observation),10,'WAIT_OBSERVATION_SCHEMA')
++            self.fence['wait_observation']=deepcopy(observation)
+         self.fence['state']=kind; self._persist(kind)
+ 
+     def terminal(self,observation:dict):
+--- a/src/aifilm_p00/native/lifecycle.py
++++ b/src/aifilm_p00/native/lifecycle.py
+@@ -0,0 +1,54 @@
++"""Pure lifecycle classification for reviewed Phase00 operator boundaries.
++
++These helpers classify already-observed facts. They never request a reboot,
++launch a process, issue an owner receipt, or turn an intent into proof.
++"""
++from copy import deepcopy
++
++from ..errors import require
++
++C3_INSTALL_ACTIONS = frozenset({'ENABLE_PREREQUISITES', 'INSTALL_RUNTIME'})
++
++
++def classify_c3_process_result(action: str, result: dict, pending_reboot: dict) -> dict:
++    """Convert an observed post-process reboot requirement into an operator wait."""
++    require(action in C3_INSTALL_ACTIONS, 10, 'C3_LIFECYCLE_ACTION')
++    require(type(result) is dict and type(pending_reboot) is dict and bool(pending_reboot),
++            11, 'REBOOT_STATE_UNAVAILABLE')
++    require(all(type(value) is bool for value in pending_reboot.values()),
++            11, 'REBOOT_STATE_UNAVAILABLE')
++    if result.get('state') == 'AWAITING_REBOOT':
++        return deepcopy(result)
++    if any(pending_reboot.values()):
++        out = deepcopy(result)
++        out.update({'exit': 20, 'state': 'AWAITING_REBOOT',
++                    'wait_reason': 'PENDING_REBOOT_OBSERVED',
++                    'pending_reboot': deepcopy(pending_reboot)})
++        return out
++    return deepcopy(result)
++
++
++def reboot_resume_boundary(fence: dict, observed_host: dict, pending_reboot: dict) -> dict:
++    """Require an actual host boot boundary before a reboot-wait may reconcile."""
++    require(type(fence) is dict and type(fence.get('witness')) is dict,
++            15, 'REBOOT_FENCE_WITNESS')
++    before = fence['witness'].get('host_boot')
++    after = observed_host.get('boot_utc') if type(observed_host) is dict else None
++    require(type(before) is str and bool(before) and type(after) is str and bool(after),
++            11, 'REBOOT_WITNESS_UNAVAILABLE')
++    require(before != after, 20, 'REBOOT_NOT_OBSERVED')
++    require(type(pending_reboot) is dict and bool(pending_reboot)
++            and all(type(value) is bool for value in pending_reboot.values()),
++            11, 'REBOOT_STATE_UNAVAILABLE')
++    require(not any(pending_reboot.values()), 20, 'REBOOT_STILL_PENDING')
++    return {'kind': 'HOST_REBOOT_BOUNDARY', 'before_boot': before,
++            'after_boot': after, 'pending_reboot': deepcopy(pending_reboot),
++            'action': fence.get('action'), 'step_id': fence['witness'].get('step_id')}
++
++
++def owner_wait_can_relabel(opening_fence: dict, reason: str) -> bool:
++    """Only operator-wait fences may move to owner-verification wait."""
++    return (reason == 'AWAITING_OWNER_VERIFICATION'
++            and type(opening_fence) is dict
++            and opening_fence.get('state') in
++                ('AWAITING_REBOOT', 'AWAITING_USER_INIT', 'AWAITING_OWNER_VERIFICATION'))
+--- a/src/aifilm_p00/native/session_driver.py
++++ b/src/aifilm_p00/native/session_driver.py
+@@ -374,6 +374,9 @@
+                     pins.enter_context(self.paths.pin(str(PureWindowsPath(self.binding['export_path']).parent),directory=True,protected=True))
+                 result=NativeActuator(self.supervisor,self.paths,fresh.store,self.api.system_directory(),self.environment).execute(
+                     action,plan,coordinator,self.binding)
++            if action in ('ENABLE_PREREQUISITES','INSTALL_RUNTIME') and result.get('state')!='AWAITING_REBOOT':
++                from .lifecycle import classify_c3_process_result
++                result=classify_c3_process_result(action,result,self.system.pending_reboot())
+             return result
+         if action=='AWAIT_OWNER_RESTART':return {'state':'AWAITING_REBOOT','exit':20}
+         if action=='AWAIT_OWNER_USER_INIT':
+@@ -463,18 +466,21 @@
+         c3_postconditions(prior['claim']['rows'],receipt['claim']['rows'])
+         return receipt
+ 
+-    def _after(self,plan,step,result,fresh,coordinator,*,reconciliation=False):
++    def _after(self,plan,step,result,fresh,coordinator,*,reconciliation=False,resume_boundary=None):
+         s=plan['semantic'];action=s['operations'][step]['action']
+         # No caller-supplied completion bool. Read current process/job state,
+         # current metadata and the action's data/service-level postconditions.
+         writers=self.system.all_writers(coordinator.fence['native'])
+         obs=fresh.observed;row=obs['target'];details={'writers':writers}
++        if resume_boundary is not None:details['restart_boundary']=deepcopy(resume_boundary)
+         if action=='ENABLE_PREREQUISITES':
+             details['servicing']=self.system.installer_idle(action)
+             require(all(r['state']=='Enabled' for r in obs['material']['features'] if r['name'] in self.binding['features']),19,'FEATURES_NOT_ENABLED')
++            if resume_boundary is not None:details['affected_resources']=self._post_c3(plan,fresh,coordinator)
+         elif action=='INSTALL_RUNTIME':
+             details['servicing']=self.system.installer_idle(action);runtime_profile(obs['material']['runtime'])
+             require(obs['material']['runtime']['version'] in self.binding['installed_runtime_versions'],19,'RUNTIME_NOT_EXPECTED')
++            if resume_boundary is not None:details['affected_resources']=self._post_c3(plan,fresh,coordinator)
+         elif action in ('INSTALL_DISTRO','IMPORT_NEW_CLONE'):
+             require(row is not None and row['wsl_version']==2,19,'REGISTRATION_NOT_COMPLETE')
+             require(obs['running'] is not None and s['target']['name'] not in obs['running'],19,'UNEXPECTED_AUTO_LAUNCH')
+@@ -487,8 +493,7 @@
+             require(s['target']['name'] not in obs['running'],19,'CLONE_STILL_RUNNING')
+             details['vhd']=self._vhd_closed(row)
+         elif action=='AWAIT_OWNER_RESTART':
+-            require(coordinator.fence['witness']['host_boot']!=obs['host']['boot_utc'],20,'REBOOT_NOT_OBSERVED')
+-            require(not any(self.system.pending_reboot().values()),20,'REBOOT_STILL_PENDING')
++            require(resume_boundary is not None,20,'REBOOT_NOT_OBSERVED')
+             details['affected_resources']=self._post_c3(plan,fresh,coordinator)
+         elif action=='AWAIT_OWNER_USER_INIT':
+             require(row is not None and type(row['default_uid']) is int and row['default_uid']>0,20,'USER_INIT_NOT_OBSERVED')
+@@ -613,7 +618,17 @@
+             if coordinator.fence['witness'].get('execution_phase')=='LIVE_REVALIDATION':
+                 from .noop import reconcile
+                 return reconcile(self,original,fresh,coordinator)
+-            return self._after(original,step,{},fresh,coordinator,reconciliation=True)
++            wait_context=coordinator.fence.get('wait_observation') or {}
++            needs_reboot=(coordinator.fence.get('state')=='AWAITING_REBOOT'
++                or (coordinator.fence.get('state')=='AWAITING_OWNER_VERIFICATION'
++                    and wait_context.get('previous_state')=='AWAITING_REBOOT'))
++            resume_boundary=None
++            if needs_reboot:
++                from .lifecycle import reboot_resume_boundary
++                resume_boundary=reboot_resume_boundary(coordinator.fence,fresh.observed.get('host'),
++                                                       self.system.pending_reboot())
++            return self._after(original,step,{},fresh,coordinator,reconciliation=True,
++                               resume_boundary=resume_boundary)
+         finally:self.binding=request_binding
+ 
+     def pre_noop(self,plan,fresh,coordinator,completed):
+--- a/src/aifilm_p00/recovery.py
++++ b/src/aifilm_p00/recovery.py
+@@ -136,7 +136,19 @@
+             # Preserve the classic successful reconciliation contract. A prior
+             # SAFE_PAUSE cannot be reinterpreted as a successful operation.
+             require(opening_fence['state'] != 'SAFE_PAUSE', 12, 'ORIGINAL_RUN_REVOKED')
+-            completed = self.d.reconcile(original, step, fresh, c)
++            try:
++                completed = self.d.reconcile(original, step, fresh, c)
++            except P00Error as error:
++                from .native.lifecycle import owner_wait_can_relabel
++                if int(error.code)==20 and owner_wait_can_relabel(opening_fence,error.reason):
++                    wait=deepcopy(opening_fence.get('wait_observation'))
++                    if not wait:
++                        wait={'previous_state':opening_fence['state'],
++                              'reason':'POSTCONDITION_OWNER_EVIDENCE_PENDING'}
++                    c.awaiting('AWAITING_OWNER_VERIFICATION',wait)
++                    return self._report(request,original,20,'AWAITING_OWNER_VERIFICATION',True,
++                        step_committed=False,previous_wait_state=wait.get('previous_state'))
++                raise
+             require(type(completed) is Completion, 19, 'COMPLETION_ADAPTER_TYPE')
+             record = completed.journal_record(opening_fence['action'])
+             require(digest(c.fence) == digest(opening_fence), 16, 'RECOVERY_FENCE_DRIFT')
+--- a/tests/test_dev8_lifecycle.py
++++ b/tests/test_dev8_lifecycle.py
+@@ -0,0 +1,156 @@
++"""Synthetic author tests for restart/OOBE/resume control flow; no native execution."""
++from copy import deepcopy
++from dataclasses import replace
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++from helpers import authority_case, SID
++from test_session_integration import Guard, Storage
++from test_dev4_recovery import RecoverDriver, extend
++from aifilm_p00.admission import Coordinator
++from aifilm_p00.errors import P00Error
++from aifilm_p00.plans import make_plan
++from aifilm_p00.session import SessionRunner
++from aifilm_p00.native.lifecycle import (
++    classify_c3_process_result, reboot_resume_boundary, owner_wait_can_relabel,
++)
++from aifilm_p00.native.session_driver import NativeDriver
++
++
++class LifecyclePolicyTests(unittest.TestCase):
++    def reject(self, code, fn, *args):
++        with self.assertRaises(P00Error) as caught:
++            fn(*args)
++        self.assertEqual(int(caught.exception.code), code)
++        return caught.exception.reason
++
++    def test_exit_zero_with_observed_pending_reboot_becomes_operator_wait(self):
++        result=classify_c3_process_result('ENABLE_PREREQUISITES',
++            {'exit':0,'state':'NATIVE_PROCESS_COMPLETED'}, {'cbs':True,'wu':False})
++        self.assertEqual(result['exit'],20);self.assertEqual(result['state'],'AWAITING_REBOOT')
++        self.assertEqual(result['wait_reason'],'PENDING_REBOOT_OBSERVED')
++
++    def test_no_pending_reboot_keeps_process_result(self):
++        original={'exit':0,'state':'NATIVE_PROCESS_COMPLETED'}
++        self.assertEqual(classify_c3_process_result('INSTALL_RUNTIME',original,
++            {'cbs':False,'wu':False}),original)
++
++    def test_reboot_boundary_requires_new_boot_and_clear_pending_state(self):
++        fence={'action':'INSTALL_RUNTIME','witness':{'host_boot':'boot-a','step_id':'step-1'}}
++        self.assertEqual(self.reject(20,reboot_resume_boundary,fence,
++            {'boot_utc':'boot-a'},{'cbs':False}),'REBOOT_NOT_OBSERVED')
++        self.assertEqual(self.reject(20,reboot_resume_boundary,fence,
++            {'boot_utc':'boot-b'},{'cbs':True}),'REBOOT_STILL_PENDING')
++        out=reboot_resume_boundary(fence,{'boot_utc':'boot-b'},{'cbs':False,'wu':False})
++        self.assertEqual(out['before_boot'],'boot-a');self.assertEqual(out['after_boot'],'boot-b')
++
++    def test_only_operator_wait_fence_can_relabel_owner_verification(self):
++        self.assertTrue(owner_wait_can_relabel({'state':'AWAITING_REBOOT'},'AWAITING_OWNER_VERIFICATION'))
++        self.assertFalse(owner_wait_can_relabel({'state':'UNCERTAIN'},'AWAITING_OWNER_VERIFICATION'))
++        self.assertFalse(owner_wait_can_relabel({'state':'AWAITING_REBOOT'},'PROOF_EXPIRED'))
++
++
++class NativeRunLifecycleTests(unittest.TestCase):
++    def setup_driver(self, pending):
++        d=NativeDriver.__new__(NativeDriver)
++        d.paths=object();d.supervisor=object();d.environment={};d.binding={}
++        d.api=SimpleNamespace(system_directory=lambda:r'C:\\Windows\\System32')
++        d.system=SimpleNamespace(pending_reboot=lambda:deepcopy(pending))
++        return d
++
++    def test_native_driver_checks_pending_reboot_after_successful_c3_process(self):
++        _,plan,_,store=authority_case('ENGINE')
++        d=self.setup_driver({'cbs':True,'wu':False})
++        actuator=SimpleNamespace(execute=lambda *a,**k:{'exit':0,'state':'NATIVE_PROCESS_COMPLETED'})
++        with patch('aifilm_p00.native.session_driver.NativeActuator',return_value=actuator):
++            result=d.run(plan,0,SimpleNamespace(store=store),SimpleNamespace())
++        self.assertEqual(result['state'],'AWAITING_REBOOT')
++
++    def test_native_driver_does_not_hide_existing_3010_wait(self):
++        _,plan,_,store=authority_case('ENGINE')
++        d=self.setup_driver({'cbs':False})
++        d.system.pending_reboot=lambda:(_ for _ in ()).throw(AssertionError('must not be called'))
++        actuator=SimpleNamespace(execute=lambda *a,**k:{'exit':20,'state':'AWAITING_REBOOT'})
++        with patch('aifilm_p00.native.session_driver.NativeActuator',return_value=actuator):
++            result=d.run(plan,0,SimpleNamespace(store=store),SimpleNamespace())
++        self.assertEqual(result['state'],'AWAITING_REBOOT')
++
++
++class NativeReconcileBoundaryTests(unittest.TestCase):
++    def run_case(self, state, wait=None):
++        _,original,_,store=authority_case('ENGINE')
++        d=NativeDriver.__new__(NativeDriver);d.binding={'request':True}
++        d.system=SimpleNamespace(pending_reboot=lambda:{'cbs':False})
++        captured={}
++        def after(*args,**kwargs):
++            captured['boundary']=kwargs.get('resume_boundary');return 'completion'
++        d._after=after
++        fence={'state':state,'action':'ENABLE_PREREQUISITES','native':None,
++               'witness':{'host_boot':'boot-a','step_id':'step-0'}}
++        if wait is not None:fence['wait_observation']=wait
++        c=SimpleNamespace(fence=fence,storage=SimpleNamespace(read_events=lambda:[]))
++        fresh=SimpleNamespace(observed={'material':{},'profile_verified':True,
++                                       'host':{'boot_utc':'boot-b'}},store=store)
++        with patch('aifilm_p00.native.session_driver._binding',return_value={'original':True}), \
++             patch('aifilm_p00.native.read_recovery.reconcile_detached_reads',return_value=[]):
++            result=d.reconcile(original,0,fresh,c)
++        return result,captured
++
++    def test_reconcile_waiting_reboot_binds_actual_boot_boundary(self):
++        result,captured=self.run_case('AWAITING_REBOOT')
++        self.assertEqual(result,'completion');self.assertEqual(captured['boundary']['after_boot'],'boot-b')
++
++    def test_owner_wait_from_reboot_preserves_boot_boundary_requirement(self):
++        _,captured=self.run_case('AWAITING_OWNER_VERIFICATION',
++                                 {'previous_state':'AWAITING_REBOOT','reason':'POSTCONDITION_OWNER_EVIDENCE_PENDING'})
++        self.assertEqual(captured['boundary']['before_boot'],'boot-a')
++
++    def test_owner_wait_from_oobe_does_not_invent_reboot_requirement(self):
++        _,original,_,store=authority_case('CREATE')
++        d=NativeDriver.__new__(NativeDriver);d.binding={}
++        d.system=SimpleNamespace(pending_reboot=lambda:(_ for _ in ()).throw(AssertionError('no reboot probe')))
++        captured={};d._after=lambda *a,**kw:captured.setdefault('boundary',kw.get('resume_boundary')) or 'completion'
++        c=SimpleNamespace(fence={'state':'AWAITING_OWNER_VERIFICATION','action':'AWAIT_OWNER_USER_INIT','native':None,
++            'witness':{'host_boot':'boot-a','step_id':'step-1'}},storage=SimpleNamespace(read_events=lambda:[]))
++        fresh=SimpleNamespace(observed={'material':{},'profile_verified':True,'host':{'boot_utc':'boot-a'}},store=store)
++        with patch('aifilm_p00.native.session_driver._binding',return_value={}), \
++             patch('aifilm_p00.native.read_recovery.reconcile_detached_reads',return_value=[]):
++            d.reconcile(original,1,fresh,c)
++        self.assertIsNone(captured['boundary'])
++
++
++def reconciliation_request(old, opening, old_store):
++    _,request0,_,request_store=authority_case('RECONCILIATION_ONLY')
++    request_store=replace(request_store,blobs={**old_store.blobs,**request_store.blobs},
++        pins={k:frozenset(set(old_store.pins.get(k,()))|set(request_store.pins.get(k,())))
++              for k in set(old_store.pins)|set(request_store.pins)})
++    request_store,ref=extend(request_store,'original_plan',{'plan':old})
++    binding={k:deepcopy(v) for k,v in request0['semantic'].items() if k!='operations'}
++    binding['refs']['original_plan']=ref;binding['target']=deepcopy(old['semantic']['target'])
++    request=make_plan(binding,'2026-09-13T23:00:00Z')
++    approval=deepcopy(request_store.get('approval',request0['approval_ref']));approval['plan_digest']=request['plan_digest']
++    request_store,ref=extend(request_store,'approval',approval);request['approval_ref']=ref
++    return request,request_store
++
++
++class RecoveryOwnerWaitTests(unittest.TestCase):
++    def test_missing_owner_postcheck_relabels_only_existing_wait_fence(self):
++        interface,old,ctx,store=authority_case('CREATE')
++        class WaitDriver(RecoverDriver):
++            def run(self,p,i,f,c):
++                if i==1:
++                    self.calls.append(('run',i));return {'state':'AWAITING_USER_INIT','exit':20}
++                return super().run(p,i,f,c)
++        d=WaitDriver(old,ctx,store);g=Guard();st=Storage();runner=SessionRunner(d,Coordinator(g,st))
++        out=runner.execute(interface,old);self.assertEqual(out['state'],'AWAITING_USER_INIT')
++        opening=st.load_fence();request,request_store=reconciliation_request(old,opening,store);d.store=request_store
++        d.reconcile=lambda *a,**k:(_ for _ in ()).throw(P00Error(20,'AWAITING_OWNER_VERIFICATION'))
++        report=runner.reconcile(request)
++        self.assertEqual(report['state'],'AWAITING_OWNER_VERIFICATION');self.assertTrue(report['fence_retained'])
++        fence=st.load_fence();self.assertEqual(fence['state'],'AWAITING_OWNER_VERIFICATION')
++        self.assertEqual(fence['wait_observation']['previous_state'],'AWAITING_USER_INIT')
++        self.assertEqual(report['step_committed'],False)
++
++
++if __name__=='__main__':unittest.main()

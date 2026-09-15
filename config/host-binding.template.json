@@ -1,0 +1,13 @@
+{
+  "TEMPLATE_ONLY": true,
+  "NOT_EXECUTABLE": true,
+  "host_id": null,
+  "owner_sid": null,
+  "target_name": null,
+  "target_path": null,
+  "runtime_profile": null,
+  "trust_store": null,
+  "qualification_ref": null,
+  "approval_ref": null,
+  "note": "Do not replace unknown values with fixtures. Native binding adapters are not implemented."
+}

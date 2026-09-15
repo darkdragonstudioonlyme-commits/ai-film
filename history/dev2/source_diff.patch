@@ -1,0 +1,3602 @@
+--- a/config/dependencies.json
++++ b/config/dependencies.json
+@@ -5,5 +5,8 @@
+   "native_windows_python_runtime": "NOT_SELECTED_OR_DEPLOYED",
+   "automatic_dependency_install": false,
+   "target_host_supported_by_this_release": false,
+-  "native_runtime_prerequisite_resolution": "Required before a native candidate; no unreviewed host software installation."
++  "native_runtime_prerequisite_resolution": "A separately authorized existing/pinned Python x64 runtime is required. Package does not install it or claim it is already available. Full route delivery remains partial.",
++  "native_component_source_authored": true,
++  "native_windows_execution": "NOT_RUN",
++  "native_active_route_backend_registered": false
+ }
+--- a/config/required-native-test-inventory.json
++++ b/config/required-native-test-inventory.json
+@@ -1,608 +1,790 @@
+ {
+   "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+-  "description": "Future approved acceptance coverage, NOT executable native harness or qualification",
++  "description": "Approved native acceptance inventory. Foundation harness is a partial contribution, not full T/F automation or qualification.",
+   "cases": [
+     {
+       "case_id": "T00-01",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-02",
+       "status": "NOT_RUN",
+       "evidence": null,
+-      "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "native_harness": "PARTIAL_FOUNDATION_ONLY",
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [
++        "NF-IDENTITY"
++      ],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-03",
+       "status": "NOT_RUN",
+       "evidence": null,
+-      "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "native_harness": "PARTIAL_FOUNDATION_ONLY",
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [
++        "NF-PATH-ROUNDTRIP",
++        "NF-HARDLINK-REJECT"
++      ],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-04",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-05",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-06",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-07",
+       "status": "NOT_RUN",
+       "evidence": null,
+-      "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "native_harness": "PARTIAL_FOUNDATION_ONLY",
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [
++        "NF-JOURNAL-APPEND",
++        "NF-GUARD-CONTENDER"
++      ],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-08",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-09",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-10",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-11",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-12",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-13",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T00-14",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-01",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-02",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-03",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-04",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-05",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-06",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-07",
+       "status": "NOT_RUN",
+       "evidence": null,
+-      "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "native_harness": "PARTIAL_FOUNDATION_ONLY",
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [
++        "NF-GUARD-CONTENDER"
++      ],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-08",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-09",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-10",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-11",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-12",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-13",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-14",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-15",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "F00-16",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T05-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-G",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-H",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-I",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T07-J",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-G",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-H",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-I",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-J",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-K",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-L",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-M",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T08-N",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-G",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-H",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-I",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T09-J",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T13-G",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-A",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-B",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-C",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-D",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-E",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-F",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-G",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-H",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     },
+     {
+       "case_id": "T14-I",
+       "status": "NOT_RUN",
+       "evidence": null,
+       "native_harness": "NOT_IMPLEMENTED",
+-      "author_workspace_tests_do_not_close_case": true
++      "author_workspace_tests_do_not_close_case": true,
++      "foundation_harness_contributions": [],
++      "acceptance_closed": false
+     }
+   ]
+ }
+--- /dev/null
++++ b/native/guest-observe.sh
+@@ -0,0 +1,39 @@
++#!/bin/sh
++# Static source is delivered via stdin to /bin/sh -s -- <data arguments>.
++# No eval/source/os-release execution. stdout is an allowlisted base64 TSV frame.
++set -eu
++LC_ALL=C; export LC_ALL
++PATH=/usr/sbin:/usr/bin:/sbin:/bin; export PATH
++[ "$#" -eq 2 ] || exit 10
++operation=$1
++bound_user=$2
++case "$bound_user" in ''|root|*[!a-z0-9_-]*) exit 10;; esac
++emit() { printf '%s\t' "$1"; printf '%s' "$2" | /usr/bin/base64 -w0; printf '\n'; }
++[ "$(/usr/bin/id -un)" = "$bound_user" ] || exit 12
++case "$operation" in
++  INVENTORY)
++    emit uid "$(/usr/bin/id -u)"
++    emit gid "$(/usr/bin/id -g)"
++    emit user "$(/usr/bin/id -un)"
++    emit groups "$(/usr/bin/id -Gn)"
++    home=$(/usr/bin/getent passwd "$bound_user" | /usr/bin/cut -d: -f6)
++    emit home "$home"
++    if [ -w "$home" ]; then emit home_access_writable 1; else emit home_access_writable 0; fi
++    emit os_id "$(/usr/bin/awk -F= '$1=="ID" {gsub(/\"/,"",$2);print $2}' /etc/os-release)"
++    emit version_id "$(/usr/bin/awk -F= '$1=="VERSION_ID" {gsub(/\"/,"",$2);print $2}' /etc/os-release)"
++    emit architecture "$(/usr/bin/uname -m)"
++    emit kernel "$(/usr/bin/uname -r)"
++    emit kernel_boot_id "$(/usr/bin/cat /proc/sys/kernel/random/boot_id)"
++    emit pid1_start_ticks "$(/usr/bin/awk '{print $22}' /proc/1/stat)"
++    emit pid1_comm "$(/usr/bin/cat /proc/1/comm)"
++    emit logical_cpu "$(/usr/bin/getconf _NPROCESSORS_ONLN)"
++    emit mem_total_kib "$(/usr/bin/awk '$1=="MemTotal:" {print $2}' /proc/meminfo)"
++    emit mem_available_kib "$(/usr/bin/awk '$1=="MemAvailable:" {print $2}' /proc/meminfo)"
++    emit fs_available_kib "$(/usr/bin/df -Pk -- "$home" | /usr/bin/awk 'NR==2 {print $4}')"
++    if [ -f /etc/wsl.conf ]; then
++      emit wsl_conf_sha256 "$(/usr/bin/sha256sum /etc/wsl.conf | /usr/bin/cut -d' ' -f1)"
++    else emit wsl_conf_sha256 ABSENT; fi
++    ;;
++  *) exit 10;;
++esac
++emit completed 1
+--- /dev/null
++++ b/native/host-observe.ps1
+@@ -0,0 +1,61 @@
++# Fixed read-only collector. Caller sends bounded data on stdin, never script text.
++# No execution-policy bypass, no profiles, no arbitrary expressions or WSL launch.
++Set-StrictMode -Version Latest
++$ErrorActionPreference = 'Stop'
++$ProgressPreference = 'SilentlyContinue'
++[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false)
++try {
++    $raw = [Console]::In.ReadToEnd()
++    if ($raw.Length -gt 1048576) { throw 'INPUT_CAP' }
++    $request = ConvertFrom-Json -InputObject $raw
++    switch ($request.operation) {
++        'HOST' {
++            $os = Get-CimInstance -ClassName Win32_OperatingSystem
++            $cs = Get-CimInstance -ClassName Win32_ComputerSystem
++            $processors = @(Get-CimInstance -ClassName Win32_Processor)
++            if ($processors.Count -gt 256) { throw 'CPU_CAP' }
++            $virtual = [bool]$cs.HypervisorPresent
++            foreach ($cpu in $processors) {
++                if ($cpu.VirtualizationFirmwareEnabled) { $virtual = $true }
++            }
++            $packages = @(Get-AppxPackage -Name 'MicrosoftCorporationII.WindowsSubsystemForLinux' |
++                Select-Object -Property Name,Version,PackageFullName,Publisher,SignatureKind)
++            if ($packages.Count -gt 8) { throw 'PACKAGE_CAP' }
++            $result = [ordered]@{
++                operation='HOST'; status='OBSERVED';
++                boot_utc=$os.LastBootUpTime.ToUniversalTime().ToString('o');
++                caption=[string]$os.Caption; build=[string]$os.BuildNumber;
++                architecture=[string]$os.OSArchitecture;
++                hypervisor_present=[bool]$cs.HypervisorPresent;
++                virtualization=$virtual;
++                runtime_packages=@($packages | ForEach-Object {
++                    @{name=[string]$_.Name;version=[string]$_.Version;
++                      identity=[string]$_.PackageFullName;publisher=[string]$_.Publisher;
++                      signature_kind=[string]$_.SignatureKind}
++                })
++            }
++        }
++        'FEATURES' {
++            # DISM feature query only. Requires appropriate host permission.
++            $result=[ordered]@{operation='FEATURES';status='OBSERVED';features=@()}
++            foreach ($name in @('VirtualMachinePlatform','Microsoft-Windows-Subsystem-Linux')) {
++                $f=Get-WindowsOptionalFeature -Online -FeatureName $name
++                $result.features += @{name=$name;state=[string]$f.State;restart_needed=[string]$f.RestartNeeded}
++            }
++        }
++        'AUTHENTICODE' {
++            # No evaluation or shell expansion. Path remains a data argument.
++            $signature=Get-AuthenticodeSignature -LiteralPath ([string]$request.path)
++            $thumb=$null
++            if ($null -ne $signature.SignerCertificate) {$thumb=$signature.SignerCertificate.Thumbprint}
++            $result=@{operation='AUTHENTICODE';status=[string]$signature.Status;thumbprint=$thumb}
++        }
++        default { throw 'OPERATION_NOT_ALLOWED' }
++    }
++    $result | ConvertTo-Json -Depth 8 -Compress
++    exit 0
++} catch {
++    # Never print arbitrary exception messages, command lines, paths or stderr.
++    [Console]::Out.WriteLine('{"status":"UNAVAILABLE","reason":"HOST_COLLECTOR_FAILED"}')
++    exit 11
++}
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,7 +1,7 @@
+ [project]
+ name = "aifilm-p00-contracts"
+-version = "0.1.0.dev1"
+-description = "Partial Phase00 implementation: workspace contract core; native backend unavailable"
++version = "0.1.0.dev2"
++description = "Partial Phase00 implementation: native foundation adapters; full active route integration pending"
+ requires-python = ">=3.11"
+ dependencies = []
+ 
+--- /dev/null
++++ b/schemas/native-trust-anchor.schema.json
+@@ -0,0 +1,67 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "title": "Native HKLM trust anchor syntax; NOT an approval or a trust establishment mechanism",
++  "type": "object",
++  "additionalProperties": false,
++  "required": [
++    "schema_version",
++    "host_id",
++    "operator_sids",
++    "role_pins",
++    "blobs",
++    "withdrawn_refs",
++    "generation"
++  ],
++  "properties": {
++    "schema_version": {
++      "const": 1
++    },
++    "host_id": {
++      "type": "string",
++      "minLength": 1
++    },
++    "operator_sids": {
++      "type": "array",
++      "minItems": 1,
++      "uniqueItems": true,
++      "items": {
++        "type": "string",
++        "pattern": "^S-1-\\d+(?:-\\d+){1,15}$"
++      }
++    },
++    "role_pins": {
++      "type": "object",
++      "additionalProperties": {
++        "type": "array",
++        "items": {
++          "$ref": "#/$defs/hash"
++        }
++      }
++    },
++    "blobs": {
++      "type": "object",
++      "propertyNames": {
++        "$ref": "#/$defs/hash"
++      },
++      "additionalProperties": {
++        "type": "string"
++      }
++    },
++    "withdrawn_refs": {
++      "type": "array",
++      "items": {
++        "$ref": "#/$defs/hash"
++      }
++    },
++    "generation": {
++      "type": "integer",
++      "minimum": 1
++    }
++  },
++  "$defs": {
++    "hash": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{64}$"
++    }
++  }
++}
+--- /dev/null
++++ b/schemas/protected-snapshot-index.schema.json
+@@ -0,0 +1,58 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "title": "Protected snapshot index envelope, not complete E00 field catalogs",
++  "type": "object",
++  "additionalProperties": false,
++  "required": [
++    "schema_version",
++    "run_id",
++    "records"
++  ],
++  "properties": {
++    "schema_version": {
++      "const": 1
++    },
++    "run_id": {
++      "type": "string",
++      "minLength": 1
++    },
++    "records": {
++      "type": "array",
++      "maxItems": 15,
++      "items": {
++        "type": "object",
++        "additionalProperties": false,
++        "required": [
++          "evidence_id",
++          "relative_path",
++          "record_id",
++          "bytes",
++          "sha256"
++        ],
++        "properties": {
++          "evidence_id": {
++            "type": "string",
++            "pattern": "^E00-(0[1-9]|1[0-5])$"
++          },
++          "relative_path": {
++            "type": "string",
++            "minLength": 1
++          },
++          "record_id": {
++            "type": "string",
++            "minLength": 1
++          },
++          "bytes": {
++            "type": "integer",
++            "minimum": 1,
++            "maximum": 10485760
++          },
++          "sha256": {
++            "type": "string",
++            "pattern": "^[0-9a-f]{64}$"
++          }
++        }
++      }
++    }
++  }
++}
+--- a/src/aifilm_p00/__init__.py
++++ b/src/aifilm_p00/__init__.py
+@@ -1,4 +1,4 @@
+-"""Phase00 contract implementation. No native host backend is registered yet."""
+-__version__ = '0.1.0.dev1'
++"""Phase00 contract implementation. Native foundations authored; full route backend not registered."""
++__version__ = '0.1.0.dev2'
+ CONTRACT_DIGEST = 'f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee'
+ NATIVE_BACKEND_AVAILABLE = False
+--- a/src/aifilm_p00/__main__.py
++++ b/src/aifilm_p00/__main__.py
+@@ -1,4 +1,6 @@
+-"""Workspace-only front end. Host backends are explicitly unavailable in dev1."""
++"""Workspace interfaces plus gated native C0 inventory/metadata initialization.
++Active native routes are not registered in this partial source drop.
++"""
+ import argparse
+ import json
+ import sys
+@@ -11,13 +13,16 @@
+ from .engine import NativeUnavailable
+ 
+ def main(argv=None):
+-    parser=argparse.ArgumentParser(description='Phase00 dev1: offline contracts; native execution NOT IMPLEMENTED')
++    parser=argparse.ArgumentParser(description='Phase00 dev2: native foundation source; full active backend NOT COMPLETE')
+     parser.add_argument('--version',action='version',version=__version__)
+     sub=parser.add_subparsers(dest='interface',required=True)
+     for name in ('preflight','dry-run','apply','verify','support-bundle','recovery-notes'):
+         p=sub.add_parser(name)
+         if name=='dry-run': p.add_argument('--binding',type=Path,required=True)
+-        if name=='preflight': p.add_argument('--workspace-only',action='store_true')
++        if name=='preflight':
++            group=p.add_mutually_exclusive_group()
++            group.add_argument('--workspace-only',action='store_true')
++            group.add_argument('--initialize-metadata',action='store_true')
+     try:
+         args=parser.parse_args(argv)
+         if args.interface=='dry-run':
+@@ -27,6 +32,10 @@
+             result={'source_kind':'DOCUMENT','interface':'preflight','package_version':__version__,
+                     'contract_digest':CONTRACT_DIGEST,'observed_windows_host':'NOT_COLLECTED',
+                     'guest_status':'REQUIRES_ACTIVE_PROBE','native_backend_available':False,'host_ready':False}
++        elif args.interface=='preflight':
++            from .native.entry import passive_preflight,initialize_metadata
++            root=Path(__file__).resolve().parents[2]
++            result=initialize_metadata(root) if args.initialize_metadata else passive_preflight(root)
+         elif args.interface=='recovery-notes':
+             result={'source_kind':'DOCUMENT','runbook':'docs/RECOVERY.md','native_execution':False,
+                     'rules':['PRESERVE_UNRESOLVED_FENCE','NO_BLIND_RETRY','NO_UNREGISTER','NO_AUTOMATIC_REBOOT','NO_SECRET_UPLOAD'],'host_ready':False}
+--- a/src/aifilm_p00/admission.py
++++ b/src/aifilm_p00/admission.py
+@@ -62,6 +62,17 @@
+         require(type(native_witness) is dict and {'pid','start','action_id'}<=set(native_witness),11,'NATIVE_WITNESS_MISSING')
+         self.fence['native']=deepcopy(native_witness); self.fence['state']='RUNNING'; self._persist('NATIVE_STARTED')
+ 
++    def native_child_started(self,native_witness:dict):
++        """Additional command in the same approved action; persist before resume."""
++        self._require_fence()
++        require(self.fence['state']=='RUNNING' and self.fence['native'] is not None,18,'INVALID_FENCE_TRANSITION')
++        require(type(native_witness) is dict and {'pid','start','action_id'}<=set(native_witness),11,'NATIVE_WITNESS_MISSING')
++        witnesses=[self.fence['native'],*self.fence['native'].get('additional',[])]
++        require(all((w['pid'],w['start'])!=(native_witness['pid'],native_witness['start']) for w in witnesses),15,'DUPLICATE_NATIVE_WITNESS')
++        require(len(witnesses)<64,18,'NATIVE_WITNESS_CAP')
++        self.fence['native'].setdefault('additional',[]).append(deepcopy(native_witness))
++        self._persist('NATIVE_CHILD_STARTED')
++
+     def uncertain(self,reason='NATIVE_TIMEOUT'):
+         self._require_fence(); token(reason)
+         self.fence['state']='UNCERTAIN'; self.fence['reason']=reason; self._persist('UNCERTAIN')
+@@ -98,6 +109,10 @@
+     def close(self):
+         # Releasing a process primitive NEVER implies clearing its durable fence.
+         if self.held:
+-            self.guard.release(); self.held=False
++            if self.fence is not None and hasattr(self.guard,'defer_until_process_exit'):
++                self.guard.defer_until_process_exit()
++            else:
++                self.guard.release()
++            self.held=False
+     def __enter__(self): return self
+     def __exit__(self,*exc): self.close()
+--- /dev/null
++++ b/src/aifilm_p00/content.py
+@@ -0,0 +1,24 @@
++"""Reproducible source/test content identity without output/self-hash cycles."""
++from pathlib import Path
++from .codec import sha256,digest
++from .errors import require
++SOURCE_DIRS=('src','schemas','config','native')
++TEST_DIRS=('tests','fixtures','tools')
++
++
++def inventory(root,directories):
++    root=Path(root);rows=[]
++    for directory in directories:
++        for path in sorted((root/directory).rglob('*')):
++            if path.is_file() and '__pycache__' not in path.parts and path.suffix!='.pyc':
++                require(not path.is_symlink(),15,'BUILD_MEMBER_SYMLINK')
++                data=path.read_bytes();rows.append({'path':path.relative_to(root).as_posix(),
++                                                   'bytes':len(data),'sha256':sha256(data)})
++    require(bool(rows),15,'BUILD_INVENTORY_EMPTY')
++    return rows
++
++
++def content_identity(root):
++    source=inventory(root,SOURCE_DIRS);tests=inventory(root,TEST_DIRS)
++    return {'source_content_digest':digest(source),'test_content_digest':digest(tests),
++            'source_members':source,'test_members':tests}
+--- /dev/null
++++ b/src/aifilm_p00/native/__init__.py
+@@ -0,0 +1,5 @@
++"""Windows adapters. Importing this package never loads DLLs or launches processes.
++
++Concrete adapters are Windows-only; workspace tests exercise parsers/protocols with
++explicit doubles. Native qualification is a separate, not-yet-run activity.
++"""
+--- /dev/null
++++ b/src/aifilm_p00/native/actuator.py
+@@ -0,0 +1,72 @@
++"""Concrete Windows command execution component (not yet a full route backend).
++
++Requires an already-authorized session, held global guard and durable INTENT.
++Does not declare service-side completion, clear a fence or issue HOST_READY.
++This component is deliberately not registered as the six-interface SITE backend
++until native pre/postcondition, resume and evidence integration is complete.
++"""
++from contextlib import ExitStack
++from ..codec import canonical,windows_path,hash_value
++from ..errors import require,P00Error
++from ..plans import check_plan
++from ..windows_commands import compile_wsl,compile_feature,compile_runtime
++from .process import Command
++from .trust import NativeStore,validate_payload_graph
++
++SUPPORTED_ACTIONS=frozenset({'ENABLE_PREREQUISITES','INSTALL_RUNTIME','INSTALL_DISTRO',
++                            'EXPORT_CHECKPOINT','IMPORT_NEW_CLONE','STOP_RETAIN_CLONE'})
++
++class NativeActuator:
++    def __init__(self,supervisor,paths,store,system_directory,environment):
++        require(type(store) is NativeStore,12,'NATIVE_AUTHORITY_ADAPTER_REQUIRED')
++        self.supervisor=supervisor;self.paths=paths;self.store=store
++        self.system_directory=windows_path(system_directory);self.environment=environment
++
++    def execute(self,action,plan,coordinator,native_binding):
++        s=check_plan(plan)
++        require(coordinator.held and coordinator.admission is not None and coordinator.fence is not None,12,'ADMITTED_INTENT_REQUIRED')
++        require(coordinator.admission.plan_digest==plan['plan_digest'] and coordinator.fence['action']==action
++                and action in {o['action'] for o in s['operations']},12,'ACTUATOR_SCOPE')
++        require(action in SUPPORTED_ACTIONS,11,'ACTION_COMPONENT_NOT_IMPLEMENTED')
++        # The full route driver must retrieve this exact blob through refs; check
++        # again at this boundary instead of trusting an arbitrary dictionary.
++        ref=s['refs'].get('native_binding');require(ref is not None,12,'NATIVE_BINDING_REQUIRED')
++        trusted=self.store.get('native_binding',ref)
++        require(trusted==native_binding and trusted.get('host_id')==s['host_id']
++                and trusted.get('owner_sid')==s['owner_sid'],12,'NATIVE_BINDING_SCOPE')
++        require(trusted.get('withdrawn') is False,12,'NATIVE_BINDING_WITHDRAWN')
++        timeout=trusted.get('timeout_seconds',{}).get(action)
++        require(type(timeout) is int and 1<=timeout<=7200,10,'ACTION_TIMEOUT_BINDING')
++        target=s['target']['name'];commands=[];results=[]
++        with ExitStack() as stack:
++            if action in ('INSTALL_RUNTIME','INSTALL_DISTRO','IMPORT_NEW_CLONE'):
++                role='payload' if action!='IMPORT_NEW_CLONE' else 'checkpoint_payload'
++                pref=s['refs'].get(role);require(pref is not None,15,'PAYLOAD_TRUST_MISSING')
++                if role=='payload':p=validate_payload_graph(self.store,pref,s['payload_digest'])
++                else:
++                    p=self.store.get(role,pref)
++                    require(p.get('payload_digest')==s.get('expected_checkpoint') and p.get('withdrawn') is False,15,'CHECKPOINT_BINDING')
++                stack.enter_context(self.paths.pinned_payload(p['path'],p['payload_digest'],p['bytes']))
++            if action=='ENABLE_PREREQUISITES':
++                features=trusted.get('features')
++                require(type(features) is list and features and len(set(features))==len(features)
++                        and set(features)<={'VirtualMachinePlatform','Microsoft-Windows-Subsystem-Linux'},10,'FEATURE_SCOPE')
++                commands=[compile_feature(f,self.system_directory) for f in features]
++            elif action=='INSTALL_RUNTIME':commands=[compile_runtime(p['path'],self.system_directory)]
++            elif action=='INSTALL_DISTRO':commands=[compile_wsl(action,system_directory=self.system_directory,target=target,payload=p['path'],base_path=s['target']['base_path'])]
++            elif action=='IMPORT_NEW_CLONE':commands=[compile_wsl(action,system_directory=self.system_directory,target=target,payload=p['path'],base_path=s['target']['base_path'])]
++            elif action=='EXPORT_CHECKPOINT':commands=[compile_wsl(action,system_directory=self.system_directory,target=target,payload=trusted['export_path'])]
++            elif action=='STOP_RETAIN_CLONE':commands=[compile_wsl(action,system_directory=self.system_directory,target=target)]
++            for index,argv in enumerate(commands):
++                def persist(witness):
++                    if coordinator.fence['state']=='INTENT':coordinator.native_started(witness)
++                    else:coordinator.native_child_started(witness)
++                command=Command(tuple(argv),action+'-'+str(index),timeout,b'',True)
++                result=self.supervisor.run(command,before_resume=persist,environment=self.environment,cwd=self.system_directory)
++                results.append(result)
++                # MSI/DISM success-with-restart is not mapped to full success.
++                if result.exit_code==3010 and action in ('INSTALL_RUNTIME','ENABLE_PREREQUISITES'):
++                    return {'exit':20,'state':'AWAITING_REBOOT','results':results,'service_terminal':False}
++                require(result.exit_code==0,18,'NATIVE_ACTION_FAILED')
++        return {'exit':0,'state':'NATIVE_PROCESS_COMPLETED','results':results,'service_terminal':False,
++                'postconditions_observed':False,'host_ready':False}
+--- /dev/null
++++ b/src/aifilm_p00/native/coordination.py
+@@ -0,0 +1,142 @@
++"""Fixed Global mutex and append-only Windows durable fence journal.
++
++No automatic TTL, truncation repair, alternate root, file deletion, process kill,
++or abandoned-mutex bypass. Journal CLEAR is a flushed record, not an unlink.
++"""
++import ctypes as C
++from pathlib import PureWindowsPath
++from ..admission import GUARD_NAME
++from ..codec import canonical, loads, sha256, digest
++from ..errors import require, P00Error
++from .security import check_security, ADMIN_OWNERS, mutex_sddl
++
++MUTEX_NAME='Global\\'+GUARD_NAME
++LOG_CAP=10*1024**2
++
++class NativeGuard:
++    def __init__(self,api,operators):
++        self.api=api; self.operators=frozenset(operators)
++        self.handle=None; self.held=False; self.thread=None; self.abandoned=False
++    def acquire(self):
++        require(self.handle is None and not self.held,21,'NESTED_ADMISSION_FORBIDDEN')
++        with self.api.attributes(mutex_sddl(self.operators)) as attr:
++            h=self.api.create_mutex(C.byref(attr),MUTEX_NAME,0,0x00100000|0x1|0x00020000)
++        require(h not in (None,0),12,'HOST_GUARD_ACCESS')
++        self.handle=h
++        try:
++            sec=self.api.security(h,6)
++            check_security(sec,owners=ADMIN_OWNERS|self.operators,writers=ADMIN_OWNERS|self.operators,
++                           readers=ADMIN_OWNERS|self.operators,confidential=True,require_protected=True)
++            state=self.api.wait(h,0)
++            if state==258:
++                self.api.close(h); self.handle=None; return False
++            require(state in (0,0x80),18,'HOST_GUARD_WAIT')
++            self.held=True; self.abandoned=state==0x80; self.thread=self.api.get_current_tid()
++            return True
++        except BaseException:
++            self.api.close(h); self.handle=None; raise
++    def defer_until_process_exit(self):
++        # Remain owned by the current controller thread. The CLI must terminate
++        # this controller, not reuse it for another request. Durable fence is
++        # checked by the next process after Windows abandons the mutex.
++        require(self.held and self.thread==self.api.get_current_tid(),18,'HOST_GUARD_NOT_HELD')
++        self.exit_only=True
++
++    def release(self):
++        require(self.handle is not None and self.held,18,'HOST_GUARD_NOT_HELD')
++        require(not getattr(self,'exit_only',False),21,'CONTROLLER_EXIT_REQUIRED')
++        require(self.thread==self.api.get_current_tid(),18,'HOST_GUARD_THREAD_MISMATCH')
++        self.api.ok(self.api.release_mutex(self.handle),'HOST_GUARD_RELEASE')
++        self.api.close(self.handle); self.handle=None; self.held=False; self.thread=None
++
++
++def replay(raw:bytes):
++    """All frames must be complete/valid. Torn tail blocks, never auto-truncates."""
++    require(isinstance(raw,bytes) and 0<len(raw)<=LOG_CAP and raw.endswith(b'\n'),15,'JOURNAL_TRUNCATED')
++    rows=[]; previous=None; fence=None; genesis=None
++    for index,line in enumerate(raw.splitlines()):
++        row=loads(line)
++        require(type(row) is dict and set(row)=={'sequence','previous','event','sha256'},15,'JOURNAL_SCHEMA')
++        body={k:row[k] for k in ('sequence','previous','event')}
++        require(row['sequence']==index and row['previous']==previous and digest(body)==row['sha256'],15,'JOURNAL_CHAIN')
++        e=row['event']; require(type(e) is dict and isinstance(e.get('kind'),str),15,'JOURNAL_EVENT')
++        if index==0:
++            require(e['kind']=='GENESIS' and bool(e.get('host_id')) and bool(e.get('root_identity')),15,'JOURNAL_GENESIS')
++            genesis=e
++        else:
++            require(e['kind']!='GENESIS',15,'DUPLICATE_GENESIS')
++        if e['kind']=='SET_FENCE':
++            record=e.get('record'); require(type(record) is dict,15,'FENCE_SCHEMA')
++            if fence is not None:
++                require(all(record.get(k)==fence.get(k) for k in ('run_id','host_id','owner_sid','plan_digest','action')),15,'FENCE_REPLACEMENT')
++            fence=record
++        elif e['kind']=='CLEAR_FENCE':
++            require(fence is not None and fence.get('state') in ('TERMINAL','SAFE_PAUSE'),15,'FENCE_NOT_TERMINAL')
++            require(e.get('fence_digest')==digest(fence),15,'FENCE_RELEASE_MISMATCH')
++            fence=None
++        previous=row['sha256']; rows.append(row)
++    return {'rows':rows,'previous':previous,'fence':fence,'genesis':genesis}
++
++
++def frame(event,index,previous):
++    body={'sequence':index,'previous':previous,'event':event}
++    return canonical({**body,'sha256':digest(body)})+b'\n'
++
++
++class NativeJournal:
++    def __init__(self,paths,guard,host_id):
++        self.paths=paths; self.guard=guard; self.host_id=host_id
++        self.path=str(PureWindowsPath(paths.root)/'journal.jsonl')
++    def _held(self): require(self.guard.held,18,'GUARD_NOT_HELD')
++    def _read(self):
++        self._held()
++        with self.paths.pin(self.paths.root,directory=True,protected=True) as root:
++            state=replay(self.paths.read_blob(self.path,cap=LOG_CAP))
++            genesis=state['genesis']
++            require(genesis['host_id']==self.host_id,12,'COORDINATION_HOST_MISMATCH')
++            expected={'volume_serial':root.identity['volume_serial'],'file_id':root.identity['file_id']}
++            require(genesis['root_identity']==expected,16,'COORDINATION_ROOT_REPLACED')
++            return state
++    def load_fence(self): return self._read()['fence']
++    def read_events(self): return self._read()['rows']
++    def append_event(self,event):
++        state=self._read(); data=frame(event,len(state['rows']),state['previous'])
++        require(sum(len(canonical(r))+1 for r in state['rows'])+len(data)<=LOG_CAP,18,'JOURNAL_CAPACITY')
++        self.paths.append_flush(self.path,data)
++        after=self._read()
++        require(after['rows'][-1]['event']==event,15,'JOURNAL_COMMIT_UNPROVEN')
++    def write_fence(self,record): self.append_event({'kind':'SET_FENCE','record':record})
++    def clear_fence(self):
++        fence=self.load_fence()
++        require(fence is not None and fence.get('state') in ('TERMINAL','SAFE_PAUSE'),21,'FENCE_NOT_TERMINAL')
++        self.append_event({'kind':'CLEAR_FENCE','fence_digest':digest(fence)})
++    def initialize_or_verify(self,metadata_authority):
++        """Idempotent C0 initialization; never adopt an arbitrary existing root.
++
++        An existing root must already contain a valid root-bound journal. A
++        partial initialization, corrupt log or unresolved fence is a blocker,
++        not permission to overwrite or create a replacement journal.
++        """
++        from .trust import MetadataPermit
++        require(type(metadata_authority) is MetadataPermit and metadata_authority.host_id==self.host_id,12,'METADATA_APPROVAL_REQUIRED')
++        self._held()
++        if self.paths.directory_exists(self.paths.root):
++            state=self._read()
++            require(state['fence'] is None,21,'RECONCILIATION_REQUIRED')
++            return 'METADATA_NOOP'
++        self.initialize(metadata_authority)
++        return 'METADATA_INITIALIZED'
++
++    def initialize(self,metadata_authority):
++        """Authority is a checked MetadataPermit from native.trust, not JSON flags."""
++        from .trust import MetadataPermit
++        require(type(metadata_authority) is MetadataPermit and metadata_authority.host_id==self.host_id,12,'METADATA_APPROVAL_REQUIRED')
++        self._held()
++        self.paths.create_directory(self.paths.root)
++        with self.paths.pin(self.paths.root,directory=True,protected=True) as root:
++            event={'kind':'GENESIS','host_id':self.host_id,
++                   'root_identity':{'file_id':root.identity['file_id'],'volume_serial':root.identity['volume_serial']},
++                   'authority_digest':metadata_authority.approval_digest,
++                   'build_digest':metadata_authority.build_digest}
++            self.paths.write_new(self.path,frame(event,0,None))
++        self._read()
+--- /dev/null
++++ b/src/aifilm_p00/native/entry.py
+@@ -0,0 +1,69 @@
++"""Narrow native C0 entrypoints authored in dev2.
++
++Full active preflight/apply/verify/support-bundle integration is still pending.
++No native entry can use tests.helpers, MemoryGuard or a user-chosen trust root.
++"""
++from datetime import datetime,timezone
++from .. import CONTRACT_DIGEST
++from ..codec import sha256
++from ..content import content_identity
++from ..errors import require
++from .winapi import WinAPI
++from .inventory import PassiveCollector
++from .trust import read_anchor
++from .filesystem import WindowsPaths
++from .coordination import NativeGuard,NativeJournal,LOG_CAP
++
++
++def _entry(root):
++    api=WinAPI()  # Windows only; never silently use a POSIX or mock backend.
++    store=read_anchor(api,root/'contracts')
++    facts=PassiveCollector(api).collect()
++    require(store.host_id==facts['host']['host_id'],12,'TRUST_HOST_MISMATCH')
++    principal=facts['principal'];require(principal['execution_sid'] in store.operators,12,'OPERATOR_NOT_REGISTERED')
++    identity=content_identity(root)
++    store.one('design')
++    _,code=store.one('code')
++    require(code.get('verdict')=='PASS' and code.get('withdrawn') is False,11,'CODE_REVIEW_REQUIRED')
++    require(code.get('build_digest')==identity['source_content_digest'] and code.get('test_set_digest')==identity['test_content_digest']
++            and code.get('contract_digest')==CONTRACT_DIGEST,16,'CODE_REVIEW_CONTENT_MISMATCH')
++    _,registration=store.one('registration')
++    require(registration.get('host_id')==store.host_id and principal['execution_sid'] in registration.get('operator_sids',[])
++            and registration.get('withdrawn') is False and registration.get('execution_class') in ('SITE','LAB'),12,'HOST_REGISTRATION_MISMATCH')
++    return api,store,facts,identity,registration
++
++
++def passive_preflight(root):
++    _,store,facts,identity,registration=_entry(root)
++    # stdout-only branch D00-07. No persistent output, no guest/proxy probes,
++    # no root initialization or locks falsely claimed to have been acquired.
++    # Full private inventory is NOT serialized to stdout as a diagnostics escape.
++    return {'source_kind':registration['execution_class'],'interface':'preflight',
++            'status':'PARTIAL_PASSIVE_INVENTORY','collection_context':'WINDOWS_NATIVE_C0',
++            'host_alias':facts['host']['host_id'],'principal_match':True,
++            'resources':facts['resources'],'own_context_distro_count':len(facts['distros']['distros']),
++            'cross_user_inventory':'NOT_ESTABLISHED','guest_status':'REQUIRES_ACTIVE_PROBE',
++            'runtime_feature_network_storage_completeness':'NOT_ESTABLISHED',
++            'concurrent_mutation_excluded':False,'source_content_digest':identity['source_content_digest'],
++            'full_native_backend_available':False,'host_ready':False}
++
++
++def initialize_metadata(root):
++    api,store,facts,identity,registration=_entry(root)
++    permit=store.metadata_permit(facts['principal'],identity['source_content_digest'],datetime.now(timezone.utc))
++    paths=WindowsPaths(api,store.operators);guard=NativeGuard(api,store.operators)
++    require(guard.acquire(),21,'LOCK_BUSY')
++    try:
++        # Initial approved maximum is checked against actual volume free space.
++        # No software, distro, feature or tuning settings are installed here.
++        volume=paths.volume(api.program_data())
++        require(volume['filesystem']=='NTFS' and volume['drive_type']==3,11,'LOCAL_NTFS_REQUIRED')
++        _,approval=store.one('metadata_initialization')
++        budget=approval.get('maximum_additional_bytes')
++        require(type(budget) is int and LOG_CAP<=budget<=100*1024**2,12,'METADATA_BUDGET_REQUIRED')
++        require(volume['free_bytes']>=20*1024**3+budget,13,'VOLUME_CAPACITY')
++        journal=NativeJournal(paths,guard,store.host_id)
++        status=journal.initialize_or_verify(permit)
++        return {'source_kind':registration['execution_class'],'interface':'preflight','status':status,
++                'host_alias':store.host_id,'global_namespace':'AI-FILM-P00-HOST-ADMISSION','host_ready':False}
++    finally:guard.release()
+--- /dev/null
++++ b/src/aifilm_p00/native/filesystem.py
+@@ -0,0 +1,187 @@
++"""Handle-pinned Windows paths and bounded protected I/O.
++
++Ancestors are opened without FILE_SHARE_DELETE and held through the operation.
++A leaf read denies write/delete sharing, preventing a hash-to-use rename/write.
++The trusted administrator threat model is the one stated by D00-02/07/11.
++"""
++from __future__ import annotations
++import ctypes as C
++from contextlib import contextmanager, ExitStack
++from dataclasses import dataclass
++from pathlib import PureWindowsPath
++from uuid import uuid4
++from ..codec import windows_path, sha256, canonical, loads
++from ..errors import require, P00Error
++from .security import check_security, ADMIN_OWNERS, metadata_sddl
++from .winapi import DWORD, HANDLE, INVALID_HANDLE
++
++READ=0x80000000; WRITE=0x40000000; READ_CONTROL=0x00020000
++SHARE_READ=1; SHARE_WRITE=2
++OPEN_EXISTING=3; CREATE_NEW=1
++FLAGS=0x00200000|0x02000000  # OPEN_REPARSE_POINT | BACKUP_SEMANTICS
++REPARSE=0x400; DIRECTORY=0x10
++ROOT_NAME='AI-FILM-P00-HOST-ADMISSION'
++
++
++def same_path(a,b):
++    return str(PureWindowsPath(a)).casefold()==str(PureWindowsPath(b)).casefold()
++
++
++def normalized_handle_path(value):
++    require(value.startswith('\\\\?\\') and not value.startswith('\\\\?\\UNC\\'),16,'NONLOCAL_FINAL_PATH')
++    return value[4:]
++
++
++@dataclass
++class Pinned:
++    path: str
++    handle: object
++    identity: dict
++    volume: dict
++
++
++class WindowsPaths:
++    def __init__(self,api,operators):
++        self.api=api; self.operators=frozenset(operators)
++        self.writers=ADMIN_OWNERS|self.operators
++        self.root=windows_path(api.program_data()+'\\'+ROOT_NAME)
++
++    def directory_exists(self,path):
++        """Existence hint only; caller must still pin/validate the opened root.
++
++        Access denied, unsupported paths and reparse points are not absence.
++        CREATE_NEW remains the authority for a later initialization race.
++        """
++        path=windows_path(path)
++        attrs=self.api.file_attributes(path)
++        if attrs==0xffffffff:
++            error=C.get_last_error()
++            if error in (2,3):return False
++            raise P00Error(12 if error==5 else 18,'PATH_STAT_FAILED')
++        require(not attrs&REPARSE,12,'REPARSE_POINT_FORBIDDEN')
++        require(bool(attrs&DIRECTORY),16,'PATH_KIND_MISMATCH')
++        return True
++
++    def volume(self,path):
++        mount=C.create_unicode_buffer(32768)
++        self.api.ok(self.api.get_volume_path(path,mount,len(mount)),'VOLUME_PATH',11)
++        name=C.create_unicode_buffer(1024)
++        self.api.ok(self.api.get_volume_name(mount.value,name,len(name)),'VOLUME_ID',11)
++        fs=C.create_unicode_buffer(128); serial=DWORD(); maxlen=DWORD(); flags=DWORD()
++        self.api.ok(self.api.get_volume_info(mount.value,None,0,C.byref(serial),C.byref(maxlen),C.byref(flags),fs,len(fs)),'VOLUME_INFORMATION',11)
++        free=C.c_uint64(); total=C.c_uint64(); actual=C.c_uint64()
++        self.api.ok(self.api.get_disk_free(mount.value,C.byref(free),C.byref(total),C.byref(actual)),'VOLUME_FREE',11)
++        kind=self.api.get_drive_type(mount.value)
++        return {'volume_id':'v_'+sha256(name.value.casefold().encode())[:32],
++                'volume_guid':name.value,'filesystem':fs.value,'drive_type':kind,
++                'free_bytes':free.value,'total_bytes':total.value,'flags':flags.value,
++                'serial':serial.value,'mount':mount.value}
++
++    def _open(self,path,access=READ_CONTROL,share=SHARE_READ|SHARE_WRITE,creation=OPEN_EXISTING,sa=None):
++        handle=self.api.create_file(path,access,share,sa,creation,FLAGS,None)
++        if handle in (None,0,INVALID_HANDLE):
++            code=C.get_last_error()
++            raise P00Error(12 if code==5 else 21 if code in (32,33) else 18,'PATH_OPEN_FAILED')
++        return handle
++
++    def _validate_handle(self,h,path,directory):
++        info=self.api.info(h)
++        require(not info['attributes']&REPARSE,12,'REPARSE_POINT_FORBIDDEN')
++        require(bool(info['attributes']&DIRECTORY)==directory,16,'PATH_KIND_MISMATCH')
++        buf=C.create_unicode_buffer(32768)
++        count=self.api.final_path(h,buf,len(buf),0)
++        require(0<count<len(buf) and same_path(normalized_handle_path(buf.value),path),16,'CANONICAL_PATH_MISMATCH')
++        if not directory:
++            require(info['links']==1,12,'HARDLINK_FORBIDDEN')
++        return info
++
++    @contextmanager
++    def ancestors(self,path):
++        path=windows_path(path); parts=PureWindowsPath(path)
++        with ExitStack() as stack:
++            # Include volume root. No caller-supplied volume aliases/junctions.
++            current=parts.anchor
++            for component in ('',*parts.parts[1:-1]):
++                if component: current=str(PureWindowsPath(current)/component)
++                h=self._open(current)
++                stack.callback(self.api.close,h)
++                self._validate_handle(h,current,True)
++            yield path
++
++    @contextmanager
++    def pin(self,path,*,directory=False,confidential=True,owners=None,writers=None,
++            protected=False,write=False):
++        path=windows_path(path)
++        with self.ancestors(path):
++            access=READ_CONTROL|(0 if directory else READ)|(WRITE if write else 0)
++            h=self._open(path,access,SHARE_READ if not directory else SHARE_READ|SHARE_WRITE)
++            with self.api.handle(h):
++                identity=self._validate_handle(h,path,directory)
++                sec=self.api.security(h)
++                check_security(sec,owners=frozenset(owners or self.writers),
++                               writers=frozenset(writers or self.writers),
++                               readers=self.writers,confidential=confidential,require_protected=protected)
++                volume=self.volume(path)
++                require(volume['filesystem']=='NTFS' and volume['drive_type']==3,11,'LOCAL_NTFS_REQUIRED')
++                yield Pinned(path,h,identity,volume)
++                # Detect modifications through a preexisting writable mapped
++                # handle too. Successful operations must recheck bytes as needed.
++                final=self.api.info(h)
++                require(final['file_id']==identity['file_id'] and final['volume_serial']==identity['volume_serial'],16,'FILE_IDENTITY_DRIFT')
++
++    def read_blob(self,path,*,cap=10*1024**2,expected=None):
++        with self.pin(path) as pinned:
++            require(pinned.identity['bytes']<=cap,22,'READ_CAP_EXCEEDED')
++            data=self.api.read(pinned.handle,cap)
++            if expected is not None: require(sha256(data)==expected,15,'ARTIFACT_HASH_MISMATCH')
++            return data
++
++    @contextmanager
++    def pinned_payload(self,path,expected,expected_bytes):
++        with self.pin(path,confidential=False) as value:
++            require(value.identity['bytes']==expected_bytes,15,'PAYLOAD_SIZE_MISMATCH')
++            import hashlib
++            h=hashlib.sha256(); total=0
++            while True:
++                buf=C.create_string_buffer(65536); count=DWORD()
++                self.api.ok(self.api.read_file(value.handle,buf,len(buf),C.byref(count),None),'PAYLOAD_READ')
++                if not count.value: break
++                total+=count.value; h.update(buf.raw[:count.value])
++            require(total==expected_bytes and h.hexdigest()==expected,15,'PAYLOAD_HASH_MISMATCH')
++            # Keep read-only leaf + ancestor handles across native execution.
++            yield value
++
++    def create_directory(self,path):
++        path=windows_path(path)
++        with self.ancestors(path),self.api.attributes(metadata_sddl(self.operators)) as attr:
++            self.api.ok(self.api.create_directory(path,C.byref(attr)),'DIRECTORY_CREATE',18)
++        # Never "adopt" an existing directory after an AlreadyExists error.
++        with self.pin(path,directory=True,protected=True): pass
++
++    def write_new(self,path,data):
++        path=windows_path(path)
++        with self.ancestors(path),self.api.attributes(metadata_sddl(self.operators)) as attr:
++            h=self._open(path,READ|WRITE|READ_CONTROL,SHARE_READ,CREATE_NEW,C.byref(attr))
++            with self.api.handle(h):
++                self._validate_handle(h,path,False)
++                check_security(self.api.security(h),owners=self.writers,writers=self.writers,
++                               readers=self.writers,confidential=True,require_protected=True)
++                self.api.write(h,data)
++        return sha256(data)
++
++    def append_flush(self,path,data):
++        with self.pin(path,write=True,protected=True) as pinned:
++            self.api.ok(self.api.seek_file(pinned.handle,0,None,2),'APPEND_SEEK')
++            self.api.write(pinned.handle,data)
++
++    def publish_new(self,path,data):
++        """No replace-existing. Temp remains protected on failure, per D00-14."""
++        path=windows_path(path)
++        parent=str(PureWindowsPath(path).parent)
++        with self.pin(parent,directory=True,protected=True):
++            temp=str(PureWindowsPath(parent)/('pending-'+uuid4().hex+'.bin'))
++            self.write_new(temp,data)
++            # WRITE_THROUGH, deliberately no REPLACE_EXISTING flag.
++            self.api.ok(self.api.move_file(temp,path,0x8),'OUTPUT_PUBLISH',18)
++            require(self.read_blob(path,cap=max(len(data),1))==data,15,'OUTPUT_READBACK_MISMATCH')
++        return sha256(data)
+--- /dev/null
++++ b/src/aifilm_p00/native/inventory.py
+@@ -0,0 +1,80 @@
++"""Passive native identity/registry facts, never launches a distro.
++
++The returned snapshot is protected data. It is NOT automatically gate evidence,
++not a qualified active probe and not proof of cross-user inventory completeness.
++"""
++from __future__ import annotations
++import os
++from datetime import datetime,timezone
++from ..codec import sha256,canonical
++from ..errors import require,P00Error
++
++
++def registry_value(reg,hive,path,name,view=None):
++    try:
++        with reg.OpenKey(hive,path,0,reg.KEY_READ|(reg.KEY_WOW64_64KEY if view is None else view)) as key:
++            value,kind=reg.QueryValueEx(key,name)
++            return {'status':'OBSERVED','value':value,'registry_type':kind}
++    except FileNotFoundError: return {'status':'ABSENT','value':None}
++    except PermissionError: return {'status':'UNAVAILABLE','value':None}
++
++
++def distro_registry(reg):
++    path=r'Software\Microsoft\Windows\CurrentVersion\Lxss'; rows=[]
++    try:
++        with reg.OpenKey(reg.HKEY_CURRENT_USER,path,0,reg.KEY_READ) as key:
++            try: default=reg.QueryValueEx(key,'DefaultDistribution')[0]
++            except FileNotFoundError: default=None
++            count=reg.QueryInfoKey(key)[0]
++            require(count<=256,11,'DISTRO_INVENTORY_CAP')
++            for i in range(count):
++                name=reg.EnumKey(key,i)
++                with reg.OpenKey(key,name,0,reg.KEY_READ) as child:
++                    row={'registration_id':name,'status':'OBSERVED','running':'UNKNOWN'}
++                    for source,target in [('DistributionName','name'),('BasePath','base_path'),('Version','wsl_version'),
++                                          ('DefaultUid','default_uid'),('PackageFamilyName','package_family')]:
++                        try: row[target]=reg.QueryValueEx(child,source)[0]
++                        except FileNotFoundError: row[target]=None
++                    rows.append(row)
++            return {'status':'OBSERVED','default':default,'distros':rows,'coverage':'CURRENT_SID_ONLY'}
++    except FileNotFoundError: return {'status':'ABSENT','default':None,'distros':[],'coverage':'CURRENT_SID_ONLY'}
++    except PermissionError: return {'status':'UNAVAILABLE','default':None,'distros':[],'coverage':'UNKNOWN'}
++
++
++def registry_host(reg):
++    path=r'SOFTWARE\Microsoft\Windows NT\CurrentVersion'
++    out={}
++    for name in ('ProductName','EditionID','DisplayVersion','CurrentBuildNumber','UBR','InstallationType','BuildLabEx'):
++        out[name]=registry_value(reg,reg.HKEY_LOCAL_MACHINE,path,name)
++    guid=registry_value(reg,reg.HKEY_LOCAL_MACHINE,r'SOFTWARE\Microsoft\Cryptography','MachineGuid')
++    require(guid['status']=='OBSERVED' and type(guid['value']) is str,11,'HOST_ID_UNAVAILABLE')
++    out['host_id']='host_'+sha256(guid['value'].casefold().encode())[:32]
++    # Channel is UNKNOWN until trusted support/profile data and actual branch
++    # facts have been matched. ProductName alone may not identify Windows 11.
++    out['channel']='UNKNOWN'
++    out['insider']=registry_value(reg,reg.HKEY_LOCAL_MACHINE,r'SOFTWARE\Microsoft\WindowsSelfHost\Applicability','BranchName')
++    return out
++
++
++class PassiveCollector:
++    def __init__(self,api): self.api=api
++    def collect(self):
++        require(os.name=='nt',11,'WINDOWS_X64_REQUIRED')
++        import winreg
++        principal=self.api.principal(); host=registry_host(winreg)
++        return {'schema_version':1,'source_kind':'NATIVE_OBSERVATION','timestamp_utc':datetime.now(timezone.utc).isoformat(),
++                'principal':principal,'host':host,'resources':self.api.resources(),
++                'distros':distro_registry(winreg),'guest_status':'REQUIRES_ACTIVE_PROBE',
++                'consistent_snapshot':False,'overlap_status':'UNVERIFIED','host_ready':False}
++
++
++def observed_target(snapshot,bound):
++    rows=snapshot['distros']['distros']
++    matches=[r for r in rows if r['name'] is not None and r['name'].casefold()==bound['name'].casefold()]
++    require(len(matches)<=1,16,'AMBIGUOUS_TARGET')
++    if not matches: return {'status':'ABSENT','registration_id':None}
++    row=matches[0]
++    require(row['name']==bound['name'] and row['base_path'] is not None,16,'TARGET_IDENTITY_MISMATCH')
++    if bound.get('registration_id') is not None:
++        require(row['registration_id']==bound['registration_id'],16,'TARGET_REGISTRATION_DRIFT')
++    return row
+--- /dev/null
++++ b/src/aifilm_p00/native/probes.py
+@@ -0,0 +1,89 @@
++"""Fixed native probe compilers and strict output decoding.
++
++These return observations, not PASS attestations. Membership of sudo alone does
++not prove sudo readiness; observed PID1 alone does not establish startup safety.
++"""
++from __future__ import annotations
++import base64
++import re
++from pathlib import Path,PureWindowsPath
++from ..codec import windows_path,distro_name,user_name,loads,sha256,canonical
++from ..errors import require,P00Error
++from .process import Command
++
++GUEST_KEYS=frozenset({'uid','gid','user','groups','home','home_access_writable','os_id','version_id',
++    'architecture','kernel','kernel_boot_id','pid1_start_ticks','pid1_comm','logical_cpu',
++    'mem_total_kib','mem_available_kib','fs_available_kib','wsl_conf_sha256','completed'})
++INTEGER_KEYS={'uid','gid','pid1_start_ticks','logical_cpu','mem_total_kib','mem_available_kib','fs_available_kib'}
++
++
++def parse_guest(data:bytes):
++    require(type(data) is bytes and len(data)<=10*1024**2 and data.endswith(b'\n'),22,'GUEST_CAPTURE_INCOMPLETE')
++    result={}
++    for line in data.splitlines():
++        require(line.count(b'\t')==1,15,'GUEST_FRAME')
++        key,value=line.split(b'\t')
++        try:
++            key=key.decode('ascii'); value=base64.b64decode(value,validate=True).decode('utf-8')
++        except (ValueError,UnicodeError): raise P00Error(15,'GUEST_FRAME') from None
++        require(key in GUEST_KEYS and key not in result,15,'GUEST_FIELD')
++        require(len(value)<=4096 and '\0' not in value,15,'GUEST_VALUE_LIMIT')
++        result[key]=value
++    require(set(result)==GUEST_KEYS and result['completed']=='1',22,'GUEST_FIELDS_INCOMPLETE')
++    for key in INTEGER_KEYS:
++        require(re.fullmatch('[0-9]{1,20}',result[key]) is not None,15,'GUEST_NUMBER')
++        result[key]=int(result[key]);require(result[key]<2**63,15,'GUEST_NUMBER')
++    require(result['home_access_writable'] in ('0','1'),15,'GUEST_BOOLEAN')
++    require(re.fullmatch('[0-9a-f-]{36}',result['kernel_boot_id']) is not None,15,'GUEST_BOOT_WITNESS')
++    if result['wsl_conf_sha256']!='ABSENT':require(re.fullmatch('[0-9a-f]{64}',result['wsl_conf_sha256']) is not None,15,'GUEST_CONFIG_HASH')
++    result['home_access_writable']=result['home_access_writable']=='1'
++    result['resources']={'logical_cpu':result['logical_cpu'],'mem_total_bytes':result['mem_total_kib']*1024,
++                         'mem_available_bytes':result['mem_available_kib']*1024,'fs_available_bytes':result['fs_available_kib']*1024}
++    result['admin_ready']='UNKNOWN';result['startup_known']='UNKNOWN';result['quiesce_possible']='UNKNOWN'
++    return result
++
++
++def guest_command(system_directory,target,user,script:bytes):
++    user=user_name(user);target=distro_name(target);system_directory=windows_path(system_directory)
++    return Command((system_directory+'\\wsl.exe','--distribution',target,'--user',user,'--exec',
++                    '/bin/sh','-s','--','INVENTORY',user),'PROBE_GUEST',30,script,False)
++
++
++def host_command(system_directory,script_path,operation,path=None):
++    require(operation in ('HOST','FEATURES','AUTHENTICODE'),10,'HOST_PROBE_SCOPE')
++    system_directory=windows_path(system_directory);script_path=windows_path(script_path)
++    data={'operation':operation}
++    if operation=='AUTHENTICODE':data['path']=windows_path(path)
++    exe=system_directory+'\\WindowsPowerShell\\v1.0\\powershell.exe'
++    return Command((exe,'-NoLogo','-NoProfile','-NonInteractive','-File',script_path),
++                   'HOST_'+operation,30,canonical(data),False)
++
++
++def parse_host(data,operation):
++    try:data=data.decode('utf-8-sig').encode('utf-8')
++    except UnicodeError:raise P00Error(15,'HOST_CAPTURE_ENCODING') from None
++    result=loads(data)
++    require(type(result) is dict and result.get('operation')==operation,11,'HOST_COLLECTOR_UNAVAILABLE')
++    allowed={
++        'HOST':{'operation','status','boot_utc','caption','build','architecture','hypervisor_present','virtualization','runtime_packages'},
++        'FEATURES':{'operation','status','features'},
++        'AUTHENTICODE':{'operation','status','thumbprint'},
++    }
++    require(set(result)==allowed[operation],15,'HOST_CAPTURE_SCHEMA')
++    if operation!='AUTHENTICODE':require(result['status']=='OBSERVED',11,'HOST_COLLECTOR_UNAVAILABLE')
++    if operation=='HOST':
++        require(type(result['runtime_packages']) is list and len(result['runtime_packages'])<=8,15,'HOST_CAPTURE_SCHEMA')
++        require(type(result['virtualization']) is bool and type(result['hypervisor_present']) is bool,15,'HOST_CAPTURE_SCHEMA')
++    return result
++
++
++def parse_wsl_list(data):
++    """WSL redirects UTF-16LE on some locked builds; never use lossy decode."""
++    require(type(data) is bytes and len(data)<=1024**2,22,'WSL_LIST_CAP')
++    try:
++        text=data.decode('utf-16') if data.startswith((b'\xff\xfe',b'\xfe\xff')) else data.decode('utf-16-le') if b'\0' in data else data.decode('utf-8-sig')
++    except UnicodeError:raise P00Error(15,'WSL_LIST_ENCODING') from None
++    names=[line.strip() for line in text.splitlines() if line.strip()]
++    require(len(names)<=256 and len({n.casefold() for n in names})==len(names),15,'WSL_LIST_DUPLICATE')
++    for name in names:distro_name(name)
++    return names
+--- /dev/null
++++ b/src/aifilm_p00/native/process.py
+@@ -0,0 +1,180 @@
++"""Native suspended-process supervision with bounded pipe capture.
++
++Create suspended -> assign job -> persist witness callback -> resume. A timeout
++never kills a mutating process or proves service-side completion. The caller
++keeps its durable fence. Job has deliberately NO KILL_ON_JOB_CLOSE limit.
++"""
++from __future__ import annotations
++import ctypes as C
++from dataclasses import dataclass
++from threading import Thread,Lock
++import subprocess
++import time
++from uuid import uuid4
++from ..codec import windows_path,token,sha256
++from ..errors import require,P00Error
++from .winapi import (SA,HANDLE,DWORD,STARTUPINFOEX,PROCESS_INFORMATION,
++                     JOB_ACCOUNTING)
++
++CAP=10*1024**2
++CREATE_SUSPENDED=4
++EXTENDED_STARTUPINFO_PRESENT=0x80000
++CREATE_UNICODE_ENVIRONMENT=0x400
++CREATE_NO_WINDOW=0x08000000
++PROC_THREAD_ATTRIBUTE_HANDLE_LIST=0x20002
++
++
++@dataclass(frozen=True)
++class Command:
++    argv:tuple[str,...]
++    action_id:str
++    timeout_seconds:int
++    stdin:bytes=b''
++    mutation:bool=False
++
++    def validate(self):
++        require(type(self.argv) is tuple and bool(self.argv) and len(self.argv)<=64,10,'ARGUMENT_VECTOR')
++        windows_path(self.argv[0]); token(self.action_id)
++        require(type(self.timeout_seconds) is int and 1<=self.timeout_seconds<=7200,10,'COMMAND_TIMEOUT')
++        require(type(self.stdin) is bytes and len(self.stdin)<=1024**2,10,'STDIN_CAP')
++        for arg in self.argv:
++            require(type(arg) is str and '\0' not in arg and '\r' not in arg and '\n' not in arg,10,'ARGUMENT_CONTROL')
++        require(len(subprocess.list2cmdline(self.argv))<32767,10,'COMMAND_LINE_CAP')
++
++
++@dataclass(frozen=True)
++class ProcessResult:
++    exit_code:int
++    stdout:bytes
++    stderr:bytes
++    stdout_eof:bool
++    stderr_eof:bool
++    truncated:bool
++    duration_ms:int
++    native_witness:dict
++    tree_terminal:bool
++    # Does not imply MSI/DISM/WSL service-side writes have ended.
++    service_terminal:bool=False
++
++
++class Capture:
++    """Drain without retaining arbitrary-sized native output in memory."""
++    def __init__(self,cap=CAP):
++        self.cap=cap; self.parts=[]; self.kept=0; self.seen=0
++        self.eof=False; self.error=False; self.lock=Lock()
++    def feed(self,data):
++        with self.lock:
++            self.seen+=len(data)
++            remaining=max(0,self.cap-self.kept)
++            if remaining:
++                part=data[:remaining];self.parts.append(part);self.kept+=len(part)
++    @property
++    def truncated(self): return self.seen>self.cap
++    def bytes(self):
++        with self.lock:return b''.join(self.parts)
++
++
++class NativeSupervisor:
++    def __init__(self,api,paths,guard):
++        self.api=api; self.paths=paths; self.guard=guard
++
++    def _pipe(self):
++        read=HANDLE();write=HANDLE();attr=SA(C.sizeof(SA),None,1)
++        self.api.ok(self.api.create_pipe(C.byref(read),C.byref(write),C.byref(attr),65536),'PIPE_CREATE')
++        return read.value,write.value
++
++    def _drain(self,handle,capture):
++        try:
++            while True:
++                buf=C.create_string_buffer(65536);count=DWORD()
++                ok=self.api.read_file(handle,buf,len(buf),C.byref(count),None)
++                if not ok:
++                    if C.get_last_error()==109: capture.eof=True
++                    else: capture.error=True
++                    return
++                if count.value==0: capture.eof=True;return
++                capture.feed(buf.raw[:count.value])
++        finally:self.api.close(handle)
++
++    def _input(self,handle,data):
++        try:
++            offset=0
++            while offset<len(data):
++                chunk=data[offset:offset+65536];buf=C.create_string_buffer(chunk);count=DWORD()
++                if not self.api.write_file(handle,buf,len(chunk),C.byref(count),None) or not count.value:return
++                offset+=count.value
++        finally:self.api.close(handle)
++
++    def run(self,command:Command,*,before_resume,environment:dict[str,str],cwd:str):
++        command.validate()
++        require(self.guard.held,18,'GUARD_NOT_HELD')
++        require(callable(before_resume),12,'DURABLE_WITNESS_CALLBACK_REQUIRED')
++        cwd=windows_path(cwd)
++        # Environment values come from protected bindings/OS queries, not the
++        # arbitrary caller environment. WSLENV/LD_PRELOAD/PYTHONPATH are excluded.
++        allowed={'SystemRoot','WINDIR','SystemDrive','PATH','TEMP','TMP','USERPROFILE','LOCALAPPDATA','ProgramData','COMSPEC'}
++        require(type(environment) is dict and set(environment)<=allowed and {'SystemRoot','PATH','TEMP','TMP'}<=set(environment),12,'CHILD_ENVIRONMENT_SCOPE')
++        require(all(type(v) is str and '\0' not in v for v in environment.values()),10,'CHILD_ENVIRONMENT_INVALID')
++        env=C.create_unicode_buffer('\0'.join(k+'='+v for k,v in sorted(environment.items(),key=lambda x:x[0].casefold()))+'\0\0')
++        handles=[]; parent_handles=[]; worker_threads=[]; pi=PROCESS_INFORMATION(); job=None
++        attrbuf=None; resumed=False; transferred=set(); started=time.monotonic()
++        try:
++            stdin_r,stdin_w=self._pipe(); stdout_r,stdout_w=self._pipe(); stderr_r,stderr_w=self._pipe()
++            handles=[stdin_r,stdin_w,stdout_r,stdout_w,stderr_r,stderr_w]
++            for h in (stdin_w,stdout_r,stderr_r):self.api.ok(self.api.handle_flags(h,1,0),'PIPE_INHERITANCE')
++            n=C.c_size_t();self.api.init_attributes(None,1,0,C.byref(n))
++            require(0<n.value<65536,18,'ATTRIBUTE_LIST_SIZE')
++            attrbuf=C.create_string_buffer(n.value)
++            self.api.ok(self.api.init_attributes(attrbuf,1,0,C.byref(n)),'ATTRIBUTE_LIST_INIT')
++            inherited=(HANDLE*3)(stdin_r,stdout_w,stderr_w)
++            self.api.ok(self.api.update_attributes(attrbuf,0,PROC_THREAD_ATTRIBUTE_HANDLE_LIST,inherited,C.sizeof(inherited),None,None),'ATTRIBUTE_HANDLE_LIST')
++            si=STARTUPINFOEX();si.info.cb=C.sizeof(si);si.info.flags=0x100
++            si.info.stdin=stdin_r;si.info.stdout=stdout_w;si.info.stderr=stderr_w
++            si.attributes=C.cast(attrbuf,C.c_void_p)
++            job_name='Global\\AI-FILM-P00-JOB-'+uuid4().hex
++            job=self.api.create_job(None,job_name)
++            require(bool(job) and C.get_last_error()!=183,18,'JOB_CREATE')
++            # The binary and parent directory handles remain pinned through wait.
++            with self.paths.pin(command.argv[0],confidential=False) as binary:
++                line=C.create_unicode_buffer(subprocess.list2cmdline(command.argv))
++                flags=CREATE_SUSPENDED|EXTENDED_STARTUPINFO_PRESENT|CREATE_UNICODE_ENVIRONMENT|CREATE_NO_WINDOW
++                self.api.ok(self.api.create_process(command.argv[0],line,None,None,True,flags,env,cwd,C.byref(si),C.byref(pi)),'PROCESS_CREATE')
++                self.api.ok(self.api.assign_job(job,pi.process),'PROCESS_JOB_ASSIGN')
++                witness={'pid':pi.pid,'start':str(self.api.process_start(pi.process)),
++                         'action_id':command.action_id,'job_name':job_name,
++                         'binary_file_id':binary.identity['file_id'],'binary_volume_serial':binary.identity['volume_serial']}
++                before_resume(witness)  # throws -> own still-suspended child is not run
++                for h in (stdin_r,stdout_w,stderr_w):self.api.close(h);handles.remove(h)
++                stdout=Capture();stderr=Capture()
++                for handle,capture in ((stdout_r,stdout),(stderr_r,stderr)):
++                    t=Thread(target=self._drain,args=(handle,capture),daemon=True)
++                    t.start();worker_threads.append(t);transferred.add(handle)
++                t=Thread(target=self._input,args=(stdin_w,command.stdin),daemon=True)
++                t.start();worker_threads.append(t);transferred.add(stdin_w)
++                require(self.api.resume_thread(pi.thread)!=0xffffffff,18,'PROCESS_RESUME')
++                resumed=True
++                wait=self.api.wait(pi.process,command.timeout_seconds*1000)
++                require(wait!=258,17,'NATIVE_TIMEOUT')
++                require(wait==0,18,'PROCESS_WAIT')
++                code=DWORD();self.api.ok(self.api.process_exit(pi.process,C.byref(code)),'PROCESS_EXIT_QUERY')
++                accounting=JOB_ACCOUNTING();size=DWORD()
++                self.api.ok(self.api.query_job(job,1,C.byref(accounting),C.sizeof(accounting),C.byref(size)),'JOB_WITNESS')
++                for thread in worker_threads:thread.join(timeout=0.2)
++                result=ProcessResult(code.value,stdout.bytes(),stderr.bytes(),stdout.eof,stderr.eof,
++                                     stdout.truncated or stderr.truncated,int((time.monotonic()-started)*1000),witness,
++                                     accounting.active==0 and stdout.eof and stderr.eof)
++                require(not stdout.error and not stderr.error,18,'NATIVE_CAPTURE_IO')
++                require(result.tree_terminal,17,'NATIVE_TREE_UNRESOLVED')
++                require(not result.truncated,22,'NATIVE_CAPTURE_TRUNCATED')
++                return result
++        finally:
++            # Only a process still suspended before its first resume may be
++            # terminated here. NEVER terminate a timed-out installer/WSL process.
++            if pi.process and not resumed:
++                self.api.terminate_process(pi.process,18)
++            for h in handles:
++                if h not in transferred:self.api.close(h)
++            if pi.thread:self.api.close(pi.thread)
++            if pi.process:self.api.close(pi.process)
++            if job:self.api.close(job)
++            if attrbuf is not None:self.api.delete_attributes(attrbuf)
+--- /dev/null
++++ b/src/aifilm_p00/native/security.py
+@@ -0,0 +1,79 @@
++"""ACL policy shared by concrete handle checks and adversarial workspace fixtures."""
++from dataclasses import dataclass
++import re
++from ..errors import require
++
++SYSTEM = 'S-1-5-18'
++ADMINISTRATORS = 'S-1-5-32-544'
++TRUSTED_INSTALLER = 'S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464'
++ADMIN_OWNERS = frozenset({SYSTEM, ADMINISTRATORS, TRUSTED_INSTALLER})
++# Rights which may change bytes, namespace, ownership or permissions. Directory
++# FILE_DELETE_CHILD is included; registry CREATE_SUB_KEY/SET_VALUE are separate.
++FILE_MUTATION = 0x40000000 | 0x10000000 | 0x000D0156
++REGISTRY_MUTATION = 0x40000000 | 0x10000000 | 0x000D0026
++
++
++def sid(value: str) -> str:
++    require(type(value) is str and re.fullmatch(r'S-1-\d+(?:-\d+){1,15}', value) is not None,
++            10, 'INVALID_SID')
++    require(all(int(x) <= 0xffffffff for x in value.split('-')[3:]), 10, 'INVALID_SID')
++    return value
++
++
++@dataclass(frozen=True)
++class Ace:
++    kind: int  # ACCESS_ALLOWED_ACE=0, ACCESS_DENIED_ACE=1
++    flags: int
++    mask: int
++    trustee: str
++
++
++@dataclass(frozen=True)
++class Security:
++    owner: str
++    dacl_present: bool
++    dacl_null: bool
++    protected: bool
++    aces: tuple[Ace, ...]
++
++
++def check_security(value: Security, *, owners: frozenset[str],
++                   writers: frozenset[str], confidential: bool,
++                   readers: frozenset[str] = frozenset(), registry: bool = False,
++                   require_protected: bool = False) -> None:
++    """Conservative allowlist; unsupported ACEs fail instead of being ignored.
++
++    Inherit-only ACEs still count: a broad inheritable write grant is unsafe for
++    the protected children even if it does not affect this directory itself.
++    Denies never excuse a dangerous broad allow (no incorrect ACL simulation).
++    """
++    require(value.owner in owners, 12, 'UNTRUSTED_OBJECT_OWNER')
++    require(value.dacl_present and not value.dacl_null, 12, 'UNRESTRICTED_DACL')
++    require(not require_protected or value.protected, 12, 'INHERITED_TRUST_BOUNDARY')
++    mutation = REGISTRY_MUTATION if registry else FILE_MUTATION
++    for ace in value.aces:
++        sid(ace.trustee)
++        require(ace.kind in (0, 1), 12, 'UNSUPPORTED_ACE')
++        if ace.kind == 1:
++            continue
++        if ace.mask & mutation:
++            require(ace.trustee in writers, 12, 'UNAUTHORIZED_WRITER')
++        if confidential and ace.mask:
++            require(ace.trustee in readers | writers, 12, 'UNAUTHORIZED_READER')
++
++
++def metadata_sddl(operators: frozenset[str]) -> str:
++    """Explicit protected metadata ACL; never BUILTIN Users or Everyone."""
++    for item in operators:
++        sid(item)
++    principals = sorted(operators | {SYSTEM, ADMINISTRATORS})
++    # Owner/group are assigned by Windows to the actual creator. Verified after
++    # creation; no privilege-dependent implicit owner change is attempted.
++    return 'D:P' + ''.join('(A;OICI;FA;;;' + item + ')' for item in principals)
++
++
++def mutex_sddl(operators: frozenset[str]) -> str:
++    for item in operators:
++        sid(item)
++    return 'D:P' + ''.join('(A;;0x001F0001;;;' + item + ')'
++                          for item in sorted(operators | {SYSTEM, ADMINISTRATORS}))
+--- /dev/null
++++ b/src/aifilm_p00/native/snapshot.py
+@@ -0,0 +1,128 @@
++"""ACL-aware immutable snapshot reader and write-through safe bundle publisher.
++
++No live collector is launched here. Expected digests and approved roots come from
++an authenticated snapshot binding; this is not a facility to archive arbitrary
++paths. Final gate evaluation remains separate from bundle assembly.
++"""
++from __future__ import annotations
++from pathlib import PureWindowsPath
++import re
++import time
++from ..codec import loads,canonical,sha256,relative,hash_value,token,instant
++from ..errors import require,P00Error
++from ..evidence import (Collected,Sanitizer,assemble,bundle_integrity,PATHS,COLLECTOR_CAP,
++    REDACT_KEYS,ALIAS_KEYS,HASH_KEYS,BOOL_KEYS,INT_KEYS,STRUCT_KEYS,ENUM_KEYS,ENUM_VALUES)
++from ..policy import budget_check
++
++
++def logical_ref(value):
++    require(type(value) is str and value.count('#')==1,15,'LOGICAL_REFERENCE')
++    filepart,record_id=value.split('#')
++    require('/' in filepart,15,'LOGICAL_REFERENCE')
++    run_id,path=filepart.split('/',1);token(run_id);relative(path);token(record_id)
++    return run_id,path,record_id
++
++
++def extract_record(blob,record_id):
++    data=loads(blob)
++    if type(data) is dict and data.get('record_id')==record_id:return data
++    require(type(data) is dict and set(data)=={'records'} and type(data['records']) is list,15,'RECORD_CONTAINER')
++    matches=[r for r in data['records'] if type(r) is dict and r.get('record_id')==record_id]
++    require(len(matches)==1,15,'RECORD_SELECTION')
++    return matches[0]
++
++
++class SnapshotReader:
++    def __init__(self,paths,guard,approved_root):
++        self.paths=paths;self.guard=guard;self.root=approved_root
++    def read(self,index,expected_index_digest,*,run_id):
++        require(self.guard.held,18,'GUARD_NOT_HELD')
++        require(sha256(canonical(index))==expected_index_digest,15,'SNAPSHOT_INDEX_HASH')
++        require(type(index) is dict and set(index)=={'schema_version','run_id','records'} and index['schema_version']==1
++                and index['run_id']==run_id and type(index['records']) is list,15,'SNAPSHOT_INDEX_SCHEMA')
++        require(len(index['records'])<=15,15,'SNAPSHOT_RECORD_CAP')
++        collected=[];seen=set()
++        with self.paths.pin(self.root,directory=True,protected=True):
++            for row in index['records']:
++                start=time.monotonic()
++                require(type(row) is dict and set(row)=={'evidence_id','relative_path','record_id','bytes','sha256'},15,'SNAPSHOT_ROW')
++                eid=row['evidence_id'];require(eid in PATHS and eid not in seen,15,'SNAPSHOT_DUPLICATE');seen.add(eid)
++                relative(row['relative_path']);token(row['record_id']);hash_value(row['sha256'])
++                require(type(row['bytes']) is int and 0<row['bytes']<=COLLECTOR_CAP,22,'SNAPSHOT_MEMBER_CAP')
++                path=str(PureWindowsPath(self.root)/row['relative_path'])
++                blob=self.paths.read_blob(path,cap=COLLECTOR_CAP,expected=row['sha256'])
++                require(len(blob)==row['bytes'],15,'SNAPSHOT_MEMBER_SIZE')
++                record=extract_record(blob,row['record_id'])
++                require(record.get('run_id')==run_id and record.get('evidence_id')==eid,15,'SNAPSHOT_RECORD_SCOPE')
++                rr,actual_path,actual_id=logical_ref(record['protected_ref'])
++                require(rr==run_id,15,'SNAPSHOT_PROTECTED_RUN')
++                # A successful path read + actual hash check is what earns the
++                # access/integrity flags. They are never copied from input JSON.
++                actual_blob=self.paths.read_blob(str(PureWindowsPath(self.root)/actual_path),
++                                                 cap=COLLECTOR_CAP,expected=record['protected_digest'])
++                extract_record(actual_blob,actual_id)
++                elapsed=int((time.monotonic()-start)*1000)
++                encoded=canonical(record)
++                collected.append(Collected(eid,record,sha256(encoded),elapsed,len(blob),True,
++                                           'COMPLETE' if elapsed<=30000 else 'TIMEOUT',True,True))
++        return collected
++
++
++def _summary_safe(value,depth=0):
++    if type(value) is not dict or depth>20:return False
++    for k,v in value.items():
++        if k in REDACT_KEYS:
++            if v!='[REDACTED]':return False
++        elif k in ALIAS_KEYS:
++            if type(v) is not str or re.fullmatch(r'a_[0-9a-f]{24}',v) is None:return False
++        elif k in HASH_KEYS:
++            if type(v) is not str or re.fullmatch(r'[0-9a-f]{64}',v) is None:return False
++        elif k in BOOL_KEYS:
++            if type(v) is not bool:return False
++        elif k in INT_KEYS:
++            if type(v) is not int or not -2**31<=v<=2**63-1:return False
++        elif k in ENUM_KEYS:
++            if type(v) is not str or v not in ENUM_VALUES:return False
++        elif k in STRUCT_KEYS:
++            if type(v) is list:
++                if len(v)>10000 or not all(_summary_safe(x,depth+1) for x in v):return False
++            elif not _summary_safe(v,depth+1):return False
++        else:return False
++    return True
++
++
++def strict_safe_scan(raw):
++    """Independent structure checks; no claim of detecting arbitrary novel secrets."""
++    try:
++        value=loads(raw)
++        required={'schema_version','evidence_id','record_alias','host_alias','target_alias','status',
++                  'source_kind','timestamp_utc','build_digest','contract_digest','protected_artifact_alias',
++                  'protected_digest','summary'}
++        if type(value) is not dict or set(value)!=required or value['schema_version']!=1:return False
++        if value['evidence_id'] not in PATHS or value['status'] not in ENUM_VALUES or value['source_kind'] not in {'SITE','LAB','DOCUMENT'}:return False
++        instant(value['timestamp_utc'])
++        for k in ('build_digest','contract_digest','protected_digest'):hash_value(value[k])
++        for k in ('record_alias','host_alias','target_alias','protected_artifact_alias'):
++            if type(value[k]) is not str or re.fullmatch(r'a_[0-9a-f]{24}',value[k]) is None:return False
++        return _summary_safe(value['summary'])
++    except (P00Error,TypeError,KeyError):return False
++
++
++class NativeBundlePublisher:
++    def __init__(self,paths,coordinator):self.paths=paths;self.coordinator=coordinator
++    def publish(self,bundle,*,approved_path,budgets,free_by_volume):
++        c=self.coordinator
++        require(c.held and c.admission is not None and c.admission.purpose=='SUPPORT_BUNDLE'
++                and c.fence is not None and c.fence['action']=='PUBLISH_SAFE_BUNDLE',12,'PUBLISH_ADMISSION_REQUIRED')
++        budget_check(budgets,free_by_volume)
++        if bundle.archive is None:
++            return {'exit':bundle.exit,'outcome':bundle.outcome,'published':False,'host_ready':False}
++        require(bundle.exit in (0,2,22),23,'BUNDLE_NOT_PUBLISHABLE')
++        require(approved_path.endswith('.incomplete.zip') if bundle.exit==22 else approved_path.endswith('.zip') and not approved_path.endswith('.incomplete.zip'),10,'BUNDLE_OUTPUT_SUFFIX')
++        checked=bundle_integrity(bundle.archive)
++        try:self.paths.publish_new(approved_path,bundle.archive)
++        except P00Error as e:
++            if e.code in (12,15,16):raise
++            return {'exit':18,'outcome':'FAILED_OUTPUT','published':False,'host_ready':False}
++        return {'exit':bundle.exit,'outcome':bundle.outcome,'published':True,'bundle_digest':checked['sha256'],
++                'component_eligible':bundle.component_eligible,'host_ready':False}
+--- /dev/null
++++ b/src/aifilm_p00/native/trust.py
+@@ -0,0 +1,133 @@
++"""Read-only native authority adapter with an out-of-band HKLM trust anchor.
++
++Nothing here enrolls a host, writes the anchor, issues approvals/qualification,
++or treats a fixture file as authority. Host-owner provisioning is external;
++missing authority blocks. Each read_anchor call obtains a fresh policy/ACL snapshot.
++The full route driver must invoke it before each step; that integration is pending.
++"""
++from __future__ import annotations
++from dataclasses import dataclass
++from datetime import timedelta
++import os
++from pathlib import Path
++from .. import CONTRACT_DIGEST
++from ..authority import PinnedStore
++from ..codec import loads,canonical,sha256,digest,hash_value,instant,fields
++from ..errors import P00Error,require
++from .security import ADMIN_OWNERS,check_security,sid
++
++ANCHOR_KEY=r'SOFTWARE\AI-FILM-SERVER\Phase00\Trust'
++ANCHOR_VALUE='Policy'
++ANCHOR_CAP=10*1024**2
++
++
++@dataclass(frozen=True)
++class MetadataPermit:
++    host_id:str
++    owner_sid:str
++    build_digest:str
++    approval_digest:str
++
++
++def normalize_design(raw,contract_directory):
++    """Normalize the actual uppercase review artifact; do not fabricate a review."""
++    require(raw.get('APPROVAL_TYPE')=='DESIGN_REVIEW_PASS' and raw.get('VERDICT')=='PASS'
++            and raw.get('REVIEW_ID')=='REVIEW-P00-002',15,'DESIGN_CHAIN_INVALID')
++    rows=raw.get('NORMATIVE_CONTRACT_SET')
++    require(type(rows) is list and len(rows)==4 and raw.get('NORMATIVE_CONTRACT_SET_DIGEST')==CONTRACT_DIGEST,
++            15,'DESIGN_CONTRACT_SET_INVALID')
++    expected={'PHASE00_INFRA_DESIGN_V2.md','PHASE00_ACCEPTANCE_MATRIX_V2.md',
++              'PHASE00_FAILURE_RECOVERY_PLAN_V2.md','PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md'}
++    require({r.get('path') for r in rows}==expected,15,'DESIGN_CONTRACT_SET_INVALID')
++    require(digest(sorted(rows,key=lambda r:r['path']))==CONTRACT_DIGEST,15,'DESIGN_CONTRACT_SET_HASH')
++    for row in rows:
++        path=Path(contract_directory)/row['path']
++        require(path.is_file() and not path.is_symlink(),15,'CONTRACT_FILE_MISSING')
++        blob=path.read_bytes()
++        require(len(blob)==row['bytes'] and sha256(blob)==row['sha256'],15,'CONTRACT_FILE_CHANGED')
++    require(raw.get('IMPLEMENTATION_AUTHORING_ENTRY_OPEN') is True and raw.get('OPEN_REQUIRED_CHANGES')==[],15,'DESIGN_ENTRY_CLOSED')
++    return {'role':'design','verdict':'PASS','contract_digest':CONTRACT_DIGEST,
++            'withdrawn':False,'raw_review_id':raw['REVIEW_ID']}
++
++
++class NativeStore:
++    def __init__(self,policy_bytes,contract_directory):
++        policy=loads(policy_bytes)
++        fields(policy,{'schema_version','host_id','operator_sids','role_pins','blobs','withdrawn_refs','generation'})
++        require(policy['schema_version']==1 and type(policy['generation']) is int and policy['generation']>=1,15,'ANCHOR_SCHEMA')
++        require(type(policy['operator_sids']) is list and bool(policy['operator_sids']),15,'ANCHOR_OPERATORS')
++        self.operators=frozenset(sid(s) for s in policy['operator_sids'])
++        require(type(policy['role_pins']) is dict and type(policy['blobs']) is dict and type(policy['withdrawn_refs']) is list,15,'ANCHOR_SCHEMA')
++        self.host_id=policy['host_id']; self.generation=policy['generation']
++        self.policy_digest=sha256(policy_bytes); self.withdrawn=frozenset(policy['withdrawn_refs'])
++        for ref in self.withdrawn: hash_value(ref)
++        self.pins={role:frozenset(refs) for role,refs in policy['role_pins'].items()}
++        self.blobs={ref:value.encode('utf-8') for ref,value in policy['blobs'].items() if type(value) is str}
++        require(len(self.blobs)==len(policy['blobs']),15,'ANCHOR_BLOB_TYPE')
++        for refs in self.pins.values():
++            for ref in refs:
++                hash_value(ref)
++                require(ref in self.blobs and sha256(self.blobs[ref])==ref,15,'ANCHOR_BLOB_HASH')
++        self.contract_directory=contract_directory
++        self.provenance='WINDOWS_HKLM_ACL_ANCHOR'
++
++    def get(self,role,ref):
++        hash_value(ref)
++        require(ref in self.pins.get(role,frozenset()),15,'UNTRUSTED_DOCUMENT')
++        require(ref not in self.withdrawn,11,'AUTHORITY_WITHDRAWN')
++        blob=self.blobs.get(ref)
++        require(blob is not None and sha256(blob)==ref,15,'DOCUMENT_INTEGRITY')
++        data=loads(blob)
++        require(type(data) is dict,15,'DOCUMENT_SCHEMA')
++        if role=='design' and 'APPROVAL_TYPE' in data:
++            return normalize_design(data,self.contract_directory)
++        require(data.get('role')==role,15,'DOCUMENT_ROLE_MISMATCH')
++        return data
++
++    def one(self,role):
++        refs=self.pins.get(role,frozenset())-self.withdrawn
++        require(len(refs)==1,15,'AUTHORITY_SELECTION_AMBIGUOUS')
++        ref=next(iter(refs)); return ref,self.get(role,ref)
++
++    def metadata_permit(self,principal,build_digest,now):
++        require(principal['execution_sid'] in self.operators,12,'OPERATOR_NOT_REGISTERED')
++        dref,_=self.one('design'); cref,code=self.one('code')
++        require(code.get('verdict')=='PASS' and code.get('withdrawn') is False and code.get('build_digest')==build_digest
++                and code.get('contract_digest')==CONTRACT_DIGEST,11,'CODE_REVIEW_REQUIRED')
++        ref,value=self.one('metadata_initialization')
++        require(value.get('host_id')==self.host_id and value.get('owner_sid')==principal['execution_sid']
++                and value.get('build_digest')==build_digest and value.get('class')=='C0'
++                and value.get('design_ref')==dref and value.get('code_ref')==cref
++                and value.get('withdrawn') is False,12,'METADATA_APPROVAL_SCOPE')
++        issued=instant(value['issued_at']); expires=instant(value['expires_at'])
++        require(issued<=now<=expires and expires-issued<=timedelta(hours=24),12,'METADATA_APPROVAL_EXPIRED')
++        return MetadataPermit(self.host_id,principal['execution_sid'],build_digest,ref)
++
++
++def read_anchor(api,contract_directory):
++    require(os.name=='nt',11,'WINDOWS_X64_REQUIRED')
++    import winreg
++    try:
++        # The entire read handle is validated; a user-writable child key cannot
++        # become authority merely because its path begins with HKLM.
++        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,ANCHOR_KEY,0,winreg.KEY_READ|winreg.KEY_WOW64_64KEY) as key:
++            check_security(api.security(int(key),4),owners=ADMIN_OWNERS,writers=ADMIN_OWNERS,
++                           readers=ADMIN_OWNERS,confidential=False,registry=True)
++            value,kind=winreg.QueryValueEx(key,ANCHOR_VALUE)
++            require(kind==winreg.REG_SZ and type(value) is str,15,'ANCHOR_VALUE_TYPE')
++            data=value.encode('utf-8'); require(len(data)<=ANCHOR_CAP,15,'ANCHOR_TOO_LARGE')
++        return NativeStore(data,contract_directory)
++    except P00Error: raise
++    except (OSError,UnicodeError): raise P00Error(12,'TRUST_ANCHOR_UNAVAILABLE') from None
++
++
++def validate_payload_graph(store,ref,expected_digest):
++    p=store.get('payload',ref)
++    require(p.get('payload_digest')==expected_digest and p.get('withdrawn') is False,15,'PAYLOAD_TRUST_INVALID')
++    require(type(p.get('bytes')) is int and p['bytes']>0 and isinstance(p.get('path'),str),15,'PAYLOAD_BINDING_INCOMPLETE')
++    metadata=store.get('release_metadata',p['trusted_metadata_digest'])
++    require(metadata.get('authenticated') is True and metadata.get('trust_anchor')==p.get('trust_anchor')
++            and metadata.get('withdrawn') is False,15,'RELEASE_METADATA_UNTRUSTED')
++    row={'filename':p.get('filename'),'bytes':p['bytes'],'sha256':expected_digest,'version':p.get('version')}
++    require(row in metadata.get('artifacts',[]),15,'PAYLOAD_NOT_IN_RELEASE_METADATA')
++    return p
+--- /dev/null
++++ b/src/aifilm_p00/native/winapi.py
+@@ -0,0 +1,234 @@
++"""Small explicit Win32 FFI. No DLL loading until WinAPI() on Windows x64.
++
++Every API has argtypes/restype to avoid HANDLE truncation. API failures emit fixed
++codes only. No shell, WSL, registry writes or installation in this module.
++"""
++from __future__ import annotations
++import ctypes as C
++import os
++from contextlib import contextmanager
++from dataclasses import dataclass
++from ..errors import P00Error, require
++from .security import Security, Ace
++
++DWORD=C.c_uint32; WORD=C.c_uint16; BYTE=C.c_ubyte; BOOL=C.c_int32
++HANDLE=C.c_void_p; LPVOID=C.c_void_p; ULONG_PTR=C.c_size_t
++LPWSTR=C.c_wchar_p; LPDWORD=C.POINTER(DWORD)
++INVALID_HANDLE=C.c_void_p(-1).value
++
++class SA(C.Structure):
++    _fields_=[('nLength',DWORD),('lpSecurityDescriptor',LPVOID),('bInheritHandle',BOOL)]
++class FT(C.Structure):
++    _fields_=[('low',DWORD),('high',DWORD)]
++    @property
++    def ticks(self): return self.low | (self.high << 32)
++class FileInfo(C.Structure):
++    _fields_=[('attributes',DWORD),('created',FT),('accessed',FT),('written',FT),
++              ('volume_serial',DWORD),('size_hi',DWORD),('size_lo',DWORD),
++              ('links',DWORD),('index_hi',DWORD),('index_lo',DWORD)]
++class SID_AND_ATTRIBUTES(C.Structure):
++    _fields_=[('Sid',LPVOID),('Attributes',DWORD)]
++class ACL(C.Structure):
++    _fields_=[('revision',BYTE),('sbz1',BYTE),('size',WORD),('count',WORD),('sbz2',WORD)]
++class ACE_HEAD(C.Structure):
++    _fields_=[('kind',BYTE),('flags',BYTE),('size',WORD)]
++class MEMORYSTATUSEX(C.Structure):
++    _fields_=[('length',DWORD),('load',DWORD)]+[(n,C.c_uint64) for n in
++        ('total_phys','available_phys','total_page','available_page','total_virtual','available_virtual','available_extended')]
++class GUID(C.Structure):
++    _fields_=[('a',DWORD),('b',WORD),('c',WORD),('d',BYTE*8)]
++    @classmethod
++    def parse(cls,value):
++        import uuid
++        return cls.from_buffer_copy(uuid.UUID(value).bytes_le)
++class STARTUPINFO(C.Structure):
++    _fields_=[('cb',DWORD),('reserved',LPWSTR),('desktop',LPWSTR),('title',LPWSTR),
++              ('x',DWORD),('y',DWORD),('xsize',DWORD),('ysize',DWORD),
++              ('xchars',DWORD),('ychars',DWORD),('fill',DWORD),('flags',DWORD),
++              ('show',WORD),('reserved2_len',WORD),('reserved2',LPVOID),
++              ('stdin',HANDLE),('stdout',HANDLE),('stderr',HANDLE)]
++class STARTUPINFOEX(C.Structure):
++    _fields_=[('info',STARTUPINFO),('attributes',LPVOID)]
++class PROCESS_INFORMATION(C.Structure):
++    _fields_=[('process',HANDLE),('thread',HANDLE),('pid',DWORD),('tid',DWORD)]
++class JOB_ACCOUNTING(C.Structure):
++    _fields_=[('user',C.c_int64),('kernel',C.c_int64),('period_user',C.c_int64),
++              ('period_kernel',C.c_int64),('page_faults',DWORD),('total',DWORD),
++              ('active',DWORD),('terminated',DWORD)]
++
++class WinAPI:
++    def __init__(self):
++        require(os.name=='nt' and C.sizeof(C.c_void_p)==8,11,'WINDOWS_X64_REQUIRED')
++        self.k=C.WinDLL('kernel32',use_last_error=True)
++        self.a=C.WinDLL('advapi32',use_last_error=True)
++        self.s=C.WinDLL('shell32',use_last_error=True)
++        self.o=C.WinDLL('ole32',use_last_error=True)
++        def bind(lib,name,result,args):
++            f=getattr(lib,name); f.restype=result; f.argtypes=args; return f
++        self.close=bind(self.k,'CloseHandle',BOOL,[HANDLE])
++        self.local_free=bind(self.k,'LocalFree',LPVOID,[LPVOID])
++        self.get_current_process=bind(self.k,'GetCurrentProcess',HANDLE,[])
++        self.get_current_pid=bind(self.k,'GetCurrentProcessId',DWORD,[])
++        self.get_current_tid=bind(self.k,'GetCurrentThreadId',DWORD,[])
++        self.get_system_directory=bind(self.k,'GetSystemDirectoryW',DWORD,[LPWSTR,DWORD])
++        self.get_windows_directory=bind(self.k,'GetWindowsDirectoryW',DWORD,[LPWSTR,DWORD])
++        self.get_phys_ram=bind(self.k,'GetPhysicallyInstalledSystemMemory',BOOL,[C.POINTER(C.c_uint64)])
++        self.memory_status=bind(self.k,'GlobalMemoryStatusEx',BOOL,[C.POINTER(MEMORYSTATUSEX)])
++        self.cpu_count=bind(self.k,'GetActiveProcessorCount',DWORD,[WORD])
++        self.wow64=bind(self.k,'IsWow64Process2',BOOL,[HANDLE,C.POINTER(WORD),C.POINTER(WORD)])
++        self.open_token=bind(self.a,'OpenProcessToken',BOOL,[HANDLE,DWORD,C.POINTER(HANDLE)])
++        self.token_info=bind(self.a,'GetTokenInformation',BOOL,[HANDLE,C.c_int,LPVOID,DWORD,LPDWORD])
++        self.sid_string=bind(self.a,'ConvertSidToStringSidW',BOOL,[LPVOID,C.POINTER(LPWSTR)])
++        self.convert_sddl=bind(self.a,'ConvertStringSecurityDescriptorToSecurityDescriptorW',BOOL,[LPWSTR,DWORD,C.POINTER(LPVOID),LPDWORD])
++        self.security_info=bind(self.a,'GetSecurityInfo',DWORD,[HANDLE,C.c_int,DWORD,C.POINTER(LPVOID),C.POINTER(LPVOID),C.POINTER(LPVOID),C.POINTER(LPVOID),C.POINTER(LPVOID)])
++        self.sd_control=bind(self.a,'GetSecurityDescriptorControl',BOOL,[LPVOID,C.POINTER(WORD),LPDWORD])
++        self.get_ace=bind(self.a,'GetAce',BOOL,[LPVOID,DWORD,C.POINTER(LPVOID)])
++        self.create_mutex=bind(self.k,'CreateMutexExW',HANDLE,[C.POINTER(SA),LPWSTR,DWORD,DWORD])
++        self.release_mutex=bind(self.k,'ReleaseMutex',BOOL,[HANDLE])
++        self.wait=bind(self.k,'WaitForSingleObject',DWORD,[HANDLE,DWORD])
++        self.create_file=bind(self.k,'CreateFileW',HANDLE,[LPWSTR,DWORD,DWORD,C.POINTER(SA),DWORD,DWORD,HANDLE])
++        self.file_info=bind(self.k,'GetFileInformationByHandle',BOOL,[HANDLE,C.POINTER(FileInfo)])
++        self.file_size=bind(self.k,'GetFileSizeEx',BOOL,[HANDLE,C.POINTER(C.c_int64)])
++        self.read_file=bind(self.k,'ReadFile',BOOL,[HANDLE,LPVOID,DWORD,LPDWORD,LPVOID])
++        self.write_file=bind(self.k,'WriteFile',BOOL,[HANDLE,LPVOID,DWORD,LPDWORD,LPVOID])
++        self.seek_file=bind(self.k,'SetFilePointerEx',BOOL,[HANDLE,C.c_int64,C.POINTER(C.c_int64),DWORD])
++        self.flush_file=bind(self.k,'FlushFileBuffers',BOOL,[HANDLE])
++        self.final_path=bind(self.k,'GetFinalPathNameByHandleW',DWORD,[HANDLE,LPWSTR,DWORD,DWORD])
++        self.file_attributes=bind(self.k,'GetFileAttributesW',DWORD,[LPWSTR])
++        self.create_directory=bind(self.k,'CreateDirectoryW',BOOL,[LPWSTR,C.POINTER(SA)])
++        self.move_file=bind(self.k,'MoveFileExW',BOOL,[LPWSTR,LPWSTR,DWORD])
++        self.delete_file=bind(self.k,'DeleteFileW',BOOL,[LPWSTR])
++        self.get_volume_path=bind(self.k,'GetVolumePathNameW',BOOL,[LPWSTR,LPWSTR,DWORD])
++        self.get_volume_name=bind(self.k,'GetVolumeNameForVolumeMountPointW',BOOL,[LPWSTR,LPWSTR,DWORD])
++        self.get_volume_info=bind(self.k,'GetVolumeInformationW',BOOL,[LPWSTR,LPWSTR,DWORD,LPDWORD,LPDWORD,LPDWORD,LPWSTR,DWORD])
++        self.get_drive_type=bind(self.k,'GetDriveTypeW',DWORD,[LPWSTR])
++        self.get_disk_free=bind(self.k,'GetDiskFreeSpaceExW',BOOL,[LPWSTR,C.POINTER(C.c_uint64),C.POINTER(C.c_uint64),C.POINTER(C.c_uint64)])
++        self.known_folder=bind(self.s,'SHGetKnownFolderPath',C.c_int32,[C.POINTER(GUID),DWORD,HANDLE,C.POINTER(LPWSTR)])
++        self.com_free=bind(self.o,'CoTaskMemFree',None,[LPVOID])
++        self.create_pipe=bind(self.k,'CreatePipe',BOOL,[C.POINTER(HANDLE),C.POINTER(HANDLE),C.POINTER(SA),DWORD])
++        self.handle_flags=bind(self.k,'SetHandleInformation',BOOL,[HANDLE,DWORD,DWORD])
++        self.create_process=bind(self.k,'CreateProcessW',BOOL,[LPWSTR,LPWSTR,C.POINTER(SA),C.POINTER(SA),BOOL,DWORD,LPVOID,LPWSTR,LPVOID,C.POINTER(PROCESS_INFORMATION)])
++        self.process_times=bind(self.k,'GetProcessTimes',BOOL,[HANDLE,C.POINTER(FT),C.POINTER(FT),C.POINTER(FT),C.POINTER(FT)])
++        self.process_exit=bind(self.k,'GetExitCodeProcess',BOOL,[HANDLE,LPDWORD])
++        self.resume_thread=bind(self.k,'ResumeThread',DWORD,[HANDLE])
++        self.terminate_process=bind(self.k,'TerminateProcess',BOOL,[HANDLE,DWORD])
++        self.create_job=bind(self.k,'CreateJobObjectW',HANDLE,[C.POINTER(SA),LPWSTR])
++        self.assign_job=bind(self.k,'AssignProcessToJobObject',BOOL,[HANDLE,HANDLE])
++        self.query_job=bind(self.k,'QueryInformationJobObject',BOOL,[HANDLE,C.c_int,LPVOID,DWORD,LPDWORD])
++        self.init_attributes=bind(self.k,'InitializeProcThreadAttributeList',BOOL,[LPVOID,DWORD,DWORD,C.POINTER(C.c_size_t)])
++        self.update_attributes=bind(self.k,'UpdateProcThreadAttribute',BOOL,[LPVOID,DWORD,ULONG_PTR,LPVOID,C.c_size_t,LPVOID,LPVOID])
++        self.delete_attributes=bind(self.k,'DeleteProcThreadAttributeList',None,[LPVOID])
++        self.open_process=bind(self.k,'OpenProcess',HANDLE,[DWORD,BOOL,DWORD])
++
++    @staticmethod
++    def ok(value,reason='WIN32_IO',code=18):
++        require(bool(value),code,reason); return value
++
++    @contextmanager
++    def handle(self,handle):
++        require(handle not in (None,0,INVALID_HANDLE),18,'INVALID_NATIVE_HANDLE')
++        try: yield handle
++        finally: self.close(handle)
++
++    @contextmanager
++    def attributes(self,sddl,inherit=False):
++        ptr=LPVOID()
++        self.ok(self.convert_sddl(sddl,1,C.byref(ptr),None),'SDDL_INVALID',12)
++        try:
++            value=SA(C.sizeof(SA),ptr,int(inherit))
++            yield value
++        finally: self.local_free(ptr)
++
++    def string_sid(self,ptr):
++        output=LPWSTR(); self.ok(self.sid_string(ptr,C.byref(output)),'SID_QUERY',12)
++        try: return output.value
++        finally: self.local_free(C.cast(output,LPVOID))
++
++    def security(self,handle,kind=1):
++        """kind SE_FILE_OBJECT=1, SE_REGISTRY_KEY=4, SE_KERNEL_OBJECT=6."""
++        owner=LPVOID(); dacl=LPVOID(); sd=LPVOID()
++        code=self.security_info(handle,kind,0x1|0x4,C.byref(owner),None,C.byref(dacl),None,C.byref(sd))
++        require(code==0,12,'SECURITY_QUERY_DENIED')
++        try:
++            control=WORD(); revision=DWORD()
++            self.ok(self.sd_control(sd,C.byref(control),C.byref(revision)),'SECURITY_DESCRIPTOR_INVALID',12)
++            aces=[]
++            if dacl.value:
++                acl=C.cast(dacl,C.POINTER(ACL)).contents
++                require(acl.count<=1024,12,'ACL_TOO_LARGE')
++                for i in range(acl.count):
++                    ptr=LPVOID(); self.ok(self.get_ace(dacl,i,C.byref(ptr)),'ACE_QUERY',12)
++                    header=C.cast(ptr,C.POINTER(ACE_HEAD)).contents
++                    require(header.kind in (0,1) and header.size>=12,12,'UNSUPPORTED_ACE')
++                    mask=C.cast(ptr.value+4,C.POINTER(DWORD)).contents.value
++                    trustee=self.string_sid(LPVOID(ptr.value+8))
++                    aces.append(Ace(header.kind,header.flags,mask,trustee))
++            return Security(self.string_sid(owner),bool(control.value&4),not bool(dacl.value),bool(control.value&0x1000),tuple(aces))
++        finally: self.local_free(sd)
++
++    def principal(self):
++        token=HANDLE(); self.ok(self.open_token(self.get_current_process(),0x8,C.byref(token)),'TOKEN_QUERY',12)
++        with self.handle(token):
++            count=DWORD(); self.token_info(token,1,None,0,C.byref(count))
++            require(0<count.value<=65536,12,'TOKEN_SIZE')
++            buf=C.create_string_buffer(count.value)
++            self.ok(self.token_info(token,1,buf,len(buf),C.byref(count)),'TOKEN_QUERY',12)
++            value=C.cast(buf,C.POINTER(SID_AND_ATTRIBUTES)).contents
++            identity=self.string_sid(value.Sid)
++            elevation=DWORD(); self.ok(self.token_info(token,20,C.byref(elevation),4,C.byref(count)),'TOKEN_ELEVATION',12)
++        process_machine=WORD(); native_machine=WORD()
++        self.ok(self.wow64(self.get_current_process(),C.byref(process_machine),C.byref(native_machine)),'ARCH_QUERY',11)
++        require(process_machine.value==0 and native_machine.value==0x8664,11,'WINDOWS_X64_REQUIRED')
++        return {'execution_sid':identity,'elevated':bool(elevation.value),'architecture':'x64'}
++
++    def system_directory(self):
++        buf=C.create_unicode_buffer(32768)
++        length=self.get_system_directory(buf,len(buf))
++        require(0<length<len(buf),11,'SYSTEM_DIRECTORY_QUERY')
++        return buf.value
++
++    def program_data(self):
++        # Fixed FOLDERID_ProgramData, not an overrideable environment variable.
++        guid=GUID.parse('62AB5D82-FDC1-4DC3-A9DD-070D1D495D97'); ptr=LPWSTR()
++        require(self.known_folder(C.byref(guid),0,None,C.byref(ptr))==0,11,'PROGRAMDATA_QUERY')
++        try: return ptr.value
++        finally: self.com_free(C.cast(ptr,LPVOID))
++
++    def resources(self):
++        installed=C.c_uint64(); self.ok(self.get_phys_ram(C.byref(installed)),'PHYSICAL_RAM_QUERY',11)
++        memory=MEMORYSTATUSEX(); memory.length=C.sizeof(memory)
++        self.ok(self.memory_status(C.byref(memory)),'MEMORY_QUERY',11)
++        cpu=self.cpu_count(0xffff); require(cpu>0,11,'CPU_QUERY')
++        return {'installed_ram_bytes':installed.value*1024,'available_ram_bytes':memory.available_phys,'logical_cpu':cpu}
++
++    def info(self,handle):
++        value=FileInfo(); self.ok(self.file_info(handle,C.byref(value)),'FILE_IDENTITY_QUERY',16)
++        return {'attributes':value.attributes,'volume_serial':value.volume_serial,
++                'file_id':(value.index_hi<<32)|value.index_lo,'bytes':(value.size_hi<<32)|value.size_lo,
++                'links':value.links,'created':value.created.ticks,'written':value.written.ticks}
++
++    def process_start(self,handle):
++        a=FT(); b=FT(); c=FT(); d=FT()
++        self.ok(self.process_times(handle,C.byref(a),C.byref(b),C.byref(c),C.byref(d)),'PROCESS_WITNESS',11)
++        return a.ticks
++
++    def read(self,handle,cap):
++        parts=[]; total=0
++        while total<=cap:
++            size=min(65536,cap+1-total); buf=C.create_string_buffer(size); read=DWORD()
++            ok=self.read_file(handle,buf,size,C.byref(read),None)
++            if not ok:
++                require(C.get_last_error()==109,18,'HANDLE_READ')
++                break
++            if not read.value: break
++            parts.append(buf.raw[:read.value]); total+=read.value
++        require(total<=cap,22,'READ_CAP_EXCEEDED')
++        return b''.join(parts)
++
++    def write(self,handle,data):
++        offset=0
++        while offset<len(data):
++            chunk=data[offset:offset+65536]; buf=C.create_string_buffer(chunk); written=DWORD()
++            self.ok(self.write_file(handle,buf,len(chunk),C.byref(written),None),'HANDLE_WRITE')
++            require(written.value>0,18,'HANDLE_SHORT_WRITE'); offset+=written.value
++        self.ok(self.flush_file(handle),'HANDLE_FLUSH')
+--- /dev/null
++++ b/src/aifilm_p00/network_probe.py
+@@ -0,0 +1,129 @@
++"""Bounded DIRECT HTTPS measurement component. No config writes or TLS bypass.
++
++The native route driver must bind/authorize context and confirm DIRECT matches the
++observed proxy policy. No host/guest cross-substitution. Tests inject a transport;
++no real network calls are made by workspace regression.
++"""
++from __future__ import annotations
++from dataclasses import dataclass
++from urllib.parse import urlsplit
++import hashlib
++import http.client
++import socket
++import ssl
++import time
++import threading
++from .codec import fields,hash_value,sha256,token
++from .errors import require,P00Error
++
++CAP=10*1024**2
++
++
++def endpoint(spec):
++    fields(spec,{'endpoint_id','url','context','proxy_mode','expected_status','body_prefix_hex','maximum_bytes','redirect_allowlist'})
++    token(spec['endpoint_id']);require(spec['context'] in ('WINDOWS','GUEST'),10,'NETWORK_CONTEXT')
++    require(spec['proxy_mode']=='DIRECT',11,'PROXY_PROFILE_REQUIRES_ADAPTER')
++    require(type(spec['maximum_bytes']) is int and 1<=spec['maximum_bytes']<=CAP,10,'RESPONSE_CAP')
++    require(type(spec['expected_status']) is int and 200<=spec['expected_status']<300,10,'HTTP_EXPECTATION')
++    require(type(spec['body_prefix_hex']) is str and 0<len(spec['body_prefix_hex'])<=1024,10,'RESPONSE_EXPECTATION')
++    try:bytes.fromhex(spec['body_prefix_hex'])
++    except ValueError:raise P00Error(10,'RESPONSE_EXPECTATION') from None
++    require(type(spec['redirect_allowlist']) is list and len(spec['redirect_allowlist'])<=3,10,'REDIRECT_SCOPE')
++    for value in [spec['url'],*spec['redirect_allowlist']]:
++        require(type(value) is str and len(value)<=2048 and not any(ord(c)<32 for c in value),10,'URL_SYNTAX')
++        try:
++            parsed=urlsplit(value);port=parsed.port
++        except ValueError:raise P00Error(10,'URL_SYNTAX') from None
++        require(parsed.scheme=='https' and parsed.hostname and not parsed.username and not parsed.password
++                and not parsed.fragment and port in (None,443),10,'HTTPS_REQUIRED')
++    return spec
++
++
++def _dns_bounded(host,timeout):
++    result=[];failure=[]
++    def call():
++        try:result.extend(socket.getaddrinfo(host,443,type=socket.SOCK_STREAM))
++        except OSError:failure.append(True)
++    worker=threading.Thread(target=call,daemon=True);worker.start();worker.join(timeout)
++    require(not worker.is_alive(),14,'DNS_TIMEOUT')
++    require(not failure and bool(result),14,'DNS_FAILURE')
++    return result
++
++
++class DirectTransport:
++    def attempt(self,spec,url,deadline,clock=time.monotonic):
++        def remaining():
++            left=deadline-clock();require(left>0,14,'NETWORK_DEADLINE');return left
++        u=urlsplit(url);addresses=_dns_bounded(u.hostname,remaining())
++        context=ssl.create_default_context();tcp=None;tls=None
++        try:
++            for family,kind,proto,_,address in addresses[:16]:
++                try:
++                    tcp=socket.socket(family,kind,proto);tcp.settimeout(remaining());tcp.connect(address);break
++                except OSError:
++                    if tcp:tcp.close();tcp=None
++            require(tcp is not None,14,'TCP_FAILURE')
++            peer=tcp.getpeername()
++            tcp.settimeout(remaining());tls=context.wrap_socket(tcp,server_hostname=u.hostname)
++            certificate=tls.getpeercert(binary_form=True);version=tls.version()
++            target=u.path or '/'
++            if u.query:target+='?'+u.query
++            # URL ascii requirement avoids ambiguous HTTP request encodings. IDNA
++            # host is used for Host; TLS still checks the requested DNS hostname.
++            try:request=('GET '+target+' HTTP/1.1\r\nHost: '+u.hostname.encode('idna').decode()+
++                         '\r\nConnection: close\r\nAccept-Encoding: identity\r\nUser-Agent: AI-Film-P00\r\n\r\n').encode('ascii')
++            except UnicodeError:raise P00Error(10,'URL_ENCODING') from None
++            tls.settimeout(remaining());tls.sendall(request)
++            response=http.client.HTTPResponse(tls);response.begin()
++            if response.status in (301,302,303,307,308):
++                return {'redirect':response.getheader('Location'),'http_status':response.status}
++            require(response.status==spec['expected_status'],14,'HTTP_STATUS')
++            require(response.getheader('Content-Encoding','identity').lower()=='identity',14,'UNEXPECTED_CONTENT_ENCODING')
++            total=0;h=hashlib.sha256();prefix=bytearray();expected=bytes.fromhex(spec['body_prefix_hex'])
++            while total<=spec['maximum_bytes']:
++                tls.settimeout(remaining())
++                chunk=response.read(min(65536,spec['maximum_bytes']+1-total))
++                if not chunk:break
++                total+=len(chunk);h.update(chunk)
++                prefix.extend(chunk[:max(0,len(expected)-len(prefix))])
++            require(total<=spec['maximum_bytes'],14,'HTTP_BODY_CAP')
++            require(bytes(prefix)==expected,14,'HTTP_BODY_EXPECTATION')
++            return {'dns':True,'tcp':True,'tls_chain_hostname':True,'https':True,'http_status':response.status,
++                    'bytes':total,'body_sha256':h.hexdigest(),'certificate_sha256':sha256(certificate),
++                    'tls_version':version,'peer':str(peer[0]),'eof':True}
++        except P00Error:raise
++        except ssl.SSLError:raise P00Error(14,'TLS_FAILURE') from None
++        except (OSError,http.client.HTTPException):raise P00Error(14,'NETWORK_IO') from None
++        finally:
++            if tls:tls.close()
++            elif tcp:tcp.close()
++
++
++def measure(spec,*,transport=None,clock=time.monotonic,sleep=time.sleep):
++    endpoint(spec);transport=transport or DirectTransport();started=clock();collector_deadline=started+30
++    failures=[]
++    for attempt in range(3):
++        if attempt:
++            delay=(2,5)[attempt-1]
++            if clock()+delay>=collector_deadline:break
++            sleep(delay)
++        deadline=min(clock()+10,collector_deadline)
++        if deadline<=clock():break
++        current=spec['url'];seen=set()
++        try:
++            for _ in range(4):
++                require(current not in seen,14,'REDIRECT_LOOP');seen.add(current)
++                result=transport.attempt(spec,current,deadline,clock)
++                if 'redirect' not in result:
++                    return {'status':'OBSERVED','endpoint_id':spec['endpoint_id'],'context':spec['context'],
++                            'attempts':attempt+1,'duration_ms':int((clock()-started)*1000),
++                            'measurements':result,'failures':failures,'host_ready':False}
++                require(result['redirect'] in spec['redirect_allowlist'],14,'UNAPPROVED_REDIRECT')
++                current=result['redirect']
++            raise P00Error(14,'REDIRECT_LIMIT')
++        except P00Error as e:
++            if e.code!=14:raise
++            failures.append({'attempt':attempt+1,'reason':e.reason})
++    return {'status':'FAIL','endpoint_id':spec['endpoint_id'],'context':spec['context'],
++            'attempts':len(failures),'duration_ms':int((clock()-started)*1000),
++            'failures':failures,'normalized_exit':14,'host_ready':False}
+--- /dev/null
++++ b/src/aifilm_p00/resume.py
+@@ -0,0 +1,62 @@
++"""Bind renewed read-only reconciliation authority to an immutable original plan.
++
++Never rewrite the original plan's purpose/hash. The new authorization is recorded
++separately, while the derived Admission keeps the original fence identity. This
++module proves authorization linkage only; native terminal proof is still needed.
++"""
++from dataclasses import dataclass,replace
++from copy import deepcopy
++from .authority import authorize
++from .plans import check_plan
++from .codec import digest
++from .errors import require
++
++@dataclass(frozen=True)
++class ReconciliationBinding:
++    authority:object
++    original_plan:dict
++    reconciliation_plan_digest:str
++    original_document_ref:str
++
++
++def bind_reconciliation(request,ctx,store,fence):
++    auth=authorize('verify',request,ctx,store)
++    s=check_plan(request)
++    require(s['purpose']=='RECONCILIATION_ONLY' and auth.classes==frozenset({'C0'}),12,'RECONCILIATION_SCOPE')
++    require('original_plan' in s['refs'],12,'ORIGINAL_PLAN_REQUIRED')
++    ref=s['refs']['original_plan']; document=store.get('original_plan',ref)
++    original=document.get('plan');old=check_plan(original)
++    for k in ('run_id','host_id','owner_sid','execution_class','target'):
++        require(s[k]==old[k],12,'RECONCILIATION_ACTOR')
++    require(all(fence.get(k)==old[k] for k in ('run_id','host_id','owner_sid')),12,'RECONCILIATION_ACTOR')
++    require(fence.get('plan_digest')==original['plan_digest'],15,'ORIGINAL_FENCE_PLAN_MISMATCH')
++    require(fence.get('action') in [op['action'] for op in old['operations']],15,'ORIGINAL_FENCE_ACTION_MISMATCH')
++    require(old['contract_digest']==s['contract_digest'],16,'RECONCILIATION_CONTRACT_MISMATCH')
++    # Reconciliation may inspect an older build's intent; it does not grant
++    # permission to replay old mutations under the new build or changed profile.
++    bridged=replace(auth,plan_digest=original['plan_digest'],run_id=old['run_id'])
++    return ReconciliationBinding(bridged,deepcopy(original),request['plan_digest'],ref)
++
++
++def completed_steps(rows,plan):
++    """Recover committed progress only from terminal + CLEAR frames.
++
++    Rows must first pass durable journal replay/hash-chain verification. Does not
++    infer completion from a marker, process exit, INTENT or old APPLIED report.
++    """
++    s=check_plan(plan); completed={};candidate=None
++    for row in rows:
++        e=row.get('event',{})
++        if e.get('kind')=='SET_FENCE':
++            f=e.get('record',{})
++            candidate=f if f.get('plan_digest')==plan['plan_digest'] and f.get('run_id')==s['run_id'] else None
++        elif e.get('kind')=='CLEAR_FENCE' and candidate is not None:
++            require(e.get('fence_digest')==digest(candidate) and candidate.get('state')=='TERMINAL',15,'PROGRESS_NOT_COMMITTED')
++            step=candidate.get('witness',{}).get('step_id')
++            require(type(step) is str and step.startswith('step-') and step[5:].isdigit(),15,'PROGRESS_STEP_ID')
++            index=int(step[5:]);require(index<len(s['operations']),15,'PROGRESS_STEP_RANGE')
++            require(candidate.get('action')==s['operations'][index]['action'],15,'PROGRESS_ACTION')
++            require(index not in completed,15,'DUPLICATE_COMMITTED_STEP')
++            completed[index]=deepcopy(candidate['terminal_observation']);candidate=None
++    require(sorted(completed)==list(range(len(completed))),15,'PROGRESS_GAP')
++    return completed
+--- /dev/null
++++ b/tests/test_native_foundations.py
+@@ -0,0 +1,195 @@
++"""WORKSPACE fixtures only. None of these tests calls a Windows API or WSL."""
++import base64
++from contextlib import contextmanager
++from copy import deepcopy
++from pathlib import Path
++import unittest
++from unittest.mock import patch
++from dataclasses import replace
++from helpers import SID,NOW,B,T,authority_case
++from aifilm_p00.errors import P00Error
++from aifilm_p00.codec import canonical,digest,sha256
++from aifilm_p00.native.security import *
++from aifilm_p00.native.coordination import replay,frame,NativeGuard,MUTEX_NAME
++from aifilm_p00.native.filesystem import same_path,normalized_handle_path
++from aifilm_p00.native.trust import NativeStore,normalize_design,validate_payload_graph
++from aifilm_p00.native.probes import parse_guest,GUEST_KEYS,parse_wsl_list,guest_command,host_command
++from aifilm_p00.native.process import Command,Capture
++from aifilm_p00.native.snapshot import logical_ref,extract_record,strict_safe_scan
++from aifilm_p00.evidence import Sanitizer
++from aifilm_p00.resume import bind_reconciliation,completed_steps
++from aifilm_p00.plans import make_plan
++from aifilm_p00.content import content_identity
++from aifilm_p00.native.winapi import WinAPI
++
++ROOT=Path(__file__).resolve().parents[1]
++class Check(unittest.TestCase):
++    def reject(self,code,fn,*args,**kwargs):
++        with self.assertRaises(P00Error) as caught:fn(*args,**kwargs)
++        self.assertEqual(int(caught.exception.code),code)
++        return caught.exception.reason
++
++class SecurityTests(Check):
++    def sec(self,trustee=SID,mask=0x1f01ff,kind=0,**kwargs):
++        values={'owner':SID,'dacl_present':True,'dacl_null':False,'protected':True,
++                'aces':(Ace(kind,0,mask,trustee),)};values.update(kwargs);return Security(**values)
++    def validate(self,value,**kwargs):
++        return check_security(value,owners=ADMIN_OWNERS|{SID},writers=ADMIN_OWNERS|{SID},readers={SID},confidential=kwargs.pop('confidential',True),**kwargs)
++    def test_valid_operator(self):self.validate(self.sec())
++    def test_null_dacl(self):self.reject(12,self.validate,self.sec(dacl_null=True))
++    def test_absent_dacl(self):self.reject(12,self.validate,self.sec(dacl_present=False))
++    def test_untrusted_owner(self):self.reject(12,self.validate,self.sec(owner='S-1-1-0'))
++    def test_world_writer(self):self.reject(12,self.validate,self.sec('S-1-1-0'))
++    def test_world_reader_protected(self):self.reject(12,self.validate,self.sec('S-1-1-0',0x120089))
++    def test_world_reader_system_binary_allowed(self):self.validate(self.sec('S-1-1-0',0x120089),confidential=False)
++    def test_registry_set_value_denied(self):self.reject(12,self.validate,self.sec('S-1-1-0',2),confidential=False,registry=True)
++    def test_registry_create_subkey_denied(self):self.reject(12,self.validate,self.sec('S-1-1-0',4),confidential=False,registry=True)
++    def test_unsupported_object_ace(self):self.reject(12,self.validate,self.sec(kind=5))
++    def test_deny_ace_does_not_grant(self):self.validate(self.sec('S-1-1-0',0xffffffff,kind=1))
++    def test_require_protected(self):self.reject(12,self.validate,self.sec(protected=False),require_protected=True)
++    def test_delete_child_right(self):self.reject(12,self.validate,self.sec('S-1-1-0',0x40),confidential=False)
++    def test_metadata_acl_fixed(self):
++        s=metadata_sddl(frozenset({SID}));self.assertTrue(s.startswith('D:P'));self.assertIn(SID,s);self.assertNotIn(';;;WD)',s)
++    def test_mutex_acl_no_inheritance(self):self.assertNotIn('OICI',mutex_sddl(frozenset({SID})))
++    def test_sid_injection(self):self.reject(10,metadata_sddl,frozenset({SID+')(A;;GA;;;WD)'}))
++
++class JournalTests(Check):
++    def log(self,events):
++        raw=b'';prev=None
++        for i,e in enumerate(events):
++            f=frame(e,i,prev);raw+=f;prev=__import__('json').loads(f)['sha256']
++        return raw
++    def genesis(self):return {'kind':'GENESIS','host_id':'synthetic','root_identity':{'file_id':1}}
++    def fence(self,state='INTENT'):
++        return {'run_id':'run','host_id':'synthetic','owner_sid':SID,'plan_digest':'a'*64,'action':'TEST','state':state}
++    def test_valid_genesis_no_fence(self):self.assertIsNone(replay(self.log([self.genesis()]))['fence'])
++    def test_intent_recovered(self):
++        f=self.fence();self.assertEqual(replay(self.log([self.genesis(),{'kind':'SET_FENCE','record':f}]))['fence'],f)
++    def test_truncated_newline(self):self.reject(15,replay,self.log([self.genesis()])[:-1])
++    def test_truncated_frame(self):self.reject(15,replay,self.log([self.genesis()])+b'{')
++    def test_empty_not_no_fence(self):self.reject(15,replay,b'')
++    def test_forged_frame(self):self.reject(15,replay,self.log([self.genesis()]).replace(b'synthetic',b'otherhost'))
++    def test_duplicate_genesis(self):self.reject(15,replay,self.log([self.genesis(),self.genesis()]))
++    def test_nonterminal_clear(self):
++        f=self.fence();self.reject(15,replay,self.log([self.genesis(),{'kind':'SET_FENCE','record':f},{'kind':'CLEAR_FENCE','fence_digest':digest(f)}]))
++    def test_terminal_clear(self):
++        f=self.fence('TERMINAL');self.assertIsNone(replay(self.log([self.genesis(),{'kind':'SET_FENCE','record':f},{'kind':'CLEAR_FENCE','fence_digest':digest(f)}]))['fence'])
++    def test_uncertain_never_expires(self):
++        f=self.fence('UNCERTAIN');f['expired_at']='1970-01-01T00:00:00Z'
++        self.assertEqual(replay(self.log([self.genesis(),{'kind':'SET_FENCE','record':f}]))['fence']['state'],'UNCERTAIN')
++    def test_cannot_replace_run(self):
++        f=self.fence();g={**f,'run_id':'different'}
++        self.reject(15,replay,self.log([self.genesis(),{'kind':'SET_FENCE','record':f},{'kind':'SET_FENCE','record':g}]))
++    def test_wrong_release_digest(self):
++        f=self.fence('TERMINAL');self.reject(15,replay,self.log([self.genesis(),{'kind':'SET_FENCE','record':f},{'kind':'CLEAR_FENCE','fence_digest':'b'*64}]))
++
++class ProbeTests(Check):
++    def fixture(self):
++        value={k:'synthetic' for k in GUEST_KEYS}
++        value.update(uid='1000',gid='1000',pid1_start_ticks='12',logical_cpu='2',mem_total_kib='4194304',mem_available_kib='2097152',
++                     fs_available_kib='33554432',completed='1',home_access_writable='1',kernel_boot_id='01234567-89ab-cdef-0123-456789abcdef',wsl_conf_sha256='ABSENT')
++        return value
++    def wire(self,data):return b''.join(k.encode()+b'\t'+base64.b64encode(str(v).encode())+b'\n' for k,v in data.items())
++    def test_complete_observation_not_asserted_sudo(self):
++        v=parse_guest(self.wire(self.fixture()));self.assertEqual(v['uid'],1000);self.assertEqual(v['admin_ready'],'UNKNOWN')
++    def test_missing_completed(self):
++        v=self.fixture();del v['completed'];self.reject(22,parse_guest,self.wire(v))
++    def test_unknown_field(self):
++        v=self.fixture();v['password']='secret';self.reject(15,parse_guest,self.wire(v))
++    def test_duplicate_field(self):self.reject(15,parse_guest,self.wire(self.fixture())+b'uid\tMTAwMA==\n')
++    def test_malformed_base64(self):self.reject(15,parse_guest,b'uid\t!!\n')
++    def test_invalid_number(self):
++        v=self.fixture();v['uid']='-1';self.reject(15,parse_guest,self.wire(v))
++    def test_number_overflow(self):
++        v=self.fixture();v['uid']=str(2**63);self.reject(15,parse_guest,self.wire(v))
++    def test_incomplete_frame(self):self.reject(22,parse_guest,self.wire(self.fixture())[:-1])
++    def test_utf16_wsl_names(self):self.assertEqual(parse_wsl_list('AI Film thử\r\n'.encode('utf-16-le')),['AI Film thử'])
++    def test_utf8_wsl_names(self):self.assertEqual(parse_wsl_list('AI Film thử\n'.encode()),['AI Film thử'])
++    def test_duplicate_casefold_name(self):self.reject(15,parse_wsl_list,b'Target\ntarget\n')
++    def test_root_probe_rejected(self):self.reject(10,guest_command,r'C:\Windows\System32','target','root',b'code')
++    def test_static_sh_data_boundaries(self):
++        c=guest_command(r'C:\Windows\System32','AI Film thử','film',b'static');self.assertIn('--exec',c.argv);self.assertEqual(c.stdin,b'static');c.validate()
++    def test_host_no_policy_bypass(self):
++        c=host_command(r'C:\Windows\System32',r'C:\Build\probe.ps1','HOST');self.assertNotIn('-ExecutionPolicy',c.argv);self.assertIn('-NoProfile',c.argv)
++    def test_host_operation_scope(self):self.reject(10,host_command,r'C:\Windows\System32',r'C:\Build\p.ps1','INSTALL')
++
++class CommandCaptureTests(Check):
++    def test_explicit_executable(self):Command((r'C:\Windows\System32\wsl.exe','--version'),'VERSION',30).validate()
++    def test_search_path_forbidden(self):self.reject(10,Command(('wsl.exe','--version'),'VERSION',30).validate)
++    def test_newline_argument(self):self.reject(10,Command((r'C:\a.exe','bad\narg'),'A',30).validate)
++    def test_null_argument(self):self.reject(10,Command((r'C:\a.exe','x\0y'),'A',30).validate)
++    def test_unbounded_timeout(self):self.reject(10,Command((r'C:\a.exe',),'A',7201).validate)
++    def test_large_stdin(self):self.reject(10,Command((r'C:\a.exe',),'A',30,b'a'*(1024**2+1)).validate)
++    def test_capture_cap(self):
++        v=Capture(3);v.feed(b'123456');v.feed(b'789');self.assertEqual(v.bytes(),b'123');self.assertTrue(v.truncated);self.assertEqual(v.seen,9)
++    def test_cap_equal_not_truncated_but_requires_eof(self):
++        v=Capture(3);v.feed(b'123');self.assertFalse(v.truncated);self.assertFalse(v.eof)
++    def test_no_native_api_on_workspace(self):self.reject(11,WinAPI)
++
++class PathRecordTests(Check):
++    def test_same_path_casefold(self):self.assertTrue(same_path(r'C:\Phim\Data',r'c:\phim\data'))
++    def test_handle_prefix(self):self.assertEqual(normalized_handle_path('\\\\?\\C:\\Data'),r'C:\Data')
++    def test_unc_rejected(self):self.reject(16,normalized_handle_path,r'\\?\UNC\server\share')
++    def test_logical_ref(self):self.assertEqual(logical_ref('run/observations/host.json#host'),('run','observations/host.json','host'))
++    def test_escape_ref(self):self.reject(10,logical_ref,'run/../secret#id')
++    def test_multiple_hash_ref(self):self.reject(15,logical_ref,'run/a#id#other')
++    def test_missing_record_not_whole_file(self):self.reject(15,extract_record,canonical({'record_id':'x'}),'y')
++    def test_duplicate_record(self):self.reject(15,extract_record,canonical({'records':[{'record_id':'x'},{'record_id':'x'}]}),'x')
++    def test_valid_record(self):self.assertEqual(extract_record(canonical({'record_id':'x','a':1}),'x')['a'],1)
++
++class TrustTests(Check):
++    def policy(self,docs):
++        blobs={};pins={}
++        for role,value in docs:
++            raw=canonical(value);ref=sha256(raw);blobs[ref]=raw.decode();pins.setdefault(role,[]).append(ref)
++        return {'schema_version':1,'host_id':'SYNTHETIC','operator_sids':[SID],'role_pins':pins,'blobs':blobs,'withdrawn_refs':[],'generation':1}
++    def test_unpinned_document(self):
++        p=self.policy([('code',{'role':'code'})]);s=NativeStore(canonical(p),ROOT/'contracts');self.reject(15,s.get,'code','a'*64)
++    def test_modified_blob(self):
++        p=self.policy([('code',{'role':'code'})]);ref=next(iter(p['blobs']));p['blobs'][ref]+=' ';self.reject(15,NativeStore,canonical(p),ROOT/'contracts')
++    def test_withdrawal(self):
++        p=self.policy([('code',{'role':'code'})]);ref=next(iter(p['blobs']));p['withdrawn_refs']=[ref];s=NativeStore(canonical(p),ROOT/'contracts');self.reject(11,s.get,'code',ref)
++    def test_role_substitution(self):
++        p=self.policy([('code',{'role':'design'})]);s=NativeStore(canonical(p),ROOT/'contracts');self.reject(15,s.get,'code',next(iter(p['blobs'])))
++    def test_actual_review_normalization(self):
++        import json
++        raw=json.loads((ROOT/'contracts/DESIGN_REVIEW_APPROVAL_V2.json').read_text());v=normalize_design(raw,ROOT/'contracts')
++        self.assertEqual(v['raw_review_id'],'REVIEW-P00-002')
++    def test_review_fail_not_normalized(self):
++        import json
++        raw=json.loads((ROOT/'contracts/DESIGN_REVIEW_APPROVAL_V2.json').read_text());raw['VERDICT']='FAIL';self.reject(15,normalize_design,raw,ROOT/'contracts')
++    def test_forged_contract_hash(self):
++        import json
++        raw=json.loads((ROOT/'contracts/DESIGN_REVIEW_APPROVAL_V2.json').read_text());raw['NORMATIVE_CONTRACT_SET'][0]['sha256']='a'*64;self.reject(15,normalize_design,raw,ROOT/'contracts')
++    def test_ambiguous_authority(self):
++        p=self.policy([('code',{'role':'code','i':1}),('code',{'role':'code','i':2})]);s=NativeStore(canonical(p),ROOT/'contracts');self.reject(15,s.one,'code')
++    def test_native_scripts_in_source_digest(self):
++        identity=content_identity(ROOT);paths={r['path'] for r in identity['source_members']};self.assertIn('native/host-observe.ps1',paths);self.assertIn('native/guest-observe.sh',paths)
++
++class ReconciliationTests(Check):
++    def setup(self):
++        _,original,_,_=authority_case('CREATE')
++        interface,request,ctx,store=authority_case('RECONCILIATION_ONLY')
++        request['semantic']['target']=deepcopy(original['semantic']['target'])
++        blob=canonical({'role':'original_plan','plan':original});ref=sha256(blob)
++        pins={k:set(v) for k,v in store.pins.items()};blobs=dict(store.blobs);pins['original_plan']={ref};blobs[ref]=blob
++        request['semantic']['refs']['original_plan']=ref;request['plan_digest']=digest(request['semantic'])
++        approval=store.get('approval',request['approval_ref']);approval['plan_digest']=request['plan_digest']
++        raw=canonical(approval);a=sha256(raw);pins['approval']={a};blobs[a]=raw;request['approval_ref']=a
++        # Current qualification profile still matches the same purpose and fixture.
++        from aifilm_p00.authority import PinnedStore
++        store=PinnedStore({k:frozenset(v) for k,v in pins.items()},blobs,'SYNTHETIC_WORKSPACE_ONLY')
++        fence={'run_id':original['semantic']['run_id'],'host_id':ctx.host_id,'owner_sid':SID,'plan_digest':original['plan_digest'],'action':'INSTALL_DISTRO'}
++        return original,request,ctx,store,fence
++    def test_new_approval_original_fence_no_hash_rewrite(self):
++        o,p,c,s,f=self.setup();before=canonical(o);b=bind_reconciliation(p,c,s,f)
++        self.assertEqual(b.authority.plan_digest,o['plan_digest']);self.assertEqual(b.authority.purpose,'RECONCILIATION_ONLY')
++        self.assertEqual(b.reconciliation_plan_digest,p['plan_digest']);self.assertEqual(canonical(o),before)
++    def test_wrong_original_fence(self):
++        o,p,c,s,f=self.setup();f['plan_digest']='b'*64;self.reject(15,bind_reconciliation,p,c,s,f)
++    def test_wrong_actor(self):
++        o,p,c,s,f=self.setup();f['owner_sid']='S-1-5-18';self.reject(12,bind_reconciliation,p,c,s,f)
++    def test_unrelated_action(self):
++        o,p,c,s,f=self.setup();f['action']='UNREGISTER';self.reject(15,bind_reconciliation,p,c,s,f)
++    def test_empty_history_no_progress(self):
++        o,p,c,s,f=self.setup();self.assertEqual(completed_steps([],o),{})
+--- /dev/null
++++ b/tests/test_native_supervision.py
+@@ -0,0 +1,187 @@
++"""Deterministic fake Win32 API tests. NOT execution of Win32 or a native lab."""
++import ctypes as C
++from contextlib import contextmanager
++from dataclasses import dataclass
++from pathlib import Path
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++from aifilm_p00.native.process import NativeSupervisor,Command
++from aifilm_p00.native.winapi import HANDLE,DWORD,PROCESS_INFORMATION,JOB_ACCOUNTING,SA
++from aifilm_p00.native.coordination import NativeGuard,MUTEX_NAME,NativeJournal
++from aifilm_p00.native.security import Security,Ace
++from aifilm_p00.admission import Coordinator
++from aifilm_p00.errors import P00Error,require
++from aifilm_p00.codec import canonical,digest
++from helpers import SID
++
++class ProcessAPI:
++    """No OS calls; records causal sequence and provides fixed pipe bytes."""
++    def __init__(self,*,wait_result=0,active=0,assign_ok=True,callback_fail=False):
++        self.events=[];self.next=10;self.pipe_reads={};self.wait_result=wait_result;self.active=active;self.assign_ok=assign_ok
++    def ok(self,value,reason='WIN32_IO',code=18):require(value,code,reason);return value
++    def create_pipe(self,r,w,attr,size):
++        read=self.next;write=self.next+1;self.next+=2
++        C.cast(r,C.POINTER(HANDLE))[0]=read;C.cast(w,C.POINTER(HANDLE))[0]=write
++        self.pipe_reads[read]=b'';return 1
++    def handle_flags(self,*a):return 1
++    def init_attributes(self,buf,n,flags,ptr):C.cast(ptr,C.POINTER(C.c_size_t))[0]=128;return bool(buf)
++    def update_attributes(self,*args):self.events.append('handle_list');return 1
++    def delete_attributes(self,*a):self.events.append('attributes_free')
++    def create_job(self,*a):self.events.append('job_create');return 80
++    def create_process(self,application,line,*args):
++        pi=C.cast(args[-1],C.POINTER(PROCESS_INFORMATION)).contents
++        pi.process=90;pi.thread=91;pi.pid=100;pi.tid=101
++        self.events.append('create_suspended');return 1
++    def assign_job(self,*a):self.events.append('job_assign');return self.assign_ok
++    def process_start(self,*a):return 123456
++    def resume_thread(self,*a):self.events.append('resume');return 1
++    def wait(self,*a):self.events.append('wait');return self.wait_result
++    def process_exit(self,h,ptr):C.cast(ptr,C.POINTER(DWORD))[0]=0;return 1
++    def query_job(self,h,kind,buf,size,ptr):
++        value=C.cast(buf,C.POINTER(JOB_ACCOUNTING)).contents;value.active=self.active;return 1
++    def read_file(self,h,buf,size,ptr,over):C.cast(ptr,C.POINTER(DWORD))[0]=0;return 1
++    def write_file(self,h,buf,size,ptr,over):C.cast(ptr,C.POINTER(DWORD))[0]=size;return 1
++    def terminate_process(self,*a):self.events.append('terminate_unresumed');return 1
++    def close(self,h):self.events.append(('close',h));return 1
++
++class FakePaths:
++    @contextmanager
++    def pin(self,*args,**kw):
++        yield SimpleNamespace(identity={'file_id':1,'volume_serial':2})
++
++class SupervisorTests(unittest.TestCase):
++    def run_case(self,api,callback=None):
++        supervisor=NativeSupervisor(api,FakePaths(),SimpleNamespace(held=True))
++        def persist(w):api.events.append('durable_witness')
++        command=Command((r'C:\Windows\System32\wsl.exe','--version'),'VERSION',30)
++        with patch.object(C,'get_last_error',return_value=0,create=True):
++            return supervisor.run(command,before_resume=callback or persist,
++                                  environment={'SystemRoot':r'C:\Windows','PATH':r'C:\Windows\System32','TEMP':r'C:\P00\Temp','TMP':r'C:\P00\Temp'},cwd=r'C:\Windows\System32')
++    def test_suspended_assigned_witnessed_before_resume(self):
++        a=ProcessAPI();r=self.run_case(a)
++        self.assertLess(a.events.index('create_suspended'),a.events.index('job_assign'))
++        self.assertLess(a.events.index('job_assign'),a.events.index('durable_witness'))
++        self.assertLess(a.events.index('durable_witness'),a.events.index('resume'))
++        self.assertTrue(r.tree_terminal);self.assertFalse(r.service_terminal)
++    def test_timeout_does_not_terminate_live_mutation(self):
++        a=ProcessAPI(wait_result=258)
++        with self.assertRaises(P00Error) as e:self.run_case(a)
++        self.assertEqual(int(e.exception.code),17);self.assertNotIn('terminate_unresumed',a.events)
++    def test_job_assignment_failure_never_resumes(self):
++        a=ProcessAPI(assign_ok=False)
++        with self.assertRaises(P00Error):self.run_case(a)
++        self.assertNotIn('resume',a.events);self.assertIn('terminate_unresumed',a.events)
++    def test_journal_callback_failure_never_resumes(self):
++        a=ProcessAPI()
++        def fail(_):raise P00Error(18,'JOURNAL_IO')
++        with self.assertRaises(P00Error):self.run_case(a,fail)
++        self.assertNotIn('resume',a.events);self.assertIn('terminate_unresumed',a.events)
++    def test_live_child_not_terminal(self):
++        a=ProcessAPI(active=1)
++        with self.assertRaises(P00Error) as e:self.run_case(a)
++        self.assertEqual(int(e.exception.code),17)
++    def test_unexpected_wait_failure_not_kill(self):
++        a=ProcessAPI(wait_result=0xffffffff)
++        with self.assertRaises(P00Error):self.run_case(a)
++        self.assertNotIn('terminate_unresumed',a.events)
++    def test_all_pipeline_handles_closed_on_success(self):
++        a=ProcessAPI();self.run_case(a)
++        closed=[e[1] for e in a.events if isinstance(e,tuple) and e[0]=='close']
++        for h in (10,11,12,13,14,15,80,90,91):self.assertEqual(closed.count(h),1)
++    def test_environment_injection_rejected(self):
++        a=ProcessAPI();sup=NativeSupervisor(a,FakePaths(),SimpleNamespace(held=True))
++        with self.assertRaises(P00Error):
++            sup.run(Command((r'C:\x.exe',),'X',1),before_resume=lambda w:None,environment={'WSLENV':'LD_PRELOAD/u'},cwd=r'C:\Windows')
++        self.assertEqual(a.events,[])
++
++class GuardAPI:
++    def __init__(self,state=0):self.state=state;self.names=[];self.released=0;self.closed=0
++    @contextmanager
++    def attributes(self,*a):yield SA()
++    def create_mutex(self,a,name,flags,access):self.names.append(name);return 100
++    def security(self,*a):return Security(SID,True,False,True,(Ace(0,0,0x1f0001,SID),))
++    def wait(self,*a):return self.state
++    def close(self,*a):self.closed+=1
++    def get_current_tid(self):return 1
++    def release_mutex(self,*a):self.released+=1;return 1
++    def ok(self,value,*a):require(value,18,'FAKE_API');return value
++
++class GuardTests(unittest.TestCase):
++    def test_fixed_cross_instance_name(self):
++        a=GuardAPI();g=NativeGuard(a,{SID});self.assertTrue(g.acquire());g.release()
++        b=GuardAPI();h=NativeGuard(b,{'S-1-5-21-999'});h.api.security=lambda *args:Security(SID,True,False,True,())
++        # Separately inspect namespace, not claim cross-SID native proof.
++        self.assertEqual(a.names,[MUTEX_NAME]);self.assertTrue(MUTEX_NAME.startswith('Global\\'))
++    def test_busy_single_try(self):
++        a=GuardAPI(258);g=NativeGuard(a,{SID});self.assertFalse(g.acquire());self.assertEqual(a.closed,1)
++    def test_abandoned_not_automatic_journal_clear(self):
++        a=GuardAPI(0x80);g=NativeGuard(a,{SID});self.assertTrue(g.acquire());self.assertTrue(g.abandoned);g.release()
++    def test_uncertain_controller_retains_mutex(self):
++        a=GuardAPI();g=NativeGuard(a,{SID});g.acquire();g.defer_until_process_exit()
++        with self.assertRaises(P00Error):g.release()
++        self.assertEqual(a.released,0);self.assertTrue(g.held)
++    def test_reentrant_rejected(self):
++        a=GuardAPI();g=NativeGuard(a,{SID});g.acquire()
++        with self.assertRaises(P00Error):g.acquire()
++        g.release()
++
++class JournalPaths:
++    root=r'C:\ProgramData\AI-FILM-P00-HOST-ADMISSION'
++    def __init__(self):self.data={};self.created=False
++    @contextmanager
++    def pin(self,*args,**kw):yield SimpleNamespace(identity={'file_id':1,'volume_serial':2})
++    def directory_exists(self,p):return self.created
++    def create_directory(self,p):
++        require(not self.created,18,'ALREADY_EXISTS');self.created=True
++    def write_new(self,p,data):require(p not in self.data,18,'ALREADY_EXISTS');self.data[p]=data
++    def read_blob(self,p,**kw):return self.data[p]
++    def append_flush(self,p,data):self.data[p]+=data
++
++class JournalAdapterTests(unittest.TestCase):
++    def setup(self):
++        from aifilm_p00.native.trust import MetadataPermit
++        paths=JournalPaths();j=NativeJournal(paths,SimpleNamespace(held=True),'synthetic')
++        j.initialize(MetadataPermit('synthetic',SID,'a'*64,'b'*64));return paths,j
++    def test_initialized_empty_fence(self):
++        paths,j=self.setup();self.assertIsNone(j.load_fence())
++    def test_set_reload_clear_is_append_only(self):
++        paths,j=self.setup();f={'run_id':'x','host_id':'synthetic','owner_sid':SID,'plan_digest':'a'*64,'action':'X','state':'INTENT'}
++        j.write_fence(f);self.assertEqual(j.load_fence(),f)
++        f['state']='TERMINAL';j.write_fence(f);old=paths.data[j.path];j.clear_fence()
++        self.assertTrue(paths.data[j.path].startswith(old));self.assertIsNone(j.load_fence())
++    def test_unheld_guard_blocks_io(self):
++        paths,j=self.setup();j.guard.held=False
++        with self.assertRaises(P00Error):j.load_fence()
++    def test_wrong_host_blocks_replay(self):
++        paths,j=self.setup();j.host_id='different'
++        with self.assertRaises(P00Error):j.load_fence()
++
++class MetadataIdempotenceTests(unittest.TestCase):
++    def setup(self):
++        from aifilm_p00.native.trust import MetadataPermit
++        paths=JournalPaths();journal=NativeJournal(paths,SimpleNamespace(held=True),'synthetic')
++        permit=MetadataPermit('synthetic',SID,'a'*64,'b'*64)
++        return paths,journal,permit
++    def test_first_initialization(self):
++        paths,j,p=self.setup();self.assertEqual(j.initialize_or_verify(p),'METADATA_INITIALIZED')
++    def test_rerun_does_not_write(self):
++        paths,j,p=self.setup();j.initialize_or_verify(p);before=dict(paths.data)
++        self.assertEqual(j.initialize_or_verify(p),'METADATA_NOOP');self.assertEqual(paths.data,before)
++    def test_existing_fence_blocks_noop(self):
++        paths,j,p=self.setup();j.initialize_or_verify(p)
++        j.write_fence({'run_id':'x','host_id':'synthetic','owner_sid':SID,'plan_digest':'a'*64,'action':'X','state':'INTENT'})
++        before=dict(paths.data)
++        with self.assertRaises(P00Error) as e:j.initialize_or_verify(p)
++        self.assertEqual(int(e.exception.code),21);self.assertEqual(paths.data,before)
++    def test_partial_root_not_reinitialized(self):
++        paths,j,p=self.setup();paths.created=True
++        with self.assertRaises((P00Error,KeyError)):j.initialize_or_verify(p)
++        self.assertEqual(paths.data,{})
++    def test_corrupt_log_not_reinitialized(self):
++        paths,j,p=self.setup();j.initialize_or_verify(p);paths.data[j.path]=b'corrupt\n'
++        with self.assertRaises(P00Error):j.initialize_or_verify(p)
++        self.assertEqual(paths.data[j.path],b'corrupt\n')
++    def test_metadata_permission_still_required_on_noop(self):
++        paths,j,p=self.setup();j.initialize_or_verify(p)
++        with self.assertRaises(P00Error):j.initialize_or_verify({'approved':True})
+--- /dev/null
++++ b/tests/test_network_snapshot.py
+@@ -0,0 +1,129 @@
++"""Network transport and protected I/O are simulated; no external calls."""
++from copy import deepcopy
++from contextlib import contextmanager
++from types import SimpleNamespace
++from pathlib import Path
++import subprocess
++import sys
++import unittest
++from aifilm_p00.codec import canonical,sha256
++from aifilm_p00.network_probe import measure,endpoint
++from aifilm_p00.errors import P00Error
++from aifilm_p00.native.snapshot import strict_safe_scan,SnapshotReader,NativeBundlePublisher
++from aifilm_p00.evidence import assemble,Sanitizer,Bundle
++from helpers import collected
++
++ROOT=Path(__file__).resolve().parents[1]
++class Clock:
++    def __init__(self):self.t=0
++    def now(self):return self.t
++    def sleep(self,n):self.t+=n
++class Transport:
++    def __init__(self,results,clock,duration=0):self.results=list(results);self.calls=[];self.clock=clock;self.duration=duration
++    def attempt(self,spec,url,deadline,clock):
++        self.calls.append((url,deadline));self.clock.t+=min(self.duration,deadline-self.clock.t)
++        result=self.results.pop(0)
++        if isinstance(result,Exception):raise result
++        return result
++
++def spec():return {'endpoint_id':'ubuntu','url':'https://example.invalid/InRelease','context':'GUEST','proxy_mode':'DIRECT',
++                   'expected_status':200,'body_prefix_hex':b'PGP'.hex(),'maximum_bytes':1000,'redirect_allowlist':[]}
++class NetworkTests(unittest.TestCase):
++    def reject(self,code,fn,*args):
++        with self.assertRaises(P00Error) as e:fn(*args)
++        self.assertEqual(int(e.exception.code),code)
++    def test_https_required(self):
++        s=spec();s['url']='http://example.invalid';self.reject(10,endpoint,s)
++    def test_no_userinfo(self):
++        s=spec();s['url']='https://u:secret@example.invalid';self.reject(10,endpoint,s)
++    def test_no_non443_port(self):
++        s=spec();s['url']='https://example.invalid:1234';self.reject(10,endpoint,s)
++    def test_query_not_echoed(self):
++        s=spec();s['url']+='?credential=CANARY';c=Clock();t=Transport([{'dns':True}],c)
++        r=measure(s,transport=t,clock=c.now,sleep=c.sleep);self.assertNotIn('CANARY',str(r))
++    def test_proxy_not_silently_bypassed(self):
++        s=spec();s['proxy_mode']='SYSTEM_PROXY';self.reject(11,endpoint,s)
++    def test_invalid_port(self):
++        s=spec();s['url']='https://example.invalid:evil';self.reject(10,endpoint,s)
++    def test_newline_url(self):
++        s=spec();s['url']='https://example.invalid/\nInjected';self.reject(10,endpoint,s)
++    def test_retry_two_then_success(self):
++        c=Clock();t=Transport([P00Error(14,'DNS_FAILURE'),P00Error(14,'TLS_FAILURE'),{'https':True}],c)
++        r=measure(spec(),transport=t,clock=c.now,sleep=c.sleep)
++        self.assertEqual(r['attempts'],3);self.assertEqual(c.t,7);self.assertEqual(r['context'],'GUEST');self.assertFalse(r['host_ready'])
++    def test_collector_budget_caps_attempts(self):
++        c=Clock();t=Transport([P00Error(14,'NETWORK_DEADLINE')]*3,c,10)
++        r=measure(spec(),transport=t,clock=c.now,sleep=c.sleep)
++        self.assertEqual(c.t,30);self.assertEqual(r['status'],'FAIL');self.assertEqual(r['duration_ms'],30000)
++    def test_no_automatic_redirect(self):
++        c=Clock();t=Transport([{'redirect':'https://evil.invalid'}]*3,c)
++        r=measure(spec(),transport=t,clock=c.now,sleep=c.sleep)
++        self.assertEqual(r['status'],'FAIL');self.assertEqual(len(t.calls),3)
++    def test_exact_redirect_allowed(self):
++        s=spec();s['redirect_allowlist']=['https://cdn.invalid/file'];c=Clock()
++        t=Transport([{'redirect':'https://cdn.invalid/file'},{'https':True}],c)
++        r=measure(s,transport=t,clock=c.now,sleep=c.sleep);self.assertEqual(r['status'],'OBSERVED');self.assertEqual(len(t.calls),2)
++    def test_loop_blocked(self):
++        s=spec();s['redirect_allowlist']=[s['url']];c=Clock();t=Transport([{'redirect':s['url']}]*3,c)
++        self.assertEqual(measure(s,transport=t,clock=c.now,sleep=c.sleep)['status'],'FAIL')
++    def test_non_network_error_not_retried(self):
++        c=Clock();t=Transport([P00Error(10,'URL_SYNTAX')],c)
++        with self.assertRaises(P00Error):measure(spec(),transport=t,clock=c.now,sleep=c.sleep)
++        self.assertEqual(len(t.calls),1)
++
++class ScanTests(unittest.TestCase):
++    def record(self):return Sanitizer(b's'*16).record(collected('E00-10').record)
++    def test_safe_structure(self):self.assertTrue(strict_safe_scan(canonical(self.record())))
++    def test_raw_sid_rejected(self):
++        r=self.record();r['host_alias']='S-1-5-18';self.assertFalse(strict_safe_scan(canonical(r)))
++    def test_raw_url_rejected(self):
++        r=self.record();r['summary']={'url':'https://user:password@example.invalid'};self.assertFalse(strict_safe_scan(canonical(r)))
++    def test_unknown_field_rejected(self):
++        r=self.record();r['secret']='CANARY';self.assertFalse(strict_safe_scan(canonical(r)))
++    def test_nested_encoded_data_rejected(self):
++        r=self.record();r['summary']={'errors':[{'message':'c2VjcmV0'}]};self.assertFalse(strict_safe_scan(canonical(r)))
++    def test_redacted_message_allowed(self):
++        r=self.record();r['summary']={'errors':[{'message':'[REDACTED]'}]};self.assertTrue(strict_safe_scan(canonical(r)))
++    def test_unparsed_bytes_rejected(self):self.assertFalse(strict_safe_scan(b'raw CANARY'))
++    def test_real_scan_bundle_component(self):
++        b=assemble('FAILED_RUN',[collected('E00-10')],Sanitizer(b'x'*16),context={},scanner=strict_safe_scan)
++        self.assertEqual(b.exit,0);self.assertIsNotNone(b.archive);self.assertFalse(b.component_eligible)
++
++class PublishedPaths:
++    def __init__(self,fail=None):self.writes=[];self.fail=fail
++    def publish_new(self,path,data):
++        if self.fail:raise self.fail
++        self.writes.append((path,data))
++class PublisherTests(unittest.TestCase):
++    def setup(self,fail=None):
++        c=SimpleNamespace(held=True,admission=SimpleNamespace(purpose='SUPPORT_BUNDLE'),fence={'action':'PUBLISH_SAFE_BUNDLE'})
++        p=PublishedPaths(fail);return p,NativeBundlePublisher(p,c)
++    def publish(self,p,b,path=r'C:\Evidence\bundle.zip'):
++        return p.publish(b,approved_path=path,budgets=[{'volume_id':'v','roles':['EVIDENCE'],'allocations':{'output':1000000}}],free_by_volume={'v':10*1024**3})
++    def bundle(self):return assemble('FAILED_RUN',[collected('E00-10')],Sanitizer(b'x'*16),context={},scanner=strict_safe_scan)
++    def test_safe_publish(self):
++        paths,p=self.setup();r=self.publish(p,self.bundle());self.assertTrue(r['published']);self.assertFalse(r['host_ready']);self.assertEqual(len(paths.writes),1)
++    def test_output_failure_maps18(self):
++        paths,p=self.setup(P00Error(18,'OUTPUT_PUBLISH'));r=self.publish(p,self.bundle());self.assertEqual(r['exit'],18);self.assertFalse(r['published'])
++    def test_privacy_does_not_write(self):
++        paths,p=self.setup();b=Bundle(23,'BLOCKED_REDACTION',False,False,None,{})
++        r=self.publish(p,b);self.assertEqual(r['exit'],23);self.assertEqual(paths.writes,[])
++    def test_incomplete_suffix_required(self):
++        paths,p=self.setup();b=assemble('FAILED_RUN',[],Sanitizer(b'x'*16),context={},scanner=strict_safe_scan)
++        with self.assertRaises(P00Error):self.publish(p,b)
++        self.assertEqual(paths.writes,[])
++    def test_incomplete_marked_filename(self):
++        paths,p=self.setup();b=assemble('FAILED_RUN',[],Sanitizer(b'x'*16),context={},scanner=strict_safe_scan)
++        self.assertEqual(self.publish(p,b,r'C:\Evidence\bundle.incomplete.zip')['exit'],22)
++    def test_wrong_authority_blocks(self):
++        paths,p=self.setup();p.coordinator.admission.purpose='CREATE'
++        with self.assertRaises(P00Error):self.publish(p,self.bundle())
++        self.assertEqual(paths.writes,[])
++
++class HarnessBoundaryTests(unittest.TestCase):
++    def test_list_not_execution(self):
++        p=subprocess.run([sys.executable,str(ROOT/'tools/run_native_foundation_tests.py'),'--list'],capture_output=True,timeout=10)
++        self.assertEqual(p.returncode,0);self.assertIn(b'NOT_RUN',p.stdout);self.assertNotIn(b'"actual_status": "PASS"',p.stdout)
++    def test_native_case_blocked_before_windows_api(self):
++        p=subprocess.run([sys.executable,str(ROOT/'tools/run_native_foundation_tests.py'),'--case','NF-IDENTITY'],capture_output=True,timeout=10)
++        self.assertEqual(p.returncode,11);self.assertIn(b'WINDOWS_X64_REQUIRED',p.stdout)
+--- a/tests/test_state_evidence.py
++++ b/tests/test_state_evidence.py
+@@ -158,5 +158,5 @@
+         p=self.runcli('recovery-notes'); self.assertEqual(p.returncode,0); self.assertFalse(loads(p.stdout)['native_execution'])
+ for interface in ('preflight','apply','verify','support-bundle'):
+     def test(self,interface=interface):
+-        p=self.runcli(interface); self.assertEqual(p.returncode,11); self.assertEqual(loads(p.stdout)['reason'],'NATIVE_BACKEND_NOT_IMPLEMENTED')
+-    setattr(CLITests,'test_native_'+interface.replace('-','_')+'_explicitly_unimplemented',test)
++        p=self.runcli(interface); self.assertEqual(p.returncode,11); self.assertEqual(loads(p.stdout)['reason'],'WINDOWS_X64_REQUIRED' if interface=='preflight' else 'NATIVE_BACKEND_NOT_IMPLEMENTED')
++    setattr(CLITests,'test_native_'+interface.replace('-','_')+'_blocked_on_workspace',test)
+--- /dev/null
++++ b/tools/check_source.py
+@@ -0,0 +1,38 @@
++"""Author static checks only: parse Python/JSON, sh -n; NEVER execute guest code."""
++import ast
++import json
++import os
++import subprocess
++from pathlib import Path
++from datetime import datetime, timezone
++ROOT = Path(__file__).resolve().parents[1]
++
++
++def main():
++    rows = []
++    for folder in ('src', 'tests', 'tools'):
++        for path in sorted((ROOT / folder).rglob('*.py')):
++            ast.parse(path.read_text(encoding='utf-8'), filename=path.name)
++            rows.append({'path': path.relative_to(ROOT).as_posix(), 'check': 'PYTHON_AST', 'status': 'PASS'})
++    for folder in ('schemas', 'config'):
++        for path in sorted((ROOT / folder).glob('*.json')):
++            json.loads(path.read_text(encoding='utf-8'))
++            rows.append({'path': path.relative_to(ROOT).as_posix(), 'check': 'JSON_PARSE', 'status': 'PASS'})
++    if os.name == 'posix':
++        check = subprocess.run(['/bin/sh', '-n', str(ROOT / 'native/guest-observe.sh')],
++                               capture_output=True, timeout=10, check=False)
++        rows.append({'path': 'native/guest-observe.sh', 'check': 'SHELL_SYNTAX_ONLY',
++                     'status': 'PASS' if check.returncode == 0 else 'FAIL', 'script_executed': False})
++    else:
++        rows.append({'path': 'native/guest-observe.sh', 'check': 'SHELL_SYNTAX_ONLY', 'status': 'NOT_RUN'})
++    report = {'kind': 'AUTHOR_STATIC_CHECKS', 'timestamp_utc': datetime.now(timezone.utc).isoformat(),
++              'checks': rows, 'powershell_parse': 'NOT_RUN', 'powershell_execution': 'NOT_RUN',
++              'windows_native': 'NOT_RUN', 'guest_script_execution': 'NOT_RUN',
++              'code_review_verdict': None, 'qualification_issued': False}
++    (ROOT / 'evidence/AUTHOR_STATIC_CHECKS.json').write_text(json.dumps(report, indent=2) + '\n')
++    print(json.dumps({'checks': len(rows), 'failed': sum(r['status'] == 'FAIL' for r in rows)}))
++    return 1 if any(r['status'] == 'FAIL' for r in rows) else 0
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+--- /dev/null
++++ b/tools/run_native_foundation_tests.py
+@@ -0,0 +1,124 @@
++"""Executable Windows LAB foundation harness; NEVER a qualification issuer.
++
++Actual native execution requires the read-only external HKLM trust chain, exact
++code review, registered disposable LAB and an approved lab plan. This source was
++not run on Windows during authoring. --list is metadata only and cross-platform.
++The harness covers foundation components, NOT all T00/F00 acceptance cases.
++"""
++import argparse
++import json
++import os
++import sys
++from pathlib import Path,PureWindowsPath
++from datetime import datetime,timezone,timedelta
++
++ROOT=Path(__file__).resolve().parents[1]
++sys.path.insert(0,str(ROOT/'src'))
++from aifilm_p00.codec import canonical,digest,sha256,instant,token
++from aifilm_p00.errors import P00Error,require
++
++CASES=('NF-IDENTITY','NF-JOURNAL-APPEND','NF-PATH-ROUNDTRIP','NF-HARDLINK-REJECT','NF-GUARD-CONTENDER')
++
++
++def authorization():
++    from aifilm_p00.native.entry import _entry
++    api,store,facts,identity,registration=_entry(ROOT)
++    require(registration.get('execution_class')=='LAB',12,'REGISTERED_LAB_REQUIRED')
++    for key in ('controller_external','disposable','no_real_credentials','no_production_mappings'):
++        require(registration.get(key) is True,12,'LAB_REGISTRATION_INCOMPLETE')
++    ref,plan=store.one('lab_plan')
++    require(plan.get('host_id')==store.host_id and plan.get('build_digest')==identity['source_content_digest']
++            and plan.get('test_set_digest')==identity['test_content_digest'] and plan.get('approved') is True
++            and plan.get('withdrawn') is False,12,'LAB_PLAN_INVALID')
++    issued=instant(plan['issued_at']);expires=instant(plan['expires_at']);now=datetime.now(timezone.utc)
++    require(issued<=now<=expires and expires-issued<=timedelta(hours=24),12,'LAB_PLAN_EXPIRED')
++    require(facts['principal']['execution_sid']==plan.get('owner_sid'),12,'LAB_ACTOR_MISMATCH')
++    return api,store,facts,identity,plan,ref
++
++
++def run_case(case):
++    api,store,facts,identity,plan,ref=authorization()
++    require(case in plan.get('foundation_cases',[]),12,'LAB_CASE_NOT_APPROVED')
++    from aifilm_p00.native.filesystem import WindowsPaths
++    from aifilm_p00.native.coordination import NativeGuard,NativeJournal
++    paths=WindowsPaths(api,store.operators);guard=NativeGuard(api,store.operators)
++    if case=='NF-GUARD-CONTENDER':
++        # A separately authorized controller must already hold this host guard.
++        require(plan.get('external_holder_session_ref') is not None,12,'EXTERNAL_HOLDER_REQUIRED')
++        acquired=guard.acquire()
++        if acquired:guard.release()
++        require(not acquired,19,'EXPECTED_HOST_GUARD_BUSY')
++        return {'case_id':case,'actual_status':'PASS','expected':'LOCK_BUSY','actual':'LOCK_BUSY',
++                'source_kind':'LAB','qualification_issued':False,'host_ready':False,
++                'persistence':'CONTROLLER_MUST_RECORD_STDOUT','host_alias':store.host_id}
++    require(guard.acquire(),21,'LOCK_BUSY')
++    try:
++        journal=NativeJournal(paths,guard,store.host_id)
++        require(journal.load_fence() is None,21,'UNRESOLVED_FENCE')
++        run_id=token(plan['run_id']);name='lab-foundation-'+run_id+'-'+case
++        scratch=str(PureWindowsPath(paths.root)/name)
++        require(plan.get('scratch_names',{}).get(case)==name,12,'LAB_SCRATCH_SCOPE')
++        volume=paths.volume(paths.root)
++        budget=plan.get('maximum_additional_bytes')
++        require(type(budget) is int and 1024**2<=budget<=100*1024**2,12,'LAB_BUDGET_REQUIRED')
++        require(volume['free_bytes']>=20*1024**3+budget,13,'VOLUME_CAPACITY')
++        # Explicit fixture scope; never delete an existing path or reuse a failed
++        # unowned fixture. Retain both artifacts and report for external review.
++        paths.create_directory(scratch)
++        event={'kind':'LAB_FOUNDATION_START','run_id':run_id,'case_id':case,'lab_plan_ref':ref,
++               'source_content_digest':identity['source_content_digest']}
++        journal.append_event(event)
++        actual={}
++        if case=='NF-IDENTITY':
++            second=api.principal()
++            require(second==facts['principal'],19,'PRINCIPAL_CHANGED')
++            actual={'principal_stable':True,'architecture':second['architecture']}
++        elif case=='NF-JOURNAL-APPEND':
++            before=journal.read_events()
++            marker={'kind':'LAB_ROUNDTRIP','run_id':run_id,'challenge_digest':sha256(os.urandom(32))}
++            journal.append_event(marker);after=journal.read_events()
++            require(len(after)==len(before)+1 and after[-1]['event']==marker,19,'JOURNAL_ROUNDTRIP')
++            actual={'committed_frame_digest':after[-1]['sha256'],'append_only':True}
++        elif case in ('NF-PATH-ROUNDTRIP','NF-HARDLINK-REJECT'):
++            path=str(PureWindowsPath(scratch)/'Phim thử sentinel.bin')
++            content=b'AI-FILM SYNTHETIC NATIVE LAB FIXTURE\n'+os.urandom(32)
++            paths.write_new(path,content)
++            require(paths.read_blob(path,expected=sha256(content))==content,19,'PATH_ROUNDTRIP')
++            if case=='NF-HARDLINK-REJECT':
++                linked=str(PureWindowsPath(scratch)/'hardlink.bin')
++                os.link(path,linked)
++                try:
++                    with paths.pin(path):pass
++                except P00Error as error:
++                    require(error.code==12 and error.reason=='HARDLINK_FORBIDDEN',19,'HARDLINK_WRONG_REJECTION')
++                else:raise P00Error(19,'HARDLINK_WAS_ACCEPTED')
++                actual={'hardlink_rejected':True,'normalized_exit':12}
++            else:actual={'written_readback_sha256':sha256(content),'unicode_path_roundtrip':True}
++        result={'case_id':case,'actual_status':'PASS','source_kind':'LAB','run_id':run_id,'host_alias':store.host_id,
++                'timestamp_utc':datetime.now(timezone.utc).isoformat(),'actual':actual,'fixture_only_data':True,
++                'source_content_digest':identity['source_content_digest'],'test_content_digest':identity['test_content_digest'],
++                'qualification_issued':False,'closes_parent_T_or_F':False,'host_ready':False}
++        paths.publish_new(str(PureWindowsPath(scratch)/'foundation-result.json'),canonical(result))
++        journal.append_event({'kind':'LAB_FOUNDATION_END','run_id':run_id,'case_id':case,'report_digest':digest(result)})
++        return result
++    finally:guard.release()
++
++
++def main():
++    p=argparse.ArgumentParser(description=__doc__)
++    g=p.add_mutually_exclusive_group(required=True)
++    g.add_argument('--list',action='store_true');g.add_argument('--case',choices=CASES)
++    args=p.parse_args()
++    if args.list:
++        print(json.dumps({'kind':'HARNESS_INVENTORY','cases':[{'case_id':x,'actual_status':'NOT_RUN'} for x in CASES],
++                          'full_acceptance_harness':False,'qualification_issued':False,'host_ready':False}))
++        return 0
++    try:
++        require(os.name=='nt',11,'WINDOWS_X64_REQUIRED')
++        result=run_case(args.case);sys.stdout.buffer.write(canonical(result)+b'\n');return 0
++    except P00Error as error:
++        result={**error.safe(),'case_id':args.case,'actual_status':'BLOCKED_OR_FAILED','qualification_issued':False}
++        sys.stdout.buffer.write(canonical(result)+b'\n');return int(error.code)
++    except (OSError,KeyError,ValueError,TypeError):
++        sys.stdout.buffer.write(canonical({'exit':18,'reason':'NATIVE_HARNESS_IO','actual_status':'ERROR','host_ready':False})+b'\n');return 18
++if __name__=='__main__':raise SystemExit(main())
+--- a/tools/run_workspace_tests.py
++++ b/tools/run_workspace_tests.py
+@@ -16,7 +16,7 @@
+     for directory in paths:
+         for p in sorted((ROOT/directory).rglob('*')):
+             if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc':
+-                data=p.read_bytes(); files.append({'path':str(p.relative_to(ROOT)),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
++                data=p.read_bytes(); files.append({'path':p.relative_to(ROOT).as_posix(),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+     return files
+ 
+ def dg(value): return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+@@ -35,7 +35,7 @@
+     if os.name!='posix':
+         print('This runner currently covers isolated POSIX workspace tests, not native Windows.');return 11
+     os.environ['PYTHONPATH']=str(ROOT/'src')
+-    source=inventory(['src','schemas','config']); tests=inventory(['tests','fixtures','tools'])
++    source=inventory(['src','schemas','config','native']); tests=inventory(['tests','fixtures','tools'])
+     start=datetime.now(timezone.utc).isoformat(); tic=time.monotonic()
+     suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'))
+     out=ROOT/'evidence';out.mkdir(exist_ok=True)
