@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V28
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V29
 
 > Read first in every new chat. Current global truth. Runtime continuation policy: `WORKFLOW_CONTINUITY.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 28
+STATE_VERSION: 29
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
@@ -15,8 +15,16 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R8
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R8
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R6
-  NOTE: "R7 checker design was not promoted as a system release; R8 incorporates its lifecycle-neutral checker lesson plus continuity controls."
-  ACTIVATION_CONDITION: "Exact R8 tree requires DOC-V2-R8-REVIEW-001 PASS and DOC-V2-R8-AUDIT-001 PASS."
+  DESIGN_BRANCH: lane/docs-v2-r8-design
+  REVIEW_BRANCH: lane/docs-v2-r8-review
+  AUDIT_BRANCH: lane/docs-v2-r8-audit
+  FINAL_REVIEW_ID: DOC-V2-R8-REVIEW-002
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R8-AUDIT-002
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md
+  ACTIVATION_CONDITION: "Exact final R8 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
+  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable final review/audit records to the exact reviewed/audited design tree; any other policy/state/checkpoint edit reopens DOC-REVIEW and DOC-AUDIT."
+  NOTE: "R7 was not promoted as a system release; R8 incorporates its lifecycle-neutral checker lesson plus continuity/activation/source-visibility controls."
 
 LAST_REVIEWED_CANDIDATE:
   VERSION: 0.1.0.dev19
@@ -28,13 +36,28 @@ LAST_REVIEWED_CANDIDATE:
 IN_FLIGHT_PRODUCER_OUTPUT:
   VERSION: 0.1.0.dev20
   SOURCE_COMMIT: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
-  DURABILITY_TIER: LOCAL_COMMIT
-  PACKAGE_STATUS: NOT_BUILT
-  REVIEW_STATUS: NOT_HANDED_OFF
+  DURABILITY_TIER: LOCAL_COMMIT_PLUS_VERIFIED_PACKAGE
   AUTHOR_TESTS: "760 PASS"
   STATIC_CHECKS: "101 PASS"
   SOURCE_DIGEST: 1aa44211cd215b9c9691209d132a723c3b666fb5fee279b68c7f077da632d9dc
   TEST_DIGEST: c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383
+  PACKAGE_STATUS: VERIFIED_LOCAL
+  PACKAGE_SIZE_BYTES: 1175249
+  PACKAGE_SHA256: 8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff
+  PACKAGE_MEMBER_VERIFY: PASS
+  PACKAGE_GIT_BYTE_IDENTITY_VERIFY: PASS
+  TEST_CHANGE: TEST_CHANGE-P00-DEV20-FACTORY-003
+  TEST_REVIEW_STATUS: READY_FOR_INDEPENDENT_REVIEW
+  CODE_REVIEW_STATUS: NOT_HANDED_OFF
+
+SOURCE_VISIBILITY:
+  REMOTE_SOURCE_ADDRESSABILITY: PARTIAL_REVIEW_SNAPSHOT
+  REMOTE_SOURCE_REF: snapshot/dev20-source@ba8aa1acdac677665301a8fb76cd99b6b3d352bc
+  FULL_SOURCE_GIT_MIRROR: false
+  SNAPSHOT_BYTE_REVERIFY: PENDING
+  EXACT_SOURCE_IDENTITY: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
+  EXACT_PACKAGE_IDENTITY: 8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff
+  VISIBILITY_LIMITATIONS: "Browse snapshot exposes selected dev20 production paths/test only; it is not the authoritative full source tree."
 
 ACTIVE_RUN:
   RUN_ID: RUN-P00-CR001-001
@@ -42,9 +65,8 @@ ACTIVE_RUN:
   OWNER_LANE: IMPLEMENT
   LOCAL_WORKTREE: implement
   RUN_RECORD: "lane/implement-p00:workflow-runs/RUN-P00-CR001-001.md"
-  CANONICAL_SNAPSHOT: workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md
-  STATUS: RECOVERING
-  CURRENT_STEP: S06_PACKAGE_DEV20
+  STATUS: RUNNING
+  CURRENT_STEP: S07_TEST_REVIEW_DEV20
   CANONICAL_BASE: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
   OBSERVED_LOCAL_HEAD: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
 
@@ -54,6 +76,12 @@ FINDING_STATUS:
   CR-P00-013: CLOSED_DEV18_REVERIFIED_DEV19
   CR-P00-014: CLOSED_DEV19
 
+LEARNING_ACTIVATION:
+  WORKFLOW_CONTINUITY_R8: ACTIVE_ON_PROMOTION
+  GOVERNANCE_RELEASE_SELECTION: ACTIVE_ON_PROMOTION
+  SOURCE_VISIBILITY_POLICY: ACTIVE_ON_PROMOTION
+  LEARNED_BUT_NOT_ACTIVE_BACKLOG_AFTER_PROMOTION: 0
+
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
 CODE_REVIEW_PASS: false
@@ -62,7 +90,7 @@ LAB: NOT_RUN
 SITE: NOT_RUN
 HOST_READY: NOT_EVALUATED
 
-NEXT_ACTION: "After R8 governance promotion, resume RUN-P00-CR001-001 at S06_PACKAGE_DEV20; verify and reuse S01-S05 outputs rather than repeating them."
+NEXT_ACTION: "After R8 promotion, resume existing RUN-P00-CR001-001 at S07_TEST_REVIEW_DEV20; do not rebuild S06. Complete independent TEST_REVIEW, then satisfy explicit source-visibility/addressability handoff fields before S08 immutable CODE_REVIEW handoff."
 ```
 
-`IN_FLIGHT_PRODUCER_OUTPUT` is not reviewed/gate authority. It records recoverable producer progress ahead of the last canonical reviewed candidate so continuation does not destroy or duplicate it.
+`IN_FLIGHT_PRODUCER_OUTPUT` and `SOURCE_VISIBILITY` are producer-state facts, not review/gate authority. A partial browse snapshot improves inspection but never substitutes for the exact source/package identity.
