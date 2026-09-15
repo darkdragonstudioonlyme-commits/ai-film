@@ -1,0 +1,28 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 19,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "execution_model": "DUAL_LANE",
+  "current_delivery": "0.1.0.dev9 / PARTIAL_SOURCE_DROP_DEV9",
+  "source_commit": "3da3ddc771c15d175a2c5045c86a7c1ff9987dbd",
+  "package_sha256": "d6f83dc3ff60f73acd54750f58db34d817c7bb492c83088693f7c47c65d510cb",
+  "author_tests": {"run": 692, "failures": 0, "errors": 0, "skipped": 0},
+  "static_checks": {"run": 93, "failed": 0},
+  "implementation_lane": {"status": "ACTIVE_NEXT_INCREMENT"},
+  "review_lane": {"status": "REVIEW_COMPLETE_WAITING_FOR_NEXT_CANDIDATE"},
+  "last_review": {
+    "target": "dev9",
+    "delta_verdict": "PASS",
+    "overall_verdict": "FAIL",
+    "findings_closed": ["CR-P00-002", "CR-P00-003", "CR-P00-004"],
+    "findings_open": ["CR-P00-001"]
+  },
+  "author_complete": false,
+  "code_review_handoff_ready": false,
+  "code_review_pass": false,
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED",
+  "next_action": "prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics"
+}
