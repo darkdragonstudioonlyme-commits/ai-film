@@ -12,12 +12,15 @@ OBSERVE
 → GENERALIZE
 → SCORE REUSABILITY
 → PERSIST
-→ APPLY
-→ PROMOTE TO POLICY/TOOL/CHECKER WHEN WARRANTED
+→ PROPOSE POLICY/TOOL/CHECKER CHANGE WHEN WARRANTED
 → INDEPENDENTLY REVIEW
-→ MEASURE WHETHER RECURRENCE DECREASES
+→ ACTIVATE THE REVIEWED CHANGE
+→ APPLY
+→ MEASURE WHETHER RECURRENCE/FRICTION DECREASES
 → RETIRE/SUPERSEDE WHEN NO LONGER TRUE
 ```
+
+A reviewed learning is **not yet operational learning** until its successor policy/tool/checker is active in the canonical control plane, or the activation is explicitly blocked with an owner and return path.
 
 ## Discovery classes
 
@@ -29,7 +32,7 @@ Score 0–2 for each: recurrence likelihood, impact, generality, safety relevanc
 
 - 0–3: candidate-specific note/finding only;
 - 4–6: memory entry;
-- 7–10: memory + proposed policy/checker/workflow change, independently reviewed.
+- 7–10: memory + proposed policy/checker/workflow change, independently reviewed and activated.
 
 Critical security/correctness lessons may be promoted regardless of score.
 
@@ -46,6 +49,10 @@ REUSABLE_RULE:
 SCORE:
 CURRENT_ACTION:
 POLICY_OR_TOOL_PROMOTION:
+ACTIVATION_TARGET:
+ACTIVATION_STATUS: NOT_REQUIRED|PENDING_REVIEW|PENDING_ACTIVATION|ACTIVE|BLOCKED
+ACTIVATION_BLOCKER:
+ACTIVATED_IN:
 SUCCESS_METRIC:
 REVIEW_STATUS:
 STATUS: ACTIVE|SUPERSEDED|RETIRED
@@ -53,7 +60,16 @@ STATUS: ACTIVE|SUPERSEDED|RETIRED
 
 ## Proof of learning
 
-A promoted learning defines a future detector or behavior change, for example a checker, router rule, test, schema, policy or recovery step. Later workflow health reviews ask whether recurrence decreased. If not, the learning was incomplete and is reviewed again.
+A promoted learning defines a future detector or behavior change, for example a checker, router rule, test, schema, policy or recovery step. The learning is counted as **applied** only after that change is active in the canonical workflow. Later workflow-health reviews ask whether recurrence or friction decreased. If not, the learning was incomplete and is reviewed again.
+
+Two failure modes are explicitly tracked:
+
+- **LEARNED_BUT_NOT_ACTIVE** — useful correction exists/reviewed but promotion/activation has not completed;
+- **ACTIVE_BUT_NOT_EFFECTIVE** — correction is active but recurrence/friction did not improve.
+
+## Activation backlog
+
+`PROJECT_MEMORY.md` remains an active index, but any promoted learning with `PENDING_ACTIVATION`/`BLOCKED` must point to its activation target and blocker. `WORKFLOW_HEALTH.md` treats an accumulating learned-but-not-active backlog as process debt when affected workflows continue to incur the same friction.
 
 ## Durable learning records
 
