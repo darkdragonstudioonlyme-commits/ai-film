@@ -24,6 +24,9 @@ Memory does not approve architecture or pass gates. If a discovery requires chan
 | MEM-20260915-009 | TOOLING | If chunking is unavoidable, verify every Git blob SHA individually; prefer file-native transfer. |
 | MEM-20260915-010 | TESTING | Use the package’s src-layout invocation (`PYTHONPATH=src` or official runner); import failure without it is not a source regression. |
 | MEM-20260915-011 | SECURITY | Executable trust must bind path + exact bytes + policy scope + pinned handle + witness before process resume. |
+| MEM-20260915-012 | TOOLING | Keep AI-FILM work in a dedicated WSL subtree and verify the exact delivery hash before extraction. |
+| MEM-20260915-013 | TOOLING | If system `ensurepip` is unavailable and the project has no external deps, a `venv --without-pip` + `.pth` source binding is an acceptable isolated author-test environment. |
+| MEM-20260915-014 | PROCESS | WSL local Git fetch/commit and GitHub remote write authority are separate; do not leave an interactive credential helper that can hang automation. |
 
 ## New entries since archived V14 memory
 
@@ -69,9 +72,73 @@ SUPERSEDES: []
 SUPERSEDED_BY: null
 ```
 
+### MEM-20260915-012 — Dedicated WSL workspace + hash-before-extract
+
+```yaml
+MEMORY_ID: MEM-20260915-012
+TYPE: TOOLING
+STATUS: ACTIVE
+DISCOVERED_IN:
+  MODE: IMPLEMENTATION
+  PHASE: "00 — Host / WSL"
+  WORK_ITEM: ENV-P00-GIT-001
+SUMMARY: "A dedicated project subtree under /home/dragon avoids mixing AI-FILM state with unrelated local environments and makes cleanup/recovery predictable."
+EVIDENCE: "Created /home/dragon/ai-film-dev; downloaded exact V7 archive, verified SHA-256 63f9a8ce...49312 before extraction, and reproduced 673 workspace PASS + 90 static PASS from the extracted source."
+IMPACT: "Future chats can enter one known workspace without touching existing /home/dragon projects or reconstructing source from prose."
+REUSABLE_RULE: "Use /home/dragon/ai-film-dev for this project; download exact delivery, verify recorded SHA before extraction, and keep canonical repo clone/source/artifacts/venv separated by directory."
+AFFECTED_AREAS: [wsl, workspace, reproducibility, recovery]
+ACTION_TAKEN: "Added WORKSPACE_WSL.md plus local env.sh/test.sh helper scripts."
+FOLLOW_UP: "If the active delivery advances, keep old exact artifact for rollback and create/update the source workspace deliberately rather than overwriting an unverified tree."
+SUPERSEDES: []
+SUPERSEDED_BY: null
+```
+
+### MEM-20260915-013 — Isolated no-pip venv is sufficient only while dependencies are empty
+
+```yaml
+MEMORY_ID: MEM-20260915-013
+TYPE: TOOLING
+STATUS: ACTIVE
+DISCOVERED_IN:
+  MODE: IMPLEMENTATION
+  PHASE: "00 — Host / WSL"
+  WORK_ITEM: ENV-P00-GIT-001
+SUMMARY: "Ubuntu system Python lacked ensurepip/python3.12-venv and sudo required an interactive password, but dev7 has zero external Python dependencies."
+EVIDENCE: "System `/usr/bin/python3 -m venv` failed due missing ensurepip; sudo -n failed; `/usr/bin/python3 -m venv --without-pip` plus `.pth` entries for src/tests produced a clean isolated Python 3.12.3 environment and reproduced 673 tests + 90 static checks."
+IMPACT: "The project can be tested now without reusing another project's venv, but future dependency additions would make this environment incomplete."
+REUSABLE_RULE: "A no-pip venv + `.pth` source binding is acceptable for the current zero-dependency author-test baseline only. If external dependencies appear, explicitly provision python3.12-venv/pip (authorized sudo) or another reviewed package manager; never silently borrow `/home/dragon/arb/.venv`."
+AFFECTED_AREAS: [python, wsl, dependency-management, testing]
+ACTION_TAKEN: "Created `/home/dragon/ai-film-dev/.venv` without pip and bound exact dev7 src/tests via site-packages `.pth` files."
+FOLLOW_UP: "Re-evaluate environment setup whenever pyproject dependencies change."
+SUPERSEDES: []
+SUPERSEDED_BY: null
+```
+
+### MEM-20260915-014 — Local Git operations and remote write authentication are separate concerns
+
+```yaml
+MEMORY_ID: MEM-20260915-014
+TYPE: PROCESS
+STATUS: ACTIVE
+DISCOVERED_IN:
+  MODE: IMPLEMENTATION
+  PHASE: "00 — Host / WSL"
+  WORK_ITEM: ENV-P00-GIT-001
+SUMMARY: "WSL can clone/fetch the public GitHub repository and maintain local commits, while direct HTTPS push still requires a separate authenticated credential path."
+EVIDENCE: "Clone/fetch succeeded. `git push --dry-run` failed without credentials. Windows Git Credential Manager is visible from WSL but an automated credential probe waited for interactive UI, so the repo-local helper was removed to prevent hangs."
+IMPACT: "Future automation must not assume that a successful clone means WSL can push, and must not leave an interactive helper that blocks unattended tasks."
+REUSABLE_RULE: "Use local Git for diff/commit/rollback; use the connected GitHub connector for remote writes until WSL authentication is explicitly configured. Never write PATs to plaintext files."
+AFFECTED_AREAS: [git, github, wsl, automation, security]
+ACTION_TAKEN: "Configured repo-local author identity, left credential.helper unset, initialized local dev7 source Git baseline commit b937649c..., and documented the limitation in WORKSPACE_WSL.md."
+FOLLOW_UP: "If the user later wants direct WSL push, configure an explicit secure SSH/GCM flow as its own setup step and verify with push --dry-run before changing workflow policy."
+SUPERSEDES: []
+SUPERSEDED_BY: null
+```
+
 ## Usage by future chats
 
 1. Read `PROJECT_STATE.md` and `NEXT_WORK_ITEM.md` first.
 2. Scan this Active Memory Index for current-task lessons.
-3. Open `memory/archive/PROJECT_MEMORY_V14.md` only when older entry detail is needed.
-4. Add/supersede memory entries automatically at every meaningful increment.
+3. Read `WORKSPACE_WSL.md` when operating through Desktop Commander/WSL.
+4. Open `memory/archive/PROJECT_MEMORY_V14.md` only when older entry detail is needed.
+5. Add/supersede memory entries automatically at every meaningful increment.
