@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: IMPLEMENT-P00
 LANE_ROLE: IMPLEMENT
-STATUS: CANDIDATE_HANDED_OFF
+STATUS: ACTIVE_NEXT_INCREMENT
 GLOBAL_MODE: IMPLEMENTATION
 GLOBAL_WORK_ITEM: IMPL-P00-001
 REMOTE_BRANCH: lane/implement-p00
@@ -14,23 +14,20 @@ CURRENT_DELIVERY: 0.1.0.dev11
 SOURCE_WRITABLE: true
 REVIEW_WRITABLE: false
 
-LATEST_CANDIDATE:
-  ID: IMPL-P00-001-DEV11
-  VERSION: 0.1.0.dev11
-  SOURCE_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
-  PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V11.zip
-  PACKAGE_LOCATION: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V11.zip
-  PACKAGE_SIZE_BYTES: 1117382
-  PACKAGE_SHA256: a77d9fee285678fe2321f41e05110d14f60cd1ad9803cc9a00dbcf662f924316
-  MANIFEST_SHA256: fcf96024cee12fc7c8f35329f651b4c260f0b4a4142d9d9a57fc85b2fd8cc3e8
-  SOURCE_CONTENT_DIGEST: 4f24e01469357e5a4716cc1e55ef7de8bbe085bbdabc1892778cd67c21269193
-  TEST_CONTENT_DIGEST: a7e0c8c18b1e70bcd122b4818cfc59fa98f6e4e23311ff37bb2531c5ed6d1227
-  AUTHOR_TESTS: "711 PASS / 0 failure / 0 error / 0 skip"
-  STATIC_CHECKS: "94 PASS"
-  FINDING_TARGETED: CR-P00-005
-  CR_P00_001: OPEN
-  AUTHOR_COMPLETE: false
-  CODE_REVIEW_HANDOFF_READY: false
+LAST_HANDOFF:
+  CANDIDATE: IMPL-P00-001-DEV11
+  DELTA_REVIEW: PASS
+  FINDING_CLOSED: CR-P00-005
+  OPEN_FINDING: CR-P00-001
+
+NEXT_INCREMENT: "incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability"
 ```
 
-Dev11 preserves dev10 provenance semantics and adds the explicit temporal-order bound `PRE_C3.checked_at <= current capture time`. REVIEW must inspect exact commit `3ea9408...`, not the moving IMPLEMENT branch.
+## Immediate queue
+
+1. Complete temp/incomplete/final support-bundle publication crash recovery without overwrite/delete/republication shortcuts.
+2. Complete remaining E17 recovery integration/applicability while preserving the separate assessment artifact and MASTER authority boundary.
+3. Add causal author tests for intent-before-write, missing/temp/final-existing outputs, exact-byte re-observation, ambiguity and no-republication behavior.
+4. Run full author regression/static checks, package an immutable candidate, then hand off to REVIEW lane.
+
+CR-P00-001 remains open until full source/harness/docs/test completion.
