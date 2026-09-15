@@ -1,92 +1,94 @@
-# NEXT WORK ITEM — IMPL-P00-001 after dev8 CODE_REVIEW FAIL
+# NEXT WORK ITEM — dual-lane execution after dev8 review FAIL
 
 ```yaml
-WORK_ITEM_ID: IMPL-P00-001
-MODE: IMPLEMENTATION
+PROJECT_MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-STATUS: IN_PROGRESS
 CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV8
 LAST_CODE_REVIEW: CODE-REVIEW-P00-001 / FAIL
 TARGET_GATE: CODE_REVIEW_PASS
-MODE_TRANSITION_NOW: NONE
-OPEN_REVIEW_FINDINGS: CR-P00-001…004
-ACTIVE_SOURCE: /home/dragon/ai-film-dev/source-dev8
+EXECUTION_MODEL: DUAL_LANE
+IMPLEMENT_LANE: lane/implement-p00
+REVIEW_LANE: lane/review-p00
 ```
 
-## Exact recovery anchor
+Read `EXECUTION_LANES.md` before work.
+
+## IMPLEMENT lane — ACTIVE
+
+```yaml
+WORK_ITEM_ID: IMPL-P00-001
+REMOTE_BRANCH: lane/implement-p00
+WSL_WORKTREE: /home/dragon/ai-film-dev/implement
+LOCAL_SOURCE_BRANCH: impl/p00
+BASE_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+SOURCE_WRITABLE: true
+```
+
+Immediate queue:
+
+1. Fix `CR-P00-002` — re-authorize immediately before durable owner-wait relabel; test expiry/generation/actor/request drift after observation.
+2. Fix `CR-P00-003` — persist a safe typed/bounded actual wait cause at the durable wait boundary instead of dropping pending-reboot context.
+3. Fix `CR-P00-004` — exact per-wait schemas, unknown-key rejection, canonical size/privacy bound, digest/reference preference for larger evidence.
+4. Run targeted tests then `/home/dragon/ai-film-dev/lane-test.sh implement`.
+5. Commit coherent source increment on `impl/p00`; package and byte-verify exact candidate.
+6. Continue prior pre-C3/checkpoint + nested E00, publication/E17, non-DIRECT transport, causal 86-case controller and production-factory integration scope.
+7. `CR-P00-001` closes only when full author-complete scope exists.
+
+IMPLEMENT may not issue review verdicts.
+
+## REVIEW lane — WAITING_FOR_NEXT_CANDIDATE
+
+```yaml
+FORMAL_WORK_ITEM: CODE-REVIEW-P00-001
+REMOTE_BRANCH: lane/review-p00
+WSL_WORKTREE: /home/dragon/ai-film-dev/review
+SOURCE_MODE: detached exact candidate
+CURRENT_CANDIDATE: dev8
+CURRENT_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+LAST_VERDICT: FAIL
+SOURCE_WRITABLE: false
+```
+
+Review lane remains frozen on dev8 for audit. It does not follow IMPLEMENT changes.
+
+When IMPLEMENT produces a new immutable handoff, REVIEW must be reset/recreated detached at the exact candidate commit, verify package/digests, then review independently. It may write findings/verdicts only; it must not patch source.
+
+## Exact dev8 recovery anchor
 
 ```yaml
 PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip
 SIZE_BYTES: 1091121
 SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
 DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
-LOCAL_BASELINE_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+AUTHOR_BASELINE: "683 PASS / 92 static PASS"
 ```
 
-Author baseline remains **683 PASS / 92 static PASS**. Native Windows/WSL/LAB/SITE remain NOT_RUN.
+## Lane commands
 
-## First integration — close review findings before new evidence scope
-
-1. **CR-P00-002 / HIGH — renewed authority before durable owner-wait relabel**
-   - In `RecoveryRunner`, re-authorize immediately before persisting `AWAITING_OWNER_VERIFICATION` after postcondition observation.
-   - Re-check exact opening fence/request identity and authority generation.
-   - Add negative tests for approval expiry, authority rollback, actor drift and recovery-request drift after observation but before relabel.
-
-2. **CR-P00-003 / HIGH — persist actual wait cause**
-   - When SessionRunner receives an operator-wait result, persist a bounded wait observation instead of dropping `wait_reason`/normalized lifecycle facts.
-   - For reboot waits, retain only safe normalized pending-reboot indicators and required witness/result identity; do not persist raw process output.
-   - Add tamper/absence/replay tests showing recovery can distinguish persisted reboot-origin context.
-
-3. **CR-P00-004 / MEDIUM — typed/bounded wait context**
-   - Define exact schemas/allowed keys per `AWAITING_REBOOT`, `AWAITING_USER_INIT`, `AWAITING_OWNER_VERIFICATION`.
-   - Reject unknown keys and cap canonical serialized size.
-   - Prefer digests/references for evidence larger than the minimal wait state.
-   - Add oversized/unknown-key/sensitive-shape negative tests.
-
-4. Run targeted review-finding tests, then full `/home/dragon/ai-film-dev/test.sh` regression/static checks.
-5. Documentation Sync Gate; update review finding dispositions but do **not** mark `CR-P00-001` closed yet.
-6. Package/persist exact next delivery and verify remote state.
-
-## Then — resume remaining implementation
-
-After CR-P00-002…004 are fixed and persisted:
-
-1. prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics;
-2. incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability;
-3. reviewed non-DIRECT transport;
-4. causal supported-route/failure controller procedures for all 86 normative T/F/subcases;
-5. production-factory integration author tests;
-6. full source/harness/docs/test closure.
-
-`CR-P00-001` closes only when `AUTHOR_COMPLETE=true`, full REM scope is closed/managed and `CODE_REVIEW_HANDOFF_READY=true` is justified.
-
-## Review record
-
-Read before touching the findings:
-
-- `reviews/CODE-REVIEW-P00-001_DEV8.md`
-- `reviews/CODE-REVIEW-P00-001_DEV8.json`
-- `PROJECT_MEMORY.md` entries `MEM-20260915-020…023`
-
-## WSL workflow
+IMPLEMENT:
 
 ```bash
-source /home/dragon/ai-film-dev/env.sh
-/home/dragon/ai-film-dev/test.sh
+source /home/dragon/ai-film-dev/implement-env.sh
+/home/dragon/ai-film-dev/lane-test.sh implement
 ```
 
-Use local Git for diff/rollback. Direct WSL push remains unauthenticated; remote state writes use the GitHub connector.
+REVIEW:
 
-## Forbidden
+```bash
+source /home/dragon/ai-film-dev/review-env.sh
+/home/dragon/ai-film-dev/lane-test.sh review
+```
 
-- Change FD/D00/public/reviewed contracts or lower acceptance.
-- Execute Phase00 native Windows/WSL/LAB/SITE/guest/live-network provisioning/validation during authoring.
-- Treat process exit, fixture flags, author-test count, envelope labels or timestamps as actual native proof.
-- Fix CR-P00-001 by merely changing documentation flags; full source closure is required.
-- Store raw/sensitive observations in the new wait context just to satisfy CR-P00-003.
-- Delete unresolved journal/fence/read state.
-- Self-approve CODE_REVIEW_PASS, qualification or HOST_READY.
+## Forbidden cross-lane behavior
+
+- REVIEW never patches candidate source.
+- IMPLEMENT never self-approves CODE_REVIEW.
+- REVIEW never formally reviews uncommitted IMPLEMENT state.
+- Candidate handoff must bind exact source commit + package SHA + author evidence.
+- Findings must bind the exact reviewed candidate.
+- Native Windows/WSL/LAB/SITE proof cannot be inferred from either lane's author tests.
+- FD/D00/public contracts remain unchanged unless routed through design/review.
 
 ## Exit condition
 
-After all remaining source scope is genuinely author-complete and the exact candidate is persisted/reviewable, set `CODE_REVIEW_HANDOFF_READY=true` with evidence and run `CODE-REVIEW-P00-001` again. Until then remain in IMPLEMENTATION.
+IMPLEMENT reaches author-complete exact candidate and writes an immutable handoff with `AUTHOR_COMPLETE=true` and `CODE_REVIEW_HANDOFF_READY=true`; REVIEW then independently reviews that exact candidate. Only a REVIEW PASS on that identity can satisfy `CODE_REVIEW_PASS`.
