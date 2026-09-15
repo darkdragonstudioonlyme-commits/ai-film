@@ -1,6 +1,6 @@
 {
-  "baseline": "dev9",
-  "candidate": "dev10",
+  "baseline": "dev10",
+  "candidate": "dev11",
   "changes": [
     {
       "status": "M",
@@ -12,15 +12,11 @@
     },
     {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV9_TO_DEV10.md"
+      "path": "docs/CHANGELOG_DEV10_TO_DEV11.md"
     },
     {
       "status": "M",
       "path": "docs/IMPLEMENTATION_STATUS.md"
-    },
-    {
-      "status": "M",
-      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
     },
     {
       "status": "M",
@@ -52,19 +48,11 @@
     },
     {
       "status": "M",
-      "path": "src/aifilm_p00/evidence_catalog.py"
-    },
-    {
-      "status": "M",
       "path": "src/aifilm_p00/native/evidence_pipeline.py"
     },
     {
-      "status": "A",
-      "path": "tests/test_dev10_prior_nested.py"
-    },
-    {
       "status": "M",
-      "path": "tests/test_dev6_prior_evidence.py"
+      "path": "tests/test_dev10_prior_nested.py"
     }
   ]
 }
