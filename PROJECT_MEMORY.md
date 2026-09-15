@@ -31,19 +31,18 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-047 | GOVERNANCE | Promotion state/checkpoint must be inside the exact reviewed/audited tree; post-audit policy/state edits reopen review. | documentation promotion policy/checker |
 | MEM-20260915-048 | REVIEW | Causal controller action→route binding belongs to the reviewed procedure authority/digest; post-run evidence may prove the mapping but must never choose it. | native harness procedure/review rule |
 | MEM-20260915-049 | TESTING | Security/authority test fixtures must mirror the production authority producer/schema; never invent fields solely to satisfy current implementation. | `TEST_STRATEGY.md` / workflow-health review |
-
 | MEM-20260915-050 | RECOVERY | Chat/tool timeout resumes the same RUN_ID via write-ahead step reconciliation; timeout never creates a replacement workflow. | `WORKFLOW_CONTINUITY.md` |
 | MEM-20260915-051 | PROCESS | Exact producer progress ahead of main is a distinct continuity state when a run ledger binds its base/output; do not erase it as generic drift. | continuity/runtime checker |
 | MEM-20260915-052 | GOVERNANCE | Workflow-instance schema in NEXT_WORK_ITEM must be machine-enforced, not prose-only. | docs checker / router |
-
 | MEM-20260915-053 | TOOLING | A generic continuity checker must derive run/workflow identity from state; incident-specific hard-coding defeats self-learning. | continuity checker/audit |
-
 | MEM-20260915-054 | RECOVERY | A continuity field in prose is not protection until the live current-step record and checker enforce its idempotency/done-when/output contract. | continuity ledger/checker |
-
 | MEM-20260915-055 | TOOLING | Run identity can be generic while worktree reconciliation is still lane-specific; generic continuity derives a safe relative worktree from state or supports remote-only runs. | continuity checker/state schema |
+| MEM-20260916-001 | LEARNING | A reviewed reusable lesson is not operational until its policy/tool/checker change is canonically activated; track learned-but-not-active backlog and activation lag. | `SELF_LEARNING.md`, `WORKFLOW_HEALTH.md` |
+| MEM-20260916-002 | PERSISTENCE | Exact local source + verified package can preserve identity while still creating reviewer/operator friction when source is not remotely browseable; partial snapshots must be labeled and full-mirror state explicit. | `GIT_WORKFLOW.md`, handoff/state schema |
+| MEM-20260916-003 | GOVERNANCE | Standing documentation policy must derive release-scoped branch/worktree identity from canonical governance state, never pin one revision's names. | `EXECUTION_LANES.md`, `GIT_WORKFLOW.md`, governance checker |
 
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
 
-New learning uses the record/score/promotion lifecycle in `SELF_LEARNING.md`.
+New learning uses the record/score/promotion/activation lifecycle in `SELF_LEARNING.md`.
