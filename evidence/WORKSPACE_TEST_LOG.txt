@@ -165,7 +165,9 @@ test_list_is_metadata_only (test_dev15_harness.HarnessCliTests.test_list_is_meta
 test_arranged_condition_must_remain_valid_through_stage_end (test_dev15_harness.ReviewContinuityTests.test_arranged_condition_must_remain_valid_through_stage_end) ... ok
 test_controller_step_cannot_rebind_action_to_wrong_route (test_dev15_harness.ReviewContinuityTests.test_controller_step_cannot_rebind_action_to_wrong_route) ... ok
 test_controller_step_must_cover_and_overlap_bound_stage_window (test_dev15_harness.ReviewContinuityTests.test_controller_step_must_cover_and_overlap_bound_stage_window) ... ok
-test_wrong_build_or_contract_collector_is_rejected (test_dev15_harness.ReviewContinuityTests.test_wrong_build_or_contract_collector_is_rejected) ... ok
+test_production_shaped_collector_accepts_valid_contract_bound_suite (test_dev15_harness.ReviewContinuityTests.test_production_shaped_collector_accepts_valid_contract_bound_suite) ... ok
+test_wrong_build_collector_is_rejected (test_dev15_harness.ReviewContinuityTests.test_wrong_build_collector_is_rejected) ... ok
+test_wrong_contract_suite_is_rejected_before_collector_acceptance (test_dev15_harness.ReviewContinuityTests.test_wrong_contract_suite_is_rejected_before_collector_acceptance) ... ok
 test_fabricated_journal_hash_without_matching_raw_artifact_is_rejected (test_dev15_harness.StageOracleTests.test_fabricated_journal_hash_without_matching_raw_artifact_is_rejected) ... ok
 test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected (test_dev15_harness.StageOracleTests.test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected) ... ok
 test_stage_cannot_replay_under_another_suite (test_dev15_harness.StageOracleTests.test_stage_cannot_replay_under_another_suite) ... ok
@@ -757,6 +759,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 757 tests in 1.535s
+Ran 759 tests in 1.575s
 
 OK

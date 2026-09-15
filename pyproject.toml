@@ -1,6 +1,6 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev18"
+version = "0.1.0.dev19"
 description = "Partial Phase00 implementation: binds causal LAB preparation/controller traces and exact protected evidence refs for the 86-case acceptance harness; native validation remains pending"
 requires-python = ">=3.11"
 dependencies = []

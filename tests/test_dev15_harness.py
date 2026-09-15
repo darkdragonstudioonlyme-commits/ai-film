@@ -28,7 +28,7 @@ class Store:
 
 
 def collector():
-    return {'withdrawn':False,'review_verdict':'PASS','build_digest':BUILD,'contract_digest':CONTRACT_DIGEST}
+    return {'withdrawn':False,'review_verdict':'PASS','build_digest':BUILD}
 
 
 class HarnessCatalogTests(unittest.TestCase):
@@ -220,12 +220,22 @@ class ReviewContinuityTests(unittest.TestCase):
     suite={'execution_id':'exec-1','issued_at':'2026-09-15T00:00:00Z','expires_at':'2026-09-15T23:59:59Z',
            'build_digest':BUILD,'contract_digest':CONTRACT_DIGEST}
 
-    def test_wrong_build_or_contract_collector_is_rejected(self):
+    def test_production_shaped_collector_accepts_valid_contract_bound_suite(self):
         ref='3'*64
-        store=Store({('collector_release',ref):{'withdrawn':False,'review_verdict':'PASS',
-            'build_digest':'0'*64,'contract_digest':CONTRACT_DIGEST}})
+        store=Store({('collector_release',ref):collector()})
+        self.assertEqual(_collector(store,ref,self.suite,'LAB_TEST_COLLECTOR')['build_digest'],BUILD)
+
+    def test_wrong_build_collector_is_rejected(self):
+        ref='3'*64
+        store=Store({('collector_release',ref):{'withdrawn':False,'review_verdict':'PASS','build_digest':'0'*64}})
         with self.assertRaises(P00Error) as caught:_collector(store,ref,self.suite,'LAB_TEST_COLLECTOR')
         self.assertEqual(caught.exception.reason,'LAB_TEST_COLLECTOR')
+
+    def test_wrong_contract_suite_is_rejected_before_collector_acceptance(self):
+        ref='3'*64;suite=dict(self.suite);suite['contract_digest']='0'*64
+        store=Store({('collector_release',ref):collector()})
+        with self.assertRaises(P00Error) as caught:_collector(store,ref,suite,'LAB_TEST_COLLECTOR')
+        self.assertEqual(caught.exception.reason,'LAB_SUITE_SCOPE')
 
     def test_arranged_condition_must_remain_valid_through_stage_end(self):
         proc=procedure('T07-A');ref='4'*64;action='5'*64;raw='6'*64;cref='7'*64;run='run-1'

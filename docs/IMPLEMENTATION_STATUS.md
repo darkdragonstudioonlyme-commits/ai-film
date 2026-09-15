@@ -1,3 +1,19 @@
+# IMPL-P00-001 Implementation Status — dev19 increment
+
+`0.1.0.dev19 / PARTIAL_SOURCE_DROP_DEV19`
+
+Dev19 remediates dev18 REVIEW findings CR-P00-012/014 without changing reviewed FD/D00/public contracts and preserves the accepted CR-P00-013 continuity/route-binding behavior.
+
+- `collector_release` is restored to the existing production authority shape: reviewed/not-withdrawn + exact build digest. No unreviewed `collector_release.contract_digest` field is required.
+- Exact approved contract identity is enforced at the authorizing LAB suite boundary (`suite.contract_digest == CONTRACT_DIGEST`) before collector acceptance.
+- Author tests use production-shaped collector fixtures again and separately reject wrong build and wrong suite contract provenance.
+- Dev18 stage-window continuity witnesses, procedure-owned controller route indices, T07-H CREATE→reconciliation sequence and 86-case digest/binding mirrors are preserved unchanged.
+- The dev18 false-green test-governance failure is explicitly corrected; implementation remains the subject under test rather than the authority for fixture schema.
+
+Final author evidence: **759 PASS / 0 failure/error/skip**, static **100 PASS**. Source content digest `2271c07575e4217dabde324c7de0d35a1188c965d32f1aee38648d44d35873c4`; test content digest `8deb2d74dc098ad161557773382afb54293dc0ea4e59b95fe6b591fc7d803fdb`. Native Windows/WSL/LAB/SITE remains NOT_RUN. CR-P00-012/014 are FIXED_PENDING_REVIEW; CR-P00-013 remains CLOSED_DEV18; CR-P00-001 remains OPEN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev18 increment
 
 `0.1.0.dev18 / PARTIAL_SOURCE_DROP_DEV18`

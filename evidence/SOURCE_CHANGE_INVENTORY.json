@@ -1,18 +1,14 @@
 {
-  "parent_commit": "64ea95bf10e05e856a009be9204983182f520b45",
-  "delivery": "0.1.0.dev18",
+  "parent_commit": "f680067c2f23d7eea4c016247015359ffe431971",
+  "delivery": "0.1.0.dev19",
   "changes": [
     {
       "status": "M",
       "path": "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md"
     },
     {
-      "status": "M",
-      "path": "config/required-native-test-inventory.json"
-    },
-    {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV17_TO_DEV18.md"
+      "path": "docs/CHANGELOG_DEV18_TO_DEV19.md"
     },
     {
       "status": "M",
@@ -28,7 +24,7 @@
     },
     {
       "status": "A",
-      "path": "evidence/DEV18_SECRET_SCAN.json"
+      "path": "evidence/DEV19_SECRET_SCAN.json"
     },
     {
       "status": "M",
@@ -53,10 +49,6 @@
     {
       "status": "M",
       "path": "src/aifilm_p00/__init__.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/native/harness_cases.py"
     },
     {
       "status": "M",

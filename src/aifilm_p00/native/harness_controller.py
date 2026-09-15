@@ -67,10 +67,13 @@ def _raw_bound(store,raw_ref,actual,subject_digest,reason):
 
 
 def _collector(store,ref,suite,reason):
+    # Contract authority is the exact approved suite/causal record boundary;
+    # collector_release remains the existing reviewed-build authority object.
+    # Do not invent a collector-release contract field that no producer issues.
+    require(suite.get('contract_digest')==CONTRACT_DIGEST,16,'LAB_SUITE_SCOPE')
     value=store.get('collector_release',ref)
     require(value.get('withdrawn') is False and value.get('review_verdict')=='PASS'
-            and value.get('build_digest')==suite['build_digest']
-            and value.get('contract_digest')==suite['contract_digest'],15,reason)
+            and value.get('build_digest')==suite['build_digest'],15,reason)
     return value
 
 

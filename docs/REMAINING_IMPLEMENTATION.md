@@ -1,3 +1,14 @@
+# DEV19 Remaining-Work Delta
+
+- `CR-P00-012`: corrected remediation — exact contract authority is enforced by the approved LAB suite/causal boundary; collector release remains exact reviewed-build authority.
+- `CR-P00-014`: corrected — author collector fixtures again mirror the production authority shape; wrong build and wrong suite contract are tested independently at their real boundaries.
+- `CR-P00-013`: remains closed at dev18 behavior level; all continuity/window/procedure-owned route-binding protections are preserved.
+- Independent REVIEW must verify dev19 before CR-P00-012/014 close.
+- All 86 native cases remain NOT_RUN / acceptance_closed=false pending authorized VALIDATION.
+- `CR-P00-001` remains open until full reviewed author scope is complete.
+
+---
+
 # DEV18 Remaining-Work Delta
 
 - `CR-P00-012`: implementation fix authored — all harness collector releases are bound to the exact suite build + approved contract before their observations can contribute to finalization.
