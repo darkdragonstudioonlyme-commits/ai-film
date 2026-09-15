@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: IMPLEMENT-P00
 LANE_ROLE: IMPLEMENT
-STATUS: ACTIVE_RESIDUAL_COMPLETENESS_AUDIT
+STATUS: RECOVERING_INTERRUPTED_DEV20_HANDOFF
 GLOBAL_MODE: IMPLEMENTATION
 GLOBAL_WORK_ITEM: IMPL-P00-001
 REMOTE_BRANCH: lane/implement-p00
@@ -12,23 +12,35 @@ LOCAL_SOURCE_BRANCH: impl/p00
 SOURCE_WRITABLE: true
 REVIEW_WRITABLE: false
 
-CURRENT_BASE:
+ACTIVE_RUN_ID: RUN-P00-CR001-001
+RUN_RECORD: workflow-runs/RUN-P00-CR001-001.md
+RUN_STATUS: RECOVERING
+CURRENT_STEP: S06_PACKAGE_DEV20
+CONTINUITY_POLICY: DOCSYS-V2-R8_PENDING_REVIEW
+
+LAST_REVIEWED_BASE:
   VERSION: 0.1.0.dev19
   SOURCE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
   REVIEW_DELTA_VERDICT: PASS
+
+IN_FLIGHT_OUTPUT:
+  VERSION: 0.1.0.dev20
+  SOURCE_COMMIT: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
+  DURABILITY_TIER: LOCAL_COMMIT
   WORKTREE_CLEAN: true
-  AUTHOR_TESTS: "759 PASS"
-  STATIC_CHECKS: "100 PASS"
+  AUTHOR_TESTS: "760 PASS"
+  STATIC_CHECKS: "101 PASS"
+  PACKAGE_STATUS: NOT_BUILT
+  REVIEW_STATUS: NOT_HANDED_OFF
 
 FINDINGS:
-  CR-P00-001: OPEN_BLOCKER
+  CR-P00-001: OPEN_PENDING_INDEPENDENT_FINAL_REVIEW
   CR-P00-012: CLOSED_DEV19
   CR-P00-013: CLOSED_DEV18_REVERIFIED_DEV19
   CR-P00-014: CLOSED_DEV19
 
-TEST_REVIEW: TEST_REVIEW-P00-DEV19-HARNESS-002_PASS
-WORKFLOW_HEALTH: HEALTHY_RECOVERED
 NEXT_WORKFLOW: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+NEXT_STEP: S06_PACKAGE_DEV20
 ```
 
-IMPLEMENT must now audit actual residual reviewed-scope completeness from exact dev19. Do not infer AUTHOR_COMPLETE from test count or stale remaining-work prose. If implementation gaps remain, create the smallest coherent next candidate; if none remain, prepare the final author-complete candidate for formal CODE_REVIEW.
+This lane has recoverable producer progress ahead of the last canonical reviewed candidate. Resume the same `RUN-P00-CR001-001`; verify and reuse completed S01–S05 outputs. Do not start a second residual-audit/dev20 workflow. R8 continuity policy remains pending independent documentation review/audit and grants no product gate authority.
