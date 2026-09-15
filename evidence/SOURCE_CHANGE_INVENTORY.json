@@ -1,6 +1,6 @@
 {
-  "baseline": "dev12",
-  "candidate": "dev13",
+  "baseline": "dev13",
+  "candidate": "dev14",
   "changes": [
     {
       "status": "M",
@@ -12,11 +12,15 @@
     },
     {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV12_TO_DEV13.md"
+      "path": "docs/CHANGELOG_DEV13_TO_DEV14.md"
     },
     {
       "status": "M",
       "path": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
     },
     {
       "status": "M",
@@ -48,19 +52,15 @@
     },
     {
       "status": "M",
-      "path": "src/aifilm_p00/native/filesystem.py"
+      "path": "src/aifilm_p00/native/network.py"
     },
     {
       "status": "M",
-      "path": "src/aifilm_p00/native/snapshot.py"
+      "path": "src/aifilm_p00/network_probe.py"
     },
     {
-      "status": "M",
-      "path": "tests/test_dev5_evidence_cli.py"
-    },
-    {
-      "status": "M",
-      "path": "tests/test_network_snapshot.py"
+      "status": "A",
+      "path": "tests/test_dev14_transport.py"
     }
   ]
 }

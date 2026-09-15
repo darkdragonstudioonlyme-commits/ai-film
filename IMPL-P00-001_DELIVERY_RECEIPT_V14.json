@@ -1,0 +1,20 @@
+{
+  "work_item": "IMPL-P00-001",
+  "delivery": "0.1.0.dev14",
+  "status": "PARTIAL_SOURCE_DROP_DEV14",
+  "candidate_source_commit": "7a41f461f6f08b4fe84a61953bfac0513046950e",
+  "parent_source_commit": "237f3682c3745d635d75c826716ed925b676f41c",
+  "patch_sha256": "acbb849d896e196c2fc27587334ea6f541fc92ee1442c260eaa317a078e686c7",
+  "workspace_tests": 739,
+  "source_content_digest": "36c61172b216a8dd788f8c773b6b7717838faf13bfa212f581321cfd7b18447d",
+  "test_content_digest": "301845946eb2bd7d47d7d261c705e3d6abe56da161b225ea2cf465613f19747b",
+  "static_checks": 96,
+  "static_failed": 0,
+  "changed_scope": [
+    "proxy_context_policy",
+    "controller_proxy_failure14",
+    "network_evidence_proxy_revalidation"
+  ],
+  "cr_p00_001": "OPEN",
+  "native_windows_wsl": "NOT_RUN"
+}
