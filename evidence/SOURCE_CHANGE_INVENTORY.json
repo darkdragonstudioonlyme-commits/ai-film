@@ -1,6 +1,6 @@
 {
-  "baseline": "dev11",
-  "candidate": "dev12",
+  "baseline": "dev12",
+  "candidate": "dev13",
   "changes": [
     {
       "status": "M",
@@ -12,19 +12,11 @@
     },
     {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV11_TO_DEV12.md"
+      "path": "docs/CHANGELOG_DEV12_TO_DEV13.md"
     },
     {
       "status": "M",
       "path": "docs/IMPLEMENTATION_STATUS.md"
-    },
-    {
-      "status": "M",
-      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
-    },
-    {
-      "status": "M",
-      "path": "docs/RECOVERY.md"
     },
     {
       "status": "M",
@@ -56,35 +48,15 @@
     },
     {
       "status": "M",
-      "path": "src/aifilm_p00/native/assessment.py"
-    },
-    {
-      "status": "M",
       "path": "src/aifilm_p00/native/filesystem.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/native/publication_recovery.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/native/session_driver.py"
     },
     {
       "status": "M",
       "path": "src/aifilm_p00/native/snapshot.py"
     },
     {
-      "status": "A",
-      "path": "tests/test_dev12_publication_recovery.py"
-    },
-    {
       "status": "M",
       "path": "tests/test_dev5_evidence_cli.py"
-    },
-    {
-      "status": "M",
-      "path": "tests/test_dev6_assessment.py"
     },
     {
       "status": "M",
