@@ -6,31 +6,44 @@ Persistent project-state and cross-chat handoff repository for **AI-FILM-SERVER*
 
 Read in this order:
 
-1. `PROJECT_STATE.md` — current truth: mode, phase, reviewed baseline, current delivery, gates, blockers and evidence status.
-2. `NEXT_WORK_ITEM.md` — exact next executable increment, order, inputs and forbidden actions.
-3. `PROJECT_MEMORY.md` — reusable discoveries/optimizations/risks/tooling/test/security lessons.
-4. Verify current GitHub `main` head.
-5. `GIT_WORKFLOW.md` — mandatory persistence + Documentation Sync Gate.
-6. `WORKSPACE_WSL.md` when using Desktop Commander/WSL.
-7. Read only the conditional contracts/source/evidence referenced by the current state/task.
+1. `PROJECT_STATE.md` — canonical global mode/phase/baseline/gates/findings.
+2. `NEXT_WORK_ITEM.md` — current implementation/review disposition.
+3. `EXECUTION_LANES.md` — independent IMPLEMENT / REVIEW permissions and immutable handoff protocol.
+4. Choose the lane required by the user's task and read that branch's `LANE_STATE.md`:
+   - `lane/implement-p00`
+   - `lane/review-p00`
+5. `PROJECT_MEMORY.md` — reusable discoveries/optimizations/risks/tooling/test/security lessons.
+6. Verify current GitHub `main` head.
+7. `GIT_WORKFLOW.md` — persistence + Documentation Sync Gate.
+8. `WORKSPACE_WSL.md` when using Desktop Commander/WSL.
+9. Read only the contracts/source/evidence required by the selected work item/lane.
 
-Do not depend on previous chat history. `CHAT_HANDOFF.md` is a compact bootstrap prompt, not a second state database. Historical `AI_FILM_STATE_CHECKPOINT_Vn.md` files are immutable snapshots.
+Do not depend on previous chat history. Historical checkpoints are immutable snapshots, not current state.
 
 ## Documentation model
 
 ```text
-PROJECT_STATE.md     = where the project is now
-NEXT_WORK_ITEM.md    = what to do next
-PROJECT_MEMORY.md    = what the project has learned
-GIT_WORKFLOW.md      = how state/source/evidence/memory must be persisted
-WORKSPACE_WSL.md     = prepared local development environment
+PROJECT_STATE.md     = global current truth/gates
+NEXT_WORK_ITEM.md    = current queue + lane disposition
+EXECUTION_LANES.md   = lane isolation and handoff rules
+lane/*/LANE_STATE.md = lane-specific current state
+PROJECT_MEMORY.md    = reusable learned knowledge
+GIT_WORKFLOW.md      = persistence/documentation protocol
+WORKSPACE_WSL.md     = local worktrees/helpers/baselines
+reviews/*            = immutable review records
 CHECKPOINT_Vn        = immutable milestone history
-Git commits/diffs    = exact text/change ledger
 Drive delivery ZIPs  = byte-exact packaged recovery anchors
 ```
 
 ## Standing rule: no silent knowledge
 
-If work discovers a reusable optimization, constraint, failure pattern, tooling behavior, risk, test/security lesson or clarification, update `PROJECT_MEMORY.md` automatically. If current state, next work, workspace or workflow changes, update its canonical file before the increment is considered durable.
+If work discovers a reusable optimization, constraint, failure pattern, tooling behavior, risk, test/security lesson or clarification, persist it automatically. If global state, lane state, next work, workspace or workflow changes, update its canonical file before the increment is durable.
 
-The current delivery/version is intentionally **not duplicated in this README**. Always read `PROJECT_STATE.md`; it overrides historical summaries and prevents README drift.
+## Lane rule
+
+- source changes/finding fixes → **IMPLEMENT** lane;
+- candidate review/verdict → **REVIEW** lane;
+- never mix lane permissions inside one work increment;
+- candidate exchange is by exact commit/package identity, never by following a mutable worktree.
+
+The current delivery/version is intentionally not duplicated here. Always read `PROJECT_STATE.md`.
