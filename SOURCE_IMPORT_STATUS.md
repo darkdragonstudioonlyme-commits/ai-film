@@ -1,113 +1,97 @@
 # AI-FILM-SERVER — Source Import Status
 
-## Purpose
+## Status: RESOLVED FOR CROSS-CHAT RECOVERY
 
-This file prevents a new chat from confusing **repository persistence state** with **implementation state**.
+The one-time persistence blocker for `0.1.0.dev6` is resolved using a **verified hybrid persistence model**:
 
-The GitHub repository has been initialized and contains the canonical cross-chat handoff files, but the exact implementation delivery `0.1.0.dev6` has **not yet been accepted as a byte-identical source mirror in GitHub**.
+- **GitHub repository** `darkdragonstudioonlyme-commits/ai-film` is the canonical state, memory, workflow and commit ledger.
+- **Google Drive raw artifact** is the byte-preserving recovery anchor for the exact dev6 implementation package.
 
-## Verified implementation delivery outside Git
+This distinction is intentional. Do not claim that the complete dev6 source tree is already materialized as ordinary GitHub source files; the exact binary delivery is durable and recoverable, while future source increments should be committed to Git whenever byte-preserving Git writes are available.
 
-```text
-Work item: IMPL-P00-001
-Delivery: 0.1.0.dev6 / PARTIAL_SOURCE_DROP_DEV6
-Package name: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip
-Package SHA-256:
-41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
-Workspace tests: 666 PASS / 0 failure / 0 error / 0 skipped
-Static checks: 88 PASS
-Author complete: false
-Code review: NOT_PERFORMED
-Native Windows/WSL: NOT_RUN
-LAB/SITE: NOT_RUN
-HOST_READY: NOT_EVALUATED
-```
-
-The old chat/session had a local copy of this verified package. A future chat must **not invent or reconstruct the source from prose** if the package/source has not yet been seeded into Git.
-
-## What happened during repository bootstrap
-
-GitHub connector access was successfully established for repository:
-
-```text
-darkdragonstudioonlyme-commits/ai-film
-branch: main
-```
-
-The repository was initialized and the detailed state/handoff files were committed successfully.
-
-Two methods were tested for importing the exact dev6 source:
-
-1. Base64/chunked archive through the text-oriented connector.
-2. Direct source text mirroring through Git tree/content operations.
-
-Both approaches were checked against local Git-blob/SHA identities. At least one file/blob in each experimental path failed byte-identity verification. The experimental `src/` and `snapshots/` trees were therefore removed from `main` rather than being left as a misleading baseline.
-
-The cleanup is deliberate. **Wrong bytes in Git are worse than an explicit missing-source blocker.**
-
-## Current source-mirror state
+## Exact dev6 recovery anchor
 
 ```yaml
-EXACT_DEV6_SOURCE_MIRRORED: false
-SOURCE_IMPORT_VERIFIED: false
-IMPLEMENTATION_MAY_RESUME: false
-BLOCKER_KIND: REPOSITORY_PERSISTENCE
+WORK_ITEM: IMPL-P00-001
+DELIVERY: 0.1.0.dev6 / PARTIAL_SOURCE_DROP_DEV6
+PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip
+PACKAGE_SIZE_BYTES: 1178410
+PACKAGE_SHA256: 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
+DRIVE_FILE_ID: 1nYtbxJ3p0A0Oo_QyYgAc3zdyLbQYCSc4
+DRIVE_MIME_TYPE: application/zip
+DRIVE_SHARED: false
+RAW_UPLOAD_SUCCESS: true
+RAW_DOWNLOAD_REVERIFIED: true
+DOWNLOADED_SIZE_BYTES: 1178410
+DOWNLOADED_SHA256: 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
+```
+
+Verification procedure actually performed:
+
+1. Upload local V6 ZIP through Google Drive's file-reference upload path, which transfers file bytes rather than rendering them as model text.
+2. Fetch/download the stored Drive file again as raw bytes.
+3. Recompute SHA-256 on the downloaded artifact in the current runtime.
+4. Compare to the original verified V6 SHA-256.
+5. Result: **exact match**.
+
+Therefore a future chat with the connected Google Drive plugin can recover the exact dev6 delivery by file ID and verify the same SHA before extraction.
+
+## Persistence state
+
+```yaml
+EXACT_DEV6_DELIVERY_DURABLE: true
+SOURCE_RECOVERY_VERIFIED: true
+IMPLEMENTATION_MAY_RESUME: true
+GITHUB_STATE_PERSISTENCE: true
+GITHUB_FULL_DEV6_SOURCE_TREE_MATERIALIZED: false
+DRIVE_BINARY_RECOVERY_ANCHOR: true
+PERSISTENCE_BLOCKER: RESOLVED
 DESIGN_GAP: false
 VALIDATION_FAILURE: false
 CODE_REVIEW_FINDING: false
 ```
 
-This blocker is not evidence that the implementation is missing those components. The implementation exists in verified dev6; the blocker is that the exact bytes have not yet been persisted through a trustworthy Git/file path.
+`EXACT_DEV6_SOURCE_MIRRORED` is retired because it incorrectly implied that durability requires the full tree to live only in GitHub. The project now distinguishes:
 
-## Required resolution
+- **source/delivery durability** — satisfied by an exact byte-verified artifact;
+- **Git current-state durability** — satisfied by the repository Markdown/state ledger;
+- **Git source-tree materialization** — desirable and required for normal code-review/diff workflows, but not a reason to lose or reconstruct an exact baseline.
 
-Before additional implementation is authored, seed the exact dev6 working tree/package through a path that preserves bytes and can be verified, for example one of these:
+## Recovery procedure for a new chat
 
-1. A locally authenticated Git client (`git clone/add/commit/push`) on a connected machine.
-2. A GitHub upload/action that accepts an actual file object rather than re-rendering its contents as model text.
-3. User seeds the exact `IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip` or extracted dev6 tree into this repository once; ChatGPT then verifies the remote hashes before continuing.
+1. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, `PROJECT_MEMORY.md`, and `GIT_WORKFLOW.md`.
+2. Fetch Drive file ID `1nYtbxJ3p0A0Oo_QyYgAc3zdyLbQYCSc4` as raw bytes.
+3. Verify size `1178410` and SHA-256 `41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e`.
+4. Extract into a fresh workspace.
+5. Verify the package manifest/source identities before modification.
+6. Continue only the work recorded by `NEXT_WORK_ITEM.md`.
 
-Do not use copy/pasted reconstructed source as the canonical baseline unless **every file** is verified against the local dev6 manifest/blob identity.
+Never reconstruct dev6 from prose if this exact artifact is available.
 
-## Verification required after source seed
+## GitHub connector lesson
 
-The next chat/session must verify all of the following before changing code:
+During bootstrap, text-oriented and large base64 payload paths were tested. Git blob uploads were byte-stable at a small payload but larger model-rendered payloads were not reliable enough for a one-time 1.18 MB archive. Experimental incorrect trees were removed rather than accepted.
 
-- repository and branch are correct;
-- the seeded source corresponds to `0.1.0.dev6`;
-- the original package SHA-256 is recorded and, if the archive itself is stored, matches exactly;
-- source file hashes/manifest match the dev6 delivery evidence;
-- no experimental/abandoned source is being used;
-- author regression baseline remains 666 PASS and static baseline 88 PASS, or any environment-specific inability to rerun is explicitly recorded;
-- current mode remains IMPLEMENTATION and current work item remains `IMPL-P00-001`.
+The reusable lesson is recorded in `PROJECT_MEMORY.md`: use **file-reference/raw-file connectors for binary artifacts**, and use GitHub for source/state commits that can be independently verified.
 
-Only after exact source persistence is verified should `PROJECT_STATE.md` be changed to:
+## Future delivery rule
 
-```yaml
-EXACT_DEV6_SOURCE_MIRRORED: true
-IMPLEMENTATION_MAY_RESUME: true
-```
-
-## Git persistence rule after this one-time seed
-
-After the exact baseline is seeded, do not repeat this bootstrap problem. All future implementation should operate on the Git working tree/repository itself:
+For every coherent implementation increment:
 
 ```text
-read current remote state
-→ implement one coherent part
+work on exact recovered/current source
 → targeted tests
-→ full author regression for delivery boundary
-→ update state/docs/evidence
+→ delivery-boundary regression/static checks
+→ Documentation Sync Gate
 → diff review + secret scan
-→ commit
-→ push
-→ verify remote SHA
-→ update canonical state if needed
-→ next coherent part
+→ persist exact delivery artifact to byte-preserving store when a binary package is produced
+→ commit/push GitHub state/source/diffs that can be verified
+→ verify remote Git commit and artifact hash
+→ only then start the next increment
 ```
 
-The source commit/push happens before starting the next coherent implementation increment.
+Before CODE_REVIEW, the exact candidate must be addressable by a Git commit and/or exact artifact identity sufficient for the reviewer to review the same bytes. Any source-tree materialization still missing must be resolved before declaring `CODE_REVIEW_HANDOFF_READY=true`.
 
-## Security note
+## Security
 
-The repository was public at initialization. No real credentials may be stored. A bootstrap secret scan of the dev6 package found only synthetic test canaries/token-pattern fixtures, not a private key, GitHub token, or AWS access key. Treat that scan as bootstrap evidence only; repeat secret scanning before every delivery commit.
+The Drive artifact is currently not shared publicly. The GitHub repository was public at bootstrap, so do not commit credentials, private keys, tokens, private licensed assets or customer data. Synthetic test canaries are not credentials but should remain labeled as fixtures.
