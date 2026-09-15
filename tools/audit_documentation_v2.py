@@ -48,6 +48,14 @@ if env_record.is_file():
                 errors.append('environment-digest-mismatch')
         except (ValueError,TypeError):
             errors.append('environment-canonical-json-invalid')
+
+# Promotion readiness: canonical state/checkpoint are part of the reviewed tree.
+state=texts.get('PROJECT_STATE.md','')
+if 'ACTIVE_SYSTEM_VERSION: V2' not in state: errors.append('promotion-state-not-v2')
+if 'DOC-V2-REVIEW-006' not in state or 'DOC-V2-AUDIT-006' not in state: errors.append('promotion-verdict-paths-not-predeclared')
+for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json']:
+    if not (ROOT/path).is_file(): errors.append('promotion-checkpoint-missing:'+path)
+
 # Bootstrap docs must point to canonical router/state, not own current versions.
 for p in ['README.md','CHAT_HANDOFF.md']:
     t=texts.get(p,'')

@@ -1,0 +1,53 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 22,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "target_gate": "CODE_REVIEW_PASS",
+  "documentation_system": {
+    "version": "V2",
+    "release_id": "DOCSYS-V2-R6",
+    "previous_version": "V1",
+    "activation_condition": "DOC-V2-REVIEW-006 PASS and DOC-V2-AUDIT-006 PASS for the exact promotion tree",
+    "detailed_review_id": "DOC-V2-REVIEW-006",
+    "detailed_review_record": "reviews/DOCUMENTATION_SYSTEM_V2_REVIEW_R6_PASS.md",
+    "holistic_audit_id": "DOC-V2-AUDIT-006",
+    "holistic_audit_record": "reviews/DOCUMENTATION_SYSTEM_V2_AUDIT_R6_PASS.md",
+    "portable_docs_check": "PASS",
+    "holistic_doc_audit_check": "PASS",
+    "runtime_state_check": "PASS",
+    "final_promotion_rule": "main adds only the exact predeclared immutable review/audit verdict records; no post-audit policy/state edits"
+  },
+  "last_durable_implementation": {
+    "version": "0.1.0.dev17",
+    "source_commit": "64ea95bf10e05e856a009be9204983182f520b45",
+    "package_sha256": "130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e",
+    "author_tests": 753,
+    "static_checks": 100
+  },
+  "implementation_wip": {
+    "planned_version": "0.1.0.dev18",
+    "base_commit": "64ea95bf10e05e856a009be9204983182f520b45",
+    "status": "WIP_NOT_DURABLE_NOT_REVIEWABLE",
+    "latest_author_tests": 756,
+    "latest_static_checks": 100
+  },
+  "last_source_review": {
+    "target": "dev17",
+    "verdict": "FAIL",
+    "open_findings": [
+      "CR-P00-001",
+      "CR-P00-012",
+      "CR-P00-013"
+    ]
+  },
+  "author_complete": false,
+  "code_review_handoff_ready": false,
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED",
+  "next_action": "Resume dev18 WIP according to NEXT_WORK_ITEM.md and WORKFLOW_ROUTER.md"
+}

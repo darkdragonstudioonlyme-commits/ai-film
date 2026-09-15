@@ -11,12 +11,15 @@ required=[
 errors=[]
 for name in required:
     if not (ROOT/name).is_file(): errors.append('missing:'+name)
-for path in ['test-governance/README.md','workflow-health/README.md','environments/README.md','environments/ENV-DEV-WSL-20260915.md','model-evaluations/README.md','learning/README.md']:
+for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json','test-governance/README.md','workflow-health/README.md','environments/README.md','environments/ENV-DEV-WSL-20260915.md','model-evaluations/README.md','learning/README.md']:
     if not (ROOT/path).is_file(): errors.append('missing:'+path)
 text={n:(ROOT/n).read_text(encoding='utf-8') for n in required if (ROOT/n).is_file()}
 checks=[
  ('state-mode','CURRENT_MODE: IMPLEMENTATION','PROJECT_STATE.md'),
  ('state-wip','WIP_NOT_DURABLE_NOT_REVIEWABLE','PROJECT_STATE.md'),
+ ('promotion-v2-active','ACTIVE_SYSTEM_VERSION: V2','PROJECT_STATE.md'),
+ ('promotion-review-id','DOC-V2-REVIEW-006','PROJECT_STATE.md'),
+ ('promotion-audit-id','DOC-V2-AUDIT-006','PROJECT_STATE.md'),
  ('router-continue','“Continue” algorithm','WORKFLOW_ROUTER.md'),
  ('router-health','WORKFLOW_REVIEW','WORKFLOW_ROUTER.md'),
  ('test-authority','implementation code last','TEST_STRATEGY.md'),

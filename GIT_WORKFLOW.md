@@ -106,3 +106,7 @@ After remote writes, re-fetch the branch/ref and verify the expected file/commit
 ## Environment/model record persistence
 
 Exact environment snapshots live under `environments/`; reviewed model results live under `model-evaluations/`. Methodology files point to these records rather than accumulating mutable/historical result prose.
+
+## Documentation promotion exact-tree rule
+
+A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.
