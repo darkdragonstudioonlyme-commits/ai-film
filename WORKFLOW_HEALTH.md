@@ -24,7 +24,9 @@ Any one of these requires at least a health assessment; repeated/severe cases fo
 - documentation/policy grows while active guidance becomes harder to identify;
 - repeated flaky/timeout/OOM behavior is treated with retries instead of root-cause isolation;
 - a completed expensive/material step is repeated after interruption although its exact output identity was recoverable;
-- two active RUN_IDs exist for the same workflow/base, or a new chat restarts work instead of adopting the active run.
+- two active RUN_IDs exist for the same workflow/base, or a new chat restarts work instead of adopting the active run;
+- a reviewed reusable learning remains `PENDING_ACTIVATION` while the affected workflow continues and the same friction/incident class is still possible;
+- documentation-governance promotion is blocked by branch/worktree identity that standing policy hard-coded instead of deriving from canonical governance state.
 
 ## Meta-review procedure
 
@@ -34,8 +36,10 @@ STOP affected workflow at safe boundary
 → classify failure: REQUIREMENT | DESIGN | TEST | PROCESS | TOOL | ENVIRONMENT | DATA | OWNERSHIP
 → identify repeated assumptions and wasted loops
 → inspect whether MD architecture/policy/router/test strategy caused or failed to prevent it
+→ inspect whether a known learning exists but is not yet active
 → propose smallest systemic correction
 → independent review of workflow correction
+→ activate the correction in canonical policy/tooling
 → resume original work from explicit RETURN_TO
 ```
 
@@ -53,6 +57,7 @@ WASTED_WORK_PATTERN:
 SYSTEMIC_CHANGE:
 DOCS_OR_POLICY_CHANGED:
 TESTS_OR_CHECKERS_ADDED:
+LEARNING_ACTIVATION_STATUS:
 RETURN_TO:
 RESULT:
 ```
@@ -72,7 +77,10 @@ Track trends, not vanity counts:
 - test flake/retry rate;
 - documentation checker/audit failures;
 - time/steps spent on tooling errors versus project work;
-- percentage of reusable discoveries promoted into policy/checkers when warranted.
+- percentage of reusable discoveries promoted into policy/checkers when warranted;
+- **learning activation lag**: reviewed reusable learning → canonical activation;
+- **learned-but-not-active backlog**: promoted learnings still pending activation/block resolution;
+- **source-visibility friction**: review/operator work repeated or blocked because exact source cannot be conveniently inspected remotely.
 
 Metrics diagnose workflow quality; they never lower acceptance.
 
@@ -84,9 +92,9 @@ When two workflows wait on each other, neither may invent the other's evidence. 
 
 Material workflow/process failures must ask:
 
-> Would a better `WORKFLOW_ROUTER`, `TEST_STRATEGY`, `POLICY_REGISTRY`, `DOCUMENTATION_MAP`, checker, environment contract or recovery playbook have prevented or shortened this failure?
+> Would a better `WORKFLOW_ROUTER`, `WORKFLOW_CONTINUITY`, `TEST_STRATEGY`, `SELF_LEARNING`, `POLICY_REGISTRY`, `DOCUMENTATION_MAP`, checker, environment contract or recovery playbook have prevented or shortened this failure?
 
-If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT before declaring the learning complete.
+If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT before declaring the learning complete. A PASS review without canonical activation is still an activation backlog item, not proof that the workflow changed.
 
 ## Durable health records
 
