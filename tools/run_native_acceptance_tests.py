@@ -18,12 +18,13 @@ def main(argv=None):
     m.add_argument('--describe')
     m.add_argument('--execute-stage',action='store_true')
     m.add_argument('--finalize',action='store_true')
-    p.add_argument('--suite-ref');p.add_argument('--case-id');p.add_argument('--stage',type=int)
+    p.add_argument('--suite-ref');p.add_argument('--fixture-result-ref');p.add_argument('--result-ref')
+    p.add_argument('--case-id');p.add_argument('--stage',type=int)
     a=p.parse_args(argv)
     try:
         if a.list:
-            require(a.suite_ref is None and a.case_id is None and a.stage is None,
-                    10,'LIST_NOT_EXECUTION')
+            require(a.suite_ref is None and a.fixture_result_ref is None and a.result_ref is None
+                    and a.case_id is None and a.stage is None,10,'LIST_NOT_EXECUTION')
             value={'kind':'NATIVE_CASE_PROCEDURE_INVENTORY','actual_status':'NOT_RUN',
                    'case_count':len(PROCEDURES),
                    'cases':[{'case_id':x,'procedure_digest':PROCEDURES[x].procedure_digest,
@@ -31,20 +32,20 @@ def main(argv=None):
                    'parent_cases_executed':0,'qualification_issued':False,
                    'host_ready':False}
         elif a.describe:
-            require(a.suite_ref is None and a.case_id is None and a.stage is None,
-                    10,'DESCRIBE_NOT_EXECUTION')
+            require(a.suite_ref is None and a.fixture_result_ref is None and a.result_ref is None
+                    and a.case_id is None and a.stage is None,10,'DESCRIBE_NOT_EXECUTION')
             proc=procedure(a.describe)
             value={**proc.document(),'procedure_digest':proc.procedure_digest,
                    'actual_status':'NOT_RUN','parent_case_executed':False,
                    'qualification_issued':False,'host_ready':False}
         elif a.execute_stage:
-            hash_value(a.suite_ref);token(a.case_id)
-            require(type(a.stage) is int,10,'LAB_STAGE_INDEX')
-            value=execute_stage(ROOT,a.suite_ref,a.case_id,a.stage)
+            hash_value(a.suite_ref);hash_value(a.fixture_result_ref);token(a.case_id)
+            require(a.result_ref is None and type(a.stage) is int,10,'LAB_STAGE_INDEX')
+            value=execute_stage(ROOT,a.suite_ref,a.fixture_result_ref,a.case_id,a.stage)
         else:
-            hash_value(a.suite_ref);token(a.case_id)
-            require(a.stage is None,10,'FINALIZE_STAGE_FORBIDDEN')
-            value=finalize_case(ROOT,a.suite_ref,a.case_id)
+            hash_value(a.suite_ref);hash_value(a.result_ref);token(a.case_id)
+            require(a.fixture_result_ref is None and a.stage is None,10,'FINALIZE_STAGE_FORBIDDEN')
+            value=finalize_case(ROOT,a.suite_ref,a.result_ref,a.case_id)
         sys.stdout.buffer.write(canonical(value)+b'\n');return 0
     except P00Error as e:
         sys.stdout.buffer.write(canonical({**e.safe(),'actual_status':'BLOCKED_OR_FAILED',

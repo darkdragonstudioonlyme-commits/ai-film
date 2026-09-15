@@ -1,3 +1,21 @@
+# IMPL-P00-001 Implementation Status — dev16 increment
+
+`0.1.0.dev16 / PARTIAL_SOURCE_DROP_DEV16`
+
+Dev16 remediates independent REVIEW findings CR-P00-007/008/009 in the native acceptance harness.
+
+- Split pre-run `lab_acceptance_suite` authorization from post-run `lab_case_result_set`; the suite no longer contains future stage refs.
+- Added non-circular `execution_id` and exact `suite_ref` binding across fixture results, measurements, stages, oracles, journal records and result sets.
+- Fixture specifications are pre-run authority; causal fixture results/measurements are post-authorization records.
+- Stage journal proof now requires an authenticated `lab_case_journal` record plus raw-artifact binding to exact execution/suite/case/stage/plan/run identity.
+- Suite validity bounds fixture/stage/oracle/journal/result timestamps and finalization enforces fixture-before-stage, monotonic stage order and stage-before-result.
+- CLI execution now requires exact fixture-result ref; finalization requires a separate result-set ref. Metadata-only list/describe remains non-executing.
+- Added focused negative tests for suite replay, stale causal records and fabricated journal hashes.
+
+Final author evidence before packaging: **750 PASS / 0 failure/error/skip**, static **100 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev15 increment
 
 `0.1.0.dev15 / PARTIAL_SOURCE_DROP_DEV15`

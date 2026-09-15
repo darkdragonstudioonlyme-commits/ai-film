@@ -159,7 +159,10 @@ test_production_prepare_seam_has_no_backend_argument (test_dev15_harness.Harness
 test_describe_is_metadata_only (test_dev15_harness.HarnessCliTests.test_describe_is_metadata_only) ... ok
 test_execute_stage_is_blocked_on_posix (test_dev15_harness.HarnessCliTests.test_execute_stage_is_blocked_on_posix) ... ok
 test_list_is_metadata_only (test_dev15_harness.HarnessCliTests.test_list_is_metadata_only) ... ok
+test_fabricated_journal_hash_without_matching_raw_artifact_is_rejected (test_dev15_harness.StageOracleTests.test_fabricated_journal_hash_without_matching_raw_artifact_is_rejected) ... ok
 test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected (test_dev15_harness.StageOracleTests.test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected) ... ok
+test_stage_cannot_replay_under_another_suite (test_dev15_harness.StageOracleTests.test_stage_cannot_replay_under_another_suite) ... ok
+test_stale_fixture_result_is_rejected (test_dev15_harness.StageOracleTests.test_stale_fixture_result_is_rejected) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -747,6 +750,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 747 tests in 1.600s
+Ran 750 tests in 1.628s
 
 OK

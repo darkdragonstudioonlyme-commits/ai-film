@@ -1,3 +1,13 @@
+# DEV16 Remaining-Work Delta
+
+- `CR-P00-007`: implementation fix authored — all post-authorization causal records bind exact `execution_id` + `suite_ref`; pre-run suite and post-run result set are separate immutable documents.
+- `CR-P00-008`: implementation fix authored — native-stage journal proof is raw-bound to exact plan/run/stage provenance; arbitrary hash-shaped journal claims no longer qualify.
+- `CR-P00-009`: implementation fix authored — fixture/stage/oracle/journal/result times are bounded to suite validity and causal ordering.
+- Independent REVIEW lane disposition is still required. Inventory cases remain NOT_RUN; author tests do not close native acceptance.
+- CR-P00-001 remains open until the full implementation exit condition is satisfied.
+
+---
+
 # DEV15 Remaining-Work Delta
 
 - **REM-08 source progress:** all 86 normative inventory entries now have explicit controller procedures and procedure digests; controller source validates registered LAB authority, causal preparation measurements, production-request stage identity, journal/oracle provenance and required evidence.
