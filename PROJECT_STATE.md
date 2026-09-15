@@ -1,80 +1,59 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V23
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V24
 
 > Read first in every new chat. Current global truth only. Routing: `WORKFLOW_ROUTER.md`.
 
-## Fast resume snapshot
-
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 23
+STATE_VERSION: 24
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-EXECUTION_MODEL: INDEPENDENT_LANES_WITH_IMMUTABLE_HANDOFFS
-
-DOCUMENTATION_GOVERNANCE:
-  ACTIVE_SYSTEM_VERSION: V2
-  SYSTEM_RELEASE_ID: DOCSYS-V2-R6
-  DETAILED_REVIEW_ID: DOC-V2-REVIEW-006
-  HOLISTIC_AUDIT_ID: DOC-V2-AUDIT-006
+DOCUMENTATION_SYSTEM: DOCSYS-V2-R6
 
 LAST_REMOTELY_DURABLE_IMPLEMENT_CANDIDATE:
   VERSION: 0.1.0.dev17
   SOURCE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
-  PACKAGE_SHA256: 130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e
 
-CURRENT_REVIEW_CANDIDATE:
-  CANDIDATE_ID: IMPL-P00-001-DEV18
+LAST_REVIEWED_CANDIDATE:
   VERSION: 0.1.0.dev18
   SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
-  SOURCE_WORKTREE: /home/dragon/ai-film-dev/implement
-  PACKAGE_NAME: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
-  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
-  PACKAGE_SIZE_BYTES: 1180358
   PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
-  MANIFEST_SHA256: 20de57e98170f1af1847e40aa49588d5186ee1e223f2bd943df5f16e10a9c599
-  SOURCE_CONTENT_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
-  TEST_CONTENT_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
-  AUTHOR_TESTS: "757 PASS / 0 failure / 0 error / 0 skip"
-  STATIC_CHECKS: "100 PASS / 0 failed"
-  SECRET_SCAN: "PASS / 0 high-confidence hits"
-  SOURCE_COMMIT_CLEAN: true
-  DELTA_REVIEW_ELIGIBLE: true
-  AUTHOR_COMPLETE: false
-  CODE_REVIEW_HANDOFF_READY: false
-
-ARTIFACT_PERSISTENCE:
-  LOCAL_WSL_PACKAGE_VERIFIED: true
-  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
-  REMOTE_STORE_BLOCKS_DELTA_REVIEW: false
-  REMOTE_STORE_BLOCKS_REMOTE_DURABILITY_CLAIM: true
-  NOTE: "Drive upload requires a connector file-reference; current Remote Desktop tool exposes no binary export/file-reference primitive. Do not claim remote artifact persistence until byte-native transfer and raw hash re-verification occur."
-
-IMPLEMENT_LANE:
-  STATUS: HANDED_OFF_EXACT_CANDIDATE
-  WORKTREE: /home/dragon/ai-film-dev/implement
-  BRANCH: impl/p00
-  HEAD: f680067c2f23d7eea4c016247015359ffe431971
-  WORKTREE_CLEAN: true
-
-LAST_REVIEW:
-  TARGET_VERSION: 0.1.0.dev17
-  TARGET_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+  INDEPENDENT_TESTS: "757 PASS"
+  INDEPENDENT_STATIC: "100 PASS"
   DELTA_VERDICT: FAIL
-  OPEN_FINDINGS: [CR-P00-001, CR-P00-012, CR-P00-013]
+  REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV18_DELTA.md
+  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
 
 FINDING_STATUS:
   CR-P00-001: OPEN_BLOCKER
-  CR-P00-012: FIXED_PENDING_REVIEW
-  CR-P00-013: FIXED_PENDING_REVIEW
+  CR-P00-012: OPEN_REMEDIATION_INSUFFICIENT
+  CR-P00-013: CLOSED_DEV18
+  CR-P00-014: OPEN_HIGH
 
 TEST_GOVERNANCE:
   CHANGE_ID: TEST_CHANGE-P00-DEV18-HARNESS-001
-  ORACLE_CHANGED: false
-  REVIEW_STATUS: PENDING
-  RECORD: test-governance/TEST_CHANGE-P00-DEV18-HARNESS-001.md
+  REVIEW_ID: TEST_REVIEW-P00-DEV18-HARNESS-001
+  VERDICT: FAIL
+  REASON: "collector fixture invented unsupported collector_release.contract_digest"
+
+WORKFLOW_HEALTH:
+  HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-WF-P00-HARNESS-001.md
+  STATE: DEGRADED
+  META_REVIEW_REQUIRED: false
+  RETURN_TO: WF-P00-IMPL-DEV19-REVIEW-FIX
+
+IMPLEMENT_BASE:
+  VERSION: 0.1.0.dev18
+  COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+  WORKTREE: /home/dragon/ai-film-dev/implement
+  EXPECTED_STATUS: CLEAN_BEFORE_DEV19_PATCH
+
+ARTIFACT_PERSISTENCE:
+  DEV18_LOCAL_WSL_PACKAGE_VERIFIED: true
+  DEV18_REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+  REMOTE_STORE_BLOCKS_REMOTE_DURABILITY_CLAIM: true
 
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
@@ -85,21 +64,21 @@ SITE: NOT_RUN
 HOST_READY: NOT_EVALUATED
 
 ACTIVE_WORKFLOW:
-  WORKFLOW_ID: WF-P00-REVIEW-DEV18
-  LANE: REVIEW
+  WORKFLOW_ID: WF-P00-IMPL-DEV19-REVIEW-FIX
+  LANE: IMPLEMENT
   STATUS: READY
-  INPUT_IDENTITY: f680067c2f23d7eea4c016247015359ffe431971
-  ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+  INPUT_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+  ON_SUCCESS: WF-P00-REVIEW-DEV19
   ON_FAIL: WF-P00-IMPL-DEV19-REVIEW-FIX
   ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
 
-NEXT_ACTION: "REVIEW exact dev18 candidate independently; verify CR-P00-012/013, exact action→route binding/T07-H, test-governance change, package identity, and search new failure modes without editing source."
+NEXT_ACTION: "Implement CR-P00-012/014 correction without inventing collector-release contract fields; preserve CR-P00-013 closure; use production-shaped test authority fixtures; create exact dev19 candidate and independent review."
 ```
+
+## Review conclusion
+
+Dev18 successfully closes CR-P00-013, including exact stage continuity and procedure-owned controller action→route binding. It does not close CR-P00-012 because the fix requires an unsupported `collector_release.contract_digest` field. CR-P00-014 records the resulting false-green author fixture divergence.
 
 ## Non-claims
 
-- The 86 native inventory cases remain `NOT_RUN` and `acceptance_closed=false`.
-- 757 author tests are not Windows/WSL/LAB/SITE validation.
-- CR-P00-012/013 are not closed until REVIEW verifies dev18.
-- CR-P00-001 remains the umbrella author-completeness blocker.
-- Remote package persistence is not established for dev18; only the exact local WSL package is currently verified.
+CR-P00-001 remains open. Native Windows/WSL/LAB/SITE remains NOT_RUN. Dev18 remote artifact-store durability is not established.

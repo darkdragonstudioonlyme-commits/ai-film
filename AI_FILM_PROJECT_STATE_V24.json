@@ -1,0 +1,38 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 24,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "current_task": "IMPL-P00-001",
+  "target_gate": "CODE_REVIEW_PASS",
+  "documentation_system": "DOCSYS-V2-R6",
+  "last_reviewed_candidate": {
+    "version": "0.1.0.dev18",
+    "source_commit": "f680067c2f23d7eea4c016247015359ffe431971",
+    "package_sha256": "4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09",
+    "independent_tests": 757,
+    "static_checks": 100,
+    "verdict": "FAIL"
+  },
+  "finding_status": {
+    "CR-P00-001": "OPEN_BLOCKER",
+    "CR-P00-012": "OPEN_REMEDIATION_INSUFFICIENT",
+    "CR-P00-013": "CLOSED_DEV18",
+    "CR-P00-014": "OPEN_HIGH"
+  },
+  "test_governance": {
+    "review_id": "TEST_REVIEW-P00-DEV18-HARNESS-001",
+    "verdict": "FAIL"
+  },
+  "workflow_health": {
+    "id": "HEALTH_REVIEW-WF-P00-HARNESS-001",
+    "state": "DEGRADED",
+    "meta_review_required": false
+  },
+  "active_workflow": "WF-P00-IMPL-DEV19-REVIEW-FIX",
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}

@@ -1,45 +1,42 @@
-# NEXT WORK ITEM — Independent dev18 delta review
+# NEXT WORK ITEM — dev19 remediation after dev18 review
 
 ```yaml
-WORKFLOW_ID: WF-P00-REVIEW-DEV18
-LANE: REVIEW
+WORKFLOW_ID: WF-P00-IMPL-DEV19-REVIEW-FIX
+LANE: IMPLEMENT
 STATUS: READY
 MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-WORK_ITEM: CODE-REVIEW-P00-001-DEV18-DELTA
-TARGET_GATE: CODE_REVIEW_PASS
-INPUT_IDENTITY:
-  CANDIDATE_ID: IMPL-P00-001-DEV18
-  SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
-  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
-  PACKAGE_SIZE_BYTES: 1180358
-  PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
-  MANIFEST_SHA256: 20de57e98170f1af1847e40aa49588d5186ee1e223f2bd943df5f16e10a9c599
-  SOURCE_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
-  TEST_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
-  AUTHOR_TESTS: "757 PASS"
-  STATIC_CHECKS: "100 PASS"
-GOAL: "Independently verify dev18 remediation of CR-P00-012/013 and the V2-governed harness/test changes without editing source."
-SUCCESS_OUTPUT: "Immutable review verdict + test-governance disposition bound to exact dev18 identity."
-ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+WORK_ITEM: IMPL-P00-001
+INPUT_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+GOAL: "Correct CR-P00-012/014 using the existing authority model; preserve accepted CR-P00-013 behavior."
+SUCCESS_OUTPUT: "Exact dev19 candidate with production-compatible collector provenance + independently reviewable tests."
+ON_SUCCESS: WF-P00-REVIEW-DEV19
 ON_FAIL: WF-P00-IMPL-DEV19-REVIEW-FIX
 ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
 ```
 
-## REVIEW steps
+## Required implementation order
 
-1. Fresh-fetch canonical state/lane refs and verify package SHA/size/manifest against the exact local artifact.
-2. Reset `/home/dragon/ai-film-dev/review` detached to source commit `f680067c...`; confirm source is clean.
-3. Independently run review workspace/static checks.
-4. Reproduce former CR-P00-012/013 negatives: wrong build/contract collector, expired preparation continuity, controller temporal mismatch, wrong action→route rebinding.
-5. Verify the reviewed procedure itself owns exact `controller_stage_indices`, all 86 procedure digests/mirrors match, and T07-H binds CREATE to `INVOKE_PRODUCTION_REQUEST` before reconciliation.
-6. Review `TEST_CHANGE-P00-DEV18-HARNESS-001`: confirm `ORACLE_CHANGED=false`, upstream authority is review findings/reviewed harness behavior, and business acceptance was not weakened.
-7. Review the full dev17→dev18 delta for new failure modes, provenance gaps, stale claims or hidden native-proof substitutions.
-8. Verify REVIEW did not modify candidate source.
-9. Persist review/test-review records and update canonical finding/lane state.
+1. Preserve exact dev18 commit/package/review records; start dev19 from clean `f680067c...`.
+2. Re-read D00-14 evidence-record semantics and `native/proofs.py` collector/measurement authority split before editing.
+3. Do **not** add or depend on `collector_release.contract_digest` unless a genuine reviewed contract requires it; if so, create DESIGN_GAP instead of silently changing authority schema.
+4. Bind exact approved contract at the existing suite/causal evidence record boundary and bind collector release to exact reviewed build. If an explicit contract field is added to harness causal records, it must be suite-bound and covered by raw/content-addressed provenance where applicable.
+5. Restore test collector fixtures to the production authority shape. Add regression showing a production-shaped reviewed collector is accepted under a valid contract-bound suite and wrong build/contract provenance is still rejected at the correct boundary.
+6. Preserve all accepted CR-P00-013 stage-window/continuity/procedure-owned route-binding behavior and T07-H mapping.
+7. Run targeted tests, then full author regression/static checks under V2 test governance. Create a new TEST_CHANGE/TEST_REVIEW cycle; do not reuse the failed dev18 test review as PASS evidence.
+8. Diff/secret/inventory audit, commit exact dev19, package from exact commit, then immutable handoff to REVIEW.
 
-## Result routing
+## Review findings
 
-- If CR-P00-012/013 pass and no new blocking delta finding exists: close them independently, keep overall CODE_REVIEW FAIL because CR-P00-001 remains, and route to residual author-completeness audit.
-- If FAIL: create exact findings and return to IMPLEMENT; REVIEW must not patch source.
-- Dev18 remote artifact-store persistence remains pending and must not be mislabeled as complete; it does not prevent local exact delta review on the authorized WSL workspace.
+- `CR-P00-012`: OPEN — dev18 remediation uses unsupported collector-release contract field.
+- `CR-P00-013`: CLOSED on dev18 — preserve its behavior.
+- `CR-P00-014`: OPEN HIGH — author fixture diverged from production authority schema and produced false-green coverage.
+- `CR-P00-001`: OPEN umbrella author-completeness blocker.
+
+## Forbidden
+
+- change FD/D00/public contract merely to make dev18 approach legal;
+- update tests to mirror implementation-specific authority fields without upstream authority;
+- reopen/loosen accepted CR-P00-013 behavior;
+- treat author tests as native proof;
+- patch source in REVIEW.
