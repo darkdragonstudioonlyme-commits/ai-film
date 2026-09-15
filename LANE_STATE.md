@@ -3,31 +3,38 @@
 ```yaml
 LANE_ID: IMPLEMENT-P00
 LANE_ROLE: IMPLEMENT
-STATUS: ACTIVE_NEXT_INCREMENT
+STATUS: CANDIDATE_HANDED_OFF
 GLOBAL_MODE: IMPLEMENTATION
 GLOBAL_WORK_ITEM: IMPL-P00-001
 REMOTE_BRANCH: lane/implement-p00
 WSL_WORKTREE: /home/dragon/ai-film-dev/implement
 LOCAL_SOURCE_BRANCH: impl/p00
-CURRENT_SOURCE_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
-CURRENT_DELIVERY: 0.1.0.dev11
+CURRENT_SOURCE_COMMIT: 536b86f97467a165e21a8b3038a72a91b7311a79
+CURRENT_DELIVERY: 0.1.0.dev12
 SOURCE_WRITABLE: true
 REVIEW_WRITABLE: false
 
-LAST_HANDOFF:
-  CANDIDATE: IMPL-P00-001-DEV11
-  DELTA_REVIEW: PASS
-  FINDING_CLOSED: CR-P00-005
-  OPEN_FINDING: CR-P00-001
-
-NEXT_INCREMENT: "incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability"
+LATEST_CANDIDATE:
+  ID: IMPL-P00-001-DEV12
+  VERSION: 0.1.0.dev12
+  SOURCE_COMMIT: 536b86f97467a165e21a8b3038a72a91b7311a79
+  PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V12.zip
+  PACKAGE_LOCATION: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V12.zip
+  PACKAGE_SIZE_BYTES: 1135792
+  PACKAGE_SHA256: d5e519335e4ad1f9ce005596834f80a229f459e1b77720a2317697a7b4bec4d4
+  MANIFEST_SHA256: 9693c4f1d8afc6aa8c28edb73ed775cff2072f7d26e65019ac8f690166b9dfdb
+  SOURCE_CONTENT_DIGEST: 7f4dfbe2a3e1c22cb03982221f8372cbdb5b43b1b162d460e38f522acf899580
+  TEST_CONTENT_DIGEST: 7e030339422b63955035f2b2b90c7a75a9a30b45f3e86f2a35cd510f0449fe32
+  AUTHOR_TESTS: "728 PASS / 0 failure / 0 error / 0 skip"
+  STATIC_CHECKS: "95 PASS"
+  CHANGED_SCOPE:
+    - deterministic E16/E17 staging identity
+    - temp/final/no-output read-only recovery
+    - durable no-archive E16 outcome
+    - E17 reconciliation applicability
+  CR_P00_001: OPEN
+  AUTHOR_COMPLETE: false
+  CODE_REVIEW_HANDOFF_READY: false
 ```
 
-## Immediate queue
-
-1. Complete temp/incomplete/final support-bundle publication crash recovery without overwrite/delete/republication shortcuts.
-2. Complete remaining E17 recovery integration/applicability while preserving the separate assessment artifact and MASTER authority boundary.
-3. Add causal author tests for intent-before-write, missing/temp/final-existing outputs, exact-byte re-observation, ambiguity and no-republication behavior.
-4. Run full author regression/static checks, package an immutable candidate, then hand off to REVIEW lane.
-
-CR-P00-001 remains open until full source/harness/docs/test completion.
+Dev12 implements publication/E17 recovery only. REVIEW must inspect exact commit `536b86f...`, not the moving IMPLEMENT branch. Full CODE_REVIEW remains blocked by CR-P00-001.
