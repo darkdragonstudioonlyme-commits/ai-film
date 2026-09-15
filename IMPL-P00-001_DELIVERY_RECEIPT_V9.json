@@ -1,0 +1,23 @@
+{
+  "work_item": "IMPL-P00-001",
+  "delivery": "0.1.0.dev9",
+  "status": "PARTIAL_SOURCE_DROP_DEV9",
+  "candidate_source_commit": "f11f6c825d65ba327bb48d11784d5da34a5534be",
+  "parent_delivery_sha256": "d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5",
+  "patch_sha256": "2b8a4a8f49b72dd1baa1665c4437f37a49e123aa715b6136bdd55f21f109d216",
+  "workspace_tests": 692,
+  "workspace_successful": true,
+  "source_content_digest": "09104ef51e06d9d3be984271c1f2eaf3b7d7a2fa3c1f5435cab6d20e45248b93",
+  "test_content_digest": "59e56a692018fce4d5514d0083d861423d1e2b6fa131d3a7756804afe1b7f697",
+  "static_checks": 93,
+  "static_failed": 0,
+  "native_windows_wsl": "NOT_RUN",
+  "code_review_pass": false,
+  "host_ready": false,
+  "findings_targeted": [
+    "CR-P00-002",
+    "CR-P00-003",
+    "CR-P00-004"
+  ],
+  "finding_cr_p00_001": "OPEN"
+}

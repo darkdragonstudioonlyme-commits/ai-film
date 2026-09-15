@@ -1,34 +1,86 @@
 {
-  "kind": "SOURCE_CHANGE_INVENTORY",
-  "baseline": "0.1.0.dev7",
-  "candidate": "0.1.0.dev8",
-  "added": [
-    "docs/CHANGELOG_DEV7_TO_DEV8.md",
-    "src/aifilm_p00/native/lifecycle.py",
-    "tests/test_dev8_lifecycle.py"
-  ],
-  "modified": [
-    "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md",
-    "README.md",
-    "docs/CODE_REVIEW_HANDOFF_DRAFT.md",
-    "docs/IMPLEMENTATION_STATUS.md",
-    "docs/NATIVE_INTEGRATION_BOUNDARY.md",
-    "docs/REMAINING_IMPLEMENTATION.md",
-    "docs/TRACEABILITY.json",
-    "docs/TRACEABILITY.md",
-    "evidence/AUTHOR_STATIC_CHECKS.json",
-    "evidence/WORKSPACE_TEST_LOG.txt",
-    "evidence/WORKSPACE_TEST_REPORT.json",
-    "pyproject.toml",
-    "src/aifilm_p00/__init__.py",
-    "src/aifilm_p00/admission.py",
-    "src/aifilm_p00/native/session_driver.py",
-    "src/aifilm_p00/recovery.py"
-  ],
-  "removed": [],
-  "counts": {
-    "added": 3,
-    "modified": 16,
-    "removed": 0
-  }
+  "baseline": "dev8",
+  "candidate": "dev9",
+  "changes": [
+    {
+      "status": "M",
+      "path": "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/CHANGELOG_DEV8_TO_DEV9.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/REMAINING_IMPLEMENTATION.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/TRACEABILITY.md"
+    },
+    {
+      "status": "M",
+      "path": "evidence/AUTHOR_STATIC_CHECKS.json"
+    },
+    {
+      "status": "M",
+      "path": "evidence/WORKSPACE_TEST_LOG.txt"
+    },
+    {
+      "status": "M",
+      "path": "evidence/WORKSPACE_TEST_REPORT.json"
+    },
+    {
+      "status": "M",
+      "path": "pyproject.toml"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/__init__.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/admission.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/engine.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/native/lifecycle.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/recovery.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/session.py"
+    },
+    {
+      "status": "M",
+      "path": "tests/test_dev8_lifecycle.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_dev9_review_fixes.py"
+    },
+    {
+      "status": "M",
+      "path": "tests/test_state_evidence.py"
+    }
+  ]
 }
