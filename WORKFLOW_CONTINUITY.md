@@ -95,3 +95,7 @@ Do not defer all continuity state to the end of the chat.
 Another chat may resume an interrupted run, but it **takes over the same RUN_ID** after fresh reconciliation. A second active RUN_ID for the same workflow/base is a continuity violation.
 
 A run becomes `COMPLETE` only when its declared success output exists and required lane/canonical synchronization is finished. Timeout, client disconnect, model switch or chat boundary never means COMPLETE and never grants permission to create a replacement run.
+
+## Generic checker rule
+
+Continuity tools derive the active `RUN_ID`, `WORKFLOW_ID`, owning lane, run-record path, base identity and current step from canonical state. They must not hard-code the incident/run that introduced this policy. Checkers also reject more than one non-COMPLETE run for the same workflow/base on an owning lane.

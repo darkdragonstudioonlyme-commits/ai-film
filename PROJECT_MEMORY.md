@@ -36,6 +36,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-051 | PROCESS | Exact producer progress ahead of main is a distinct continuity state when a run ledger binds its base/output; do not erase it as generic drift. | continuity/runtime checker |
 | MEM-20260915-052 | GOVERNANCE | Workflow-instance schema in NEXT_WORK_ITEM must be machine-enforced, not prose-only. | docs checker / router |
 
+| MEM-20260915-053 | TOOLING | A generic continuity checker must derive run/workflow identity from state; incident-specific hard-coding defeats self-learning. | continuity checker/audit |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

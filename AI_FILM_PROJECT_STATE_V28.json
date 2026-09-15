@@ -27,7 +27,8 @@
     "current_step": "S06_PACKAGE_DEV20",
     "canonical_base": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
     "observed_local_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
-    "canonical_snapshot": "workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md"
+    "canonical_snapshot": "workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md",
+    "workflow_id": "WF-P00-IMPL-CR001-RESIDUAL-AUDIT"
   },
   "runtime_reconciliation": {
     "state_kind": "IN_FLIGHT_AHEAD_OF_CANONICAL",

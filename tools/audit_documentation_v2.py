@@ -15,11 +15,15 @@ if re.search(r'0\.1\.0\.dev\d+',workspace): errors.append('workspace-mutable-ver
 if re.search(r'\b[0-9a-f]{40}\b',workspace): errors.append('workspace-source-commit-pin')
 if re.search(r'\b\d+ PASS\b',workspace): errors.append('workspace-test-count-pin')
 # Checkers must not pin one project lifecycle snapshot/version/review ID/package version.
-for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/audit_documentation_v2.py']:
+for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/check_workflow_continuity.py','tools/audit_documentation_v2.py']:
     t=(ROOT/p).read_text(encoding='utf-8')
     if re.search(r'IMPLEMENTATION_PACKAGE_V\d+',t): errors.append('checker-hardcoded-package:'+p)
     if re.search(r'AI_FILM_(?:PROJECT_STATE|STATE_CHECKPOINT)_V(?:2[0-9]|[3-9][0-9])',t): errors.append('checker-hardcoded-state-version:'+p)
     if re.search(r'DOC-V2-(?:REVIEW|AUDIT)-\d{3}',t): errors.append('checker-hardcoded-review-id:'+p)
+    run_literal='RUN-'+'P00-'
+    step_literal='S'+'0'
+    if re.search(re.escape(run_literal)+r'[A-Z0-9._-]+',t): errors.append('checker-hardcoded-run-id:'+p)
+    if re.search(re.escape(step_literal)+r'[0-9]_[A-Z0-9_]+',t): errors.append('checker-hardcoded-current-step:'+p)
     forbidden_wip='WIP_'+'NOT_DURABLE_'+'NOT_REVIEWABLE'
     if forbidden_wip in t: errors.append('checker-hardcoded-wip-state:'+p)
 # Core V2 semantics.
@@ -36,8 +40,6 @@ for token in ['one active `RUN_ID`','INTENT','COMPLETE','IDEMPOTENCY_KEY','IN_FL
 nw=(ROOT/'NEXT_WORK_ITEM.md').read_text(encoding='utf-8')
 for field in ['RUN_ID:','WORKFLOW_ID:','INPUT_IDENTITY:','STEPS:','CURRENT_STEP:','ON_BLOCK:','EXIT_CONDITION:']:
     if field not in nw: errors.append('next-work-resume-contract:'+field[:-1])
-if 'RUN-P00-CR001-001' in texts.get('PROJECT_STATE.md','') and 'S06_PACKAGE_DEV20' not in nw:
-    errors.append('current-run-resume-point-drift')
 
 # Environment digest is actually reproducible.
 env_record=ROOT/'environments/ENV-DEV-WSL-20260915.md'
@@ -55,7 +57,13 @@ if not mv: errors.append('state-version-missing')
 else:
     v=int(mv.group(1)); jp=ROOT/f'AI_FILM_PROJECT_STATE_V{v}.json'; cp=ROOT/f'AI_FILM_STATE_CHECKPOINT_V{v}.md'
     if not jp.is_file() or not cp.is_file(): errors.append('current-snapshot-missing')
-    elif json.loads(jp.read_text()).get('state_version')!=v: errors.append('current-state-version-mismatch')
+    else:
+        current=json.loads(jp.read_text())
+        if current.get('state_version')!=v: errors.append('current-state-version-mismatch')
+        active=current.get('active_run')
+        if isinstance(active,dict):
+            if str(active.get('run_id','')) not in nw: errors.append('current-run-id-drift')
+            if str(active.get('current_step','')) not in nw: errors.append('current-run-step-drift')
 if errors:
     print('DOC_AUDIT_FAIL');print('\n'.join(errors));sys.exit(1)
 print('DOC_AUDIT_PASS',len(texts),'active docs','lifecycle-aware-checkers')

@@ -32,6 +32,9 @@ if state_json:
     mode=re.search(r'^CURRENT_MODE: ([A-Z_]+)$',state,re.M)
     if not mode or state_json.get('current_mode')!=mode.group(1): errors.append('state-mode-mismatch')
     if state_json.get('documentation_system','').startswith('DOCSYS-V2-') is False: errors.append('documentation-system-not-v2')
+    ar=state_json.get('active_run')
+    if ar is not None and (type(ar) is not dict or not ar.get('run_id') or not ar.get('workflow_id') or not ar.get('run_record') or not ar.get('current_step')):
+        errors.append('active-run-schema')
     rr=state_json.get('runtime_reconciliation')
     if type(rr) is not dict or rr.get('schema_version')!=1: errors.append('runtime-reconciliation-schema')
     else:
