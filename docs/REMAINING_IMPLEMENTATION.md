@@ -1,3 +1,12 @@
+# DEV11 Remaining-Work Delta
+
+- `CR-P00-005`: implementation fix authored — PRE_C3 `checked_at` is bounded by current capture time.
+- Dev10 prior guest/pre-C3/checkpoint provenance behavior is otherwise preserved.
+- Independent REVIEW disposition is still required before CR-P00-005 can close.
+- CR-P00-001/full REM scope remains open.
+
+---
+
 # DEV10 Remaining-Work Delta
 
 - **REM-03/07 progress:** prior guest/pre-C3/checkpoint consumers now retain and validate exact cross-stage provenance rather than stamping historical facts as current capture.

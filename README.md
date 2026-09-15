@@ -1,14 +1,14 @@
 # AI-FILM Phase00 — implementation source drop dev8
 
-**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev10 · PARTIAL_SOURCE_DROP_DEV10**
+**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev11 · PARTIAL_SOURCE_DROP_DEV11**
 
 **Full author-complete: false. Full-scope CODE_REVIEW handoff: NOT_READY.**
 
-Dev10 adds exact cross-stage provenance for prior guest, pre-C3 protection and post-apply checkpoint evidence. Historical E00 cells preserve their original source ref/time/source kind; E12 revalidates exact pre-C3 proof receipts; E15 keeps CPK-PRE-C3 refs distinct from the committed RESTORE_EXPORT checkpoint. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
+Dev11 retains dev10 cross-stage provenance and closes review finding CR-P00-005 by requiring every PRE_C3 historical event to satisfy `checked_at <= current capture time`. This is ordering validation, not an invented freshness TTL. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
 
 ## Read first
 
-Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV9_TO_DEV10.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
+Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV10_TO_DEV11.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
 
 ## Workspace-only checks
 

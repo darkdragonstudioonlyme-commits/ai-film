@@ -16,6 +16,7 @@ from aifilm_p00.native.evidence_pipeline import (
 )
 
 AT='2026-09-14T00:00:00Z'
+BOUND=datetime(2026,9,14,1,0,tzinfo=timezone.utc)
 G={'uid':1000,'gid':1000,'user':'film','home':'/home/film','os_id':'ubuntu','version_id':'24.04',
    'architecture':'x86_64','kernel':'6.6','kernel_boot_id':'boot','pid1_start_ticks':'1','pid1_comm':'systemd',
    'home_access_writable':True,'resources':{'logical_cpu':2,'mem_total_bytes':4,'mem_available_bytes':2,'fs_available_bytes':30},
@@ -74,16 +75,19 @@ class PriorGuestScopeTests(unittest.TestCase):
 class PreC3EventTests(unittest.TestCase):
     def setup_plan(self):return authority_case('HOST_RESTART')[1]
     def test_exact_pre_c3_event_selected(self):
-        plan=self.setup_plan();rows=_pre_c3_events([pre_event(plan)],plan,{})
+        plan=self.setup_plan();rows=_pre_c3_events([pre_event(plan)],plan,{},BOUND)
         self.assertEqual(len(rows),1);self.assertEqual(rows[0]['scope']['host_id'],'synthetic-host')
     def test_wrong_host_rejected(self):
-        plan=self.setup_plan();self.assertEqual(reject(self,16,_pre_c3_events,[pre_event(plan,host='other')],plan,{}),'PRE_C3_HOST_SCOPE')
+        plan=self.setup_plan();self.assertEqual(reject(self,16,_pre_c3_events,[pre_event(plan,host='other')],plan,{},BOUND),'PRE_C3_HOST_SCOPE')
+    def test_future_pre_c3_event_rejected(self):
+        plan=self.setup_plan();row=pre_event(plan,checked='2026-09-15T00:00:00Z')
+        self.assertEqual(reject(self,16,_pre_c3_events,[row],plan,{},BOUND),'PRE_C3_FUTURE')
     def test_tampered_boundary_rejected(self):
         plan=self.setup_plan();row=pre_event(plan);row['event']['boundary']['generation']=2
-        self.assertEqual(reject(self,15,_pre_c3_events,[row],plan,{}),'PRE_C3_BOUNDARY_INTEGRITY')
+        self.assertEqual(reject(self,15,_pre_c3_events,[row],plan,{},BOUND),'PRE_C3_BOUNDARY_INTEGRITY')
     def test_conflicting_duplicate_rejected(self):
         plan=self.setup_plan();a=pre_event(plan);b=deepcopy(a);b['event']['claim_digest']='a'*64
-        self.assertEqual(reject(self,15,_pre_c3_events,[a,b],plan,{}),'PRE_C3_EVENT_AMBIGUOUS')
+        self.assertEqual(reject(self,15,_pre_c3_events,[a,b],plan,{},BOUND),'PRE_C3_EVENT_AMBIGUOUS')
 
 
 class CheckpointHistoryTests(unittest.TestCase):
@@ -146,7 +150,7 @@ class AuthenticatedPreC3Tests(unittest.TestCase):
         store=PinnedStore({k:frozenset(v) for k,v in pins.items()},blobs,'SYNTHETIC')
         event=pre_event(plan,boundary=boundary,proof_ref=proof,claim_digest=digest(claim))
         producer=NativeCatalogProducer.__new__(NativeCatalogProducer);producer.events=[event];producer.plan=plan;producer.result={}
-        producer.f=SimpleNamespace(store=store);producer.s=plan['semantic']
+        producer.f=SimpleNamespace(store=store,context=SimpleNamespace(now=BOUND));producer.s=plan['semantic']
         return producer
     def test_authenticated_pre_c3_proof_yields_target_checkpoint_ref(self):
         producer=self.build();rows=producer._validated_pre_c3()

@@ -1,7 +1,7 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev10"
-description = "Partial Phase00 implementation: adds exact prior pre-C3/checkpoint provenance and field-level cross-stage E00 source binding; remaining publication/transport/harness work pending"
+version = "0.1.0.dev11"
+description = "Partial Phase00 implementation: bounds prior pre-C3 provenance by current capture time after dev10 review finding; remaining publication/transport/harness work pending"
 requires-python = ">=3.11"
 dependencies = []
 

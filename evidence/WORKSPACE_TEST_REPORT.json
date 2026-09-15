@@ -8,16 +8,16 @@
     "implementation": "CPython",
     "machine": "x86_64"
   },
-  "started_at": "2026-09-15T03:36:45.643809+00:00",
-  "ended_at": "2026-09-15T03:36:47.290979+00:00",
-  "duration_seconds": 1.647167,
-  "source_content_digest": "017ae56c17271dca95dc90877158beeb9e2f6fd723503a82bd413ab845ff1bef",
-  "test_content_digest": "4ee24025d5774d53ad2100ff47d34ed5b9d6e23fa707c1adc4393540f92649c0",
+  "started_at": "2026-09-15T03:41:19.674732+00:00",
+  "ended_at": "2026-09-15T03:41:21.275809+00:00",
+  "duration_seconds": 1.601074,
+  "source_content_digest": "4f24e01469357e5a4716cc1e55ef7de8bbe085bbdabc1892778cd67c21269193",
+  "test_content_digest": "a7e0c8c18b1e70bcd122b4818cfc59fa98f6e4e23311ff37bb2531c5ed6d1227",
   "source_members": [
     {
       "path": "src/aifilm_p00/__init__.py",
       "bytes": 257,
-      "sha256": "a72778b9fe01333fc26d6b88304a507f229386f162eedc16e171dbe892ef5c81"
+      "sha256": "051004b1f45a36cd2db5769658762f917834bfe13420926803e54f8aa01c6ab6"
     },
     {
       "path": "src/aifilm_p00/__main__.py",
@@ -116,8 +116,8 @@
     },
     {
       "path": "src/aifilm_p00/native/evidence_pipeline.py",
-      "bytes": 37406,
-      "sha256": "b13024733afa16400bb187881d5774b5a816c1939c8fea246daa05dd2363fc75"
+      "bytes": 37490,
+      "sha256": "333db951c449ef2a0bb38e89391df871d3b98037cc866dbf2386c15771d14838"
     },
     {
       "path": "src/aifilm_p00/native/executable_trust.py",
@@ -363,8 +363,8 @@
     },
     {
       "path": "tests/test_dev10_prior_nested.py",
-      "bytes": 11286,
-      "sha256": "d5a4aca4bf3aad10c1c3f9cb16f53b891da8cf4b48159ce0d643661a7c2e2291"
+      "bytes": 11619,
+      "sha256": "04a7a2a8b4b8c39961db4107f89a774cebd7b24eacee0ca866bbf22cdb544684"
     },
     {
       "path": "tests/test_dev3_catalog_native_helpers.py",
@@ -492,7 +492,7 @@
       "sha256": "9d34680d6578c0444d8a1eaae33e874ee8a9cdf2dfe8fd05e539d430bbac4a24"
     }
   ],
-  "tests_run": 710,
+  "tests_run": 711,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
@@ -501,175 +501,175 @@
     {
       "test_id": "test_core.AuthorityTests.test_approval_expired",
       "actual_status": "PASS",
-      "duration_seconds": 0.001135,
+      "duration_seconds": 0.001126,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_discovery_qualification_not_create",
       "actual_status": "PASS",
-      "duration_seconds": 0.000734,
+      "duration_seconds": 0.000714,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_exact_profile_mismatch",
       "actual_status": "PASS",
-      "duration_seconds": 0.000682,
+      "duration_seconds": 0.000768,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_fake_native_result_no_match",
       "actual_status": "PASS",
-      "duration_seconds": 0.000812,
+      "duration_seconds": 0.000849,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_lab_id_mismatch",
       "actual_status": "PASS",
-      "duration_seconds": 0.00093,
+      "duration_seconds": 0.000715,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_missing_qualification",
       "actual_status": "PASS",
-      "duration_seconds": 0.000606,
+      "duration_seconds": 0.000587,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_no_self_extended_approval",
       "actual_status": "PASS",
-      "duration_seconds": 0.00062,
+      "duration_seconds": 0.000605,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_expired",
       "actual_status": "PASS",
-      "duration_seconds": 0.000742,
+      "duration_seconds": 0.000638,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_failed",
       "actual_status": "PASS",
-      "duration_seconds": 0.00067,
+      "duration_seconds": 0.000738,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_future",
       "actual_status": "PASS",
-      "duration_seconds": 0.001115,
+      "duration_seconds": 0.000657,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_missing_results",
       "actual_status": "PASS",
-      "duration_seconds": 0.000729,
+      "duration_seconds": 0.000648,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_new_blocker",
       "actual_status": "PASS",
-      "duration_seconds": 0.000666,
+      "duration_seconds": 0.00064,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_withdrawn",
       "actual_status": "PASS",
-      "duration_seconds": 0.000652,
+      "duration_seconds": 0.000626,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_wrong_build",
       "actual_status": "PASS",
-      "duration_seconds": 0.000648,
+      "duration_seconds": 0.000627,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_qualification_wrong_testset",
       "actual_status": "PASS",
-      "duration_seconds": 0.000644,
+      "duration_seconds": 0.000838,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_receipt_bytes_tampered",
       "actual_status": "PASS",
-      "duration_seconds": 0.000638,
+      "duration_seconds": 0.000776,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_registered_lab_needs_no_prior_qualification",
       "actual_status": "PASS",
-      "duration_seconds": 0.000687,
+      "duration_seconds": 0.000703,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_site_faked_lab_flag",
       "actual_status": "PASS",
-      "duration_seconds": 0.000624,
+      "duration_seconds": 0.00062,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_site_valid_synthetic_chain",
       "actual_status": "PASS",
-      "duration_seconds": 0.000941,
+      "duration_seconds": 0.00094,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_untrusted_receipt",
       "actual_status": "PASS",
-      "duration_seconds": 0.000637,
+      "duration_seconds": 0.000692,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.AuthorityTests.test_wrong_sid",
       "actual_status": "PASS",
-      "duration_seconds": 0.000615,
+      "duration_seconds": 0.000648,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_bool_not_integer",
       "actual_status": "PASS",
-      "duration_seconds": 2.1e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_depth_cap",
       "actual_status": "PASS",
-      "duration_seconds": 2.7e-05,
+      "duration_seconds": 2.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_duplicate_key",
       "actual_status": "PASS",
-      "duration_seconds": 1.8e-05,
+      "duration_seconds": 1.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_invalid_utf8",
       "actual_status": "PASS",
-      "duration_seconds": 1.7e-05,
+      "duration_seconds": 1.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -697,7 +697,7 @@
     {
       "test_id": "test_core.CodecTests.test_nonfinite",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -718,14 +718,14 @@
     {
       "test_id": "test_core.CodecTests.test_reject_relative_02",
       "actual_status": "PASS",
-      "duration_seconds": 2e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_relative_03",
       "actual_status": "PASS",
-      "duration_seconds": 1.7e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -746,14 +746,14 @@
     {
       "test_id": "test_core.CodecTests.test_reject_relative_06",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_00",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -767,35 +767,35 @@
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_02",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_03",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 4.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_04",
       "actual_status": "PASS",
-      "duration_seconds": 1.8e-05,
+      "duration_seconds": 4.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_05",
       "actual_status": "PASS",
-      "duration_seconds": 1.7e-05,
+      "duration_seconds": 2.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_06",
       "actual_status": "PASS",
-      "duration_seconds": 1.7e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -823,21 +823,21 @@
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_10",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_11",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_12",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -851,7 +851,7 @@
     {
       "test_id": "test_core.CodecTests.test_reject_windows_path_14",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -865,133 +865,133 @@
     {
       "test_id": "test_core.CodecTests.test_safe_error_no_raw_value",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_size_cap",
       "actual_status": "PASS",
-      "duration_seconds": 0.003891,
+      "duration_seconds": 0.003974,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_unicode_round_trip",
       "actual_status": "PASS",
-      "duration_seconds": 4.2e-05,
+      "duration_seconds": 4.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.CodecTests.test_unicode_space_windows_path",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 8.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_approval_detached_no_self_hash",
       "actual_status": "PASS",
-      "duration_seconds": 0.00065,
+      "duration_seconds": 0.000663,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_approval_inside_semantic_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 8.1e-05,
+      "duration_seconds": 8.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_change_semantic_changes_hash",
       "actual_status": "PASS",
-      "duration_seconds": 0.00021,
+      "duration_seconds": 0.000144,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_create_future_guest_not_required",
       "actual_status": "PASS",
-      "duration_seconds": 9.5e-05,
+      "duration_seconds": 7.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_duplicate_volume_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 8e-05,
+      "duration_seconds": 7.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_extra_cli_namespace_cannot_bind",
       "actual_status": "PASS",
-      "duration_seconds": 2.1e-05,
+      "duration_seconds": 1.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_no_arbitrary_operation",
       "actual_status": "PASS",
-      "duration_seconds": 0.00013,
+      "duration_seconds": 0.000101,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_plan_tamper",
       "actual_status": "PASS",
-      "duration_seconds": 0.000207,
+      "duration_seconds": 0.000111,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_root_user_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 7.6e-05,
+      "duration_seconds": 6.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_scratch_cap",
       "actual_status": "PASS",
-      "duration_seconds": 7.2e-05,
+      "duration_seconds": 6.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_timestamp_not_semantic",
       "actual_status": "PASS",
-      "duration_seconds": 0.000137,
+      "duration_seconds": 0.000132,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PlanTests.test_verify_cannot_import",
       "actual_status": "PASS",
-      "duration_seconds": 0.00011,
+      "duration_seconds": 0.000107,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_affected_postcheck_failed",
       "actual_status": "PASS",
-      "duration_seconds": 2.4e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_affected_postcheck_missing",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_budget_adds_allocations_not_max",
       "actual_status": "PASS",
-      "duration_seconds": 2e-05,
+      "duration_seconds": 1.9e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1005,7 +1005,7 @@
     {
       "test_id": "test_core.PolicyTests.test_clean_target_still_needs_backup",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1026,14 +1026,14 @@
     {
       "test_id": "test_core.PolicyTests.test_floor_guest_fs_available_bytes_0",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_floor_guest_fs_available_bytes_1",
       "actual_status": "PASS",
-      "duration_seconds": 1.1e-05,
+      "duration_seconds": 1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1089,7 +1089,7 @@
     {
       "test_id": "test_core.PolicyTests.test_floor_guest_mem_total_bytes_0",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1138,7 +1138,7 @@
     {
       "test_id": "test_core.PolicyTests.test_floor_host_installed_ram_bytes_1",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1152,49 +1152,49 @@
     {
       "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_0",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_1",
       "actual_status": "PASS",
-      "duration_seconds": 9e-06,
+      "duration_seconds": 8e-06,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_floor_host_logical_cpu_2",
       "actual_status": "PASS",
-      "duration_seconds": 9e-06,
+      "duration_seconds": 8e-06,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_host_profile",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_no_ttl_plan_drift",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_no_writes_boundary_drift",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_protection_checkpoint_exact",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1208,7 +1208,7 @@
     {
       "test_id": "test_core.PolicyTests.test_protection_ok",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1229,14 +1229,14 @@
     {
       "test_id": "test_core.PolicyTests.test_restore_same_host_not_pre_c3",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_restore_sensitive_block",
       "actual_status": "PASS",
-      "duration_seconds": 1.2e-05,
+      "duration_seconds": 1.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1264,7 +1264,7 @@
     {
       "test_id": "test_core.PolicyTests.test_support_margin_exact",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1285,7 +1285,7 @@
     {
       "test_id": "test_core.PolicyTests.test_terminal_current",
       "actual_status": "PASS",
-      "duration_seconds": 9.5e-05,
+      "duration_seconds": 9.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1299,7 +1299,7 @@
     {
       "test_id": "test_core.PolicyTests.test_terminal_host_mismatch",
       "actual_status": "PASS",
-      "duration_seconds": 4.7e-05,
+      "duration_seconds": 4.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1313,210 +1313,217 @@
     {
       "test_id": "test_core.PolicyTests.test_terminal_network_fail",
       "actual_status": "PASS",
-      "duration_seconds": 7.3e-05,
+      "duration_seconds": 6.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_terminal_old_network",
       "actual_status": "PASS",
-      "duration_seconds": 7.5e-05,
+      "duration_seconds": 6.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_core.PolicyTests.test_terminal_too_long",
       "actual_status": "PASS",
-      "duration_seconds": 4.7e-05,
+      "duration_seconds": 7.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.AuthenticatedPreC3Tests.test_authenticated_pre_c3_proof_yields_target_checkpoint_ref",
       "actual_status": "PASS",
-      "duration_seconds": 0.000955,
+      "duration_seconds": 0.000893,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.AuthenticatedPreC3Tests.test_wrong_owner_receipt_rejected_by_consumer",
       "actual_status": "PASS",
-      "duration_seconds": 0.001215,
+      "duration_seconds": 0.000901,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.CheckpointHistoryTests.test_checkpoint_history_binds_exact_source",
       "actual_status": "PASS",
-      "duration_seconds": 0.000611,
+      "duration_seconds": 0.000602,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.CheckpointHistoryTests.test_tampered_checkpoint_observation_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000577,
+      "duration_seconds": 0.000575,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.CheckpointHistoryTests.test_wrong_checkpoint_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000564,
+      "duration_seconds": 0.000561,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.CheckpointHistoryTests.test_wrong_target_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000572,
+      "duration_seconds": 0.000556,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.NestedFieldSourceTests.test_field_specific_source_is_preserved",
       "actual_status": "PASS",
-      "duration_seconds": 3.3e-05,
+      "duration_seconds": 5.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.NestedFieldSourceTests.test_producer_prior_guest_fields_use_prior_source",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.NestedFieldSourceTests.test_unknown_field_source_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 1.8e-05,
+      "duration_seconds": 2.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PreC3EventTests.test_conflicting_duplicate_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000601,
+      "duration_seconds": 0.000781,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PreC3EventTests.test_exact_pre_c3_event_selected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000569,
+      "duration_seconds": 0.000613,
+      "reason": null,
+      "native_execution": false
+    },
+    {
+      "test_id": "test_dev10_prior_nested.PreC3EventTests.test_future_pre_c3_event_rejected",
+      "actual_status": "PASS",
+      "duration_seconds": 0.000559,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PreC3EventTests.test_tampered_boundary_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.00065,
+      "duration_seconds": 0.000553,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PreC3EventTests.test_wrong_host_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000574,
+      "duration_seconds": 0.000549,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PriorGuestScopeTests.test_exact_prior_guest_preserves_source_time_and_ref",
       "actual_status": "PASS",
-      "duration_seconds": 0.000609,
+      "duration_seconds": 0.00059,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PriorGuestScopeTests.test_future_prior_observation_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000586,
+      "duration_seconds": 0.000675,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PriorGuestScopeTests.test_unrelated_plan_is_not_adopted",
       "actual_status": "PASS",
-      "duration_seconds": 0.000549,
+      "duration_seconds": 0.000599,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_host_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000556,
+      "duration_seconds": 0.000591,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_target_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000555,
+      "duration_seconds": 0.000578,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing",
       "actual_status": "PASS",
-      "duration_seconds": 3.2e-05,
+      "duration_seconds": 3.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site",
       "actual_status": "PASS",
-      "duration_seconds": 9.7e-05,
+      "duration_seconds": 9.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_missing_lifetime_not_implicit_refund",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_missing_writing_volume_cannot_be_hidden",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_only_committed_step_releases_future_allocation",
       "actual_status": "PASS",
-      "duration_seconds": 2.8e-05,
+      "duration_seconds": 2.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_privacy_precedence_over_other_integrity_failure",
       "actual_status": "PASS",
-      "duration_seconds": 2e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_c3_empty_target_no_fake_restore",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_c3_existing_independent_restore_required",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1537,77 +1544,77 @@
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_discovery_does_not_require_unknown_guest",
       "actual_status": "PASS",
-      "duration_seconds": 5.8e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_document_cannot_replace_source_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 3.5e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_e17_not_input_to_e16",
       "actual_status": "PASS",
-      "duration_seconds": 0.000177,
+      "duration_seconds": 0.000158,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_evaluation_must_bind_current_field_bytes",
       "actual_status": "PASS",
-      "duration_seconds": 7.3e-05,
+      "duration_seconds": 7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_01",
       "actual_status": "PASS",
-      "duration_seconds": 6.9e-05,
+      "duration_seconds": 6.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_02",
       "actual_status": "PASS",
-      "duration_seconds": 8.7e-05,
+      "duration_seconds": 8.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_03",
       "actual_status": "PASS",
-      "duration_seconds": 6.6e-05,
+      "duration_seconds": 6.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_04",
       "actual_status": "PASS",
-      "duration_seconds": 7.5e-05,
+      "duration_seconds": 7.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_05",
       "actual_status": "PASS",
-      "duration_seconds": 6.2e-05,
+      "duration_seconds": 6.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_06",
       "actual_status": "PASS",
-      "duration_seconds": 7.1e-05,
+      "duration_seconds": 7.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_07",
       "actual_status": "PASS",
-      "duration_seconds": 7e-05,
+      "duration_seconds": 7.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1621,56 +1628,56 @@
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_09",
       "actual_status": "PASS",
-      "duration_seconds": 8.1e-05,
+      "duration_seconds": 8.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_10",
       "actual_status": "PASS",
-      "duration_seconds": 9.6e-05,
+      "duration_seconds": 9.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_11",
       "actual_status": "PASS",
-      "duration_seconds": 8.2e-05,
+      "duration_seconds": 8.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_12",
       "actual_status": "PASS",
-      "duration_seconds": 7.3e-05,
+      "duration_seconds": 7.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_13",
       "actual_status": "PASS",
-      "duration_seconds": 8.5e-05,
+      "duration_seconds": 8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_14",
       "actual_status": "PASS",
-      "duration_seconds": 6.2e-05,
+      "duration_seconds": 0.000123,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_15",
       "actual_status": "PASS",
-      "duration_seconds": 9e-05,
+      "duration_seconds": 0.000116,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_exact_field_set_E00_16",
       "actual_status": "PASS",
-      "duration_seconds": 8.3e-05,
+      "duration_seconds": 9.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1684,63 +1691,63 @@
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_future_not_current_actual",
       "actual_status": "PASS",
-      "duration_seconds": 7e-05,
+      "duration_seconds": 0.000126,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_gate_all_groups_have_required_fields",
       "actual_status": "PASS",
-      "duration_seconds": 4e-05,
+      "duration_seconds": 4.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_invalid_stage_flag_not_truthiness",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_inventory_has_guest_future_slots",
       "actual_status": "PASS",
-      "duration_seconds": 2e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_lab_entry_qualification_no_cycle",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 1.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_lab_native_report_not_site_group",
       "actual_status": "PASS",
-      "duration_seconds": 0.00013,
+      "duration_seconds": 6.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_lab_receipt_still_required_for_site_gate",
       "actual_status": "PASS",
-      "duration_seconds": 3.1e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_missing_group_field_not_outer_pass",
       "actual_status": "PASS",
-      "duration_seconds": 6.5e-05,
+      "duration_seconds": 4.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_no_evaluation_is_not_gate_complete",
       "actual_status": "PASS",
-      "duration_seconds": 6.6e-05,
+      "duration_seconds": 6.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1754,91 +1761,91 @@
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_unknown_cannot_hide_actual_value",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.CatalogTests.test_wrong_type_boolean_not_integer",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.EndpointMatrixTests.test_both_guest_repository_roles",
       "actual_status": "PASS",
-      "duration_seconds": 0.000661,
+      "duration_seconds": 0.00063,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.EndpointMatrixTests.test_declared_windows_download_needs_context",
       "actual_status": "PASS",
-      "duration_seconds": 0.0008,
+      "duration_seconds": 0.000568,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.EndpointMatrixTests.test_offline_claim_needs_references",
       "actual_status": "PASS",
-      "duration_seconds": 0.000907,
+      "duration_seconds": 0.000557,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.EndpointMatrixTests.test_unused_endpoint_roles_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000664,
+      "duration_seconds": 0.000537,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.EndpointMatrixTests.test_windows_measurement_cannot_replace_guest",
       "actual_status": "PASS",
-      "duration_seconds": 0.000572,
+      "duration_seconds": 0.000535,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_adopt_absence_still_forbidden",
       "actual_status": "PASS",
-      "duration_seconds": 8e-05,
+      "duration_seconds": 6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_agent_request_data_not_executable_source",
       "actual_status": "PASS",
-      "duration_seconds": 0.000204,
+      "duration_seconds": 0.000191,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_agent_source_parses_without_execution",
       "actual_status": "PASS",
-      "duration_seconds": 0.000863,
+      "duration_seconds": 0.000876,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_dism_arbitrary_feature_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.7e-05,
+      "duration_seconds": 4.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_dism_single_process_all_features_and_explicit_output",
       "actual_status": "PASS",
-      "duration_seconds": 4.8e-05,
+      "duration_seconds": 5.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_guest_agent_has_no_user_command_slot",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -1852,280 +1859,280 @@
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_guest_capture_requires_exact_operation",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_guest_network_exact_user_and_distribution",
       "actual_status": "PASS",
-      "duration_seconds": 0.000124,
+      "duration_seconds": 0.00014,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_network_ignores_no_arbitrary_proxy_profile",
       "actual_status": "PASS",
-      "duration_seconds": 2.5e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_no_target_for_failed_engine_support",
       "actual_status": "PASS",
-      "duration_seconds": 8.7e-05,
+      "duration_seconds": 9.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_no_target_for_passive_before_install",
       "actual_status": "PASS",
-      "duration_seconds": 6.6e-05,
+      "duration_seconds": 7.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.PrimitiveCommands.test_windows_network_not_guest_substitution",
       "actual_status": "PASS",
-      "duration_seconds": 9.1e-05,
+      "duration_seconds": 9.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_capture_not_generic_unknown_wildcard",
       "actual_status": "PASS",
-      "duration_seconds": 0.000136,
+      "duration_seconds": 0.00014,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_config_only_exact_transition",
       "actual_status": "PASS",
-      "duration_seconds": 2.5e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_existing_default_cannot_first_default",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 3.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_existing_target_cannot_recapture",
       "actual_status": "PASS",
-      "duration_seconds": 3.6e-05,
+      "duration_seconds": 2.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_foreign_distro_identity_change_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 2.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_future_allocated_ids_are_actual_not_guessed",
       "actual_status": "PASS",
-      "duration_seconds": 4.9e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_missing_capture_authority_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 3.3e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_non_guid_registration_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 3e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_catalog_native_helpers.TransitionTests.test_uid_boolean_not_integer",
       "actual_status": "PASS",
-      "duration_seconds": 3.3e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_actual_features_not_exit_code",
       "actual_status": "PASS",
-      "duration_seconds": 0.001008,
+      "duration_seconds": 0.000698,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_full_afterstate_drift_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.000603,
+      "duration_seconds": 0.000609,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_guest_route_process_exit_not_actual_capture",
       "actual_status": "PASS",
-      "duration_seconds": 0.000578,
+      "duration_seconds": 0.000568,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_metadata_observer_actual_after_state",
       "actual_status": "PASS",
-      "duration_seconds": 0.00059,
+      "duration_seconds": 0.000598,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_noop_metadata_only_does_not_report_ready",
       "actual_status": "PASS",
-      "duration_seconds": 0.000562,
+      "duration_seconds": 0.000581,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_pending_service_blocks_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.000548,
+      "duration_seconds": 0.000649,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_pending_writer_checked_before_metadata",
       "actual_status": "PASS",
-      "duration_seconds": 0.000632,
+      "duration_seconds": 0.000678,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ObserverTests.test_stage_snapshot_failure_preserves_uncommitted_completion",
       "actual_status": "PASS",
-      "duration_seconds": 0.001056,
+      "duration_seconds": 0.001103,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.OutcomeTests.test_code_state_mismatch_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 0.00213,
+      "duration_seconds": 0.002081,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.OutcomeTests.test_missing_mandatory_not_promoted_to_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.002197,
+      "duration_seconds": 0.001996,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.OutcomeTests.test_non_bundle_cannot_report_optional_partial",
       "actual_status": "PASS",
-      "duration_seconds": 0.009232,
+      "duration_seconds": 0.008854,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.OutcomeTests.test_partial_outcome_not_erased_by_terminal_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.002067,
+      "duration_seconds": 0.001938,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.OutcomeTests.test_privacy_block_stays_23",
       "actual_status": "PASS",
-      "duration_seconds": 0.002044,
+      "duration_seconds": 0.002216,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_ambiguous_postcheck_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 8.7e-05,
+      "duration_seconds": 9.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_exact_graph_maps_each_claim",
       "actual_status": "PASS",
-      "duration_seconds": 7.2e-05,
+      "duration_seconds": 7.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_extra_flag_requires_claim_map",
       "actual_status": "PASS",
-      "duration_seconds": 6.2e-05,
+      "duration_seconds": 7.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_no_candidate_waits_not_fabricated",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_owner_assertion_opt_in_not_native",
       "actual_status": "PASS",
-      "duration_seconds": 8e-05,
+      "duration_seconds": 9.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_pre_operation_receipt_not_postcondition",
       "actual_status": "PASS",
-      "duration_seconds": 3.9e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_expired",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 8.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_fixture_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 4.4e-05,
+      "duration_seconds": 7.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_fixture_receipt",
       "actual_status": "PASS",
-      "duration_seconds": 3.3e-05,
+      "duration_seconds": 4.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_future_issued",
       "actual_status": "PASS",
-      "duration_seconds": 3.4e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_future_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 4.5e-05,
+      "duration_seconds": 4.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_missing_actual",
       "actual_status": "PASS",
-      "duration_seconds": 4.2e-05,
+      "duration_seconds": 4.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2139,14 +2146,14 @@
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_no_provenance",
       "actual_status": "PASS",
-      "duration_seconds": 4.6e-05,
+      "duration_seconds": 4.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_not_run_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 4.1e-05,
+      "duration_seconds": 4.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2160,7 +2167,7 @@
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_owner_fixture",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2174,21 +2181,21 @@
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_owner_other_role",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_owner_withdrawn",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 4.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_raw_not_bound",
       "actual_status": "PASS",
-      "duration_seconds": 5.3e-05,
+      "duration_seconds": 5.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2202,77 +2209,77 @@
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_withdrawn_collector",
       "actual_status": "PASS",
-      "duration_seconds": 4.8e-05,
+      "duration_seconds": 4.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_withdrawn_raw",
       "actual_status": "PASS",
-      "duration_seconds": 5.1e-05,
+      "duration_seconds": 5.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_withdrawn_receipt",
       "actual_status": "PASS",
-      "duration_seconds": 3.2e-05,
+      "duration_seconds": 3.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_workspace_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 4.1e-05,
+      "duration_seconds": 4.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_wrong_build",
       "actual_status": "PASS",
-      "duration_seconds": 0.000131,
+      "duration_seconds": 4.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_wrong_measurement_host",
       "actual_status": "PASS",
-      "duration_seconds": 6.6e-05,
+      "duration_seconds": 4.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_wrong_owner",
       "actual_status": "PASS",
-      "duration_seconds": 6.8e-05,
+      "duration_seconds": 3.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_reject_wrong_subject",
       "actual_status": "PASS",
-      "duration_seconds": 8e-05,
+      "duration_seconds": 4.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_tampered_claim_not_certified_by_unrelated_measurement",
       "actual_status": "PASS",
-      "duration_seconds": 6.5e-05,
+      "duration_seconds": 5.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.ProofGraphTests.test_withdrawn_candidate_not_selected",
       "actual_status": "PASS",
-      "duration_seconds": 2.8e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev3_proof_observer_integration.SnapshotBudgetTests.test_committed_snapshots_not_counted_again",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2286,287 +2293,287 @@
     {
       "test_id": "test_dev3_proof_observer_integration.SnapshotBudgetTests.test_two_pending_snapshots_need_two_allocations",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_adopt_reads_content_without_workspace_mutation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001417,
+      "duration_seconds": 0.001413,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_changed_checkpoint_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.00089,
+      "duration_seconds": 0.000881,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_create_reads_without_user_creation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001303,
+      "duration_seconds": 0.001328,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_discovery_no_workspace_action",
       "actual_status": "PASS",
-      "duration_seconds": 0.001461,
+      "duration_seconds": 0.001257,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_engine_checks_services_without_installer",
       "actual_status": "PASS",
-      "duration_seconds": 0.001306,
+      "duration_seconds": 0.001246,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_export_reads_existing_checkpoint_not_export_command",
       "actual_status": "PASS",
-      "duration_seconds": 0.001238,
+      "duration_seconds": 0.001334,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_host_restart_does_not_request_reboot",
       "actual_status": "PASS",
-      "duration_seconds": 0.001422,
+      "duration_seconds": 0.001355,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_import_checks_stopped_vhd_without_boot",
       "actual_status": "PASS",
-      "duration_seconds": 0.001655,
+      "duration_seconds": 0.001311,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_legacy_missing_vhd_hash_is_not_silently_adopted",
       "actual_status": "PASS",
-      "duration_seconds": 0.000846,
+      "duration_seconds": 0.000856,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_no_fence_no_guest",
       "actual_status": "PASS",
-      "duration_seconds": 0.001045,
+      "duration_seconds": 0.000727,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_passive_metadata_no_guest",
       "actual_status": "PASS",
-      "duration_seconds": 0.001429,
+      "duration_seconds": 0.000897,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_redaction_failure_not_turned_into_noop_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.001418,
+      "duration_seconds": 0.000862,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_restore_verify_stays_stopped",
       "actual_status": "PASS",
-      "duration_seconds": 0.002228,
+      "duration_seconds": 0.001364,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_site_verify_uses_new_terminal_sweep_not_lifecycle",
       "actual_status": "PASS",
-      "duration_seconds": 0.002332,
+      "duration_seconds": 0.001406,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_snapshot_failure_prevents_completed_observation",
       "actual_status": "PASS",
-      "duration_seconds": 0.002145,
+      "duration_seconds": 0.001232,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_stopped_at_end_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.001928,
+      "duration_seconds": 0.001219,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_tampered_original_evidence_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.001289,
+      "duration_seconds": 0.000887,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_target_lifecycle_does_not_stop_restart_again",
       "actual_status": "PASS",
-      "duration_seconds": 0.002324,
+      "duration_seconds": 0.001196,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.ConcreteNoopTests.test_vhd_changed_rejected_without_boot",
       "actual_status": "PASS",
-      "duration_seconds": 0.000951,
+      "duration_seconds": 0.000755,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_authority_expiring_during_noop_blocks_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.006597,
+      "duration_seconds": 0.006109,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_budget_missing_before_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.006051,
+      "duration_seconds": 0.006062,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_clear_failure_keeps_revalidation_terminal",
       "actual_status": "PASS",
-      "duration_seconds": 0.00902,
+      "duration_seconds": 0.006953,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_failed_postcondition_never_commits_revalidation",
       "actual_status": "PASS",
-      "duration_seconds": 0.008784,
+      "duration_seconds": 0.006804,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_live_reads_have_intent_but_original_progress_is_not_duplicated",
       "actual_status": "PASS",
-      "duration_seconds": 0.010182,
+      "duration_seconds": 0.008501,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_no_fake_completion_dictionary",
       "actual_status": "PASS",
-      "duration_seconds": 0.0068,
+      "duration_seconds": 0.005307,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_noop_failure_retains_separate_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.008273,
+      "duration_seconds": 0.006479,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_noop_native_pending_not_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.006872,
+      "duration_seconds": 0.006273,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_repeat_noop_still_reads_live",
       "actual_status": "PASS",
-      "duration_seconds": 0.014708,
+      "duration_seconds": 0.013029,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_noop.NoopSessionTests.test_wrong_baseline_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.006646,
+      "duration_seconds": 0.005988,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.ConcretePauseTests.test_concrete_pause_requires_both_actual_writer_and_authenticated_revocation",
       "actual_status": "PASS",
-      "duration_seconds": 0.004344,
+      "duration_seconds": 0.003583,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.ConcretePauseTests.test_concrete_pending_reboot_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.003827,
+      "duration_seconds": 0.003468,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.ConcretePauseTests.test_concrete_unrevoked_queue_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.003925,
+      "duration_seconds": 0.003796,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.ConcretePauseTests.test_concrete_writer_unknown_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.00377,
+      "duration_seconds": 0.003296,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.ConcretePauseTests.test_diagnose_records_unknown_not_terminal",
       "actual_status": "PASS",
-      "duration_seconds": 0.004526,
+      "duration_seconds": 0.003315,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_completed_read_removed",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_explicit_reconciliation_preserves_original_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.005173,
+      "duration_seconds": 0.004564,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_missing_started_witness_not_guessed_away",
       "actual_status": "PASS",
-      "duration_seconds": 0.004643,
+      "duration_seconds": 0.004285,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_process_exit_without_tree_terminal_not_proof",
       "actual_status": "PASS",
-      "duration_seconds": 3e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_result_without_intent_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.DetachedReadTests.test_reused_counter_is_ambiguous",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2580,168 +2587,168 @@
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_authority_rollback_before_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.005875,
+      "duration_seconds": 0.004709,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_bad_completion_keeps_original",
       "actual_status": "PASS",
-      "duration_seconds": 0.005088,
+      "duration_seconds": 0.004479,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_cancel_blocks_later_original_apply",
       "actual_status": "PASS",
-      "duration_seconds": 0.009942,
+      "duration_seconds": 0.006341,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_cancel_is_not_rollback_or_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.006474,
+      "duration_seconds": 0.005224,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_cancel_pending_writer_retains",
       "actual_status": "PASS",
-      "duration_seconds": 0.0045,
+      "duration_seconds": 0.004491,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_cancel_unrevoked_queue_retains",
       "actual_status": "PASS",
-      "duration_seconds": 0.005085,
+      "duration_seconds": 0.004588,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_default_reconcile_never_calls_run",
       "actual_status": "PASS",
-      "duration_seconds": 0.006417,
+      "duration_seconds": 0.005924,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_diagnostic_cap_retains_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.005081,
+      "duration_seconds": 0.005064,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_diagnostics_can_report_low_ram_without_repair",
       "actual_status": "PASS",
-      "duration_seconds": 0.004954,
+      "duration_seconds": 0.00489,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_diagnostics_failure_does_not_relabel_original_state",
       "actual_status": "PASS",
-      "duration_seconds": 0.005083,
+      "duration_seconds": 0.004534,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_diagnostics_preserve_exact_original_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.005874,
+      "duration_seconds": 0.005068,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_diagnostics_still_require_output_budget",
       "actual_status": "PASS",
-      "duration_seconds": 0.004493,
+      "duration_seconds": 0.004451,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_expiry_after_observation_prevents_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.005038,
+      "duration_seconds": 0.004501,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_failed_clear_keeps_durable_safe_pause",
       "actual_status": "PASS",
-      "duration_seconds": 0.005934,
+      "duration_seconds": 0.005241,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_fence_changed_under_read_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.004378,
+      "duration_seconds": 0.004517,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_missing_diagnostics_not_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.004556,
+      "duration_seconds": 0.004369,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_old_digest_cannot_cancel_later_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.00485,
+      "duration_seconds": 0.004109,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_pause_releases_without_committing",
       "actual_status": "PASS",
-      "duration_seconds": 0.005658,
+      "duration_seconds": 0.005978,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_safe_pause_refuses_terminal_success_flags",
       "actual_status": "PASS",
-      "duration_seconds": 0.003627,
+      "duration_seconds": 0.003768,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_unknown_mode_not_a_dynamic_command",
       "actual_status": "PASS",
-      "duration_seconds": 0.004249,
+      "duration_seconds": 0.004048,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_recovery.RecoveryIntegrationTests.test_wrong_sid_cannot_read_original_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.00362,
+      "duration_seconds": 0.003293,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.NativeJournalAdmissionTests.test_metadata_noop_also_checks_pending_reads",
       "actual_status": "PASS",
-      "duration_seconds": 0.000201,
+      "duration_seconds": 0.000212,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.NativeJournalAdmissionTests.test_pending_detached_read_without_mutation_fence_blocks_new_actions",
       "actual_status": "PASS",
-      "duration_seconds": 0.00015,
+      "duration_seconds": 0.00014,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.NativeJournalAdmissionTests.test_quiet_metadata_journal_allows_admission",
       "actual_status": "PASS",
-      "duration_seconds": 5.9e-05,
+      "duration_seconds": 5.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2762,28 +2769,28 @@
     {
       "test_id": "test_dev4_source_and_journal.ProgressIdentityTests.test_revalidation_cannot_hide_malformed_step_or_baseline",
       "actual_status": "PASS",
-      "duration_seconds": 0.007476,
+      "duration_seconds": 0.007801,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.SourceTests.test_changed_size_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 8.8e-05,
+      "duration_seconds": 9.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.SourceTests.test_guest_transport_c0_recovery_cannot_launch",
       "actual_status": "PASS",
-      "duration_seconds": 4.2e-05,
+      "duration_seconds": 4.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev4_source_and_journal.SourceTests.test_no_self_trusted_current_hash",
       "actual_status": "PASS",
-      "duration_seconds": 3e-05,
+      "duration_seconds": 3.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2797,7 +2804,7 @@
     {
       "test_id": "test_dev4_source_and_journal.SourceTests.test_path_handle_remains_pinned_during_caller",
       "actual_status": "PASS",
-      "duration_seconds": 4e-05,
+      "duration_seconds": 4.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2811,7 +2818,7 @@
     {
       "test_id": "test_dev4_source_and_journal.SourceTests.test_same_size_replacement_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 3.9e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2832,7 +2839,7 @@
     {
       "test_id": "test_dev5_evidence_cli.NativeJournalBudgetTests.test_quota_before_write",
       "actual_status": "PASS",
-      "duration_seconds": 8.8e-05,
+      "duration_seconds": 8.7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2846,119 +2853,119 @@
     {
       "test_id": "test_dev5_evidence_cli.NativeJournalBudgetTests.test_reservation_used_by_actual_native_journal",
       "actual_status": "PASS",
-      "duration_seconds": 8.1e-05,
+      "duration_seconds": 8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.NativeJournalBudgetTests.test_root_replacement_rejected_before_append",
       "actual_status": "PASS",
-      "duration_seconds": 6.4e-05,
+      "duration_seconds": 6.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PrimaryCLITests.test_binding_requires_capture_reference",
       "actual_status": "PASS",
-      "duration_seconds": 0.025713,
+      "duration_seconds": 0.026006,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PrimaryCLITests.test_fake_backend_flag_not_accepted",
       "actual_status": "PASS",
-      "duration_seconds": 0.024714,
+      "duration_seconds": 0.024599,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PrimaryCLITests.test_invalid_reference_no_native_factory",
       "actual_status": "PASS",
-      "duration_seconds": 0.024233,
+      "duration_seconds": 0.025129,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PrimaryCLITests.test_result_exit_preserved",
       "actual_status": "PASS",
-      "duration_seconds": 0.004132,
+      "duration_seconds": 0.00458,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PrimaryCLITests.test_valid_reference_still_rejects_posix_before_native",
       "actual_status": "PASS",
-      "duration_seconds": 0.284,
+      "duration_seconds": 0.291257,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.ProductionConstructionTests.test_real_driver_runner_and_coordinator_bound_to_same_lower_ports",
       "actual_status": "PASS",
-      "duration_seconds": 0.000498,
+      "duration_seconds": 0.000722,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_changed_approved_path_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 0.001721,
+      "duration_seconds": 0.002022,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_file_without_intent_is_not_owned",
       "actual_status": "PASS",
-      "duration_seconds": 0.001114,
+      "duration_seconds": 0.001096,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_incomplete_remains_incomplete",
       "actual_status": "PASS",
-      "duration_seconds": 0.001423,
+      "duration_seconds": 0.001068,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_intent_without_file_is_not_proof",
       "actual_status": "PASS",
-      "duration_seconds": 0.001392,
+      "duration_seconds": 0.001042,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_readback_error_does_not_clear_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001197,
+      "duration_seconds": 0.001201,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_recovery_reads_existing_final_bytes_no_republish",
       "actual_status": "PASS",
-      "duration_seconds": 0.001296,
+      "duration_seconds": 0.001199,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_tampered_final_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.001054,
+      "duration_seconds": 0.001147,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.PublicationTests.test_tampered_intent_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.001265,
+      "duration_seconds": 0.001114,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_actual_stage_not_envelope_pass",
       "actual_status": "PASS",
-      "duration_seconds": 7.1e-05,
+      "duration_seconds": 6.9e-05,
       "reason": null,
       "native_execution": false
     },
@@ -2979,7 +2986,7 @@
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_changed_descriptor_not_allowed",
       "actual_status": "PASS",
-      "duration_seconds": 2.9e-05,
+      "duration_seconds": 3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3000,21 +3007,21 @@
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_future_c3_not_claimed_as_attempted",
       "actual_status": "PASS",
-      "duration_seconds": 2.8e-05,
+      "duration_seconds": 2.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_inventory_projects_name_only",
       "actual_status": "PASS",
-      "duration_seconds": 3.1e-05,
+      "duration_seconds": 3.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_lab_cannot_gate_site",
       "actual_status": "PASS",
-      "duration_seconds": 3.1e-05,
+      "duration_seconds": 3.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3028,14 +3035,14 @@
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_missing_stage_legacy_requires_migration_not_guess",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_restore_attempt_derived_from_intent",
       "actual_status": "PASS",
-      "duration_seconds": 2.6e-05,
+      "duration_seconds": 2.7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3063,161 +3070,161 @@
     {
       "test_id": "test_dev5_evidence_cli.StageTests.test_unknown_flag_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.4e-05,
+      "duration_seconds": 2.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_active_discovery_not_run_by_capture_entry",
       "actual_status": "PASS",
-      "duration_seconds": 0.001222,
+      "duration_seconds": 0.00136,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_caller_cannot_supply_observed_fields",
       "actual_status": "PASS",
-      "duration_seconds": 0.001857,
+      "duration_seconds": 0.001988,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_capture_does_not_publish_raw_native_data",
       "actual_status": "PASS",
-      "duration_seconds": 0.001124,
+      "duration_seconds": 0.001102,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_capture_future_non_applicable",
       "actual_status": "PASS",
-      "duration_seconds": 0.001984,
+      "duration_seconds": 0.002326,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_capture_material_unstable_not_used",
       "actual_status": "PASS",
-      "duration_seconds": 0.001937,
+      "duration_seconds": 0.002242,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_capture_requires_its_intent",
       "actual_status": "PASS",
-      "duration_seconds": 0.002315,
+      "duration_seconds": 0.001804,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_capture_stale_non_applicable",
       "actual_status": "PASS",
-      "duration_seconds": 0.002056,
+      "duration_seconds": 0.001814,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_changed_body_not_trusted",
       "actual_status": "PASS",
-      "duration_seconds": 0.001739,
+      "duration_seconds": 0.001762,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_expired_permission_prevents_capture_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.00107,
+      "duration_seconds": 0.000978,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_inventory_uses_one_admission",
       "actual_status": "PASS",
-      "duration_seconds": 0.001105,
+      "duration_seconds": 0.001115,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_material_changes_record_unstable_inventory",
       "actual_status": "PASS",
-      "duration_seconds": 0.001004,
+      "duration_seconds": 0.001178,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_no_arbitrary_snapshot_load",
       "actual_status": "PASS",
-      "duration_seconds": 0.001778,
+      "duration_seconds": 0.002092,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_no_registration_created_for_engine",
       "actual_status": "PASS",
-      "duration_seconds": 0.00191,
+      "duration_seconds": 0.002035,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_observation_copies_actual_before_not_desired",
       "actual_status": "PASS",
-      "duration_seconds": 0.001975,
+      "duration_seconds": 0.002272,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_other_capture_selection_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 0.001823,
+      "duration_seconds": 0.002115,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_partial_actuals_non_applicable_not_fake",
       "actual_status": "PASS",
-      "duration_seconds": 0.001939,
+      "duration_seconds": 0.001911,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_production_source_cannot_use_workspace_observation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001336,
+      "duration_seconds": 0.000856,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_profile_not_verified_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.001957,
+      "duration_seconds": 0.001969,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_unresolved_read_during_capture_not_committed",
       "actual_status": "PASS",
-      "duration_seconds": 0.001136,
+      "duration_seconds": 0.001109,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_wrong_host_snapshot_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 0.001763,
+      "duration_seconds": 0.001864,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.C0BindingTests.test_zero_free_space_does_not_create_fake_binding",
       "actual_status": "PASS",
-      "duration_seconds": 0.002514,
+      "duration_seconds": 0.001921,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_apply_dispatches_concrete_factory_symbol",
       "actual_status": "PASS",
-      "duration_seconds": 0.00097,
+      "duration_seconds": 0.001008,
       "reason": null,
       "native_execution": false
     },
@@ -3231,56 +3238,56 @@
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_execution_document_not_self_pinning",
       "actual_status": "PASS",
-      "duration_seconds": 0.000562,
+      "duration_seconds": 0.000641,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_recovery_dispatches_original_request_entry",
       "actual_status": "PASS",
-      "duration_seconds": 0.000863,
+      "duration_seconds": 0.00086,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_support_dispatches_concrete_factory_symbol",
       "actual_status": "PASS",
-      "duration_seconds": 0.001041,
+      "duration_seconds": 0.000798,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_verify_dispatches_concrete_factory_symbol",
       "actual_status": "PASS",
-      "duration_seconds": 0.000922,
+      "duration_seconds": 0.001071,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_observation_binding.FactoryDispatchTests.test_withdrawn_document_not_run",
       "actual_status": "PASS",
-      "duration_seconds": 0.000638,
+      "duration_seconds": 0.001016,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.JournalBudgetTests.test_boolean_budget_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.JournalBudgetTests.test_cannot_spend_more_than_plan_allowance",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 1.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.JournalBudgetTests.test_exact_remaining_plus_recovery_headroom",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3301,7 +3308,7 @@
     {
       "test_id": "test_dev5_read_recovery.JournalBudgetTests.test_insufficient_capacity_blocks_before_write",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3329,14 +3336,14 @@
     {
       "test_id": "test_dev5_read_recovery.NativeReadObserverTests.test_access_error_not_downgraded_to_unavailable",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.NativeReadObserverTests.test_legacy_missing_witness_cannot_invent_process",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3357,315 +3364,315 @@
     {
       "test_id": "test_dev5_read_recovery.NativeReadObserverTests.test_writer_native_path_uses_real_helper_port",
       "actual_status": "PASS",
-      "duration_seconds": 2.5e-05,
+      "duration_seconds": 2.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_all_reads_observed_before_first_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.004913,
+      "duration_seconds": 0.003899,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_authority_rollback_after_observation_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.002152,
+      "duration_seconds": 0.002378,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_budget_failure_before_any_observer",
       "actual_status": "PASS",
-      "duration_seconds": 0.002015,
+      "duration_seconds": 0.002187,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_cancel_blocks_original_plan_restart",
       "actual_status": "PASS",
-      "duration_seconds": 0.002934,
+      "duration_seconds": 0.003172,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_cancel_does_not_mark_step_complete",
       "actual_status": "PASS",
-      "duration_seconds": 0.003076,
+      "duration_seconds": 0.00302,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_cancel_requires_revocation_not_intent",
       "actual_status": "PASS",
-      "duration_seconds": 0.002111,
+      "duration_seconds": 0.002935,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_diagnose_retains_every_read",
       "actual_status": "PASS",
-      "duration_seconds": 0.003886,
+      "duration_seconds": 0.003233,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_diagnostics_under_unknown_writer_keep_read",
       "actual_status": "PASS",
-      "duration_seconds": 0.002639,
+      "duration_seconds": 0.002553,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_existing_mutation_fence_not_adopted",
       "actual_status": "PASS",
-      "duration_seconds": 0.00175,
+      "duration_seconds": 0.00183,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_failed_release_write_retains_original",
       "actual_status": "PASS",
-      "duration_seconds": 0.002496,
+      "duration_seconds": 0.002547,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_missing_witness_release_requires_absence_ref",
       "actual_status": "PASS",
-      "duration_seconds": 0.002244,
+      "duration_seconds": 0.002282,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_no_old_progress_changed",
       "actual_status": "PASS",
-      "duration_seconds": 0.002739,
+      "duration_seconds": 0.004414,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_no_secret_exposed_in_response",
       "actual_status": "PASS",
-      "duration_seconds": 0.002898,
+      "duration_seconds": 0.004824,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_observer_pending_is_not_process_exit",
       "actual_status": "PASS",
-      "duration_seconds": 0.002906,
+      "duration_seconds": 0.002446,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_original_no_fence_read_released_with_one_guard",
       "actual_status": "PASS",
-      "duration_seconds": 0.002754,
+      "duration_seconds": 0.002893,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_other_plan_read_not_in_authorized_set",
       "actual_status": "PASS",
-      "duration_seconds": 0.001963,
+      "duration_seconds": 0.002213,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_pause_does_not_replay",
       "actual_status": "PASS",
-      "duration_seconds": 0.002677,
+      "duration_seconds": 0.003146,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_release_entry_tampering_blocks_replay",
       "actual_status": "PASS",
-      "duration_seconds": 0.002951,
+      "duration_seconds": 0.003658,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_release_evidence_tampering_blocks_replay",
       "actual_status": "PASS",
-      "duration_seconds": 0.003044,
+      "duration_seconds": 0.002893,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_renewed_authority_expiry_blocks_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.003111,
+      "duration_seconds": 0.002269,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_second_recovery_without_reads_not_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.003345,
+      "duration_seconds": 0.0032,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_set_drift_is_not_a_waiver",
       "actual_status": "PASS",
-      "duration_seconds": 0.001964,
+      "duration_seconds": 0.001879,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_witnessless_proof_is_linked_to_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.002641,
+      "duration_seconds": 0.002694,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_wrong_sid_blocks_before_guard",
       "actual_status": "PASS",
-      "duration_seconds": 0.001771,
+      "duration_seconds": 0.001991,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_read_recovery.ReadRecoveryTests.test_wrong_witness_digest_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 0.002066,
+      "duration_seconds": 0.002518,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.PauseIdentityOracleTests.test_exact_safe_pause_and_clear_observed",
       "actual_status": "PASS",
-      "duration_seconds": 0.00651,
+      "duration_seconds": 0.006093,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_another_original_run_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.005432,
+      "duration_seconds": 0.006082,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_another_request_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.005683,
+      "duration_seconds": 0.00669,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_evidence_digest_mismatch_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.006477,
+      "duration_seconds": 0.00582,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.PauseIdentityOracleTests.test_safe_pause_missing_matching_clear_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.005785,
+      "duration_seconds": 0.005962,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_commit_requires_actual_journal_completion",
       "actual_status": "PASS",
-      "duration_seconds": 0.007688,
+      "duration_seconds": 0.008167,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_exit_alone_not_execution",
       "actual_status": "PASS",
-      "duration_seconds": 0.008784,
+      "duration_seconds": 0.007443,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_expected_body_not_actual",
       "actual_status": "PASS",
-      "duration_seconds": 0.007262,
+      "duration_seconds": 0.008034,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_list_imports_without_native_execution",
       "actual_status": "PASS",
-      "duration_seconds": 0.036065,
+      "duration_seconds": 0.033831,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_missing_final_record_fails",
       "actual_status": "PASS",
-      "duration_seconds": 0.009065,
+      "duration_seconds": 0.008095,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_native_suite_is_blocked_on_posix",
       "actual_status": "PASS",
-      "duration_seconds": 0.068534,
+      "duration_seconds": 0.069898,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_noop_must_have_live_revalidation",
       "actual_status": "PASS",
-      "duration_seconds": 0.007972,
+      "duration_seconds": 0.008321,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_parent_gate_flag_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.007946,
+      "duration_seconds": 0.007209,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_qualification_flag_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.007637,
+      "duration_seconds": 0.007739,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_unknown_expectation",
       "actual_status": "PASS",
-      "duration_seconds": 0.008363,
+      "duration_seconds": 0.007079,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_wait_is_not_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.001812,
+      "duration_seconds": 0.001878,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev5_route_harness.RouteHarnessTests.test_wait_requires_its_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001812,
+      "duration_seconds": 0.001802,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_assessment.AssessmentTests.test_authority_bits_cannot_be_true",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 3.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_assessment.AssessmentTests.test_intent_precedes_create_and_success_is_non_authoritative",
       "actual_status": "PASS",
-      "duration_seconds": 4.8e-05,
+      "duration_seconds": 4.7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3679,42 +3686,42 @@
     {
       "test_id": "test_dev6_assessment.AssessmentTests.test_recovery_observes_exact_existing_bytes_without_rewrite",
       "actual_status": "PASS",
-      "duration_seconds": 0.000232,
+      "duration_seconds": 0.000224,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_assessment.AssessmentTests.test_recovery_without_intent_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 8.9e-05,
+      "duration_seconds": 8.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_assessment.AssessmentTests.test_tampered_existing_bytes_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000173,
+      "duration_seconds": 0.000115,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_early_failure.EarlyFailureTests.test_failure_before_first_snapshot_is_journaled_without_fake_e00",
       "actual_status": "PASS",
-      "duration_seconds": 4.2e-05,
+      "duration_seconds": 3.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_early_failure.EarlyFailureTests.test_no_admission_or_fence_means_no_capture",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_prior_evidence.PriorEvidenceTests.test_duplicate_same_step_conflicting_evidence_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000107,
+      "duration_seconds": 9.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3728,14 +3735,14 @@
     {
       "test_id": "test_dev6_prior_evidence.PriorEvidenceTests.test_prior_guest_selected_from_current_or_exact_history",
       "actual_status": "PASS",
-      "duration_seconds": 5.2e-05,
+      "duration_seconds": 5.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev6_prior_evidence.PriorEvidenceTests.test_tampered_evidence_digest_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 3.2e-05,
+      "duration_seconds": 3.3e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3749,7 +3756,7 @@
     {
       "test_id": "test_dev7_executable_trust.PolicyTests.test_dependency_kind_allowed_but_only_exact_path",
       "actual_status": "PASS",
-      "duration_seconds": 6.5e-05,
+      "duration_seconds": 6.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3763,42 +3770,42 @@
     {
       "test_id": "test_dev7_executable_trust.PolicyTests.test_exact_policy_pins_bound_bytes",
       "actual_status": "PASS",
-      "duration_seconds": 4.1e-05,
+      "duration_seconds": 4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev7_executable_trust.PolicyTests.test_scope_and_contract_fail_closed",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev7_executable_trust.PolicyTests.test_unlisted_binary_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 3.7e-05,
+      "duration_seconds": 3.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev7_executable_trust.SupervisorTrustTests.test_production_supervisor_rejects_before_process_without_trust",
       "actual_status": "PASS",
-      "duration_seconds": 0.00027,
+      "duration_seconds": 0.000255,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev7_executable_trust.SupervisorTrustTests.test_witness_binds_executable_policy_and_hash",
       "actual_status": "PASS",
-      "duration_seconds": 0.00095,
+      "duration_seconds": 0.001279,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.LifecyclePolicyTests.test_exit_zero_with_observed_pending_reboot_becomes_operator_wait",
       "actual_status": "PASS",
-      "duration_seconds": 3e-05,
+      "duration_seconds": 7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -3812,133 +3819,133 @@
     {
       "test_id": "test_dev8_lifecycle.LifecyclePolicyTests.test_only_operator_wait_fence_can_relabel_owner_verification",
       "actual_status": "PASS",
-      "duration_seconds": 1.1e-05,
+      "duration_seconds": 1.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.LifecyclePolicyTests.test_reboot_boundary_requires_new_boot_and_clear_pending_state",
       "actual_status": "PASS",
-      "duration_seconds": 3.9e-05,
+      "duration_seconds": 7.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.NativeReconcileBoundaryTests.test_owner_wait_from_oobe_does_not_invent_reboot_requirement",
       "actual_status": "PASS",
-      "duration_seconds": 0.000791,
+      "duration_seconds": 0.001059,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.NativeReconcileBoundaryTests.test_owner_wait_from_reboot_preserves_boot_boundary_requirement",
       "actual_status": "PASS",
-      "duration_seconds": 0.000792,
+      "duration_seconds": 0.000954,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.NativeReconcileBoundaryTests.test_reconcile_waiting_reboot_binds_actual_boot_boundary",
       "actual_status": "PASS",
-      "duration_seconds": 0.000649,
+      "duration_seconds": 0.000728,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.NativeRunLifecycleTests.test_native_driver_checks_pending_reboot_after_successful_c3_process",
       "actual_status": "PASS",
-      "duration_seconds": 0.000618,
+      "duration_seconds": 0.000649,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.NativeRunLifecycleTests.test_native_driver_does_not_hide_existing_3010_wait",
       "actual_status": "PASS",
-      "duration_seconds": 0.000601,
+      "duration_seconds": 0.000756,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev8_lifecycle.RecoveryOwnerWaitTests.test_missing_owner_postcheck_relabels_only_existing_wait_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.008041,
+      "duration_seconds": 0.007431,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_actor_drift_after_observation_blocks_relabel",
       "actual_status": "PASS",
-      "duration_seconds": 0.008836,
+      "duration_seconds": 0.007811,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_expired_authority_after_observation_blocks_relabel",
       "actual_status": "PASS",
-      "duration_seconds": 0.008237,
+      "duration_seconds": 0.006211,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_generation_rollback_after_observation_blocks_relabel",
       "actual_status": "PASS",
-      "duration_seconds": 0.006442,
+      "duration_seconds": 0.00671,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_owner_wait_relabel_reauthorizes_after_observation",
       "actual_status": "PASS",
-      "duration_seconds": 0.007538,
+      "duration_seconds": 0.007849,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_recovery_request_drift_after_observation_blocks_relabel",
       "actual_status": "PASS",
-      "duration_seconds": 0.007787,
+      "duration_seconds": 0.006649,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.WaitPersistenceTests.test_session_persists_safe_pending_reboot_cause",
       "actual_status": "PASS",
-      "duration_seconds": 0.002583,
+      "duration_seconds": 0.002536,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_binds_previous_fence_state",
       "actual_status": "PASS",
-      "duration_seconds": 0.001209,
+      "duration_seconds": 0.001279,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_rejects_oversized_payload_before_persistence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001276,
+      "duration_seconds": 0.001378,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_rejects_unknown_sensitive_shape",
       "actual_status": "PASS",
-      "duration_seconds": 0.001476,
+      "duration_seconds": 0.001619,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_actual_fixture_execution_with_journal",
       "actual_status": "PASS",
-      "duration_seconds": 0.001683,
+      "duration_seconds": 0.001245,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_authorization_before_any_backend_action",
       "actual_status": "PASS",
-      "duration_seconds": 0.000662,
+      "duration_seconds": 0.00068,
       "reason": null,
       "native_execution": false
     },
@@ -3952,63 +3959,63 @@
     {
       "test_id": "test_engine.EngineTests.test_new_run_blocked_on_uncertainty",
       "actual_status": "PASS",
-      "duration_seconds": 0.001714,
+      "duration_seconds": 0.001524,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_noop_does_not_invoke_mutation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001058,
+      "duration_seconds": 0.001092,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_pending_oobe_not_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.001113,
+      "duration_seconds": 0.001167,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_scanner_exception_blocks_publication",
       "actual_status": "PASS",
-      "duration_seconds": 9e-05,
+      "duration_seconds": 9.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_timeout_preserves_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001179,
+      "duration_seconds": 0.001152,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_unknown_native_exit_never_zero",
       "actual_status": "PASS",
-      "duration_seconds": 0.001235,
+      "duration_seconds": 0.001103,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_verify_cannot_dispatch_export",
       "actual_status": "PASS",
-      "duration_seconds": 0.000646,
+      "duration_seconds": 0.00064,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_engine.EngineTests.test_wrong_before_rejected_before_mutation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001009,
+      "duration_seconds": 0.000995,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_cap_equal_not_truncated_but_requires_eof",
       "actual_status": "PASS",
-      "duration_seconds": 2.5e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4022,63 +4029,63 @@
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_explicit_executable",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 3.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_large_stdin",
       "actual_status": "PASS",
-      "duration_seconds": 0.000292,
+      "duration_seconds": 0.00011,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_newline_argument",
       "actual_status": "PASS",
-      "duration_seconds": 7.5e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_no_native_api_on_workspace",
       "actual_status": "PASS",
-      "duration_seconds": 3.3e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_null_argument",
       "actual_status": "PASS",
-      "duration_seconds": 3.6e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_search_path_forbidden",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.CommandCaptureTests.test_unbounded_timeout",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_cannot_replace_run",
       "actual_status": "PASS",
-      "duration_seconds": 0.000136,
+      "duration_seconds": 0.000119,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_duplicate_genesis",
       "actual_status": "PASS",
-      "duration_seconds": 7.4e-05,
+      "duration_seconds": 5.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4092,28 +4099,28 @@
     {
       "test_id": "test_native_foundations.JournalTests.test_forged_frame",
       "actual_status": "PASS",
-      "duration_seconds": 3.5e-05,
+      "duration_seconds": 3.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_intent_recovered",
       "actual_status": "PASS",
-      "duration_seconds": 5.7e-05,
+      "duration_seconds": 5.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_nonterminal_clear",
       "actual_status": "PASS",
-      "duration_seconds": 8e-05,
+      "duration_seconds": 7.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_terminal_clear",
       "actual_status": "PASS",
-      "duration_seconds": 8.3e-05,
+      "duration_seconds": 7.6e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4127,119 +4134,119 @@
     {
       "test_id": "test_native_foundations.JournalTests.test_truncated_newline",
       "actual_status": "PASS",
-      "duration_seconds": 4e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_uncertain_never_expires",
       "actual_status": "PASS",
-      "duration_seconds": 0.00012,
+      "duration_seconds": 5.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_valid_genesis_no_fence",
       "actual_status": "PASS",
-      "duration_seconds": 8.6e-05,
+      "duration_seconds": 2.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.JournalTests.test_wrong_release_digest",
       "actual_status": "PASS",
-      "duration_seconds": 0.000189,
+      "duration_seconds": 7.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_duplicate_record",
       "actual_status": "PASS",
-      "duration_seconds": 6.3e-05,
+      "duration_seconds": 2.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_escape_ref",
       "actual_status": "PASS",
-      "duration_seconds": 4.3e-05,
+      "duration_seconds": 3.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_handle_prefix",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_logical_ref",
       "actual_status": "PASS",
-      "duration_seconds": 4.4e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_missing_record_not_whole_file",
       "actual_status": "PASS",
-      "duration_seconds": 4.3e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_multiple_hash_ref",
       "actual_status": "PASS",
-      "duration_seconds": 3.6e-05,
+      "duration_seconds": 1.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_same_path_casefold",
       "actual_status": "PASS",
-      "duration_seconds": 2.9e-05,
+      "duration_seconds": 1.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_unc_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.PathRecordTests.test_valid_record",
       "actual_status": "PASS",
-      "duration_seconds": 6.5e-05,
+      "duration_seconds": 1.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_complete_observation_not_asserted_sudo",
       "actual_status": "PASS",
-      "duration_seconds": 0.000182,
+      "duration_seconds": 0.000181,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_duplicate_casefold_name",
       "actual_status": "PASS",
-      "duration_seconds": 0.000289,
+      "duration_seconds": 0.000245,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_duplicate_field",
       "actual_status": "PASS",
-      "duration_seconds": 4.9e-05,
+      "duration_seconds": 4.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_host_no_policy_bypass",
       "actual_status": "PASS",
-      "duration_seconds": 4.9e-05,
+      "duration_seconds": 4.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4253,14 +4260,14 @@
     {
       "test_id": "test_native_foundations.ProbeTests.test_incomplete_frame",
       "actual_status": "PASS",
-      "duration_seconds": 2.1e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_invalid_number",
       "actual_status": "PASS",
-      "duration_seconds": 3.4e-05,
+      "duration_seconds": 3.8e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4274,105 +4281,105 @@
     {
       "test_id": "test_native_foundations.ProbeTests.test_missing_completed",
       "actual_status": "PASS",
-      "duration_seconds": 3.1e-05,
+      "duration_seconds": 3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_number_overflow",
       "actual_status": "PASS",
-      "duration_seconds": 4.1e-05,
+      "duration_seconds": 3.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_root_probe_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 1.8e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_static_sh_data_boundaries",
       "actual_status": "PASS",
-      "duration_seconds": 0.000104,
+      "duration_seconds": 5.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_unknown_field",
       "actual_status": "PASS",
-      "duration_seconds": 8.9e-05,
+      "duration_seconds": 3.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_utf16_wsl_names",
       "actual_status": "PASS",
-      "duration_seconds": 0.000222,
+      "duration_seconds": 0.000126,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ProbeTests.test_utf8_wsl_names",
       "actual_status": "PASS",
-      "duration_seconds": 5.1e-05,
+      "duration_seconds": 1.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ReconciliationTests.test_empty_history_no_progress",
       "actual_status": "PASS",
-      "duration_seconds": 0.002313,
+      "duration_seconds": 0.001553,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ReconciliationTests.test_new_approval_original_fence_no_hash_rewrite",
       "actual_status": "PASS",
-      "duration_seconds": 0.00282,
+      "duration_seconds": 0.0016,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ReconciliationTests.test_unrelated_action",
       "actual_status": "PASS",
-      "duration_seconds": 0.002739,
+      "duration_seconds": 0.001495,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ReconciliationTests.test_wrong_actor",
       "actual_status": "PASS",
-      "duration_seconds": 0.001376,
+      "duration_seconds": 0.001863,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.ReconciliationTests.test_wrong_original_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001477,
+      "duration_seconds": 0.001514,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.SecurityTests.test_absent_dacl",
       "actual_status": "PASS",
-      "duration_seconds": 3.8e-05,
+      "duration_seconds": 3.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.SecurityTests.test_delete_child_right",
       "actual_status": "PASS",
-      "duration_seconds": 9.7e-05,
+      "duration_seconds": 8.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.SecurityTests.test_deny_ace_does_not_grant",
       "actual_status": "PASS",
-      "duration_seconds": 1.8e-05,
+      "duration_seconds": 2.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4407,7 +4414,7 @@
     {
       "test_id": "test_native_foundations.SecurityTests.test_registry_set_value_denied",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.7e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4421,14 +4428,14 @@
     {
       "test_id": "test_native_foundations.SecurityTests.test_sid_injection",
       "actual_status": "PASS",
-      "duration_seconds": 1.3e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.SecurityTests.test_unsupported_object_ace",
       "actual_status": "PASS",
-      "duration_seconds": 1.6e-05,
+      "duration_seconds": 1.5e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4442,14 +4449,14 @@
     {
       "test_id": "test_native_foundations.SecurityTests.test_valid_operator",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.SecurityTests.test_world_reader_protected",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4463,98 +4470,98 @@
     {
       "test_id": "test_native_foundations.SecurityTests.test_world_writer",
       "actual_status": "PASS",
-      "duration_seconds": 1.5e-05,
+      "duration_seconds": 1.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_actual_review_normalization",
       "actual_status": "PASS",
-      "duration_seconds": 0.000323,
+      "duration_seconds": 0.000264,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_ambiguous_authority",
       "actual_status": "PASS",
-      "duration_seconds": 8.4e-05,
+      "duration_seconds": 7.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_forged_contract_hash",
       "actual_status": "PASS",
-      "duration_seconds": 0.000122,
+      "duration_seconds": 6.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_modified_blob",
       "actual_status": "PASS",
-      "duration_seconds": 6.2e-05,
+      "duration_seconds": 4.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_native_scripts_in_source_digest",
       "actual_status": "PASS",
-      "duration_seconds": 0.003739,
+      "duration_seconds": 0.003781,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_review_fail_not_normalized",
       "actual_status": "PASS",
-      "duration_seconds": 5.6e-05,
+      "duration_seconds": 6.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_role_substitution",
       "actual_status": "PASS",
-      "duration_seconds": 6.4e-05,
+      "duration_seconds": 6.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_unpinned_document",
       "actual_status": "PASS",
-      "duration_seconds": 4.3e-05,
+      "duration_seconds": 4.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_foundations.TrustTests.test_withdrawal",
       "actual_status": "PASS",
-      "duration_seconds": 4e-05,
+      "duration_seconds": 3.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.GuardTests.test_abandoned_not_automatic_journal_clear",
       "actual_status": "PASS",
-      "duration_seconds": 4.6e-05,
+      "duration_seconds": 4.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.GuardTests.test_busy_single_try",
       "actual_status": "PASS",
-      "duration_seconds": 2.4e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.GuardTests.test_fixed_cross_instance_name",
       "actual_status": "PASS",
-      "duration_seconds": 2.4e-05,
+      "duration_seconds": 2.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.GuardTests.test_reentrant_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4568,49 +4575,49 @@
     {
       "test_id": "test_native_supervision.JournalAdapterTests.test_initialized_empty_fence",
       "actual_status": "PASS",
-      "duration_seconds": 9.7e-05,
+      "duration_seconds": 9.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.JournalAdapterTests.test_set_reload_clear_is_append_only",
       "actual_status": "PASS",
-      "duration_seconds": 0.000433,
+      "duration_seconds": 0.000372,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.JournalAdapterTests.test_unheld_guard_blocks_io",
       "actual_status": "PASS",
-      "duration_seconds": 7.5e-05,
+      "duration_seconds": 5.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.JournalAdapterTests.test_wrong_host_blocks_replay",
       "actual_status": "PASS",
-      "duration_seconds": 8.2e-05,
+      "duration_seconds": 6.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.MetadataIdempotenceTests.test_corrupt_log_not_reinitialized",
       "actual_status": "PASS",
-      "duration_seconds": 7.4e-05,
+      "duration_seconds": 7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.MetadataIdempotenceTests.test_existing_fence_blocks_noop",
       "actual_status": "PASS",
-      "duration_seconds": 0.000127,
+      "duration_seconds": 0.000121,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.MetadataIdempotenceTests.test_first_initialization",
       "actual_status": "PASS",
-      "duration_seconds": 4.5e-05,
+      "duration_seconds": 4.4e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4624,35 +4631,35 @@
     {
       "test_id": "test_native_supervision.MetadataIdempotenceTests.test_partial_root_not_reinitialized",
       "actual_status": "PASS",
-      "duration_seconds": 2.8e-05,
+      "duration_seconds": 2.6e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.MetadataIdempotenceTests.test_rerun_does_not_write",
       "actual_status": "PASS",
-      "duration_seconds": 7.4e-05,
+      "duration_seconds": 7.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_all_pipeline_handles_closed_on_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.001235,
+      "duration_seconds": 0.000906,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_environment_injection_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 6.9e-05,
+      "duration_seconds": 6.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_job_assignment_failure_never_resumes",
       "actual_status": "PASS",
-      "duration_seconds": 0.000183,
+      "duration_seconds": 0.00018,
       "reason": null,
       "native_execution": false
     },
@@ -4666,77 +4673,77 @@
     {
       "test_id": "test_native_supervision.SupervisorTests.test_live_child_not_terminal",
       "actual_status": "PASS",
-      "duration_seconds": 0.000625,
+      "duration_seconds": 0.000637,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_suspended_assigned_witnessed_before_resume",
       "actual_status": "PASS",
-      "duration_seconds": 0.000996,
+      "duration_seconds": 0.000803,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_timeout_does_not_terminate_live_mutation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001256,
+      "duration_seconds": 0.000866,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_native_supervision.SupervisorTests.test_unexpected_wait_failure_not_kill",
       "actual_status": "PASS",
-      "duration_seconds": 0.0009,
+      "duration_seconds": 0.000982,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.HarnessBoundaryTests.test_list_not_execution",
       "actual_status": "PASS",
-      "duration_seconds": 0.024859,
+      "duration_seconds": 0.023066,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.HarnessBoundaryTests.test_native_case_blocked_before_windows_api",
       "actual_status": "PASS",
-      "duration_seconds": 0.026388,
+      "duration_seconds": 0.023566,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_collector_budget_caps_attempts",
       "actual_status": "PASS",
-      "duration_seconds": 0.000106,
+      "duration_seconds": 0.000108,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_exact_redirect_allowed",
       "actual_status": "PASS",
-      "duration_seconds": 0.000158,
+      "duration_seconds": 3.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_https_required",
       "actual_status": "PASS",
-      "duration_seconds": 4.4e-05,
+      "duration_seconds": 3.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_invalid_port",
       "actual_status": "PASS",
-      "duration_seconds": 2.8e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_loop_blocked",
       "actual_status": "PASS",
-      "duration_seconds": 3.4e-05,
+      "duration_seconds": 3.1e-05,
       "reason": null,
       "native_execution": false
     },
@@ -4750,175 +4757,175 @@
     {
       "test_id": "test_network_snapshot.NetworkTests.test_no_automatic_redirect",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_no_non443_port",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 2.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_no_userinfo",
       "actual_status": "PASS",
-      "duration_seconds": 1.9e-05,
+      "duration_seconds": 2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_non_network_error_not_retried",
       "actual_status": "PASS",
-      "duration_seconds": 2e-05,
+      "duration_seconds": 1.9e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_proxy_not_silently_bypassed",
       "actual_status": "PASS",
-      "duration_seconds": 1.4e-05,
+      "duration_seconds": 1.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_query_not_echoed",
       "actual_status": "PASS",
-      "duration_seconds": 5e-05,
+      "duration_seconds": 2.5e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.NetworkTests.test_retry_two_then_success",
       "actual_status": "PASS",
-      "duration_seconds": 4.3e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_incomplete_marked_filename",
       "actual_status": "PASS",
-      "duration_seconds": 0.000587,
+      "duration_seconds": 0.000421,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_incomplete_suffix_required",
       "actual_status": "PASS",
-      "duration_seconds": 0.000133,
+      "duration_seconds": 0.00012,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_output_failure_maps18",
       "actual_status": "PASS",
-      "duration_seconds": 0.000462,
+      "duration_seconds": 0.000366,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_privacy_does_not_write",
       "actual_status": "PASS",
-      "duration_seconds": 4.1e-05,
+      "duration_seconds": 3.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_safe_publish",
       "actual_status": "PASS",
-      "duration_seconds": 0.000372,
+      "duration_seconds": 0.000315,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.PublisherTests.test_wrong_authority_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.000196,
+      "duration_seconds": 0.000185,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_nested_encoded_data_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 6.8e-05,
+      "duration_seconds": 7.3e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_raw_sid_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 5.9e-05,
+      "duration_seconds": 4.8e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_raw_url_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 0.000104,
+      "duration_seconds": 0.000107,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_real_scan_bundle_component",
       "actual_status": "PASS",
-      "duration_seconds": 0.000271,
+      "duration_seconds": 0.000187,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_redacted_message_allowed",
       "actual_status": "PASS",
-      "duration_seconds": 8.4e-05,
+      "duration_seconds": 6.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_safe_structure",
       "actual_status": "PASS",
-      "duration_seconds": 5.3e-05,
+      "duration_seconds": 4.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_unknown_field_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 4.4e-05,
+      "duration_seconds": 4.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_network_snapshot.ScanTests.test_unparsed_bytes_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.6e-05,
+      "duration_seconds": 2.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_authority_expiry_before_second_step",
       "actual_status": "PASS",
-      "duration_seconds": 0.003459,
+      "duration_seconds": 0.003079,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_authority_generation_cannot_roll_back",
       "actual_status": "PASS",
-      "duration_seconds": 0.003016,
+      "duration_seconds": 0.003379,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_clear_failure_keeps_terminal_record_for_reconciliation",
       "actual_status": "PASS",
-      "duration_seconds": 0.003064,
+      "duration_seconds": 0.0029,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_committed_noop_revalidates_final_without_actuation",
       "actual_status": "PASS",
-      "duration_seconds": 0.01275,
+      "duration_seconds": 0.012312,
       "reason": null,
       "native_execution": false
     },
@@ -4939,532 +4946,532 @@
     {
       "test_id": "test_session_integration.SessionTests.test_final_assertions_required",
       "actual_status": "PASS",
-      "duration_seconds": 0.009149,
+      "duration_seconds": 0.008379,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_final_journal_failure_not_success",
       "actual_status": "PASS",
-      "duration_seconds": 0.009113,
+      "duration_seconds": 0.008847,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_full_create_one_guard_three_observed_commits",
       "actual_status": "PASS",
-      "duration_seconds": 0.010104,
+      "duration_seconds": 0.00976,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_interrupt_keeps_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.002583,
+      "duration_seconds": 0.002473,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_missing_qualification_before_guard_or_run",
       "actual_status": "PASS",
-      "duration_seconds": 0.000699,
+      "duration_seconds": 0.000672,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_new_run_does_not_read_actively_on_unresolved_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.002881,
+      "duration_seconds": 0.003088,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_noop_rejects_final_drift",
       "actual_status": "PASS",
-      "duration_seconds": 0.011144,
+      "duration_seconds": 0.010952,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_observed_postcondition_failure_never_committed",
       "actual_status": "PASS",
-      "duration_seconds": 0.00262,
+      "duration_seconds": 0.002583,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_precondition_no_intent",
       "actual_status": "PASS",
-      "duration_seconds": 0.002073,
+      "duration_seconds": 0.002055,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_process_witness_mismatch",
       "actual_status": "PASS",
-      "duration_seconds": 0.002493,
+      "duration_seconds": 0.002746,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_production_driver_cannot_return_workspace_observation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001605,
+      "duration_seconds": 0.002048,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_refresh_occurs_between_every_step",
       "actual_status": "PASS",
-      "duration_seconds": 0.008825,
+      "duration_seconds": 0.008867,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_request_only_snapshot_not_accepted_under_guard",
       "actual_status": "PASS",
-      "duration_seconds": 0.002247,
+      "duration_seconds": 0.001519,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_service_pending_blocks_even_after_successful_process",
       "actual_status": "PASS",
-      "duration_seconds": 0.002859,
+      "duration_seconds": 0.002898,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_timeout_keeps_original_fence_and_no_commit",
       "actual_status": "PASS",
-      "duration_seconds": 0.002699,
+      "duration_seconds": 0.002906,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_verify_cannot_actuate_create",
       "actual_status": "PASS",
-      "duration_seconds": 0.00066,
+      "duration_seconds": 0.00114,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_waiting_oobe_retains_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.002715,
+      "duration_seconds": 0.002498,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_waiting_owner_does_not_call_observer",
       "actual_status": "PASS",
-      "duration_seconds": 0.00315,
+      "duration_seconds": 0.002613,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_waiting_reboot_retains_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.002414,
+      "duration_seconds": 0.002494,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_wrong_before_no_intent",
       "actual_status": "PASS",
-      "duration_seconds": 0.001618,
+      "duration_seconds": 0.001571,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_session_integration.SessionTests.test_wrong_principal_refresh_stops_before_step",
       "actual_status": "PASS",
-      "duration_seconds": 0.001198,
+      "duration_seconds": 0.001143,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_awaiting_reboot_fence_retained",
       "actual_status": "PASS",
-      "duration_seconds": 0.00105,
+      "duration_seconds": 0.001194,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_busy_no_other_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.000964,
+      "duration_seconds": 0.001078,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_explicit_reconciliation_clears_after_journal",
       "actual_status": "PASS",
-      "duration_seconds": 0.001145,
+      "duration_seconds": 0.00104,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_journal_failure_preserves_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.001085,
+      "duration_seconds": 0.001163,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_native_witness_required",
       "actual_status": "PASS",
-      "duration_seconds": 0.001035,
+      "duration_seconds": 0.001141,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_no_age_based_unlock",
       "actual_status": "PASS",
-      "duration_seconds": 0.000995,
+      "duration_seconds": 0.001454,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_no_same_run_nested_acquire",
       "actual_status": "PASS",
-      "duration_seconds": 0.001059,
+      "duration_seconds": 0.001062,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_other_owner_cannot_reconcile",
       "actual_status": "PASS",
-      "duration_seconds": 0.001056,
+      "duration_seconds": 0.001025,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_reconcile_still_needs_terminal_observation",
       "actual_status": "PASS",
-      "duration_seconds": 0.001064,
+      "duration_seconds": 0.001085,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_terminal_append_failure_does_not_clear",
       "actual_status": "PASS",
-      "duration_seconds": 0.001329,
+      "duration_seconds": 0.001045,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_timeout_fence_survives_os_lock_release",
       "actual_status": "PASS",
-      "duration_seconds": 0.001471,
+      "duration_seconds": 0.001123,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.AdmissionTests.test_wrong_native_witness_not_terminal",
       "actual_status": "PASS",
-      "duration_seconds": 0.001029,
+      "duration_seconds": 0.001017,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_native_apply_blocked_on_workspace",
       "actual_status": "PASS",
-      "duration_seconds": 0.028872,
+      "duration_seconds": 0.025352,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_native_preflight_blocked_on_workspace",
       "actual_status": "PASS",
-      "duration_seconds": 0.053945,
+      "duration_seconds": 0.054387,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_native_support_bundle_blocked_on_workspace",
       "actual_status": "PASS",
-      "duration_seconds": 0.024306,
+      "duration_seconds": 0.025647,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_native_verify_blocked_on_workspace",
       "actual_status": "PASS",
-      "duration_seconds": 0.02576,
+      "duration_seconds": 0.025092,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_recovery_notes_no_mutation",
       "actual_status": "PASS",
-      "duration_seconds": 0.025026,
+      "duration_seconds": 0.024636,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CLITests.test_workspace_preflight_not_host",
       "actual_status": "PASS",
-      "duration_seconds": 0.026089,
+      "duration_seconds": 0.025197,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_create_literals_unicode_spaces",
       "actual_status": "PASS",
-      "duration_seconds": 0.000103,
+      "duration_seconds": 0.000285,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_feature_allowlist",
       "actual_status": "PASS",
-      "duration_seconds": 3.2e-05,
+      "duration_seconds": 6.2e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_feature_no_restart",
       "actual_status": "PASS",
-      "duration_seconds": 2.3e-05,
+      "duration_seconds": 4.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_import_explicit_v2",
       "actual_status": "PASS",
-      "duration_seconds": 4.3e-05,
+      "duration_seconds": 7.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_no_unregister_compiler",
       "actual_status": "PASS",
-      "duration_seconds": 2.7e-05,
+      "duration_seconds": 5.1e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_runtime_no_restart",
       "actual_status": "PASS",
-      "duration_seconds": 2.6e-05,
+      "duration_seconds": 4.7e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.CommandTests.test_target_control_rejected",
       "actual_status": "PASS",
-      "duration_seconds": 2.2e-05,
+      "duration_seconds": 4.4e-05,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_aggregate_cap",
       "actual_status": "PASS",
-      "duration_seconds": 0.000555,
+      "duration_seconds": 0.000753,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_at_collector_cap_with_eof",
       "actual_status": "PASS",
-      "duration_seconds": 0.00084,
+      "duration_seconds": 0.000753,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_at_collector_cap_without_eof",
       "actual_status": "PASS",
-      "duration_seconds": 0.000892,
+      "duration_seconds": 0.000668,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_complete_inventory_not_gate",
       "actual_status": "PASS",
-      "duration_seconds": 0.001402,
+      "duration_seconds": 0.001099,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_document_records_cannot_be_site_gate",
       "actual_status": "PASS",
-      "duration_seconds": 0.000912,
+      "duration_seconds": 0.000908,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_eof_missing_even_below_cap",
       "actual_status": "PASS",
-      "duration_seconds": 0.000796,
+      "duration_seconds": 0.000664,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_future_guest_inventory_only",
       "actual_status": "PASS",
-      "duration_seconds": 0.000747,
+      "duration_seconds": 0.000831,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_gate_component_only_not_host_ready",
       "actual_status": "PASS",
-      "duration_seconds": 0.001278,
+      "duration_seconds": 0.001373,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_gate_no_e17_recursion",
       "actual_status": "PASS",
-      "duration_seconds": 0.001881,
+      "duration_seconds": 0.001643,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_hash_mismatch",
       "actual_status": "PASS",
-      "duration_seconds": 0.000445,
+      "duration_seconds": 0.000437,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_known_nested_raw_redacted",
       "actual_status": "PASS",
-      "duration_seconds": 0.000864,
+      "duration_seconds": 0.000883,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_mandatory_missing",
       "actual_status": "PASS",
-      "duration_seconds": 0.00064,
+      "duration_seconds": 0.000752,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_mandatory_over_cap",
       "actual_status": "PASS",
-      "duration_seconds": 0.000703,
+      "duration_seconds": 0.000679,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_mandatory_timeout",
       "actual_status": "PASS",
-      "duration_seconds": 0.000725,
+      "duration_seconds": 0.000651,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_member_hash_tamper",
       "actual_status": "PASS",
-      "duration_seconds": 0.001374,
+      "duration_seconds": 0.001354,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_no_auto_scope_change",
       "actual_status": "PASS",
-      "duration_seconds": 0.000641,
+      "duration_seconds": 0.000666,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_no_required_to_optional",
       "actual_status": "PASS",
-      "duration_seconds": 0.000149,
+      "duration_seconds": 0.000201,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_optional_missing",
       "actual_status": "PASS",
-      "duration_seconds": 0.000641,
+      "duration_seconds": 0.000769,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_optional_timeout",
       "actual_status": "PASS",
-      "duration_seconds": 0.000683,
+      "duration_seconds": 0.001081,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_privacy_beats_missing_and_optional",
       "actual_status": "PASS",
-      "duration_seconds": 0.000389,
+      "duration_seconds": 0.000454,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_protected_access_unavailable",
       "actual_status": "PASS",
-      "duration_seconds": 0.000641,
+      "duration_seconds": 0.000677,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_scanner_unavailable_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.000394,
+      "duration_seconds": 0.000396,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.EvidenceTests.test_unknown_nested_key_blocks_all_publication",
       "actual_status": "PASS",
-      "duration_seconds": 0.000484,
+      "duration_seconds": 0.0004,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_cannot_clear_uncertain",
       "actual_status": "PASS",
-      "duration_seconds": 0.006779,
+      "duration_seconds": 0.006239,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_fence_tamper",
       "actual_status": "PASS",
-      "duration_seconds": 0.00558,
+      "duration_seconds": 0.005397,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_hash_chain_reload",
       "actual_status": "PASS",
-      "duration_seconds": 0.005974,
+      "duration_seconds": 0.005901,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_persist_reload_fence",
       "actual_status": "PASS",
-      "duration_seconds": 0.005523,
+      "duration_seconds": 0.005125,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_symlink_fence_rejected_before_read",
       "actual_status": "PASS",
-      "duration_seconds": 0.00056,
+      "duration_seconds": 0.000899,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_terminal_archive_retained",
       "actual_status": "PASS",
-      "duration_seconds": 0.014367,
+      "duration_seconds": 0.014461,
       "reason": null,
       "native_execution": false
     },
     {
       "test_id": "test_state_evidence.JournalTests.test_truncated_journal_blocks",
       "actual_status": "PASS",
-      "duration_seconds": 0.003111,
+      "duration_seconds": 0.003388,
       "reason": null,
       "native_execution": false
     }

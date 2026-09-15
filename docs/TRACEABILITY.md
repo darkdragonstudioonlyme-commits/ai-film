@@ -1,3 +1,9 @@
+# Traceability — dev11 future PRE_C3 ordering fix
+
+Added one negative author case proving a future-dated PRE_C3 event is rejected with `PRE_C3_FUTURE`. Final author regression: **711 PASS**, static **94 PASS**.
+
+---
+
 # Traceability — dev10 prior/nested evidence increment
 
 | New author test module | Cases | Parent specifications | Scope |

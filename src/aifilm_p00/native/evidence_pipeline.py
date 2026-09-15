@@ -124,15 +124,16 @@ def _pre_c3_plan_digests(plan,result):
     return tuple(out)
 
 
-def _pre_c3_events(rows,plan,result):
-    """Return validated PRE_C3 journal events for exact current/history C3 plans."""
+def _pre_c3_events(rows,plan,result,not_after):
+    """Return validated PRE_C3 journal events no later than this capture."""
     allowed=set(_pre_c3_plan_digests(plan,result));out=[];seen={};semantic=plan.get('semantic',{})
     for row in rows:
         event=row.get('event',{})
         if event.get('kind')!='PRE_C3_PROOF_OBSERVED' or event.get('plan_digest') not in allowed:continue
         required={'kind','plan_digest','scope','proof_ref','checked_at','boundary','claim_digest'}
         require(required<=set(event),15,'PRE_C3_EVENT_SCHEMA')
-        hash_value(event['plan_digest']);hash_value(event['proof_ref']);hash_value(event['claim_digest']);instant(event['checked_at'])
+        hash_value(event['plan_digest']);hash_value(event['proof_ref']);hash_value(event['claim_digest'])
+        checked=instant(event['checked_at']);require(checked<=not_after,16,'PRE_C3_FUTURE')
         scope=event['scope'];require(type(scope) is dict and set(scope)=={'host_id','source_witness'},15,'PRE_C3_SCOPE_SCHEMA')
         hash_value(scope['source_witness']);require(digest(event['boundary'])==scope['source_witness'],15,'PRE_C3_BOUNDARY_INTEGRITY')
         if type(semantic) is dict and semantic:
@@ -194,7 +195,7 @@ class NativeCatalogProducer:
     def _validated_pre_c3(self):
         """Re-read every exact pre-C3 proof at its recorded observation time."""
         if hasattr(self,'_pre_c3_cache'):return self._pre_c3_cache
-        events=_pre_c3_events(self.events,self.plan,self.result)
+        events=_pre_c3_events(self.events,self.plan,self.result,self.f.context.now)
         require(bool(events),11,'PRE_C3_EVIDENCE_UNAVAILABLE')
         from .proofs import ProofReader
         target=self.s.get('target',{});target_id=target.get('registration_id') if type(target) is dict else None

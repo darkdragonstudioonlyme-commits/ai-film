@@ -1,3 +1,13 @@
+# IMPL-P00-001 Implementation Status — dev11 increment
+
+`0.1.0.dev11 / PARTIAL_SOURCE_DROP_DEV11`
+
+Dev11 is the focused remediation for REVIEW finding CR-P00-005. PRE_C3 historical events must now be observed no later than the current evidence-capture/context time. No TTL or arbitrary freshness window was introduced.
+
+Final author evidence: **711 PASS / 0 failure/error/skip**, static **94 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev10 increment
 
 `0.1.0.dev10 / PARTIAL_SOURCE_DROP_DEV10`
