@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-15T05:51:38.012719+00:00",
+  "environment_class": "WSL_DEVELOPMENT_AUTHORING",
+  "environment": {
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "architecture": "x86_64",
+    "distro": "Ubuntu 24.04.4 LTS",
+    "cpu_visible": 24,
+    "cpu_model": "AMD Ryzen 9 9950X 16-Core Processor",
+    "memory_total_bytes": 50513731584,
+    "filesystem_home_total_bytes": 1081101176832,
+    "filesystem_home_free_bytes": 968611680256,
+    "dxg_present": true,
+    "nvidia_smi_observation": null,
+    "system_python": "Python 3.12.3",
+    "project_venv_python": "Python 3.12.3",
+    "project_venv_pip_present": false,
+    "git": "git version 2.43.0",
+    "tools": {
+      "ffmpeg": null,
+      "docker": null,
+      "podman": null,
+      "git-lfs": null,
+      "uv": null,
+      "cmake": null,
+      "gcc": "/usr/bin/gcc",
+      "pip3": "/home/dragon/arb/.venv/bin/pip3"
+    }
+  },
+  "fingerprint_basis": "stable_observed_fields_excluding_dynamic_free_capacity",
+  "environment_fingerprint_sha256": "fde8230f226af7bdd2492144131d3e6f54aa2ac139927ae2751e77553437e7f8",
+  "gpu_observed": false,
+  "model_evaluation_ready": false
+}

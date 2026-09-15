@@ -1,95 +1,60 @@
-# AI-FILM-SERVER — Git, Artifact and Documentation Persistence Policy
+# AI-FILM-SERVER — Git, Artifact, Test and Documentation Persistence Policy
 
-## Core rule
+## Durable result rule
 
-A result is durable only after its owning workflow persists an immutable identity and verifies remote/artifact state. Local WIP is valuable but is not a durable candidate.
+A result is durable only after exact identity, required tests/evidence, documentation sync, remote persistence and independent verification. Local WIP is preserved but never mislabeled as a candidate.
 
-## Bootstrap Git rule
+## Bootstrap
 
-Before reading lane state or starting work:
+Fresh-fetch `main` and relevant lane refs. Do not trust stale `origin/*` cache. Run runtime reconciliation before destructive checkout/reset or formal handoff decisions.
 
-```bash
-git -C /home/dragon/ai-film-dev/repo fetch origin main lane/implement-p00 lane/review-p00
-```
-
-Fetch any additional active workflow branches. Do not treat stale `origin/*` cache as current state. In the prepared WSL workspace, run `python3 tools/check_runtime_state.py` before destructive checkout/reset or formal handoff decisions.
-
-## Branch roles
-
-- `main` — canonical project state, routing, roadmap, memory, reviewed documentation governance, immutable review/delivery records.
-- `lane/implement-p00` — IMPLEMENT operational ledger, not source-of-gate authority.
-- `lane/review-p00` — REVIEW operational ledger.
-- `lane/docs-design` — proposed documentation-system changes.
-- `lane/docs-review` — independent documentation-system review record.
-- WSL `impl/p00` — writable local source history until remote source mirroring policy changes.
-
-Do not force-push published history by default. Immutable reviewed candidates are replaced by new candidates, not edited in place.
-
-## IMPLEMENT durable sequence
+## Source candidate sequence
 
 ```text
 verify state/base/WIP
 → implement
+→ run business-basis test workflow
+→ classify failures before edits
 → targeted tests
-→ full author regression/static at boundary
-→ documentation sync
+→ full regression/static
+→ documentation/self-learning sync
 → diff + secret scan
-→ commit exact source
+→ exact source commit
 → package from exact commit
-→ verify manifest/hash
-→ persist artifact
+→ artifact hash/manifest verification
 → immutable handoff
-→ REVIEW
+→ independent REVIEW
 ```
 
-Never package first and keep editing the source afterward under the same candidate identity.
+## Test semantic changes
 
-## REVIEW durable sequence
+A changed expected result must identify `APPROVED_BEHAVIOR_CHANGE` or `TEST_DEFECT` authority. Harness/executor changes are separate from oracle changes. The current source cannot be cited as the reason a test expectation changed.
+
+Use `tools/run_test_workflow.py`; WSL `lane-test.sh` is only a low-level executor.
+
+## Documentation-system changes
 
 ```text
-fetch handoff
-→ checkout detached exact source commit
-→ verify package/source/test identities
-→ reread requirements/diff
-→ independent regression + negative scenarios
-→ findings/verdict bound to exact target
-→ verify review did not mutate source
-→ persist review record/state
+DOC-DESIGN exact commit
+→ DOC-REVIEW exact commit
+→ if PASS: DOC-AUDIT exact reviewed candidate
+→ if both PASS: promote reviewed/audited commit to main
 ```
 
-## Binary artifact rule
+Any FAIL returns findings to DOC-DESIGN and requires a new immutable commit.
 
-Preferred:
+## Artifact identity
 
-```text
-upload raw/file reference
-→ raw download again
-→ recompute SHA-256
-→ compare source hash
-→ record file/store ID + size + hash
-```
+For binary artifacts: upload byte-preserving file reference/raw bytes → raw-download → recompute SHA-256 → compare → record store ID/size/hash. Upload success alone is not identity proof.
 
-Upload success is not identity proof.
+## Self-learning and knowledge hygiene
 
-## Documentation Sync Gate
+Every meaningful workflow evaluates `SELF_LEARNING_SYSTEM.md` triggers and Documentation Sync Gate. Reusable lessons go to memory; recurring/safety-critical lessons are promoted into policy/tooling. Run knowledge compaction/pruning under `KNOWLEDGE_LIFECYCLE.md`; obsolete operational rules are removed from active docs while history remains in Git/archive.
 
-Use `DOCUMENTATION_MAP.md`. Every meaningful workflow must evaluate state, next work, roadmap, router/policy, memory, workspace, immutable review/delivery and milestone updates before it is durable.
+## Public-repo/secret policy
 
-## Self-learning persistence
+Secret-scan material deliveries. Synthetic canaries must be identifiable. Never persist credentials, PATs, private keys, production secrets, private/licensed assets or customer data.
 
-A discovery is classified:
+## Verification
 
-- candidate-specific defect → review finding;
-- reusable lesson → `PROJECT_MEMORY.md`;
-- repeated lesson that changes how work must be performed → promote to policy in `WORKFLOW_ROUTER.md`, `EXECUTION_LANES.md`, `GIT_WORKFLOW.md` or `DOCUMENTATION_MAP.md`;
-- reviewed behavior conflict → DESIGN_GAP, not memory-based contract override.
-
-When promoted, keep the memory entry and mark the policy location so future chats can trace why the rule exists.
-
-## Secret/public-repo discipline
-
-Secret-scan every material delivery. Test canaries must be clearly synthetic. Never commit PATs, credentials, private keys, production secrets, licensed/private assets or customer data.
-
-## Remote verification
-
-After remote writes, re-fetch the branch/ref and verify the expected file/commit is visible before treating the update as durable.
+After remote writes, fresh-fetch and verify the expected commit/files. A commit existing locally does not prove remote persistence.

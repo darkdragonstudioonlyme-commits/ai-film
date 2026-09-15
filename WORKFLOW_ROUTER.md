@@ -1,44 +1,54 @@
 # AI-FILM-SERVER — Workflow Router
 
-This is the deterministic routing policy for a fresh chat. It exists so a user can say **“continue”** without restating the entire project.
+## Bootstrap
 
-## 1. Bootstrap before routing
+Fresh-fetch `main` and relevant lane refs, run runtime-state reconciliation when available, then read state → next-work → this router → selected lane state. Never route from cached refs or conversation memory alone.
 
-```text
-fetch origin/main + relevant lane refs
-→ run runtime-state reconciliation when the prepared WSL workspace exists
-→ read PROJECT_STATE
-→ read NEXT_WORK_ITEM
-→ verify local selected worktree identity/status if used
-→ read selected lane LANE_STATE
-→ route
-```
-
-Never route from cached `origin/lane/*` refs without a fresh fetch.
-
-## 2. Workflow status vocabulary
-
-`READY | RUNNING | WIP | HANDED_OFF | WAITING_INPUT | BLOCKED | REVIEWING | FAILED | COMPLETE`
-
-A workflow output is trusted only through its declared immutable output contract, never because another lane says “PASS”.
-
-## 3. “Continue” algorithm
+## Continue algorithm
 
 Use the first matching rule:
 
-1. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
-2. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
-3. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
-4. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
-5. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
-6. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
-7. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-8. **Runtime-state checker or fresh lane-state comparison fails** → create `STATE_DRIFT` blocker; preserve documented/local WIP and reconcile control-plane state before routing work.
-9. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+1. active documentation/design governance handoff → finish its independent review/audit before unrelated source work;
+2. documented mutable WIP → resume its owning workflow, preserving WIP;
+3. immutable candidate handed off and not reviewed at that identity → consumer REVIEW;
+4. latest review FAIL/open findings → route findings to producer; design conflict goes to DESIGN, not implementation patching;
+5. repeated failure/deadlock/self-learning trigger → `WORKFLOW_RETROSPECTIVE` before another blind retry;
+6. delta review PASS but umbrella blocker remains → next roadmap node;
+7. author-complete exact candidate → formal CODE_REVIEW;
+8. CODE_REVIEW_PASS → VALIDATION;
+9. state/lane/environment identity mismatch → `STATE_DRIFT` blocker and reconcile;
+10. otherwise state is inconsistent → documentation/state blocker, never guess.
 
-## 4. Block protocol
+## Test-failure router
 
-A block record must contain:
+Before changing code or tests, classify a failing test as one of:
+
+```text
+APPROVED_BEHAVIOR_CHANGE
+TEST_DEFECT
+HARNESS_DEFECT
+ENVIRONMENT_DEFECT
+IMPLEMENTATION_DEFECT
+DESIGN_GAP
+```
+
+The classification determines the owner. Never change expected behavior merely because current code differs. `TEST_STRATEGY.md` is authoritative for this route.
+
+## Retrospective/deadlock route
+
+Triggers are defined in `SELF_LEARNING_SYSTEM.md`. When triggered:
+
+```text
+preserve WIP
+→ stop same-strategy retry
+→ retrospective/root-cause classification
+→ memory/policy/tool improvement
+→ independent review if governance meaning changed
+→ verify improvement
+→ RETURN_TO original workflow
+```
+
+## Block contract
 
 ```yaml
 BLOCK_ID:
@@ -51,47 +61,15 @@ RETURN_TO:
 STATUS: OPEN|RESOLVED
 ```
 
-If `USER_ACTION_REQUIRED=false`, the assistant must attempt the safe in-scope resolution and continue. Do not ask the user to solve implementation work.
+If user action is false, attempt safe in-scope resolution rather than asking the user to do project work.
 
-If `USER_ACTION_REQUIRED=true`, request only the minimum external action that cannot be performed by available tools. Persist the block before ending the turn.
+## Review / design-gap / validation routes
 
-## 5. Review finding/comment protocol
+Review findings bind exact candidate identities and close only on independent re-review. Genuine reviewed-behavior conflicts route DESIGN_GAP → DESIGN → DESIGN_REVIEW. Validation failures persist evidence and route back through implementation/patch and code review when code changes.
 
-Candidate-specific defects become immutable findings bound to target SHA/package identity. They route back to the producing lane as `FIX_PENDING_REVIEW` and close only when REVIEW verifies a new immutable candidate.
+## Workflow instance contract
 
-Informational comments that produce reusable knowledge go to `PROJECT_MEMORY.md`; they do not become findings unless they affect correctness/gate acceptance.
-
-## 6. Design-gap route
-
-If correct implementation requires changing reviewed FD/D00/public behavior:
-
-```text
-IMPLEMENT detects DESIGN_GAP
-→ persist exact evidence
-→ stop affected implementation scope
-→ DESIGN
-→ DESIGN_REVIEW
-→ only approved design returns to IMPLEMENT
-```
-
-Never “fix” a reviewed-contract conflict by silently changing code acceptance or documentation wording.
-
-## 7. Validation-failure route
-
-```text
-VALIDATION_FAILURE
-→ persist failure/evidence
-→ MASTER/routing decision
-→ IMPLEMENT or PATCH as directed
-→ CODE_REVIEW if code changed
-→ VALIDATION again
-```
-
-Review and validation do not patch production source in-place.
-
-## 8. Workflow instance contract
-
-Every active work item should expose in `NEXT_WORK_ITEM.md`:
+Every active workflow exposes:
 
 ```yaml
 WORKFLOW_ID:
@@ -100,11 +78,11 @@ STATUS:
 INPUT_IDENTITY:
 GOAL:
 STEPS:
+TEST_CONTRACT:
 SUCCESS_OUTPUT:
 ON_SUCCESS:
 ON_FAIL:
 ON_BLOCK:
 EXIT_CONDITION:
+RETURN_TO:
 ```
-
-This contract is what enables accurate cross-chat continuation.

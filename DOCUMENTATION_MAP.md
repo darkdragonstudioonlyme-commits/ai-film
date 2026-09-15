@@ -1,82 +1,65 @@
 # AI-FILM-SERVER — Documentation Map and Freshness Contract
 
-## Purpose
-
-This file tells a fresh chat **what each document means, when to read it, when to update it, and what must never be duplicated as mutable truth**.
-
-## Canonical read path
+## Cold-start read path
 
 ```text
 PROJECT_STATE
 → NEXT_WORK_ITEM
 → WORKFLOW_ROUTER
-→ EXECUTION_LANES
 → DOCUMENTATION_MAP
-→ selected remote LANE_STATE
-→ relevant PROJECT_MEMORY
-→ GIT_WORKFLOW / WORKSPACE_WSL
+→ EXECUTION_LANES
+→ fresh selected LANE_STATE
+→ TEST_STRATEGY / SELF_LEARNING_SYSTEM as relevant
+→ PROJECT_MEMORY
+→ GIT_WORKFLOW / WORKSPACE_WSL / SERVER_ENVIRONMENT
 → task-specific contracts/source/evidence
 ```
 
 ## Source-of-truth matrix
 
-| Artifact | Owns | Must update when | Must NOT own |
-|---|---|---|---|
-| `PROJECT_STATE.md` | current global mode/phase/gates, durable candidate, WIP pointer, last review, open blockers/findings | any global truth changes | long history, detailed how-to |
-| `NEXT_WORK_ITEM.md` | exact resumable action, input identity, success/fail/block routes | active work or routing changes | project history |
-| `PROJECT_ROADMAP.md` | ordered phase/work milestones and completion criteria | roadmap/order/closure criteria change | current low-level WIP details |
-| `WORKFLOW_ROUTER.md` | deterministic task routing and return paths | routing/process policy changes | source implementation details |
-| `EXECUTION_LANES.md` | workflow permissions, independence, handoff contracts | lane/trust model changes | current candidate result details |
-| lane `LANE_STATE.md` | lane-local active/waiting candidate and lane output | lane state changes | global gate authority |
-| `PROJECT_MEMORY.md` | reusable learnings/optimizations/failure patterns | useful learning discovered/superseded | transient candidate status |
-| `GIT_WORKFLOW.md` | commit/branch/artifact/persistence rules | persistence policy changes | project roadmap |
-| `WORKSPACE_WSL.md` | current local paths/tools/environment facts | workspace changes | gate decisions |
-| `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
-| `deliveries/*` | immutable delivery identity | delivery closes | next work |
-| `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |
+| Artifact | Owns | Update trigger |
+|---|---|---|
+| `PROJECT_STATE.md` | global current truth, durable/WIP/review identities, gates | global truth changes |
+| `NEXT_WORK_ITEM.md` | exact resumable workflow + test contract + return routes | active workflow changes |
+| `PROJECT_ROADMAP.md` | milestone graph/closure | roadmap changes |
+| `WORKFLOW_ROUTER.md` | deterministic routing, block/retro/test-failure return paths | routing changes |
+| `EXECUTION_LANES.md` | independent workflow permissions/handoffs | trust model changes |
+| `TEST_STRATEGY.md` | business-first test doctrine and test-change classification | test policy changes |
+| `SELF_LEARNING_SYSTEM.md` | deadlock/inefficiency triggers, retrospective/recovery loop | learning policy changes |
+| `KNOWLEDGE_LIFECYCLE.md` | policy/know-how/architecture lifecycle and pruning | knowledge governance changes |
+| `SERVER_ENVIRONMENT.md` | observed environment + model-evaluation readiness rules | environment/readiness changes |
+| `PROJECT_MEMORY.md` | compact reusable lessons not already fully owned by policy | reusable learning |
+| `GIT_WORKFLOW.md` | Git/artifact/persistence policy | persistence policy changes |
+| `WORKSPACE_WSL.md` | local paths/helpers/tool ownership | workspace changes |
+| lane `LANE_STATE.md` | lane-local active target/output | lane state changes |
+| `reviews/*` / `deliveries/*` | immutable exact review/delivery history | completion only |
+| checkpoints | immutable milestone snapshot | milestone only |
 
-## Freshness rules
+## Freshness and anti-drift rules
 
-1. Before reading lane state, fetch `main` and the relevant lane refs from origin.
-2. `PROJECT_STATE.md` may describe an uncommitted WIP, but must label it `WIP / NOT_DURABLE / NOT_REVIEWABLE` and identify the durable base commit.
-3. A durable candidate is a commit/package identity; a WIP is never promoted by wording alone.
-4. `NEXT_WORK_ITEM.md` must point at the actual active WIP/candidate, not an older delivery number.
-5. README/CHAT_HANDOFF must remain version-agnostic; they route to current state rather than repeating mutable versions.
-6. Historical checkpoints/review records are evidence, not current pointers.
+1. Fresh-fetch relevant remote refs before consuming lane state.
+2. Run runtime reconciliation in the prepared workspace before destructive reset, handoff or formal review.
+3. Mutable dev/version numbers belong only to current state/work-item/lane/review/delivery/history owners; policy/router/roadmap docs stay version-agnostic.
+4. WIP must be labeled mutable/non-reviewable with a durable base identity.
+5. Environment facts are observations with timestamp/fingerprint; absence of a tool is not proof that the physical host lacks the capability.
+6. README/CHAT_HANDOFF route; they do not duplicate current version/state.
 
 ## Documentation Sync Gate
 
-Before any meaningful workflow output is considered durable, answer:
+Before a meaningful output is durable ask:
 
 ```text
-Did global truth change?      → PROJECT_STATE
-Did exact next action change? → NEXT_WORK_ITEM
-Did roadmap/closure change?   → PROJECT_ROADMAP
-Did routing/process change?   → WORKFLOW_ROUTER / EXECUTION_LANES / GIT_WORKFLOW
-Did reusable knowledge emerge?→ PROJECT_MEMORY
-Did workspace facts change?   → WORKSPACE_WSL
-Did review/delivery finish?   → immutable review/delivery record
-Did a milestone occur?        → checkpoint MD + JSON
+global truth changed?        → PROJECT_STATE
+next workflow/test contract? → NEXT_WORK_ITEM
+roadmap changed?             → PROJECT_ROADMAP
+routing/deadlock policy?     → WORKFLOW_ROUTER / SELF_LEARNING_SYSTEM
+workflow trust changed?      → EXECUTION_LANES
+business test doctrine?      → TEST_STRATEGY
+environment changed?         → SERVER_ENVIRONMENT + snapshot
+reusable lesson?             → PROJECT_MEMORY
+knowledge obsolete/promoted? → KNOWLEDGE_LIFECYCLE compaction/pruning
+workspace changed?           → WORKSPACE_WSL
+review/delivery/milestone?   → immutable record/checkpoint
 ```
 
-If a new chat would repeat an investigation, choose a wrong lane, lose a blocker, trust stale evidence or forget a useful optimization, documentation sync is incomplete.
-
-## Anti-duplication rule
-
-Mutable facts should have one owner. Other docs link to the owner. If the same version/status is repeated for convenience, it must be clearly marked as a snapshot and never used to override the owning artifact.
-
-## Automated check
-
-Run the portable documentation check:
-
-```bash
-python3 tools/check_project_docs.py
-```
-
-In the prepared WSL workspace also run the runtime-state reconciliation check:
-
-```bash
-python3 tools/check_runtime_state.py
-```
-
-The first checks document structure/invariants. The second fresh-fetches lane refs and compares canonical state with remote lane state, local worktree identity/dirty set and the current durable artifact. Both are guardrails, not substitutes for DOC-REVIEW.
+Run `tools/run_governance_checks.py`. Automated checks are guardrails; independent review/audit remains required for material governance change.

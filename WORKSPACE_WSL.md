@@ -1,57 +1,47 @@
-# AI-FILM-SERVER — WSL Workspace Map
+# AI-FILM-SERVER — Prepared WSL Workspace
 
-## Identity
-
-```yaml
-DEVICE: DESKTOP-LCISMET
-DISTRO: Ubuntu 24.04.4 LTS
-USER: dragon
-ROOT: /home/dragon/ai-film-dev
-```
-
-## Worktrees
+## Stable layout
 
 ```text
-repo/         canonical GitHub control-plane clone
-source-dev8/  immutable historical dev8 baseline
-implement/    writable source lane, branch impl/p00
-review/       detached exact source review candidate
-docs-design/  documentation architecture authoring lane
-docs-review/  independent documentation review lane
-artifacts/    exact delivery ZIPs
-run-evidence/implement/
-run-evidence/review/
+/home/dragon/ai-film-dev/
+├── repo/             canonical main/control-plane clone
+├── implement/        writable source workflow
+├── review/           detached source-review candidate
+├── docs-v2-design/   writable documentation-system design
+├── docs-v2-review/   independent detailed documentation review
+├── docs-v2-audit/    independent holistic documentation audit
+├── artifacts/        exact delivery packages
+├── run-evidence/     lane-scoped evidence
+├── .venv/            project author-test Python environment
+├── lane-test.sh      low-level source test executor
+├── implement-env.sh
+└── review-env.sh
 ```
 
-## Current source lane facts
+Use `SERVER_ENVIRONMENT.md` for measured hardware/tool facts and model-evaluation readiness; do not duplicate them here.
 
-- IMPLEMENT HEAD/base durable candidate: dev17 commit `64ea95bf10e05e856a009be9204983182f520b45`.
-- IMPLEMENT currently has dev18 WIP in four modified files; do not discard it.
-- Latest dev18 WIP author run: 756 PASS / 100 static PASS.
-- REVIEW worktree is detached at dev17 while dev18 remains uncommitted.
-- Direct WSL HTTPS push remains unauthenticated; connected GitHub tools persist remote control-plane state.
+## Environment/tool ownership
 
-Exact current details belong in `PROJECT_STATE.md`; this file owns paths/tooling facts.
+The project `.venv` has Python but no pip. Ambient `pip3` may resolve to another project's environment and must not be used implicitly. Tool provenance must be explicit before installing dependencies or benchmarking.
 
-## Lane helpers
+## Standard verification
+
+Control plane:
 
 ```bash
-source /home/dragon/ai-film-dev/implement-env.sh
-/home/dragon/ai-film-dev/lane-test.sh implement
-
-source /home/dragon/ai-film-dev/review-env.sh
-/home/dragon/ai-film-dev/lane-test.sh review
+cd /home/dragon/ai-film-dev/repo
+python3 tools/run_governance_checks.py
 ```
 
-Current Python environment is `/home/dragon/ai-film-dev/.venv` (Python 3.12, no pip). This remains acceptable only while the implementation package has no external Python dependencies.
+Business-governed source/review tests:
 
-## Bootstrap safety
+```bash
+python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py implement
+python3 /home/dragon/ai-film-dev/repo/tools/run_test_workflow.py review
+```
 
-1. Pull/fetch the canonical repo first.
-2. Fresh-fetch relevant lane refs; do not trust cached `origin/lane/*` state.
-3. Check selected worktree `git status` before checkout/reset.
-4. If WIP is documented, preserve it.
-5. REVIEW must remain detached at exact handed-off commit.
-6. Test helpers keep lane evidence separate and restore tracked generated evidence.
+`lane-test.sh` is an executor and does not own expected business behavior.
 
-No plaintext GitHub credentials are stored in this workspace.
+## Safety
+
+Keep IMPLEMENT writable and REVIEW detached. Preserve WIP during governance repair. Direct WSL GitHub push remains unauthenticated; use connected GitHub write tools unless secure authentication is intentionally configured. No PAT/token in plaintext.

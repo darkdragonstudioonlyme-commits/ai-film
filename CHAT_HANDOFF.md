@@ -1,27 +1,15 @@
 # New Chat Handoff — AI-FILM-SERVER
 
-Use `darkdragonstudioonlyme-commits/ai-film` as the persistent project control plane. Do not rely on previous chat history.
+Use `darkdragonstudioonlyme-commits/ai-film` as the persistent control plane; do not depend on transcript history.
 
-## Cold start
+Fresh-fetch relevant refs, then follow the cold-start order in `README.md`. Run `tools/run_governance_checks.py` when the prepared WSL workspace is available.
 
-1. Fresh-fetch `main` and relevant lane refs.
-2. Read `PROJECT_STATE.md`.
-3. Read `NEXT_WORK_ITEM.md`.
-4. Read `WORKFLOW_ROUTER.md`.
-5. Read `EXECUTION_LANES.md` and select exactly one workflow/lane.
-6. Read `DOCUMENTATION_MAP.md` and the selected lane's freshly fetched `LANE_STATE.md`.
-7. Scan relevant `PROJECT_MEMORY.md` entries.
-8. Read `GIT_WORKFLOW.md`; read `WORKSPACE_WSL.md` if using WSL.
-9. Read only task-specific contracts/source/evidence.
+When the user says `continue`, use `WORKFLOW_ROUTER.md`. Preserve documented WIP. Do not ask the user to restate context already present in state/work-item/lane records.
 
-## If user says only “continue”
+Testing follows `TEST_STRATEGY.md`: business/contracts/review evidence define oracles; current code never defines expected behavior. Classify a failure before changing code or tests.
 
-Do not ask them to repeat project context. Apply the routing algorithm in `WORKFLOW_ROUTER.md`. Current state may include uncommitted WIP; preserve/resume it when state says so.
+If work repeatedly fails, stalls, becomes inefficient or the user says it is wrong/off-requirement, apply `SELF_LEARNING_SYSTEM.md` before another blind retry. Persist useful learning and promote recurring rules into policy/tooling.
 
-## Trust boundary
+Material documentation governance uses three independent workflows: DOC-DESIGN → DOC-REVIEW → DOC-AUDIT. Source implementation/review remains independently isolated.
 
-Do not trust another workflow's PASS label. Verify immutable input identities and rerun the checks required by the consuming workflow. IMPLEMENT cannot review itself; REVIEW cannot patch source. Documentation governance likewise uses DOC-DESIGN → DOC-REVIEW.
-
-## Self-learning
-
-Persist reusable learning automatically. Candidate-specific defects become findings; reusable lessons become memory; recurring/safety-critical lessons are promoted into standing policy. A chat should leave the project easier to resume than it found it.
+Do not infer native validation, qualification, model-evaluation readiness or HOST_READY from author tests, documentation checks or review labels.

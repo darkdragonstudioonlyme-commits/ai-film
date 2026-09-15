@@ -1,92 +1,65 @@
-# AI-FILM-SERVER — Independent Workflow Lanes
+# AI-FILM-SERVER — Independent Workflow Trust Boundaries
 
-## Trust model
+## Principle
 
-Workflows do **not** trust each other's conclusions. They exchange immutable inputs/outputs and independently verify what they consume.
+Producer and consumer workflows do not trust each other's labels. Trust crosses a boundary only through immutable identity + independently checked evidence. `main` is the single global gate/state ledger.
 
-```text
-PRODUCER lane → immutable handoff identity → CONSUMER lane
-      ↑                                      │
-      └──────── finding/result contract ─────┘
-
-main = global state/gate authority
-```
-
-No lane may promote its own output through the next gate.
-
-## Source pair: IMPLEMENT / REVIEW
+## Source workflows
 
 ### IMPLEMENT
-
-- worktree: `/home/dragon/ai-film-dev/implement`
-- local branch: `impl/p00`
-- writable: source/tests/docs/evidence
-- may: implement, test, commit, package, create handoff
-- may not: issue CODE_REVIEW verdict or claim validation/qualification
+Writable source/tests/docs within approved scope. Produces commits/packages/handoffs. Cannot issue code-review verdicts or native validation.
 
 ### REVIEW
+Detached exact candidate. Re-reads requirements, runs independent safe tests/negative scenarios and writes findings/verdict. Cannot patch reviewed source.
 
-- worktree: `/home/dragon/ai-film-dev/review`
-- detached exact candidate
-- candidate source is read-only by policy
-- may: reread requirements, rerun tests, run negative scenarios, write findings/verdicts
-- may not: patch candidate or follow IMPLEMENT head implicitly
-
-Formal handoff requires exact commit SHA, package hash/size/store identity, source/test digests, author evidence, contract digest, changed scope and readiness flags.
-
-## Documentation governance pair: DOC-DESIGN / DOC-REVIEW
-
-Documentation architecture changes use the same distrust model:
+## Documentation-governance workflows
 
 ### DOC-DESIGN
-
-- remote branch: `lane/docs-design`
-- WSL worktree: `/home/dragon/ai-film-dev/docs-design`
-- owns proposed changes to state schema, router, roadmap, memory/persistence policy and documentation map.
-- cannot self-approve documentation governance.
+Writable control-plane policy/design proposal. Cannot approve itself.
 
 ### DOC-REVIEW
+Detached exact DOC-DESIGN commit. Reviews detailed requirements/invariants and may FAIL back to DOC-DESIGN. Cannot edit proposed policy.
 
-- remote branch: `lane/docs-review`
-- WSL worktree: `/home/dragon/ai-film-dev/docs-review`
-- reviews an exact DOC-DESIGN commit as if authored by another team.
-- runs cold-start/routing/drift simulations and `tools/check_project_docs.py`.
-- does not edit the proposed docs while reviewing; findings return to DOC-DESIGN.
+### DOC-AUDIT
+Detached exact candidate that already passed DOC-REVIEW. Audits the **entire active documentation system**, not just the delta: stale versions, conflicting rules, obsolete know-how, test/business independence, server-environment truth, recovery/self-learning and blind spots analogous to prior failures. It may FAIL back to DOC-DESIGN despite DOC-REVIEW PASS.
 
-Only a reviewed docs commit is promoted to `main`.
+A material documentation-system change reaches `main` only after DOC-REVIEW and DOC-AUDIT both pass.
 
-## Workflow independence requirements
+## Immutable handoff minimum
 
-1. Separate worktree or immutable checkout.
-2. Exact input identity.
-3. Separate evidence namespace where execution evidence exists.
-4. No shared mutable “PASS” flag.
-5. Consumer rechecks critical invariants; labels from producer are not proof.
-6. Findings bind target identity and close only on a new reviewed output.
-7. `main` alone records global gate/mode state.
+```yaml
+WORKFLOW_ID:
+TARGET_COMMIT:
+ARTIFACT_OR_DOC_SET_ID:
+BUSINESS_REQUIREMENT_SET:
+TEST_CONTRACT:
+CHANGED_SCOPE:
+KNOWN_LIMITATIONS:
+PRODUCER_EVIDENCE:
+READY_FOR_CONSUMER: true
+```
 
-## Candidate finding contract
+Consumer verifies identity before work. Mutable worktrees are never formal review inputs.
+
+## Findings
 
 ```yaml
 FINDING_ID:
-TARGET_ID:
 TARGET_COMMIT:
 SEVERITY:
 CATEGORY:
 EVIDENCE:
 IMPACT:
 REQUIRED_DISPOSITION:
-STATUS: OPEN|FIXED_PENDING_REVIEW|CLOSED
+STATUS:
 ```
 
-## Drift rule
+Producer fixes; consumer closes on a new immutable candidate.
 
-Remote lane state is advisory until freshly fetched. A cached `origin/lane/*` ref is not current evidence. Bootstrap must fetch relevant refs before consuming `LANE_STATE.md`.
+## Independence rules
 
-## Current source-lane disposition
-
-- last durable candidate: dev17 `64ea95bf...`;
-- REVIEW dev17: FAIL delta, open `CR-P00-012/013` plus umbrella `CR-P00-001`;
-- IMPLEMENT has dev18 WIP with intended fixes and 756 PASS / 100 static author run; it is not yet a reviewable candidate.
-
-Current exact details live in `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`, not in historical snapshots.
+- separate worktrees/branches/evidence namespaces;
+- consumer does not read uncommitted producer changes as formal input;
+- producer cannot edit consumer verdict records;
+- PASS of a lower-level workflow never implies a higher gate;
+- final audit must actively search for assumptions shared by design and first review.

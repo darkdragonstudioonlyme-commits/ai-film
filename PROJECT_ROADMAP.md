@@ -1,57 +1,41 @@
-# AI-FILM-SERVER — Project Roadmap
+# AI-FILM-SERVER — Project and Control-Plane Roadmap
 
-## Governing chain
-
-The authoritative Blueprint mode chain remains:
+## Product roadmap
 
 ```text
-DESIGN → DESIGN_REVIEW → IMPLEMENTATION → CODE_REVIEW → VALIDATION → QUALITY/PRODUCTION readiness
+requirements/frozen decisions
+→ reviewed Phase00 design
+→ Phase00 implementation source/harness closure
+→ formal CODE_REVIEW
+→ native VALIDATION
+→ qualification/gate assessment
+→ HOST_READY when evidence supports it
+→ later platform/model/data/workflow phases through the same state machine
 ```
 
-This roadmap does not approve gates; it only orders known work.
+Each node advances only through its exit gate; a lower-level PASS never promotes the next node automatically.
 
-## Current phase: 00 — Host / WSL
+## Continuous control-plane roadmap
 
-Target implementation work item: `IMPL-P00-001`. Target code gate: `CODE_REVIEW_PASS`. Phase gate: `HOST_READY` after later authorized validation/qualification requirements are satisfied.
-
-### Phase 00 work graph
+The documentation/testing/learning system evolves alongside product work:
 
 ```text
-Reviewed Design V2 PASS
-  ↓
-Lifecycle/trust/evidence/recovery source increments   [substantially authored]
-  ↓
-Causal 86-case harness + production-factory author integration [ACTIVE]
-  ↓
-Close remaining source/harness/docs/test scope (CR-P00-001)
-  ↓
-AUTHOR_COMPLETE + CODE_REVIEW_HANDOFF_READY
-  ↓
-Formal CODE_REVIEW exact final candidate
-  ↓ PASS
-Authorized VALIDATION / LAB-SITE evidence
-  ↓
-Qualification / phase-gate assessment
-  ↓
-HOST_READY only if evidence supports it
+state persistence
+→ independent source review
+→ deterministic routing
+→ business-first test governance
+→ self-learning + deadlock retrospectives
+→ knowledge pruning
+→ environment/model-evaluation identity
+→ periodic holistic governance audit
 ```
 
-## Current near-term milestones
+Material governance changes use DOC-DESIGN → DOC-REVIEW → DOC-AUDIT.
 
-| Milestone | Exit evidence | Next |
-|---|---|---|
-| M-P00-HARNESS | causal harness source accepted by independent REVIEW | residual source completeness audit |
-| M-P00-AUTHOR-COMPLETE | no hidden reviewed-scope stubs; author tests/static clean; exact candidate durable | formal CODE_REVIEW |
-| M-P00-CODE-REVIEW | `CODE_REVIEW_PASS` against exact candidate | VALIDATION |
-| M-P00-VALIDATION | authorized native/LAB/SITE test evidence per approved contracts | qualification/gate assessment |
-| M-P00-HOST-READY | exact acceptance/gate conditions satisfied | next project phase chosen by MASTER/roadmap update |
+## Model-evaluation future node
 
-## Current known blocker hierarchy
+When project scope reaches model evaluation/selection, first satisfy `SERVER_ENVIRONMENT.md` readiness. Benchmark campaigns bind model identity + environment fingerprint + run parameters + performance/quality evidence. Do not compare results across unidentified environments.
 
-- `CR-P00-001` — umbrella author-completeness blocker; closes only with full reviewed implementation scope.
-- Candidate-specific review findings are subordinate and must be independently closed by REVIEW.
-- Native test inventory remaining `NOT_RUN` is **not** an implementation defect by itself while authoring forbids native execution; source harness completeness and later validation execution are distinct.
+## Roadmap maintenance
 
-## Roadmap update rule
-
-Update this file only when work order, milestone definitions, closure criteria or phase transition changes. Do not use it as a daily status log; that belongs in `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`.
+Roadmap owns milestone order/exit criteria, not current dev version or dirty files. Current position belongs to `PROJECT_STATE.md` and exact executable work to `NEXT_WORK_ITEM.md`.
