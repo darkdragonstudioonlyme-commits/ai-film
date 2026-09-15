@@ -1,12 +1,12 @@
 # AI-FILM-SERVER — PROJECT MEMORY
 
-> Living reusable knowledge. Current truth lives in `PROJECT_STATE.md`; executable next work lives in `NEXT_WORK_ITEM.md`.
+> Living reusable knowledge. Current truth lives in `PROJECT_STATE.md`; next execution lives in `NEXT_WORK_ITEM.md`; lane protocol lives in `EXECUTION_LANES.md`.
 
 ## No-silent-knowledge rule
 
-Reusable discoveries, optimizations, tooling limitations, failure patterns, security/test lessons and clarifications must be persisted before the related increment is considered durable. Memory does not approve architecture or pass gates.
+Reusable discoveries, optimizations, tooling limitations, failure patterns, security/test lessons and clarifications must be persisted before the related increment is durable. Memory does not approve architecture or pass gates.
 
-Historical detail through checkpoint V15 is preserved in Git history. The V15 living-memory blob is `80db3862014db65d2d5926deb5442de68401b3bd`; the repository also contains `memory/archive/PROJECT_MEMORY_V15.md` as its archive pointer.
+Older detail is preserved in Git history and memory archive pointers.
 
 ## Active Memory Index
 
@@ -21,94 +21,84 @@ Historical detail through checkpoint V15 is preserved in Git history. The V15 li
 | MEM-20260915-007 | PROCESS | Hybrid persistence is valid when Git state and exact binary artifact roles are explicit. |
 | MEM-20260915-008 | LESSON | Explicit missing state is safer than accepting non-identical bytes. |
 | MEM-20260915-009 | TOOLING | If chunking is unavoidable, verify every Git blob SHA individually; prefer file-native transfer. |
-| MEM-20260915-010 | TESTING | Respect the package src-layout/official runner; missing `PYTHONPATH=src` is not a source regression. |
+| MEM-20260915-010 | TESTING | Respect src-layout/official runner; missing `PYTHONPATH=src` is not a source regression. |
 | MEM-20260915-011 | SECURITY | Executable trust binds path + exact bytes + policy + pinned handle + witness before resume. |
 | MEM-20260915-012 | TOOLING | Use `/home/dragon/ai-film-dev`; verify delivery hash before extraction. |
-| MEM-20260915-013 | TOOLING | No-pip venv + `.pth` is acceptable only while project dependencies remain empty. |
-| MEM-20260915-014 | PROCESS | Local Git fetch/commit and remote write authentication are separate; avoid hanging interactive helpers. |
-| MEM-20260915-015 | TESTING | Save run evidence outside source and restore tracked generated evidence so verification keeps baseline clean. |
-| MEM-20260915-016 | LIFECYCLE | Native process completion is not lifecycle completion; observed pending reboot must retain a durable wait. |
-| MEM-20260915-017 | RECOVERY | Resume from reboot wait needs a changed boot witness + cleared pending state before the original step can commit. |
-| MEM-20260915-018 | PROCESS | Missing owner postcheck is an owner wait only from an existing operator-wait fence; never relabel arbitrary `UNCERTAIN`. |
-| MEM-20260915-019 | DESIGN | Keep the reviewed final owner-planned restart; an earlier engine-required reboot does not satisfy T00-05 by itself. |
-| MEM-20260915-020 | REVIEW | An early review of an explicitly partial candidate must FAIL; passing tests do not make missing reviewed scope reviewable. |
-| MEM-20260915-021 | SECURITY | Any durable recovery-state change after observation needs renewed authority immediately before persistence. |
-| MEM-20260915-022 | OBSERVABILITY | If lifecycle classification uses an actual observation, persist a bounded typed representation/digest of that observation; do not retain only the derived state. |
-| MEM-20260915-023 | RESOURCE | Durable wait context needs exact schemas and size/privacy bounds; never deep-copy arbitrary observation dictionaries into the journal. |
+| MEM-20260915-013 | TOOLING | No-pip venv + `.pth` is valid only while dependencies remain empty. |
+| MEM-20260915-014 | PROCESS | Local Git and remote write authentication are separate; avoid hanging interactive helpers. |
+| MEM-20260915-015 | TESTING | Save run evidence outside source and restore tracked generated evidence so verification stays clean. |
+| MEM-20260915-016 | LIFECYCLE | Native process completion is not lifecycle completion; observed pending reboot retains a durable wait. |
+| MEM-20260915-017 | RECOVERY | Reboot resume needs changed boot witness + cleared pending state before commit. |
+| MEM-20260915-018 | PROCESS | Missing owner postcheck is an owner wait only from an existing operator-wait fence. |
+| MEM-20260915-019 | DESIGN | Keep reviewed final owner-planned restart; engine-required reboot does not satisfy T00-05 alone. |
+| MEM-20260915-020 | REVIEW | Early review of explicitly partial candidate must FAIL; tests do not make missing scope reviewable. |
+| MEM-20260915-021 | SECURITY | Durable recovery-state change after observation needs renewed authority immediately before persistence. |
+| MEM-20260915-022 | OBSERVABILITY | Persist a bounded typed representation/digest of actual observations that cause durable lifecycle waits. |
+| MEM-20260915-023 | RESOURCE | Durable wait context needs exact schemas and size/privacy bounds. |
+| MEM-20260915-024 | PROCESS | IMPLEMENT and REVIEW must use separate worktrees/permissions; REVIEW never patches candidate source. |
+| MEM-20260915-025 | REVIEW | Candidate handoff is an immutable identity tuple; REVIEW never follows IMPLEMENT branch head implicitly. |
+| MEM-20260915-026 | TESTING | Separate lane evidence directories prevent review reruns from contaminating implementation evidence/diffs. |
 
-## Dev8 lifecycle lessons
+## Current CODE_REVIEW lessons
 
-### MEM-20260915-016 — Process terminal is not lifecycle terminal
+### MEM-20260915-020 — Passing tests do not make a partial candidate review-ready
 
-A successful C3 child process can leave Windows pending reboot. After C3 process completion, read current pending-reboot indicators and retain `AWAITING_REBOOT/20` when any are true; process exit alone is not lifecycle completion.
+Dev8 reproduced 683 PASS + 92 static but declared `AUTHOR_COMPLETE=false` with required source scope open. Full gate review therefore failed. Test success evaluates existing code, not missing code.
 
-### MEM-20260915-017 — Reboot resume is a witnessed lifecycle boundary
+### MEM-20260915-021 — Re-authorize immediately before durable recovery-state changes
 
-Reconciliation after a reboot wait requires current host boot witness != the original fence boot witness and all observed pending-reboot indicators clear before postconditions may commit the step.
+A potentially long observation can outlive its admitting authority. Before persisting a recovery/fence state change, re-check current authority, generation, actor/request and exact fence identity.
 
-### MEM-20260915-018 — Owner verification wait is not a generic error relabel
+### MEM-20260915-022 — Persist actual cause of derived lifecycle waits
 
-Missing post-C3/OOBE owner evidence may remain an operator wait only when reconciliation already owns an operator-wait fence. Never convert arbitrary `UNCERTAIN` or assertion failure into owner wait.
+When a durable lifecycle state is derived from actual observations such as pending reboot, persist a safe typed observation/digest sufficient to audit/reconcile the derivation rather than only the conclusion.
 
-### MEM-20260915-019 — Engine reboot and planned host-restart test are distinct
+### MEM-20260915-023 — Durable wait context is typed/bounded data
 
-The explicit final `AWAIT_OWNER_RESTART` must not be removed merely because an earlier engine C3 step required reboot. Design V2/T00-05 defines a distinct owner-planned host restart lifecycle boundary.
+Journaled wait metadata requires exact allowed keys/types and canonical size/privacy limits. Raw or sensitive evidence belongs behind protected references/digests.
 
-## CODE_REVIEW dev8 lessons
+## Dual-lane execution lessons
 
-### MEM-20260915-020 — Passing author tests do not make a partial candidate review-ready
+### MEM-20260915-024 — Separate mutable implementation from immutable review
+
+```yaml
+TYPE: PROCESS
+STATUS: ACTIVE
+DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
+SUMMARY: "Implementation and review lose independence when they share one mutable source worktree."
+EVIDENCE: "Created `/home/dragon/ai-film-dev/implement` on writable branch `impl/p00` and `/home/dragon/ai-film-dev/review` detached at exact dev8 commit c44c2f87...; both independently reproduce 683 PASS + 92 static."
+REUSABLE_RULE: "IMPLEMENT edits only its writable worktree. REVIEW consumes a detached exact candidate and never patches it. Project gates remain controlled by canonical main state."
+ACTION_TAKEN: "Created remote lane branches `lane/implement-p00` and `lane/review-p00`, local worktrees and `EXECUTION_LANES.md`."
+```
+
+### MEM-20260915-025 — Review target identity must never float
 
 ```yaml
 TYPE: REVIEW
 STATUS: ACTIVE
-DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
-SUMMARY: "Dev8 independently reproduced 683 PASS + 92 static, but the full candidate still declared AUTHOR_COMPLETE=false and REM-01…08 open."
-EVIDENCE: "CODE-REVIEW-P00-001 dev8 verdict FAIL; CR-P00-001 BLOCKER."
-REUSABLE_RULE: "Do not issue PASS/PASS_WITH_FIXES for a full-scope code gate when required reviewed implementation is absent. Test success only evaluates existing code."
-ACTION_TAKEN: "Formal CODE_REVIEW_PASS transition was not activated; project returned to IMPLEMENTATION."
+DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
+SUMMARY: "A reviewer following an implementation branch head can silently review code different from the handed-off candidate."
+EVIDENCE: "REVIEW worktree is detached at exact dev8 source commit while IMPLEMENT branch may advance independently."
+REUSABLE_RULE: "Handoff binds source commit SHA + package SHA/size/artifact ID + source/test digests + author evidence + contract digest. REVIEW never auto-follows IMPLEMENT branch head."
+ACTION_TAKEN: "Defined immutable candidate contract in EXECUTION_LANES.md and lane state files."
 ```
 
-### MEM-20260915-021 — Re-authorize immediately before persistent recovery-state changes
+### MEM-20260915-026 — Evidence output is lane-scoped
 
 ```yaml
-TYPE: SECURITY
+TYPE: TESTING
 STATUS: ACTIVE
-DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
-SUMMARY: "A recovery observation can outlive the authority that admitted it; persistent wait-state mutation therefore needs a final authority check."
-EVIDENCE: "Review scenario expired synthetic authority inside d.reconcile and raised AWAITING_OWNER_VERIFICATION; dev8 still persisted the relabel because that catch branch skipped _reauthorize. CR-P00-002."
-REUSABLE_RULE: "After any potentially long observation/proof read and before changing durable recovery/fence state, revalidate current authority, actor/request identity, generation and fence identity."
-ACTION_TAKEN: "Finding recorded; implementation fix required before next formal review."
-```
-
-### MEM-20260915-022 — Persist the actual cause of derived lifecycle waits
-
-```yaml
-TYPE: OBSERVABILITY
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
-SUMMARY: "Dev8 computes pending-reboot facts and wait_reason but SessionRunner persists only AWAITING_REBOOT state."
-EVIDENCE: "Review scenario returned pending_reboot={cbs:true,wu:false}; the resulting fence had no wait_observation. CR-P00-003."
-REUSABLE_RULE: "A durable state derived from an actual observation should retain a safe typed observation/digest sufficient to audit/reconcile the derivation. Do not persist only the conclusion."
-ACTION_TAKEN: "Finding recorded; implementation fix required."
-```
-
-### MEM-20260915-023 — Durable wait context must be typed and bounded
-
-```yaml
-TYPE: RESOURCE
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
-SUMMARY: "Coordinator.awaiting currently accepts any non-empty dict and deep-copies it into the durable fence."
-EVIDENCE: "Static review of admission.py lines 129–135; CR-P00-004."
-REUSABLE_RULE: "For journaled wait metadata, define exact allowed keys/types and canonical serialized size limits; keep raw/sensitive evidence behind protected references/digests."
-ACTION_TAKEN: "Finding recorded; add schema/size/privacy negative tests during implementation."
+DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
+SUMMARY: "Implementation and review reruns need separate evidence destinations to avoid overwriting or confusing provenance."
+EVIDENCE: "`lane-test.sh implement` and `lane-test.sh review` store outputs under separate `run-evidence/<lane>/<UTC>/` paths and restore tracked generated evidence before final status."
+REUSABLE_RULE: "Keep author and reviewer execution evidence in separate lane-scoped directories and bind review claims to the candidate identity."
+ACTION_TAKEN: "Added lane-specific environment/test helpers."
 ```
 
 ## Future-chat usage
 
-1. Read `PROJECT_STATE.md` and `NEXT_WORK_ITEM.md` first.
-2. Scan this index for lessons relevant to the active increment.
-3. Read `reviews/CODE-REVIEW-P00-001_DEV8.md` while CR-P00-001…004 remain open.
-4. Read `WORKSPACE_WSL.md` for Desktop Commander/WSL operation.
-5. Use Git history/archive pointers for older entry detail when needed.
-6. Add/supersede entries automatically at every meaningful increment.
+1. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, then `EXECUTION_LANES.md`.
+2. Choose one lane from the requested task and read that branch's `LANE_STATE.md`.
+3. Read relevant memory entries and `WORKSPACE_WSL.md`.
+4. Never mix IMPLEMENT and REVIEW permissions inside one increment.
+5. Persist any new reusable lesson automatically before the increment is durable.
