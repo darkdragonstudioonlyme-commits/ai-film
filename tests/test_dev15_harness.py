@@ -8,7 +8,8 @@ from aifilm_p00.errors import P00Error
 from aifilm_p00.native.harness_cases import (
     PROCEDURES,case_ids,procedure,validate_inventory,
 )
-from aifilm_p00.native.harness_controller import validate_stage,validate_fixture_result,_validate_journal
+from aifilm_p00.native.harness_controller import (validate_stage,validate_fixture_result,_validate_journal,
+    _validate_preparation_action,_validate_evidence,_validate_controller_step)
 from aifilm_p00.native.request_entry import prepare_execution
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -96,7 +97,7 @@ class StageOracleTests(unittest.TestCase):
             'owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,'execution_id':'exec-1',
             'suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,'stage_index':0,'route':proc.routes[0],
             'plan_digest':H,'run_id':run_id,'normalized_exit':0,'state':'COMPLETE','journal_ref':None,'fence_digest':None,
-            'oracle_refs':[oracle_ref],'evidence_ids':['E00-09'],'timestamp_utc':'2026-09-15T02:00:00Z',
+            'oracle_refs':[oracle_ref],'evidence_refs':[],'timestamp_utc':'2026-09-15T02:00:00Z',
             'native_execution_observed':True,'parent_case_executed':False}
         raw={'schema_version':1,'withdrawn':False,'actual_digest':digest(actual),'subject_digest':subject}
         store=Store({('lab_case_stage',stage_ref):stage,('lab_case_oracle',oracle_ref):oracle,
@@ -120,7 +121,7 @@ class StageOracleTests(unittest.TestCase):
         value={'role':'lab_case_fixture_result','schema_version':1,'withdrawn':False,'source_kind':'LAB',
             'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,
             'execution_id':'exec-1','suite_ref':self.suite_ref,'fixture_spec_ref':spec,
-            'measurement_refs':['a'*64],'timestamp_utc':'2020-01-01T00:00:00Z'}
+            'preparation_action_refs':['b'*64],'measurement_refs':['a'*64],'timestamp_utc':'2020-01-01T00:00:00Z'}
         with self.assertRaises(P00Error) as caught:
             validate_fixture_result(Store({('lab_case_fixture_result',ref):value}),ref,spec,proc,
                                     self.suite_ref,self.suite,'lab-host',self.owner)
@@ -139,6 +140,53 @@ class StageOracleTests(unittest.TestCase):
             _validate_journal(store,ref,proc,0,'lab-host',self.owner,self.suite_ref,self.suite,
                               self.fixture_result_ref,H,run)
         self.assertEqual(caught.exception.reason,'LAB_JOURNAL_RAW_BINDING')
+
+
+class CausalTraceTests(unittest.TestCase):
+    suite_ref='1'*64;fixture_result_ref='2'*64;owner='S-1-5-21-1'
+    suite={'execution_id':'exec-1','issued_at':'2026-09-15T00:00:00Z','expires_at':'2026-09-15T23:59:59Z'}
+
+    def test_arranged_preparation_requires_causal_before_after_change(self):
+        proc=procedure('T07-A');ref='3'*64;raw='4'*64;collector_ref='5'*64;spec='6'*64
+        value={'role':'lab_case_preparation_action','schema_version':1,'withdrawn':False,'source_kind':'LAB',
+            'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,
+            'execution_id':'exec-1','suite_ref':self.suite_ref,'fixture_spec_ref':spec,'preparation_index':0,
+            'preparation':proc.preparations[0],'mode':'ARRANGE','status':'OBSERVED','before_digest':H,
+            'after_digest':H,'actual':{'causal_effect_observed':True},'raw_artifact_ref':raw,
+            'collector_ref':collector_ref,'started_at':'2026-09-15T01:00:00Z','ended_at':'2026-09-15T01:01:00Z'}
+        store=Store({('lab_case_preparation_action',ref):value})
+        with self.assertRaises(P00Error) as caught:
+            _validate_preparation_action(store,ref,proc,0,self.suite_ref,self.suite,spec,'lab-host',self.owner)
+        self.assertEqual(caught.exception.reason,'LAB_PREPARATION_CAUSALITY')
+
+    def test_controller_step_must_match_exact_procedure_sequence(self):
+        proc=procedure('T07-A');ref='7'*64
+        value={'role':'lab_case_controller_step','schema_version':1,'withdrawn':False,'source_kind':'LAB',
+            'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,
+            'execution_id':'exec-1','suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,
+            'step_index':0,'controller_step':'RUN_SUPPORT_BUNDLE','status':'OBSERVED','actual':{'ran':True},
+            'raw_artifact_ref':'8'*64,'collector_ref':'9'*64,'started_at':'2026-09-15T01:00:00Z',
+            'ended_at':'2026-09-15T01:01:00Z'}
+        with self.assertRaises(P00Error) as caught:
+            _validate_controller_step(Store({('lab_case_controller_step',ref):value}),ref,proc,0,'lab-host',self.owner,
+                                      self.suite_ref,self.suite,self.fixture_result_ref)
+        self.assertEqual(caught.exception.reason,'LAB_CONTROLLER_STEP')
+
+    def test_evidence_name_without_exact_protected_record_binding_is_rejected(self):
+        proc=procedure('T05-A');ref='a'*64;raw='b'*64;collector_ref='c'*64;run='run-1'
+        value={'role':'lab_case_evidence','schema_version':1,'withdrawn':False,'source_kind':'LAB','host_id':'lab-host',
+            'owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,'execution_id':'exec-1',
+            'suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,'stage_index':0,'plan_digest':H,
+            'run_id':run,'evidence_id':'E00-14','protected_ref':'run/x#id','protected_digest':'d'*64,
+            'record_digest':'e'*64,'raw_artifact_ref':raw,'collector_ref':collector_ref,
+            'timestamp_utc':'2026-09-15T01:00:00Z'}
+        badraw={'schema_version':1,'withdrawn':False,'actual_digest':'f'*64,'subject_digest':'0'*64}
+        store=Store({('lab_case_evidence',ref):value,('collector_release',collector_ref):collector(),
+                     ('lab_case_artifact',raw):badraw})
+        with self.assertRaises(P00Error) as caught:
+            _validate_evidence(store,ref,proc,0,'lab-host',self.owner,self.suite_ref,self.suite,
+                               self.fixture_result_ref,H,run)
+        self.assertEqual(caught.exception.reason,'LAB_EVIDENCE_RAW_BINDING')
 
 
 if __name__=='__main__':unittest.main()

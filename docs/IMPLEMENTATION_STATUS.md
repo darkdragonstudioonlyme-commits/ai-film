@@ -1,3 +1,22 @@
+# IMPL-P00-001 Implementation Status — dev17 increment
+
+`0.1.0.dev17 / PARTIAL_SOURCE_DROP_DEV17`
+
+Dev17 remediates independent REVIEW findings CR-P00-010/011 in the 86-case native acceptance harness.
+
+- Procedure digest now includes derived preparation modes (`OBSERVE` vs `ARRANGE`).
+- Every post-authorization preparation requires an exact `lab_case_preparation_action` record with suite/execution/case/spec identity, before/after digests, causal result, controller collector identity, bounded start/end time and raw-artifact provenance.
+- `ARRANGE` preparations require an observed causal state change; `OBSERVE` preparations require an observed existing condition.
+- Fixture measurements bind the exact preparation-action ref and occur after the causal action.
+- Finalization requires the exact ordered `controller_steps` sequence through raw-bound `lab_case_controller_step` records.
+- Stage required evidence now uses exact `lab_case_evidence` refs bound to execution/suite/case/stage/plan/run plus protected ref/digest and record digest; string-only E00 IDs no longer satisfy required evidence.
+- Updated all 86 procedure digests in the inventory while preserving `status=NOT_RUN` and `acceptance_closed=false`.
+- Added focused negative tests for missing causal state change, wrong controller-step sequence and unbound protected evidence.
+
+Final author evidence before packaging: **753 PASS / 0 failure/error/skip**, static **100 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev16 increment
 
 `0.1.0.dev16 / PARTIAL_SOURCE_DROP_DEV16`

@@ -1,3 +1,13 @@
+# DEV17 Remaining-Work Delta
+
+- `CR-P00-010`: implementation fix authored — every causal preparation and controller step now has exact suite/execution-bound action trace + raw provenance; controller procedure finalization requires exact ordered sequence.
+- `CR-P00-011`: implementation fix authored — required E00 satisfaction uses exact protected evidence refs/digests bound to stage/plan/run, not string IDs.
+- Independent REVIEW lane disposition is still required.
+- The 86 native cases remain NOT_RUN until authorized VALIDATION; authoring causal trace validation is not native execution.
+- CR-P00-001 remains open until overall implementation exit condition is genuinely met.
+
+---
+
 # DEV16 Remaining-Work Delta
 
 - `CR-P00-007`: implementation fix authored — all post-authorization causal records bind exact `execution_id` + `suite_ref`; pre-run suite and post-run result set are separate immutable documents.

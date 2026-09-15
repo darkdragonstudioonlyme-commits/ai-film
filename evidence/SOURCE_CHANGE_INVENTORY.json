@@ -1,10 +1,14 @@
 {
-  "parent_commit": "443e6e379ca09b4343076852f5d5bd724e195767",
-  "delivery": "0.1.0.dev16",
+  "parent_commit": "492bad8dc0fe164d38d1168ec3aa516c64176832",
+  "delivery": "0.1.0.dev17",
   "changes": [
     {
       "status": "M",
       "path": "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md"
+    },
+    {
+      "status": "M",
+      "path": "config/required-native-test-inventory.json"
     },
     {
       "status": "M",
@@ -36,15 +40,15 @@
     },
     {
       "status": "M",
+      "path": "src/aifilm_p00/native/harness_cases.py"
+    },
+    {
+      "status": "M",
       "path": "src/aifilm_p00/native/harness_controller.py"
     },
     {
       "status": "M",
       "path": "tests/test_dev15_harness.py"
-    },
-    {
-      "status": "M",
-      "path": "tools/run_native_acceptance_tests.py"
     }
   ]
 }

@@ -38,6 +38,17 @@ ACTIONS=frozenset({'REVIEW_EXACT_CONTENT','INVOKE_PRODUCTION_REQUEST','INVOKE_CO
  'RESUME_OR_RECONCILE','RUN_TERMINAL_SWEEP','RUN_SUPPORT_BUNDLE','RUN_RESTORE_SEQUENCE',
  'RUN_OWNER_LIFECYCLE','OBSERVE_ONLY','VERIFY_ENTRY_REJECTION','VERIFY_EVIDENCE_OUTPUT',
  'VERIFY_ISOLATION','VERIFY_PROTECTION','VERIFY_CONCURRENCY_TRACE','VERIFY_NO_MUTATION'})
+
+OBSERVE_PREPARATIONS=frozenset({
+ 'EXACT_REVIEW_SET','MATCHING_PROFILE','PRECREATE_INVENTORY','PASSIVE_UNKNOWN_GUEST',
+ 'COEXISTING_RESOURCE','CREATE_CLEAN_HOST','ADOPT_ELIGIBLE','ENGINE_CLEAN_HOST',
+ 'REGISTERED_DISPOSABLE_LAB','DISCOVERY_UNKNOWN_GUEST','ENGINE_ABSENT_PROFILE',
+ 'BUNDLE_COMPLETE','CLEAN_RESTORE_SOURCE','ADOPT_RESTORE_SOURCE'})
+
+def preparation_mode(name):
+    require(name in PREPARATIONS,10,'HARNESS_PROCEDURE_PREP')
+    return 'OBSERVE' if name in OBSERVE_PREPARATIONS else 'ARRANGE'
+
 ORACLES=frozenset({'EXACT_CONTENT_IDENTITY','IDENTITY_PROFILE','RESOURCE_CAPACITY','NETWORK_MATRIX',
  'LIFECYCLE_EPOCH','PASSIVE_NO_LAUNCH','JOURNAL_NO_OVERLAP','BUNDLE_OUTCOME','RESTORE_CONTENT',
  'COEXISTENCE_HEALTH','CREATE_ROUTE','ADOPT_ROUTE','C3_PROTECTION','ENTRY_GATE',
@@ -61,7 +72,9 @@ class NativeCaseProcedure:
 
     def document(self):
         return {'case_id':self.case_id,'environment':self.environment,
-            'preparations':list(self.preparations),'routes':list(self.routes),
+            'preparations':list(self.preparations),
+            'preparation_modes':[preparation_mode(x) for x in self.preparations],
+            'routes':list(self.routes),
             'controller_steps':list(self.controller_steps),'expected_exits':list(self.expected_exits),
             'oracles':list(self.oracles),'required_evidence':list(self.required_evidence),
             'destructive':self.destructive,'actual_native_required':self.actual_native_required}

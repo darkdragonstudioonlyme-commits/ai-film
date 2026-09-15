@@ -1,13 +1,13 @@
-# NEXT_WORK_ITEM — continue IMPL-P00-001 from dev16
+# NEXT_WORK_ITEM — continue IMPL-P00-001 from dev17
 
 ```yaml
 WORK_ITEM_ID: IMPL-P00-001
 MODE: IMPLEMENTATION
-CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV16
+CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV17
 AUTHOR_COMPLETE: false
 CR_P00_001: OPEN
-REVIEW_PENDING: [CR-P00-007, CR-P00-008, CR-P00-009]
-NEXT_ACTION: "independent REVIEW-lane assessment of exact dev16; then close residual source scope or review findings"
+REVIEW_PENDING: [CR-P00-010, CR-P00-011]
+NEXT_ACTION: "independent REVIEW-lane assessment of exact dev17; then close any residual source/review scope"
 ```
 
-The 86-case controller remains source-only; all native acceptance entries are NOT_RUN until authorized validation.
+All 86 native acceptance entries remain NOT_RUN until authorized validation.

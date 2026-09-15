@@ -1,7 +1,7 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev16"
-description = "Partial Phase00 implementation: hardens native acceptance suite/result provenance, journal trace binding and causal time ordering; native validation remains pending"
+version = "0.1.0.dev17"
+description = "Partial Phase00 implementation: binds causal LAB preparation/controller traces and exact protected evidence refs for the 86-case acceptance harness; native validation remains pending"
 requires-python = ">=3.11"
 dependencies = []
 

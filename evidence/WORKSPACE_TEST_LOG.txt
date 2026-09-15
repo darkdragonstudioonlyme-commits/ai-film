@@ -152,6 +152,9 @@ test_malformed_proxy_observation_is_integrity_failure (test_dev14_transport.Prox
 test_non_direct_plan_mode_is_not_invented_adapter (test_dev14_transport.ProxyPolicyTests.test_non_direct_plan_mode_is_not_invented_adapter) ... ok
 test_windows_system_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_system_proxy_is_network_failure) ... ok
 test_windows_user_auto_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_user_auto_proxy_is_network_failure) ... ok
+test_arranged_preparation_requires_causal_before_after_change (test_dev15_harness.CausalTraceTests.test_arranged_preparation_requires_causal_before_after_change) ... ok
+test_controller_step_must_match_exact_procedure_sequence (test_dev15_harness.CausalTraceTests.test_controller_step_must_match_exact_procedure_sequence) ... ok
+test_evidence_name_without_exact_protected_record_binding_is_rejected (test_dev15_harness.CausalTraceTests.test_evidence_name_without_exact_protected_record_binding_is_rejected) ... ok
 test_destructive_procedures_are_lab_only (test_dev15_harness.HarnessCatalogTests.test_destructive_procedures_are_lab_only) ... ok
 test_document_case_never_requires_native_stage (test_dev15_harness.HarnessCatalogTests.test_document_case_never_requires_native_stage) ... ok
 test_exact_inventory_coverage_and_digests (test_dev15_harness.HarnessCatalogTests.test_exact_inventory_coverage_and_digests) ... ok
@@ -750,6 +753,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 750 tests in 1.628s
+Ran 753 tests in 1.606s
 
 OK
