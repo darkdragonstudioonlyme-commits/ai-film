@@ -1,0 +1,69 @@
+# AI_FILM_STATE_CHECKPOINT_V17
+
+```yaml
+PROJECT: AI-FILM-SERVER
+STATE_VERSION: 17
+CURRENT_MODE: IMPLEMENTATION
+CURRENT_PHASE: "00 — Host / WSL"
+CURRENT_TASK: IMPL-P00-001
+TASK_STATUS: IN_PROGRESS
+CURRENT_VERIFIED_DELIVERY: "0.1.0.dev8 / PARTIAL_SOURCE_DROP_DEV8"
+AUTHOR_COMPLETE: false
+CODE_REVIEW_HANDOFF_READY: false
+
+LAST_CODE_REVIEW:
+  WORK_ITEM: CODE-REVIEW-P00-001
+  TARGET: dev8
+  KIND: EARLY_OWNER_REQUESTED_REVIEW
+  VERDICT: FAIL
+  FORMAL_GATE_TRANSITION: NOT_ACTIVATED
+  SOURCE_MODIFIED_DURING_REVIEW: false
+
+OPEN_CODE_REVIEW_FINDINGS:
+  - CR-P00-001 BLOCKER
+  - CR-P00-002 HIGH
+  - CR-P00-003 HIGH
+  - CR-P00-004 MEDIUM
+
+AUTHOR_EVIDENCE:
+  WORKSPACE: "683 PASS / 0 failure / 0 error / 0 skip"
+  STATIC: "92 PASS / 0 failed"
+  SOURCE_DIGEST: e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08
+  TEST_DIGEST: f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021
+
+NATIVE_WINDOWS_WSL: NOT_RUN
+LAB: NOT_RUN
+SITE: NOT_RUN
+QUALIFICATION_ISSUED: false
+HOST_READY: NOT_EVALUATED
+CODE_REVIEW_PASS: false
+
+EXACT_DELIVERY:
+  PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip
+  SIZE_BYTES: 1091121
+  SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
+  DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
+  LOCAL_SOURCE: /home/dragon/ai-film-dev/source-dev8
+  LOCAL_BASELINE_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+
+OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08"
+IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
+OPEN_DESIGN_GAPS: []
+OPEN_VALIDATION_FAILURES: []
+
+NEXT_MODE: IMPLEMENTATION
+NEXT_ACTION: "Fix CR-P00-002/003/004; then finish remaining implementation including prior pre-C3/checkpoint + nested E00. CR-P00-001 closes only at true author-complete handoff."
+```
+
+## Review result
+
+The owner requested an early CODE_REVIEW against exact dev8. Blueprint review discipline was followed and source was not edited. The review independently reran the workspace/static checks and reproduced 683 PASS / 92 PASS with unchanged content digests.
+
+Verdict: **FAIL**.
+
+See:
+
+- `reviews/CODE-REVIEW-P00-001_DEV8.md`
+- `reviews/CODE-REVIEW-P00-001_DEV8.json`
+
+Formal `CODE_REVIEW_PASS` was not activated because the implementation handoff exit condition is not satisfied.
