@@ -12,7 +12,10 @@ TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
 MODE_TRANSITION_NOW: NONE
 EXACT_DEV6_SOURCE_MIRRORED: false
+SOURCE_IMPORT_VERIFIED: false
 IMPLEMENTATION_MAY_RESUME: false
+DOCUMENTATION_SYNC: MANDATORY
+LIVING_MEMORY: PROJECT_MEMORY.md
 ```
 
 ## Immediate prerequisite — before any more implementation
@@ -36,7 +39,15 @@ IMPL-P00-001_IMPLEMENTATION_PACKAGE_V6.zip
 SHA-256: 41f8a4ed1d80b87bc84981c3cdb2254a3fbc33f21b822580d7e0788b7b404f7e
 ```
 
-Once exact source persistence is verified, update `PROJECT_STATE.md` and this file in Git, commit/push, verify the remote SHA, and only then continue the implementation sequence below.
+Once exact source persistence is verified:
+
+1. update `SOURCE_IMPORT_STATUS.md`;
+2. update `PROJECT_STATE.md`;
+3. update this file;
+4. add any reusable source-import lesson to `PROJECT_MEMORY.md`;
+5. create a milestone checkpoint if the persistence gate is considered resolved;
+6. commit/push and verify the remote state;
+7. only then continue the implementation sequence below.
 
 ## Goal after persistence is resolved
 
@@ -55,10 +66,11 @@ Finish the remaining source/integration/fault-controller scope of Phase 00 witho
 6. Complete causal supported-route/failure controller procedures for all normative T/F/subcases.
 7. Complete production-factory integration author tests with explicit author test ports.
 8. Run full workspace regression and static checks.
-9. Update traceability/evidence/docs, `PROJECT_STATE.md`, checkpoint and next-work item.
-10. Inspect diff and run secret scan.
-11. Commit and push the exact candidate.
-12. Verify remote commit SHA.
+9. Update traceability/evidence/docs and current state.
+10. Run the Documentation Sync Gate from `GIT_WORKFLOW.md`.
+11. Inspect diff and run secret scan.
+12. Commit and push the exact candidate.
+13. Verify remote state before starting another coherent increment.
 
 ## Already authored through dev6 — do not redo as if absent
 
@@ -77,6 +89,9 @@ Finish the remaining source/integration/fault-controller scope of Phase 00 witho
 ## Inputs after source seed
 
 - `PROJECT_STATE.md`
+- `NEXT_WORK_ITEM.md`
+- relevant active entries in `PROJECT_MEMORY.md`
+- `GIT_WORKFLOW.md`
 - `SOURCE_IMPORT_STATUS.md`
 - authoritative Blueprint V2
 - exact approved Phase 00 Design V2 contracts/review approval
@@ -85,6 +100,33 @@ Finish the remaining source/integration/fault-controller scope of Phase 00 witho
 - `docs/REMAINING_IMPLEMENTATION.md`
 - `docs/NATIVE_INTEGRATION_BOUNDARY.md`
 - latest verified workspace test report
+
+## Mandatory living-memory behavior during this task
+
+The assistant must update Markdown automatically when work creates durable knowledge.
+
+### Always evaluate at the end of a meaningful increment
+
+```text
+state changed?              → PROJECT_STATE.md
+next work changed?          → NEXT_WORK_ITEM.md
+reusable learning found?    → PROJECT_MEMORY.md
+workflow improved?          → GIT_WORKFLOW.md + PROJECT_MEMORY.md
+implementation scope moved? → implementation/remaining/traceability docs
+milestone reached?          → new checkpoint MD + JSON
+```
+
+Examples of reusable knowledge that **must** be persisted:
+
+- an implementation optimization that will affect later modules;
+- a safer or simpler recovery pattern;
+- a tooling limitation or reliable workaround;
+- a failure mode or negative-test oracle worth reusing;
+- a performance/capacity observation supported by evidence;
+- a security/reproducibility lesson;
+- clarification that prevents future chats from redoing completed investigation.
+
+Do not log speculative internal reasoning. Record verified/qualified conclusions and label proposals/hypotheses correctly.
 
 ## Forbidden
 
@@ -96,14 +138,17 @@ Finish the remaining source/integration/fault-controller scope of Phase 00 witho
 - Self-approve code review, qualification, HOST_READY or production readiness.
 - Ask for user host data as a substitute for remaining source implementation.
 - Start implementation while the Git source-persistence prerequisite is unresolved.
+- Leave a reusable discovery only in chat when it belongs in `PROJECT_MEMORY.md`.
 
 ## Design-gap rule
 
 If implementation evidence demonstrates a required behavior change to an approved contract, record a genuine DESIGN_GAP and leave the affected implementation scope before redesign. Do not create a design gap merely because source work is incomplete.
 
+A `PROJECT_MEMORY.md` entry may document the discovery, but it does **not** authorize a contract change.
+
 ## Exit condition
 
-A full author-complete source/harness/docs/test candidate exists; all `IMPL-REM-01…08` are actually closed or properly managed under the mode system; no hidden stub remains; regression/static checks are clean; canonical state is updated; the exact candidate has been committed/pushed and remote SHA verified.
+A full author-complete source/harness/docs/test candidate exists; all `IMPL-REM-01…08` are actually closed or properly managed under the mode system; no hidden stub remains; regression/static checks are clean; canonical state/memory/task documentation is synchronized; the exact candidate has been committed/pushed and remote state verified.
 
 Only then:
 
