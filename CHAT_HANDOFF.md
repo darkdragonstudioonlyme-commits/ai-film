@@ -2,59 +2,41 @@
 
 Use GitHub repository `darkdragonstudioonlyme-commits/ai-film` as the persistent project handoff.
 
-## Minimal bootstrap — do this first
+## Minimal bootstrap
 
 1. Read `PROJECT_STATE.md` completely.
 2. Read `NEXT_WORK_ITEM.md` completely.
-3. Read the active/relevant entries in `PROJECT_MEMORY.md`.
+3. Scan active/relevant entries in `PROJECT_MEMORY.md`.
 4. Verify the current remote `main` head.
-5. Before making persistent changes, read `GIT_WORKFLOW.md` and follow its Documentation Sync Gate.
-6. Read only the conditional/source/design artifacts referenced by current state.
+5. Read `GIT_WORKFLOW.md` before persistent changes.
+6. If using WSL/Desktop Commander, read `WORKSPACE_WSL.md` and verify the prepared local source Git status.
+7. Read only the exact reviewed contracts/source/evidence required by the current work item.
 
-Do **not** depend on the previous chat transcript.
+Do **not** rely on the previous chat transcript and do not use an old checkpoint summary as current state.
 
-## Expected state at checkpoint V13
+## Mode rule
 
-```text
-ACTIVE MODE: IMPLEMENTATION
-PHASE: 00 — Host / WSL
-WORK ITEM: IMPL-P00-001
-CURRENT VERIFIED DELIVERY: 0.1.0.dev6 / PARTIAL_SOURCE_DROP_DEV6
-TARGET GATE: CODE_REVIEW_PASS
-AUTHOR COMPLETE: false
-HOST_READY: NOT_EVALUATED
-```
+Follow the one-active-mode state machine from the authoritative Blueprint. The exact current mode/phase/work item must come from `PROJECT_STATE.md` and `NEXT_WORK_ITEM.md`.
 
-The exact current state in `PROJECT_STATE.md` overrides this summary if the project has advanced.
+Do not:
 
-## Critical persistence prerequisite
-
-At checkpoint V13 the exact dev6 source has **not yet been accepted as a byte-identical GitHub mirror**.
-
-Do not reconstruct source from Markdown or conversation summaries and do not begin new implementation on an approximate copy.
-
-Read `SOURCE_IMPORT_STATUS.md`. Implementation may resume only after repository state explicitly records:
-
-```yaml
-EXACT_DEV6_SOURCE_MIRRORED: true
-SOURCE_IMPORT_VERIFIED: true
-IMPLEMENTATION_MAY_RESUME: true
-```
+- mix IMPLEMENTATION with CODE_REVIEW/VALIDATION responsibilities;
+- change reviewed contracts inside IMPLEMENTATION;
+- infer native/LAB/SITE validation from author tests;
+- use memory entries to bypass design/review gates;
+- reconstruct a delivery from prose when an exact recovery artifact/worktree exists.
 
 ## Standing self-improving-memory rule
 
-During any project work, automatically persist reusable learning:
+Persist reusable learning automatically:
 
-- reusable discovery/optimization/tooling lesson/risk/test lesson → `PROJECT_MEMORY.md`;
-- current state change → `PROJECT_STATE.md`;
-- next action change → `NEXT_WORK_ITEM.md`;
-- workflow/document-process improvement → `GIT_WORKFLOW.md` + `PROJECT_MEMORY.md`;
-- milestone → new immutable checkpoint MD + JSON.
+```text
+state/gate/evidence change      → PROJECT_STATE.md
+next executable work change     → NEXT_WORK_ITEM.md
+reusable discovery/optimization → PROJECT_MEMORY.md
+workspace/environment change    → WORKSPACE_WSL.md + PROJECT_MEMORY.md
+workflow improvement            → GIT_WORKFLOW.md + PROJECT_MEMORY.md
+milestone                        → new checkpoint MD + JSON
+```
 
-Do this **without waiting for the user to request documentation updates**.
-
-A meaningful increment is not complete until the Documentation Sync Gate in `GIT_WORKFLOW.md` has been evaluated, applicable MD files updated, and persistent changes committed/pushed/verified.
-
-## Operating constraints
-
-Follow the one-active-mode state machine from the authoritative Blueprint. Do not mix implementation and review. Do not change reviewed contracts during implementation. Do not claim native validation from author tests. Do not use memory entries to bypass design/review gates.
+A meaningful increment is not complete until the Documentation Sync Gate is evaluated, exact delivery/state persistence is verified, and the next chat can identify the active baseline without conversation history.
