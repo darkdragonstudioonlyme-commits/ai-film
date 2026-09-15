@@ -2,17 +2,18 @@
 
 Use GitHub repository `darkdragonstudioonlyme-commits/ai-film` as the persistent project handoff.
 
-## Read before doing anything
+## Minimal bootstrap — do this first
 
-1. `PROJECT_STATE.md` — canonical detailed state.
-2. `NEXT_WORK_ITEM.md` — exact next action.
-3. `GIT_WORKFLOW.md` — mandatory commit/push discipline.
-4. `SOURCE_IMPORT_STATUS.md` — whether exact dev6 source is safe to use.
-5. `AI_FILM_STATE_CHECKPOINT_V12.md` and `AI_FILM_PROJECT_STATE_V12.json` — checkpoint views.
+1. Read `PROJECT_STATE.md` completely.
+2. Read `NEXT_WORK_ITEM.md` completely.
+3. Read the active/relevant entries in `PROJECT_MEMORY.md`.
+4. Verify the current remote `main` head.
+5. Before making persistent changes, read `GIT_WORKFLOW.md` and follow its Documentation Sync Gate.
+6. Read only the conditional/source/design artifacts referenced by current state.
 
-Do **not** rely on the previous chat transcript.
+Do **not** depend on the previous chat transcript.
 
-## Expected state at this checkpoint
+## Expected state at checkpoint V13
 
 ```text
 ACTIVE MODE: IMPLEMENTATION
@@ -24,21 +25,36 @@ AUTHOR COMPLETE: false
 HOST_READY: NOT_EVALUATED
 ```
 
+The exact current state in `PROJECT_STATE.md` overrides this summary if the project has advanced.
+
 ## Critical persistence prerequisite
 
-At checkpoint V12 the exact dev6 source has **not yet been accepted as a byte-identical GitHub mirror**. Do not reconstruct it from prose and do not start new implementation on an approximate copy.
+At checkpoint V13 the exact dev6 source has **not yet been accepted as a byte-identical GitHub mirror**.
 
-Read `SOURCE_IMPORT_STATUS.md`. Only after the repository records both:
+Do not reconstruct source from Markdown or conversation summaries and do not begin new implementation on an approximate copy.
+
+Read `SOURCE_IMPORT_STATUS.md`. Implementation may resume only after repository state explicitly records:
 
 ```yaml
 EXACT_DEV6_SOURCE_MIRRORED: true
+SOURCE_IMPORT_VERIFIED: true
 IMPLEMENTATION_MAY_RESUME: true
 ```
 
-may the chat continue the implementation sequence from `NEXT_WORK_ITEM.md`.
+## Standing self-improving-memory rule
+
+During any project work, automatically persist reusable learning:
+
+- reusable discovery/optimization/tooling lesson/risk/test lesson → `PROJECT_MEMORY.md`;
+- current state change → `PROJECT_STATE.md`;
+- next action change → `NEXT_WORK_ITEM.md`;
+- workflow/document-process improvement → `GIT_WORKFLOW.md` + `PROJECT_MEMORY.md`;
+- milestone → new immutable checkpoint MD + JSON.
+
+Do this **without waiting for the user to request documentation updates**.
+
+A meaningful increment is not complete until the Documentation Sync Gate in `GIT_WORKFLOW.md` has been evaluated, applicable MD files updated, and persistent changes committed/pushed/verified.
 
 ## Operating constraints
 
-Follow the one-active-mode state machine from the authoritative Blueprint. Do not mix implementation and review. Do not change reviewed contracts during implementation. Do not claim native validation from author tests.
-
-After exact source persistence is established, every coherent implementation increment must be tested, documented, committed, pushed and remote-SHA-verified before starting the next increment.
+Follow the one-active-mode state machine from the authoritative Blueprint. Do not mix implementation and review. Do not change reviewed contracts during implementation. Do not claim native validation from author tests. Do not use memory entries to bypass design/review gates.
