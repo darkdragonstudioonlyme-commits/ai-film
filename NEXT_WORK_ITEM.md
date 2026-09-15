@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — IMPL-P00-001
+# NEXT WORK ITEM — IMPL-P00-001 after dev8 CODE_REVIEW FAIL
 
 ```yaml
 WORK_ITEM_ID: IMPL-P00-001
@@ -6,15 +6,10 @@ MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
 STATUS: IN_PROGRESS
 CURRENT_DELIVERY: PARTIAL_SOURCE_DROP_DEV8
-ENTRY_GATE: DESIGN_REVIEW_PASS
-ENTRY_GATE_STATUS: SATISFIED_EXACT_V2
+LAST_CODE_REVIEW: CODE-REVIEW-P00-001 / FAIL
 TARGET_GATE: CODE_REVIEW_PASS
-PHASE_GATE: HOST_READY
 MODE_TRANSITION_NOW: NONE
-DOCUMENTATION_SYNC: MANDATORY
-LIVING_MEMORY: PROJECT_MEMORY.md
-WSL_WORKSPACE_READY: true
-WSL_WORKSPACE_ROOT: /home/dragon/ai-film-dev
+OPEN_REVIEW_FINDINGS: CR-P00-001…004
 ACTIVE_SOURCE: /home/dragon/ai-film-dev/source-dev8
 ```
 
@@ -25,54 +20,53 @@ PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip
 SIZE_BYTES: 1091121
 SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
 DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
-RAW_REDOWNLOAD_SHA_VERIFIED: true
 LOCAL_BASELINE_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
 ```
 
-Author baseline: **683 PASS**, **92 static PASS**. Native Windows/WSL/LAB/SITE remain NOT_RUN.
+Author baseline remains **683 PASS / 92 static PASS**. Native Windows/WSL/LAB/SITE remain NOT_RUN.
 
-## Immediate goal
+## First integration — close review findings before new evidence scope
 
-Complete the next coherent evidence-semantics increment:
+1. **CR-P00-002 / HIGH — renewed authority before durable owner-wait relabel**
+   - In `RecoveryRunner`, re-authorize immediately before persisting `AWAITING_OWNER_VERIFICATION` after postcondition observation.
+   - Re-check exact opening fence/request identity and authority generation.
+   - Add negative tests for approval expiry, authority rollback, actor drift and recovery-request drift after observation but before relabel.
 
-**prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics**.
+2. **CR-P00-003 / HIGH — persist actual wait cause**
+   - When SessionRunner receives an operator-wait result, persist a bounded wait observation instead of dropping `wait_reason`/normalized lifecycle facts.
+   - For reboot waits, retain only safe normalized pending-reboot indicators and required witness/result identity; do not persist raw process output.
+   - Add tamper/absence/replay tests showing recovery can distinguish persisted reboot-origin context.
 
-Do not mix this increment with publication recovery/non-DIRECT transport/86-case controller work unless a very small directly coupled change is required for correctness.
+3. **CR-P00-004 / MEDIUM — typed/bounded wait context**
+   - Define exact schemas/allowed keys per `AWAITING_REBOOT`, `AWAITING_USER_INIT`, `AWAITING_OWNER_VERIFICATION`.
+   - Reject unknown keys and cap canonical serialized size.
+   - Prefer digests/references for evidence larger than the minimal wait state.
+   - Add oversized/unknown-key/sensitive-shape negative tests.
 
-## Required order
+4. Run targeted review-finding tests, then full `/home/dragon/ai-film-dev/test.sh` regression/static checks.
+5. Documentation Sync Gate; update review finding dispositions but do **not** mark `CR-P00-001` closed yet.
+6. Package/persist exact next delivery and verify remote state.
 
-1. Read exact dev8 `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, Evidence Register V2, Design V2 D00-10/D00-12/D00-14, relevant `evidence_stage`, `evidence_catalog`, `native/evidence_pipeline`, `native/proofs`, `native/assessment`, session/recovery source and existing dev6 prior-evidence tests.
-2. Map which later stages may consume which prior records and which provenance links are mandatory.
-3. Implement prior **pre-C3/checkpoint** selection using exact plan/run/step/host/target/checkpoint/source provenance; do not infer eligibility from a `PASS` label, intended output name, file timestamp or envelope status alone.
-4. Complete nested cross-stage E00 field/source selection that is already required by the reviewed catalog/stage rules.
-5. Reject unrelated, tampered, ambiguous, stale, wrong-host/wrong-plan and provenance-incomplete prior evidence.
-6. Preserve distinction between prior immutable evidence and current observations; do not boot/launch a guest merely to fill a prior-stage gap.
-7. Add focused positive/negative author tests. Parent T/F cases remain native NOT_RUN unless actually executed later in authorized validation.
-8. Run targeted tests, then `/home/dragon/ai-film-dev/test.sh` for full author regression/static checks.
-9. Update implementation/remaining/traceability docs and automatically persist reusable lessons to `PROJECT_MEMORY.md`.
-10. Secret/diff review, create exact next package, upload by file reference, raw re-download/hash verify, update Git state/checkpoint and verify remote before another increment.
+## Then — resume remaining implementation
 
-## Dev8 behavior to preserve
+After CR-P00-002…004 are fixed and persisted:
 
-- C3 process exit is not lifecycle completion.
-- Pending reboot retains `AWAITING_REBOOT/20`.
-- Reboot-wait reconciliation requires changed host boot witness + cleared pending state.
-- Post-reboot affected-resource owner evidence is required before C3 step commit where applicable.
-- Missing owner postcheck can retain/relabel only an existing operator-wait fence.
-- OOBE owner wait does not invent reboot semantics.
-- The reviewed final owner-planned `AWAIT_OWNER_RESTART` remains in plan operations.
+1. prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics;
+2. incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability;
+3. reviewed non-DIRECT transport;
+4. causal supported-route/failure controller procedures for all 86 normative T/F/subcases;
+5. production-factory integration author tests;
+6. full source/harness/docs/test closure.
 
-See `MEM-20260915-016…019`.
+`CR-P00-001` closes only when `AUTHOR_COMPLETE=true`, full REM scope is closed/managed and `CODE_REVIEW_HANDOFF_READY=true` is justified.
 
-## Following increments
+## Review record
 
-After this evidence increment is durably persisted:
+Read before touching the findings:
 
-1. incomplete/temp support-bundle publication recovery + remaining E17 recovery integration/applicability;
-2. reviewed non-DIRECT transport support where required;
-3. causal supported-route/failure controller procedures for all 86 normative T/F/subcases;
-4. production-factory integration author tests with explicit author-test ports;
-5. final source/harness/docs/test closure and CODE_REVIEW handoff preparation.
+- `reviews/CODE-REVIEW-P00-001_DEV8.md`
+- `reviews/CODE-REVIEW-P00-001_DEV8.json`
+- `PROJECT_MEMORY.md` entries `MEM-20260915-020…023`
 
 ## WSL workflow
 
@@ -81,26 +75,18 @@ source /home/dragon/ai-film-dev/env.sh
 /home/dragon/ai-film-dev/test.sh
 ```
 
-Read `WORKSPACE_WSL.md`. Local Git is for diff/rollback; direct WSL push remains unauthenticated, so remote state writes use the GitHub connector.
+Use local Git for diff/rollback. Direct WSL push remains unauthenticated; remote state writes use the GitHub connector.
 
 ## Forbidden
 
 - Change FD/D00/public/reviewed contracts or lower acceptance.
 - Execute Phase00 native Windows/WSL/LAB/SITE/guest/live-network provisioning/validation during authoring.
 - Treat process exit, fixture flags, author-test count, envelope labels or timestamps as actual native proof.
-- Boot a guest just to manufacture missing prior-stage evidence.
-- Delete unresolved journal/fence/read state to recover.
-- Self-approve code review, qualification or HOST_READY.
-- Ask for host data as a substitute for remaining source implementation.
-- Continue from an unverified delivery/worktree.
-- Store GitHub credentials/PATs in plaintext workspace files.
-
-## Design-gap rule
-
-If implementation evidence shows that correct behavior requires changing reviewed semantics, create a genuine `DESIGN_GAP` and leave the affected implementation scope. Do not redesign inside IMPLEMENTATION.
+- Fix CR-P00-001 by merely changing documentation flags; full source closure is required.
+- Store raw/sensitive observations in the new wait context just to satisfy CR-P00-003.
+- Delete unresolved journal/fence/read state.
+- Self-approve CODE_REVIEW_PASS, qualification or HOST_READY.
 
 ## Exit condition
 
-A full author-complete source/harness/docs/test candidate exists; `IMPL-REM-01…08` are actually closed or correctly managed; no hidden stub remains; required author regression/static checks are clean; exact candidate identity is durably persisted/reviewable; canonical docs/state are synchronized.
-
-Only then transition to `CODE_REVIEW / CODE-REVIEW-P00-001`.
+After all remaining source scope is genuinely author-complete and the exact candidate is persisted/reviewable, set `CODE_REVIEW_HANDOFF_READY=true` with evidence and run `CODE-REVIEW-P00-001` again. Until then remain in IMPLEMENTATION.
