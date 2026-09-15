@@ -461,6 +461,15 @@ test_reconcile_waiting_reboot_binds_actual_boot_boundary (test_dev8_lifecycle.Na
 test_native_driver_checks_pending_reboot_after_successful_c3_process (test_dev8_lifecycle.NativeRunLifecycleTests.test_native_driver_checks_pending_reboot_after_successful_c3_process) ... ok
 test_native_driver_does_not_hide_existing_3010_wait (test_dev8_lifecycle.NativeRunLifecycleTests.test_native_driver_does_not_hide_existing_3010_wait) ... ok
 test_missing_owner_postcheck_relabels_only_existing_wait_fence (test_dev8_lifecycle.RecoveryOwnerWaitTests.test_missing_owner_postcheck_relabels_only_existing_wait_fence) ... ok
+test_actor_drift_after_observation_blocks_relabel (test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_actor_drift_after_observation_blocks_relabel) ... ok
+test_expired_authority_after_observation_blocks_relabel (test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_expired_authority_after_observation_blocks_relabel) ... ok
+test_generation_rollback_after_observation_blocks_relabel (test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_generation_rollback_after_observation_blocks_relabel) ... ok
+test_owner_wait_relabel_reauthorizes_after_observation (test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_owner_wait_relabel_reauthorizes_after_observation) ... ok
+test_recovery_request_drift_after_observation_blocks_relabel (test_dev9_review_fixes.OwnerRelabelReauthorizationTests.test_recovery_request_drift_after_observation_blocks_relabel) ... ok
+test_session_persists_safe_pending_reboot_cause (test_dev9_review_fixes.WaitPersistenceTests.test_session_persists_safe_pending_reboot_cause) ... ok
+test_wait_context_binds_previous_fence_state (test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_binds_previous_fence_state) ... ok
+test_wait_context_rejects_oversized_payload_before_persistence (test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_rejects_oversized_payload_before_persistence) ... ok
+test_wait_context_rejects_unknown_sensitive_shape (test_dev9_review_fixes.WaitPersistenceTests.test_wait_context_rejects_unknown_sensitive_shape) ... ok
 test_actual_fixture_execution_with_journal (test_engine.EngineTests.test_actual_fixture_execution_with_journal) ... ok
 test_authorization_before_any_backend_action (test_engine.EngineTests.test_authorization_before_any_backend_action) ... ok
 test_invalid_zip_normalized (test_engine.EngineTests.test_invalid_zip_normalized) ... ok
@@ -683,6 +692,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 683 tests in 11.210s
+Ran 692 tests in 1.441s
 
 OK

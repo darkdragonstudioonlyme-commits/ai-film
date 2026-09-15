@@ -126,12 +126,12 @@ class Coordinator:
         self._require_fence(); token(reason)
         self.fence['state']='UNCERTAIN'; self.fence['reason']=reason; self._persist('UNCERTAIN')
 
-    def awaiting(self,kind:str,observation:dict|None=None):
+    def awaiting(self,kind:str,observation:dict):
         self._require_fence()
-        require(kind in ('AWAITING_REBOOT','AWAITING_USER_INIT','AWAITING_OWNER_VERIFICATION'),10,'INVALID_PAUSE')
-        if observation is not None:
-            require(type(observation) is dict and bool(observation),10,'WAIT_OBSERVATION_SCHEMA')
-            self.fence['wait_observation']=deepcopy(observation)
+        from .native.lifecycle import validate_wait_observation
+        checked=validate_wait_observation(kind,observation)
+        require(checked['previous_state']==self.fence['state'],15,'WAIT_PREVIOUS_STATE_DRIFT')
+        self.fence['wait_observation']=checked
         self.fence['state']=kind; self._persist(kind)
 
     def terminal(self,observation:dict):

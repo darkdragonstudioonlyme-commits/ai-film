@@ -1,3 +1,13 @@
+# Traceability — dev9 review-finding fixes
+
+| Module | New cases | Review linkage | Scope |
+|---|---:|---|---|
+| `test_dev9_review_fixes` | 9 | CR-P00-002/003/004 | renewed recovery authority; persisted pending-reboot cause; typed/capped wait metadata |
+
+Final author regression: **692 PASS**, static **93 PASS**. Parent native/LAB/SITE cases remain NOT_RUN and CR-P00-001 remains open.
+
+---
+
 # Traceability — dev8 lifecycle increment
 
 Approved contract remains `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`.

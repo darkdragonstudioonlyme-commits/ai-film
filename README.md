@@ -1,14 +1,14 @@
 # AI-FILM Phase00 — implementation source drop dev8
 
-**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev8 · PARTIAL_SOURCE_DROP_DEV8**
+**IMPL-P00-001 · IMPLEMENTATION · 0.1.0.dev9 · PARTIAL_SOURCE_DROP_DEV9**
 
 **Full author-complete: false. Full-scope CODE_REVIEW handoff: NOT_READY.**
 
-Dev8 builds on dev7 executable-byte trust and adds explicit C3 lifecycle wait/resume hardening: successful native C3 processes cannot bypass an observed Windows pending-reboot condition; reconciliation of a reboot wait requires a changed host boot witness and cleared pending-reboot state; post-reboot affected-resource owner evidence is attached before a C3 step can commit; OOBE/post-C3 missing owner evidence remains a durable `AWAITING_OWNER_VERIFICATION` operator wait without replaying mutation. No native Windows/WSL/LAB/SITE execution occurred during authoring.
+Dev9 closes the concrete dev8 review findings CR-P00-002/003/004: durable owner-wait relabel now re-authorizes immediately before persistence; operator waits retain only typed/bounded safe context and a result/prior-wait digest; actual pending-reboot cause is no longer discarded. Full Phase00 implementation remains incomplete. No native Windows/WSL/LAB/SITE execution occurred during authoring.
 
 ## Read first
 
-Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV7_TO_DEV8.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
+Read `docs/IMPLEMENTATION_STATUS.md`, `docs/REMAINING_IMPLEMENTATION.md`, `docs/NATIVE_INTEGRATION_BOUNDARY.md`, `docs/CHANGELOG_DEV8_TO_DEV9.md`, and `docs/TRACEABILITY.md`. Approved Phase00 Design V2 remains unchanged.
 
 ## Workspace-only checks
 

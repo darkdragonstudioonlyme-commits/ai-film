@@ -136,7 +136,9 @@ class SessionRunner:
                     require(type(result) is dict, 18, 'ACTION_RESULT_SCHEMA')
                     if result.get('state') in ('AWAITING_REBOOT', 'AWAITING_USER_INIT',
                                                 'AWAITING_OWNER_VERIFICATION'):
-                        c.awaiting(result['state'])
+                        from .native.lifecycle import wait_observation
+                        wait=wait_observation(semantic['operations'][index]['action'],result,c.fence['state'])
+                        c.awaiting(result['state'],wait)
                         return self._report(plan, 20, result['state'], progress)
                     completion = self.driver.observe(plan, index, result, fresh, c)
                     require(type(completion) is Completion, 19, 'COMPLETION_ADAPTER_TYPE')

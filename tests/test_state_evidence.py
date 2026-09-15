@@ -48,7 +48,7 @@ class AdmissionTests(Checks):
     def test_native_witness_required(self):
         c,st,g,a=self.setup_coord(); self.intent(c); self.reject(11,c.native_started,{'pid':2}); c.close()
     def test_awaiting_reboot_fence_retained(self):
-        c,st,g,a=self.setup_coord(); self.intent(c); c.awaiting('AWAITING_REBOOT'); c.close(); self.assertEqual(st.fence['state'],'AWAITING_REBOOT')
+        c,st,g,a=self.setup_coord(); self.intent(c); from aifilm_p00.native.lifecycle import wait_observation; w=wait_observation('AWAIT_OWNER_RESTART',{'state':'AWAITING_REBOOT','exit':20},c.fence['state']); c.awaiting('AWAITING_REBOOT',w); c.close(); self.assertEqual(st.fence['state'],'AWAITING_REBOOT')
     def test_wrong_native_witness_not_terminal(self):
         c,st,g,a=self.setup_coord(); self.intent(c); proof=self.proof(c); proof['native_witness']={'pid':123}; self.reject(19,c.terminal,proof); c.close()
 

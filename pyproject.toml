@@ -1,7 +1,7 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev8"
-description = "Partial Phase00 implementation: hardens reboot/OOBE owner-wait reconciliation and C3 lifecycle resume; remaining evidence/transport/harness work pending"
+version = "0.1.0.dev9"
+description = "Partial Phase00 implementation: closes dev8 review findings CR-P00-002/003/004 with renewed recovery authority and typed bounded wait context; remaining evidence/transport/harness work pending"
 requires-python = ">=3.11"
 dependencies = []
 

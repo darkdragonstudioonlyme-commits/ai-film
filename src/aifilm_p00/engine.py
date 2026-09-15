@@ -54,7 +54,9 @@ class OperationEngine:
                     self.coordinator.uncertain('BACKEND_INTERRUPTED')
                     raise
                 if outcome.get('state') in ('AWAITING_REBOOT','AWAITING_USER_INIT','AWAITING_OWNER_VERIFICATION'):
-                    self.coordinator.awaiting(outcome['state'])
+                    from .native.lifecycle import wait_observation
+                    wait=wait_observation(operation['action'],outcome,self.coordinator.fence['state'])
+                    self.coordinator.awaiting(outcome['state'],wait)
                     return {'exit':20,'state':outcome['state'],'source_kind':self.backend.source_kind,'host_ready':False}
                 require(outcome.get('exit')==0,18,'NATIVE_OUTCOME_UNMAPPED')
                 self.coordinator.terminal(self.backend.terminal_observation(operation,s,outcome))

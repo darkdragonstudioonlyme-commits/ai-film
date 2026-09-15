@@ -1,3 +1,15 @@
+# DEV9 Remaining-Work Delta
+
+- `CR-P00-002`: implementation fix authored — renewed authority/fence/request checks precede durable owner-wait relabel.
+- `CR-P00-003`: implementation fix authored — wait cause is persisted as typed safe metadata/digest.
+- `CR-P00-004`: implementation fix authored — exact per-kind wait schema plus serialized-size/privacy boundary.
+- These fixes require independent REVIEW lane disposition before findings are considered closed.
+- `CR-P00-001` and `IMPL-REM-01…08` remain open at full scope.
+
+Next implementation scope after review disposition: prior pre-C3/checkpoint provenance + nested cross-stage E00 semantics.
+
+---
+
 # DEV8 Remaining-Work Delta
 
 - **REM-04/05 progress:** pending reboot after a C3 process is now a durable operator wait even when the process returned exit 0; reboot reconciliation requires a changed host boot witness and cleared pending state.

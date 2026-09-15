@@ -1,3 +1,19 @@
+# IMPL-P00-001 Implementation Status — dev9 increment
+
+`0.1.0.dev9 / PARTIAL_SOURCE_DROP_DEV9`
+
+Dev9 is a focused PATCH-like implementation increment performed in IMPLEMENTATION after the early dev8 CODE_REVIEW FAIL. It closes CR-P00-002/003/004 in source/tests; CR-P00-001 remains open because the overall work item is not author-complete.
+
+- Owner-verification relabel after recovery observation now performs renewed authority, generation, actor/request and fence checks immediately before the durable transition.
+- Session/legacy engine operator waits now persist a typed safe projection instead of only the derived state.
+- Wait metadata has an exact schema, 1024-byte canonical cap, fixed reboot-indicator keys, digest references, and no raw process/owner output.
+- Reboot-origin owner-verification retains only the digest of the previous wait observation.
+- Added 9 focused review-finding regression tests.
+
+Final author evidence: **692 PASS / 0 failure/error/skip**, static **93 PASS**. Windows/WSL/LAB/SITE native execution remains **NOT_RUN**. CODE_REVIEW_PASS remains false.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev8 increment
 
 ## Current verified author candidate

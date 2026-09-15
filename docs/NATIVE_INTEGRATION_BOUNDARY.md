@@ -1,3 +1,20 @@
+# DEV9 Durable wait / recovery authority boundary
+
+Operator wait persistence is now a separate typed boundary:
+
+```text
+observed action result
+→ safe wait projection (kind/reason/previous-state/result digest/minimal normalized reboot flags)
+→ exact schema + 1024-byte cap
+→ durable fence wait_observation
+```
+
+Raw stdout/stderr, owner payloads and arbitrary dictionaries are not accepted. Recovery relabel to `AWAITING_OWNER_VERIFICATION` re-authorizes after observation and before the journal write; the new wait context stores only a digest of the previous typed wait.
+
+This is author source behavior only; native validation remains NOT_RUN.
+
+---
+
 # DEV8 Lifecycle / resume boundary update
 
 A C3 child process is not sufficient lifecycle proof. Dev8 adds this control flow:

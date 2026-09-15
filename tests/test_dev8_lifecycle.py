@@ -27,22 +27,22 @@ class LifecyclePolicyTests(unittest.TestCase):
 
     def test_exit_zero_with_observed_pending_reboot_becomes_operator_wait(self):
         result=classify_c3_process_result('ENABLE_PREREQUISITES',
-            {'exit':0,'state':'NATIVE_PROCESS_COMPLETED'}, {'cbs':True,'wu':False})
+            {'exit':0,'state':'NATIVE_PROCESS_COMPLETED'}, {'cbs_reboot_pending':True,'windows_update_reboot_required':False})
         self.assertEqual(result['exit'],20);self.assertEqual(result['state'],'AWAITING_REBOOT')
         self.assertEqual(result['wait_reason'],'PENDING_REBOOT_OBSERVED')
 
     def test_no_pending_reboot_keeps_process_result(self):
         original={'exit':0,'state':'NATIVE_PROCESS_COMPLETED'}
         self.assertEqual(classify_c3_process_result('INSTALL_RUNTIME',original,
-            {'cbs':False,'wu':False}),original)
+            {'cbs_reboot_pending':False,'windows_update_reboot_required':False}),original)
 
     def test_reboot_boundary_requires_new_boot_and_clear_pending_state(self):
         fence={'action':'INSTALL_RUNTIME','witness':{'host_boot':'boot-a','step_id':'step-1'}}
         self.assertEqual(self.reject(20,reboot_resume_boundary,fence,
-            {'boot_utc':'boot-a'},{'cbs':False}),'REBOOT_NOT_OBSERVED')
+            {'boot_utc':'boot-a'},{'cbs_reboot_pending':False,'windows_update_reboot_required':False}),'REBOOT_NOT_OBSERVED')
         self.assertEqual(self.reject(20,reboot_resume_boundary,fence,
-            {'boot_utc':'boot-b'},{'cbs':True}),'REBOOT_STILL_PENDING')
-        out=reboot_resume_boundary(fence,{'boot_utc':'boot-b'},{'cbs':False,'wu':False})
+            {'boot_utc':'boot-b'},{'cbs_reboot_pending':True,'windows_update_reboot_required':False}),'REBOOT_STILL_PENDING')
+        out=reboot_resume_boundary(fence,{'boot_utc':'boot-b'},{'cbs_reboot_pending':False,'windows_update_reboot_required':False})
         self.assertEqual(out['before_boot'],'boot-a');self.assertEqual(out['after_boot'],'boot-b')
 
     def test_only_operator_wait_fence_can_relabel_owner_verification(self):
@@ -61,7 +61,7 @@ class NativeRunLifecycleTests(unittest.TestCase):
 
     def test_native_driver_checks_pending_reboot_after_successful_c3_process(self):
         _,plan,_,store=authority_case('ENGINE')
-        d=self.setup_driver({'cbs':True,'wu':False})
+        d=self.setup_driver({'cbs_reboot_pending':True,'windows_update_reboot_required':False})
         actuator=SimpleNamespace(execute=lambda *a,**k:{'exit':0,'state':'NATIVE_PROCESS_COMPLETED'})
         with patch('aifilm_p00.native.session_driver.NativeActuator',return_value=actuator):
             result=d.run(plan,0,SimpleNamespace(store=store),SimpleNamespace())
@@ -69,7 +69,7 @@ class NativeRunLifecycleTests(unittest.TestCase):
 
     def test_native_driver_does_not_hide_existing_3010_wait(self):
         _,plan,_,store=authority_case('ENGINE')
-        d=self.setup_driver({'cbs':False})
+        d=self.setup_driver({'cbs_reboot_pending':False,'windows_update_reboot_required':False})
         d.system.pending_reboot=lambda:(_ for _ in ()).throw(AssertionError('must not be called'))
         actuator=SimpleNamespace(execute=lambda *a,**k:{'exit':20,'state':'AWAITING_REBOOT'})
         with patch('aifilm_p00.native.session_driver.NativeActuator',return_value=actuator):
@@ -81,7 +81,7 @@ class NativeReconcileBoundaryTests(unittest.TestCase):
     def run_case(self, state, wait=None):
         _,original,_,store=authority_case('ENGINE')
         d=NativeDriver.__new__(NativeDriver);d.binding={'request':True}
-        d.system=SimpleNamespace(pending_reboot=lambda:{'cbs':False})
+        d.system=SimpleNamespace(pending_reboot=lambda:{'cbs_reboot_pending':False,'windows_update_reboot_required':False})
         captured={}
         def after(*args,**kwargs):
             captured['boundary']=kwargs.get('resume_boundary');return 'completion'

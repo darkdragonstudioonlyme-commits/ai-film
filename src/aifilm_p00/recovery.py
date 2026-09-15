@@ -141,10 +141,11 @@ class RecoveryRunner:
             except P00Error as error:
                 from .native.lifecycle import owner_wait_can_relabel
                 if int(error.code)==20 and owner_wait_can_relabel(opening_fence,error.reason):
-                    wait=deepcopy(opening_fence.get('wait_observation'))
-                    if not wait:
-                        wait={'previous_state':opening_fence['state'],
-                              'reason':'POSTCONDITION_OWNER_EVIDENCE_PENDING'}
+                    require(digest(c.fence)==digest(opening_fence),16,'RECOVERY_FENCE_DRIFT')
+                    self._reauthorize(request,intent,opening_fence)
+                    require(digest(c.fence)==digest(opening_fence),16,'RECOVERY_FENCE_DRIFT')
+                    from .native.lifecycle import owner_verification_wait
+                    wait=owner_verification_wait(opening_fence)
                     c.awaiting('AWAITING_OWNER_VERIFICATION',wait)
                     return self._report(request,original,20,'AWAITING_OWNER_VERIFICATION',True,
                         step_committed=False,previous_wait_state=wait.get('previous_state'))
