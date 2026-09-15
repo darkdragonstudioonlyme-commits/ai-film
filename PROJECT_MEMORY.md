@@ -38,6 +38,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 
 | MEM-20260915-053 | TOOLING | A generic continuity checker must derive run/workflow identity from state; incident-specific hard-coding defeats self-learning. | continuity checker/audit |
 
+| MEM-20260915-054 | RECOVERY | A continuity field in prose is not protection until the live current-step record and checker enforce its idempotency/done-when/output contract. | continuity ledger/checker |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

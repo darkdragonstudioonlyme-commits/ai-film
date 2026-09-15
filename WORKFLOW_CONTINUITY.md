@@ -32,6 +32,10 @@ REPLAY_POLICY: VERIFY_AND_REUSE|SAFE_REEXECUTE|NEVER_REEXECUTE
 
 A hard timeout requires no final write to be detectable: `INTENT` without `COMPLETE` is itself the recovery signal.
 
+### Machine representation for the current step
+
+The live lane record carries the current duplicate-prone step as scalar fields. `INPUT_IDENTITY`, `DONE_WHEN` and `OUTPUT_IDENTITY` are canonical one-line JSON values. `IDEMPOTENCY_KEY = SHA256(canonical_json({"step_id": STEP_ID, "input_identity": INPUT_IDENTITY}))`. `OUTPUT_IDENTITY` may be `null` while PENDING/INTENT, but COMPLETE requires a non-empty object containing the verified output identity. Generic continuity tooling validates this contract before normal work resumes.
+
 ## Resume algorithm
 
 ```text

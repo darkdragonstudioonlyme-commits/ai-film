@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json,re,subprocess,sys,os
+import json,re,subprocess,sys,os,hashlib
 ROOT=Path(__file__).resolve().parents[1]
 WS=Path(os.environ.get('AIFILM_WORKSPACE_ROOT','/home/dragon/ai-film-dev'))
 REPO=WS/'repo'; errors=[]
@@ -14,8 +14,11 @@ def latest_state():
     v,p=max(rows); return v,json.loads(p.read_text())
 
 def field(text,name):
-    m=re.search(r'(?m)^'+re.escape(name)+r':\s*"?([^"\n]+)"?\s*$',text)
-    return m.group(1).strip() if m else None
+    m=re.search(r'(?m)^\s*'+re.escape(name)+r':\s*(.*?)\s*$',text)
+    if not m: return None
+    value=m.group(1).strip()
+    if len(value)>=2 and value[0]==value[-1]=='"': value=value[1:-1]
+    return value
 
 v,state=latest_state(); active=state.get('active_run')
 if type(active) is not dict:
@@ -49,6 +52,27 @@ if REPO.is_dir() and (WS/'implement').is_dir() and ':' in record_locator:
         for name,value in required.items():
             if field(record,name)!=value: errors.append('lane-run-field:'+name)
         if str(active.get('observed_local_head','')) not in record: errors.append('lane-run-output-head')
+        # The currently executable duplicate-prone step must be machine-addressable.
+        step_id=field(record,'STEP_ID'); step_state=field(record,'STATE')
+        input_raw=field(record,'INPUT_IDENTITY'); idem=field(record,'IDEMPOTENCY_KEY')
+        done_raw=field(record,'DONE_WHEN'); output_raw=field(record,'OUTPUT_IDENTITY'); replay=field(record,'REPLAY_POLICY')
+        if step_id!=str(active.get('current_step','')): errors.append('current-step-id-drift')
+        if step_state not in {'PENDING','INTENT','COMPLETE','RECONCILE_REQUIRED','BLOCKED','SKIPPED'}: errors.append('current-step-state')
+        if replay not in {'VERIFY_AND_REUSE','SAFE_REEXECUTE','NEVER_REEXECUTE'}: errors.append('current-step-replay-policy')
+        if not re.fullmatch(r'[0-9a-f]{64}',str(idem or '')): errors.append('current-step-idempotency-schema')
+        input_obj=done_obj=output_obj=None
+        try:
+            input_obj=json.loads(input_raw) if input_raw is not None else None
+            done_obj=json.loads(done_raw) if done_raw is not None else None
+            output_obj=json.loads(output_raw) if output_raw is not None else None
+        except (ValueError,TypeError): errors.append('current-step-json')
+        if not isinstance(input_obj,dict) or not input_obj: errors.append('current-step-input-identity')
+        if not isinstance(done_obj,dict) or not done_obj: errors.append('current-step-done-when')
+        if isinstance(input_obj,dict) and step_id:
+            key=hashlib.sha256(json.dumps({'step_id':step_id,'input_identity':input_obj},sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            if idem!=key: errors.append('current-step-idempotency-mismatch')
+        if step_state=='COMPLETE' and not isinstance(output_obj,dict): errors.append('current-step-complete-output-missing')
+        if step_state!='COMPLETE' and output_obj is not None and not isinstance(output_obj,dict): errors.append('current-step-output-schema')
         # One live run for one workflow/base on this lane. Historical COMPLETE records do not conflict.
         paths=subprocess.check_output(['git','-C',str(REPO),'ls-tree','-r','--name-only',remote,'workflow-runs'],text=True).splitlines()
         active_matches=[]
