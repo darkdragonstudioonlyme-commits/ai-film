@@ -1,92 +1,83 @@
 # AI-FILM-SERVER — Independent Workflow Lanes
 
-## Trust model
+## Trust invariant
 
-Workflows do **not** trust each other's conclusions. They exchange immutable inputs/outputs and independently verify what they consume.
+Producer workflows never authorize their own outputs. Consumers receive immutable identities and independently verify what matters. `main` alone records global project gates.
 
 ```text
-PRODUCER lane → immutable handoff identity → CONSUMER lane
-      ↑                                      │
-      └──────── finding/result contract ─────┘
-
-main = global state/gate authority
+PRODUCER → immutable handoff → REVIEW/CONSUMER
+   ↑                            │
+   └──── findings/result ───────┘
 ```
 
-No lane may promote its own output through the next gate.
-
-## Source pair: IMPLEMENT / REVIEW
+## Source workflows
 
 ### IMPLEMENT
-
-- worktree: `/home/dragon/ai-film-dev/implement`
-- local branch: `impl/p00`
-- writable: source/tests/docs/evidence
-- may: implement, test, commit, package, create handoff
-- may not: issue CODE_REVIEW verdict or claim validation/qualification
+Writable source/test/config/docs worktree. May implement, run author tests, commit, package and hand off. Cannot issue CODE_REVIEW verdict or native validation.
 
 ### REVIEW
+Detached exact candidate. May reread requirements, independently test, run negative scenarios and issue findings/verdicts. Must not patch candidate source or auto-follow IMPLEMENT head.
 
-- worktree: `/home/dragon/ai-film-dev/review`
-- detached exact candidate
-- candidate source is read-only by policy
-- may: reread requirements, rerun tests, run negative scenarios, write findings/verdicts
-- may not: patch candidate or follow IMPLEMENT head implicitly
+## Test-authority workflows
 
-Formal handoff requires exact commit SHA, package hash/size/store identity, source/test digests, author evidence, contract digest, changed scope and readiness flags.
+Material oracle changes use TEST-DESIGN → TEST-REVIEW. Production implementation is evidence under test, not authority for expected behavior. Harness-only fixes may be authored separately but must prove the business oracle did not weaken. See `TEST_STRATEGY.md`.
 
-## Documentation governance pair: DOC-DESIGN / DOC-REVIEW
+## Documentation System V2 governance — three independent stages
 
-Documentation architecture changes use the same distrust model:
-
-### DOC-DESIGN
-
-- remote branch: `lane/docs-design`
-- WSL worktree: `/home/dragon/ai-film-dev/docs-design`
-- owns proposed changes to state schema, router, roadmap, memory/persistence policy and documentation map.
-- cannot self-approve documentation governance.
-
-### DOC-REVIEW
-
-- remote branch: `lane/docs-review`
-- WSL worktree: `/home/dragon/ai-film-dev/docs-review`
-- reviews an exact DOC-DESIGN commit as if authored by another team.
-- runs cold-start/routing/drift simulations and `tools/check_project_docs.py`.
-- does not edit the proposed docs while reviewing; findings return to DOC-DESIGN.
-
-Only a reviewed docs commit is promoted to `main`.
-
-## Workflow independence requirements
-
-1. Separate worktree or immutable checkout.
-2. Exact input identity.
-3. Separate evidence namespace where execution evidence exists.
-4. No shared mutable “PASS” flag.
-5. Consumer rechecks critical invariants; labels from producer are not proof.
-6. Findings bind target identity and close only on a new reviewed output.
-7. `main` alone records global gate/mode state.
-
-## Candidate finding contract
-
-```yaml
-FINDING_ID:
-TARGET_ID:
-TARGET_COMMIT:
-SEVERITY:
-CATEGORY:
-EVIDENCE:
-IMPACT:
-REQUIRED_DISPOSITION:
-STATUS: OPEN|FIXED_PENDING_REVIEW|CLOSED
+```text
+DOC-DESIGN-V2
+  branch: lane/docs-v2-design
+  worktree: /home/dragon/ai-film-dev/docs-v2-design
+        │ exact commit
+        ▼
+DOC-REVIEW-V2
+  branch: lane/docs-v2-review
+  worktree: /home/dragon/ai-film-dev/docs-v2-review
+  detailed/file-level acceptance review
+        │ reviewed exact commit
+        ▼
+DOC-AUDIT-V2
+  branch: lane/docs-v2-audit
+  worktree: /home/dragon/ai-film-dev/docs-v2-audit
+  holistic audit of the entire active control plane
+        │ PASS only
+        ▼
+main promotion
 ```
 
-## Drift rule
+DOC-REVIEW cannot edit DOC-DESIGN. DOC-AUDIT reviews the whole active system, not merely changed files, and specializes in drift, duplicates, obsolete policy, circular trust, code-driven tests, recovery gaps and checker brittleness. Findings return to DOC-DESIGN and require another review/audit cycle.
 
-Remote lane state is advisory until freshly fetched. A cached `origin/lane/*` ref is not current evidence. Bootstrap must fetch relevant refs before consuming `LANE_STATE.md`.
+## Model-evaluation workflow
 
-## Current source-lane disposition
+MODEL-EVAL consumes an immutable environment ID, model identity, test-set identity and parameter identity. Independent evaluation review checks recommendation and reproducibility. A missing GPU/runtime measurement blocks dependent performance claims rather than being inferred.
 
-- last durable candidate: dev17 `64ea95bf...`;
-- REVIEW dev17: FAIL delta, open `CR-P00-012/013` plus umbrella `CR-P00-001`;
-- IMPLEMENT has dev18 WIP with intended fixes and 756 PASS / 100 static author run; it is not yet a reviewable candidate.
+## Workflow-health review
 
-Current exact details live in `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`, not in historical snapshots.
+`WORKFLOW_REVIEW` is activated by `WORKFLOW_HEALTH.md`. It may change process/test/documentation policy but cannot silently change product requirements. Systemic corrections require the appropriate independent reviewer before the original workflow resumes.
+
+## Handoff contract
+
+Every material producer→consumer handoff binds at least:
+
+```yaml
+OUTPUT_ID:
+PRODUCER_WORKFLOW:
+SOURCE_OR_DOC_COMMIT:
+ARTIFACT_IDENTITY:
+REQUIREMENT_OR_POLICY_BASELINE:
+TEST_OR_CHECK_RESULT:
+KNOWN_LIMITATIONS:
+READINESS_FLAGS:
+```
+
+Review findings bind exact target identity and close only on a later independently reviewed output.
+
+## Independence requirements
+
+1. separate mutable worktree or detached immutable checkout;
+2. exact input/output identity;
+3. separate evidence namespace;
+4. no shared mutable PASS flag;
+5. consumer rechecks critical invariants;
+6. producer cannot close its own findings;
+7. global gate transitions only on canonical `main`.

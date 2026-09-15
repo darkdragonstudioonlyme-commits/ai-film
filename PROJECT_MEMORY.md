@@ -1,88 +1,31 @@
-# AI-FILM-SERVER — Living Project Memory
+# AI-FILM-SERVER — Active Project Memory Index
 
-> Reusable knowledge only. Current state is `PROJECT_STATE.md`; routing policy is `WORKFLOW_ROUTER.md`; documentation ownership is `DOCUMENTATION_MAP.md`.
+Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating rules: `POLICY_REGISTRY.md`. Current state is not stored here. Detailed historical reasoning remains in Git/review records.
 
-## Learning lifecycle
+## Active reusable lessons
 
-```text
-discovery
-→ classify
-→ persist memory entry
-→ apply to current work
-→ if repeatedly useful / safety-critical: promote into standing policy
-→ if superseded: mark SUPERSEDED, never silently delete history
-```
-
-A memory entry cannot approve architecture, close a gate or override reviewed contracts.
-
-## Active Memory Index
-
-| ID | Type | Rule / lesson | Policy promotion |
+| ID | Type | Active lesson | Promoted to |
 |---|---|---|---|
-| MEM-20260915-001 | PROCESS | Separate current state, next work, reusable memory and immutable history. | `DOCUMENTATION_MAP.md` |
-| MEM-20260915-002 | TOOLING | Exact baselines need byte-preserving transport + independent identity verification. | `GIT_WORKFLOW.md` |
-| MEM-20260915-003 | TESTING | Author/review tests are not Windows/WSL/LAB/SITE proof. | router/lane policy |
-| MEM-20260915-004 | PROCESS | Increment durable only after remote/artifact verification. | `GIT_WORKFLOW.md` |
-| MEM-20260915-005 | SECURITY | Secret-scan public-repo deliveries. | `GIT_WORKFLOW.md` |
-| MEM-20260915-010 | TESTING | Use documented src-layout runner; invocation failure ≠ source regression. | workspace policy |
-| MEM-20260915-011 | SECURITY | Executable trust binds path + exact bytes + policy + pinned handle + witness. | implementation rule |
-| MEM-20260915-015 | TESTING | Keep run evidence outside source baseline; restore generated tracked evidence. | workspace policy |
-| MEM-20260915-016 | LIFECYCLE | Process terminal ≠ lifecycle terminal when reboot remains pending. | implementation/recovery rule |
-| MEM-20260915-017 | RECOVERY | Reboot resume requires changed boot witness + cleared pending state. | implementation/recovery rule |
-| MEM-20260915-021 | SECURITY | Re-authorize immediately before durable recovery-state changes. | implementation rule |
-| MEM-20260915-024 | PROCESS | IMPLEMENT and REVIEW require separate mutable/immutable workspaces. | `EXECUTION_LANES.md` |
-| MEM-20260915-025 | REVIEW | Review target identity never floats. | `EXECUTION_LANES.md` |
-| MEM-20260915-027 | REVIEW | Delta finding closure is separate from full-gate verdict. | `WORKFLOW_ROUTER.md` |
-| MEM-20260915-028 | TOOLING | Fresh fetch is mandatory before reading remote lane state; cached origin refs can be stale. | `GIT_WORKFLOW.md`, router |
-| MEM-20260915-029 | PROCESS | Canonical state must distinguish durable candidate, uncommitted WIP and review target. | `PROJECT_STATE.md` schema |
-| MEM-20260915-030 | LEARNING | Reusable discoveries graduate from memory into standing policy when recurring/safety-critical. | docs/git/router policy |
-| MEM-20260915-031 | PROCESS | “Continue” is deterministic state routing, not a request for the user to restate the task. | `WORKFLOW_ROUTER.md` |
-| MEM-20260915-032 | GOVERNANCE | Documentation design and documentation review must be independent like source implement/review. | `EXECUTION_LANES.md` |
-| MEM-20260915-033 | TOOLING | Preserve Git porcelain leading XY columns; whole-output `.strip()` can corrupt the first path. | review/tooling parsers |
-| MEM-20260915-034 | PROCESS | Canonical state and freshly fetched lane state must reconcile before routing; drift is a blocker, not a tie to guess. | runtime checker / router |
+| MEM-20260915-002 | TOOLING | Exact baselines require byte-preserving transfer + independent identity verification. | `GIT_WORKFLOW.md` |
+| MEM-20260915-003 | TESTING | Author/review tests are not native LAB/SITE proof. | `TEST_STRATEGY.md` |
+| MEM-20260915-015 | TESTING | Keep run evidence outside candidate source; restore generated tracked evidence. | workspace/test policy |
+| MEM-20260915-021 | SECURITY | Re-authorize before durable recovery-state mutation after observation. | implementation rule |
+| MEM-20260915-024 | PROCESS | Producer/reviewer require separate mutable/immutable workspaces. | `EXECUTION_LANES.md` |
+| MEM-20260915-025 | REVIEW | Review target identity must never float. | `EXECUTION_LANES.md` |
+| MEM-20260915-028 | TOOLING | Fresh-fetch refs before trusting remote lane state. | `GIT_WORKFLOW.md` |
+| MEM-20260915-029 | PROCESS | Durable candidate, WIP and review target are distinct state. | `DOCUMENTATION_MAP.md` |
+| MEM-20260915-033 | TOOLING | Preserve Git porcelain XY columns; whole-output strip can corrupt paths. | checker/tooling rule |
+| MEM-20260915-034 | PROCESS | State/lane/worktree mismatch is `STATE_DRIFT`, never a tie to guess. | router/recovery checker |
+| MEM-20260915-035 | TESTING | Reviewed business behavior owns test oracle; current code never does. | `TEST_STRATEGY.md` |
+| MEM-20260915-036 | PROCESS | Repeated ineffective patch loops are workflow-health evidence and trigger meta-review. | `WORKFLOW_HEALTH.md` |
+| MEM-20260915-037 | GOVERNANCE | Obsolete policy must be retired/superseded out of active guidance, not accumulated forever. | `POLICY_REGISTRY.md` |
+| MEM-20260915-038 | ENVIRONMENT | Model/performance claims bind an exact observed environment; NOT_VISIBLE is not absence. | `SERVER_ENVIRONMENT.md`, `MODEL_EVALUATION.md` |
+| MEM-20260915-039 | LEARNING | Learning is complete only when future behavior/detection improves and recurrence is measured. | `SELF_LEARNING.md` |
+| MEM-20260915-040 | RECOVERY | Preserve WIP/evidence before repair; recovery returns to a verified decision point. | `RECOVERY_PLAYBOOK.md` |
+| MEM-20260915-041 | TOOLING | Checkers must parse current identity from canonical state; hard-coded delivery versions become drift bugs. | checker policy |
 
-## New governance lessons
+## Compaction rule
 
-### MEM-20260915-028 — Fetch before trusting lane state
+This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
 
-Audit found a stale local remote-tracking `origin/lane/*` cache that still showed dev8 while GitHub's actual review lane was dev17. Future bootstrap must fetch relevant refs before reading lane state.
-
-### MEM-20260915-029 — WIP is first-class state, not an error
-
-Audit found canonical docs lagging while IMPLEMENT contained valid dev18 uncommitted work. State must preserve both last durable candidate and current WIP so a fresh chat neither loses work nor formally reviews mutable source.
-
-### MEM-20260915-030 — Self-learning needs a promotion path
-
-Storing lessons only in a growing memory file eventually makes them invisible. Recurring or safety-critical lessons are promoted into router/lane/git/documentation policy while memory retains provenance.
-
-### MEM-20260915-031 — “Continue” should route automatically
-
-When state is sufficient, a fresh chat should resume the active WIP, review handed-off candidate, fix review findings or advance the roadmap without asking the user to restate known context.
-
-### MEM-20260915-032 — Documentation governance also needs independent review
-
-The same author-bias problem applies to project-control Markdown. Material documentation-system changes use DOC-DESIGN → immutable commit → DOC-REVIEW before `main` promotion.
-
-### MEM-20260915-033 — Preserve Git porcelain status columns
-
-DOC-REVIEW initially parsed `git status --porcelain` with whole-output `.strip()`, which removed the first line's leading status column and corrupted `config/...` into `onfig/...`. Parsers must preserve the two-character XY status prefix and trim per field, not strip the whole stream.
-
-### MEM-20260915-034 — State drift is an explicit blocker
-
-DOC-REVIEW found canonical state accurately describing dev18 WIP while the freshly fetched IMPLEMENT lane state still advertised dev14. Fresh chats must reconcile canonical state, lane state and local worktree before routing. A mismatch becomes `STATE_DRIFT`; never silently choose whichever document looks newer.
-
-## Entry format for future learning
-
-```yaml
-MEMORY_ID:
-TYPE:
-STATUS: ACTIVE|SUPERSEDED
-DISCOVERED_IN:
-SUMMARY:
-EVIDENCE:
-IMPACT:
-REUSABLE_RULE:
-ACTION_TAKEN:
-POLICY_PROMOTION:
-SUPERSEDED_BY:
-```
+New learning uses the record/score/promotion lifecycle in `SELF_LEARNING.md`.

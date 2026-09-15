@@ -55,3 +55,7 @@ Current Python environment is `/home/dragon/ai-film-dev/.venv` (Python 3.12, no 
 6. Test helpers keep lane evidence separate and restore tracked generated evidence.
 
 No plaintext GitHub credentials are stored in this workspace.
+
+## Benchmark/environment ownership
+
+This file owns workspace paths/tools only. Hardware/model benchmark identity is owned by `SERVER_ENVIRONMENT.md`; model comparison procedure is `MODEL_EVALUATION.md`. Do not copy mutable benchmark hardware facts here as a second authority.

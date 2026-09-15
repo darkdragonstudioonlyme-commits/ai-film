@@ -55,3 +55,15 @@ HOST_READY only if evidence supports it
 ## Roadmap update rule
 
 Update this file only when work order, milestone definitions, closure criteria or phase transition changes. Do not use it as a daily status log; that belongs in `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`.
+
+## Cross-cutting operating loops
+
+These do not replace the project mode chain:
+
+- TEST-DESIGN → TEST-REVIEW whenever expected business behavior/oracles materially change.
+- DOC-DESIGN → DOC-REVIEW → DOC-AUDIT for material control-plane changes.
+- WORKFLOW_REVIEW when health triggers show repeated ineffective/deadlocked work.
+- MODEL-EVAL with exact environment identity when selecting/upgrading models.
+- SELF-LEARNING after meaningful failures/improvements; recurring lessons promote to policy/tooling and obsolete rules retire.
+
+The active roadmap stays concise; detailed historical completed increments belong in immutable records/Git history.

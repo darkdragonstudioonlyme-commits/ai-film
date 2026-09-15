@@ -23,6 +23,8 @@ def grab(pattern):
 base=grab(r'BASE_COMMIT: ([0-9a-f]{40})')
 review_target=grab(r'TARGET_COMMIT: ([0-9a-f]{40})')
 planned=grab(r'PLANNED_VERSION: (0\.1\.0\.dev\d+)')
+pkg_path=grab(r'PACKAGE_PATH: (.+)')
+pkg_hash=grab(r'PACKAGE_SHA256: ([0-9a-f]{64})')
 impl_head=run('git','-C',str(WS/'implement'),'rev-parse','HEAD')
 review_head=run('git','-C',str(WS/'review'),'rev-parse','HEAD')
 if base and impl_head!=base: errors.append(f'implement-head:{impl_head}!={base}')
@@ -37,9 +39,10 @@ review_lane=run('git','-C',str(REPO),'show','origin/lane/review-p00:LANE_STATE.m
 if base and base not in impl_lane: errors.append('implement-lane-base-drift')
 if planned and planned not in impl_lane: errors.append('implement-lane-version-drift')
 if review_target and review_target not in review_lane: errors.append('review-lane-target-drift')
-pkg=WS/'artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V17.zip'
-expected='130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e'
-if not pkg.is_file() or hashlib.sha256(pkg.read_bytes()).hexdigest()!=expected: errors.append('durable-package-drift')
+if pkg_path and pkg_hash:
+    pkg=Path(pkg_path)
+    if not pkg.is_file() or hashlib.sha256(pkg.read_bytes()).hexdigest()!=pkg_hash:
+        errors.append('durable-package-drift')
 if errors:
     print('STATE_DRIFT')
     print('\n'.join(errors))
