@@ -26,6 +26,10 @@ for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/ch
     if re.search(re.escape(step_literal)+r'[0-9]_[A-Z0-9_]+',t): errors.append('checker-hardcoded-current-step:'+p)
     forbidden_wip='WIP_'+'NOT_DURABLE_'+'NOT_REVIEWABLE'
     if forbidden_wip in t: errors.append('checker-hardcoded-wip-state:'+p)
+continuity_tool=(ROOT/'tools/check_workflow_continuity.py').read_text(encoding='utf-8')
+if "WS/'implement'" in continuity_tool or 'WS/"implement"' in continuity_tool:
+    errors.append('continuity-checker-hardcoded-implement-worktree')
+
 # Core V2 semantics.
 if 'code is the subject under test' not in texts.get('TEST_STRATEGY.md',''): errors.append('test-code-authority-risk')
 if 'SUPERSEDED' not in texts.get('POLICY_REGISTRY.md','') or 'RETIRED' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-lifecycle-incomplete')

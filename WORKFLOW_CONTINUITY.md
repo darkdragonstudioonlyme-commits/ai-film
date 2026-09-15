@@ -12,6 +12,7 @@ The owning lane publishes:
 
 ```yaml
 ACTIVE_RUN_ID:
+LOCAL_WORKTREE: relative/path|null
 RUN_RECORD: workflow-runs/<RUN_ID>.md
 RUN_STATUS: RUNNING|RECOVERING|BLOCKED|HANDED_OFF|COMPLETE
 ```
@@ -34,7 +35,7 @@ A hard timeout requires no final write to be detectable: `INTENT` without `COMPL
 
 ### Machine representation for the current step
 
-The live lane record carries the current duplicate-prone step as scalar fields. `INPUT_IDENTITY`, `DONE_WHEN` and `OUTPUT_IDENTITY` are canonical one-line JSON values. `IDEMPOTENCY_KEY = SHA256(canonical_json({"step_id": STEP_ID, "input_identity": INPUT_IDENTITY}))`. `OUTPUT_IDENTITY` may be `null` while PENDING/INTENT, but COMPLETE requires a non-empty object containing the verified output identity. Generic continuity tooling validates this contract before normal work resumes.
+The active-run state declares a safe workspace-relative `LOCAL_WORKTREE` (or `null` for remote-only workflows), and the live lane record binds the same value as `WORKTREE_REL`. Generic tooling must never assume a specific lane directory. The live lane record carries the current duplicate-prone step as scalar fields. `INPUT_IDENTITY`, `DONE_WHEN` and `OUTPUT_IDENTITY` are canonical one-line JSON values. `IDEMPOTENCY_KEY = SHA256(canonical_json({"step_id": STEP_ID, "input_identity": INPUT_IDENTITY}))`. `OUTPUT_IDENTITY` may be `null` while PENDING/INTENT, but COMPLETE requires a non-empty object containing the verified output identity. Generic continuity tooling validates this contract before normal work resumes.
 
 ## Resume algorithm
 

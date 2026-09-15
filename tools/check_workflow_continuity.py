@@ -23,8 +23,9 @@ def field(text,name):
 v,state=latest_state(); active=state.get('active_run')
 if type(active) is not dict:
     print('WORKFLOW_CONTINUITY_CHECK_PASS no-active-run state=V'+str(v)); raise SystemExit(0)
-for k in ['run_id','workflow_id','owner_lane','run_record','status','current_step','canonical_base','observed_local_head']:
+for k in ['run_id','workflow_id','owner_lane','run_record','status','current_step','canonical_base']:
     if not active.get(k): errors.append('active-run-field:'+k)
+if 'local_worktree' not in active: errors.append('active-run-field:local_worktree')
 rid=str(active.get('run_id','')); wid=str(active.get('workflow_id','')); base=str(active.get('canonical_base',''))
 if not re.fullmatch(r'RUN-[A-Z0-9][A-Z0-9._-]{2,79}',rid): errors.append('active-run-id-schema')
 if not re.fullmatch(r'WF-[A-Z0-9][A-Z0-9._-]{2,99}',wid): errors.append('active-workflow-id-schema')
@@ -35,9 +36,19 @@ else:
     branch,path=record_locator.split(':',1)
     if not branch.startswith('lane/') or not re.fullmatch(r'workflow-runs/[A-Z0-9._-]+\.md',path):
         errors.append('active-run-record-locator')
+local_rel=active.get('local_worktree')
+worktree=None
+if local_rel is not None:
+    if not isinstance(local_rel,str) or not re.fullmatch(r'[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*',local_rel) or '..' in Path(local_rel).parts:
+        errors.append('active-run-worktree-schema')
+    else:
+        worktree=WS/local_rel
+        try:
+            if not worktree.resolve().is_relative_to(WS.resolve()): errors.append('active-run-worktree-scope')
+        except OSError: errors.append('active-run-worktree-scope')
 snap=active.get('canonical_snapshot')
 if snap and not (ROOT/snap).is_file(): errors.append('active-run-snapshot-missing')
-if REPO.is_dir() and (WS/'implement').is_dir() and ':' in record_locator:
+if REPO.is_dir() and ':' in record_locator:
     branch,path=record_locator.split(':',1); remote='origin/'+branch
     subprocess.check_call(['git','-C',str(REPO),'fetch','origin',branch],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try: lane=subprocess.check_output(['git','-C',str(REPO),'show',remote+':LANE_STATE.md'],text=True)
@@ -51,7 +62,14 @@ if REPO.is_dir() and (WS/'implement').is_dir() and ':' in record_locator:
         required={'RUN_ID':rid,'WORKFLOW_ID':wid,'BASE_IDENTITY':base,'CURRENT_STEP':str(active.get('current_step',''))}
         for name,value in required.items():
             if field(record,name)!=value: errors.append('lane-run-field:'+name)
-        if str(active.get('observed_local_head','')) not in record: errors.append('lane-run-output-head')
+        expected_worktree=local_rel if local_rel is not None else 'NONE'
+        if field(record,'WORKTREE_REL')!=expected_worktree: errors.append('lane-run-field:WORKTREE_REL')
+        local_head=active.get('observed_local_head')
+        if local_rel is not None:
+            if not re.fullmatch(r'[0-9a-f]{40}',str(local_head or '')): errors.append('active-run-local-head-schema')
+            elif str(local_head) not in record: errors.append('lane-run-output-head')
+        elif local_head is not None:
+            errors.append('remote-only-run-has-local-head')
         # The currently executable duplicate-prone step must be machine-addressable.
         step_id=field(record,'STEP_ID'); step_state=field(record,'STATE')
         input_raw=field(record,'INPUT_IDENTITY'); idem=field(record,'IDEMPOTENCY_KEY')
@@ -82,8 +100,11 @@ if REPO.is_dir() and (WS/'implement').is_dir() and ':' in record_locator:
             if field(body,'WORKFLOW_ID')==wid and field(body,'BASE_IDENTITY')==base and field(body,'STATUS')!='COMPLETE':
                 active_matches.append(rp)
         if active_matches!=[path]: errors.append('duplicate-or-mismatched-active-run:'+','.join(active_matches))
-    head=subprocess.check_output(['git','-C',str(WS/'implement'),'rev-parse','HEAD'],text=True).strip()
-    if head!=active.get('observed_local_head'): errors.append('active-run-local-head:'+head+'!='+str(active.get('observed_local_head')))
+    if worktree is not None:
+        if not worktree.is_dir(): errors.append('active-run-worktree-missing:'+str(worktree))
+        else:
+            head=subprocess.check_output(['git','-C',str(worktree),'rev-parse','HEAD'],text=True).strip()
+            if head!=active.get('observed_local_head'): errors.append('active-run-local-head:'+head+'!='+str(active.get('observed_local_head')))
 if errors:
     print('WORKFLOW_CONTINUITY_CHECK_FAIL');print('\n'.join(errors));raise SystemExit(1)
 print('WORKFLOW_CONTINUITY_CHECK_PASS','state=V'+str(v),'run='+rid,'workflow='+wid,'step='+str(active.get('current_step')))

@@ -40,6 +40,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 
 | MEM-20260915-054 | RECOVERY | A continuity field in prose is not protection until the live current-step record and checker enforce its idempotency/done-when/output contract. | continuity ledger/checker |
 
+| MEM-20260915-055 | TOOLING | Run identity can be generic while worktree reconciliation is still lane-specific; generic continuity derives a safe relative worktree from state or supports remote-only runs. | continuity checker/state schema |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
