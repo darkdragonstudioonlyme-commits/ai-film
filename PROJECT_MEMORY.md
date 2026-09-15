@@ -38,8 +38,9 @@ Older detail is preserved in Git history and memory archive pointers.
 | MEM-20260915-024 | PROCESS | IMPLEMENT and REVIEW must use separate worktrees/permissions; REVIEW never patches candidate source. |
 | MEM-20260915-025 | REVIEW | Candidate handoff is an immutable identity tuple; REVIEW never follows IMPLEMENT branch head implicitly. |
 | MEM-20260915-026 | TESTING | Separate lane evidence directories prevent review reruns from contaminating implementation evidence/diffs. |
+| MEM-20260915-027 | REVIEW | Individual findings can close on a delta review while the overall full-scope review still FAILs because an umbrella completeness blocker remains. |
 
-## Current CODE_REVIEW lessons
+## Current review/security lessons
 
 ### MEM-20260915-020 — Passing tests do not make a partial candidate review-ready
 
@@ -47,52 +48,40 @@ Dev8 reproduced 683 PASS + 92 static but declared `AUTHOR_COMPLETE=false` with r
 
 ### MEM-20260915-021 — Re-authorize immediately before durable recovery-state changes
 
-A potentially long observation can outlive its admitting authority. Before persisting a recovery/fence state change, re-check current authority, generation, actor/request and exact fence identity.
+A potentially long observation can outlive its admitting authority. Before persisting a recovery/fence state change, re-check current authority, generation, actor/request and exact fence identity. Dev9 implemented this and independent REVIEW closed CR-P00-002.
 
 ### MEM-20260915-022 — Persist actual cause of derived lifecycle waits
 
-When a durable lifecycle state is derived from actual observations such as pending reboot, persist a safe typed observation/digest sufficient to audit/reconcile the derivation rather than only the conclusion.
+When a durable lifecycle state is derived from actual observations such as pending reboot, persist a safe typed observation/digest sufficient to audit/reconcile the derivation rather than only the conclusion. Dev9 independent REVIEW closed CR-P00-003.
 
 ### MEM-20260915-023 — Durable wait context is typed/bounded data
 
-Journaled wait metadata requires exact allowed keys/types and canonical size/privacy limits. Raw or sensitive evidence belongs behind protected references/digests.
+Journaled wait metadata requires exact allowed keys/types and canonical size/privacy limits. Raw or sensitive evidence belongs behind protected references/digests. Dev9 independent REVIEW closed CR-P00-004.
 
 ## Dual-lane execution lessons
 
 ### MEM-20260915-024 — Separate mutable implementation from immutable review
 
-```yaml
-TYPE: PROCESS
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "Implementation and review lose independence when they share one mutable source worktree."
-EVIDENCE: "Created `/home/dragon/ai-film-dev/implement` on writable branch `impl/p00` and `/home/dragon/ai-film-dev/review` detached at exact dev8 commit c44c2f87...; both independently reproduce 683 PASS + 92 static."
-REUSABLE_RULE: "IMPLEMENT edits only its writable worktree. REVIEW consumes a detached exact candidate and never patches it. Project gates remain controlled by canonical main state."
-ACTION_TAKEN: "Created remote lane branches `lane/implement-p00` and `lane/review-p00`, local worktrees and `EXECUTION_LANES.md`."
-```
+IMPLEMENT edits only `/home/dragon/ai-film-dev/implement`; REVIEW consumes a detached exact candidate in `/home/dragon/ai-film-dev/review` and never patches it. Canonical `main` alone controls global gates.
 
 ### MEM-20260915-025 — Review target identity must never float
+
+Handoff binds source commit SHA + package SHA/size/location + source/test digests + author evidence + contract digest. REVIEW never auto-follows IMPLEMENT head.
+
+### MEM-20260915-026 — Evidence output is lane-scoped
+
+`lane-test.sh implement` and `lane-test.sh review` write separate `run-evidence/<lane>/<UTC>/` trees, preventing review reruns from contaminating implementation evidence.
+
+### MEM-20260915-027 — Delta finding closure is distinct from full-gate verdict
 
 ```yaml
 TYPE: REVIEW
 STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "A reviewer following an implementation branch head can silently review code different from the handed-off candidate."
-EVIDENCE: "REVIEW worktree is detached at exact dev8 source commit while IMPLEMENT branch may advance independently."
-REUSABLE_RULE: "Handoff binds source commit SHA + package SHA/size/artifact ID + source/test digests + author evidence + contract digest. REVIEW never auto-follows IMPLEMENT branch head."
-ACTION_TAKEN: "Defined immutable candidate contract in EXECUTION_LANES.md and lane state files."
-```
-
-### MEM-20260915-026 — Evidence output is lane-scoped
-
-```yaml
-TYPE: TESTING
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "Implementation and review reruns need separate evidence destinations to avoid overwriting or confusing provenance."
-EVIDENCE: "`lane-test.sh implement` and `lane-test.sh review` store outputs under separate `run-evidence/<lane>/<UTC>/` paths and restore tracked generated evidence before final status."
-REUSABLE_RULE: "Keep author and reviewer execution evidence in separate lane-scoped directories and bind review claims to the candidate identity."
-ACTION_TAKEN: "Added lane-specific environment/test helpers."
+DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
+SUMMARY: "Dev9 independently closed CR-P00-002/003/004, but full CODE_REVIEW still FAILs because CR-P00-001 covers missing overall implementation scope."
+EVIDENCE: "REVIEW lane detached at dev9 commit 3da3ddc..., reran 692 tests + 93 static checks, reproduced former failure scenarios as blocked, verified package/manifest, and found no contract drift."
+REUSABLE_RULE: "Track finding disposition separately from gate verdict. A delta can PASS and close specific findings without promoting the full gate when an umbrella completeness blocker remains."
+ACTION_TAKEN: "CR-P00-002/003/004 closed; CR-P00-001 remains OPEN_BLOCKER; global mode stays IMPLEMENTATION."
 ```
 
 ## Future-chat usage
