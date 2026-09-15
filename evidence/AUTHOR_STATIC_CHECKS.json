@@ -1,6 +1,6 @@
 {
   "kind": "AUTHOR_STATIC_CHECKS",
-  "timestamp_utc": "2026-09-15T04:07:13.747740+00:00",
+  "timestamp_utc": "2026-09-15T04:47:18.353960+00:00",
   "checks": [
     {
       "path": "src/aifilm_p00/__init__.py",
@@ -119,6 +119,16 @@
     },
     {
       "path": "src/aifilm_p00/native/guest.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/harness_cases.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "src/aifilm_p00/native/harness_controller.py",
       "check": "PYTHON_AST",
       "status": "PASS"
     },
@@ -308,6 +318,11 @@
       "status": "PASS"
     },
     {
+      "path": "tests/test_dev15_harness.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
       "path": "tests/test_dev3_catalog_native_helpers.py",
       "check": "PYTHON_AST",
       "status": "PASS"
@@ -414,6 +429,11 @@
     },
     {
       "path": "tools/check_source.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/run_native_acceptance_tests.py",
       "check": "PYTHON_AST",
       "status": "PASS"
     },

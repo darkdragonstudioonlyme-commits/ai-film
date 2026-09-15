@@ -6,785 +6,871 @@
       "case_id": "T00-01",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "8d3613393258d38c3c0a7b2e9c65b9d30cba18e6041a9c530bd6d248808ddc7c"
     },
     {
       "case_id": "T00-02",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [
         "NF-IDENTITY"
       ],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "0692f67580875d70cd907d2acff21820af84a083ccb26d4d702efc3067a919f9"
     },
     {
       "case_id": "T00-03",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [
         "NF-PATH-ROUNDTRIP",
         "NF-HARDLINK-REJECT"
       ],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "664efd03b0fc436d73f1ae68a9a8cc4e5edbac71278ddd454370881018f99107"
     },
     {
       "case_id": "T00-04",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "d9e7f9e3ea9d794c00b982c816fe2c3406efd11e04ca8d0762d7b736a0b0ca49"
     },
     {
       "case_id": "T00-05",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "92aa95886a508938c20b0376f042cbd0e35de716817d3b789691b76d36104019"
     },
     {
       "case_id": "T00-06",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "661afa3334d802ae185d0a211261aa17e0a9098397f2b93522e93b64a3a13262"
     },
     {
       "case_id": "T00-07",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [
         "NF-JOURNAL-APPEND",
         "NF-GUARD-CONTENDER"
       ],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "3f18c34f64970b2d4a420f9fb450fefb8578442f534fbc8484f65e4e90228d53"
     },
     {
       "case_id": "T00-08",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "53056c2c74357e4519f9ac5c18dfbe9534af9c4db184edba35342dc11e47c78a"
     },
     {
       "case_id": "T00-09",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "d3751fda59b0836b3f4615fa69f110a8aa5b869c0c0526c203b2b041b0ff4d34"
     },
     {
       "case_id": "T00-10",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1f23621de17052209252fafb04ed5877311ee1be88a6b07064aaaf2706e86902"
     },
     {
       "case_id": "T00-11",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4fac6de047cf5f2344852851688d3215ef45e3d8a5f684534661a3346435f625"
     },
     {
       "case_id": "T00-12",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "19a9a388413c6e5435fcbc94cee6291a2815a4ea0208aa3e1736783ff0024a5e"
     },
     {
       "case_id": "T00-13",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "a5384f50115c3266cd8e54a1dbb143247eec6587f223d3c576c9eb50b6437b84"
     },
     {
       "case_id": "T00-14",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "f0b0676a129d6ffce1b723e4eb20275580d09d629189ad15bcf5b14d512cb4ce"
     },
     {
       "case_id": "F00-01",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "12253ad9f82e596419ccc1ba78e6e989914114e2f9af5979ceed64630b8df88e"
     },
     {
       "case_id": "F00-02",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "a04ad38134e13e52053e8407b583f666af192ae5d3c716c8505507e32f431dd4"
     },
     {
       "case_id": "F00-03",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "43231ba6f125ab65439cfa596dd54606dceb17b76ecb47d14c1cf5a4c12a44db"
     },
     {
       "case_id": "F00-04",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4c09d6536fc8b725cda736a79f92e32d8a1650c476964444f65de9b5f9dd91bd"
     },
     {
       "case_id": "F00-05",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "b49b00bac8fab7e4695341e85b62dac2b0b524ca2f66cd24b7e5fa7e3c07f3d9"
     },
     {
       "case_id": "F00-06",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "5d55201f3c5ec52c1a0334973dc8cf4c81d1441343df6ccce9584fe1ae673945"
     },
     {
       "case_id": "F00-07",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "PARTIAL_FOUNDATION_ONLY",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [
         "NF-GUARD-CONTENDER"
       ],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "8154ed3bf348b3fe2e4e5c60a4b06442faf806d743537b7c16508d52863d41a2"
     },
     {
       "case_id": "F00-08",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "6ae3699c3c4663aa3125eaacbcbccf0bbf835fcd5edf7805f4efb4b4906b066c"
     },
     {
       "case_id": "F00-09",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "c22d3d518af28cef2d6e085947b5d2ea10485d58f959841b7beefea33fbb05de"
     },
     {
       "case_id": "F00-10",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "c9e5425eb868215859792a41b332624abd37d9490e5ae7a9ffc7f21d30457f4d"
     },
     {
       "case_id": "F00-11",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "00cde3ab5acd4d452961cb3b36b0b9ca9a1f2f6f28326c42d390413128801cbd"
     },
     {
       "case_id": "F00-12",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "f6997695d8f106ddb1e1e2f957757b53384ce128ca130e5186de51084a26addf"
     },
     {
       "case_id": "F00-13",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "445552250cddd8cbc8ce87f9f31841f0dd16f7b7e5f48c2108b4cdfee3bd45e5"
     },
     {
       "case_id": "F00-14",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "df4f231aa5f6ff2cd4e68563fdacc3d9f8329ae49b737ce199e66702621261cb"
     },
     {
       "case_id": "F00-15",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1cdef1cd934628f4dc3059d907382f4c9a05be602711d01a148fe4c5a0dbbde5"
     },
     {
       "case_id": "F00-16",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1eff6f59472bde4725f64bf73ad430c62b9a93d0d0d94d5d98dae481da0d9b57"
     },
     {
       "case_id": "T05-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "d2227328d9e7866efb9e975e40c0c94c4f8841fa33d48eddb4daad3ba3480f26"
     },
     {
       "case_id": "T05-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "e247aedb896098e8869dc281b318e31992aa1a203fd2ca831ad76a87e60ac156"
     },
     {
       "case_id": "T05-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "6e1cd652c85a451a4e73a30b4260759a62f1aabc4a6d8f687550c038fb0c0416"
     },
     {
       "case_id": "T05-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "34b6ae5db0eb90341fff2de0fcc02d1937061edec3034509c0e824a386ecd5bf"
     },
     {
       "case_id": "T05-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "28e7073d699eb062398eb4939c82df96e06cdd7b5d18ba8526a97e8a8fedca94"
     },
     {
       "case_id": "T05-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "efc48aa35cd5d0d4232f1c3f85c9404c0a58781c8e5deaebca4a095711dde3c0"
     },
     {
       "case_id": "T07-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "f387b508eff4974e7e807f4e11a99b96bfa07eadf34d8d0b2023a555c2a00f2c"
     },
     {
       "case_id": "T07-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "0710bb8526212e50a106dd63593922f7c750be2ec2c9e2ef4d1c207bcb28fe60"
     },
     {
       "case_id": "T07-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "c4ffb574f59176863775efc6dbc808c29d945aff2eefd91b51cb613f749e1054"
     },
     {
       "case_id": "T07-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "d949f43dd12c78a8c3e4685592567a406c668705fc6428494ee74d446b57d04c"
     },
     {
       "case_id": "T07-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "51f648a73dedabc8401921f90e0917e612d567271341e4a193eac7b1cb48d9b6"
     },
     {
       "case_id": "T07-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "7af158c96ec453db483a03068e8fe8f8df0ec4cf8b9f6d60b1b45f37702ed342"
     },
     {
       "case_id": "T07-G",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "02328fc0bac11973fc7c09cf7f3523eb823bdbeb1604174636113d1e5b4e3da6"
     },
     {
       "case_id": "T07-H",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "08ff03e417bb38562f6e5d0e595dcdffb992154137ecc61c9cfd4b8b8ba6aac8"
     },
     {
       "case_id": "T07-I",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1698634117ed396d25633ec319a0448e88e1f1339a30f4a36f639c30e3e6cc62"
     },
     {
       "case_id": "T07-J",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "f2418356b540f9dfd923aea27ba18205ad200d549d072434169d0dea9994e381"
     },
     {
       "case_id": "T08-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "16de54b3c1ac76ca52e00d55fe9db77cfdcc76a398f518032fa0978f18a24c4b"
     },
     {
       "case_id": "T08-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "0d3f6eee0fffd5908511ebfef5532f5d694bbbf719e577f3f66cfee2688fd631"
     },
     {
       "case_id": "T08-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "164d2987bc1e1cc6c6c8783c413014f29779f09acb94e8ab04a8fd8af5f686bc"
     },
     {
       "case_id": "T08-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "ea10761a577e965d0e739f995a7bab8b6c577f8870545a9ace5de6cde3cba7d3"
     },
     {
       "case_id": "T08-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "b06f67c085b09840634f6dd0939de2eb9f66b435772f6515e25fee6661ee4991"
     },
     {
       "case_id": "T08-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "648892bb3571c9bdc08bf7b76ba585c7eecb3f813c393d6e1873acf746bb5634"
     },
     {
       "case_id": "T08-G",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "eaf7983b91c473a0eec81f4d9bee662f0d7935ce1a9aba944d90aac993dd7f52"
     },
     {
       "case_id": "T08-H",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "0fe8d6303ac67089b80f7376e7de01f137f02e77bbf0d979851c76ad3b0733fb"
     },
     {
       "case_id": "T08-I",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "3591137f38f49619fb1c78da1e9fae03aebd01ebd09aac70158be5340530d6c1"
     },
     {
       "case_id": "T08-J",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4365e84b1fbceef5c6e3b6307b51a238712b3165e53d0c30ef9f0e9a3b872e9e"
     },
     {
       "case_id": "T08-K",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "5c90d249719e29f5df09999b9e3eabb1207dcbb3ffee7be7bf5d3e42f6b4f43a"
     },
     {
       "case_id": "T08-L",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4e180033da321f832688fe3f7d24432e06baa25086473a2b06e29c802a21f320"
     },
     {
       "case_id": "T08-M",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "74666118dc182423934c0b355c49bf12a431215f161429ff382da5b9c6830fab"
     },
     {
       "case_id": "T08-N",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "294bf77734d9778ab45235a82f95abf0e5dbb84a2d1954b2befcac44772c4dd2"
     },
     {
       "case_id": "T09-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "b2641b50d170536adac1bce78cd0904dbe1c148f8e8a4b4810574da0e6ea2d28"
     },
     {
       "case_id": "T09-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "cb821eee98eb2ffba5e4312cc560f353f67e9beb669f2a9e26da104ed0b192ff"
     },
     {
       "case_id": "T09-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "974aea3cc1cb85974dbe76594556546ce316e3ab488f8d537997044de0041e7c"
     },
     {
       "case_id": "T09-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "cb60ed63142dac3c1d20f58e10b217c1ca72943e86c3e94045a577a81a765f78"
     },
     {
       "case_id": "T09-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "ffc263b6cf5e969317030fb686907a27ca9fd28ca920094fd5a99f520b67d0a0"
     },
     {
       "case_id": "T09-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1302234aea57d3fdc862d62ce39b0ceeaaf204c9add8b7478266c935b6c4da2d"
     },
     {
       "case_id": "T09-G",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "dff2e025a31cb93d14ee6f1d0c534822d0fbec14d79230c40bc9d058afbf1bcc"
     },
     {
       "case_id": "T09-H",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "91a9c5756f00822c7c097d6f64943f7341fca4f214c3d73aab2b2337c4e1a05b"
     },
     {
       "case_id": "T09-I",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "2e19270f60c26ed3b51600377a7c4bfdfdc3a2dcb059819011cb6a402d3255f3"
     },
     {
       "case_id": "T09-J",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "f3434403842f86a0e55c326350776b8c024eaa8fde9dcfc22aa98c13d2ac3cbc"
     },
     {
       "case_id": "T13-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "e823f42a976cd1c9b6bff63c5c8ffb28d8b93a49a1c29a5358a839a15f4ceea4"
     },
     {
       "case_id": "T13-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "63b915b611ab12b004cabeadc1e7809489d8932acc4711c5c1627af238bbe7a1"
     },
     {
       "case_id": "T13-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "1cd68aa2c25aa7516fd2875ac655e9191a409f8cf3070872deaba517a9f7f09d"
     },
     {
       "case_id": "T13-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "5de3d8d450ad9078d7ec2b00d5d4c36eb3b1a907b3b4e8d27f5f3c51f8b55cc2"
     },
     {
       "case_id": "T13-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "d2c020e01ed41d50d859ca827e255eee4462f65651b620ba8ea70ce35007ec04"
     },
     {
       "case_id": "T13-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "776f1b596ed780d175a924188967a3caa1ad298981e2b5386c76884fed451965"
     },
     {
       "case_id": "T13-G",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "252ee795a083d217f802f18ef8cba9ad4d66e6992e2c9c00023cef6165c99c0d"
     },
     {
       "case_id": "T14-A",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "024fe923b73fe34093265b2972675c3b2bc426bb6282241e849706b9a6a89310"
     },
     {
       "case_id": "T14-B",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "9d6e2cdc654512e9f6fa64af303eee44f30d3f42d59e75eefec18ea4e8368446"
     },
     {
       "case_id": "T14-C",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4484cb9de2f037c6923d721211f70e1797f5d893c3a4b2f5fd40c000ccfaabb6"
     },
     {
       "case_id": "T14-D",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "058317bb278d2bea72965bf387b021b80b41e70c16aa980b33fe62214f25c2b7"
     },
     {
       "case_id": "T14-E",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "8b44bf60a830e508c38f4371d7a3612c4ea2df67892c51a411fc7a2d9c44f3c3"
     },
     {
       "case_id": "T14-F",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "5a6f0ca52828069affcf5e350058c9c0fa02702a91e367fc195ba15a118f54ad"
     },
     {
       "case_id": "T14-G",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "808ac05e9d89c53def675d7c1772c2f19e44b55ed27b4575fdeee9ec1e258436"
     },
     {
       "case_id": "T14-H",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "4eb8a0623e6e59bafe46edf933f62211378bdcad02177635d31c3f474fbb9481"
     },
     {
       "case_id": "T14-I",
       "status": "NOT_RUN",
       "evidence": null,
-      "native_harness": "NOT_IMPLEMENTED",
+      "native_harness": "AUTHOR_CONTROLLER_IMPLEMENTED",
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
-      "acceptance_closed": false
+      "acceptance_closed": false,
+      "procedure_digest": "7c920d2dec92b74647e455eece784a50324a4b556cf8151cb15d8dc50d4fb207"
     }
   ]
 }

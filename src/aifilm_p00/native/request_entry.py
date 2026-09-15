@@ -23,18 +23,29 @@ def requested_plan(store,ref,interface):
     return plan
 
 
-def execute(root,interface,ref):
-    root=Path(root)
-    _,store,_,_,_=_entry(root)
+def prepare_execution(root,interface,ref):
+    """Resolve the exact pinned plan and construct the production session.
+
+    This is an internal composition seam for the native acceptance controller. It
+    does not accept a backend/port and is not exposed by the CLI.
+    """
+    root=Path(root);_,store,_,_,_=_entry(root)
     plan=requested_plan(store,ref,interface)
-    # Factory always constructs native adapters; source tests patch this symbol
-    # explicitly, never register their test ports in production configuration.
-    session=native_session(root)
+    return plan,native_session(root)
+
+
+def execute_prepared(interface,plan,session):
     if interface=='preflight' and plan['semantic']['purpose']=='PASSIVE':
         return C0CaptureRunner(session).execute(plan)
     if plan['semantic']['purpose']=='RECONCILIATION_ONLY':
         return session.reconcile(plan)
     return session.execute(interface,plan)
+
+
+def execute(root,interface,ref):
+    # Public production path remains backend-injection-free.
+    plan,session=prepare_execution(root,interface,ref)
+    return execute_prepared(interface,plan,session)
 
 
 def draft(root,selection_ref,capture_digest):

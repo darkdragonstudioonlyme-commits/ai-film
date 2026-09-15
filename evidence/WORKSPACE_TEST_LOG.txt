@@ -152,6 +152,14 @@ test_malformed_proxy_observation_is_integrity_failure (test_dev14_transport.Prox
 test_non_direct_plan_mode_is_not_invented_adapter (test_dev14_transport.ProxyPolicyTests.test_non_direct_plan_mode_is_not_invented_adapter) ... ok
 test_windows_system_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_system_proxy_is_network_failure) ... ok
 test_windows_user_auto_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_user_auto_proxy_is_network_failure) ... ok
+test_destructive_procedures_are_lab_only (test_dev15_harness.HarnessCatalogTests.test_destructive_procedures_are_lab_only) ... ok
+test_document_case_never_requires_native_stage (test_dev15_harness.HarnessCatalogTests.test_document_case_never_requires_native_stage) ... ok
+test_exact_inventory_coverage_and_digests (test_dev15_harness.HarnessCatalogTests.test_exact_inventory_coverage_and_digests) ... ok
+test_production_prepare_seam_has_no_backend_argument (test_dev15_harness.HarnessCatalogTests.test_production_prepare_seam_has_no_backend_argument) ... ok
+test_describe_is_metadata_only (test_dev15_harness.HarnessCliTests.test_describe_is_metadata_only) ... ok
+test_execute_stage_is_blocked_on_posix (test_dev15_harness.HarnessCliTests.test_execute_stage_is_blocked_on_posix) ... ok
+test_list_is_metadata_only (test_dev15_harness.HarnessCliTests.test_list_is_metadata_only) ... ok
+test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected (test_dev15_harness.StageOracleTests.test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -739,6 +747,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 739 tests in 1.428s
+Ran 747 tests in 1.600s
 
 OK

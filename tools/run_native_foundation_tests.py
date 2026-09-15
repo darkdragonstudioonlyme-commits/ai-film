@@ -98,7 +98,11 @@ def run_case(case):
                 'timestamp_utc':datetime.now(timezone.utc).isoformat(),'actual':actual,'fixture_only_data':True,
                 'source_content_digest':identity['source_content_digest'],'test_content_digest':identity['test_content_digest'],
                 'qualification_issued':False,'closes_parent_T_or_F':False,'host_ready':False}
-        paths.publish_new(str(PureWindowsPath(scratch)/'foundation-result.json'),canonical(result))
+        output=str(PureWindowsPath(scratch)/'foundation-result.json');raw=canonical(result)
+        pending=str(PureWindowsPath(scratch)/('foundation-pending-'+digest(result)[:24]+'.json'))
+        journal.append_event({'kind':'LAB_FOUNDATION_RESULT_INTENT','run_id':run_id,'case_id':case,
+            'path':output,'pending_path':pending,'report_digest':digest(result),'bytes':len(raw)})
+        paths.publish_new(output,raw,pending_path=pending)
         journal.append_event({'kind':'LAB_FOUNDATION_END','run_id':run_id,'case_id':case,'report_digest':digest(result)})
         return result
     finally:guard.release()

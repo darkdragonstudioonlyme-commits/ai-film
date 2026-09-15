@@ -1,3 +1,20 @@
+# IMPL-P00-001 Implementation Status — dev15 increment
+
+`0.1.0.dev15 / PARTIAL_SOURCE_DROP_DEV15`
+
+Dev15 authors the source-side native acceptance controller for the exact 86-case inventory without executing native Windows/WSL/LAB/SITE tests.
+
+- Added an explicit 86-case reviewed procedure catalog with fixed environment, causal preparation, route, controller-step, normalized-exit, oracle and required-evidence identities.
+- `config/required-native-test-inventory.json` now binds every case to its exact procedure digest while retaining `status=NOT_RUN`, `acceptance_closed=false`.
+- Added authenticated LAB suite/fixture/stage/oracle validation with raw-artifact provenance; process exit alone cannot close a native stage.
+- Added a production request composition seam (`prepare_execution` / `execute_prepared`) that accepts no backend/fixture port and is used by the native acceptance controller.
+- Added metadata-only `run_native_acceptance_tests.py --list/--describe`; execution remains Windows-only and registered-LAB scoped.
+- Added 8 focused author tests for exact 86-case coverage, metadata-only behavior, POSIX execution rejection, procedure digest binding and process-exit-only rejection.
+
+Final author evidence before packaging: **747 PASS / 0 failure/error/skip**, static **100 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN; no qualification or HOST_READY is issued.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev14 increment
 
 `0.1.0.dev14 / PARTIAL_SOURCE_DROP_DEV14`

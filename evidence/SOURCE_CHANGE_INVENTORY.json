@@ -1,6 +1,6 @@
 {
-  "baseline": "dev13",
-  "candidate": "dev14",
+  "parent_commit": "1fcde7dcdfe6f7f2778379b34a742d528bb67717",
+  "delivery": "0.1.0.dev15",
   "changes": [
     {
       "status": "M",
@@ -8,11 +8,11 @@
     },
     {
       "status": "M",
-      "path": "README.md"
+      "path": "config/required-native-test-inventory.json"
     },
     {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV13_TO_DEV14.md"
+      "path": "docs/CHANGELOG_DEV14_TO_DEV15.md"
     },
     {
       "status": "M",
@@ -20,15 +20,7 @@
     },
     {
       "status": "M",
-      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
-    },
-    {
-      "status": "M",
       "path": "docs/REMAINING_IMPLEMENTATION.md"
-    },
-    {
-      "status": "M",
-      "path": "docs/TRACEABILITY.md"
     },
     {
       "status": "M",
@@ -51,16 +43,28 @@
       "path": "src/aifilm_p00/__init__.py"
     },
     {
-      "status": "M",
-      "path": "src/aifilm_p00/native/network.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/network_probe.py"
+      "status": "A",
+      "path": "src/aifilm_p00/native/harness_cases.py"
     },
     {
       "status": "A",
-      "path": "tests/test_dev14_transport.py"
+      "path": "src/aifilm_p00/native/harness_controller.py"
+    },
+    {
+      "status": "M",
+      "path": "src/aifilm_p00/native/request_entry.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_dev15_harness.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/run_native_acceptance_tests.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/run_native_foundation_tests.py"
     }
   ]
 }

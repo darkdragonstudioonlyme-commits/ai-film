@@ -1,3 +1,12 @@
+# DEV15 Remaining-Work Delta
+
+- **REM-08 source progress:** all 86 normative inventory entries now have explicit controller procedures and procedure digests; controller source validates registered LAB authority, causal preparation measurements, production-request stage identity, journal/oracle provenance and required evidence.
+- **REM-08 remains open for native execution/validation:** authoring the controller is not running the 86 cases. Inventory statuses remain NOT_RUN and acceptance_closed=false until authorized VALIDATION/LAB execution and ledger acceptance.
+- Production-factory author integration is present through the backend-injection-free `prepare_execution` / `execute_prepared` seam and controller dispatch.
+- Any remaining full-scope source gaps discovered by independent REVIEW still return to IMPLEMENTATION; CR-P00-001 remains open until author-complete closure is justified.
+
+---
+
 # DEV14 Remaining-Work Delta
 
 - **REM-06 transport progress:** exact V2 transport semantics are source-complete at the policy boundary: only reviewed DIRECT probes execute; configured proxy context is normalized network failure14 and is never bypassed or auto-remediated; existing VPN/networking mode remains preserved.
