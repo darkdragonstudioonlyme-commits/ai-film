@@ -1,0 +1,65 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 29,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "documentation_system": "DOCSYS-V2-R8",
+  "documentation_governance": {
+    "release_id": "DOCSYS-V2-R8",
+    "previous_active_release": "DOCSYS-V2-R6",
+    "design_branch": "lane/docs-v2-r8-design",
+    "review_branch": "lane/docs-v2-r8-review",
+    "audit_branch": "lane/docs-v2-r8-audit",
+    "final_review_id": "DOC-V2-R8-REVIEW-002",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+    "final_audit_id": "DOC-V2-R8-AUDIT-002",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md",
+    "promotion_rule": "Only the exact reviewed/audited design tree plus the predeclared final review/audit records may be promoted without reopening review/audit."
+  },
+  "last_reviewed_candidate": {
+    "version": "0.1.0.dev19",
+    "source_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "package_sha256": "564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1",
+    "overall_verdict": "FAIL_CR_P00_001_ONLY"
+  },
+  "in_flight_producer_output": {
+    "version": "0.1.0.dev20",
+    "source_commit": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "durability_tier": "LOCAL_COMMIT_PLUS_VERIFIED_PACKAGE",
+    "author_tests": 760,
+    "static_checks": 101,
+    "package_sha256": "8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff",
+    "package_size_bytes": 1175249,
+    "test_review_status": "READY_FOR_INDEPENDENT_REVIEW"
+  },
+  "source_visibility": {
+    "remote_source_addressability": "PARTIAL_REVIEW_SNAPSHOT",
+    "remote_source_ref": "snapshot/dev20-source@ba8aa1acdac677665301a8fb76cd99b6b3d352bc",
+    "full_source_git_mirror": false,
+    "snapshot_byte_reverify": "PENDING",
+    "exact_source_identity": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "exact_package_identity": "8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff"
+  },
+  "active_run": {
+    "run_id": "RUN-P00-CR001-001",
+    "workflow_id": "WF-P00-IMPL-CR001-RESIDUAL-AUDIT",
+    "owner_lane": "IMPLEMENT",
+    "run_record": "lane/implement-p00:workflow-runs/RUN-P00-CR001-001.md",
+    "status": "RUNNING",
+    "current_step": "S07_TEST_REVIEW_DEV20",
+    "canonical_base": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "observed_local_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "local_worktree": "implement"
+  },
+  "learning_activation": {
+    "workflow_continuity_r8": "ACTIVE_ON_PROMOTION",
+    "governance_release_selection": "ACTIVE_ON_PROMOTION",
+    "source_visibility_policy": "ACTIVE_ON_PROMOTION",
+    "learned_but_not_active_backlog_after_promotion": 0
+  },
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}
