@@ -8,21 +8,17 @@ active=['README.md','PROJECT_STATE.md','NEXT_WORK_ITEM.md','PROJECT_ROADMAP.md',
 'OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md','CHAT_HANDOFF.md']
 errors=[]
 texts={p:(ROOT/p).read_text(encoding='utf-8') for p in active if (ROOT/p).is_file()}
-# Active protocol docs must be version agnostic except state/task/workspace/environment/roadmap/memory.
 allow_version={'PROJECT_STATE.md','NEXT_WORK_ITEM.md','SERVER_ENVIRONMENT.md','PROJECT_ROADMAP.md','PROJECT_MEMORY.md'}
 for p,t in texts.items():
     if p not in allow_version and re.search(r'0\.1\.0\.dev\d+',t): errors.append('stale-version-risk:'+p)
-# Workspace map must not duplicate mutable source candidate identities.
 workspace=texts.get('WORKSPACE_WSL.md','')
 if re.search(r'0\.1\.0\.dev\d+',workspace): errors.append('workspace-mutable-version')
 if re.search(r'\b[0-9a-f]{40}\b',workspace): errors.append('workspace-source-commit-pin')
 if re.search(r'\b\d+ PASS\b',workspace): errors.append('workspace-test-count-pin')
 if re.search(r'active .*V2 (design|review|audit)',workspace,re.I): errors.append('workspace-transient-workflow-activity')
-# Checkers cannot hard-code a delivery file/hash.
 for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/audit_documentation_v2.py']:
     t=(ROOT/p).read_text(encoding='utf-8')
     if re.search(r'IMPLEMENTATION_PACKAGE_V\d+',t): errors.append('checker-hardcoded-package:'+p)
-# Business-first tests / policy retirement / learning effects.
 if 'code is the subject under test' not in texts.get('TEST_STRATEGY.md',''): errors.append('test-code-authority-risk')
 if 'SUPERSEDED' not in texts.get('POLICY_REGISTRY.md','') or 'RETIRED' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-lifecycle-incomplete')
 if 'SUCCESS_METRIC' not in texts.get('SELF_LEARNING.md',''): errors.append('learning-no-measurement')
@@ -44,23 +40,17 @@ if env_record.is_file():
         try:
             obj=json.loads(m_payload.group(1))
             canonical=json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode('utf-8')
-            if hashlib.sha256(canonical).hexdigest()!=m_digest.group(1):
-                errors.append('environment-digest-mismatch')
-        except (ValueError,TypeError):
-            errors.append('environment-canonical-json-invalid')
-
-# Promotion readiness: canonical state/checkpoint are part of the reviewed tree.
+            if hashlib.sha256(canonical).hexdigest()!=m_digest.group(1): errors.append('environment-digest-mismatch')
+        except (ValueError,TypeError): errors.append('environment-canonical-json-invalid')
 state=texts.get('PROJECT_STATE.md','')
-if 'ACTIVE_SYSTEM_VERSION: V2' not in state: errors.append('promotion-state-not-v2')
-if 'DOC-V2-REVIEW-006' not in state or 'DOC-V2-AUDIT-006' not in state: errors.append('promotion-verdict-paths-not-predeclared')
-for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json']:
-    if not (ROOT/path).is_file(): errors.append('promotion-checkpoint-missing:'+path)
-
-# Bootstrap docs must point to canonical router/state, not own current versions.
+if 'DOCSYS-V2-R6' not in state: errors.append('documentation-system-v2-not-active')
+for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json',
+             'reviews/DOCUMENTATION_SYSTEM_V2_REVIEW_R6_PASS.md',
+             'reviews/DOCUMENTATION_SYSTEM_V2_AUDIT_R6_PASS.md']:
+    if not (ROOT/path).is_file(): errors.append('v2-governance-evidence-missing:'+path)
 for p in ['README.md','CHAT_HANDOFF.md']:
     t=texts.get(p,'')
     if 'PROJECT_STATE.md' not in t or 'WORKFLOW_ROUTER.md' not in t: errors.append('bootstrap-routing:'+p)
-# Active docs should not call historical V1 governance current.
 for p,t in texts.items():
     if p!='PROJECT_STATE.md' and 'SYSTEM_VERSION: V1' in t: errors.append('historical-leak:'+p)
 if errors:
