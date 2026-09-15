@@ -3,7 +3,7 @@
 Nothing here enrolls a host, writes the anchor, issues approvals/qualification,
 or treats a fixture file as authority. Host-owner provisioning is external;
 missing authority blocks. Each read_anchor call obtains a fresh policy/ACL snapshot.
-The full route driver must invoke it before each step; that integration is pending.
+The production NativeDriver refreshes this authority before each admitted step.
 """
 from __future__ import annotations
 from dataclasses import dataclass

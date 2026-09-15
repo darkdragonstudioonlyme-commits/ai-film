@@ -1,3 +1,28 @@
+# Current author-completeness traceability — dev20 residual audit
+
+Approved contract digest remains `f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee`.
+
+| Residual area | Current source evidence | Classification |
+|---|---|---|
+| REM-01 profile/native factory | `NativeDriver.refresh` exact profile match + `request_entry.prepare_execution` + production `native_session`; dev20 production-composition author test | CLOSED_SOURCE |
+| REM-02 guard/journal/recovery | `NativeGuard` + append-only `NativeJournal`, detached-read recovery, safe-pause/reconciliation and failure procedures in the 86-case harness | CLOSED_SOURCE / VALIDATION_ONLY execution |
+| REM-03 trust/prior provenance | executable policy + pinned reviewed source/agent bytes + payload graph + dev10 prior guest/pre-C3/checkpoint provenance | CLOSED_SOURCE |
+| REM-04 service/OOBE/restart/factory | dev8 lifecycle/reboot/OOBE branches + production SessionRunner/NativeDriver composition | CLOSED_SOURCE / VALIDATION_ONLY execution |
+| REM-05 resume/recovery/publication | multi-stage reconciliation, live revalidation, dev12/13 publication recovery, E17 recovery | CLOSED_SOURCE / VALIDATION_ONLY execution |
+| REM-06 network/terminal/restore | exact V2 DIRECT-only transport semantics, terminal sweep, restore envelope/result integration | CLOSED_SOURCE / VALIDATION_ONLY execution |
+| REM-07 evidence semantics | dev10 nested provenance + failed capture + staged E16/E17 publication/recovery + gate assessment separation | CLOSED_SOURCE |
+| REM-08 86-case harness | 86/86 procedure digests, causal preparations/controller windows/oracles/evidence refs; `execute_stage` uses production request/factory path | CLOSED_SOURCE / VALIDATION_ONLY execution |
+
+Dev20 adds the missing author integration proof that `prepare_execution()` composes the actual `native_session()` factory while only OS/authority lower constructors are mocked. This is `INFRASTRUCTURE_ONLY` test governance: `ORACLE_CHANGED=false`.
+
+All 86 native cases remain `NOT_RUN` / `acceptance_closed=false`; this is expected until VALIDATION and is not converted to author PASS. `CR-P00-001` may be proposed closed for author completeness only after dev20 regression/docs/evidence are independently CODE_REVIEWed.
+
+
+Final dev20 author evidence: **760 PASS / 0 failure/error/skip**, static **101 PASS**. Source content digest `1aa44211cd215b9c9691209d132a723c3b666fb5fee279b68c7f077da632d9dc`; test content digest `c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383`. Native Windows/WSL/LAB/SITE remains NOT_RUN.
+
+
+---
+
 # Traceability — dev14 reviewed transport semantics
 
 | New author module | Cases | Reviewed scope |

@@ -4612,5 +4612,32 @@
       "closes_parent_requirement": false,
       "limitation": "Synthetic author control-flow/oracle coverage only; not Windows/WSL/LAB/SITE lifecycle validation."
     }
-  ]
+  ],
+  "current_author_closure": {
+    "candidate": "dev20",
+    "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+    "residual_audit": {
+      "IMPL-REM-01": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-02": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-03": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-04": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-05": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-06": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-07": "CLOSED_SOURCE_OR_VALIDATION_ONLY",
+      "IMPL-REM-08": "CLOSED_SOURCE_OR_VALIDATION_ONLY"
+    },
+    "production_factory_author_test": "tests/test_dev20_factory_integration.py",
+    "test_governance": {
+      "classification": "INFRASTRUCTURE_ONLY",
+      "oracle_changed": false
+    },
+    "native_acceptance": {
+      "cases": 86,
+      "status": "NOT_RUN",
+      "acceptance_closed": false
+    },
+    "author_complete_candidate": true,
+    "code_review_required_to_close_cr_p00_001": true,
+    "native_validation_claimed": false
+  }
 }

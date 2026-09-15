@@ -1,14 +1,22 @@
 {
-  "parent_commit": "f680067c2f23d7eea4c016247015359ffe431971",
-  "delivery": "0.1.0.dev19",
+  "parent_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+  "delivery": "0.1.0.dev20",
   "changes": [
     {
       "status": "M",
       "path": "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md"
     },
     {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "config/required-native-test-inventory.json"
+    },
+    {
       "status": "A",
-      "path": "docs/CHANGELOG_DEV18_TO_DEV19.md"
+      "path": "docs/CHANGELOG_DEV19_TO_DEV20.md"
     },
     {
       "status": "M",
@@ -16,7 +24,19 @@
     },
     {
       "status": "M",
+      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
+    },
+    {
+      "status": "M",
       "path": "docs/REMAINING_IMPLEMENTATION.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/TRACEABILITY.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/TRACEABILITY.md"
     },
     {
       "status": "M",
@@ -24,11 +44,7 @@
     },
     {
       "status": "A",
-      "path": "evidence/DEV19_SECRET_SCAN.json"
-    },
-    {
-      "status": "M",
-      "path": "evidence/SOURCE_CHANGE_INVENTORY.json"
+      "path": "evidence/DEV20_SECRET_SCAN.json"
     },
     {
       "status": "M",
@@ -52,11 +68,15 @@
     },
     {
       "status": "M",
-      "path": "src/aifilm_p00/native/harness_controller.py"
+      "path": "src/aifilm_p00/native/actuator.py"
     },
     {
       "status": "M",
-      "path": "tests/test_dev15_harness.py"
+      "path": "src/aifilm_p00/native/trust.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_dev20_factory_integration.py"
     }
   ]
 }

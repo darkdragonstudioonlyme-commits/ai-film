@@ -1,6 +1,6 @@
 {
   "kind": "AUTHOR_STATIC_CHECKS",
-  "timestamp_utc": "2026-09-15T11:27:26.652796+00:00",
+  "timestamp_utc": "2026-09-15T16:54:55.804496+00:00",
   "checks": [
     {
       "path": "src/aifilm_p00/__init__.py",
@@ -319,6 +319,11 @@
     },
     {
       "path": "tests/test_dev15_harness.py",
+      "check": "PYTHON_AST",
+      "status": "PASS"
+    },
+    {
+      "path": "tests/test_dev20_factory_integration.py",
       "check": "PYTHON_AST",
       "status": "PASS"
     },

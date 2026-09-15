@@ -1,6 +1,6 @@
 {
   "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
-  "description": "Approved native acceptance inventory. Foundation harness is a partial contribution, not full T/F automation or qualification.",
+  "description": "Approved native acceptance inventory. All 86 entries have source-side causal controller procedures and exact bindings; native execution/acceptance remains NOT_RUN until authorized VALIDATION.",
   "cases": [
     {
       "case_id": "T00-01",

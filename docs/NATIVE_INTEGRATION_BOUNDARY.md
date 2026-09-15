@@ -1,3 +1,9 @@
+# Current dev20 boundary status
+
+Production native entry is `native.request_entry → native.session_driver.native_session → SessionRunner/NativeDriver/Coordinator`. Historical partial-boundary text below is retained for audit history and is superseded for current authoring status. Dev20 author coverage now proves the production request/factory composition with only OS/authority lower ports mocked. Native Windows/WSL/LAB/SITE execution remains NOT_RUN and belongs to VALIDATION.
+
+---
+
 # DEV14 Network transport boundary
 
 Exact V2 authorizes a bounded DIRECT HTTPS probe while preserving existing networking/DNS/VPN/proxy/firewall policy. Dev14 makes special proxy context an explicit observed blocked environment, not a missing transport implementation:

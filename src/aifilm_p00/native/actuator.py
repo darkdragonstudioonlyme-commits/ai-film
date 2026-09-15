@@ -1,9 +1,8 @@
-"""Concrete Windows command execution component (not yet a full route backend).
+"""Concrete Windows command execution component used by NativeDriver routes.
 
 Requires an already-authorized session, held global guard and durable INTENT.
-Does not declare service-side completion, clear a fence or issue HOST_READY.
-This component is deliberately not registered as the six-interface SITE backend
-until native pre/postcondition, resume and evidence integration is complete.
+Does not declare service-side completion, clear a fence or issue HOST_READY;
+NativeDriver owns pre/postconditions, resume and evidence integration.
 """
 from contextlib import ExitStack
 from ..codec import canonical,windows_path,hash_value,sha256

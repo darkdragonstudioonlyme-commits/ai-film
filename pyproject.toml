@@ -1,11 +1,11 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev19"
-description = "Partial Phase00 implementation: binds causal LAB preparation/controller traces and exact protected evidence refs for the 86-case acceptance harness; native validation remains pending"
+version = "0.1.0.dev20"
+description = "Phase00 author-completeness candidate after residual reviewed-scope audit; native validation remains NOT_RUN"
 requires-python = ">=3.11"
 dependencies = []
 
 [tool.aifilm-p00]
-status = "IMPLEMENTATION_PARTIAL"
+status = "AUTHOR_COMPLETE_CANDIDATE"
 native-backend-available = false
-code-review-status = "NOT_PERFORMED"
+code-review-status = "PENDING_CR_P00_001_REVIEW"

@@ -172,6 +172,7 @@ test_fabricated_journal_hash_without_matching_raw_artifact_is_rejected (test_dev
 test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected (test_dev15_harness.StageOracleTests.test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected) ... ok
 test_stage_cannot_replay_under_another_suite (test_dev15_harness.StageOracleTests.test_stage_cannot_replay_under_another_suite) ... ok
 test_stale_fixture_result_is_rejected (test_dev15_harness.StageOracleTests.test_stale_fixture_result_is_rejected) ... ok
+test_request_entry_composes_real_production_factory_for_supported_interfaces (test_dev20_factory_integration.ProductionFactoryCompositionTests.test_request_entry_composes_real_production_factory_for_supported_interfaces) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -759,6 +760,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 759 tests in 1.575s
+Ran 760 tests in 1.434s
 
 OK

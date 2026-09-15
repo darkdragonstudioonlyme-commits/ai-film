@@ -1,3 +1,18 @@
+# DEV20 Residual Author-Completeness Audit
+
+Current audit compares exact reviewed Phase00 V2 contracts against dev20 candidate production source rather than carrying old REM labels forward.
+
+- `IMPL-REM-01…08`: **no remaining source implementation gap identified** after current-source reconciliation. Their historical OPEN text below is retained only as delivery history and is superseded by this section for current authoring status.
+- Production-factory author integration gap found by CR-P00-001 residual audit: **fixed in dev20** with an actual `prepare_execution → native_session → SessionRunner/NativeDriver/Coordinator` composition test using only OS/authority lower-port mocks.
+- `NativeUnavailable`, `journal_files.FileJournal`, old `evidence.py` status comments and similar legacy/workspace boundaries are not registered by production native entry and are not source blockers.
+- 86 native acceptance cases remain `NOT_RUN` and `acceptance_closed=false`: **VALIDATION_ONLY**, not missing source.
+- Native Windows/WSL/LAB/SITE execution, qualification and HOST_READY remain outside author completion and are not claimed.
+- `CR-P00-001` remains OPEN until independent CODE_REVIEW verifies this residual audit/final author candidate.
+
+Current next step: commit/package exact dev20, run independent TEST_REVIEW/CODE_REVIEW, and let REVIEW decide whether CR-P00-001 closes and AUTHOR_COMPLETE is accepted.
+
+---
+
 # DEV19 Remaining-Work Delta
 
 - `CR-P00-012`: corrected remediation — exact contract authority is enforced by the approved LAB suite/causal boundary; collector release remains exact reviewed-build authority.
