@@ -14,6 +14,15 @@ TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
 EXECUTION_MODEL: INDEPENDENT_LANES_WITH_IMMUTABLE_HANDOFFS
 
+DOCUMENTATION_GOVERNANCE:
+  SYSTEM_VERSION: V1
+  DESIGN_COMMIT: 08de0b955ddcb3fb0bb66a66c371c2b77edc0dff
+  REVIEW_ID: DOC-REVIEW-002
+  REVIEW_VERDICT: PASS
+  REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_V1_REVIEW_R2_PASS.md
+  PORTABLE_DOCS_CHECK: PASS
+  RUNTIME_STATE_CHECK: PASS
+
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
 APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
 FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
@@ -82,4 +91,4 @@ NEXT_ACTION: "Resume existing dev18 WIP; finalize version/docs/evidence, full re
 
 ## State verification rule
 
-Before work, fetch remote `main` and relevant lane refs. If local worktree state conflicts with this file, stop and classify whether the difference is a documented WIP, a newer durable handoff, or state drift. Never silently overwrite WIP.
+Before work, fetch remote `main` and relevant lane refs and run `tools/check_runtime_state.py` when the prepared WSL workspace is available. If local worktree state conflicts with this file, stop and classify whether the difference is a documented WIP, a newer durable handoff, or `STATE_DRIFT`. Never silently overwrite WIP.
