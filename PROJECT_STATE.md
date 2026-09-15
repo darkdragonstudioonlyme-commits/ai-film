@@ -1,12 +1,12 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V17
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V18
 
-> Read this file first in every new chat. Current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; exact next work lives in `NEXT_WORK_ITEM.md`.
+> Read first in every new chat. Global truth only. Lane protocol: `EXECUTION_LANES.md`.
 
 ## Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 17
+STATE_VERSION: 18
 REPOSITORY: darkdragonstudioonlyme-commits/ai-film
 DEFAULT_BRANCH: main
 
@@ -16,29 +16,35 @@ CURRENT_TASK: IMPL-P00-001
 TASK_STATUS: IN_PROGRESS
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-MODE_TRANSITION: "EARLY CODE_REVIEW COMPLETED FAIL; returned to IMPLEMENTATION"
 
-REQUIREMENTS_BASELINE: "AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2"
+EXECUTION_MODEL: DUAL_LANE
+IMPLEMENT_LANE:
+  REMOTE_BRANCH: lane/implement-p00
+  WSL_WORKTREE: /home/dragon/ai-film-dev/implement
+  LOCAL_SOURCE_BRANCH: impl/p00
+  STATUS: ACTIVE
+  SOURCE_WRITABLE: true
+REVIEW_LANE:
+  REMOTE_BRANCH: lane/review-p00
+  WSL_WORKTREE: /home/dragon/ai-film-dev/review
+  SOURCE_MODE: DETACHED_EXACT_CANDIDATE
+  STATUS: WAITING_FOR_NEXT_CANDIDATE
+  SOURCE_WRITABLE: false
+
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
 FROZEN_DECISIONS: "FD-01…FD-08 unchanged"
 APPROVED_PHASE00_DESIGN: "D00-01…D00-14 exact V2"
 APPROVED_CONTRACT_SET_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
 
 CURRENT_VERIFIED_DELIVERY: "0.1.0.dev8 / PARTIAL_SOURCE_DROP_DEV8"
+DEV8_SOURCE_COMMIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
+DEV8_PACKAGE_SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
+DEV8_DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
 
-DEV8_PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V8.zip
-DEV8_SIZE_BYTES: 1091121
-DEV8_SHA256: d4e6b67eebd40fbc173f85205792499021cf6eea9b82309e54c2a76a9a9e3cb5
-DEV8_DRIVE_FILE_ID: 125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD
-RAW_REDOWNLOAD_SHA_VERIFIED: true
-SOURCE_DIFF_SHA256: c9c519dc4bb0cc99135ffdd6884f31a573bbd191f9141ac9ad2484a4b030560e
-
 WORKSPACE_AUTHOR_TESTS: "683 PASS / 0 failure / 0 error / 0 skip"
 STATIC_AUTHOR_CHECKS: "92 PASS / 0 failed"
-SOURCE_CONTENT_DIGEST: e793fc78d622c987343d1b5e5d3909cb4c19d7b0bcbafbc32909f137a1894c08
-TEST_CONTENT_DIGEST: f91b422b6ce4ffeee9fc516bff0dc00c8e4a6216ae98e94b977ac2ef00949021
 NATIVE_WINDOWS_WSL: NOT_RUN
 LAB: NOT_RUN
 SITE: NOT_RUN
@@ -48,101 +54,100 @@ HOST_READY: NOT_EVALUATED
 LAST_CODE_REVIEW:
   WORK_ITEM: CODE-REVIEW-P00-001
   TARGET: dev8
-  KIND: EARLY_OWNER_REQUESTED_REVIEW
   VERDICT: FAIL
-  CODE_REVIEW_PASS: false
-  FORMAL_GATE_TRANSITION: NOT_ACTIVATED
-  SOURCE_MODIFIED_DURING_REVIEW: false
   REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV8.md
 
 OPEN_CODE_REVIEW_FINDINGS:
-  - CR-P00-001 BLOCKER — formal review handoff premature / full scope incomplete
+  - CR-P00-001 BLOCKER — full implementation handoff incomplete
   - CR-P00-002 HIGH — owner-wait durable relabel lacks renewed authority check
-  - CR-P00-003 HIGH — pending-reboot actual observation discarded at wait persistence boundary
-  - CR-P00-004 MEDIUM — unbounded/untyped wait_observation persistence API
+  - CR-P00-003 HIGH — actual pending-reboot cause discarded at persistence boundary
+  - CR-P00-004 MEDIUM — wait_observation API untyped/unbounded
 
-DEV_WORKSPACE_READY: true
-WSL_WORKSPACE_ROOT: /home/dragon/ai-film-dev
-CANONICAL_REPO_CLONE: /home/dragon/ai-film-dev/repo
-ACTIVE_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev8
-ACTIVE_SOURCE_LOCAL_GIT: c44c2f87084f8082ce29af5935c6b47d03f7b96c
-ROLLBACK_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev7
-DEV_VENV: /home/dragon/ai-film-dev/.venv
-DIRECT_WSL_GITHUB_PUSH_AUTH: NOT_CONFIGURED
-
+OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08"
+IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
 OPEN_DESIGN_GAPS: []
 OPEN_VALIDATION_FAILURES: []
-OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08 at full-item scope"
-IMPLEMENTATION_BLOCKERS: "IMPL-BLOCK-01…03"
 
-AUTO_DOCUMENTATION_SYNC: true
-NO_SILENT_KNOWLEDGE: true
-LIVING_MEMORY_FILE: PROJECT_MEMORY.md
-WORKSPACE_DOC: WORKSPACE_WSL.md
-NEXT_ACTION: "Fix CR-P00-002/003/004 first; then continue prior pre-C3/checkpoint + nested E00 and remaining implementation scope. Re-enter formal CODE_REVIEW only after author-complete handoff."
+NEXT_ACTION: "IMPLEMENT lane fixes CR-P00-002/003/004, persists a new exact candidate, then continues remaining source scope. REVIEW lane stays frozen on dev8 until immutable handoff."
 ```
 
-## Code review result
+## Dual-lane operating model
 
-The owner explicitly requested CODE_REVIEW against dev8 before the implementation handoff gate was ready. The review was performed under Blueprint review discipline and made no source changes.
+`main` remains the only canonical project mode/gate ledger. Lane branches/worktrees isolate responsibilities but cannot independently promote gates.
 
-Independent review rerun reproduced the exact dev8 author baseline: **683 PASS**, **92 static PASS**, source/test digests unchanged, source Git clean.
+### IMPLEMENT
 
-Verdict: **FAIL**.
+- remote state branch: `lane/implement-p00`;
+- writable WSL source: `/home/dragon/ai-film-dev/implement`;
+- local source branch: `impl/p00`;
+- starts from exact dev8 commit `c44c2f87...`;
+- may change source/tests/docs and create candidates;
+- may not issue review verdicts or CODE_REVIEW_PASS.
 
-The full report is `reviews/CODE-REVIEW-P00-001_DEV8.md`; the machine-readable verdict is `reviews/CODE-REVIEW-P00-001_DEV8.json`.
+### REVIEW
 
-The formal `CODE_REVIEW_PASS` gate was not activated because dev8 remains explicitly partial. This does not erase the findings: `CR-P00-002…004` are concrete implementation defects/robustness gaps and must be fixed before the next formal review.
+- remote state branch: `lane/review-p00`;
+- WSL worktree: `/home/dragon/ai-film-dev/review`;
+- detached exact candidate source;
+- current frozen candidate: dev8 / `c44c2f87...`;
+- last verdict: FAIL;
+- may write findings/verdicts only; must not patch source;
+- status: waiting for next immutable candidate.
 
-## Review findings requiring implementation
+Full permissions/handoff protocol: `EXECUTION_LANES.md`.
 
-### CR-P00-001 — BLOCKER — incomplete handoff
+## Immutable candidate rule
 
-Dev8 declares `AUTHOR_COMPLETE=false`, `CODE_REVIEW_HANDOFF_READY=false`, and all full-item `IMPL-REM-01…08` remain open. The package still records unfinished cross-stage evidence, publication recovery, non-DIRECT transport, dependency provenance, full 86-case causal harness and production-factory integration work.
+A formal implementation→review handoff binds exact source commit, package name/size/SHA-256/artifact ID, source/test digests, author-test/static results, contract digest, changed scope, known findings and handoff readiness flags.
 
-This finding closes only when the full implementation exit condition is actually satisfied.
+REVIEW never follows IMPLEMENT head automatically. A new candidate requires an explicit handoff and REVIEW worktree reset/recreation at the exact candidate commit.
 
-### CR-P00-002 — HIGH — reauthorization gap
+Formal `CODE_REVIEW_PASS` remains impossible while `AUTHOR_COMPLETE=false` or `CODE_REVIEW_HANDOFF_READY=false`.
 
-In the owner-verification relabel branch of `RecoveryRunner`, the durable fence can be changed to `AWAITING_OWNER_VERIFICATION` after observation without the renewed `_reauthorize(...)` check used by successful reconciliation and pause/cancel branches.
+## Current IMPLEMENT queue
 
-A review-only executable scenario advanced synthetic authority beyond approval expiry during `d.reconcile`; dev8 still accepted and persisted the owner-wait relabel. Fix requires renewed authority/fence/request checks immediately before the durable transition and negative tests for expiry/generation/actor/request drift.
+1. Fix `CR-P00-002` with renewed authority immediately before persistent relabel and negative drift/expiry tests.
+2. Fix `CR-P00-003` by persisting safe typed wait-cause identity.
+3. Fix `CR-P00-004` with exact schemas + canonical size/privacy limits.
+4. Run targeted/full author tests in IMPLEMENT lane.
+5. Commit/persist exact next candidate.
+6. Continue prior pre-C3/checkpoint + nested E00, publication/E17 recovery, non-DIRECT transport, full causal 86-case controller and production-factory integration work.
+7. `CR-P00-001` closes only when full author-complete scope exists.
 
-### CR-P00-003 — HIGH — reboot wait evidence loss
+## Current REVIEW disposition
 
-`native.lifecycle.classify_c3_process_result` produces actual `wait_reason` and normalized `pending_reboot`, but `SessionRunner` persists only the wait state. A review scenario confirmed the resulting fence had `AWAITING_REBOOT` with no `wait_observation`/pending-reboot facts.
+Exact dev8 review is complete and frozen for audit. Review lane waits for the next candidate. It does not inspect mutable IMPLEMENT changes as formal input.
 
-Persist a bounded typed wait observation/digest at the durable wait boundary.
+## WSL commands
 
-### CR-P00-004 — MEDIUM — wait context is unbounded
+IMPLEMENT:
 
-`Coordinator.awaiting` accepts any non-empty dictionary and deep-copies it into the durable fence. Define per-kind schemas/allowed keys and a serialized-size/privacy boundary; prefer digests/references over raw data.
+```bash
+source /home/dragon/ai-film-dev/implement-env.sh
+/home/dragon/ai-film-dev/lane-test.sh implement
+```
 
-## Non-finding retained from dev8 review
+REVIEW:
 
-The explicit final `AWAIT_OWNER_RESTART` was not treated as a duplicate restart defect. Exact Design V2/T00-05 requires an owner-planned host restart lifecycle distinct from an engine-required reboot.
+```bash
+source /home/dragon/ai-film-dev/review-env.sh
+/home/dragon/ai-film-dev/lane-test.sh review
+```
 
-## Current implementation order
+Both lanes independently reproduced the dev8 baseline: 683 tests PASS and 92 static checks PASS. This remains author/review workspace evidence only.
 
-1. Fix `CR-P00-002`, `CR-P00-003`, `CR-P00-004` with targeted negative/positive author tests.
-2. Full workspace regression/static checks and exact package persistence.
-3. Continue prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics.
-4. Complete temp/incomplete publication + E17 recovery integration.
-5. Complete reviewed non-DIRECT transport.
-6. Complete causal 86-case controller/oracles and production-factory author integration.
-7. Close `IMPL-REM-01…08`, produce author-complete candidate and set `CODE_REVIEW_HANDOFF_READY=true` only when justified.
-8. Run `CODE-REVIEW-P00-001` again on the exact final candidate.
+## Prohibitions
 
-## Current-mode prohibitions
+- no cross-lane permission mixing in one increment;
+- REVIEW does not patch source;
+- IMPLEMENT does not self-review/approve;
+- no formal review of uncommitted IMPLEMENT work;
+- no FD/D00/public-contract change in IMPLEMENT;
+- no native Windows/WSL/LAB/SITE proof inferred from author/review tests;
+- no deletion of unresolved durable state;
+- no plaintext credentials;
+- no useful reusable knowledge left only in chat.
 
-- no FD/D00/public/reviewed-contract changes or acceptance lowering;
-- no native Windows/WSL/LAB/SITE/guest/live-network provisioning/validation during authoring;
-- no process exit, fixture flag, author test count or envelope label treated as native proof;
-- no deletion of unresolved durable state as a recovery shortcut;
-- no fake production backend;
-- no self-approved code review, qualification or HOST_READY;
-- no useful reusable discovery left only in chat.
+## Exit condition
 
-## Implementation exit condition
-
-`IMPL-P00-001` exits IMPLEMENTATION only when the full source/harness/docs/test candidate is author-complete, all REM scope is actually closed or correctly managed, no hidden stub remains in reviewed scope, required author tests are clean, exact candidate is durably reviewable, and `CODE_REVIEW_HANDOFF_READY=true` is evidence-backed. Only then activate the formal `CODE_REVIEW_PASS` gate.
+IMPLEMENT must produce a full author-complete exact candidate with `CODE_REVIEW_HANDOFF_READY=true`. REVIEW then independently reviews that exact identity. Only REVIEW PASS on that immutable candidate can satisfy `CODE_REVIEW_PASS`.
