@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: REVIEW-P00
 LANE_ROLE: REVIEW
-STATUS: REVIEW_COMPLETE_WAITING_FOR_NEXT_CANDIDATE
+STATUS: FINDING_RETURNED_TO_IMPLEMENT
 GLOBAL_MODE: IMPLEMENTATION
 FORMAL_REVIEW_WORK_ITEM: CODE-REVIEW-P00-001
 REMOTE_BRANCH: lane/review-p00
@@ -12,22 +12,27 @@ SOURCE_MODE: DETACHED_EXACT_CANDIDATE
 SOURCE_WRITABLE: false
 REVIEW_ARTIFACTS_WRITABLE: true
 
-CURRENT_CANDIDATE: 0.1.0.dev11
-CURRENT_SOURCE_COMMIT: 3ea940895d785854ab18f33d184a4f67c8c1c277
-CURRENT_PACKAGE_SHA256: a77d9fee285678fe2321f41e05110d14f60cd1ad9803cc9a00dbcf662f924316
-INDEPENDENT_TESTS: "711 PASS / 0 failure / 0 error / 0 skip"
-INDEPENDENT_STATIC: "94 PASS"
+CURRENT_CANDIDATE: 0.1.0.dev12
+CURRENT_SOURCE_COMMIT: 536b86f97467a165e21a8b3038a72a91b7311a79
+CURRENT_PACKAGE_SHA256: d5e519335e4ad1f9ce005596834f80a229f459e1b77720a2317697a7b4bec4d4
+INDEPENDENT_TESTS: "728 PASS / 0 failure / 0 error / 0 skip"
+INDEPENDENT_STATIC: "95 PASS"
 
-DELTA_VERDICT: PASS
-FINDING_DISPOSITION:
-  CR-P00-005: CLOSED_BY_DEV11_REVIEW
-OPEN_FINDINGS: [CR-P00-001]
-OVERALL_CODE_REVIEW_VERDICT: FAIL
+DELTA_VERDICT: FAIL
+NEW_FINDING:
+  ID: CR-P00-006
+  SEVERITY: HIGH
+  SUMMARY: "No-archive normal publication accepts a pre-existing approved final output, while recovery rejects the same state."
+OPEN_FINDINGS: [CR-P00-001, CR-P00-006]
 CODE_REVIEW_PASS: false
 ```
 
-## Review result
+## CR-P00-006 evidence
 
-Dev11 independently blocks future PRE_C3 provenance with `16/PRE_C3_FUTURE`; package/manifest identity and all author tests/static checks were reverified. No contract drift and no source edits occurred in REVIEW.
+For an E16 `BLOCKED_REDACTION/23` no-archive result, REVIEW pre-populated the exact approved `bundle_output` with stale bytes. `NativeBundlePublisher.publish(...)` returned `published=false` and durable no-archive intent without rejecting the pre-existing final file. The stale file remained at the approved path. By contrast, `observed_publication(...)` for the same no-archive intent rejects an existing final path as `PUBLISH_UNEXPECTED_FINAL`.
 
-The dev10/dev11 evidence-semantics delta is accepted. Full CODE_REVIEW remains FAIL solely because CR-P00-001/full implementation completeness remains open.
+Impact: normal and recovery paths disagree about output ownership. A stale artifact at the exact approved output path can survive a blocked run and be mistaken by operators/downstream tooling for current output even though the run says no archive was published.
+
+Required fix: before durably accepting a no-archive outcome, observe that the exact approved final output path is absent. Reject any pre-existing final as output collision/drift. Add a positive no-output test and a stale-final negative test. Do not delete/overwrite the stale file.
+
+No source was modified during REVIEW.
