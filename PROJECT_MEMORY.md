@@ -27,6 +27,7 @@ Memory does not approve architecture or pass gates. If a discovery requires chan
 | MEM-20260915-012 | TOOLING | Keep AI-FILM work in a dedicated WSL subtree and verify the exact delivery hash before extraction. |
 | MEM-20260915-013 | TOOLING | If system `ensurepip` is unavailable and the project has no external deps, a `venv --without-pip` + `.pth` source binding is an acceptable isolated author-test environment. |
 | MEM-20260915-014 | PROCESS | WSL local Git fetch/commit and GitHub remote write authority are separate; do not leave an interactive credential helper that can hang automation. |
+| MEM-20260915-015 | TESTING | Author-test helpers should preserve actual run evidence outside the source baseline and restore generated package evidence files so baseline Git stays clean. |
 
 ## New entries since archived V14 memory
 
@@ -131,6 +132,27 @@ REUSABLE_RULE: "Use local Git for diff/commit/rollback; use the connected GitHub
 AFFECTED_AREAS: [git, github, wsl, automation, security]
 ACTION_TAKEN: "Configured repo-local author identity, left credential.helper unset, initialized local dev7 source Git baseline commit b937649c..., and documented the limitation in WORKSPACE_WSL.md."
 FOLLOW_UP: "If the user later wants direct WSL push, configure an explicit secure SSH/GCM flow as its own setup step and verify with push --dry-run before changing workflow policy."
+SUPERSEDES: []
+SUPERSEDED_BY: null
+```
+
+### MEM-20260915-015 — Test runs should not dirty the exact source baseline
+
+```yaml
+MEMORY_ID: MEM-20260915-015
+TYPE: TESTING
+STATUS: ACTIVE
+DISCOVERED_IN:
+  MODE: IMPLEMENTATION
+  PHASE: "00 — Host / WSL"
+  WORK_ITEM: ENV-P00-GIT-001
+SUMMARY: "The official dev7 author-test/static runners rewrite evidence files inside the source tree, which makes an exact baseline Git worktree appear modified after a verification-only run."
+EVIDENCE: "After the first WSL verification, local Git reported modifications to evidence/WORKSPACE_TEST_LOG.txt, evidence/WORKSPACE_TEST_REPORT.json and evidence/AUTHOR_STATIC_CHECKS.json. A wrapper was changed to copy actual WSL-run outputs into /home/dragon/ai-film-dev/run-evidence/<UTC timestamp>/ and restore those three source files from HEAD on exit. Re-running produced 673 PASS + 90 static and left `git status` clean."
+IMPACT: "Future chats can distinguish source edits from test-output churn and retain actual run evidence without contaminating the baseline diff."
+REUSABLE_RULE: "When verification tools overwrite tracked evidence, capture the actual outputs outside the source tree and restore baseline evidence files after the run; never hide real source/test code changes."
+AFFECTED_AREAS: [testing, git, reproducibility, workspace]
+ACTION_TAKEN: "Updated /home/dragon/ai-film-dev/test.sh and WORKSPACE_WSL.md; created /home/dragon/ai-film-dev/run-evidence/."
+FOLLOW_UP: "If the package later supports configurable output paths, prefer that native option over wrapper restore logic."
 SUPERSEDES: []
 SUPERSEDED_BY: null
 ```
