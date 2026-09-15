@@ -12,16 +12,14 @@ Before reading lane state or starting work:
 git -C /home/dragon/ai-film-dev/repo fetch origin main lane/implement-p00 lane/review-p00
 ```
 
-Fetch any additional active workflow branches. Do not treat stale `origin/*` cache as current state. In the prepared WSL workspace, run `python3 tools/check_runtime_state.py` before destructive checkout/reset or formal handoff decisions.
+Fetch any additional active workflow branches declared by current canonical state. Do not treat stale `origin/*` cache as current state. In the prepared WSL workspace, run `python3 tools/check_runtime_state.py` before destructive checkout/reset or formal handoff decisions.
 
 ## Branch roles
 
 - `main` — canonical project state, routing, roadmap, memory, reviewed documentation governance, immutable review/delivery records.
 - `lane/implement-p00` — IMPLEMENT operational ledger, not source-of-gate authority.
 - `lane/review-p00` — REVIEW operational ledger.
-- `lane/docs-v2-design` — Documentation System V2 producer.
-- `lane/docs-v2-review` — independent detailed documentation review.
-- `lane/docs-v2-audit` — independent holistic documentation audit after detailed review PASS.
+- documentation governance DESIGN/REVIEW/AUDIT branches are **release-selected** by `PROJECT_STATE.md:DOCUMENTATION_GOVERNANCE`; standing policy must not pin one revision's branch names or infer activity from retained worktree names.
 - WSL `impl/p00` — writable local source history until remote source mirroring policy changes.
 
 Do not force-push published history by default. Immutable reviewed candidates are replaced by new candidates, not edited in place.
@@ -48,6 +46,7 @@ verify state/base/WIP + ACTIVE_RUN_ID
 → package from exact commit
 → verify manifest/hash
 → persist artifact
+→ publish/verify source visibility status
 → immutable handoff
 → persist step COMPLETE / next INTENT
 → REVIEW
@@ -55,12 +54,28 @@ verify state/base/WIP + ACTIVE_RUN_ID
 
 Never package first and keep editing the source afterward under the same candidate identity.
 
+## Source visibility and review addressability
+
+Byte-preserving artifact durability and browseable source visibility are separate properties. Before `CODE_REVIEW_HANDOFF_READY=true`, the handoff must state:
+
+```yaml
+EXACT_SOURCE_IDENTITY:
+EXACT_PACKAGE_IDENTITY:
+REMOTE_SOURCE_ADDRESSABILITY: FULL_GIT_TREE|PARTIAL_REVIEW_SNAPSHOT|ARTIFACT_ONLY
+REMOTE_SOURCE_REF:
+FULL_SOURCE_GIT_MIRROR: true|false
+VISIBILITY_LIMITATIONS:
+```
+
+A partial GitHub snapshot is useful for inspection but is non-authoritative and must be labeled `PARTIAL_REVIEW_SNAPSHOT`; it does not satisfy `FULL_SOURCE_GIT_MIRROR=true`. Review authority remains the exact handed-off source/package identity. When tooling can safely materialize the full exact source tree in Git, prefer that before formal code review because it reduces reviewer/operator friction and improves diffability.
+
 ## REVIEW durable sequence
 
 ```text
 fetch handoff
-→ checkout detached exact source commit
+→ checkout/resolve detached exact source identity
 → verify package/source/test identities
+→ verify declared source-visibility limitations rather than assuming a snapshot is complete
 → reread requirements/diff
 → independent regression + negative scenarios
 → findings/verdict bound to exact target
@@ -103,7 +118,7 @@ A discovery is classified:
 - repeated lesson that changes how work must be performed → promote to policy in `WORKFLOW_ROUTER.md`, `EXECUTION_LANES.md`, `GIT_WORKFLOW.md` or `DOCUMENTATION_MAP.md`;
 - reviewed behavior conflict → DESIGN_GAP, not memory-based contract override.
 
-When promoted, keep a compact memory provenance entry and mark the policy/tool location. Durable standalone learning records live under `learning/`. `SELF_LEARNING.md` defines scoring, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md` and persist immutable reviews under `workflow-health/`.
+When promoted, keep a compact memory provenance entry and mark the policy/tool location. Durable standalone learning records live under `learning/`. `SELF_LEARNING.md` defines scoring, activation, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md` and persist immutable reviews under `workflow-health/`.
 
 ## Secret/public-repo discipline
 
@@ -119,4 +134,4 @@ Exact environment snapshots live under `environments/`; reviewed model results l
 
 ## Documentation promotion exact-tree rule
 
-A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.
+A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. The state must predeclare the exact final review/audit IDs and immutable record paths. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.
