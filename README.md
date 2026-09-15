@@ -1,14 +1,19 @@
 # AI Film Server
 
-Persistent source, design contracts, implementation state and handoff documentation for the AI-FILM-SERVER project.
+Persistent project-state and Git handoff repository for **AI-FILM-SERVER**.
 
-**Canonical handoff:** `PROJECT_STATE.md`
+## Read first in a new chat
 
-A new chat should read, in order:
-1. `PROJECT_STATE.md`
-2. `NEXT_WORK_ITEM.md`
-3. `contracts/AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md`
-4. the exact approved Phase 00 contracts referenced by `PROJECT_STATE.md`
-5. `docs/IMPLEMENTATION_STATUS.md` and `docs/REMAINING_IMPLEMENTATION.md`
+1. `PROJECT_STATE.md` — canonical detailed state.
+2. `NEXT_WORK_ITEM.md` — exact next action and mode lock.
+3. `GIT_WORKFLOW.md` — mandatory commit/push discipline.
+4. `CHAT_HANDOFF.md` — compact new-chat bootstrap prompt.
+5. `SOURCE_IMPORT_STATUS.md` — exact status of the dev6 source mirror.
 
-The repository is initialized from verified implementation delivery `0.1.0.dev6` for work item `IMPL-P00-001`.
+## Current status
+
+The repository has been initialized for work item `IMPL-P00-001`, Phase 00 — Host / WSL. The latest verified implementation delivery outside Git is `0.1.0.dev6` with 666 workspace tests PASS and 88 static checks PASS.
+
+**Important:** the exact dev6 source tree is **not yet considered mirrored into GitHub**. Two attempted connector-based source/snapshot mirrors failed byte-identity checks and were removed from `main`. Do not infer that missing Git source means missing implementation; read `PROJECT_STATE.md` and `SOURCE_IMPORT_STATUS.md`.
+
+No implementation work should resume until the exact dev6 source has been seeded through a Git-capable/file-preserving path and verified against the recorded package/content hashes.
