@@ -49,6 +49,47 @@ def preparation_mode(name):
     require(name in PREPARATIONS,10,'HARNESS_PROCEDURE_PREP')
     return 'OBSERVE' if name in OBSERVE_PREPARATIONS else 'ARRANGE'
 
+
+CONTROLLER_RELATIONS={
+ 'REVIEW_EXACT_CONTENT':'BEFORE','VERIFY_PROTECTION':'BEFORE',
+ 'INVOKE_PRODUCTION_REQUEST':'OVERLAP','INVOKE_CONTENDER':'OVERLAP',
+ 'RESUME_OR_RECONCILE':'OVERLAP','RUN_TERMINAL_SWEEP':'OVERLAP',
+ 'RUN_SUPPORT_BUNDLE':'OVERLAP','OBSERVE_ONLY':'OVERLAP','VERIFY_ENTRY_REJECTION':'OVERLAP',
+ 'RUN_RESTORE_SEQUENCE':'SPAN','RUN_OWNER_LIFECYCLE':'SPAN',
+ 'VERIFY_EVIDENCE_OUTPUT':'AFTER','VERIFY_ISOLATION':'AFTER',
+ 'VERIFY_CONCURRENCY_TRACE':'AFTER','VERIFY_NO_MUTATION':'AFTER'}
+
+def controller_relation(name):
+    require(name in CONTROLLER_RELATIONS,10,'HARNESS_PROCEDURE_ACTION')
+    return CONTROLLER_RELATIONS[name]
+
+# Exact action→route applicability is part of the reviewed controller procedure,
+# never supplied by a post-run result. The derived stage indices are serialized
+# into the procedure document/digest so a trace cannot rebind a valid action to
+# a different route while preserving only aggregate stage coverage.
+CONTROLLER_ROUTE_POLICY={
+ 'REVIEW_EXACT_CONTENT':frozenset({'ENTRY_ONLY'}),
+ 'INVOKE_PRODUCTION_REQUEST':frozenset({'ENTRY_ONLY','DISCOVERY','ENGINE','CREATE','ADOPT','RESTORE_IMPORT','SITE_VERIFY','SUPPORT_BUNDLE'}),
+ 'INVOKE_CONTENDER':frozenset({'ENTRY_ONLY','DISCOVERY','ENGINE','CREATE','ADOPT','RESTORE_EXPORT','RESTORE_IMPORT','SITE_VERIFY','TARGET_LIFECYCLE','HOST_RESTART','RESTORE_VERIFY','SUPPORT_BUNDLE'}),
+ 'RESUME_OR_RECONCILE':frozenset({'RECONCILIATION_ONLY'}),
+ 'RUN_TERMINAL_SWEEP':frozenset({'SITE_VERIFY'}),
+ 'RUN_SUPPORT_BUNDLE':frozenset({'SUPPORT_BUNDLE'}),
+ 'RUN_RESTORE_SEQUENCE':frozenset({'RESTORE_EXPORT','RESTORE_IMPORT','RESTORE_VERIFY'}),
+ 'RUN_OWNER_LIFECYCLE':frozenset({'TARGET_LIFECYCLE','HOST_RESTART'}),
+ 'OBSERVE_ONLY':frozenset({'PASSIVE'}),
+ 'VERIFY_ENTRY_REJECTION':ROUTES,
+ 'VERIFY_EVIDENCE_OUTPUT':frozenset({'SUPPORT_BUNDLE'}),
+ 'VERIFY_ISOLATION':frozenset({'RESTORE_VERIFY'}),
+ 'VERIFY_PROTECTION':frozenset({'ENGINE','HOST_RESTART'}),
+ 'VERIFY_CONCURRENCY_TRACE':ROUTES,
+ 'VERIFY_NO_MUTATION':ROUTES}
+
+def controller_stage_indices(routes,name):
+    require(name in CONTROLLER_ROUTE_POLICY,10,'HARNESS_PROCEDURE_ACTION')
+    indices=tuple(i for i,route in enumerate(routes) if route in CONTROLLER_ROUTE_POLICY[name])
+    require(indices,10,'HARNESS_CONTROLLER_STAGE_BINDING')
+    return indices
+
 ORACLES=frozenset({'EXACT_CONTENT_IDENTITY','IDENTITY_PROFILE','RESOURCE_CAPACITY','NETWORK_MATRIX',
  'LIFECYCLE_EPOCH','PASSIVE_NO_LAUNCH','JOURNAL_NO_OVERLAP','BUNDLE_OUTCOME','RESTORE_CONTENT',
  'COEXISTENCE_HEALTH','CREATE_ROUTE','ADOPT_ROUTE','C3_PROTECTION','ENTRY_GATE',
@@ -75,7 +116,10 @@ class NativeCaseProcedure:
             'preparations':list(self.preparations),
             'preparation_modes':[preparation_mode(x) for x in self.preparations],
             'routes':list(self.routes),
-            'controller_steps':list(self.controller_steps),'expected_exits':list(self.expected_exits),
+            'controller_steps':list(self.controller_steps),
+            'controller_relations':[controller_relation(x) for x in self.controller_steps],
+            'controller_stage_indices':[list(controller_stage_indices(self.routes,x)) for x in self.controller_steps],
+            'expected_exits':list(self.expected_exits),
             'oracles':list(self.oracles),'required_evidence':list(self.required_evidence),
             'destructive':self.destructive,'actual_native_required':self.actual_native_required}
     @property
@@ -90,6 +134,8 @@ def P(case,env,prep,routes,steps,exits,oracles,evidence,*,destructive=False,nati
 def validate_procedure(p):
     require(p.environment in ENVIRONMENTS and p.preparations and set(p.preparations)<=PREPARATIONS,10,'HARNESS_PROCEDURE_PREP')
     require(p.routes and set(p.routes)<=ROUTES and p.controller_steps and set(p.controller_steps)<=ACTIONS,10,'HARNESS_PROCEDURE_ACTION')
+    bindings=[controller_stage_indices(p.routes,x) for x in p.controller_steps]
+    require(set().union(*(set(x) for x in bindings))==set(range(len(p.routes))),10,'HARNESS_CONTROLLER_STAGE_COVERAGE')
     require(p.expected_exits and all(type(x) is int and x in (0,2,10,11,12,13,14,15,16,17,18,19,20,21,22,23) for x in p.expected_exits),10,'HARNESS_PROCEDURE_EXIT')
     require(p.oracles and set(p.oracles)<=ORACLES and p.required_evidence,10,'HARNESS_PROCEDURE_ORACLE')
     require(not p.destructive or p.environment=='LAB',12,'DESTRUCTIVE_LAB_ONLY')
@@ -144,7 +190,7 @@ _ROWS=[
 ('T07-E','LAB',['CROSS_SID_HOLDER'],['CREATE'],['INVOKE_CONTENDER','VERIFY_CONCURRENCY_TRACE'],[12,21],['JOURNAL_NO_OVERLAP','QUALIFICATION_SCOPE'],['E00-01','E00-11'],True,True),
 ('T07-F','LAB',['NATIVE_TIMEOUT'],['RESTORE_IMPORT','RECONCILIATION_ONLY'],['INVOKE_PRODUCTION_REQUEST','INVOKE_CONTENDER','RESUME_OR_RECONCILE'],[17,21],['UNCERTAIN_RETAINED','NO_DUPLICATE_MUTATION'],['E00-11'],True,True),
 ('T07-G','LAB',['ABANDONED_GUARD'],['RECONCILIATION_ONLY'],['RESUME_OR_RECONCILE'],[0,20,21],['RECONCILIATION_ONLY','UNCERTAIN_RETAINED'],['E00-11'],True,True),
-('T07-H','LAB',['POST_REGISTRATION_CRASH'],['CREATE','RECONCILIATION_ONLY'],['RESUME_OR_RECONCILE'],[20,21],['NO_DUPLICATE_MUTATION','RECONCILIATION_ONLY'],['E00-03','E00-11'],True,True),
+('T07-H','LAB',['POST_REGISTRATION_CRASH'],['CREATE','RECONCILIATION_ONLY'],['INVOKE_PRODUCTION_REQUEST','RESUME_OR_RECONCILE'],[20,21],['NO_DUPLICATE_MUTATION','RECONCILIATION_ONLY'],['E00-03','E00-11'],True,True),
 ('T07-I','LAB',['SOURCE_DESTINATION_RESTORE'],['RESTORE_EXPORT','RESTORE_IMPORT'],['RUN_RESTORE_SEQUENCE','VERIFY_CONCURRENCY_TRACE'],[0],['JOURNAL_NO_OVERLAP','CHECKPOINT_INTEGRITY'],['E00-11','E00-15'],False,True),
 ('T07-J','LAB',['JOURNAL_WRITE_FAILURE'],['CREATE','RECONCILIATION_ONLY'],['INVOKE_PRODUCTION_REQUEST','RESUME_OR_RECONCILE'],[18],['UNCERTAIN_RETAINED','RECONCILIATION_ONLY'],['E00-11'],True,True),
 # T08 exact

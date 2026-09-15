@@ -13,7 +13,7 @@ from .. import CONTRACT_DIGEST
 from ..codec import digest,hash_value,instant,token
 from ..errors import P00Error,require
 from ..plans import check_plan
-from .harness_cases import procedure,preparation_mode
+from .harness_cases import procedure,preparation_mode,controller_relation,controller_stage_indices
 from ..evidence_catalog import PROTECTED_PATHS
 
 
@@ -66,9 +66,11 @@ def _raw_bound(store,raw_ref,actual,subject_digest,reason):
             and raw.get('subject_digest')==subject_digest,15,reason)
 
 
-def _collector(store,ref,reason):
+def _collector(store,ref,suite,reason):
     value=store.get('collector_release',ref)
-    require(value.get('withdrawn') is False and value.get('review_verdict')=='PASS',15,reason)
+    require(value.get('withdrawn') is False and value.get('review_verdict')=='PASS'
+            and value.get('build_digest')==suite['build_digest']
+            and value.get('contract_digest')==suite['contract_digest'],15,reason)
     return value
 
 
@@ -108,7 +110,7 @@ def _validate_preparation_action(store,ref,proc,index,suite_ref,suite,spec_ref,h
                 19,'LAB_PREPARATION_CAUSALITY')
     else:
         require(a['actual'].get('observed_existing_condition') is True,19,'LAB_PREPARATION_CAUSALITY')
-    _collector(store,a['collector_ref'],'LAB_PREPARATION_COLLECTOR')
+    _collector(store,a['collector_ref'],suite,'LAB_PREPARATION_COLLECTOR')
     actual={'before_digest':a['before_digest'],'after_digest':a['after_digest'],'actual':a['actual']}
     subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
                     'procedure_digest':proc.procedure_digest,'fixture_spec_ref':spec_ref,
@@ -146,7 +148,7 @@ def validate_fixture_result(store,ref,spec_ref,proc,suite_ref,suite,host_id,owne
                 and m['preparation_action_ref']==action['ref'] and m['preparation']==expected and m['status']=='OBSERVED'
                 and type(m['actual']) is dict and bool(m['actual']),15,'LAB_FIXTURE_MEASUREMENT')
         mt=_suite_time(suite,m['timestamp_utc'],'LAB_FIXTURE_TIME');require(action['end']<=mt<=result_time,16,'LAB_FIXTURE_TIME')
-        _collector(store,m['collector_ref'],'LAB_FIXTURE_COLLECTOR')
+        _collector(store,m['collector_ref'],suite,'LAB_FIXTURE_COLLECTOR')
         subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
                         'procedure_digest':proc.procedure_digest,'fixture_spec_ref':spec_ref,
                         'preparation_action_ref':action['ref'],'preparation':expected,'host_id':host_id})
@@ -168,7 +170,7 @@ def _validate_oracle(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixt
             and o['stage_index']==index and o['plan_digest']==plan_digest and o['run_id']==run_id
             and o['oracle'] in proc.oracles and o['status']=='OBSERVED'
             and type(o['actual']) is dict and bool(o['actual']),15,'LAB_ORACLE_SCHEMA')
-    ot=_suite_time(suite,o['timestamp_utc'],'LAB_ORACLE_TIME');_collector(store,o['collector_ref'],'LAB_ORACLE_COLLECTOR')
+    ot=_suite_time(suite,o['timestamp_utc'],'LAB_ORACLE_TIME');_collector(store,o['collector_ref'],suite,'LAB_ORACLE_COLLECTOR')
     subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
                     'procedure_digest':proc.procedure_digest,'fixture_result_ref':fixture_result_ref,
                     'stage_index':index,'plan_digest':plan_digest,'run_id':run_id,
@@ -189,7 +191,7 @@ def _validate_journal(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fix
             and j['stage_index']==index and j['plan_digest']==plan_digest and j['run_id']==run_id,
             15,'LAB_JOURNAL_SCHEMA')
     hash_value(j['journal_digest']);jt=_suite_time(suite,j['timestamp_utc'],'LAB_JOURNAL_TIME')
-    _collector(store,j['collector_ref'],'LAB_JOURNAL_COLLECTOR')
+    _collector(store,j['collector_ref'],suite,'LAB_JOURNAL_COLLECTOR')
     actual={'journal_digest':j['journal_digest'],'plan_digest':plan_digest,'run_id':run_id,'stage_index':index}
     subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
                     'procedure_digest':proc.procedure_digest,'fixture_result_ref':fixture_result_ref,
@@ -198,23 +200,58 @@ def _validate_journal(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fix
     return {'record':j,'timestamp':jt}
 
 
+def _validate_preparation_witness(store,ref,proc,prep_index,stage_index,host_id,owner_sid,
+                                  suite_ref,suite,fixture_result_ref,action_ref,stage_start,stage_end,
+                                  plan_digest,run_id):
+    hash_value(ref);w=store.get('lab_case_preparation_witness',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','case_id','procedure_digest',
+         'execution_id','suite_ref','fixture_result_ref','preparation_action_ref','preparation_index',
+         'preparation','mode','stage_index','plan_digest','run_id','status','actual','raw_artifact_ref',
+         'collector_ref','observed_at','valid_through'}
+    expected=proc.preparations[prep_index];mode=preparation_mode(expected)
+    require(set(w)==req and w['schema_version']==1 and w['withdrawn'] is False and w['source_kind']=='LAB'
+            and w['host_id']==host_id and w['owner_sid']==owner_sid and w['case_id']==proc.case_id
+            and w['procedure_digest']==proc.procedure_digest and w['execution_id']==suite['execution_id']
+            and w['suite_ref']==suite_ref and w['fixture_result_ref']==fixture_result_ref
+            and w['preparation_action_ref']==action_ref and w['preparation_index']==prep_index
+            and w['preparation']==expected and w['mode']==mode and w['stage_index']==stage_index
+            and w['plan_digest']==plan_digest and w['run_id']==run_id and w['status']=='OBSERVED'
+            and type(w['actual']) is dict and bool(w['actual']),15,'LAB_PREPARATION_WITNESS')
+    observed=_suite_time(suite,w['observed_at'],'LAB_PREPARATION_WITNESS_TIME')
+    valid=_suite_time(suite,w['valid_through'],'LAB_PREPARATION_WITNESS_TIME')
+    require(observed<=stage_start<=stage_end<=valid,16,'LAB_PREPARATION_CONTINUITY')
+    if mode=='ARRANGE':require(w['actual'].get('condition_active') is True,19,'LAB_PREPARATION_CONTINUITY')
+    else:require(w['actual'].get('condition_matches') is True,19,'LAB_PREPARATION_CONTINUITY')
+    _collector(store,w['collector_ref'],suite,'LAB_PREPARATION_WITNESS_COLLECTOR')
+    subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
+                    'procedure_digest':proc.procedure_digest,'fixture_result_ref':fixture_result_ref,
+                    'preparation_action_ref':action_ref,'preparation_index':prep_index,'preparation':expected,
+                    'stage_index':stage_index,'plan_digest':plan_digest,'run_id':run_id,'host_id':host_id})
+    _raw_bound(store,w['raw_artifact_ref'],w['actual'],subject,'LAB_PREPARATION_WITNESS_RAW_BINDING')
+    return {'ref':ref,'record':w,'observed':observed,'valid':valid}
+
+
 def _validate_controller_step(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixture_result_ref):
     hash_value(ref);a=store.get('lab_case_controller_step',ref)
     req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','case_id','procedure_digest',
-         'execution_id','suite_ref','fixture_result_ref','step_index','controller_step','status','actual',
+         'execution_id','suite_ref','fixture_result_ref','step_index','controller_step','relation','stage_indices','status','actual',
          'raw_artifact_ref','collector_ref','started_at','ended_at'}
     expected=proc.controller_steps[index]
     require(set(a)==req and a['schema_version']==1 and a['withdrawn'] is False and a['source_kind']=='LAB'
             and a['host_id']==host_id and a['owner_sid']==owner_sid and a['case_id']==proc.case_id
             and a['procedure_digest']==proc.procedure_digest and a['execution_id']==suite['execution_id']
             and a['suite_ref']==suite_ref and a['fixture_result_ref']==fixture_result_ref
-            and a['step_index']==index and a['controller_step']==expected and a['status']=='OBSERVED'
+            and a['step_index']==index and a['controller_step']==expected
+            and a['relation']==controller_relation(expected) and type(a['stage_indices']) is list
+            and a['stage_indices']==list(controller_stage_indices(proc.routes,expected))
+            and a['status']=='OBSERVED'
             and type(a['actual']) is dict and bool(a['actual']),15,'LAB_CONTROLLER_STEP')
     start=_suite_time(suite,a['started_at'],'LAB_CONTROLLER_STEP_TIME');end=_suite_time(suite,a['ended_at'],'LAB_CONTROLLER_STEP_TIME')
-    require(start<=end,16,'LAB_CONTROLLER_STEP_TIME');_collector(store,a['collector_ref'],'LAB_CONTROLLER_STEP_COLLECTOR')
+    require(start<=end,16,'LAB_CONTROLLER_STEP_TIME');_collector(store,a['collector_ref'],suite,'LAB_CONTROLLER_STEP_COLLECTOR')
     subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
                     'procedure_digest':proc.procedure_digest,'fixture_result_ref':fixture_result_ref,
-                    'step_index':index,'controller_step':expected,'host_id':host_id})
+                    'step_index':index,'controller_step':expected,'relation':a['relation'],
+                    'stage_indices':a['stage_indices'],'host_id':host_id})
     _raw_bound(store,a['raw_artifact_ref'],a['actual'],subject,'LAB_CONTROLLER_STEP_RAW_BINDING')
     return {'ref':ref,'record':a,'start':start,'end':end}
 
@@ -233,7 +270,7 @@ def _validate_evidence(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fi
             and e['evidence_id'] in PROTECTED_PATHS and type(e['protected_ref']) is str and bool(e['protected_ref']),
             15,'LAB_EVIDENCE_SCHEMA')
     hash_value(e['protected_digest']);hash_value(e['record_digest'])
-    et=_suite_time(suite,e['timestamp_utc'],'LAB_EVIDENCE_TIME');_collector(store,e['collector_ref'],'LAB_EVIDENCE_COLLECTOR')
+    et=_suite_time(suite,e['timestamp_utc'],'LAB_EVIDENCE_TIME');_collector(store,e['collector_ref'],suite,'LAB_EVIDENCE_COLLECTOR')
     actual={'evidence_id':e['evidence_id'],'protected_ref':e['protected_ref'],
             'protected_digest':e['protected_digest'],'record_digest':e['record_digest']}
     subject=digest({'execution_id':suite['execution_id'],'suite_ref':suite_ref,'case_id':proc.case_id,
@@ -244,11 +281,12 @@ def _validate_evidence(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fi
     return {'ref':ref,'record':e,'timestamp':et}
 
 
-def validate_stage(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixture_result_ref):
+def validate_stage(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixture_result_ref,preparation_action_refs):
     hash_value(ref);stage=store.get('lab_case_stage',ref)
     req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','case_id','procedure_digest',
          'execution_id','suite_ref','fixture_result_ref','stage_index','route','plan_digest','run_id','normalized_exit',
-         'state','journal_ref','fence_digest','oracle_refs','evidence_refs','timestamp_utc',
+         'state','journal_ref','fence_digest','oracle_refs','evidence_refs','preparation_witness_refs',
+         'started_at','ended_at',
          'native_execution_observed','parent_case_executed'}
     source='LAB' if proc.actual_native_required else 'DOCUMENT'
     require(set(stage)==req and stage['schema_version']==1 and stage['withdrawn'] is False
@@ -261,7 +299,8 @@ def validate_stage(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixtur
             and stage['parent_case_executed'] is False,15,'LAB_STAGE_SCHEMA')
     hash_value(stage['plan_digest']);token(stage['run_id'])
     if stage['fence_digest'] is not None:hash_value(stage['fence_digest'])
-    st=_suite_time(suite,stage['timestamp_utc'],'LAB_STAGE_TIME')
+    start=_suite_time(suite,stage['started_at'],'LAB_STAGE_TIME');st=_suite_time(suite,stage['ended_at'],'LAB_STAGE_TIME')
+    require(start<=st,16,'LAB_STAGE_TIME')
     journal=None
     if stage['journal_ref'] is not None:
         journal=_validate_journal(store,stage['journal_ref'],proc,index,host_id,owner_sid,suite_ref,suite,
@@ -276,11 +315,22 @@ def validate_stage(store,ref,proc,index,host_id,owner_sid,suite_ref,suite,fixtur
                                  stage['plan_digest'],stage['run_id']) for r in stage['evidence_refs']]
     require(len({e['record']['evidence_id'] for e in evidence})==len(evidence),15,'LAB_EVIDENCE_DUPLICATE')
     require(all(e['timestamp']<=st for e in evidence),16,'LAB_STAGE_TIME')
+    require(type(stage['preparation_witness_refs']) is list,15,'LAB_PREPARATION_WITNESSES')
+    if proc.actual_native_required:
+        require(len(stage['preparation_witness_refs'])==len(proc.preparations)
+                and len(preparation_action_refs)==len(proc.preparations),15,'LAB_PREPARATION_WITNESSES')
+        witnesses=[_validate_preparation_witness(store,r,proc,i,index,host_id,owner_sid,suite_ref,suite,
+                   fixture_result_ref,preparation_action_refs[i],start,st,stage['plan_digest'],stage['run_id'])
+                   for i,r in enumerate(stage['preparation_witness_refs'])]
+    else:
+        require(stage['preparation_witness_refs']==[] and preparation_action_refs==[],12,'DOCUMENT_PREPARATION_WITNESS_FORBIDDEN')
+        witnesses=[]
     if proc.actual_native_required:
         entry={'EXPECTED_REJECTION','ENTRY_GATE','QUALIFICATION_SCOPE'}
         require(journal is not None or any(o['record']['oracle'] in entry for o in oracles),19,'LAB_STAGE_PROCESS_EXIT_ONLY')
     return {'ref':ref,'stage':stage,'oracles':[o['record'] for o in oracles],
-            'evidence':[e['record'] for e in evidence],'timestamp':st}
+            'evidence':[e['record'] for e in evidence],
+            'preparation_witnesses':[w['record'] for w in witnesses],'start':start,'timestamp':st}
 
 
 def _result_set(store,ref,proc,suite_ref,suite,host_id,owner_sid):
@@ -291,10 +341,26 @@ def _result_set(store,ref,proc,suite_ref,suite,host_id,owner_sid):
             and r['host_id']==host_id and r['owner_sid']==owner_sid and r['case_id']==proc.case_id
             and r['procedure_digest']==proc.procedure_digest and r['execution_id']==suite['execution_id']
             and r['suite_ref']==suite_ref and type(r['stage_refs']) is list and type(r['controller_step_refs']) is list,15,'LAB_RESULT_SET')
-    rt=_suite_time(suite,r['timestamp_utc'],'LAB_RESULT_TIME');_collector(store,r['collector_ref'],'LAB_RESULT_COLLECTOR')
+    rt=_suite_time(suite,r['timestamp_utc'],'LAB_RESULT_TIME');_collector(store,r['collector_ref'],suite,'LAB_RESULT_COLLECTOR')
     if proc.actual_native_required:hash_value(r['fixture_result_ref'])
     else:require(r['fixture_result_ref'] is None,12,'DOCUMENT_FIXTURE_RESULT_FORBIDDEN')
     return {'record':r,'timestamp':rt}
+
+
+def _validate_controller_windows(steps,stages,proc):
+    coverage=set()
+    for step in steps:
+        rel=step['record']['relation'];indices=step['record']['stage_indices'];coverage.update(indices)
+        windows=[stages[i] for i in indices]
+        first=min(x['start'] for x in windows);last=max(x['timestamp'] for x in windows)
+        if rel=='BEFORE':require(step['end']<=first,16,'LAB_CONTROLLER_STEP_WINDOW')
+        elif rel=='AFTER':require(step['start']>=last,16,'LAB_CONTROLLER_STEP_WINDOW')
+        elif rel=='SPAN':require(step['start']<=first and step['end']>=last,16,'LAB_CONTROLLER_STEP_WINDOW')
+        else:
+            require(rel=='OVERLAP' and all(step['start']<=x['timestamp'] and step['end']>=x['start'] for x in windows),
+                    16,'LAB_CONTROLLER_STEP_WINDOW')
+    require(coverage==set(range(len(proc.routes))),22,'LAB_CONTROLLER_STAGE_COVERAGE')
+    return True
 
 
 def finalize_case(root,suite_ref,result_ref,case_id):
@@ -307,9 +373,11 @@ def finalize_case(root,suite_ref,result_ref,case_id):
            for i,r in enumerate(rr['controller_step_refs'])]
     require([x['end'] for x in steps]==sorted(x['end'] for x in steps),16,'LAB_CONTROLLER_STEP_ORDER')
     require(len(rr['stage_refs'])==len(proc.routes),22,'LAB_CASE_STAGES_INCOMPLETE')
-    stages=[validate_stage(store,ref,proc,i,store.host_id,owner,suite_ref,suite,rr['fixture_result_ref'])
+    action_refs=[a['ref'] for a in fixture['actions']] if fixture is not None else []
+    stages=[validate_stage(store,ref,proc,i,store.host_id,owner,suite_ref,suite,rr['fixture_result_ref'],action_refs)
             for i,ref in enumerate(rr['stage_refs'])]
     times=[s['timestamp'] for s in stages];require(times==sorted(times),16,'LAB_STAGE_ORDER')
+    _validate_controller_windows(steps,stages,proc)
     if fixture is not None:
         if times:require(fixture['timestamp']<=times[0],16,'LAB_FIXTURE_STAGE_ORDER')
         if steps:require(fixture['timestamp']<=steps[0]['start'],16,'LAB_FIXTURE_STAGE_ORDER')

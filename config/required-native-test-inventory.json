@@ -10,7 +10,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "691a5b1598d17e09bb6fbf2421863b912721266eb4c461e64f884da90347d373"
+      "procedure_digest": "9bdc7aba8eb58fb86e5f7540a96c3487d41c2bf427c9b39d182733f0b4a691ec",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-02",
@@ -22,7 +27,15 @@
         "NF-IDENTITY"
       ],
       "acceptance_closed": false,
-      "procedure_digest": "027794ffe8507f29c51ef73addd4839f129351bdae4900893d864681d7150d57"
+      "procedure_digest": "d28ce7ec2724bc0843ba3d9108bfb55b0831ab4630243b196a54ed4b5114d3f0",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-03",
@@ -35,7 +48,12 @@
         "NF-HARDLINK-REJECT"
       ],
       "acceptance_closed": false,
-      "procedure_digest": "9ceafef3cc5c527f49c6605b3759e613e5e2a09782ea4a95c3875e91fc10f0f1"
+      "procedure_digest": "f0f62105e4605ec9fb0023430629043bc0f23b94857a4b07ad9afa9bde00e465",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-04",
@@ -45,7 +63,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "e851bb41326a47a04681b75015bba1040439453fec0460e35f65405242658954"
+      "procedure_digest": "29a2dc4ab644a2bf610d134e8d6ac163afc50c1cacd3d32caf611824ccd7dc0b",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-05",
@@ -55,7 +81,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "8a2ec1c25bb277021b75c777ce58f7d9e05e3b2d7b0c5c1cf5b99a99049bfc32"
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ]
     },
     {
       "case_id": "T00-06",
@@ -65,7 +100,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "c434b9169382aa892ca64f4ed4c8f24f3743f1d0064ccb3d841f70160bd74913"
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T00-07",
@@ -78,7 +121,19 @@
         "NF-GUARD-CONTENDER"
       ],
       "acceptance_closed": false,
-      "procedure_digest": "3e795faae5e50cc9c77ec41b92da26cd3bf1609fc4eca4efa3147e882678a8c5"
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T00-08",
@@ -88,7 +143,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "e5de0c4f059b668b62e5b65acfd7c47debe1fa56522db7fa1702eebc30fed202"
+      "procedure_digest": "31362a971a1a17eff9b5096b644dcc4d9d13ae82836dc9b8cfd7c785765b6a29",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-09",
@@ -98,7 +161,14 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1641b280265ce8a8dc6c1216544cf1e0fdb7c7a93161c758d04da7b55ea52ff4"
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "controller_stage_indices": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
     },
     {
       "case_id": "T00-10",
@@ -108,7 +178,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "237a1c61723571040be38ccf60d1644130436a45b2ff54127b6e406b0b91b9c4"
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T00-11",
@@ -118,7 +196,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ce3c2e2d1d56230c38b890b79ff201285af2768398be7d58341b3e425c6290bd"
+      "procedure_digest": "c3b7cf5e1725bf478c6e6c77155cb41d05d8b0f27a624d9820673619106eba41",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-12",
@@ -128,7 +211,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "dfe0c0c40cf0d30b95cd668195811ad7e70e3e51e38aba82f64c5922ef07c443"
+      "procedure_digest": "5b1e3b996c65077ac64e4400b2e232cd74bc0b56d5b9face4840e07e45c472ae",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T00-13",
@@ -138,7 +226,18 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "6a24f38f5b7bb69d7c48fbb66b37f7802bbcbb5df5060e506a716a258828243e"
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T00-14",
@@ -148,7 +247,26 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "65c92373e41da6ff6d54f3cea736ec4d17bef7fdf18f8fa9e28e766205f10ad8"
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "controller_stage_indices": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ]
     },
     {
       "case_id": "F00-01",
@@ -158,7 +276,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "19906b66412ad2463be918912646ef20ae399d5d5a7e46196b4c5473edb4989e"
+      "procedure_digest": "b98bac5b887b04a87e68f523efa411206f9740e3076b4e8647ddc100aa0dd541",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-02",
@@ -168,7 +291,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ffbe392fbfabfa7d9f2159984ce20131828acfa14ed5d15c784d2abc27a19e4d"
+      "procedure_digest": "c4b76fe98dd0e9c692aadbe47f996c120bfeb3c7db94878757e5d961f1da4a94",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-03",
@@ -178,7 +306,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "caa7abadcac875bd1915d080eb29e2de65d5049aa104e6ce3fddff06ab1a4554"
+      "procedure_digest": "b4f1d972733a00b4639d08d07a913a7a9ab9832f805a72c5a00bcaf15f60e6e0",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-04",
@@ -188,7 +321,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "eb54566e86348252dfa088b77f344f9585c17b09b862002e650ad681edbe1b4c"
+      "procedure_digest": "c7e4c4f83e09deb3d95eb2904ab9d83a517e3cd7a7f583b6179cbae9a1b1aa1c",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-05",
@@ -198,7 +336,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "83f5803a48024098b770e10545cc9181ede37eb3e5b87f0701e127b7afa67fba"
+      "procedure_digest": "098d7194908d9eea7804b694455ca5fccf0046843fc5eccf688f698f6999c13b",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-06",
@@ -208,7 +351,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "a24757366521014c028a9d1b38bedc21f508575d574519e29c485b06add2bf0d"
+      "procedure_digest": "a1242819dfc5f5c03d04f2cbde60a9bc8e3abc7b342b6a0a041c560390047972",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-07",
@@ -220,7 +371,12 @@
         "NF-GUARD-CONTENDER"
       ],
       "acceptance_closed": false,
-      "procedure_digest": "6fe11af67feb5f64d7bf490e4142e5d0bfae58032cede14d139c5ef2d93969f1"
+      "procedure_digest": "4def1fd94f1dda8648e021b331436a514372a562fca0acb3a8d09c8c9a9925a4",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-08",
@@ -230,7 +386,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1ffcc645041a1fe6583e6a81c3acd965d14a1bb851db792bf89d4d2951b94e15"
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "F00-09",
@@ -240,7 +405,19 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "13232b084a73cc669783c42dcfaa5176a528f7e534023316fc878dfe4c2c6307"
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "F00-10",
@@ -250,7 +427,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "d04cbca71eeb0da0bcaf7c573b933fa6bca041f37a03a06d73af569b7fb03b35"
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ]
     },
     {
       "case_id": "F00-11",
@@ -260,7 +446,17 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "7796f5031d5a2da0f1822f8b08e36eb24537b430ffbc67515b505b39453e2499"
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "F00-12",
@@ -270,7 +466,13 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "8b26cc831c2cf86f073761cb987039d6f7b15ac06feb6f533cfcdb56d9ae5a83"
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "F00-13",
@@ -280,7 +482,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "e1a4a04714e2ccdb7d9e70f7bbc5d83f5e1fb7e8dbfcb240e14504e461d843f5"
+      "procedure_digest": "6594ff8fafef7b395b371c032bba6fa6498d191f5e076c3501198adebfd0fb25",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-14",
@@ -290,7 +500,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "51951d8f36cb7bd41fd71319d09f65bdf708b1af2f63874eda3bccebe139e1e8"
+      "procedure_digest": "65f29bc4e751ff81735f10d66f008df6ec9e6f0e281441f73e57e922c06f7878",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-15",
@@ -300,7 +515,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "d611ba9755e4007837dc9ec5d9331ba12a32ca5d35625afb72492e2f053bb9a7"
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "F00-16",
@@ -310,7 +534,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1993cc133c7dce50697cddd546b874f3d694ab74e92723d0c235f9476f9f6e1e"
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ]
     },
     {
       "case_id": "T05-A",
@@ -320,7 +553,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "d201e8f2021b4a1f9664b45bc47588e196d3586253162ef9ebd1b64038f3931c"
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ]
     },
     {
       "case_id": "T05-B",
@@ -330,7 +572,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1d013b0c61cd3d57851cc5d8db204a14f3da15e3becbbd1991a34bc71264f394"
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T05-C",
@@ -340,7 +590,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "aef7699a42f342ed82dac509b3d95c732edd442bb46d36d3868b90e87a2b65be"
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T05-D",
@@ -350,7 +608,13 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "d0ae9686477a95956e438db6719cc3885aaaa0e53a74d9d3e7708d51d6a5779b"
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T05-E",
@@ -360,7 +624,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "b648764e2ad58de794b9208ba707e90c453a091ffb222106e71b83b41868fa44"
+      "procedure_digest": "199245d3248215879acd885bae5f3062273dd73b1cdbea333402ba0f5ef7792f",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T05-F",
@@ -370,7 +639,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "695ca459ccd8c9692da8c9c7dc651583eab39e3330a40675b85f1d4eb53f9096"
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T07-A",
@@ -380,7 +657,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "491e1c057d5c02ac6553e39773457b439d04d9c7b1c7d38370969a221b9329b3"
+      "procedure_digest": "b6501d8c0d72b02a0c5c36efcebaaf8656411ed09008afa4fabd5037e1517443",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T07-B",
@@ -390,7 +675,19 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "4c63799c34299a74aae041aa654f53bcb6dd519f1ad341ab1a7d670f8f9be54c"
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "controller_stage_indices": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ]
     },
     {
       "case_id": "T07-C",
@@ -400,7 +697,21 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "41f5c3620ef8674d5b8a8ef3d25ac8183cea0e650e18c4654def4cd49871941c"
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "controller_stage_indices": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ]
     },
     {
       "case_id": "T07-D",
@@ -410,7 +721,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ba84c7dbaf80b29b3db901a63554b64cbb1787026e2953a4808b9e03b5564ec8"
+      "procedure_digest": "95ad07b2aad98a10648608fe1e421f33f6461d8163998c29829877b752e8cfde",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T07-E",
@@ -420,7 +739,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "07164024fc9f39ed9d8f27f7228e0b4d12c17650a7f31b10e2366c2834c2d11a"
+      "procedure_digest": "0ac5902157b694ab4de6759087e4e5221b36285f4feffe8063859fc1fb21fb72",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T07-F",
@@ -430,7 +757,18 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ad665211ab3b05d2db054be9870fdf310be5d25c1bf2d9ffb8e7ca286ed0e201"
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T07-G",
@@ -440,7 +778,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "0c84b5e7367e5fbe8559c404566101b4da414526d255b98f3af7f036886ecfda"
+      "procedure_digest": "f2fbd7e1d09be132f5b3932ee90aa15bba39a2e949283f93c629dedff8cbbb39",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T07-H",
@@ -450,7 +793,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "a5b11c392985068465127299de9a10816dcb3d704c073abd7743b3563f9c6520"
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T07-I",
@@ -460,7 +811,17 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "097ce16ff56bc9522ca09c49992b869c195b7c237d54c88f3000ff48151ec5af"
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T07-J",
@@ -470,7 +831,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "85fcab4d44c2394480fab607f6e50334c83349a3aa55ff0eaa5b489461ca9ed1"
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T08-A",
@@ -480,7 +849,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "8a97a325d20ee1be04caa498f8efd8568f3f2f766c4236b4bf328a7ea1ffd57e"
+      "procedure_digest": "f647219bf1353ddb20e5405a06a26e3e1b7aca783f784a8b0345938260117b91",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-B",
@@ -490,7 +867,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "742eac753347b23940cc35b32439ed0d01bd2a376771fcc97ccdae260270d3b0"
+      "procedure_digest": "65f1cf8f350de5eccc78905c22e95ec494892aadc29ab3f60838459c6890830e",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-C",
@@ -500,7 +882,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ebd8cec9601d4ee82150b173a83d7ed7eb78dc52f9a2ff98ef9fd88113248c90"
+      "procedure_digest": "673b1c938cf9673506e08cc0076b06ca02c6c5c96bf74155c38c866d547011a1",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-D",
@@ -510,7 +897,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "e15550e4e19c730c0ca34e9eace5b5208daf79ba97e583a5fed2575c8db7b35e"
+      "procedure_digest": "a2ef8d14f1e55cd3ddb2a6c23787ae7bf6485f489a211d4882063ca67bff7a0c",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-E",
@@ -520,7 +912,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "468f04bd7b431ef62cf47804e9a3e9a6ba2298c305c73490e692bf475b3b92d8"
+      "procedure_digest": "86959d17437c65fdb6cf38dbbb0b3f26c4fc6e8f11eeac8e2c9b541ac4b6a43d",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-F",
@@ -530,7 +927,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "dcd1bb66cde0a42fc0d1acd8d1679b4032ed6752295d18193401250c12baf5e3"
+      "procedure_digest": "747917c3203aad515d4a6fd55852323ebc1364228aa943cd7dc74b4bd0376294",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-G",
@@ -540,7 +945,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "14da91c4c018b092555c4f161327bf2af55cd07337ac76f2208d502bf2ddc0e8"
+      "procedure_digest": "c44f7730ec51b680b6af515b28295bfebbe701902bf261a2f00cf2f200b097a6",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-H",
@@ -550,7 +960,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "3b0670b27e08f70756829931b1105b4c6fcb3c085e6327c7768fa27de2edb01d"
+      "procedure_digest": "adf3ae582a37068a815e422a66a833439d6365b826d09851a10408ba4cfb4ef8",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-I",
@@ -560,7 +975,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "332a38678f482aee16d216954ea4c6a36f111ee690ebd2e5813a7bb6a9528b9c"
+      "procedure_digest": "edfa3d95765beb93c8b221249cd76bbecce80d3811d098b4791f7d6d6c665216",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-J",
@@ -570,7 +990,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "a652baeaccc12d783666653d992028125d38cf0600c619f6968b314b73c1f889"
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T08-K",
@@ -580,7 +1008,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "796fc2fffe9c334b9621ec53bda0a29e8d3d6f7122cc37bb6d34506fdbbec788"
+      "procedure_digest": "e22c2ea4a53daf043b2261fba0ab3ad2d2a5426036ecc061fa6d7de0fb5d5afd",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-L",
@@ -590,7 +1023,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "15cad6758d9d6b21bb9ff4bb65718bd50c709dd2c60c3310c1642abe07d8369c"
+      "procedure_digest": "fabd8e7395bccf3cd55e637cc86ad2a0a3bb622e5966f0962f855af5dac6a245",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-M",
@@ -600,7 +1038,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "5778592f4869072932277164a7e3ea2c0b8242a911b3337e7d92723cc7f17583"
+      "procedure_digest": "394b984bd50ed8acf927493ebf1634b91ca1e8a3cba5cd6c934ab4a1cec46835",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T08-N",
@@ -610,7 +1053,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "c99e503f99111a4faa802ad4b469e7e5e7ceb7f493748354b8a702da3a8796eb"
+      "procedure_digest": "d97c5235687b0a97adebf6dc8a28e8cc06e13c0a2d5a7fb349aa721a7dc0e236",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T09-A",
@@ -620,7 +1071,14 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "e6f9be24005e79b48d7d3ca395d3c546761da144e048f5b75965149022aced24"
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "controller_stage_indices": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
     },
     {
       "case_id": "T09-B",
@@ -630,7 +1088,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "8f0865aa4045a65833385ccfe45201bf5802a8addee6bb4b4fcca23238e8a3a9"
+      "procedure_digest": "c7a8eedf1c78464981a36cd8f10f925ab4ee785ef0a9e8c1bc6060819c058457",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T09-C",
@@ -640,7 +1106,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1e81ccf97f115a511fefb395ed378a646b73d0657fa2268d6cdf2e9ef838fb42"
+      "procedure_digest": "e532afc445c349d1bd6db757e0cbd3ff63098d4ec5febf78a4c33ecca628867c",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T09-D",
@@ -650,7 +1121,16 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ecf3e0a1f9e68a1f11eaca6415fcb486650cae5fa5587590da32ec4ccf587463"
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T09-E",
@@ -660,7 +1140,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "1f938f621862688a364a31a15bcec0c5d181d15dd3dafaecd62b58acdc16d0a7"
+      "procedure_digest": "2d4359dd365193a87b19db02619d2de36ae99ed8a9f38366ae341a7f97f88043",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T09-F",
@@ -670,7 +1155,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "9757da0de46984c56af55f782f46e41e6f7c7c2ec361ec995b28eb1242213642"
+      "procedure_digest": "b154b9ffa96eada347d7871f66ffc4135deb6988ceae74d1a79eae5290154ad3",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T09-G",
@@ -680,7 +1170,13 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "88fda67ef3b3bab576a400f46e3494fc59ed5c79851bd88b42fa3b4682476476"
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T09-H",
@@ -690,7 +1186,13 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "f13e7a9e2c68f300af819c3681f68aeae8838ad8efa27161ab1de3ad834c3b9e"
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T09-I",
@@ -700,7 +1202,13 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "6ce5be8a5d0f133555e831c3de5864b4977643a8f114d777aef620e66a9df7f8"
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "controller_stage_indices": [
+        [
+          0,
+          1
+        ]
+      ]
     },
     {
       "case_id": "T09-J",
@@ -710,7 +1218,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "eea6839dfad518902ee4fd814b550e2138120df5c1a2262c5fae399165904f55"
+      "procedure_digest": "964ec7ccb124353e5b506786132e7f2f3ec84d385c30adf307408ff6bddfc69b",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T13-A",
@@ -720,7 +1233,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "81ae8f722a8d577dee6f8d1ca6cea93e65bcf4cb647eafa7b50a9aaeb4c7155b"
+      "procedure_digest": "87af9ddfc3bcd7e3ccb943a50f3a28b2f0d97c8149f38375708671a8565447f6",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T13-B",
@@ -730,7 +1251,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "7858c7ed29f665c73f891ba90b2434aca1d9a8fc311a5d5226a350ea3326521b"
+      "procedure_digest": "784ca80ab8d6442f3cbf1fca2070d8cc1546d7612b6cc3b3fdf1fabb10b80445",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T13-C",
@@ -740,7 +1266,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "5054191796c5dd05185574396404527c004fccd441dea151e42f138d68218320"
+      "procedure_digest": "48fa1b13cb6565b1decd06b5e92d878acfb4d4701e4669e88cc9342b24f43ef3",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T13-D",
@@ -750,7 +1281,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "5429ef158c4f1f2ddf637a6f18576986e1d2ca6a91e475648dd3b46388e77abf"
+      "procedure_digest": "89449ce31c93fe5316ce9e647f3ca32e3475d48d7b168839b1e7233c1de7d11d",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T13-E",
@@ -760,7 +1296,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "656efae02de42cd8383d51d40a2462fad0ce2e86ef3b0a92006545236cc9e6e9"
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T13-F",
@@ -770,7 +1314,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "c54ed0bb747552f6c234b6e7222c241286390e542d0a7077aa04deb7fe62a74f"
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     },
     {
       "case_id": "T13-G",
@@ -780,7 +1332,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "d0c4eaa21bdd10f7799bd7fbd4a067f049d0ed7c5a5cd44eb1d0c188ead16446"
+      "procedure_digest": "6bb7048007b64bcc5025ddab7e762aade9442a2f3725fc76b6003abe2b06dc2e",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-A",
@@ -790,7 +1350,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "b8922e0d9651160e2d817e99edb696efc566d557aa53d1aab22b72de9756ddfd"
+      "procedure_digest": "694c6a0c9042a118cb1772eca21b078417eaa1a2a0fd41b8a61eee4b42c5d2d5",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-B",
@@ -800,7 +1365,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ebd1dbb0cb8baa5c4bd76cad23364d0c543c682fabb6eb7d3a2797dc66bbff82"
+      "procedure_digest": "bf18eaf3e5d3899a02f229031f866fd52504bf908bf4ef480bd46f99f1028897",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-C",
@@ -810,7 +1380,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "68175418f51068ff0ef694494427c3f14ea2f55cfca4b69d5a06908607efaad8"
+      "procedure_digest": "2a3aeb5d52744808ead70b4220435a2d13f1ec7e4a634b94085d4fd131a136f1",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-D",
@@ -820,7 +1395,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "fa02b6167de3ee3028432da2afa4ddd24a844eac62581e0358ae13e705badd64"
+      "procedure_digest": "494c3960d445205cd51e20ebc59a9b58c28af157083af22bc2c86aabb10c2d7b",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-E",
@@ -830,7 +1410,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "9b7f53aa9265233822a5a246c0dbdff60a4287949735229757e6b89d3298ed6d"
+      "procedure_digest": "a26603a2bcdfd39c20120c1c800a07e3a2027d924aa2b43e046ab849cc8965d9",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-F",
@@ -840,7 +1425,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "0ff96ea7dacc3361e0fc7baa1f0032aa3c774ca215c68e2a7ca1b93868b6be6e"
+      "procedure_digest": "7012f1881893f7db1743c1b5cade7146d6032227e296e669393f5041948682ea",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-G",
@@ -850,7 +1440,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "c0e0313d393c54b18eedcc27368d6047b3ee513ff89d2c17d7322e6daad13421"
+      "procedure_digest": "5da8bf2a4b95baa60b660d80d97611d34e2fa70ec3324eded33bb7336c2d1936",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-H",
@@ -860,7 +1455,12 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "ecab77826a9e5350904e1a7a576d83536fb8667ac9168baf8cffab6620432e73"
+      "procedure_digest": "276f7f9b5c7e22d4b66354c0f4603762bd9c7569301110c992ce930b07c91231",
+      "controller_stage_indices": [
+        [
+          0
+        ]
+      ]
     },
     {
       "case_id": "T14-I",
@@ -870,7 +1470,15 @@
       "author_workspace_tests_do_not_close_case": true,
       "foundation_harness_contributions": [],
       "acceptance_closed": false,
-      "procedure_digest": "c5abc0f20d55ea5c7f336ffd4b62c2086b2f49e7a031802e0f1d705798da18e4"
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "controller_stage_indices": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
     }
   ]
 }

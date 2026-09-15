@@ -1,3 +1,20 @@
+# IMPL-P00-001 Implementation Status — dev18 increment
+
+`0.1.0.dev18 / PARTIAL_SOURCE_DROP_DEV18`
+
+Dev18 remediates independent REVIEW findings CR-P00-012/013 in the native acceptance harness without changing reviewed FD/D00/public contracts.
+
+- Every fixture/preparation/controller/oracle/journal/evidence/result collector must match the exact authorizing suite `build_digest` and `contract_digest`.
+- Every native stage has explicit start/end time and consumes suite/execution/plan/run-bound preparation continuity witnesses; arranged conditions must remain active through stage end and observed conditions must still match.
+- Controller actions now have reviewed temporal relations and exact procedure-owned route bindings. `controller_stage_indices` is serialized into the procedure document/digest; post-run result records cannot choose a different route binding.
+- Procedure validation requires controller-step coverage for every route. T07-H now explicitly records CREATE execution before reconciliation after the post-registration crash.
+- All 86 inventory rows mirror the exact controller-stage bindings and refreshed procedure digests while preserving `status=NOT_RUN` and `acceptance_closed=false`.
+- Focused harness regression includes wrong collector build/contract, expired preparation continuity, wrong controller window and wrong action→route binding rejection.
+
+Final author evidence: **757 PASS / 0 failure/error/skip**, static **100 PASS**. Source content digest `9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8`; test content digest `2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329`. Native Windows/WSL/LAB/SITE remains NOT_RUN. CR-P00-012/013 are **FIXED_PENDING_REVIEW**, not closed. CR-P00-001 remains OPEN.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev17 increment
 
 `0.1.0.dev17 / PARTIAL_SOURCE_DROP_DEV17`

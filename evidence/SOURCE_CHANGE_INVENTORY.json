@@ -1,6 +1,6 @@
 {
-  "parent_commit": "492bad8dc0fe164d38d1168ec3aa516c64176832",
-  "delivery": "0.1.0.dev17",
+  "parent_commit": "64ea95bf10e05e856a009be9204983182f520b45",
+  "delivery": "0.1.0.dev18",
   "changes": [
     {
       "status": "M",
@@ -9,6 +9,10 @@
     {
       "status": "M",
       "path": "config/required-native-test-inventory.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/CHANGELOG_DEV17_TO_DEV18.md"
     },
     {
       "status": "M",
@@ -23,6 +27,14 @@
       "path": "evidence/AUTHOR_STATIC_CHECKS.json"
     },
     {
+      "status": "A",
+      "path": "evidence/DEV18_SECRET_SCAN.json"
+    },
+    {
+      "status": "M",
+      "path": "evidence/SOURCE_CHANGE_INVENTORY.json"
+    },
+    {
       "status": "M",
       "path": "evidence/WORKSPACE_TEST_LOG.txt"
     },
@@ -33,6 +45,10 @@
     {
       "status": "M",
       "path": "pyproject.toml"
+    },
+    {
+      "status": "M",
+      "path": "source_diff.patch"
     },
     {
       "status": "M",

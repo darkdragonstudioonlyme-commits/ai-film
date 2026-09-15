@@ -1,3 +1,14 @@
+# DEV18 Remaining-Work Delta
+
+- `CR-P00-012`: implementation fix authored — all harness collector releases are bound to the exact suite build + approved contract before their observations can contribute to finalization.
+- `CR-P00-013`: implementation fix authored — native stages carry exact execution windows; every preparation has an exact stage continuity witness; controller-step route bindings are procedure-owned, serialized into the procedure digest, and cannot be caller/result-selected.
+- `T07-H`: harness catalog correction — CREATE now has an explicit `INVOKE_PRODUCTION_REQUEST` causal step before `RESUME_OR_RECONCILE`; this restores exact stage coverage without changing product contracts.
+- Independent REVIEW must verify these fixes before CR-P00-012/013 close.
+- All 86 native cases remain `NOT_RUN` and `acceptance_closed=false`; author harness validation is not native LAB execution.
+- `CR-P00-001` remains open until the full reviewed implementation source/harness/docs/test exit condition is genuinely satisfied.
+
+---
+
 # DEV17 Remaining-Work Delta
 
 - `CR-P00-010`: implementation fix authored — every causal preparation and controller step now has exact suite/execution-bound action trace + raw provenance; controller procedure finalization requires exact ordered sequence.
