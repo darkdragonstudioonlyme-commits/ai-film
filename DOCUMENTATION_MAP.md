@@ -42,6 +42,8 @@ PROJECT_STATE
 | `OPERATING_ARCHITECTURE.md` | process/trust architecture and separation of concerns | operating architecture changes | mutable status |
 | `GIT_WORKFLOW.md` | commit/branch/artifact/persistence rules | persistence policy changes | project roadmap |
 | `WORKSPACE_WSL.md` | current local paths/tools/worktree facts | workspace changes | gate decisions |
+| `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records | material test governance event | active test policy |
+| `workflow-health/*` | immutable health/meta-review records | workflow meta-review completes | current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
 | `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |
@@ -65,9 +67,9 @@ Did exact next action change? → NEXT_WORK_ITEM
 Did roadmap/closure change?   → PROJECT_ROADMAP
 Did routing/process change?   → WORKFLOW_ROUTER / EXECUTION_LANES / GIT_WORKFLOW
 Did reusable knowledge emerge?→ PROJECT_MEMORY + SELF_LEARNING lifecycle
-Did test philosophy/oracle change?→ TEST_STRATEGY + independent test review
+Did test philosophy/oracle change?→ TEST_STRATEGY + `test-governance/*` + independent TEST_REVIEW
 Did policy become stale/duplicate? → POLICY_REGISTRY + prune active docs
-Did workflow become ineffective?   → WORKFLOW_HEALTH meta-review
+Did workflow become ineffective?   → WORKFLOW_HEALTH + `workflow-health/*` meta-review
 Did environment/model context change?→ SERVER_ENVIRONMENT / MODEL_EVALUATION
 Did recovery behavior change?       → RECOVERY_PLAYBOOK
 Did workspace facts change?         → WORKSPACE_WSL

@@ -17,17 +17,19 @@ Git history and immutable review records preserve history. Active docs should re
 
 ## Active registry
 
-| Policy ID | Scope | Active rule | Canonical document |
-|---|---|---|---|
-| POL-STATE-001 | state | distinguish durable candidate, WIP and review target | `PROJECT_STATE.md` / `DOCUMENTATION_MAP.md` |
-| POL-ROUTE-001 | workflow | `continue` routes deterministically from verified state | `WORKFLOW_ROUTER.md` |
-| POL-LANE-001 | trust | producer/reviewer are independent; immutable handoff | `EXECUTION_LANES.md` |
-| POL-TEST-001 | testing | reviewed business behavior, not code, owns the oracle | `TEST_STRATEGY.md` |
-| POL-LEARN-001 | learning | reusable discoveries enter memory and can promote to policy/checkers | `SELF_LEARNING.md` |
-| POL-HEALTH-001 | process | repeated ineffective cycles trigger workflow meta-review | `WORKFLOW_HEALTH.md` |
-| POL-ENV-001 | environment | benchmark/model claims bind an exact environment snapshot | `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` |
-| POL-GIT-001 | persistence | exact identity + remote/artifact verification before durability | `GIT_WORKFLOW.md` |
-| POL-RECOVERY-001 | recovery | preserve WIP/evidence before repair; never guess current truth | `RECOVERY_PLAYBOOK.md` |
+| Policy ID | Scope | Owner | Effective from | Review trigger | Active rule | Canonical document |
+|---|---|---|---|---|---|---|
+| POL-STATE-001 | state | project-control | 2026-09-15 | state schema/drift incident | distinguish durable candidate, WIP and review target | `PROJECT_STATE.md` / `DOCUMENTATION_MAP.md` |
+| POL-ROUTE-001 | workflow | project-control | 2026-09-15 | routing ambiguity/deadlock | `continue` routes deterministically from verified state | `WORKFLOW_ROUTER.md` |
+| POL-LANE-001 | trust | governance | 2026-09-15 | workflow/lane model changes | producer/reviewer are independent; immutable handoff | `EXECUTION_LANES.md` |
+| POL-TEST-001 | testing | test-governance | 2026-09-15 | business/test authority change or repeated test debt | reviewed business behavior, not code, owns the oracle | `TEST_STRATEGY.md` |
+| POL-LEARN-001 | learning | governance | 2026-09-15 | learning loop fails to reduce recurrence | reusable discoveries promote to reviewed policy/checkers | `SELF_LEARNING.md` |
+| POL-HEALTH-001 | process | governance | 2026-09-15 | repeated inefficient/deadlocked cycles | workflow health triggers meta-review | `WORKFLOW_HEALTH.md` |
+| POL-ENV-001 | environment | model-evaluation | 2026-09-15 | material benchmark environment change | benchmark/model claims bind an exact environment snapshot | `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` |
+| POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling changes | exact identity + remote/artifact verification before durability | `GIT_WORKFLOW.md` |
+| POL-RECOVERY-001 | recovery | project-control | 2026-09-15 | recovery failure/state-loss incident | preserve WIP/evidence before repair; never guess current truth | `RECOVERY_PLAYBOOK.md` |
+
+For non-ACTIVE policies, registry rows additionally identify `STATUS`, `SUCCESSOR`, and removal/migration condition. Review dates may be event-driven; when a calendar review is required add `REVIEW_DUE` explicitly.
 
 ## Policy change record
 
@@ -43,6 +45,9 @@ REPLACED_BY:
 AFFECTED_DOCS:
 MIGRATION_REQUIRED:
 REVIEW_ID:
+OWNER:
+EFFECTIVE_FROM:
+REVIEW_TRIGGER_OR_DUE:
 ```
 
 ## Pruning rule

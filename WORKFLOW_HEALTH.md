@@ -82,3 +82,7 @@ Material workflow/process failures must ask:
 > Would a better `WORKFLOW_ROUTER`, `TEST_STRATEGY`, `POLICY_REGISTRY`, `DOCUMENTATION_MAP`, checker, environment contract or recovery playbook have prevented or shortened this failure?
 
 If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT before declaring the learning complete.
+
+## Durable health records
+
+Write immutable `workflow-health/HEALTH_REVIEW-<workflow>-<nnn>.md` records. Only health state that affects immediate routing is summarized in `PROJECT_STATE.md`. Detailed metrics/history stay out of bootstrap state.

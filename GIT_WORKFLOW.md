@@ -78,7 +78,7 @@ Use `DOCUMENTATION_MAP.md`. Every meaningful workflow must evaluate state, next 
 
 ## Test-policy persistence
 
-Changing production code does not authorize changing expected test behavior. Material test oracle changes follow `TEST_STRATEGY.md` and independent TEST-REVIEW. Harness-only fixes must preserve the reviewed business oracle.
+Changing production code does not authorize changing expected test behavior. Material test oracle changes follow `TEST_STRATEGY.md`, persist under `test-governance/`, and require independent TEST-REVIEW. Harness-only fixes must preserve the reviewed business oracle.
 
 ## Policy lifecycle and pruning
 
@@ -93,7 +93,7 @@ A discovery is classified:
 - repeated lesson that changes how work must be performed → promote to policy in `WORKFLOW_ROUTER.md`, `EXECUTION_LANES.md`, `GIT_WORKFLOW.md` or `DOCUMENTATION_MAP.md`;
 - reviewed behavior conflict → DESIGN_GAP, not memory-based contract override.
 
-When promoted, keep a compact memory provenance entry and mark the policy/tool location. `SELF_LEARNING.md` defines scoring, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md`.
+When promoted, keep a compact memory provenance entry and mark the policy/tool location. `SELF_LEARNING.md` defines scoring, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md` and persist immutable reviews under `workflow-health/`.
 
 ## Secret/public-repo discipline
 

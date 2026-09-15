@@ -21,6 +21,8 @@ if 'code is the subject under test' not in texts.get('TEST_STRATEGY.md',''): err
 if 'SUPERSEDED' not in texts.get('POLICY_REGISTRY.md','') or 'RETIRED' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-lifecycle-incomplete')
 if 'SUCCESS_METRIC' not in texts.get('SELF_LEARNING.md',''): errors.append('learning-no-measurement')
 if 'DOC-AUDIT-V2' not in texts.get('EXECUTION_LANES.md',''): errors.append('missing-holistic-audit-lane')
+if 'Measurement provenance' not in texts.get('SERVER_ENVIRONMENT.md','') or 'SNAPSHOT_DIGEST' not in texts.get('SERVER_ENVIRONMENT.md',''): errors.append('environment-provenance-incomplete')
+if 'Owner' not in texts.get('POLICY_REGISTRY.md','') or 'Review trigger' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-accountability-incomplete')
 # Bootstrap docs must point to canonical router/state, not own current versions.
 for p in ['README.md','CHAT_HANDOFF.md']:
     t=texts.get(p,'')

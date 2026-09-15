@@ -8,6 +8,10 @@ Environment facts are evidence, not background prose. Performance/model conclusi
 
 Snapshot time: 2026-09-15 (project local date).
 
+Snapshot digest (canonical sorted JSON of the YAML fact values below):
+
+`b6873887b10300ea04c9356d8b1d3e02c335da624188274be245ec2ee0c32ca5`
+
 ```yaml
 ENVIRONMENT_ID: DEV-WSL-20260915
 ROLE: AUTHORING_AND_REVIEW_ONLY
@@ -28,7 +32,23 @@ PYTHON: 3.12.3
 GIT: 2.43.0
 GPU_FROM_CURRENT_WSL: NOT_VISIBLE
 CUDA_TOOLKIT_FROM_CURRENT_WSL: NOT_CONFIRMED
+SNAPSHOT_DIGEST: b6873887b10300ea04c9356d8b1d3e02c335da624188274be245ec2ee0c32ca5
 ```
+
+### Measurement provenance
+
+| Fact | Measurement source | Status |
+|---|---|---|
+| host/user | `hostname`, `whoami` | OBSERVED |
+| distro/kernel/arch | `/etc/os-release`, `uname -r`, `uname -m` | OBSERVED |
+| CPU/core visibility | `lscpu`, `nproc` | OBSERVED |
+| RAM/swap | `free -b` | OBSERVED_POINT_IN_TIME |
+| home filesystem | `df -B1 /home/dragon` | OBSERVED_POINT_IN_TIME |
+| Python/Git | `/usr/bin/python3 --version`, `git --version` | OBSERVED |
+| GPU | `nvidia-smi --query-gpu=...` | NOT_VISIBLE |
+| CUDA toolkit | `nvcc --version` | NOT_CONFIRMED |
+
+Available-memory and available-disk values are **point-in-time**, not stable capacity guarantees. Benchmark runs capture their own start/end availability and background-load context.
 
 `NOT_VISIBLE` is not evidence of GPU absence. It means this execution context did not expose a trustworthy GPU/CUDA measurement.
 
@@ -73,3 +93,7 @@ If GPU/VRAM/runtime facts are unavailable, GPU performance comparison is `BLOCKE
 Create a new environment ID when material benchmark inputs change: GPU/driver/CUDA/framework, CPU/RAM allocation, WSL/container resource limits, storage class, inference engine, quantization backend or thermal/power policy.
 
 Do not overwrite old benchmark environment facts; model results refer to their original environment ID.
+
+## Snapshot digest procedure
+
+Canonicalize the fact map using sorted JSON keys and compact separators, excluding prose/Markdown formatting. SHA-256 of those canonical bytes is `SNAPSHOT_DIGEST`. Model-evaluation results reference the environment ID plus digest; any changed material fact creates a new environment record/digest.

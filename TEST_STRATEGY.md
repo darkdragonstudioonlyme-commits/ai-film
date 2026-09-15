@@ -114,3 +114,15 @@ Every added/changed material test must be traceable to one of:
 - an explicitly `INFRASTRUCTURE_ONLY` harness correction that proves expected business behavior did not change.
 
 A candidate that changes expected outcomes without one of these routes has `TEST_AUTHORITY_MISSING` and is not review-ready.
+
+## 11. Persistence of test governance
+
+Immutable records live under `test-governance/`:
+
+```text
+TEST_CHANGE-*  material oracle/harness change proposal
+TEST_REVIEW-*  independent disposition of that change
+TEST_GAP-*     explicit missing capability/risk
+```
+
+`TEST_CHANGE` includes `ORACLE_CHANGED`, upstream authority, changed test IDs/scripts, before/after behavior, migration impact and review status. A changed expected outcome without a recorded authority/review is not durable test policy.

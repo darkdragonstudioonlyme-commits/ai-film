@@ -11,6 +11,8 @@ required=[
 errors=[]
 for name in required:
     if not (ROOT/name).is_file(): errors.append('missing:'+name)
+for path in ['test-governance/README.md','workflow-health/README.md']:
+    if not (ROOT/path).is_file(): errors.append('missing:'+path)
 text={n:(ROOT/n).read_text(encoding='utf-8') for n in required if (ROOT/n).is_file()}
 checks=[
  ('state-mode','CURRENT_MODE: IMPLEMENTATION','PROJECT_STATE.md'),
@@ -26,7 +28,11 @@ checks=[
  ('model-env','EVAL_ENV_ID','MODEL_EVALUATION.md'),
  ('recovery-drift','STATE_DRIFT','RECOVERY_PLAYBOOK.md'),
  ('docs-audit','DOC-AUDIT','EXECUTION_LANES.md'),
- ('git-fetch','fetch origin main','GIT_WORKFLOW.md')]
+ ('git-fetch','fetch origin main','GIT_WORKFLOW.md'),
+ ('test-records','test-governance/','TEST_STRATEGY.md'),
+ ('health-records','workflow-health/','WORKFLOW_HEALTH.md'),
+ ('env-provenance','Measurement provenance','SERVER_ENVIRONMENT.md'),
+ ('policy-owner','Owner','POLICY_REGISTRY.md')]
 for key,needle,name in checks:
     body=text.get(name,'')
     if needle not in body: errors.append('invariant:'+key)
