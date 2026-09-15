@@ -27,6 +27,7 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-043 | ENVIRONMENT | Environment digest inputs must be explicit and exclude the digest itself; preserve the canonical payload. | environment record schema/checker |
 | MEM-20260915-044 | GOVERNANCE | Immutable environment/model results need separate record domains; methodology files must not become history logs. | `environments/`, `model-evaluations/` |
 | MEM-20260915-045 | LEARNING | Compact active memory requires durable standalone learning records when no review/health record already owns provenance. | `learning/` |
+| MEM-20260915-046 | PROCESS | Worktree existence must not be described as current workflow activity; mutable activity belongs to PROJECT_STATE/lane state. | workspace audit/checker |
 
 ## Compaction rule
 

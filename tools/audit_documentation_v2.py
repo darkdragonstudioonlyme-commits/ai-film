@@ -17,6 +17,7 @@ workspace=texts.get('WORKSPACE_WSL.md','')
 if re.search(r'0\.1\.0\.dev\d+',workspace): errors.append('workspace-mutable-version')
 if re.search(r'\b[0-9a-f]{40}\b',workspace): errors.append('workspace-source-commit-pin')
 if re.search(r'\b\d+ PASS\b',workspace): errors.append('workspace-test-count-pin')
+if re.search(r'active .*V2 (design|review|audit)',workspace,re.I): errors.append('workspace-transient-workflow-activity')
 # Checkers cannot hard-code a delivery file/hash.
 for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/audit_documentation_v2.py']:
     t=(ROOT/p).read_text(encoding='utf-8')

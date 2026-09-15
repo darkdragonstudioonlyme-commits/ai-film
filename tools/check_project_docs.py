@@ -45,6 +45,7 @@ version_agnostic=['README.md','CHAT_HANDOFF.md','WORKFLOW_ROUTER.md','EXECUTION_
  'MODEL_EVALUATION.md','SELF_LEARNING.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md']
 for name in version_agnostic:
     if re.search(r'0\.1\.0\.dev\d+',text.get(name,'')): errors.append('version-pin:'+name)
+if re.search(r'active .*V2 (design|review|audit)',text.get('WORKSPACE_WSL.md',''),re.I): errors.append('workspace-transient-workflow-activity')
 if errors:
     print('DOCS_CHECK_FAIL');print('\n'.join(errors));sys.exit(1)
 print('DOCS_CHECK_PASS',len(required),'active files')

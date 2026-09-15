@@ -16,15 +16,19 @@ repo/         canonical GitHub control-plane clone
 source-dev8/  immutable historical dev8 baseline
 implement/    writable source lane, branch impl/p00
 review/       detached exact source review candidate
-docs-v2-design/  active Documentation System V2 design lane
-docs-v2-review/  active detailed V2 review lane
-docs-v2-audit/   active holistic V2 audit lane
+docs-v2-design/  Documentation System V2 design worktree; current activity is determined by PROJECT_STATE/lane state
+docs-v2-review/  V2 detailed-review worktree; may be retained after governance for audit history
+docs-v2-audit/   V2 holistic-audit worktree; may be retained after governance for audit history
 docs-design/     historical V1 design worktree; not active
 docs-review/     historical V1 review worktree; not active
 artifacts/    exact delivery ZIPs
 run-evidence/implement/
 run-evidence/review/
 ```
+
+## Workflow-state ownership
+
+Worktree existence does not mean its workflow is active. Current workflow/lane activity is owned by `PROJECT_STATE.md` plus freshly fetched lane state. This file records only local workspace purpose/capability.
 
 ## Source-state ownership
 
