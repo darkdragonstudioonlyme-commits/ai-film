@@ -1,0 +1,30 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 26,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "documentation_system": "DOCSYS-V2-R6",
+  "last_reviewed_candidate": {
+    "version": "0.1.0.dev19",
+    "source_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "package_sha256": "564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1",
+    "independent_tests": 759,
+    "static_checks": 100,
+    "delta_verdict": "PASS",
+    "overall_verdict": "FAIL"
+  },
+  "findings": {
+    "CR-P00-001": "OPEN_BLOCKER",
+    "CR-P00-012": "CLOSED_DEV19",
+    "CR-P00-013": "CLOSED_DEV18_REVERIFIED_DEV19",
+    "CR-P00-014": "CLOSED_DEV19"
+  },
+  "test_review": "TEST_REVIEW-P00-DEV19-HARNESS-002_PASS",
+  "workflow_health": "HEALTHY_RECOVERED",
+  "active_workflow": "WF-P00-IMPL-CR001-RESIDUAL-AUDIT",
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}

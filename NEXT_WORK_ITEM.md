@@ -1,38 +1,29 @@
-# NEXT WORK ITEM — Independent dev19 delta review
+# NEXT WORK ITEM — residual CR-P00-001 author-completeness audit
 
 ```yaml
-WORKFLOW_ID: WF-P00-REVIEW-DEV19
-LANE: REVIEW
+WORKFLOW_ID: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+LANE: IMPLEMENT
 STATUS: READY
 MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-WORK_ITEM: CODE-REVIEW-P00-001-DEV19-DELTA
-INPUT_IDENTITY:
-  CANDIDATE_ID: IMPL-P00-001-DEV19
-  SOURCE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
-  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V19.zip
-  PACKAGE_SIZE_BYTES: 1165317
-  PACKAGE_SHA256: 564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1
-  MANIFEST_SHA256: dbb940526db699e6810ee5f8844e00b1cba22c3843f2667479daad91c303211e
-  SOURCE_DIGEST: 2271c07575e4217dabde324c7de0d35a1188c965d32f1aee38648d44d35873c4
-  TEST_DIGEST: 8deb2d74dc098ad161557773382afb54293dc0ea4e59b95fe6b591fc7d803fdb
-  AUTHOR_TESTS: "759 PASS"
-  STATIC_CHECKS: "100 PASS"
-GOAL: "Independently verify dev19 CR-P00-012/014 remediation while preserving closed CR-P00-013 behavior."
-SUCCESS_OUTPUT: "Immutable review + TEST_REVIEW verdict bound to exact dev19 candidate."
-ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
-ON_FAIL: WF-P00-IMPL-DEV20-REVIEW-FIX
+WORK_ITEM: IMPL-P00-001
+INPUT_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+GOAL: "Determine actual remaining reviewed Phase00 implementation scope and close every genuine source/harness/docs/test gap before AUTHOR_COMPLETE."
+SUCCESS_OUTPUT: "Evidence-backed residual gap inventory with either zero implementation gaps or exact next implementation increment(s)."
+ON_SUCCESS: WF-P00-FINAL-AUTHOR-CANDIDATE
+ON_FAIL: WF-P00-IMPL-RESIDUAL-FIX
 ```
 
-## Required REVIEW
+## Audit method
 
-1. Checkout detached exact `2ac37ac...`; verify package SHA/size/manifest and member hashes.
-2. Independently rerun workspace/static checks.
-3. Verify a production-shaped `collector_release` without `contract_digest` is accepted under a valid contract-bound suite.
-4. Verify wrong collector build rejects at collector authority; wrong suite contract rejects at suite/contract authority.
-5. Re-run CR-P00-013 continuity/window/route-binding/T07-H regression to ensure dev19 did not reopen it.
-6. Review dev18→dev19 diff against D00-14 and `native/proofs.py` authority split; search for new provenance/schema gaps.
-7. Review `TEST_CHANGE-P00-DEV19-HARNESS-002` independently; implementation code cannot define fixture authority.
-8. Ensure REVIEW source remains clean; persist review/test-review records.
+1. Re-read the exact reviewed contract set (`PHASE00_INFRA_DESIGN_V2`, Acceptance Matrix V2, Failure/Recovery V2, Evidence Register V2) and compare against production source paths, not stale remaining-work prose.
+2. Search explicit/implicit stubs: NOT_IMPLEMENTED, PARTIAL, TODO/FIXME, fail-closed placeholders, fixture-only seams, metadata-only tools, unreachable/unwired branches, missing production factory composition, unhandled recovery/publication states, incomplete authority/trust edges.
+3. Audit all 86 harness procedures for executable source completeness separately from native execution status; `NOT_RUN` is expected until VALIDATION.
+4. Audit production request/factory/session paths so author tests cannot pass only through synthetic lower ports that production never composes.
+5. Reconcile old `IMPL-REM-01…08` / blocker docs with actual source; retire stale items rather than carrying obsolete debt forward.
+6. For every suspected gap, cite exact contract requirement + source evidence and classify: IMPLEMENTATION_GAP, VALIDATION_ONLY, DOCUMENTATION_STALE, DESIGN_GAP, or CLOSED.
+7. If implementation gaps remain, create the smallest coherent increment and continue IMPLEMENTATION. If none remain, update author-completeness docs/evidence and create final immutable candidate for formal CODE_REVIEW.
 
-If delta PASS, close CR-P00-012/014, keep CR-P00-013 closed, mark workflow-health incident recovered, and route immediately to residual CR-P00-001 author-completeness audit. Overall CODE_REVIEW_PASS remains false until that umbrella blocker closes.
+## Constraints
+
+Do not execute native Windows/WSL/LAB/SITE validation during this audit. Do not convert `NOT_RUN` native cases into PASS. Do not lower acceptance or change reviewed contracts to eliminate a gap.
