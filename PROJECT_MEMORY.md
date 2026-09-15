@@ -28,6 +28,9 @@ Pre-V2 detail: `memory/archive/PROJECT_MEMORY_V1_BEFORE_V2.md` plus Git history.
 | MEM-20260915-042 | ambient tool found in another project venv is not project authority | environment/test policy |
 | MEM-20260915-043 | environment fingerprint must be cross-bound between snapshot and current state | environment/knowledge checkers |
 | MEM-20260915-044 | governance checkers are part of pre-review evidence, not post-hoc cleanup | governance workflow |
+| MEM-20260915-045 | test-oracle authority must be machine-classified, not guarded by a fragile keyword blacklist | `TEST_STRATEGY.md` / checker |
+| MEM-20260915-046 | canonical test wrapper must bind requested executor to active workflow/lane/environment permission | test workflow |
+| MEM-20260915-047 | memory compaction ratios exclude already-compacted provenance pointers | `KNOWLEDGE_LIFECYCLE.md` |
 
 ## Learning rule
 

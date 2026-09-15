@@ -28,7 +28,10 @@ TEST_CONTRACT:
     - "docs/DOCUMENTATION_REVIEW_CRITERIA_V2.md"
     - "docs/DOCUMENTATION_AUDIT_CRITERIA_V2.md"
   ACCEPTANCE_IDS: [D2R-01..D2R-12, D2A-01..D2A-14]
-  ORACLE_SOURCE: "owner requirements + reviewed governance policy; never current implementation behavior"
+  ORACLE_AUTHORITY_CLASS: COMPOSITE_APPROVED_AUTHORITIES
+  ORACLE_SOURCE: "owner requirements + reviewed governance policy"
+  TEST_CHANGE_CLASS: NONE
+  TEST_CHANGE_AUTHORITY: "not applicable; this workflow adds governance checks without redefining product behavior"
   VIEWPOINTS: [business_outcome, negative_failure, recovery, independence, freshness, knowledge_hygiene, environment_provenance]
   POSITIVE_CASES: "cold start, auto-continue, policy promotion, environment capture, test routing"
   NEGATIVE_CASES: "stale version, stale lane cache, code-derived oracle, repeated deadlock, obsolete active rule, wrong tool environment"

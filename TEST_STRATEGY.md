@@ -41,7 +41,10 @@ TEST_CONTRACT:
   BUSINESS_GOAL:
   TEST_BASIS:
   ACCEPTANCE_IDS:
+  ORACLE_AUTHORITY_CLASS: OWNER_REQUIREMENTS|REVIEWED_CONTRACTS|ACCEPTANCE_MATRIX|REVIEW_FINDINGS|VALIDATION_SPEC|COMPOSITE_APPROVED_AUTHORITIES
   ORACLE_SOURCE:
+  TEST_CHANGE_CLASS: NONE|APPROVED_BEHAVIOR_CHANGE|TEST_DEFECT|HARNESS_DEFECT|ENVIRONMENT_DEFECT|IMPLEMENTATION_DEFECT|DESIGN_GAP
+  TEST_CHANGE_AUTHORITY:
   VIEWPOINTS:
   POSITIVE_CASES:
   NEGATIVE_CASES:
@@ -54,7 +57,7 @@ TEST_CONTRACT:
   PASS_DOES_NOT_MEAN:
 ```
 
-`ORACLE_SOURCE` must identify requirements/contracts/review evidence. It must never say “current code behavior”.
+`ORACLE_AUTHORITY_CLASS` is the machine-enforced authority category. `ORACLE_SOURCE` names the exact human-reviewable requirements/contracts/review evidence. Neither may use current implementation/source output as authority.
 
 ## Changing tests when business changes
 

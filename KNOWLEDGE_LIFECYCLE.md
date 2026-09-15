@@ -45,11 +45,13 @@ Outdated rules must not remain mixed with active rules “for context”. Preser
 
 Reusable learning starts in `PROJECT_MEMORY.md`. When repeated, safety-critical or broadly useful, promote it into the owning policy/tool and leave only a compact provenance pointer in active memory.
 
+A compact provenance pointer is an index row that only names the lesson and its current policy owner; it is not a detailed active entry.
+
 Trigger knowledge compaction when any condition is met:
 
 - active memory exceeds 40 entries;
 - `PROJECT_MEMORY.md` exceeds 250 lines;
-- more than 20% of active-memory entries are already promoted/superseded;
+- more than 20% of **detailed active entries** are already promoted/superseded; compact provenance/index pointers are excluded from this ratio;
 - a milestone closes a large class of work;
 - a final audit finds duplicate/conflicting rules.
 
