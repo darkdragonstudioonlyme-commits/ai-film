@@ -9,30 +9,29 @@ USER: dragon
 ROOT: /home/dragon/ai-film-dev
 ```
 
-## Worktrees
+## Stable workspace roles
 
 ```text
 repo/         canonical GitHub control-plane clone
 source-dev8/  immutable historical dev8 baseline
 implement/    writable source lane, branch impl/p00
 review/       detached exact source review candidate
-docs-v2-design/  Documentation System V2 design worktree; current activity is determined by PROJECT_STATE/lane state
-docs-v2-review/  V2 detailed-review worktree; may be retained after governance for audit history
-docs-v2-audit/   V2 holistic-audit worktree; may be retained after governance for audit history
-docs-design/     historical V1 design worktree; not active
-docs-review/     historical V1 review worktree; not active
 artifacts/    exact delivery ZIPs
 run-evidence/implement/
 run-evidence/review/
 ```
 
+Documentation-governance worktrees are release-scoped and **not** stable standing paths. Resolve the active DESIGN/REVIEW/AUDIT branch and optional local worktree from `PROJECT_STATE.md:DOCUMENTATION_GOVERNANCE` or the explicit governance run. Retained historical documentation worktrees may exist, but their directory names do not make them active.
+
+Historical V1 worktrees, if present, are not active policy.
+
 ## Workflow-state ownership
 
-Worktree existence does not mean its workflow is active. Current workflow/lane activity is owned by `PROJECT_STATE.md` plus freshly fetched lane state. This file records only local workspace purpose/capability.
+Worktree existence does not mean its workflow is active. Current workflow/lane activity is owned by `PROJECT_STATE.md` plus freshly fetched lane state. This file records only stable local workspace purpose/capability.
 
 ## Source-state ownership
 
-This file intentionally does **not** pin current delivery versions, source commit SHAs, WIP dirty files, review target or test counts. Those mutable facts are owned by `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and freshly fetched lane state.
+This file intentionally does **not** pin current delivery versions, source commit SHAs, WIP dirty files, review target, package hash, source-visibility snapshot or test counts. Those mutable facts are owned by `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and freshly fetched lane state.
 
 Before source work:
 
@@ -43,7 +42,7 @@ git -C /home/dragon/ai-film-dev/implement status --short --branch
 git -C /home/dragon/ai-film-dev/review status --short --branch
 ```
 
-Direct WSL HTTPS push is currently not configured for unattended use; connected GitHub tools persist remote control-plane state. If that capability changes, update this workspace/tooling fact but still keep mutable candidate identity in `PROJECT_STATE.md`.
+Direct WSL HTTPS push is currently not configured for unattended use; connected GitHub tools persist remote control-plane state. If that capability changes, update this workspace/tooling fact but still keep mutable candidate identity and source-visibility state in canonical/lane state rather than here.
 
 ## Lane helpers
 
@@ -60,11 +59,12 @@ Current Python environment is `/home/dragon/ai-film-dev/.venv` (Python 3.12, no 
 ## Bootstrap safety
 
 1. Pull/fetch the canonical repo first.
-2. Fresh-fetch relevant lane refs; do not trust cached `origin/lane/*` state.
-3. Check selected worktree `git status` before checkout/reset.
-4. If WIP is documented, preserve it.
-5. REVIEW must remain detached at exact handed-off commit.
-6. Test helpers keep lane evidence separate and restore tracked generated evidence.
+2. Fresh-fetch relevant lane refs declared by canonical state; do not trust cached `origin/lane/*` state.
+3. Resolve release-scoped documentation governance lanes/worktrees from state; never infer active governance from retained directory names.
+4. Check selected worktree `git status` before checkout/reset.
+5. If WIP is documented, preserve it.
+6. REVIEW must remain detached at exact handed-off commit/identity.
+7. Test helpers keep lane evidence separate and restore tracked generated evidence.
 
 No plaintext GitHub credentials are stored in this workspace.
 
