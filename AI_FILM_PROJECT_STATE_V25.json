@@ -1,0 +1,33 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 25,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "documentation_system": "DOCSYS-V2-R6",
+  "current_review_candidate": {
+    "version": "0.1.0.dev19",
+    "source_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "package_sha256": "564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1",
+    "package_size_bytes": 1165317,
+    "manifest_sha256": "dbb940526db699e6810ee5f8844e00b1cba22c3843f2667479daad91c303211e",
+    "source_digest": "2271c07575e4217dabde324c7de0d35a1188c965d32f1aee38648d44d35873c4",
+    "test_digest": "8deb2d74dc098ad161557773382afb54293dc0ea4e59b95fe6b591fc7d803fdb",
+    "author_tests": 759,
+    "static_checks": 100,
+    "remote_artifact_store": "PENDING_TOOL_CAPABILITY"
+  },
+  "findings": {
+    "CR-P00-001": "OPEN_BLOCKER",
+    "CR-P00-012": "FIXED_PENDING_REVIEW_DEV19",
+    "CR-P00-013": "CLOSED_DEV18",
+    "CR-P00-014": "FIXED_PENDING_REVIEW_DEV19"
+  },
+  "test_change": "TEST_CHANGE-P00-DEV19-HARNESS-002",
+  "workflow_health": "RECOVERING",
+  "active_workflow": "WF-P00-REVIEW-DEV19",
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}

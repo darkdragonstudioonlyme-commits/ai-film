@@ -1,42 +1,38 @@
-# NEXT WORK ITEM — dev19 remediation after dev18 review
+# NEXT WORK ITEM — Independent dev19 delta review
 
 ```yaml
-WORKFLOW_ID: WF-P00-IMPL-DEV19-REVIEW-FIX
-LANE: IMPLEMENT
+WORKFLOW_ID: WF-P00-REVIEW-DEV19
+LANE: REVIEW
 STATUS: READY
 MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
-WORK_ITEM: IMPL-P00-001
-INPUT_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
-GOAL: "Correct CR-P00-012/014 using the existing authority model; preserve accepted CR-P00-013 behavior."
-SUCCESS_OUTPUT: "Exact dev19 candidate with production-compatible collector provenance + independently reviewable tests."
-ON_SUCCESS: WF-P00-REVIEW-DEV19
-ON_FAIL: WF-P00-IMPL-DEV19-REVIEW-FIX
-ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
+WORK_ITEM: CODE-REVIEW-P00-001-DEV19-DELTA
+INPUT_IDENTITY:
+  CANDIDATE_ID: IMPL-P00-001-DEV19
+  SOURCE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V19.zip
+  PACKAGE_SIZE_BYTES: 1165317
+  PACKAGE_SHA256: 564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1
+  MANIFEST_SHA256: dbb940526db699e6810ee5f8844e00b1cba22c3843f2667479daad91c303211e
+  SOURCE_DIGEST: 2271c07575e4217dabde324c7de0d35a1188c965d32f1aee38648d44d35873c4
+  TEST_DIGEST: 8deb2d74dc098ad161557773382afb54293dc0ea4e59b95fe6b591fc7d803fdb
+  AUTHOR_TESTS: "759 PASS"
+  STATIC_CHECKS: "100 PASS"
+GOAL: "Independently verify dev19 CR-P00-012/014 remediation while preserving closed CR-P00-013 behavior."
+SUCCESS_OUTPUT: "Immutable review + TEST_REVIEW verdict bound to exact dev19 candidate."
+ON_SUCCESS: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
+ON_FAIL: WF-P00-IMPL-DEV20-REVIEW-FIX
 ```
 
-## Required implementation order
+## Required REVIEW
 
-1. Preserve exact dev18 commit/package/review records; start dev19 from clean `f680067c...`.
-2. Re-read D00-14 evidence-record semantics and `native/proofs.py` collector/measurement authority split before editing.
-3. Do **not** add or depend on `collector_release.contract_digest` unless a genuine reviewed contract requires it; if so, create DESIGN_GAP instead of silently changing authority schema.
-4. Bind exact approved contract at the existing suite/causal evidence record boundary and bind collector release to exact reviewed build. If an explicit contract field is added to harness causal records, it must be suite-bound and covered by raw/content-addressed provenance where applicable.
-5. Restore test collector fixtures to the production authority shape. Add regression showing a production-shaped reviewed collector is accepted under a valid contract-bound suite and wrong build/contract provenance is still rejected at the correct boundary.
-6. Preserve all accepted CR-P00-013 stage-window/continuity/procedure-owned route-binding behavior and T07-H mapping.
-7. Run targeted tests, then full author regression/static checks under V2 test governance. Create a new TEST_CHANGE/TEST_REVIEW cycle; do not reuse the failed dev18 test review as PASS evidence.
-8. Diff/secret/inventory audit, commit exact dev19, package from exact commit, then immutable handoff to REVIEW.
+1. Checkout detached exact `2ac37ac...`; verify package SHA/size/manifest and member hashes.
+2. Independently rerun workspace/static checks.
+3. Verify a production-shaped `collector_release` without `contract_digest` is accepted under a valid contract-bound suite.
+4. Verify wrong collector build rejects at collector authority; wrong suite contract rejects at suite/contract authority.
+5. Re-run CR-P00-013 continuity/window/route-binding/T07-H regression to ensure dev19 did not reopen it.
+6. Review dev18→dev19 diff against D00-14 and `native/proofs.py` authority split; search for new provenance/schema gaps.
+7. Review `TEST_CHANGE-P00-DEV19-HARNESS-002` independently; implementation code cannot define fixture authority.
+8. Ensure REVIEW source remains clean; persist review/test-review records.
 
-## Review findings
-
-- `CR-P00-012`: OPEN — dev18 remediation uses unsupported collector-release contract field.
-- `CR-P00-013`: CLOSED on dev18 — preserve its behavior.
-- `CR-P00-014`: OPEN HIGH — author fixture diverged from production authority schema and produced false-green coverage.
-- `CR-P00-001`: OPEN umbrella author-completeness blocker.
-
-## Forbidden
-
-- change FD/D00/public contract merely to make dev18 approach legal;
-- update tests to mirror implementation-specific authority fields without upstream authority;
-- reopen/loosen accepted CR-P00-013 behavior;
-- treat author tests as native proof;
-- patch source in REVIEW.
+If delta PASS, close CR-P00-012/014, keep CR-P00-013 closed, mark workflow-health incident recovered, and route immediately to residual CR-P00-001 author-completeness audit. Overall CODE_REVIEW_PASS remains false until that umbrella blocker closes.
