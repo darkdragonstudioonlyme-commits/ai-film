@@ -4,29 +4,67 @@ This repository is the persistent cross-chat project ledger for AI-FILM-SERVER.
 
 ## 1. Durable-increment rule
 
-A meaningful increment is not durable until all applicable source/tests/evidence/docs and exact delivery artifacts have been persisted and independently verified.
+A meaningful increment is not durable until applicable source/tests/evidence/docs and exact artifacts are persisted and independently verified.
 
 ```text
 VERIFY CURRENT REMOTE + EXACT SOURCE/ARTIFACT
-→ WORK IN ONE ACTIVE MODE ONLY
+→ SELECT ONE EXECUTION LANE
+→ WORK WITHIN THAT LANE'S PERMISSIONS
 → TARGETED TEST / EVIDENCE
 → DELIVERY-BOUNDARY REGRESSION WHEN APPLICABLE
 → DOCUMENTATION SYNC GATE
-→ DIFF REVIEW
-→ SECRET SCAN
+→ DIFF REVIEW / SECRET SCAN
 → PERSIST EXACT ARTIFACT IF PRODUCED
-→ COMMIT/PUSH GIT STATE/SOURCE/DIFFS
+→ COMMIT/PUSH LANE + CANONICAL STATE AS REQUIRED
 → VERIFY ARTIFACT HASH + REMOTE GIT
 → ONLY THEN CONTINUE
 ```
 
-## 2. Persistence roles
+## 2. Two independent execution lanes
 
-- **GitHub `darkdragonstudioonlyme-commits/ai-film`**: canonical current state, living memory, workflow, next-work, reviewable source/diffs that can be written reliably, and commit history.
-- **Byte-preserving artifact store**: exact packaged delivery bytes when a binary artifact is produced. Current store: connected Google Drive.
-- **Cryptographic identity in Git**: every external exact artifact must be referenced by stable file ID/name, byte size, and SHA-256 in Git documentation/state.
+The project now has two operationally independent lanes. Full rules are in `EXECUTION_LANES.md`.
 
-A binary artifact is not considered persisted merely because upload succeeded. Required pattern:
+### IMPLEMENT
+
+```text
+remote branch: lane/implement-p00
+WSL worktree:  /home/dragon/ai-film-dev/implement
+source branch: impl/p00
+```
+
+IMPLEMENT may change source/tests/docs, create author commits and packages, and fix review findings. It cannot issue CODE_REVIEW verdicts.
+
+### REVIEW
+
+```text
+remote branch: lane/review-p00
+WSL worktree:  /home/dragon/ai-film-dev/review
+source mode:   detached exact candidate
+```
+
+REVIEW may inspect/retest an immutable candidate and write findings/verdicts. It must not patch source.
+
+`main` remains the canonical project mode/gate ledger. Parallel lanes do not create parallel gate authority.
+
+## 3. Immutable handoff rule
+
+IMPLEMENT never hands REVIEW a mutable directory or branch head by implication. Every candidate handoff must bind exact source commit SHA, delivery/package SHA-256, artifact ID, source/test digests, author-test result, contract digest, changed scope, known findings, and handoff-readiness flags.
+
+REVIEW must verify target identity before work. REVIEW never follows IMPLEMENT branch head automatically.
+
+A REVIEW→IMPLEMENT finding must bind the exact reviewed candidate and include severity, evidence, impact, required disposition and status.
+
+## 4. Persistence roles
+
+- **GitHub `main`**: canonical project state, living memory, next work, workflow, review history and lane pointers.
+- **`lane/implement-p00`**: implementation-lane operational state.
+- **`lane/review-p00`**: review-lane operational state.
+- **Byte-preserving artifact store**: exact packaged delivery bytes; current store is connected Google Drive.
+- **WSL local Git worktrees**: source authoring/review isolation; local commits alone are not remote approval.
+
+Every external exact artifact must be referenced by file ID/name, size and SHA-256.
+
+## 5. Binary artifact verification
 
 ```text
 UPLOAD FILE REFERENCE / RAW BYTES
@@ -36,100 +74,91 @@ UPLOAD FILE REFERENCE / RAW BYTES
 → RECORD STORE ID + SIZE + HASH IN GIT
 ```
 
-## 3. Canonical documentation roles
+Upload success alone is not identity proof.
 
-| File | Primary responsibility |
+## 6. Canonical documentation roles
+
+| File | Responsibility |
 |---|---|
-| `PROJECT_STATE.md` | Current operational truth |
-| `NEXT_WORK_ITEM.md` | Exact next executable work |
-| `PROJECT_MEMORY.md` | Reusable discoveries/optimizations/tooling/risk/testing/process knowledge |
-| `GIT_WORKFLOW.md` | Standing persistence and automatic documentation-sync protocol |
-| `CHAT_HANDOFF.md` | Compact bootstrap template |
-| `SOURCE_IMPORT_STATUS.md` | Source/binary recovery-anchor status and procedure |
-| `AI_FILM_STATE_CHECKPOINT_Vn.md` + JSON | Immutable milestone snapshots |
-| Git commits/diffs | Reviewable source/document change history |
+| `PROJECT_STATE.md` | Global current truth and gate state |
+| `NEXT_WORK_ITEM.md` | Current implementation queue and lane disposition |
+| `EXECUTION_LANES.md` | Lane isolation/handoff protocol |
+| `PROJECT_MEMORY.md` | Reusable discoveries/optimizations/risks/lessons |
+| `GIT_WORKFLOW.md` | Standing persistence protocol |
+| `WORKSPACE_WSL.md` | Local WSL paths/helpers/baselines |
+| `reviews/*` | Immutable review records/findings |
+| `deliveries/*` | Exact delivery identity records |
+| `AI_FILM_STATE_CHECKPOINT_Vn.*` | Immutable milestone snapshots |
+| lane branch `LANE_STATE.md` | Lane-specific current state |
 
-Do not duplicate mutable state unnecessarily. Historical checkpoints are not current truth.
+Historical checkpoints are not current truth.
 
-## 4. Automatic Documentation Sync Gate
+## 7. Automatic Documentation Sync Gate
 
-Before a meaningful increment is durable, evaluate without waiting for the user:
+Before a meaningful increment is durable, update without waiting for the user:
 
-| Trigger | Mandatory persistent update |
+| Trigger | Persistent update |
 |---|---|
-| mode/phase/baseline/gate/blocker/test/review status changed | `PROJECT_STATE.md` |
-| exact next scope/order changed | `NEXT_WORK_ITEM.md` |
-| reusable optimization, discovery, tooling behavior, failure pattern, risk, clarification | `PROJECT_MEMORY.md` |
-| persistence/document workflow improved | `GIT_WORKFLOW.md` + `PROJECT_MEMORY.md` |
-| implementation progress changed | implementation status/remaining/traceability/evidence docs as applicable |
-| source/artifact recovery status changed | `SOURCE_IMPORT_STATUS.md` + state/task docs |
-| finding/validation failure changed | correct review/validation artifact + state |
-| milestone or gate transition | new immutable checkpoint MD + JSON |
+| global mode/phase/baseline/gate/blocker/test/review changed | `PROJECT_STATE.md` |
+| next implementation scope/order changed | `NEXT_WORK_ITEM.md` |
+| lane status/candidate changed | selected lane's `LANE_STATE.md` + global pointer if material |
+| reusable optimization/discovery/tooling/failure/risk | `PROJECT_MEMORY.md` |
+| lane/workflow policy changed | `EXECUTION_LANES.md` / `GIT_WORKFLOW.md` + memory |
+| WSL environment/layout changed | `WORKSPACE_WSL.md` |
+| implementation progress changed | implementation/remaining/traceability docs |
+| review finding/verdict changed | review artifact + state |
+| milestone/gate transition | new checkpoint MD + JSON |
 
-**No silent knowledge:** if a fresh chat would lose information that prevents duplicated work, a wrong decision, a repeated failure, wasted investigation, or safety/reproducibility regression, documentation sync is incomplete.
+**No silent knowledge:** if a new chat would lose a fact that prevents duplicated work, wrong decisions, repeated failure or safety/reproducibility regression, documentation sync is incomplete.
 
-## 5. Evidence discipline
+## 8. Evidence discipline
 
-Every persistent claim must remain classified as one of:
+Persistent claims remain classified as observed/tested fact, reviewed decision, inference/hypothesis, proposed optimization, or unresolved blocker. Markdown is not evidence by itself. Author workspace tests are not Windows/WSL/LAB/SITE proof.
 
-- observed/tested fact;
-- reviewed/approved decision;
-- inference/hypothesis;
-- proposed optimization;
-- unresolved blocker.
+## 9. IMPLEMENT commit sequence
 
-Writing a claim into Markdown does not make it evidence. Author workspace tests are not Windows/WSL/LAB/SITE proof.
+1. Verify `main`, IMPLEMENT lane state and exact base candidate.
+2. Work only in `/home/dragon/ai-film-dev/implement` / branch `impl/p00`.
+3. Run targeted tests.
+4. At delivery boundary run full author regression/static checks.
+5. Documentation Sync Gate.
+6. Review diff and secret-scan.
+7. Commit local source increment.
+8. Package exact candidate if applicable; upload + raw re-download/hash verify.
+9. Persist delivery/handoff/state records.
+10. Verify remote state before next increment.
 
-## 6. Commit/delivery sequence
+## 10. REVIEW sequence
 
-1. Verify current `main` and canonical state.
-2. Verify exact current source/artifact identity.
-3. Work only in the active mode/work-item scope.
-4. Run targeted author tests/evidence collection.
-5. At a delivery boundary run full required author regression/static checks.
-6. Run Documentation Sync Gate.
-7. Review diff for unrelated changes or reviewed-contract drift.
-8. Secret-scan all material intended for Git/artifact persistence.
-9. If producing a binary delivery package, upload through a byte-preserving file-reference/raw-file action and raw-re-download/hash-verify it.
-10. Commit/push GitHub source/state/docs/diffs that can be verified reliably.
-11. Re-fetch/verify remote commit and relevant files.
-12. Record external artifact identity in Git state/checkpoint.
-13. Only then begin the next coherent increment.
+1. Read canonical state + REVIEW lane state.
+2. Verify immutable candidate source commit/package SHA.
+3. Ensure REVIEW worktree is detached at that exact commit.
+4. Re-read requirements and diff; search failure scenarios/negative cases first.
+5. Run review-safe tests/scenarios without patching source.
+6. Write findings/verdict bound to exact candidate.
+7. Update REVIEW lane state to verdict / waiting-for-next-candidate.
+8. Update canonical state/checkpoint if project status changes.
+9. Verify source worktree remained unchanged.
 
-## 7. Binary/tooling safety
+## 11. Branch/history policy
 
-Do not send a large binary archive through model-rendered text and call it exact. GitHub `create_blob(base64)` can be used only with per-blob identity verification; small 4 KiB chunks were proven exact during bootstrap, while larger/model-rendered payloads were not consistently safe. Prefer file-native connector operations.
+`main` is not an implementation scratch branch. The lane branches are operational ledgers, and source authoring occurs in the local `impl/p00` worktree until exact source mirroring/push is intentionally supported.
 
-Unreferenced experimental Git blobs are not project state. Never attach an unverified blob/tree to the canonical branch.
+Do not force-push or rewrite published history by default. REVIEW candidates are immutable; create a new candidate rather than editing the reviewed one.
 
-## 8. Branch and history policy
+## 12. CODE_REVIEW boundary
 
-Current workflow uses `main` directly because this is a single-user implementation flow. Do not force-push or rewrite published history by default.
+Formal `CODE_REVIEW_PASS` requires an exact immutable candidate with `AUTHOR_COMPLETE=true` and `CODE_REVIEW_HANDOFF_READY=true`. Early review may produce findings before that, but cannot pass the full gate.
 
-If parallel contributors, protected branches, CI requirements, or mandatory PRs are introduced later, record that as an explicit workflow change and update this file plus `PROJECT_MEMORY.md`.
+Implementation commits/artifact uploads never self-approve code. REVIEW cannot patch code during review.
 
-## 9. CODE_REVIEW boundary
+## 13. Cross-chat bootstrap
 
-`CODE_REVIEW_PASS` may only be produced in CODE_REVIEW mode against the exact committed/addressable candidate. Before `CODE_REVIEW_HANDOFF_READY=true`:
-
-- exact candidate source/diff must be reviewable;
-- exact binary package, if used, must have a verified artifact identity;
-- state/traceability/tests must refer to the same candidate;
-- no hidden source-materialization blocker may prevent independent review.
-
-Implementation commits/artifact uploads never self-approve code.
-
-## 10. Cross-chat bootstrap
-
-A new chat should:
-
-1. read `PROJECT_STATE.md`;
-2. read `NEXT_WORK_ITEM.md`;
-3. read Active Memory Index/relevant `PROJECT_MEMORY.md` entries;
-4. verify current GitHub `main` head;
-5. read this workflow before persistent changes;
-6. use `SOURCE_IMPORT_STATUS.md` to recover the exact binary/source baseline when needed;
-7. verify artifact hashes before extraction/modification;
-8. read current approved contracts/source docs needed by the work item.
-
-Do not reconstruct an exact baseline from conversation prose when a verified artifact exists.
+1. Read `PROJECT_STATE.md`.
+2. Read `NEXT_WORK_ITEM.md`.
+3. Read `EXECUTION_LANES.md`.
+4. Choose IMPLEMENT or REVIEW from the requested task.
+5. Read that remote branch's `LANE_STATE.md`.
+6. Read relevant `PROJECT_MEMORY.md` entries and `WORKSPACE_WSL.md`.
+7. Verify exact candidate/source identity before work.
+8. Never mix lane permissions in one work increment.
