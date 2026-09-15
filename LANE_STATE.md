@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: IMPLEMENT-P00
 LANE_ROLE: IMPLEMENT
-STATUS: CANDIDATE_HANDED_OFF
+STATUS: ACTIVE_NEXT_INCREMENT
 GLOBAL_MODE: IMPLEMENTATION
 GLOBAL_WORK_ITEM: IMPL-P00-001
 REMOTE_BRANCH: lane/implement-p00
@@ -14,23 +14,21 @@ CURRENT_DELIVERY: 0.1.0.dev13
 SOURCE_WRITABLE: true
 REVIEW_WRITABLE: false
 
-LATEST_CANDIDATE:
-  ID: IMPL-P00-001-DEV13
-  VERSION: 0.1.0.dev13
-  SOURCE_COMMIT: 237f3682c3745d635d75c826716ed925b676f41c
-  PACKAGE: IMPL-P00-001_IMPLEMENTATION_PACKAGE_V13.zip
-  PACKAGE_LOCATION: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V13.zip
-  PACKAGE_SIZE_BYTES: 1127303
-  PACKAGE_SHA256: b1e77cde3a957d343689a72d93ef456d828d31c85c852fabc5a95e5bfac3d584
-  MANIFEST_SHA256: 27f8d5fd1895ce58b4a729df96b2ff3d36f4a97b70612f7ab13e5071f52a7c4e
-  SOURCE_CONTENT_DIGEST: 0ab6150e91aceecc906a4af0eb0db00506f16059d9e343647a9b82233d27bdff
-  TEST_CONTENT_DIGEST: 78c74835c7b52c4b22ca773a7c1d507a422b24c0ebc8cd52ab7da3433761e90f
-  AUTHOR_TESTS: "729 PASS / 0 failure / 0 error / 0 skip"
-  STATIC_CHECKS: "95 PASS"
-  FINDING_TARGETED: CR-P00-006
-  CR_P00_001: OPEN
-  AUTHOR_COMPLETE: false
-  CODE_REVIEW_HANDOFF_READY: false
+LAST_HANDOFF:
+  CANDIDATE: IMPL-P00-001-DEV13
+  DELTA_REVIEW: PASS
+  FINDING_CLOSED: CR-P00-006
+  OPEN_FINDING: CR-P00-001
+
+NEXT_INCREMENT: "reviewed non-DIRECT transport support"
 ```
 
-Dev13 preserves dev12 staged E16/E17 recovery and rejects a pre-existing approved final output before accepting a no-archive outcome. REVIEW must inspect exact commit `237f368...`.
+## Immediate queue
+
+1. Read exact Design/Acceptance transport contexts and current `native/network.py`/bindings/terminal evidence.
+2. Implement only reviewed non-DIRECT transport contexts; do not invent firewall/proxy bypasses or source-host policy changes.
+3. Bind effective transport context to exact profile/plan and actual proxy/network observations.
+4. Add positive/negative author tests for DIRECT and each reviewed non-DIRECT branch, ambiguity, missing policy, wrong context and proxy/security weakening.
+5. Full regression/static checks → immutable candidate → REVIEW lane.
+
+CR-P00-001 remains open until full source/harness/docs/test completion.
