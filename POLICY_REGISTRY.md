@@ -28,6 +28,7 @@ Git history and immutable review records preserve history. Active docs should re
 | POL-ENV-001 | environment | model-evaluation | 2026-09-15 | material benchmark environment change | benchmark/model claims bind an exact environment snapshot | `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` |
 | POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling changes | exact identity + remote/artifact verification before durability | `GIT_WORKFLOW.md` |
 | POL-RECOVERY-001 | recovery | project-control | 2026-09-15 | recovery failure/state-loss incident | preserve WIP/evidence before repair; never guess current truth | `RECOVERY_PLAYBOOK.md` |
+| POL-CONTINUITY-001 | continuity | project-control | 2026-09-15 | interruption/duplicate-work incident | one logical RUN_ID; write-ahead step INTENT/COMPLETE; reconcile and reuse exact outputs | `WORKFLOW_CONTINUITY.md` |
 
 For non-ACTIVE policies, registry rows additionally identify `STATUS`, `SUCCESSOR`, and removal/migration condition. Review dates may be event-driven; when a calendar review is required add `REVIEW_DUE` explicitly.
 

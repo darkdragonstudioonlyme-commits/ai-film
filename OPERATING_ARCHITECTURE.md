@@ -41,8 +41,13 @@ No workflow trusts another workflow's self-declared PASS. Consumers verify immut
 - policy registry answers **which operating rules are active**;
 - memory answers **what reusable lessons were learned**;
 - environment answers **where measurements are valid**;
-- recovery answers **how to return to trusted state**.
+- recovery answers **how to return to trusted state**;
+- continuity answers **which logical run/step already exists and how to resume without duplicate work**.
 
 ## Trust rule
 
 A label such as PASS, COMPLETE, REVIEWED or CURRENT has no authority without the identity/evidence contract owned by that workflow.
+
+## Continuity plane
+
+Lane run ledgers provide write-ahead operational continuity below global gate state. They can prove an in-flight producer output is ahead of `main`, but they cannot grant review/validation/gate authority.

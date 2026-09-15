@@ -6,11 +6,11 @@ This is the deterministic routing policy for a fresh chat. It exists so a user c
 
 ```text
 fetch origin/main + relevant lane refs
-→ run runtime-state reconciliation when the prepared WSL workspace exists
-→ read PROJECT_STATE
+→ read PROJECT_STATE + owning LANE_STATE
+→ if ACTIVE_RUN_ID exists, read its workflow-runs ledger first
+→ run workflow-continuity + runtime-state reconciliation
 → read NEXT_WORK_ITEM
 → verify local selected worktree identity/status if used
-→ read selected lane LANE_STATE
 → evaluate WORKFLOW_HEALTH triggers
 → route
 ```
@@ -27,18 +27,20 @@ A workflow output is trusted only through its declared immutable output contract
 
 Use the first matching rule:
 
-1. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
-2. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
-3. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
-4. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
-5. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
-6. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
-7. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
-8. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
-9. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-10. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
-11. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
-12. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+1. **Active RUN_ID is not COMPLETE** → resume/reconcile that same run via `WORKFLOW_CONTINUITY.md`; never create a duplicate run for the same workflow/base.
+2. **INTENT exists without COMPLETE or producer output is ahead of canonical state** → classify `CONTINUITY_RECOVERY`; verify/adopt exact output before rerunning any step.
+3. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
+4. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
+5. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
+6. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
+7. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
+8. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
+9. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
+10. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
+11. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
+12. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
+13. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
+14. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
 
 ## 4. Block protocol
 
@@ -98,12 +100,14 @@ Review and validation do not patch production source in-place.
 Every active work item should expose in `NEXT_WORK_ITEM.md`:
 
 ```yaml
+RUN_ID:
 WORKFLOW_ID:
 LANE:
 STATUS:
 INPUT_IDENTITY:
 GOAL:
 STEPS:
+CURRENT_STEP:
 SUCCESS_OUTPUT:
 ON_SUCCESS:
 ON_FAIL:
@@ -128,3 +132,7 @@ preserve WIP/evidence
 ```
 
 Repeated failure is information about the workflow itself; do not merely increase patch count.
+
+## 10. Interruption invariant
+
+Chat timeout, model/tool disconnect or execution-window exhaustion never starts a replacement workflow. Persist/recover the same `RUN_ID`; see `WORKFLOW_CONTINUITY.md`.

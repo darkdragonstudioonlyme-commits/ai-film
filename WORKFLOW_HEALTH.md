@@ -22,7 +22,9 @@ Any one of these requires at least a health assessment; repeated/severe cases fo
 - workflow waits on another lane whose input/output contract is ambiguous;
 - WIP cannot be safely resumed by a fresh chat;
 - documentation/policy grows while active guidance becomes harder to identify;
-- repeated flaky/timeout/OOM behavior is treated with retries instead of root-cause isolation.
+- repeated flaky/timeout/OOM behavior is treated with retries instead of root-cause isolation;
+- a completed expensive/material step is repeated after interruption although its exact output identity was recoverable;
+- two active RUN_IDs exist for the same workflow/base, or a new chat restarts work instead of adopting the active run.
 
 ## Meta-review procedure
 
@@ -63,6 +65,9 @@ Track trends, not vanity counts:
 - blocker/high findings opened vs closed;
 - repeated finding rate;
 - WIP recovery success from cold start;
+- interruption resume-without-rework rate;
+- duplicate logical-run count;
+- repeated completed-step count after timeout;
 - state-drift incidents;
 - test flake/retry rate;
 - documentation checker/audit failures;

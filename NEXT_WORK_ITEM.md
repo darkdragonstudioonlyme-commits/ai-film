@@ -1,29 +1,36 @@
-# NEXT WORK ITEM — residual CR-P00-001 author-completeness audit
+# NEXT WORK ITEM — resume interrupted dev20 author-candidate handoff
 
 ```yaml
+RUN_ID: RUN-P00-CR001-001
 WORKFLOW_ID: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
 LANE: IMPLEMENT
-STATUS: READY
+STATUS: RECOVERING
 MODE: IMPLEMENTATION
 PHASE: "00 — Host / WSL"
 WORK_ITEM: IMPL-P00-001
-INPUT_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
-GOAL: "Determine actual remaining reviewed Phase00 implementation scope and close every genuine source/harness/docs/test gap before AUTHOR_COMPLETE."
-SUCCESS_OUTPUT: "Evidence-backed residual gap inventory with either zero implementation gaps or exact next implementation increment(s)."
-ON_SUCCESS: WF-P00-FINAL-AUTHOR-CANDIDATE
+INPUT_IDENTITY:
+  REVIEWED_BASE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  EXISTING_LOCAL_COMMIT: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
+GOAL: "Resume the existing dev20 logical run without repeating the completed residual audit/tests/commit; finish package/test-governance/handoff only after continuity governance is active."
+STEPS:
+  - S01_RESIDUAL_AUDIT: COMPLETE
+  - S02_FACTORY_COVERAGE_AND_DOC_RECONCILIATION: COMPLETE
+  - S03_FINAL_AUTHOR_REGRESSION: COMPLETE
+  - S04_SECRET_DIFF_INVENTORY: COMPLETE
+  - S05_EXACT_SOURCE_COMMIT: COMPLETE
+  - S06_PACKAGE_DEV20: PENDING
+  - S07_TEST_REVIEW_DEV20: PENDING
+  - S08_IMMUTABLE_REVIEW_HANDOFF: PENDING
+CURRENT_STEP: S06_PACKAGE_DEV20
+SUCCESS_OUTPUT: "Exact dev20 package/test-governance/handoff bound to source commit 51c9d3f..., without rerunning completed steps whose identities still match."
+ON_SUCCESS: WF-P00-REVIEW-DEV20-FINAL
 ON_FAIL: WF-P00-IMPL-RESIDUAL-FIX
+ON_BLOCK: WORKFLOW_ROUTER_BLOCK_PROTOCOL
+EXIT_CONDITION: "Producer handoff is immutable and REVIEW can independently evaluate CR-P00-001; no native validation is claimed."
 ```
 
-## Audit method
+## Resume rule
 
-1. Re-read the exact reviewed contract set (`PHASE00_INFRA_DESIGN_V2`, Acceptance Matrix V2, Failure/Recovery V2, Evidence Register V2) and compare against production source paths, not stale remaining-work prose.
-2. Search explicit/implicit stubs: NOT_IMPLEMENTED, PARTIAL, TODO/FIXME, fail-closed placeholders, fixture-only seams, metadata-only tools, unreachable/unwired branches, missing production factory composition, unhandled recovery/publication states, incomplete authority/trust edges.
-3. Audit all 86 harness procedures for executable source completeness separately from native execution status; `NOT_RUN` is expected until VALIDATION.
-4. Audit production request/factory/session paths so author tests cannot pass only through synthetic lower ports that production never composes.
-5. Reconcile old `IMPL-REM-01…08` / blocker docs with actual source; retire stale items rather than carrying obsolete debt forward.
-6. For every suspected gap, cite exact contract requirement + source evidence and classify: IMPLEMENTATION_GAP, VALIDATION_ONLY, DOCUMENTATION_STALE, DESIGN_GAP, or CLOSED.
-7. If implementation gaps remain, create the smallest coherent increment and continue IMPLEMENTATION. If none remain, update author-completeness docs/evidence and create final immutable candidate for formal CODE_REVIEW.
+Before doing S06, verify local commit `51c9d3f...`, its tracked author report (`760 PASS`), static report (`101 PASS`) and dev20 secret/diff evidence. If exact identities still match, reuse them and do **not** repeat S01–S05. If an identity changed, rerun only the smallest affected step and record why in the same RUN_ID.
 
-## Constraints
-
-Do not execute native Windows/WSL/LAB/SITE validation during this audit. Do not convert `NOT_RUN` native cases into PASS. Do not lower acceptance or change reviewed contracts to eliminate a gap.
+Do not continue implementation during Documentation System R8 design/review/audit. After R8 promotion, return to this run record and current step.

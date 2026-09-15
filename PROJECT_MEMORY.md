@@ -32,6 +32,10 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260915-048 | REVIEW | Causal controller action→route binding belongs to the reviewed procedure authority/digest; post-run evidence may prove the mapping but must never choose it. | native harness procedure/review rule |
 | MEM-20260915-049 | TESTING | Security/authority test fixtures must mirror the production authority producer/schema; never invent fields solely to satisfy current implementation. | `TEST_STRATEGY.md` / workflow-health review |
 
+| MEM-20260915-050 | RECOVERY | Chat/tool timeout resumes the same RUN_ID via write-ahead step reconciliation; timeout never creates a replacement workflow. | `WORKFLOW_CONTINUITY.md` |
+| MEM-20260915-051 | PROCESS | Exact producer progress ahead of main is a distinct continuity state when a run ledger binds its base/output; do not erase it as generic drift. | continuity/runtime checker |
+| MEM-20260915-052 | GOVERNANCE | Workflow-instance schema in NEXT_WORK_ITEM must be machine-enforced, not prose-only. | docs checker / router |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

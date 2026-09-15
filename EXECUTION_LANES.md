@@ -55,6 +55,12 @@ MODEL-EVAL consumes an immutable environment ID, model identity, test-set identi
 
 `WORKFLOW_REVIEW` is activated by `WORKFLOW_HEALTH.md`. It may change process/test/documentation policy but cannot silently change product requirements. Systemic corrections require the appropriate independent reviewer before the original workflow resumes.
 
+## Active-run independence
+
+Each lane may own work independently, but each `(WORKFLOW_ID, BASE_IDENTITY)` has at most one active `RUN_ID`. `LANE_STATE.md` points to its lane-local `workflow-runs/<RUN_ID>.md`. A new chat takes over the same run after reconciliation; it never creates a second run because the previous chat ended.
+
+Review lanes never consume an IMPLEMENT step that is merely `INTENT`/local WIP. Only the immutable handoff step moves REVIEW to a new exact candidate.
+
 ## Handoff contract
 
 Every material producer→consumer handoff binds at least:

@@ -22,6 +22,15 @@ Read cold-start docs, fresh-fetch refs, run runtime reconciliation, then use `WO
 ### State/version drift
 Create `STATE_DRIFT`; do not pick the highest version string. Compare canonical state, fresh lane state, local HEAD/dirty set and artifact identity. Update the control plane through reviewed documentation governance.
 
+### Checker drift
+When canonical state + lane/worktree identities are internally valid but a checker fails because it expects an obsolete state shape/version/lifecycle marker, classify `CHECKER_DRIFT`. Preserve source/WIP, fix the checker through Documentation System governance, then return to the interrupted run. Never mutate valid project state merely to make an obsolete checker pass.
+
+### Chat/tool/execution-window interruption
+Use `WORKFLOW_CONTINUITY.md`. Fresh-fetch the owning lane, read `ACTIVE_RUN_ID`, and reconcile its current step. `INTENT` without `COMPLETE` means inspect `DONE_WHEN` and exact outputs before rerunning. A clean local commit or verified artifact ahead of `main` is `IN_FLIGHT_AHEAD_OF_CANONICAL` when the run ledger proves lineage; adopt it, do not restart from the older canonical candidate. Never use timeout age/TTL to abandon a run.
+
+### Local producer output ahead of canonical state
+If local HEAD/output is newer than `PROJECT_STATE`/lane snapshot, first determine whether the active run record binds it. Bound output → continuity recovery and canonical sync pending. Unbound output → ordinary `STATE_DRIFT` requiring investigation. Do not erase either case to make the checker green.
+
 ### Dirty WIP with older durable package
 Resume documented WIP in its owning lane. Do not reset merely because the last package is older.
 
@@ -41,6 +50,8 @@ Trigger `WORKFLOW_HEALTH.md` meta-review instead of repeating the same operation
 
 ```yaml
 RECOVERY_ID:
+RUN_ID:
+STEP_ID:
 FAILURE_CLASS:
 STATE_BEFORE:
 PRESERVED_ASSETS:

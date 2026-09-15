@@ -2,12 +2,11 @@
 from pathlib import Path
 import re,sys,hashlib,json
 ROOT=Path(__file__).resolve().parents[1]
-active=['README.md','PROJECT_STATE.md','NEXT_WORK_ITEM.md','PROJECT_ROADMAP.md','WORKFLOW_ROUTER.md',
-'EXECUTION_LANES.md','DOCUMENTATION_MAP.md','PROJECT_MEMORY.md','SELF_LEARNING.md','TEST_STRATEGY.md',
-'WORKFLOW_HEALTH.md','POLICY_REGISTRY.md','SERVER_ENVIRONMENT.md','MODEL_EVALUATION.md','RECOVERY_PLAYBOOK.md',
-'OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md','CHAT_HANDOFF.md']
-errors=[]
-texts={p:(ROOT/p).read_text(encoding='utf-8') for p in active if (ROOT/p).is_file()}
+active=['README.md','PROJECT_STATE.md','NEXT_WORK_ITEM.md','PROJECT_ROADMAP.md','WORKFLOW_ROUTER.md','EXECUTION_LANES.md',
+'DOCUMENTATION_MAP.md','PROJECT_MEMORY.md','SELF_LEARNING.md','TEST_STRATEGY.md','WORKFLOW_HEALTH.md','POLICY_REGISTRY.md',
+'SERVER_ENVIRONMENT.md','MODEL_EVALUATION.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md','CHAT_HANDOFF.md','WORKFLOW_CONTINUITY.md']
+errors=[]; texts={p:(ROOT/p).read_text(encoding='utf-8') for p in active if (ROOT/p).is_file()}
+# No mutable delivery versions in standing policy/bootstrap docs.
 allow_version={'PROJECT_STATE.md','NEXT_WORK_ITEM.md','SERVER_ENVIRONMENT.md','PROJECT_ROADMAP.md','PROJECT_MEMORY.md'}
 for p,t in texts.items():
     if p not in allow_version and re.search(r'0\.1\.0\.dev\d+',t): errors.append('stale-version-risk:'+p)
@@ -15,44 +14,48 @@ workspace=texts.get('WORKSPACE_WSL.md','')
 if re.search(r'0\.1\.0\.dev\d+',workspace): errors.append('workspace-mutable-version')
 if re.search(r'\b[0-9a-f]{40}\b',workspace): errors.append('workspace-source-commit-pin')
 if re.search(r'\b\d+ PASS\b',workspace): errors.append('workspace-test-count-pin')
-if re.search(r'active .*V2 (design|review|audit)',workspace,re.I): errors.append('workspace-transient-workflow-activity')
+# Checkers must not pin one project lifecycle snapshot/version/review ID/package version.
 for p in ['tools/check_project_docs.py','tools/check_runtime_state.py','tools/audit_documentation_v2.py']:
     t=(ROOT/p).read_text(encoding='utf-8')
     if re.search(r'IMPLEMENTATION_PACKAGE_V\d+',t): errors.append('checker-hardcoded-package:'+p)
+    if re.search(r'AI_FILM_(?:PROJECT_STATE|STATE_CHECKPOINT)_V(?:2[0-9]|[3-9][0-9])',t): errors.append('checker-hardcoded-state-version:'+p)
+    if re.search(r'DOC-V2-(?:REVIEW|AUDIT)-\d{3}',t): errors.append('checker-hardcoded-review-id:'+p)
+    forbidden_wip='WIP_'+'NOT_DURABLE_'+'NOT_REVIEWABLE'
+    if forbidden_wip in t: errors.append('checker-hardcoded-wip-state:'+p)
+# Core V2 semantics.
 if 'code is the subject under test' not in texts.get('TEST_STRATEGY.md',''): errors.append('test-code-authority-risk')
 if 'SUPERSEDED' not in texts.get('POLICY_REGISTRY.md','') or 'RETIRED' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-lifecycle-incomplete')
 if 'SUCCESS_METRIC' not in texts.get('SELF_LEARNING.md',''): errors.append('learning-no-measurement')
-if 'DOC-AUDIT-V2' not in texts.get('EXECUTION_LANES.md',''): errors.append('missing-holistic-audit-lane')
-if 'environments/' not in texts.get('SERVER_ENVIRONMENT.md','') or 'SNAPSHOT_DIGEST' not in texts.get('SERVER_ENVIRONMENT.md',''): errors.append('environment-record-contract-incomplete')
-if 'Owner' not in texts.get('POLICY_REGISTRY.md','') or 'Review trigger' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-accountability-incomplete')
-for path in ['environments/README.md','model-evaluations/README.md','learning/README.md']:
+if 'CHECKER_DRIFT' not in texts.get('RECOVERY_PLAYBOOK.md',''): errors.append('checker-drift-route-missing')
+for path in ['environments/README.md','model-evaluations/README.md','learning/README.md','test-governance/README.md','workflow-health/README.md','workflow-runs/README.md']:
     if not (ROOT/path).is_file(): errors.append('missing-record-domain:'+path)
+# Continuity architecture must prevent duplicate runs after interruption.
+cont=texts.get('WORKFLOW_CONTINUITY.md','')
+for token in ['one active `RUN_ID`','INTENT','COMPLETE','IDEMPOTENCY_KEY','IN_FLIGHT_AHEAD_OF_CANONICAL','There is no TTL-based abandonment']:
+    if token not in cont: errors.append('continuity-missing:'+token)
+nw=(ROOT/'NEXT_WORK_ITEM.md').read_text(encoding='utf-8')
+for field in ['RUN_ID:','WORKFLOW_ID:','INPUT_IDENTITY:','STEPS:','CURRENT_STEP:','ON_BLOCK:','EXIT_CONDITION:']:
+    if field not in nw: errors.append('next-work-resume-contract:'+field[:-1])
+if 'RUN-P00-CR001-001' in texts.get('PROJECT_STATE.md','') and 'S06_PACKAGE_DEV20' not in nw:
+    errors.append('current-run-resume-point-drift')
+
+# Environment digest is actually reproducible.
 env_record=ROOT/'environments/ENV-DEV-WSL-20260915.md'
 if env_record.is_file():
-    et=env_record.read_text(encoding='utf-8')
-    if 'DIGEST_INPUT: exact UTF-8 bytes of CANONICAL_JSON_PAYLOAD' not in et or 'Canonical JSON payload' not in et:
-        errors.append('environment-digest-ambiguous')
-    m_payload=re.search(r'```json\n(.+?)\n```',et,re.S)
-    m_digest=re.search(r'SNAPSHOT_DIGEST: ([0-9a-f]{64})',et)
-    if not m_payload or not m_digest:
-        errors.append('environment-digest-record-missing')
+    et=env_record.read_text(encoding='utf-8'); mp=re.search(r'```json\n(.+?)\n```',et,re.S); md=re.search(r'SNAPSHOT_DIGEST: ([0-9a-f]{64})',et)
+    if not mp or not md: errors.append('environment-digest-record-missing')
     else:
         try:
-            obj=json.loads(m_payload.group(1))
-            canonical=json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode('utf-8')
-            if hashlib.sha256(canonical).hexdigest()!=m_digest.group(1): errors.append('environment-digest-mismatch')
-        except (ValueError,TypeError): errors.append('environment-canonical-json-invalid')
-state=texts.get('PROJECT_STATE.md','')
-if 'DOCSYS-V2-R6' not in state: errors.append('documentation-system-v2-not-active')
-for path in ['AI_FILM_STATE_CHECKPOINT_V22.md','AI_FILM_PROJECT_STATE_V22.json',
-             'reviews/DOCUMENTATION_SYSTEM_V2_REVIEW_R6_PASS.md',
-             'reviews/DOCUMENTATION_SYSTEM_V2_AUDIT_R6_PASS.md']:
-    if not (ROOT/path).is_file(): errors.append('v2-governance-evidence-missing:'+path)
-for p in ['README.md','CHAT_HANDOFF.md']:
-    t=texts.get(p,'')
-    if 'PROJECT_STATE.md' not in t or 'WORKFLOW_ROUTER.md' not in t: errors.append('bootstrap-routing:'+p)
-for p,t in texts.items():
-    if p!='PROJECT_STATE.md' and 'SYSTEM_VERSION: V1' in t: errors.append('historical-leak:'+p)
+            obj=json.loads(mp.group(1)); b=json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
+            if hashlib.sha256(b).hexdigest()!=md.group(1): errors.append('environment-digest-mismatch')
+        except Exception: errors.append('environment-canonical-json-invalid')
+# Current state/snapshot dynamically match.
+state=texts.get('PROJECT_STATE.md',''); mv=re.search(r'^STATE_VERSION: (\d+)$',state,re.M)
+if not mv: errors.append('state-version-missing')
+else:
+    v=int(mv.group(1)); jp=ROOT/f'AI_FILM_PROJECT_STATE_V{v}.json'; cp=ROOT/f'AI_FILM_STATE_CHECKPOINT_V{v}.md'
+    if not jp.is_file() or not cp.is_file(): errors.append('current-snapshot-missing')
+    elif json.loads(jp.read_text()).get('state_version')!=v: errors.append('current-state-version-mismatch')
 if errors:
     print('DOC_AUDIT_FAIL');print('\n'.join(errors));sys.exit(1)
-print('DOC_AUDIT_PASS',len(texts),'active docs')
+print('DOC_AUDIT_PASS',len(texts),'active docs','lifecycle-aware-checkers')

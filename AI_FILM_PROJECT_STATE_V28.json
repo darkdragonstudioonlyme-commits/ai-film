@@ -1,0 +1,55 @@
+{
+  "project": "AI-FILM-SERVER",
+  "state_version": 28,
+  "current_mode": "IMPLEMENTATION",
+  "current_phase": "00 — Host / WSL",
+  "documentation_system": "DOCSYS-V2-R8",
+  "last_reviewed_candidate": {
+    "version": "0.1.0.dev19",
+    "source_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "package_sha256": "564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1",
+    "overall_verdict": "FAIL_CR_P00_001_ONLY"
+  },
+  "in_flight_producer_output": {
+    "version": "0.1.0.dev20",
+    "source_commit": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "durability_tier": "LOCAL_COMMIT",
+    "author_tests": 760,
+    "static_checks": 101,
+    "source_digest": "1aa44211cd215b9c9691209d132a723c3b666fb5fee279b68c7f077da632d9dc",
+    "test_digest": "c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383"
+  },
+  "active_run": {
+    "run_id": "RUN-P00-CR001-001",
+    "owner_lane": "IMPLEMENT",
+    "run_record": "lane/implement-p00:workflow-runs/RUN-P00-CR001-001.md",
+    "status": "RECOVERING",
+    "current_step": "S06_PACKAGE_DEV20",
+    "canonical_base": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "observed_local_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "canonical_snapshot": "workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md"
+  },
+  "runtime_reconciliation": {
+    "state_kind": "IN_FLIGHT_AHEAD_OF_CANONICAL",
+    "implement_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "review_head": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "implement_dirty_files": [],
+    "package_required": false,
+    "schema_version": 1,
+    "implement_lane_required_tokens": [
+      "RUN-P00-CR001-001",
+      "51c9d3f7373a2922c1ea6a3e973d817bb4e16523"
+    ],
+    "review_lane_required_tokens": [
+      "2ac37acdd3f81d3b86d4ffb019689655110a80c2"
+    ],
+    "package": {
+      "required": false
+    }
+  },
+  "code_review_pass": false,
+  "native_windows_wsl": "NOT_RUN",
+  "lab": "NOT_RUN",
+  "site": "NOT_RUN",
+  "host_ready": "NOT_EVALUATED"
+}

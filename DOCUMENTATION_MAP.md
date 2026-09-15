@@ -10,6 +10,7 @@ This file tells a fresh chat **what each document means, when to read it, when t
 PROJECT_STATE
 → NEXT_WORK_ITEM
 → WORKFLOW_ROUTER
+→ WORKFLOW_CONTINUITY
 → EXECUTION_LANES
 → DOCUMENTATION_MAP
 → selected remote LANE_STATE
@@ -29,6 +30,8 @@ PROJECT_STATE
 | `NEXT_WORK_ITEM.md` | exact resumable action, input identity, success/fail/block routes | active work or routing changes | project history |
 | `PROJECT_ROADMAP.md` | ordered phase/work milestones and completion criteria | roadmap/order/closure criteria change | current low-level WIP details |
 | `WORKFLOW_ROUTER.md` | deterministic task routing and return paths | routing/process policy changes | source implementation details |
+| `WORKFLOW_CONTINUITY.md` | logical run identity, write-ahead step journal, idempotent resume/reconciliation | interruption/continuation semantics change | product acceptance/current candidate verdict |
+| lane `workflow-runs/*` | live per-run step cursor, intents, exact outputs, replay policy | before/after duplicate-prone steps and interruption recovery | global gate authority |
 | `EXECUTION_LANES.md` | workflow permissions, independence, handoff contracts | lane/trust model changes | current candidate result details |
 | lane `LANE_STATE.md` | lane-local active/waiting candidate and lane output | lane state changes | global gate authority |
 | `PROJECT_MEMORY.md` | compact active learning index/provenance | useful learning activated/superseded | detailed historical learning/policy/procedure |
@@ -75,6 +78,7 @@ Did policy become stale/duplicate? → POLICY_REGISTRY + prune active docs
 Did workflow become ineffective?   → WORKFLOW_HEALTH + `workflow-health/*` meta-review
 Did environment/model context change?→ SERVER_ENVIRONMENT + `environments/*` / MODEL_EVALUATION + `model-evaluations/*`
 Did recovery behavior change?       → RECOVERY_PLAYBOOK
+Did workflow step/progress change?   → owning lane workflow-runs ledger / WORKFLOW_CONTINUITY policy
 Did workspace facts change?         → WORKSPACE_WSL
 Did review/delivery finish?   → immutable review/delivery record
 Did a milestone occur?        → checkpoint MD + JSON
@@ -97,6 +101,7 @@ python3 tools/check_project_docs.py
 In the prepared WSL workspace also run the runtime-state reconciliation check:
 
 ```bash
+python3 tools/check_workflow_continuity.py
 python3 tools/check_runtime_state.py
 ```
 

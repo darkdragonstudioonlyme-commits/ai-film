@@ -1,53 +1,56 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V26
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V28
 
-> Read first in every new chat. Current global truth only. Routing: `WORKFLOW_ROUTER.md`.
+> Read first in every new chat. Current global truth. Runtime continuation policy: `WORKFLOW_CONTINUITY.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 26
+STATE_VERSION: 28
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-DOCUMENTATION_SYSTEM: DOCSYS-V2-R6
+DOCUMENTATION_SYSTEM: DOCSYS-V2-R8
+
+DOCUMENTATION_GOVERNANCE:
+  RELEASE_ID: DOCSYS-V2-R8
+  PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R6
+  NOTE: "R7 checker design was not promoted as a system release; R8 incorporates its lifecycle-neutral checker lesson plus continuity controls."
+  ACTIVATION_CONDITION: "Exact R8 tree requires DOC-V2-R8-REVIEW-001 PASS and DOC-V2-R8-AUDIT-001 PASS."
 
 LAST_REVIEWED_CANDIDATE:
   VERSION: 0.1.0.dev19
   SOURCE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
   PACKAGE_SHA256: 564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1
-  INDEPENDENT_TESTS: "759 PASS / 0 failure / 0 error / 0 skip"
-  INDEPENDENT_STATIC: "100 PASS"
   DELTA_VERDICT: PASS
-  OVERALL_CODE_REVIEW_VERDICT: FAIL
-  REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV19_DELTA.md
-  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+  OVERALL_CODE_REVIEW_VERDICT: FAIL_CR_P00_001_ONLY
+
+IN_FLIGHT_PRODUCER_OUTPUT:
+  VERSION: 0.1.0.dev20
+  SOURCE_COMMIT: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
+  DURABILITY_TIER: LOCAL_COMMIT
+  PACKAGE_STATUS: NOT_BUILT
+  REVIEW_STATUS: NOT_HANDED_OFF
+  AUTHOR_TESTS: "760 PASS"
+  STATIC_CHECKS: "101 PASS"
+  SOURCE_DIGEST: 1aa44211cd215b9c9691209d132a723c3b666fb5fee279b68c7f077da632d9dc
+  TEST_DIGEST: c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383
+
+ACTIVE_RUN:
+  RUN_ID: RUN-P00-CR001-001
+  OWNER_LANE: IMPLEMENT
+  RUN_RECORD: "lane/implement-p00:workflow-runs/RUN-P00-CR001-001.md"
+  CANONICAL_SNAPSHOT: workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md
+  STATUS: RECOVERING
+  CURRENT_STEP: S06_PACKAGE_DEV20
+  CANONICAL_BASE: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  OBSERVED_LOCAL_HEAD: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
 
 FINDING_STATUS:
-  CR-P00-001: OPEN_BLOCKER
+  CR-P00-001: OPEN_PENDING_INDEPENDENT_FINAL_REVIEW
   CR-P00-012: CLOSED_DEV19
   CR-P00-013: CLOSED_DEV18_REVERIFIED_DEV19
   CR-P00-014: CLOSED_DEV19
-
-TEST_GOVERNANCE:
-  CHANGE_ID: TEST_CHANGE-P00-DEV19-HARNESS-002
-  REVIEW_ID: TEST_REVIEW-P00-DEV19-HARNESS-002
-  VERDICT: PASS
-
-WORKFLOW_HEALTH:
-  HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-WF-P00-HARNESS-002.md
-  STATE: HEALTHY
-  META_REVIEW_REQUIRED: false
-
-AUTHOR_BASE_FOR_RESIDUAL_AUDIT:
-  VERSION: 0.1.0.dev19
-  COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
-  AUTHOR_TESTS: "759 PASS"
-  STATIC_CHECKS: "100 PASS"
-
-ARTIFACT_PERSISTENCE:
-  DEV19_LOCAL_WSL_PACKAGE_VERIFIED: true
-  DEV19_REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
 
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
@@ -57,18 +60,7 @@ LAB: NOT_RUN
 SITE: NOT_RUN
 HOST_READY: NOT_EVALUATED
 
-ACTIVE_WORKFLOW:
-  WORKFLOW_ID: WF-P00-IMPL-CR001-RESIDUAL-AUDIT
-  LANE: IMPLEMENT
-  STATUS: READY
-  INPUT_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
-  GOAL: "Audit residual reviewed-scope implementation completeness; identify any actual hidden stubs/partial production paths before declaring AUTHOR_COMPLETE."
-  ON_SUCCESS: WF-P00-FINAL-AUTHOR-CANDIDATE
-  ON_FAIL: WF-P00-IMPL-RESIDUAL-FIX
-
-NEXT_ACTION: "Run residual CR-P00-001 source/harness/factory completeness audit against exact reviewed contracts and current production paths; do not rely on stale REM summaries or test counts."
+NEXT_ACTION: "After R8 governance promotion, resume RUN-P00-CR001-001 at S06_PACKAGE_DEV20; verify and reuse S01-S05 outputs rather than repeating them."
 ```
 
-## Gate status
-
-Dev19 delta review passes and closes all candidate-specific findings through CR-P00-014. Overall CODE_REVIEW remains FAIL solely because `CR-P00-001` is the umbrella author-completeness blocker. The next task is to prove or refute residual source completeness, not to claim gate PASS from regression counts.
+`IN_FLIGHT_PRODUCER_OUTPUT` is not reviewed/gate authority. It records recoverable producer progress ahead of the last canonical reviewed candidate so continuation does not destroy or duplicate it.

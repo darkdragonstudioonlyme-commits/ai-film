@@ -26,10 +26,19 @@ Fetch any additional active workflow branches. Do not treat stale `origin/*` cac
 
 Do not force-push published history by default. Immutable reviewed candidates are replaced by new candidates, not edited in place.
 
+## Workflow continuity write-ahead rule
+
+Before duplicate-prone work, the owning lane must persist the active `RUN_ID` and step `INTENT` defined by `WORKFLOW_CONTINUITY.md`. After verification, persist `COMPLETE` with exact output identity. Do not wait until end-of-chat to record all progress.
+
+A local commit/package/test report ahead of `main` is recoverable progress only when the run ledger binds its canonical base and identity. New chats reconcile and reuse it; they do not create a second candidate/workflow from the older base.
+
+The owning lane branch is the live continuity ledger for in-flight work. `main` remains global gate/current-milestone authority. Completion/canonical sync closes the run; lane progress never self-promotes a gate.
+
 ## IMPLEMENT durable sequence
 
 ```text
-verify state/base/WIP
+verify state/base/WIP + ACTIVE_RUN_ID
+→ persist step INTENT
 → implement
 → targeted tests
 → full author regression/static at boundary
@@ -40,6 +49,7 @@ verify state/base/WIP
 → verify manifest/hash
 → persist artifact
 → immutable handoff
+→ persist step COMPLETE / next INTENT
 → REVIEW
 ```
 
