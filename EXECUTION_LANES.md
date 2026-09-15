@@ -24,28 +24,29 @@ Material oracle changes use TEST-DESIGN → TEST-REVIEW. Production implementati
 
 ## Documentation System V2 governance — three independent stages
 
+Documentation governance uses three release-scoped lanes selected by `PROJECT_STATE.md:DOCUMENTATION_GOVERNANCE`:
+
 ```text
 DOC-DESIGN-V2
-  branch: lane/docs-v2-design
-  worktree: /home/dragon/ai-film-dev/docs-v2-design
+  branch/worktree: selected DESIGN identity from canonical governance state
         │ exact commit
         ▼
 DOC-REVIEW-V2
-  branch: lane/docs-v2-review
-  worktree: /home/dragon/ai-film-dev/docs-v2-review
-  detailed/file-level acceptance review
+  branch/worktree: selected REVIEW identity
+  detailed/file-level acceptance review of exact design commit
         │ reviewed exact commit
         ▼
 DOC-AUDIT-V2
-  branch: lane/docs-v2-audit
-  worktree: /home/dragon/ai-film-dev/docs-v2-audit
+  branch/worktree: selected AUDIT identity
   holistic audit of the entire active control plane
         │ PASS only
         ▼
-main promotion
+main promotion of exact audited tree + predeclared immutable verdict records
 ```
 
-DOC-REVIEW cannot edit DOC-DESIGN. DOC-AUDIT reviews the whole active system, not merely changed files, and specializes in drift, duplicates, obsolete policy, circular trust, code-driven tests, recovery gaps and checker brittleness. Findings return to DOC-DESIGN and require another review/audit cycle.
+Standing guidance must never hard-code one documentation revision's branch/worktree names. A fresh chat resolves the active governance release, stage branches, worktrees and final record paths from canonical state or the explicit governance run.
+
+DOC-REVIEW cannot edit DOC-DESIGN. DOC-AUDIT reviews the whole active system, not merely changed files, and specializes in drift, duplicates, obsolete policy, circular trust, code-driven tests, recovery gaps, learning activation gaps and checker brittleness. Findings return to DOC-DESIGN and require another review/audit cycle.
 
 ## Model-evaluation workflow
 
@@ -75,6 +76,8 @@ TEST_OR_CHECK_RESULT:
 KNOWN_LIMITATIONS:
 READINESS_FLAGS:
 ```
+
+For source/code handoffs, `KNOWN_LIMITATIONS` includes remote source addressability/visibility when the full source tree is not materialized in Git.
 
 Review findings bind exact target identity and close only on a later independently reviewed output.
 
