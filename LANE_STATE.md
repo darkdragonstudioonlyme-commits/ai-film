@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: REVIEW-P00
 LANE_ROLE: REVIEW
-STATUS: REVIEW_COMPLETE_WAITING_FOR_NEXT_CANDIDATE
+STATUS: FINDING_RETURNED_TO_IMPLEMENT
 GLOBAL_MODE: IMPLEMENTATION
 FORMAL_REVIEW_WORK_ITEM: CODE-REVIEW-P00-001
 REMOTE_BRANCH: lane/review-p00
@@ -12,31 +12,27 @@ SOURCE_MODE: DETACHED_EXACT_CANDIDATE
 SOURCE_WRITABLE: false
 REVIEW_ARTIFACTS_WRITABLE: true
 
-CURRENT_CANDIDATE: 0.1.0.dev9
-CURRENT_SOURCE_COMMIT: 3da3ddc771c15d175a2c5045c86a7c1ff9987dbd
-CURRENT_PACKAGE_SHA256: d6f83dc3ff60f73acd54750f58db34d817c7bb492c83088693f7c47c65d510cb
-INDEPENDENT_TESTS: "692 PASS / 0 failure / 0 error / 0 skip"
-INDEPENDENT_STATIC: "93 PASS"
+CURRENT_CANDIDATE: 0.1.0.dev10
+CURRENT_SOURCE_COMMIT: 2d4704d6dcf12ff47e311e10294c2129e78d8b2c
+CURRENT_PACKAGE_SHA256: 7ff3588dc7fce263f74682282d98221a552e34661cf33a82ebb36a7986d27c8e
+INDEPENDENT_TESTS: "710 PASS / 0 failure / 0 error / 0 skip"
+INDEPENDENT_STATIC: "94 PASS"
 
-DELTA_FINDING_DISPOSITION:
-  CR-P00-002: CLOSED_BY_DEV9_REVIEW
-  CR-P00-003: CLOSED_BY_DEV9_REVIEW
-  CR-P00-004: CLOSED_BY_DEV9_REVIEW
-OPEN_FINDINGS:
-  - CR-P00-001
-OVERALL_CODE_REVIEW_VERDICT: FAIL
+DELTA_VERDICT: FAIL
+NEW_FINDING:
+  ID: CR-P00-005
+  SEVERITY: HIGH
+  SUMMARY: "PRE_C3 historical event time is not bounded by the current evidence-capture time."
+OPEN_FINDINGS: [CR-P00-001, CR-P00-005]
 CODE_REVIEW_PASS: false
 ```
 
-## Review result
+## CR-P00-005 evidence
 
-Review independently checked exact dev9 commit/package, reran all author tests/static checks, reproduced the former dev8 failure scenarios, verified package manifest/hash, and found no contract drift.
+`_prior_guest_from_events` rejects future observations with `not_after`, but `_pre_c3_events` / `_validated_pre_c3` in dev10 do not compare `checked_at` with the current capture time. A review-only executable scenario supplied `checked_at=2026-09-16T00:00:00Z`; the selector accepted it as prior evidence.
 
-CR-P00-002/003/004 are closed for this candidate. The full Phase00 CODE_REVIEW gate still fails because CR-P00-001 remains: `AUTHOR_COMPLETE=false`, `CODE_REVIEW_HANDOFF_READY=false`, and broad REM scope remains open.
+Impact: a future-dated protection event/receipt can be consumed as historical pre-C3 provenance when the receipt itself is valid at that future timestamp. That breaks cross-stage temporal ordering and can make later E12/E15 evidence claim a precondition that had not yet occurred as of the snapshot.
 
-## Independence rules
+Required fix: bind every selected PRE_C3 event to `checked_at <= current capture/context time` before receipt consumption, and add a negative test. Do not introduce an arbitrary TTL; this is ordering, not freshness policy.
 
-- REVIEW remains detached from the moving IMPLEMENT worktree.
-- No source change was made during dev9 review.
-- Future review requires a new immutable candidate handoff identity.
-- A full PASS cannot be issued until the complete author handoff gate is satisfied.
+No source was modified during REVIEW.
