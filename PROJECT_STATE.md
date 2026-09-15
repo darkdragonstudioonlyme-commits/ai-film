@@ -1,12 +1,12 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V16
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V17
 
-> Read this file first in every new chat. It contains current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; exact next work lives in `NEXT_WORK_ITEM.md`.
+> Read this file first in every new chat. Current operational truth only. Reusable lessons live in `PROJECT_MEMORY.md`; exact next work lives in `NEXT_WORK_ITEM.md`.
 
 ## Fast resume snapshot
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 16
+STATE_VERSION: 17
 REPOSITORY: darkdragonstudioonlyme-commits/ai-film
 DEFAULT_BRANCH: main
 
@@ -16,7 +16,7 @@ CURRENT_TASK: IMPL-P00-001
 TASK_STATUS: IN_PROGRESS
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-MODE_TRANSITION: NONE
+MODE_TRANSITION: "EARLY CODE_REVIEW COMPLETED FAIL; returned to IMPLEMENTATION"
 
 REQUIREMENTS_BASELINE: "AI VIDEO SERVER — SINGLE CHAT WORKFLOW BLUEPRINT V2"
 REVIEWED_DESIGN: "Phase00 exact Design V2 — REVIEW-P00-002 PASS"
@@ -43,8 +43,23 @@ NATIVE_WINDOWS_WSL: NOT_RUN
 LAB: NOT_RUN
 SITE: NOT_RUN
 QUALIFICATION_ISSUED: false
-CODE_REVIEW: NOT_PERFORMED
 HOST_READY: NOT_EVALUATED
+
+LAST_CODE_REVIEW:
+  WORK_ITEM: CODE-REVIEW-P00-001
+  TARGET: dev8
+  KIND: EARLY_OWNER_REQUESTED_REVIEW
+  VERDICT: FAIL
+  CODE_REVIEW_PASS: false
+  FORMAL_GATE_TRANSITION: NOT_ACTIVATED
+  SOURCE_MODIFIED_DURING_REVIEW: false
+  REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV8.md
+
+OPEN_CODE_REVIEW_FINDINGS:
+  - CR-P00-001 BLOCKER — formal review handoff premature / full scope incomplete
+  - CR-P00-002 HIGH — owner-wait durable relabel lacks renewed authority check
+  - CR-P00-003 HIGH — pending-reboot actual observation discarded at wait persistence boundary
+  - CR-P00-004 MEDIUM — unbounded/untyped wait_observation persistence API
 
 DEV_WORKSPACE_READY: true
 WSL_WORKSPACE_ROOT: /home/dragon/ai-film-dev
@@ -55,7 +70,6 @@ ROLLBACK_SOURCE_DIR: /home/dragon/ai-film-dev/source-dev7
 DEV_VENV: /home/dragon/ai-film-dev/.venv
 DIRECT_WSL_GITHUB_PUSH_AUTH: NOT_CONFIGURED
 
-OPEN_FINDINGS: []
 OPEN_DESIGN_GAPS: []
 OPEN_VALIDATION_FAILURES: []
 OPEN_IMPLEMENTATION_ITEMS: "IMPL-REM-01…08 at full-item scope"
@@ -65,85 +79,59 @@ AUTO_DOCUMENTATION_SYNC: true
 NO_SILENT_KNOWLEDGE: true
 LIVING_MEMORY_FILE: PROJECT_MEMORY.md
 WORKSPACE_DOC: WORKSPACE_WSL.md
-NEXT_ACTION: "Prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics."
+NEXT_ACTION: "Fix CR-P00-002/003/004 first; then continue prior pre-C3/checkpoint + nested E00 and remaining implementation scope. Re-enter formal CODE_REVIEW only after author-complete handoff."
 ```
 
-**Do not transition to CODE_REVIEW.** Dev8 is verified author work, not an author-complete Phase00 candidate.
+## Code review result
 
-## Persistence model
+The owner explicitly requested CODE_REVIEW against dev8 before the implementation handoff gate was ready. The review was performed under Blueprint review discipline and made no source changes.
 
-- **GitHub** is canonical for project state, living memory, next work, workflow, delivery records and review history.
-- **Google Drive raw artifacts** are the byte-exact packaged-delivery recovery anchors.
-- **WSL local Git** is the authoring diff/rollback workspace; local commits are not remote approval.
+Independent review rerun reproduced the exact dev8 author baseline: **683 PASS**, **92 static PASS**, source/test digests unchanged, source Git clean.
 
-The dev8 artifact was uploaded by file reference, downloaded again as raw bytes, and re-hashed. Size and SHA-256 matched exactly. A duplicate accidental Drive upload was deleted; `125T2wVf0CVkcmQND0PSmF3HHvXh8AgxD` is the canonical dev8 file ID.
+Verdict: **FAIL**.
 
-## Dev8 lifecycle increment
+The full report is `reviews/CODE-REVIEW-P00-001_DEV8.md`; the machine-readable verdict is `reviews/CODE-REVIEW-P00-001_DEV8.json`.
 
-Dev8 changed implementation behavior only; reviewed plan operations/contracts remain unchanged.
+The formal `CODE_REVIEW_PASS` gate was not activated because dev8 remains explicitly partial. This does not erase the findings: `CR-P00-002…004` are concrete implementation defects/robustness gaps and must be fixed before the next formal review.
 
-Implemented/hardened:
+## Review findings requiring implementation
 
-1. `ENABLE_PREREQUISITES` / `INSTALL_RUNTIME` cannot advance from process exit alone if Windows observations show pending reboot; the durable step waits at `AWAITING_REBOOT/20`.
-2. Existing `3010 → AWAITING_REBOOT` is preserved.
-3. Reconciliation from reboot wait requires a changed host boot witness and cleared pending-reboot indicators before the original step can commit.
-4. C3 actions completed after reboot consume affected-resource owner postchecks before terminal commit.
-5. Missing owner postcondition evidence may retain/relabel only an existing operator-wait fence as `AWAITING_OWNER_VERIFICATION/20`; mutation is not replayed.
-6. OOBE owner verification remains distinct and does not invent reboot semantics.
-7. The explicit final `AWAIT_OWNER_RESTART` remains in reviewed plans. Design V2/T00-05 requires an owner-planned host restart lifecycle; an earlier engine-required reboot is not silently treated as the same reviewed boundary.
+### CR-P00-001 — BLOCKER — incomplete handoff
 
-Targeted dev8 lifecycle suite: **10 PASS**. Full workspace regression: **683 PASS**. Static checks: **92 PASS**.
+Dev8 declares `AUTHOR_COMPLETE=false`, `CODE_REVIEW_HANDOFF_READY=false`, and all full-item `IMPL-REM-01…08` remain open. The package still records unfinished cross-stage evidence, publication recovery, non-DIRECT transport, dependency provenance, full 86-case causal harness and production-factory integration work.
 
-These are synthetic/POSIX author results only. They do not establish Windows/WSL/LAB/SITE behavior, qualification, CODE_REVIEW_PASS or HOST_READY.
+This finding closes only when the full implementation exit condition is actually satisfied.
 
-## WSL workspace
+### CR-P00-002 — HIGH — reauthorization gap
 
-Active author workspace:
+In the owner-verification relabel branch of `RecoveryRunner`, the durable fence can be changed to `AWAITING_OWNER_VERIFICATION` after observation without the renewed `_reauthorize(...)` check used by successful reconciliation and pause/cancel branches.
 
-```text
-/home/dragon/ai-film-dev/source-dev8
-branch: dev8-baseline
-commit: c44c2f87084f8082ce29af5935c6b47d03f7b96c
-```
+A review-only executable scenario advanced synthetic authority beyond approval expiry during `d.reconcile`; dev8 still accepted and persisted the owner-wait relabel. Fix requires renewed authority/fence/request checks immediately before the durable transition and negative tests for expiry/generation/actor/request drift.
 
-Rollback dev7 remains preserved at `/home/dragon/ai-film-dev/source-dev7` and was reset clean to its exact dev7 baseline.
+### CR-P00-003 — HIGH — reboot wait evidence loss
 
-Use:
+`native.lifecycle.classify_c3_process_result` produces actual `wait_reason` and normalized `pending_reboot`, but `SessionRunner` persists only the wait state. A review scenario confirmed the resulting fence had `AWAITING_REBOOT` with no `wait_observation`/pending-reboot facts.
 
-```bash
-source /home/dragon/ai-film-dev/env.sh
-/home/dragon/ai-film-dev/test.sh
-```
+Persist a bounded typed wait observation/digest at the durable wait boundary.
 
-The helper stores actual run evidence outside the source tree and restores tracked generated evidence so verification-only runs keep source Git clean. Direct WSL `git push` is not authenticated; remote writes continue through the connected GitHub connector. Do not store PATs/tokens in plaintext.
+### CR-P00-004 — MEDIUM — wait context is unbounded
 
-## Open implementation scope
+`Coordinator.awaiting` accepts any non-empty dictionary and deep-copies it into the durable fence. Define per-kind schemas/allowed keys and a serialized-size/privacy boundary; prefer digests/references over raw data.
 
-All full-item REM entries remain OPEN despite dev7/dev8 progress:
+## Non-finding retained from dev8 review
 
-- `IMPL-REM-01`: remaining effective-profile/eligibility/native-factory route closure.
-- `IMPL-REM-02`: remaining exhaustion/interrupted-reader/lifecycle journal procedures.
-- `IMPL-REM-03`: remaining guest/bootstrap dependency trust, source epochs and prior pre-C3/checkpoint proof selection.
-- `IMPL-REM-04`: remaining service/OOBE/restart/resume/factory combinations and actual native coverage.
-- `IMPL-REM-05`: prolonged/multi-stage resume/later request/recovery-publication interactions.
-- `IMPL-REM-06`: non-DIRECT transport + terminal/restore integration.
-- `IMPL-REM-07`: nested cross-stage E00, prior pre-C3/checkpoint selection, temp/incomplete publication and remaining E17 integration.
-- `IMPL-REM-08`: causal preparations/controllers/oracles for all normative 86 T/F/subcases + production-factory author integration.
+The explicit final `AWAIT_OWNER_RESTART` was not treated as a duplicate restart defect. Exact Design V2/T00-05 requires an owner-planned host restart lifecycle distinct from an engine-required reboot.
 
-## Exact next implementation order
+## Current implementation order
 
-Next coherent increment:
-
-1. inspect E00 stage semantics, prior-evidence graph and pre-C3/checkpoint requirements;
-2. implement exact prior pre-C3/checkpoint provenance selection without using envelope labels as proof;
-3. close nested cross-stage E00 field/source selection that can be resolved without contract change;
-4. add targeted positive/negative author tests for unrelated/tampered/ambiguous/stale prior evidence and stage applicability;
-5. run full regression/static checks;
-6. Documentation Sync Gate + exact artifact persistence + remote state verification.
-
-Then proceed separately to temp/incomplete bundle/E17 recovery, reviewed non-DIRECT transport, full causal 86-case controller work, and production-factory author integration.
-
-See `NEXT_WORK_ITEM.md` for executable detail.
+1. Fix `CR-P00-002`, `CR-P00-003`, `CR-P00-004` with targeted negative/positive author tests.
+2. Full workspace regression/static checks and exact package persistence.
+3. Continue prior pre-C3/checkpoint provenance selection + nested cross-stage E00 semantics.
+4. Complete temp/incomplete publication + E17 recovery integration.
+5. Complete reviewed non-DIRECT transport.
+6. Complete causal 86-case controller/oracles and production-factory author integration.
+7. Close `IMPL-REM-01…08`, produce author-complete candidate and set `CODE_REVIEW_HANDOFF_READY=true` only when justified.
+8. Run `CODE-REVIEW-P00-001` again on the exact final candidate.
 
 ## Current-mode prohibitions
 
@@ -153,9 +141,8 @@ See `NEXT_WORK_ITEM.md` for executable detail.
 - no deletion of unresolved durable state as a recovery shortcut;
 - no fake production backend;
 - no self-approved code review, qualification or HOST_READY;
-- no user host data requested as substitute for missing source work;
 - no useful reusable discovery left only in chat.
 
-## Exit condition
+## Implementation exit condition
 
-`IMPL-P00-001` exits IMPLEMENTATION only when the full source/harness/docs/test candidate is author-complete, all REM scope is actually closed or correctly managed, no hidden stub remains in reviewed scope, required author tests are clean, exact candidate is durably reviewable, and `CODE_REVIEW_HANDOFF_READY=true` is evidence-backed. Only then transition to `CODE_REVIEW / CODE-REVIEW-P00-001`.
+`IMPL-P00-001` exits IMPLEMENTATION only when the full source/harness/docs/test candidate is author-complete, all REM scope is actually closed or correctly managed, no hidden stub remains in reviewed scope, required author tests are clean, exact candidate is durably reviewable, and `CODE_REVIEW_HANDOFF_READY=true` is evidence-backed. Only then activate the formal `CODE_REVIEW_PASS` gate.
