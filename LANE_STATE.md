@@ -12,38 +12,34 @@ SOURCE_MODE: DETACHED_EXACT_CANDIDATE
 SOURCE_WRITABLE: false
 REVIEW_ARTIFACTS_WRITABLE: true
 
-CURRENT_CANDIDATE: 0.1.0.dev16
-CURRENT_SOURCE_COMMIT: 492bad8dc0fe164d38d1168ec3aa516c64176832
-CURRENT_PACKAGE_SHA256: 64fffb0ddc6368dc2c93edba8cbff71626085111825c871f8580dff0feb405cd
-INDEPENDENT_TESTS: "750 PASS / 0 failure / 0 error / 0 skip"
+CURRENT_CANDIDATE: 0.1.0.dev17
+CURRENT_SOURCE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
+CURRENT_PACKAGE_SHA256: 130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e
+INDEPENDENT_TESTS: "753 PASS / 0 failure / 0 error / 0 skip"
 INDEPENDENT_STATIC: "100 PASS"
 
 DELTA_VERDICT: FAIL
-CLOSED_FINDINGS: [CR-P00-007, CR-P00-008, CR-P00-009]
-OPEN_FINDINGS: [CR-P00-001, CR-P00-010, CR-P00-011]
+CLOSED_FINDINGS: [CR-P00-007, CR-P00-008, CR-P00-009, CR-P00-010, CR-P00-011]
+OPEN_FINDINGS: [CR-P00-001, CR-P00-012, CR-P00-013]
 OVERALL_CODE_REVIEW_VERDICT: FAIL
 CODE_REVIEW_PASS: false
 ```
 
-## Dev16 review result
+## Dev17 review result
 
-Independent REVIEW reproduced 750 PASS / 100 static PASS and re-ran the exact dev15 failure scenarios. Dev16 correctly rejects cross-suite stage replay, stale causal fixture records and fabricated journal hashes without matching raw provenance. CR-P00-007/008/009 are accepted as closed for this delta.
+Independent REVIEW reproduced 753 PASS / 100 static PASS. The new causal preparation actions, ordered controller-step records and exact protected evidence refs close CR-P00-010/011 at the source delta level.
 
-### CR-P00-010 — HIGH — causal controller steps/preparations are still declarative
+### CR-P00-012 — HIGH — harness collectors are not bound to suite build/contract
 
-`harness_cases.py` defines fixed `preparations` and `controller_steps`, but the runtime controller does not execute or validate a causal controller-step trace. `controller_steps` has no consumer outside catalog validation/serialization. Preparations are accepted from post-authorization measurements, but there is no exact causal preparation action record showing the registered external LAB controller actually created the requested condition before the production route ran.
+Harness `_collector()` accepts any pinned `collector_release` with `review_verdict=PASS` and `withdrawn=false`. It does not require collector `build_digest` / `contract_digest` to equal the exact authorizing suite. Review demonstrated that a wrong-build/wrong-contract collector is accepted.
 
-Impact: the 86 procedures are not yet executable causal procedures for conditions such as ACTIVE_GUARD_HOLDER, NATIVE_TIMEOUT, POST_REGISTRATION_CRASH, STAGED_CONFIG_INACTIVE, etc. A correctly labeled measurement can describe an environment without proving the controller caused the reviewed fixture.
+Required fix: every fixture/preparation/controller/oracle/journal/evidence/result collector must match the suite build and exact approved contract, analogous to the existing ProofReader collector binding.
 
-Required fix: add suite/execution-bound causal preparation action records and controller-step records with exact enum identity, start/end ordering, collector/controller identity and raw provenance. Finalization must require the exact procedure preparation/step sequence, not only matching labels.
+### CR-P00-013 — HIGH — causal condition/controller trace is not stage-window bound
 
-### CR-P00-011 — HIGH — required E00 evidence is satisfied by unbound strings
+Dev17 proves a preparation action happened before fixture measurement and proves the ordered controller-step list happened before final result. It does not prove an arranged condition remained active at the production route stage, nor does a controller-step record identify the stage window it controls. A holder/timeout/config fault can therefore disappear before route execution while the pre-stage trace remains valid.
 
-`lab_case_stage.evidence_ids` is only a list of strings. `finalize_case()` unions those strings and checks that `proc.required_evidence` is a subset. The harness does not dereference an actual protected evidence record/ref for those IDs.
-
-Impact: a stage can claim `E00-12`/`E00-14`/etc. by name without proving the exact evidence object exists, is integrity-bound, belongs to the execution/plan/run/stage, and has appropriate source/stage semantics.
-
-Required fix: replace string-only evidence satisfaction with exact evidence references. Validate each referenced protected record/content digest and bind execution_id, suite_ref, case, stage, plan/run and evidence_id before counting it toward required evidence.
+Required fix: each native stage must consume execution/suite-bound preparation continuity witnesses for the exact preparation action refs at that stage. ARRANGE witnesses must prove the condition is active at stage time; OBSERVE witnesses must prove the expected condition still matches. Controller-step records must bind explicit related stage indices; finalization must require valid stage coverage/order for the reviewed procedure.
 
 ## Non-claims
 
