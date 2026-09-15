@@ -1,3 +1,13 @@
+# DEV12 Remaining-Work Delta
+
+- **REM-07 progress:** deterministic temp identity, temp/final/no-output recovery state, incomplete bundle recovery, and E17 recovery applicability are now implemented at source level.
+- Temp bytes are retained protected and never auto-renamed/deleted/re-published during recovery.
+- E17 remains a separate non-authoritative artifact; recovery cannot create a missing E17 intent/output or grant MASTER acceptance.
+- **Still open:** reviewed non-DIRECT transport, causal 86-case controller/oracles, production-factory author integration and any residual full-scope REM closure.
+- CR-P00-001 remains OPEN_BLOCKER.
+
+---
+
 # DEV11 Remaining-Work Delta
 
 - `CR-P00-005`: implementation fix authored — PRE_C3 `checked_at` is bounded by current capture time.

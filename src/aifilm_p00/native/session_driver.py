@@ -519,6 +519,15 @@ class NativeDriver:
             if reconciliation:
                 from .publication_recovery import observed_publication
                 result=observed_publication(self.paths,coordinator,plan,self.binding)
+                from .assessment import assessment_intent_count,recover_assessment
+                assessment_required=(s.get('bundle_scope')=='GATE_HANDOFF'
+                                     and result.get('component_eligible') is True)
+                count=assessment_intent_count(coordinator,plan['plan_digest'])
+                if assessment_required:
+                    require(count>0,18,'ASSESSMENT_INTENT_MISSING')
+                    result['assessment']=recover_assessment(self.paths,coordinator,plan,self.binding['assessment_output'])
+                else:
+                    require(count==0,16,'ASSESSMENT_NOT_APPLICABLE')
             require(result.get('published') is True or result.get('archive_expected') is False,19,'PUBLISH_NOT_OBSERVED')
             details['bundle']=deepcopy(result)
         else:raise P00Error(10,'ACTION_AFTERSTATE_SCOPE')

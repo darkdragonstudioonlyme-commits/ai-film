@@ -9,7 +9,6 @@ import ctypes as C
 from contextlib import contextmanager, ExitStack
 from dataclasses import dataclass
 from pathlib import PureWindowsPath
-from uuid import uuid4
 from ..codec import windows_path, sha256, canonical, loads
 from ..errors import require, P00Error
 from .security import check_security, ADMIN_OWNERS, metadata_sddl
@@ -195,14 +194,15 @@ class WindowsPaths:
             self.api.ok(self.api.seek_file(pinned.handle,0,None,2),'APPEND_SEEK')
             self.api.write(pinned.handle,data)
 
-    def publish_new(self,path,data):
-        """No replace-existing. Temp remains protected on failure, per D00-14."""
-        path=windows_path(path)
+    def publish_new(self,path,data,*,pending_path):
+        """Create exact staged bytes then move without replace; never invent temp identity."""
+        path=windows_path(path);pending_path=windows_path(pending_path)
         parent=str(PureWindowsPath(path).parent)
+        require(not same_path(path,pending_path) and same_path(parent,str(PureWindowsPath(pending_path).parent)),
+                16,'OUTPUT_PENDING_SCOPE')
         with self.pin(parent,directory=True,protected=True):
-            temp=str(PureWindowsPath(parent)/('pending-'+uuid4().hex+'.bin'))
-            self.write_new(temp,data)
+            self.write_new(pending_path,data)
             # WRITE_THROUGH, deliberately no REPLACE_EXISTING flag.
-            self.api.ok(self.api.move_file(temp,path,0x8),'OUTPUT_PUBLISH',18)
+            self.api.ok(self.api.move_file(pending_path,path,0x8),'OUTPUT_PUBLISH',18)
             require(self.read_blob(path,cap=max(len(data),1))==data,15,'OUTPUT_READBACK_MISMATCH')
         return sha256(data)

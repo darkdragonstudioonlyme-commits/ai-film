@@ -1,3 +1,21 @@
+# IMPL-P00-001 Implementation Status — dev12 increment
+
+`0.1.0.dev12 / PARTIAL_SOURCE_DROP_DEV12`
+
+Dev12 advances REM-07 publication/E17 recovery semantics without changing approved contracts.
+
+- E16 and E17 publishers derive an exact deterministic protected staging path before write and bind staging + final identity in the write-ahead journal intent.
+- Filesystem publication is create-only temp → write-through move with no replace. The publisher no longer invents an unjournaled random temp path.
+- Recovery is read-only: final-only exact bytes may be re-observed; temp-only exact bytes are recorded as retained failure and remain exit18; final+temp is drift/ambiguity; missing output remains failure.
+- Non-publishable/no-archive E16 outcomes (15/22/23) now have a durable write-ahead decision and can be recovered only when no unexpected final output exists.
+- GATE_HANDOFF reconciliation requires an E17 intent when the recovered E16 component is eligible, recovers exact existing E17 bytes, and rejects assessment intent when E17 is not applicable.
+- E17 remains a PROPOSAL with `accepted_by_master=false` and `host_ready=false`.
+- Added focused crash/applicability/tamper/duplicate staging tests.
+
+Final author evidence: **728 PASS / 0 failure/error/skip**, static **95 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN. Overall CODE_REVIEW remains blocked by CR-P00-001/full REM scope.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev11 increment
 
 `0.1.0.dev11 / PARTIAL_SOURCE_DROP_DEV11`

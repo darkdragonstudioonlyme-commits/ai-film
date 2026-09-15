@@ -1,3 +1,11 @@
+# Dev12 publication recovery update
+
+E16 bundle and separate E17 assessment now use deterministic protected staging paths bound in write-ahead intent before any file write. Recovery is strictly observational: it does not rename/delete a retained temp, overwrite a final path, regenerate bundle/assessment bytes, or retry publication.
+
+For expected output, final-only exact bytes can be re-observed; temp-only exact bytes remain retained `FAILED_OUTPUT/18`; both final+temp block as ambiguous; neither remains missing/output failure. For a durable no-archive E16 outcome, recovery requires no unexpected final file. For a recovered GATE_HANDOFF component eligible for E17, reconciliation requires an existing E17 intent and exact output bytes; a missing E17 intent cannot be invented. The recovered E17 artifact remains a proposal and cannot set HOST_READY/MASTER acceptance.
+
+---
+
 # Recovery notes — dev4 source, not execution authorization
 
 Do not delete/truncate a fence or journal, kill native work, replay uncertain mutation, edit the original plan hash/purpose, unregister a distro or mark an exit code as a postcondition.

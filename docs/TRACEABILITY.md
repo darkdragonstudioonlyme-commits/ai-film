@@ -1,3 +1,13 @@
+# Traceability — dev12 publication/E17 recovery increment
+
+| Author coverage | Cases added/expanded | Related reviewed scope |
+|---|---:|---|
+| `test_dev12_publication_recovery` + expanded dev5/dev6 publisher tests | 17 new/expanded failure paths in this increment | D00-14, E00-16/17, T08-J, F00-13/16, recovery R5/R6 |
+
+Coverage includes deterministic staging identity, temp-only retained failure, final-only re-observation, final+temp ambiguity, missing output, duplicate/tampered intent, no-archive recovery, E17 applicability/missing intent/exact recovery. Final author regression: **728 PASS**, static **95 PASS**. Parent native/LAB/SITE cases remain NOT_RUN.
+
+---
+
 # Traceability — dev11 future PRE_C3 ordering fix
 
 Added one negative author case proving a future-dated PRE_C3 event is rejected with `PRE_C3_FUTURE`. Final author regression: **711 PASS**, static **94 PASS**.

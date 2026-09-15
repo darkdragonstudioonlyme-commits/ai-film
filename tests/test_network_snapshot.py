@@ -91,9 +91,9 @@ class ScanTests(unittest.TestCase):
 
 class PublishedPaths:
     def __init__(self,fail=None):self.writes=[];self.fail=fail
-    def publish_new(self,path,data):
+    def publish_new(self,path,data,*,pending_path):
         if self.fail:raise self.fail
-        self.writes.append((path,data))
+        self.writes.append((path,data,pending_path))
 class PublisherTests(unittest.TestCase):
     def setup(self,fail=None):
         from test_session_integration import Storage

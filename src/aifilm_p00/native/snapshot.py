@@ -116,17 +116,27 @@ class NativeBundlePublisher:
                 and c.fence is not None and c.fence['action']=='PUBLISH_SAFE_BUNDLE',12,'PUBLISH_ADMISSION_REQUIRED')
         budget_check(budgets,free_by_volume)
         if bundle.archive is None:
-            return {'exit':bundle.exit,'outcome':bundle.outcome,'published':False,'host_ready':False}
+            require(bundle.exit in (15,22,23),15,'BUNDLE_NO_ARCHIVE_OUTCOME')
+            publication={'path':approved_path,'temp_path':None,'sha256':None,'bytes':0,
+                         'exit':bundle.exit,'outcome':bundle.outcome,'archive_expected':False,
+                         'component_eligible':False}
+            c.storage.append_event({'kind':'BUNDLE_PUBLISH_INTENT',
+                'plan_digest':c.admission.plan_digest,'publication':publication,
+                'publication_digest':digest(publication)})
+            return {'exit':bundle.exit,'outcome':bundle.outcome,'published':False,
+                    'archive_expected':False,'component_eligible':False,'host_ready':False}
         require(bundle.exit in (0,2,22),23,'BUNDLE_NOT_PUBLISHABLE')
         require(approved_path.endswith('.incomplete.zip') if bundle.exit==22 else approved_path.endswith('.zip') and not approved_path.endswith('.incomplete.zip'),10,'BUNDLE_OUTPUT_SUFFIX')
         checked=bundle_integrity(bundle.archive)
-        publication={'path':approved_path,'sha256':checked['sha256'],'bytes':len(bundle.archive),
+        from .publication_recovery import staged_output_path
+        temp_path=staged_output_path(approved_path,c.admission.plan_digest,checked['sha256'],'bundle')
+        publication={'path':approved_path,'temp_path':temp_path,'sha256':checked['sha256'],'bytes':len(bundle.archive),
                      'exit':bundle.exit,'outcome':bundle.outcome,'archive_expected':True,
                      'component_eligible':bundle.component_eligible}
         c.storage.append_event({'kind':'BUNDLE_PUBLISH_INTENT',
             'plan_digest':c.admission.plan_digest,'publication':publication,
             'publication_digest':digest(publication)})
-        try:self.paths.publish_new(approved_path,bundle.archive)
+        try:self.paths.publish_new(approved_path,bundle.archive,pending_path=temp_path)
         except P00Error as e:
             if e.code in (12,15,16):raise
             return {'exit':18,'outcome':'FAILED_OUTPUT','published':False,'host_ready':False}

@@ -1,3 +1,20 @@
+# DEV12 E16/E17 publication recovery boundary
+
+Publication ownership is now durable before bytes are written:
+
+```text
+exact output bytes / no-archive decision
+→ deterministic sibling staging identity
+→ write-ahead intent(final + temp + byte identity/outcome)
+→ create-only protected stage
+→ write-through move without replace
+→ final readback
+```
+
+Recovery never writes. For archive/assessment output: final-only exact bytes may complete; temp-only exact bytes are retained as output failure; final+temp is ambiguous; neither is missing. For an E16 no-archive decision, recovery requires the bound final output to remain absent. GATE E17 is recovered only when the recovered bundle is component-eligible and an exact assessment intent exists.
+
+---
+
 # DEV10 Cross-stage evidence provenance boundary
 
 Historical facts now keep their historical provenance instead of inheriting the current snapshot source:

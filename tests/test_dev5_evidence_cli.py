@@ -14,7 +14,7 @@ from helpers import NOW, B, SID, CP, authority_case, collected
 from test_session_integration import Storage
 from aifilm_p00.codec import canonical,digest,sha256
 from aifilm_p00.errors import P00Error
-from aifilm_p00.evidence import assemble,Sanitizer
+from aifilm_p00.evidence import assemble,Sanitizer,Bundle
 from aifilm_p00.evidence_catalog import Stage
 from aifilm_p00.evidence_stage import encode_stage,decode_stage,scoped_stage,require_bundle_context
 from aifilm_p00.native.snapshot import strict_safe_scan,NativeBundlePublisher
@@ -86,11 +86,13 @@ class StageTests(Check):
 
 
 class PublicationPaths:
-    def __init__(self):self.blobs={};self.writes=[];self.fail=False
-    def publish_new(self,path,raw):
+    def __init__(self):self.blobs={};self.writes=[];self.fail=False;self.fail_after_temp=False
+    def publish_new(self,path,raw,*,pending_path):
         if self.fail:raise P00Error(18,'SIMULATED_PUBLISH_CRASH')
-        if path in self.blobs:raise P00Error(16,'EXISTS')
-        self.blobs[path]=raw;self.writes.append(path)
+        if pending_path in self.blobs or path in self.blobs:raise P00Error(16,'EXISTS')
+        self.blobs[pending_path]=raw;self.writes.append(pending_path)
+        if self.fail_after_temp:raise P00Error(18,'SIMULATED_AFTER_TEMP')
+        self.blobs[path]=self.blobs.pop(pending_path);self.writes.append(path)
     def read_blob(self,path,expected=None,cap=10**8):
         if path not in self.blobs:raise P00Error(18,'MISSING')
         raw=self.blobs[path]
@@ -143,6 +145,46 @@ class PublicationTests(Check):
     def test_readback_error_does_not_clear_fence(self):
         p,c,x,b,bundle=publication_fixture();self.publish(x,c,b,bundle);x.blobs.clear()
         self.reject(18,self.recover,x,c,p,b);self.assertIsNotNone(c.fence)
+    def test_temp_only_is_verified_retained_failure_not_republished(self):
+        p,c,x,b,bundle=publication_fixture();x.fail_after_temp=True;r=self.publish(x,c,b,bundle)
+        self.assertEqual(r['exit'],18);count=len(x.writes)
+        self.assertEqual(self.reject(18,self.recover,x,c,p,b),'PUBLISH_TEMP_RETAINED');self.assertEqual(len(x.writes),count)
+        self.assertTrue(any(row['event']['kind']=='BUNDLE_PUBLICATION_TEMP_RETAINED' for row in c.storage.read_events()))
+    def test_final_and_temp_is_ambiguous(self):
+        p,c,x,b,bundle=publication_fixture();self.publish(x,c,b,bundle)
+        intent=[r['event'] for r in c.storage.read_events() if r['event']['kind']=='BUNDLE_PUBLISH_INTENT'][0]
+        x.blobs[intent['publication']['temp_path']]=bundle.archive
+        self.assertEqual(self.reject(16,self.recover,x,c,p,b),'PUBLISH_OUTPUT_AMBIGUOUS')
+    def test_tampered_temp_path_intent_rejected(self):
+        p,c,x,b,bundle=publication_fixture();self.publish(x,c,b,bundle)
+        rows=c.storage.read_events();event=[r['event'] for r in rows if r['event']['kind']=='BUNDLE_PUBLISH_INTENT'][0]
+        event['publication']['temp_path']=r'C:\Evidence\other.bin';event['publication_digest']=digest(event['publication'])
+        c.storage.raw=b'';previous=None
+        from aifilm_p00.native.coordination import frame
+        from aifilm_p00.codec import loads
+        for n,row in enumerate(rows):
+            raw=frame(row['event'],n,previous);c.storage.raw+=raw;previous=loads(raw)['sha256']
+        self.assertEqual(self.reject(16,self.recover,x,c,p,b),'PUBLISH_TEMP_PATH_DRIFT')
+    def test_duplicate_publish_intent_blocks_recovery(self):
+        p,c,x,b,bundle=publication_fixture();self.publish(x,c,b,bundle)
+        intent=[r['event'] for r in c.storage.read_events() if r['event']['kind']=='BUNDLE_PUBLISH_INTENT'][0]
+        c.storage.append_event(deepcopy(intent))
+        self.assertEqual(self.reject(21,self.recover,x,c,p,b),'PUBLISH_INTENT_NOT_UNIQUE')
+    def test_no_archive_privacy_outcome_is_durable_and_recoverable_without_write(self):
+        p,c,x,b,_=publication_fixture();bundle=Bundle(23,'BLOCKED_REDACTION',False,False,None,{'outcome':'BLOCKED_REDACTION'})
+        result=self.publish(x,c,b,bundle);self.assertFalse(result['published']);self.assertFalse(result['archive_expected'])
+        self.assertEqual(x.writes,[])
+        recovered=self.recover(x,c,p,b);self.assertEqual(recovered['exit'],23);self.assertFalse(recovered['published'])
+        self.assertTrue(recovered['recovered_no_archive_decision'])
+    def test_no_archive_intent_rejects_unexpected_final(self):
+        p,c,x,b,_=publication_fixture();bundle=Bundle(23,'BLOCKED_REDACTION',False,False,None,{})
+        self.publish(x,c,b,bundle);x.blobs[b['bundle_output']]=b'unowned'
+        self.assertEqual(self.reject(16,self.recover,x,c,p,b),'PUBLISH_UNEXPECTED_FINAL')
+    def test_no_archive_incomplete_cap_outcome_uses_incomplete_path(self):
+        p,c,x,b,_=publication_fixture();bundle=Bundle(22,'INCOMPLETE_MANDATORY',False,False,None,{})
+        self.publish(x,c,b,bundle);event=[r['event'] for r in c.storage.read_events() if r['event']['kind']=='BUNDLE_PUBLISH_INTENT'][0]
+        self.assertEqual(event['publication']['path'],b['incomplete_bundle_output']);self.assertFalse(event['publication']['archive_expected'])
+        self.assertEqual(self.recover(x,c,p,b)['exit'],22)
 
 
 class JournalPaths:

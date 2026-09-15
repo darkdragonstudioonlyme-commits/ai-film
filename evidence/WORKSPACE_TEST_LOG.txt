@@ -136,6 +136,12 @@ test_future_prior_observation_rejected (test_dev10_prior_nested.PriorGuestScopeT
 test_unrelated_plan_is_not_adopted (test_dev10_prior_nested.PriorGuestScopeTests.test_unrelated_plan_is_not_adopted) ... ok
 test_wrong_host_rejected (test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_host_rejected) ... ok
 test_wrong_target_rejected (test_dev10_prior_nested.PriorGuestScopeTests.test_wrong_target_rejected) ... ok
+test_gate_recovery_attaches_exact_recovered_assessment (test_dev12_publication_recovery.RecoveryIntegrationTests.test_gate_recovery_attaches_exact_recovered_assessment) ... ok
+test_gate_recovery_requires_existing_assessment_intent (test_dev12_publication_recovery.RecoveryIntegrationTests.test_gate_recovery_requires_existing_assessment_intent) ... ok
+test_non_applicable_bundle_rejects_assessment_intent (test_dev12_publication_recovery.RecoveryIntegrationTests.test_non_applicable_bundle_rejects_assessment_intent) ... ok
+test_generated_stage_path_must_fit_windows_path_contract (test_dev12_publication_recovery.StagingIdentityTests.test_generated_stage_path_must_fit_windows_path_contract) ... ok
+test_kind_separates_bundle_and_assessment_staging (test_dev12_publication_recovery.StagingIdentityTests.test_kind_separates_bundle_and_assessment_staging) ... ok
+test_stage_identity_is_deterministic_and_sibling (test_dev12_publication_recovery.StagingIdentityTests.test_stage_identity_is_deterministic_and_sibling) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -343,13 +349,20 @@ test_result_exit_preserved (test_dev5_evidence_cli.PrimaryCLITests.test_result_e
 test_valid_reference_still_rejects_posix_before_native (test_dev5_evidence_cli.PrimaryCLITests.test_valid_reference_still_rejects_posix_before_native) ... ok
 test_real_driver_runner_and_coordinator_bound_to_same_lower_ports (test_dev5_evidence_cli.ProductionConstructionTests.test_real_driver_runner_and_coordinator_bound_to_same_lower_ports) ... ok
 test_changed_approved_path_blocked (test_dev5_evidence_cli.PublicationTests.test_changed_approved_path_blocked) ... ok
+test_duplicate_publish_intent_blocks_recovery (test_dev5_evidence_cli.PublicationTests.test_duplicate_publish_intent_blocks_recovery) ... ok
 test_file_without_intent_is_not_owned (test_dev5_evidence_cli.PublicationTests.test_file_without_intent_is_not_owned) ... ok
+test_final_and_temp_is_ambiguous (test_dev5_evidence_cli.PublicationTests.test_final_and_temp_is_ambiguous) ... ok
 test_incomplete_remains_incomplete (test_dev5_evidence_cli.PublicationTests.test_incomplete_remains_incomplete) ... ok
 test_intent_without_file_is_not_proof (test_dev5_evidence_cli.PublicationTests.test_intent_without_file_is_not_proof) ... ok
+test_no_archive_incomplete_cap_outcome_uses_incomplete_path (test_dev5_evidence_cli.PublicationTests.test_no_archive_incomplete_cap_outcome_uses_incomplete_path) ... ok
+test_no_archive_intent_rejects_unexpected_final (test_dev5_evidence_cli.PublicationTests.test_no_archive_intent_rejects_unexpected_final) ... ok
+test_no_archive_privacy_outcome_is_durable_and_recoverable_without_write (test_dev5_evidence_cli.PublicationTests.test_no_archive_privacy_outcome_is_durable_and_recoverable_without_write) ... ok
 test_readback_error_does_not_clear_fence (test_dev5_evidence_cli.PublicationTests.test_readback_error_does_not_clear_fence) ... ok
 test_recovery_reads_existing_final_bytes_no_republish (test_dev5_evidence_cli.PublicationTests.test_recovery_reads_existing_final_bytes_no_republish) ... ok
 test_tampered_final_blocks (test_dev5_evidence_cli.PublicationTests.test_tampered_final_blocks) ... ok
 test_tampered_intent_blocks (test_dev5_evidence_cli.PublicationTests.test_tampered_intent_blocks) ... ok
+test_tampered_temp_path_intent_rejected (test_dev5_evidence_cli.PublicationTests.test_tampered_temp_path_intent_rejected) ... ok
+test_temp_only_is_verified_retained_failure_not_republished (test_dev5_evidence_cli.PublicationTests.test_temp_only_is_verified_retained_failure_not_republished) ... ok
 test_actual_stage_not_envelope_pass (test_dev5_evidence_cli.StageTests.test_actual_stage_not_envelope_pass) ... ok
 test_bool_is_not_string (test_dev5_evidence_cli.StageTests.test_bool_is_not_string) ... ok
 test_c3_attempt_cannot_be_hidden (test_dev5_evidence_cli.StageTests.test_c3_attempt_cannot_be_hidden) ... ok
@@ -451,11 +464,15 @@ test_unknown_expectation (test_dev5_route_harness.RouteHarnessTests.test_unknown
 test_wait_is_not_commit (test_dev5_route_harness.RouteHarnessTests.test_wait_is_not_commit) ... ok
 test_wait_requires_its_fence (test_dev5_route_harness.RouteHarnessTests.test_wait_requires_its_fence) ... ok
 test_authority_bits_cannot_be_true (test_dev6_assessment.AssessmentTests.test_authority_bits_cannot_be_true) ... ok
+test_duplicate_assessment_intent_blocks_recovery (test_dev6_assessment.AssessmentTests.test_duplicate_assessment_intent_blocks_recovery) ... ok
+test_final_and_temp_assessment_is_ambiguous (test_dev6_assessment.AssessmentTests.test_final_and_temp_assessment_is_ambiguous) ... ok
 test_intent_precedes_create_and_success_is_non_authoritative (test_dev6_assessment.AssessmentTests.test_intent_precedes_create_and_success_is_non_authoritative) ... ok
 test_output_failure_keeps_intent_for_recovery (test_dev6_assessment.AssessmentTests.test_output_failure_keeps_intent_for_recovery) ... ok
 test_recovery_observes_exact_existing_bytes_without_rewrite (test_dev6_assessment.AssessmentTests.test_recovery_observes_exact_existing_bytes_without_rewrite) ... ok
 test_recovery_without_intent_rejected (test_dev6_assessment.AssessmentTests.test_recovery_without_intent_rejected) ... ok
+test_tampered_assessment_temp_path_rejected (test_dev6_assessment.AssessmentTests.test_tampered_assessment_temp_path_rejected) ... ok
 test_tampered_existing_bytes_rejected (test_dev6_assessment.AssessmentTests.test_tampered_existing_bytes_rejected) ... ok
+test_temp_only_assessment_is_retained_failure (test_dev6_assessment.AssessmentTests.test_temp_only_assessment_is_retained_failure) ... ok
 test_failure_before_first_snapshot_is_journaled_without_fake_e00 (test_dev6_early_failure.EarlyFailureTests.test_failure_before_first_snapshot_is_journaled_without_fake_e00) ... ok
 test_no_admission_or_fence_means_no_capture (test_dev6_early_failure.EarlyFailureTests.test_no_admission_or_fence_means_no_capture) ... ok
 test_duplicate_same_step_conflicting_evidence_rejected (test_dev6_prior_evidence.PriorEvidenceTests.test_duplicate_same_step_conflicting_evidence_rejected) ... ok
@@ -711,6 +728,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 711 tests in 1.485s
+Ran 728 tests in 1.504s
 
 OK
