@@ -142,6 +142,16 @@ test_non_applicable_bundle_rejects_assessment_intent (test_dev12_publication_rec
 test_generated_stage_path_must_fit_windows_path_contract (test_dev12_publication_recovery.StagingIdentityTests.test_generated_stage_path_must_fit_windows_path_contract) ... ok
 test_kind_separates_bundle_and_assessment_staging (test_dev12_publication_recovery.StagingIdentityTests.test_kind_separates_bundle_and_assessment_staging) ... ok
 test_stage_identity_is_deterministic_and_sibling (test_dev12_publication_recovery.StagingIdentityTests.test_stage_identity_is_deterministic_and_sibling) ... ok
+test_controller_environment_proxy_blocks_before_native_child (test_dev14_transport.ControllerEvidenceTests.test_controller_environment_proxy_blocks_before_native_child) ... ok
+test_parse_accepts_exact_direct_capture (test_dev14_transport.ControllerEvidenceTests.test_parse_accepts_exact_direct_capture) ... ok
+test_parse_revalidates_proxy_context (test_dev14_transport.ControllerEvidenceTests.test_parse_revalidates_proxy_context) ... ok
+test_proxy_failure_capture_cannot_be_relabeled_observed (test_dev14_transport.ControllerEvidenceTests.test_proxy_failure_capture_cannot_be_relabeled_observed) ... ok
+test_guest_direct_context_allowed (test_dev14_transport.ProxyPolicyTests.test_guest_direct_context_allowed) ... ok
+test_guest_environment_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_guest_environment_proxy_is_network_failure) ... ok
+test_malformed_proxy_observation_is_integrity_failure (test_dev14_transport.ProxyPolicyTests.test_malformed_proxy_observation_is_integrity_failure) ... ok
+test_non_direct_plan_mode_is_not_invented_adapter (test_dev14_transport.ProxyPolicyTests.test_non_direct_plan_mode_is_not_invented_adapter) ... ok
+test_windows_system_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_system_proxy_is_network_failure) ... ok
+test_windows_user_auto_proxy_is_network_failure (test_dev14_transport.ProxyPolicyTests.test_windows_user_auto_proxy_is_network_failure) ... ok
 test_integrity_failure_without_envelope_is_not_plain_missing (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_integrity_failure_without_envelope_is_not_plain_missing) ... ok
 test_lab_conditions_do_not_forge_site (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_lab_conditions_do_not_forge_site) ... ok
 test_metadata_role_is_required (test_dev3_catalog_native_helpers.BudgetAndOutcomes.test_metadata_role_is_required) ... ok
@@ -729,6 +739,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 729 tests in 1.474s
+Ran 739 tests in 1.428s
 
 OK

@@ -1,3 +1,13 @@
+# Traceability — dev14 reviewed transport semantics
+
+| New author module | Cases | Reviewed scope |
+|---|---:|---|
+| `test_dev14_transport` | 10 | D00-06, E00-08, T00-04, F00-06 | DIRECT context acceptance; environment/WinHTTP/user proxy failure14; malformed proxy evidence; parser revalidation; unapproved non-DIRECT plan rejection |
+
+Final author regression: **739 PASS**, static **96 PASS**. These are synthetic author checks; native Windows/WSL/LAB/SITE transport remains NOT_RUN.
+
+---
+
 # Traceability — dev13 stale-output ownership fix
 
 Added one negative case proving a pre-existing final path blocks no-archive publication without deletion/overwrite. Final author regression: **729 PASS**, static **95 PASS**.

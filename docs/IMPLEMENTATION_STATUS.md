@@ -1,3 +1,20 @@
+# IMPL-P00-001 Implementation Status — dev14 increment
+
+`0.1.0.dev14 / PARTIAL_SOURCE_DROP_DEV14`
+
+Dev14 resolves the transport interpretation against exact Design V2/D00-06/T00-04. V2 does **not** authorize a P00 `SYSTEM_PROXY`/VPN/CA-remediation transport adapter. The supported probe remains `proxy_mode=DIRECT`; configured proxy context is an observed network environment mismatch and returns normalized exit14 without policy changes or bypass.
+
+- Added shared `proxy_policy()` for exact observed proxy-context validation.
+- Guest env proxy overrides, Windows WinHTTP system proxy, and Windows current-user auto/configured proxy are explicit `14/NETWORK_PROXY_CONTEXT`.
+- Controller parser revalidates the returned proxy observation, rather than trusting a PASS-shaped network capture.
+- Controller environment proxy variables block before native child launch, preventing silent proxy stripping by the sanitized child environment.
+- Non-DIRECT plan modes remain rejected as unapproved adapter requests; no firewall/DNS/VPN/proxy/CA mutation was added.
+- Added 10 focused transport-context tests.
+
+Final author evidence: **739 PASS / 0 failure/error/skip**, static **96 PASS**. Native Windows/WSL/LAB/SITE remains NOT_RUN. Full CODE_REVIEW remains blocked by CR-P00-001.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev13 increment
 
 `0.1.0.dev13 / PARTIAL_SOURCE_DROP_DEV13`

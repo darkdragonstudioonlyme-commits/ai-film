@@ -1,3 +1,20 @@
+# DEV14 Network transport boundary
+
+Exact V2 authorizes a bounded DIRECT HTTPS probe while preserving existing networking/DNS/VPN/proxy/firewall policy. Dev14 makes special proxy context an explicit observed blocked environment, not a missing transport implementation:
+
+```text
+plan endpoint proxy_mode=DIRECT
+→ observe controller/guest or Windows proxy context
+→ configured proxy/auto-proxy/environment override => exit14 NETWORK_PROXY_CONTEXT
+→ no policy mutation, bypass, CA install or alternate proxy adapter
+→ only exact direct context proceeds to DNS/TCP/TLS/HTTPS measurement
+→ parser rechecks proxy observation before accepting evidence
+```
+
+A future requirement to actually use an enterprise proxy/CA/VPN remediation adapter is RD00-03/new reviewed scope, not something IMPLEMENTATION may invent.
+
+---
+
 # DEV12 E16/E17 publication recovery boundary
 
 Publication ownership is now durable before bytes are written:

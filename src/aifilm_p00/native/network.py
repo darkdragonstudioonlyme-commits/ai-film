@@ -9,7 +9,7 @@ import base64
 import sys
 from ..codec import canonical,sha256,loads,windows_path,user_name,distro_name
 from ..errors import require
-from ..network_probe import endpoint
+from ..network_probe import endpoint,proxy_policy
 from .process import Command
 
 # No imports of pwd on Windows. Fixed bootstrap + exact module bytes below.
@@ -19,13 +19,12 @@ pkg=types.ModuleType('aifilm_p00');pkg.__path__=[];sys.modules['aifilm_p00']=pkg
 MAIN = r'''
 from aifilm_p00.codec import loads,canonical
 from aifilm_p00.errors import require,P00Error
-from aifilm_p00.network_probe import measure,endpoint
+from aifilm_p00.network_probe import measure,endpoint,proxy_policy
 
 def proxy_observation(context):
     names=('http_proxy','https_proxy','all_proxy','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY')
     env={k:bool(os.environ.get(k)) for k in names}
     actual={'environment_overrides':env,'context':context}
-    require(not any(env.values()),11,'PROXY_PROFILE_REQUIRES_ADAPTER')
     if context=='WINDOWS':
         from ctypes import wintypes as W
         class Default(C.Structure):
@@ -44,8 +43,6 @@ def proxy_observation(context):
             actual['winhttp']={'access_type':int(d.access_type),'proxy_present':bool(d.proxy),'bypass_present':bool(d.bypass)}
             actual['user']={'status':'OBSERVED' if ok else 'ABSENT','auto_detect':bool(u.auto),
                             'auto_config_url_present':bool(u.url),'proxy_present':bool(u.proxy)}
-            require(d.access_type==1 and not d.proxy and not u.auto and not u.url and not u.proxy,
-                    11,'PROXY_PROFILE_REQUIRES_ADAPTER')
         finally:
             for value in (d.proxy,d.bypass,u.url,u.proxy,u.bypass):
                 if value:free(value)
@@ -61,7 +58,7 @@ try:
         import pwd
         require(os.geteuid()>0 and pwd.getpwuid(os.geteuid()).pw_name==request['user'],12,'WRONG_GUEST_PRINCIPAL')
     else:require(request['user'] is None,10,'NETWORK_USER_SCOPE')
-    proxy=proxy_observation(context)
+    proxy=proxy_observation(context);proxy_policy(spec,proxy)
     result=measure(spec);result['proxy_observation']=proxy
     out=canonical({'schema_version':1,'operation':'NETWORK','status':'OBSERVED','actual':result,
                    'duration_ms':result['duration_ms']})
@@ -103,6 +100,7 @@ def parse_network(raw,spec):
     require(actual.get('endpoint_id')==spec['endpoint_id'] and actual.get('context')==spec['context'],16,'NETWORK_ENDPOINT_MISMATCH')
     require(type(actual.get('duration_ms')) is int and 0<=actual['duration_ms']<=30000,22,'NETWORK_COLLECTOR_TIMEOUT')
     require(actual.get('proxy_observation',{}).get('context')==spec['context'],15,'NETWORK_PROXY_OBSERVATION_REQUIRED')
+    proxy_policy(spec,actual['proxy_observation'])
     if actual.get('status')=='OBSERVED':
         m=actual.get('measurements',{})
         require(all(m.get(k) is True for k in ('dns','tcp','tls_chain_hostname','https','eof'))
@@ -119,7 +117,7 @@ class NativeNetwork:
         require(spec in s.get('endpoints',[]),12,'NETWORK_ENDPOINT_NOT_APPROVED')
         import os
         require(not any(os.environ.get(k) for k in ('http_proxy','https_proxy','all_proxy','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY')),
-                11,'PROXY_PROFILE_REQUIRES_ADAPTER')
+                14,'NETWORK_PROXY_CONTEXT')
         from ..content import content_identity
         require(content_identity(d.root)['source_content_digest']==s['build_digest'],16,'NETWORK_SOURCE_DRIFT')
         # The endpoint list and proxy policy are immutable in the exact plan.

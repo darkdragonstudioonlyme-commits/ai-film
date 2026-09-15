@@ -39,6 +39,32 @@ def endpoint(spec):
     return spec
 
 
+def proxy_policy(spec,actual):
+    """Validate observed context for the approved DIRECT-only P00 probe.
+
+    Reviewed V2 does not authorize a proxy/VPN/CA remediation adapter. A configured
+    proxy is therefore an observed network-context failure (14), never something
+    silently ignored by the fixed DIRECT transport.
+    """
+    endpoint(spec)
+    require(type(actual) is dict and actual.get('context')==spec['context'],15,'NETWORK_PROXY_OBSERVATION_REQUIRED')
+    env=actual.get('environment_overrides')
+    names=('http_proxy','https_proxy','all_proxy','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY')
+    require(type(env) is dict and set(env)==set(names) and all(type(env[k]) is bool for k in names),
+            15,'NETWORK_PROXY_OBSERVATION_REQUIRED')
+    require(not any(env.values()),14,'NETWORK_PROXY_CONTEXT')
+    if spec['context']=='WINDOWS':
+        winhttp=actual.get('winhttp');user=actual.get('user')
+        require(type(winhttp) is dict and set(winhttp)=={'access_type','proxy_present','bypass_present'}
+                and type(user) is dict and set(user)=={'status','auto_detect','auto_config_url_present','proxy_present'},
+                15,'NETWORK_PROXY_OBSERVATION_REQUIRED')
+        require(winhttp['access_type']==1 and not winhttp['proxy_present']
+                and user['status'] in ('OBSERVED','ABSENT') and not user['auto_detect']
+                and not user['auto_config_url_present'] and not user['proxy_present'],
+                14,'NETWORK_PROXY_CONTEXT')
+    return actual
+
+
 def _dns_bounded(host,timeout):
     result=[];failure=[]
     def call():

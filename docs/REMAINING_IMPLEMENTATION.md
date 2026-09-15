@@ -1,3 +1,12 @@
+# DEV14 Remaining-Work Delta
+
+- **REM-06 transport progress:** exact V2 transport semantics are source-complete at the policy boundary: only reviewed DIRECT probes execute; configured proxy context is normalized network failure14 and is never bypassed or auto-remediated; existing VPN/networking mode remains preserved.
+- The older phrase “supported non-DIRECT adapter path” is superseded: exact V2 does not approve a proxy/VPN/CA adapter. Supporting such an adapter would require a new design/review scope.
+- **REM-06 still open at full-item scope** only for remaining terminal/restore integration and causal native harness validation, not for inventing an unreviewed proxy transport.
+- Still open globally: causal 86-case controller/oracles, production-factory author integration and residual REM closure. CR-P00-001 remains OPEN_BLOCKER.
+
+---
+
 # DEV13 Remaining-Work Delta
 
 - `CR-P00-006`: implementation fix authored — no-archive normal path rejects pre-existing approved final output and preserves it untouched.
