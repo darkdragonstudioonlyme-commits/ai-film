@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: REVIEW-P00
 LANE_ROLE: REVIEW
-STATUS: REVIEW_COMPLETE_WAITING_FOR_NEXT_CANDIDATE
+STATUS: READY_TO_REVIEW_EXACT_CANDIDATE
 GLOBAL_MODE: IMPLEMENTATION
 FORMAL_REVIEW_WORK_ITEM: CODE-REVIEW-P00-001
 REMOTE_BRANCH: lane/review-p00
@@ -12,35 +12,32 @@ SOURCE_MODE: DETACHED_EXACT_CANDIDATE
 SOURCE_WRITABLE: false
 REVIEW_ARTIFACTS_WRITABLE: true
 
-CURRENT_CANDIDATE: 0.1.0.dev17
-CURRENT_SOURCE_COMMIT: 64ea95bf10e05e856a009be9204983182f520b45
-CURRENT_PACKAGE_SHA256: 130f43c1b54ce00c19a894c61dfa0edfc4218a434ba4d1f060ef815cfaff951e
-INDEPENDENT_TESTS: "753 PASS / 0 failure / 0 error / 0 skip"
-INDEPENDENT_STATIC: "100 PASS"
+CURRENT_CANDIDATE: 0.1.0.dev18
+CURRENT_SOURCE_COMMIT: f680067c2f23d7eea4c016247015359ffe431971
+CURRENT_PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V18.zip
+CURRENT_PACKAGE_SIZE_BYTES: 1180358
+CURRENT_PACKAGE_SHA256: 4b52f896e583b52dbb3207bb9ebbfdcdd92f10fa463cddce430fed85a502aa09
+SOURCE_DIGEST: 9a4474aa798f788bf66a0d61594092804c4875e75b70e9452cb6392ad15ca3f8
+TEST_DIGEST: 2f805a2fc7da3aeb35a21ec6bd79323f248c48ae96b3604d61f9921a8feb5329
+AUTHOR_TESTS: "757 PASS"
+AUTHOR_STATIC: "100 PASS"
+REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
 
-DELTA_VERDICT: FAIL
-CLOSED_FINDINGS: [CR-P00-007, CR-P00-008, CR-P00-009, CR-P00-010, CR-P00-011]
-OPEN_FINDINGS: [CR-P00-001, CR-P00-012, CR-P00-013]
-OVERALL_CODE_REVIEW_VERDICT: FAIL
+REVIEW_TARGET_FINDINGS: [CR-P00-012, CR-P00-013]
+UMBRELLA_FINDING: CR-P00-001
+TEST_CHANGE: TEST_CHANGE-P00-DEV18-HARNESS-001
+OVERALL_CODE_REVIEW_VERDICT: NOT_REEVALUATED
 CODE_REVIEW_PASS: false
 ```
 
-## Dev17 review result
+## Required independent review
 
-Independent REVIEW reproduced 753 PASS / 100 static PASS. The new causal preparation actions, ordered controller-step records and exact protected evidence refs close CR-P00-010/011 at the source delta level.
+- checkout detached exact `f680067c...` and verify the local exact package hash/manifest;
+- rerun workspace/static checks independently;
+- reproduce wrong collector build/contract, preparation continuity expiry, controller temporal mismatch and wrong action→route rebinding rejections;
+- verify procedure-owned exact route indices and T07-H CREATE→reconciliation mapping across the 86-case inventory;
+- independently review `TEST_CHANGE-P00-DEV18-HARNESS-001` with `ORACLE_CHANGED=false`;
+- search the full dev17→dev18 delta for new defects/provenance gaps;
+- do not patch source during REVIEW.
 
-### CR-P00-012 — HIGH — harness collectors are not bound to suite build/contract
-
-Harness `_collector()` accepts any pinned `collector_release` with `review_verdict=PASS` and `withdrawn=false`. It does not require collector `build_digest` / `contract_digest` to equal the exact authorizing suite. Review demonstrated that a wrong-build/wrong-contract collector is accepted.
-
-Required fix: every fixture/preparation/controller/oracle/journal/evidence/result collector must match the suite build and exact approved contract, analogous to the existing ProofReader collector binding.
-
-### CR-P00-013 — HIGH — causal condition/controller trace is not stage-window bound
-
-Dev17 proves a preparation action happened before fixture measurement and proves the ordered controller-step list happened before final result. It does not prove an arranged condition remained active at the production route stage, nor does a controller-step record identify the stage window it controls. A holder/timeout/config fault can therefore disappear before route execution while the pre-stage trace remains valid.
-
-Required fix: each native stage must consume execution/suite-bound preparation continuity witnesses for the exact preparation action refs at that stage. ARRANGE witnesses must prove the condition is active at stage time; OBSERVE witnesses must prove the expected condition still matches. Controller-step records must bind explicit related stage indices; finalization must require valid stage coverage/order for the reviewed procedure.
-
-## Non-claims
-
-The 86 inventory entries remain NOT_RUN. No source was changed in REVIEW and no native Windows/WSL/LAB/SITE execution occurred.
+Remote artifact-store persistence is pending; this does not substitute for package identity verification and is not a native validation claim.
