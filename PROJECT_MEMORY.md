@@ -31,61 +31,84 @@ Historical detail through checkpoint V15 is preserved in Git history. The V15 li
 | MEM-20260915-017 | RECOVERY | Resume from reboot wait needs a changed boot witness + cleared pending state before the original step can commit. |
 | MEM-20260915-018 | PROCESS | Missing owner postcheck is an owner wait only from an existing operator-wait fence; never relabel arbitrary `UNCERTAIN`. |
 | MEM-20260915-019 | DESIGN | Keep the reviewed final owner-planned restart; an earlier engine-required reboot does not satisfy T00-05 by itself. |
+| MEM-20260915-020 | REVIEW | An early review of an explicitly partial candidate must FAIL; passing tests do not make missing reviewed scope reviewable. |
+| MEM-20260915-021 | SECURITY | Any durable recovery-state change after observation needs renewed authority immediately before persistence. |
+| MEM-20260915-022 | OBSERVABILITY | If lifecycle classification uses an actual observation, persist a bounded typed representation/digest of that observation; do not retain only the derived state. |
+| MEM-20260915-023 | RESOURCE | Durable wait context needs exact schemas and size/privacy bounds; never deep-copy arbitrary observation dictionaries into the journal. |
 
 ## Dev8 lifecycle lessons
 
 ### MEM-20260915-016 — Process terminal is not lifecycle terminal
 
-```yaml
-TYPE: LIFECYCLE
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "A successful C3 child process can leave Windows in a pending-reboot state."
-EVIDENCE: "Dev8 added post-process pending-reboot classification; 10 targeted lifecycle tests and full 683-test regression passed."
-REUSABLE_RULE: "After C3 process completion, read current pending-reboot indicators. If any are true, keep the original durable fence at AWAITING_REBOOT/20; do not advance from exit code alone."
-ACTION_TAKEN: "Added native.lifecycle.classify_c3_process_result and wired it into ENABLE_PREREQUISITES/INSTALL_RUNTIME."
-```
+A successful C3 child process can leave Windows pending reboot. After C3 process completion, read current pending-reboot indicators and retain `AWAITING_REBOOT/20` when any are true; process exit alone is not lifecycle completion.
 
 ### MEM-20260915-017 — Reboot resume is a witnessed lifecycle boundary
 
-```yaml
-TYPE: RECOVERY
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "Reconciliation after a reboot wait must prove the host actually crossed a boot boundary and is no longer pending reboot."
-EVIDENCE: "Dev8 requires current host boot witness != the fence witness and requires all observed pending-reboot indicators false before postconditions/affected-resource checks may commit the original step."
-REUSABLE_RULE: "A renewed approval, elapsed time or process exit cannot substitute for a changed host boot witness plus cleared pending-reboot state."
-ACTION_TAKEN: "Added reboot_resume_boundary and reused it for reboot-origin owner-verification waits."
-```
+Reconciliation after a reboot wait requires current host boot witness != the original fence boot witness and all observed pending-reboot indicators clear before postconditions may commit the step.
 
 ### MEM-20260915-018 — Owner verification wait is not a generic error relabel
 
-```yaml
-TYPE: RECOVERY
-STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "Missing post-C3/OOBE owner evidence is an operator wait, but only when reconciliation already owns an operator-wait fence."
-EVIDENCE: "Dev8 RecoveryRunner catches only exit20/AWAITING_OWNER_VERIFICATION from AWAITING_REBOOT, AWAITING_USER_INIT or AWAITING_OWNER_VERIFICATION fences; other errors propagate unchanged."
-REUSABLE_RULE: "Never convert an arbitrary UNCERTAIN/failure into owner wait. Retain/relabel only an existing operator-wait fence and never replay the mutation."
-ACTION_TAKEN: "Added bounded wait context and owner_wait_can_relabel guard."
-```
+Missing post-C3/OOBE owner evidence may remain an operator wait only when reconciliation already owns an operator-wait fence. Never convert arbitrary `UNCERTAIN` or assertion failure into owner wait.
 
 ### MEM-20260915-019 — Engine reboot and planned host-restart test are distinct
 
+The explicit final `AWAIT_OWNER_RESTART` must not be removed merely because an earlier engine C3 step required reboot. Design V2/T00-05 defines a distinct owner-planned host restart lifecycle boundary.
+
+## CODE_REVIEW dev8 lessons
+
+### MEM-20260915-020 — Passing author tests do not make a partial candidate review-ready
+
 ```yaml
-TYPE: DESIGN
+TYPE: REVIEW
 STATUS: ACTIVE
-DISCOVERED_IN: {MODE: IMPLEMENTATION, PHASE: "00 — Host / WSL", WORK_ITEM: IMPL-P00-001}
-SUMMARY: "The explicit final AWAIT_OWNER_RESTART must not be removed merely because ENABLE_PREREQUISITES/INSTALL_RUNTIME required an earlier reboot."
-EVIDENCE: "Design V2/T00-05 requires one owner-planned host restart with sentinel/content and affected-resource checks; ENGINE/reboot is separately required to establish engine/runtime post-state before fresh inventory/next planning."
-REUSABLE_RULE: "Do not deduplicate lifecycle operations solely by action name. Preserve reviewed semantic boundaries unless a formal design change is approved."
-ACTION_TAKEN: "Dev8 keeps plan operations unchanged and only hardens wait/resume semantics."
+DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
+SUMMARY: "Dev8 independently reproduced 683 PASS + 92 static, but the full candidate still declared AUTHOR_COMPLETE=false and REM-01…08 open."
+EVIDENCE: "CODE-REVIEW-P00-001 dev8 verdict FAIL; CR-P00-001 BLOCKER."
+REUSABLE_RULE: "Do not issue PASS/PASS_WITH_FIXES for a full-scope code gate when required reviewed implementation is absent. Test success only evaluates existing code."
+ACTION_TAKEN: "Formal CODE_REVIEW_PASS transition was not activated; project returned to IMPLEMENTATION."
+```
+
+### MEM-20260915-021 — Re-authorize immediately before persistent recovery-state changes
+
+```yaml
+TYPE: SECURITY
+STATUS: ACTIVE
+DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
+SUMMARY: "A recovery observation can outlive the authority that admitted it; persistent wait-state mutation therefore needs a final authority check."
+EVIDENCE: "Review scenario expired synthetic authority inside d.reconcile and raised AWAITING_OWNER_VERIFICATION; dev8 still persisted the relabel because that catch branch skipped _reauthorize. CR-P00-002."
+REUSABLE_RULE: "After any potentially long observation/proof read and before changing durable recovery/fence state, revalidate current authority, actor/request identity, generation and fence identity."
+ACTION_TAKEN: "Finding recorded; implementation fix required before next formal review."
+```
+
+### MEM-20260915-022 — Persist the actual cause of derived lifecycle waits
+
+```yaml
+TYPE: OBSERVABILITY
+STATUS: ACTIVE
+DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
+SUMMARY: "Dev8 computes pending-reboot facts and wait_reason but SessionRunner persists only AWAITING_REBOOT state."
+EVIDENCE: "Review scenario returned pending_reboot={cbs:true,wu:false}; the resulting fence had no wait_observation. CR-P00-003."
+REUSABLE_RULE: "A durable state derived from an actual observation should retain a safe typed observation/digest sufficient to audit/reconcile the derivation. Do not persist only the conclusion."
+ACTION_TAKEN: "Finding recorded; implementation fix required."
+```
+
+### MEM-20260915-023 — Durable wait context must be typed and bounded
+
+```yaml
+TYPE: RESOURCE
+STATUS: ACTIVE
+DISCOVERED_IN: {MODE: CODE_REVIEW, PHASE: "00 — Host / WSL", WORK_ITEM: CODE-REVIEW-P00-001}
+SUMMARY: "Coordinator.awaiting currently accepts any non-empty dict and deep-copies it into the durable fence."
+EVIDENCE: "Static review of admission.py lines 129–135; CR-P00-004."
+REUSABLE_RULE: "For journaled wait metadata, define exact allowed keys/types and canonical serialized size limits; keep raw/sensitive evidence behind protected references/digests."
+ACTION_TAKEN: "Finding recorded; add schema/size/privacy negative tests during implementation."
 ```
 
 ## Future-chat usage
 
 1. Read `PROJECT_STATE.md` and `NEXT_WORK_ITEM.md` first.
 2. Scan this index for lessons relevant to the active increment.
-3. Read `WORKSPACE_WSL.md` for Desktop Commander/WSL operation.
-4. Use Git history/archive pointers for older entry detail when needed.
-5. Add/supersede entries automatically at every meaningful increment.
+3. Read `reviews/CODE-REVIEW-P00-001_DEV8.md` while CR-P00-001…004 remain open.
+4. Read `WORKSPACE_WSL.md` for Desktop Commander/WSL operation.
+5. Use Git history/archive pointers for older entry detail when needed.
+6. Add/supersede entries automatically at every meaningful increment.
