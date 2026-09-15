@@ -93,7 +93,7 @@ A discovery is classified:
 - repeated lesson that changes how work must be performed → promote to policy in `WORKFLOW_ROUTER.md`, `EXECUTION_LANES.md`, `GIT_WORKFLOW.md` or `DOCUMENTATION_MAP.md`;
 - reviewed behavior conflict → DESIGN_GAP, not memory-based contract override.
 
-When promoted, keep a compact memory provenance entry and mark the policy/tool location. `SELF_LEARNING.md` defines scoring, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md` and persist immutable reviews under `workflow-health/`.
+When promoted, keep a compact memory provenance entry and mark the policy/tool location. Durable standalone learning records live under `learning/`. `SELF_LEARNING.md` defines scoring, success metrics, compaction and retirement. Repeated ineffective cycles trigger `WORKFLOW_HEALTH.md` and persist immutable reviews under `workflow-health/`.
 
 ## Secret/public-repo discipline
 
@@ -102,3 +102,7 @@ Secret-scan every material delivery. Test canaries must be clearly synthetic. Ne
 ## Remote verification
 
 After remote writes, re-fetch the branch/ref and verify the expected file/commit is visible before treating the update as durable.
+
+## Environment/model record persistence
+
+Exact environment snapshots live under `environments/`; reviewed model results live under `model-evaluations/`. Methodology files point to these records rather than accumulating mutable/historical result prose.

@@ -31,13 +31,16 @@ PROJECT_STATE
 | `WORKFLOW_ROUTER.md` | deterministic task routing and return paths | routing/process policy changes | source implementation details |
 | `EXECUTION_LANES.md` | workflow permissions, independence, handoff contracts | lane/trust model changes | current candidate result details |
 | lane `LANE_STATE.md` | lane-local active/waiting candidate and lane output | lane state changes | global gate authority |
-| `PROJECT_MEMORY.md` | compact active learning index/provenance | useful learning discovered/superseded | detailed policy/procedure |
+| `PROJECT_MEMORY.md` | compact active learning index/provenance | useful learning activated/superseded | detailed historical learning/policy/procedure |
+| `learning/*` | immutable detailed standalone learning records | reusable learning needs durable provenance/follow-up | current state |
 | `SELF_LEARNING.md` | learning lifecycle, promotion, measurement and compaction | learning process changes | candidate state |
 | `TEST_STRATEGY.md` | business-first test authority and test-change rules | test philosophy/oracle policy changes | candidate-specific test results |
 | `WORKFLOW_HEALTH.md` | deadlock/inefficiency triggers and meta-review | workflow health policy changes | implementation fixes |
 | `POLICY_REGISTRY.md` | active/deprecated/superseded/retired operating policy index | policy lifecycle changes | historical full text |
-| `SERVER_ENVIRONMENT.md` | observed server/environment snapshots and fact status | environment facts/profile changes | model recommendations |
-| `MODEL_EVALUATION.md` | reproducible model benchmark workflow/result identity | model-eval methodology changes | current server facts |
+| `SERVER_ENVIRONMENT.md` | environment methodology + current development-environment pointer | environment methodology/current pointer changes | historical snapshot details/model recommendations |
+| `environments/*` | immutable exact environment snapshots | new material environment identity | mutable methodology |
+| `MODEL_EVALUATION.md` | reproducible model benchmark methodology/result schema | model-eval methodology changes | historical results/current server facts |
+| `model-evaluations/*` | immutable reviewed model evaluation results | evaluation completes | methodology |
 | `RECOVERY_PLAYBOOK.md` | recovery routes for context/state/tool/artifact failures | recovery policy changes | normal next-work queue |
 | `OPERATING_ARCHITECTURE.md` | process/trust architecture and separation of concerns | operating architecture changes | mutable status |
 | `GIT_WORKFLOW.md` | commit/branch/artifact/persistence rules | persistence policy changes | project roadmap |
@@ -66,11 +69,11 @@ Did global truth change?      → PROJECT_STATE
 Did exact next action change? → NEXT_WORK_ITEM
 Did roadmap/closure change?   → PROJECT_ROADMAP
 Did routing/process change?   → WORKFLOW_ROUTER / EXECUTION_LANES / GIT_WORKFLOW
-Did reusable knowledge emerge?→ PROJECT_MEMORY + SELF_LEARNING lifecycle
+Did reusable knowledge emerge?→ PROJECT_MEMORY + SELF_LEARNING + `learning/*` when durable standalone provenance is needed
 Did test philosophy/oracle change?→ TEST_STRATEGY + `test-governance/*` + independent TEST_REVIEW
 Did policy become stale/duplicate? → POLICY_REGISTRY + prune active docs
 Did workflow become ineffective?   → WORKFLOW_HEALTH + `workflow-health/*` meta-review
-Did environment/model context change?→ SERVER_ENVIRONMENT / MODEL_EVALUATION
+Did environment/model context change?→ SERVER_ENVIRONMENT + `environments/*` / MODEL_EVALUATION + `model-evaluations/*`
 Did recovery behavior change?       → RECOVERY_PLAYBOOK
 Did workspace facts change?         → WORKSPACE_WSL
 Did review/delivery finish?   → immutable review/delivery record

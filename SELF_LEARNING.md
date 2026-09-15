@@ -55,6 +55,10 @@ STATUS: ACTIVE|SUPERSEDED|RETIRED
 
 A promoted learning defines a future detector or behavior change, for example a checker, router rule, test, schema, policy or recovery step. Later workflow health reviews ask whether recurrence decreased. If not, the learning was incomplete and is reviewed again.
 
+## Durable learning records
+
+Persist standalone reusable learning under `learning/LEARNING-<scope>-<nnn>.md`. If the complete learning is already captured by an immutable review/health record, the memory index may point there instead of duplicating it. Follow-up evidence updates the learning lifecycle through a new reviewed record/commit; do not erase the original observation.
+
 ## Memory compaction
 
 `PROJECT_MEMORY.md` is an active index, not an ever-growing diary.

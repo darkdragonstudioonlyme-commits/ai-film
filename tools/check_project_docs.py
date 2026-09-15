@@ -11,7 +11,7 @@ required=[
 errors=[]
 for name in required:
     if not (ROOT/name).is_file(): errors.append('missing:'+name)
-for path in ['test-governance/README.md','workflow-health/README.md']:
+for path in ['test-governance/README.md','workflow-health/README.md','environments/README.md','environments/ENV-DEV-WSL-20260915.md','model-evaluations/README.md','learning/README.md']:
     if not (ROOT/path).is_file(): errors.append('missing:'+path)
 text={n:(ROOT/n).read_text(encoding='utf-8') for n in required if (ROOT/n).is_file()}
 checks=[
@@ -31,8 +31,11 @@ checks=[
  ('git-fetch','fetch origin main','GIT_WORKFLOW.md'),
  ('test-records','test-governance/','TEST_STRATEGY.md'),
  ('health-records','workflow-health/','WORKFLOW_HEALTH.md'),
- ('env-provenance','Measurement provenance','SERVER_ENVIRONMENT.md'),
- ('policy-owner','Owner','POLICY_REGISTRY.md')]
+ ('env-record-pointer','environments/','SERVER_ENVIRONMENT.md'),
+ ('policy-owner','Owner','POLICY_REGISTRY.md'),
+ ('env-records','environments/','SERVER_ENVIRONMENT.md'),
+ ('model-records','model-evaluations/','MODEL_EVALUATION.md'),
+ ('learning-records','learning/','SELF_LEARNING.md')]
 for key,needle,name in checks:
     body=text.get(name,'')
     if needle not in body: errors.append('invariant:'+key)

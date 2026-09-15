@@ -8,7 +8,7 @@ Compare models for project business goals using reproducible workloads and exact
 
 A model evaluation requires:
 
-- an `EVAL_ENV_ID` from `SERVER_ENVIRONMENT.md` with all metrics needed by the evaluation;
+- an immutable `EVAL_ENV_ID` / environment record from `environments/` with all metrics needed by the evaluation;
 - exact model/version/weights identity;
 - exact inference stack identity;
 - reviewed evaluation objective and dataset/prompts;
@@ -68,3 +68,7 @@ REVIEW_STATUS:
 ```
 
 A model recommendation is not a permanent policy. Re-evaluate when business goals, model versions or material environment inputs change.
+
+## Persistence
+
+Reviewed evaluation records live under `model-evaluations/`. The methodology file remains version-agnostic; historical results stay immutable and reference exact environment/model/test identities.
