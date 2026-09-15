@@ -51,6 +51,26 @@
     "observed_local_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
     "local_worktree": "implement"
   },
+  "runtime_reconciliation": {
+    "schema_version": 1,
+    "state_kind": "IN_FLIGHT_AHEAD_OF_CANONICAL",
+    "implement_head": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+    "review_head": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
+    "implement_dirty_files": [],
+    "implement_lane_required_tokens": [
+      "RUN-P00-CR001-001",
+      "S07_TEST_REVIEW_DEV20",
+      "8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff"
+    ],
+    "review_lane_required_tokens": [
+      "2ac37acdd3f81d3b86d4ffb019689655110a80c2"
+    ],
+    "package": {
+      "required": true,
+      "path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V20.zip",
+      "sha256": "8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff"
+    }
+  },
   "learning_activation": {
     "workflow_continuity_r8": "ACTIVE_ON_PROMOTION",
     "governance_release_selection": "ACTIVE_ON_PROMOTION",
