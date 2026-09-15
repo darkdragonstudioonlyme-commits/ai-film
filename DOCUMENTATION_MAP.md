@@ -50,6 +50,7 @@ PROJECT_STATE
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
 | `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |
+| `AI_FILM_PROJECT_STATE_Vn.json` | machine-readable version-matched state + stable runtime reconciliation contract | every `PROJECT_STATE` version update | standing policy/prose |
 
 ## Freshness rules
 
@@ -101,3 +102,9 @@ python3 tools/check_runtime_state.py
 ```
 
 The first checks document structure/invariants. The second fresh-fetches lane refs and compares canonical state with remote lane state, local worktree identity/dirty set and the current durable artifact. Both are guardrails, not substitutes for DOC-REVIEW.
+
+## Lifecycle-neutral reconciliation
+
+`PROJECT_STATE.md` owns human current truth. Its `STATE_VERSION` selects the exact `AI_FILM_PROJECT_STATE_Vn.json` machine snapshot. Every state version must update both atomically. The JSON contains `runtime_reconciliation` with stable keys for state kind, IMPLEMENT/REVIEW heads, dirty files, optional package identity and required lane tokens.
+
+Checkers must model allowed lifecycle states rather than require transient markers such as a WIP block, a particular review ID, a fixed checkpoint version or a fixed package version. A valid state with an obsolete checker assumption is `CHECKER_DRIFT`, not evidence that project state should be rewritten to mimic the old snapshot.

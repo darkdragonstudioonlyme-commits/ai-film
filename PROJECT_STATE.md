@@ -1,27 +1,34 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V26
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V27
 
-> Read first in every new chat. Current global truth only. Routing: `WORKFLOW_ROUTER.md`.
+> Read first in every new chat. Human current truth. Machine reconciliation snapshot: `AI_FILM_PROJECT_STATE_V27.json`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 26
+STATE_VERSION: 27
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-001
 TARGET_GATE: CODE_REVIEW_PASS
 PHASE_GATE: HOST_READY
-DOCUMENTATION_SYSTEM: DOCSYS-V2-R6
+DOCUMENTATION_SYSTEM: DOCSYS-V2-R7
+
+DOCUMENTATION_GOVERNANCE:
+  ACTIVE_SYSTEM_VERSION: V2
+  SYSTEM_RELEASE_ID: DOCSYS-V2-R7
+  PREVIOUS_RELEASE: DOCSYS-V2-R6
+  ACTIVATION_CONDITION: "Promote exact R7 tree only after DOC-V2-R7-REVIEW-001 PASS and DOC-V2-R7-AUDIT-001 PASS"
+  DETAILED_REVIEW_ID: DOC-V2-R7-REVIEW-001
+  DETAILED_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_V2_R7_REVIEW_001_PASS.md
+  HOLISTIC_AUDIT_ID: DOC-V2-R7-AUDIT-001
+  HOLISTIC_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_V2_R7_AUDIT_001_PASS.md
 
 LAST_REVIEWED_CANDIDATE:
   VERSION: 0.1.0.dev19
   SOURCE_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V19.zip
   PACKAGE_SHA256: 564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1
-  INDEPENDENT_TESTS: "759 PASS / 0 failure / 0 error / 0 skip"
-  INDEPENDENT_STATIC: "100 PASS"
   DELTA_VERDICT: PASS
-  OVERALL_CODE_REVIEW_VERDICT: FAIL
-  REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV19_DELTA.md
-  REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+  OVERALL_CODE_REVIEW_VERDICT: FAIL_CR_P00_001_ONLY
 
 FINDING_STATUS:
   CR-P00-001: OPEN_BLOCKER
@@ -29,25 +36,21 @@ FINDING_STATUS:
   CR-P00-013: CLOSED_DEV18_REVERIFIED_DEV19
   CR-P00-014: CLOSED_DEV19
 
-TEST_GOVERNANCE:
-  CHANGE_ID: TEST_CHANGE-P00-DEV19-HARNESS-002
-  REVIEW_ID: TEST_REVIEW-P00-DEV19-HARNESS-002
-  VERDICT: PASS
-
-WORKFLOW_HEALTH:
-  HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-WF-P00-HARNESS-002.md
-  STATE: HEALTHY
-  META_REVIEW_REQUIRED: false
-
 AUTHOR_BASE_FOR_RESIDUAL_AUDIT:
   VERSION: 0.1.0.dev19
   COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
   AUTHOR_TESTS: "759 PASS"
   STATIC_CHECKS: "100 PASS"
 
-ARTIFACT_PERSISTENCE:
-  DEV19_LOCAL_WSL_PACKAGE_VERIFIED: true
-  DEV19_REMOTE_ARTIFACT_STORE: PENDING_TOOL_CAPABILITY
+RUNTIME_RECONCILIATION:
+  STATE_KIND: REVIEWED_CLEAN_RESIDUAL_AUDIT
+  SNAPSHOT_JSON: AI_FILM_PROJECT_STATE_V27.json
+  IMPLEMENT_HEAD: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  REVIEW_HEAD: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
+  IMPLEMENT_DIRTY_FILES: []
+  PACKAGE_REQUIRED: true
+  PACKAGE_PATH: /home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V19.zip
+  PACKAGE_SHA256: 564ad67c2ddc00f1f4ffbc891afa1aeb1c0c194b0d2fb6c30767f6ae381491e1
 
 AUTHOR_COMPLETE: false
 CODE_REVIEW_HANDOFF_READY: false
@@ -62,13 +65,21 @@ ACTIVE_WORKFLOW:
   LANE: IMPLEMENT
   STATUS: READY
   INPUT_COMMIT: 2ac37acdd3f81d3b86d4ffb019689655110a80c2
-  GOAL: "Audit residual reviewed-scope implementation completeness; identify any actual hidden stubs/partial production paths before declaring AUTHOR_COMPLETE."
   ON_SUCCESS: WF-P00-FINAL-AUTHOR-CANDIDATE
   ON_FAIL: WF-P00-IMPL-RESIDUAL-FIX
 
-NEXT_ACTION: "Run residual CR-P00-001 source/harness/factory completeness audit against exact reviewed contracts and current production paths; do not rely on stale REM summaries or test counts."
+NEXT_ACTION: "Resume residual CR-P00-001 author-completeness audit after R7 governance promotion; do not infer completeness from test count."
 ```
 
-## Gate status
+## Runtime reconciliation contract
 
-Dev19 delta review passes and closes all candidate-specific findings through CR-P00-014. Overall CODE_REVIEW remains FAIL solely because `CR-P00-001` is the umbrella author-completeness blocker. The next task is to prove or refute residual source completeness, not to claim gate PASS from regression counts.
+`RUNTIME_RECONCILIATION` is a stable lifecycle-neutral mirror for humans. `tools/check_runtime_state.py` reads the structured `runtime_reconciliation` object from the version-matched JSON snapshot, not transient prose fields such as WIP or review candidate names.
+
+Allowed state kinds include `WIP`, `HANDED_OFF`, `REVIEWED_FAIL`, `REVIEWED_CLEAN_RESIDUAL_AUDIT`, `FINAL_AUTHOR_CANDIDATE`, and later reviewed lifecycle states. A state kind may have an empty dirty set. Checker success never implies code/native gate PASS.
+
+## Checker failure classification
+
+- actual canonical/lane/worktree/artifact mismatch → `STATE_DRIFT`;
+- missing/unsupported snapshot schema or checker assumption that no longer models a valid lifecycle state → `CHECKER_DRIFT` and Documentation System review.
+
+Do not repair `CHECKER_DRIFT` by mutating valid source state to satisfy an obsolete checker.

@@ -19,9 +19,9 @@ Fetch any additional active workflow branches. Do not treat stale `origin/*` cac
 - `main` — canonical project state, routing, roadmap, memory, reviewed documentation governance, immutable review/delivery records.
 - `lane/implement-p00` — IMPLEMENT operational ledger, not source-of-gate authority.
 - `lane/review-p00` — REVIEW operational ledger.
-- `lane/docs-v2-design` — Documentation System V2 producer.
-- `lane/docs-v2-review` — independent detailed documentation review.
-- `lane/docs-v2-audit` — independent holistic documentation audit after detailed review PASS.
+- release-scoped `lane/docs-<release>-design` — documentation producer.
+- release-scoped `lane/docs-<release>-review` — independent detailed review.
+- release-scoped `lane/docs-<release>-audit` — independent holistic audit after detailed review PASS.
 - WSL `impl/p00` — writable local source history until remote source mirroring policy changes.
 
 Do not force-push published history by default. Immutable reviewed candidates are replaced by new candidates, not edited in place.
@@ -110,3 +110,7 @@ Exact environment snapshots live under `environments/`; reviewed model results l
 ## Documentation promotion exact-tree rule
 
 A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.
+
+## State snapshot lockstep
+
+Every canonical `PROJECT_STATE.md` version update must atomically include the matching `AI_FILM_PROJECT_STATE_Vn.json`; milestone states also include `AI_FILM_STATE_CHECKPOINT_Vn.md`. Runtime checkers select the JSON by the Markdown `STATE_VERSION` and must not hard-code one lifecycle snapshot, review ID, package version or WIP shape.

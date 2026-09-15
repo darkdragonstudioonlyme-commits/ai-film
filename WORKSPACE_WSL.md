@@ -19,6 +19,9 @@ review/       detached exact source review candidate
 docs-v2-design/  Documentation System V2 design worktree; current activity is determined by PROJECT_STATE/lane state
 docs-v2-review/  V2 detailed-review worktree; may be retained after governance for audit history
 docs-v2-audit/   V2 holistic-audit worktree; may be retained after governance for audit history
+docs-v2-r7-design/ R7 lifecycle-aware checker design worktree; activity owned by PROJECT_STATE/lane state
+docs-v2-r7-review/ R7 independent detailed-review worktree
+docs-v2-r7-audit/  R7 holistic-audit worktree
 docs-design/     historical V1 design worktree; not active
 docs-review/     historical V1 review worktree; not active
 artifacts/    exact delivery ZIPs

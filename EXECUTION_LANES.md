@@ -24,28 +24,25 @@ Material oracle changes use TEST-DESIGN → TEST-REVIEW. Production implementati
 
 ## Documentation System V2 governance — three independent stages
 
+Every material documentation-system release uses release-scoped independent lanes:
+
 ```text
-DOC-DESIGN-V2
-  branch: lane/docs-v2-design
-  worktree: /home/dragon/ai-film-dev/docs-v2-design
-        │ exact commit
+DOC-DESIGN-<release>
+  writable proposal worktree/branch
+        │ exact immutable commit
         ▼
-DOC-REVIEW-V2
-  branch: lane/docs-v2-review
-  worktree: /home/dragon/ai-film-dev/docs-v2-review
-  detailed/file-level acceptance review
-        │ reviewed exact commit
+DOC-REVIEW-<release>
+  detached exact detailed review
+        │ PASS only
         ▼
-DOC-AUDIT-V2
-  branch: lane/docs-v2-audit
-  worktree: /home/dragon/ai-film-dev/docs-v2-audit
-  holistic audit of the entire active control plane
+DOC-AUDIT-<release>
+  detached holistic audit of the full active control plane
         │ PASS only
         ▼
 main promotion
 ```
 
-DOC-REVIEW cannot edit DOC-DESIGN. DOC-AUDIT reviews the whole active system, not merely changed files, and specializes in drift, duplicates, obsolete policy, circular trust, code-driven tests, recovery gaps and checker brittleness. Findings return to DOC-DESIGN and require another review/audit cycle.
+Standing policy does not pin one historical docs branch as current. Exact release ID, branch/worktree identity and predeclared verdict records belong to `PROJECT_STATE.md`, the release checkpoint and workspace map. DOC-REVIEW never edits the design candidate; DOC-AUDIT reviews the exact reviewed tree plus consumer verdict binding. Findings return to DOC-DESIGN and require a new immutable candidate/review/audit cycle.
 
 ## Model-evaluation workflow
 

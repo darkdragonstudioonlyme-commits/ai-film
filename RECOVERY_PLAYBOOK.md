@@ -22,6 +22,11 @@ Read cold-start docs, fresh-fetch refs, run runtime reconciliation, then use `WO
 ### State/version drift
 Create `STATE_DRIFT`; do not pick the highest version string. Compare canonical state, fresh lane state, local HEAD/dirty set and artifact identity. Update the control plane through reviewed documentation governance.
 
+### Checker drift
+When canonical state + lane/worktree identities are internally valid but a checker fails because it expects an old state shape/version/lifecycle marker, classify `CHECKER_DRIFT`. Preserve source state and WIP, capture the failed checker assumption, route a Documentation System correction through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT, then return to the original workflow. Never mutate valid project state merely to satisfy an obsolete checker.
+
+`CHECKER_DRIFT` differs from `STATE_DRIFT`: the former is a defect in the verifier/schema assumptions; the latter is a real disagreement between authoritative/current identities.
+
 ### Dirty WIP with older durable package
 Resume documented WIP in its owning lane. Do not reset merely because the last package is older.
 

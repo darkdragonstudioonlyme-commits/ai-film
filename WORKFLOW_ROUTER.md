@@ -27,7 +27,7 @@ A workflow output is trusted only through its declared immutable output contract
 
 Use the first matching rule:
 
-1. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
+1. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state. **CHECKER_DRIFT** preserves valid source state and routes Documentation System repair/review before returning to the interrupted workflow.
 2. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
 3. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
 4. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
