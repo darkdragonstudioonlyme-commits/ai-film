@@ -22,16 +22,22 @@ These controls are non-native operational readiness only. They do not create LAB
 
 `LEARNING-LIFECYCLE-CONSISTENCY-002` reaches its structured V36 measurement gate. The V36 candidate marks it `EFFECTIVE` with evidence across V34, V35 and V36 plus `workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md`.
 
-The success metric remains guarded by exact-target review/audit and post-promotion CI: no unreviewed correction auto-promotes; lifecycle/register/project-state aggregates remain machine-consistent; the historical ineffective activation learning retains a valid active/effective successor.
+Its success metric remains guarded by exact-target review/audit and post-promotion CI: no unreviewed correction auto-promotes; lifecycle/register/project-state aggregates remain machine-consistent; historical ineffective learnings retain valid successor/meta-review paths.
+
+## Self-learning recurrence discovered during V36
+
+The first exact V36 design run exposed a new valid ambient state that broke one adversarial fixture: after pending measurements reached zero, `overdue_measurement_drift` no longer constructed an overdue record and the regression harness failed while the lifecycle checker correctly passed.
+
+This evidence reclassifies `LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003` as `INEFFECTIVE` and creates successor `LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004`. The corrected fixture now constructs its own active pending-measurement record, due gate and matching pending aggregate before deliberately leaving the overdue aggregate wrong. Successor 004 is predeclared for R4/A4 activation and remains `PENDING_MEASUREMENT` with a V38 gate.
 
 Promotion-ready V36 learning aggregates:
 
 ```yaml
 LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
 UNRESOLVED_INEFFECTIVE_LEARNING: 0
-PENDING_EFFECTIVENESS_MEASUREMENT: 0
+PENDING_EFFECTIVENESS_MEASUREMENT: 1
 OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
-HISTORICAL_INEFFECTIVE_LEARNING: 1
+HISTORICAL_INEFFECTIVE_LEARNING: 2
 ```
 
 ## Review/audit contract
