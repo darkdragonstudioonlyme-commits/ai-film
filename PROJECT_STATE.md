@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V31
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V32
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 31
+STATE_VERSION: 32
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -45,7 +45,7 @@ SOURCE_VISIBILITY:
   FULL_SOURCE_GIT_MIRROR: false
   EXACT_SOURCE_IDENTITY: 934659f535d81d9a4a07389531acc2b9c304fa6d
   EXACT_PACKAGE_IDENTITY: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
-  VISIBILITY_LIMITATIONS: "Exact dev21 source is available in the prepared WSL Git object database and verified V21 package; no full remote source tree is claimed."
+  VISIBILITY_LIMITATIONS: "Exact dev21 source is available in the prepared WSL Git object database and verified package; no full remote source tree is claimed."
 
 FINDING_STATUS:
   CR-P00-001: CLOSED_DEV21
@@ -74,10 +74,34 @@ VALIDATION_PREPARATION:
   LANE: lane/validation-p00
   PLAN_RECORD: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
+  LAB_CANDIDATE_RECORD: validation/LAB_CANDIDATE-P00-DEV21.md
+  LAB_AUTHORITY_DRAFT_RECORD: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
   ALL_AUTHOR_CONTROLLERS_IMPLEMENTED: true
+  TECHNICAL_LAB_ENVIRONMENT:
+    STATUS: READY_FOR_EXTERNAL_REGISTRATION
+    CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
+    DISTRO: AI-FILM-P00-LAB
+    WSL_VERSION: 2
+    OS: Ubuntu 24.04.5 LTS
+    TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
+    NO_REAL_CREDENTIALS: true
+    NO_PRODUCTION_MAPPINGS: true
+    WINDOWS_AUTOMOUNT_ENABLED: false
+    APP_BYTE_VERIFY: PASS
+    PRE_V03_INVENTORY: "86 NOT_RUN / 0 parent cases / qualification false"
+    BASELINE_SNAPSHOT_SHA256: 0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd
+    PRISTINE_DEV21_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
+    SNAPSHOT_RESTORE_PROBE: PASS
+    EXTERNAL_AUTHORITY_ATTESTED: false
+    APPROVED: false
+  AUTHORITY_DRAFT:
+    SHA256: 746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5
+    CASES: "86 total / 85 native / 1 document"
+    SELF_CHECK: PASS
+    APPROVED: false
 
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
@@ -90,8 +114,9 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  REASON: "Exact Design Review V2 approval opens implementation authoring but explicitly sets NATIVE_LAB_EXECUTION_AUTHORIZED=false and SITE_EXECUTION_AUTHORIZED=false. Native LAB requires an externally registered disposable LAB identity/fixture/snapshot refs and approved exact-build LAB test plan/suite authority before execution."
-  EVIDENCE: "lane/validation-p00 validation plan + authority request; accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json; PHASE00_INFRA_DESIGN_V2 D00-11; PHASE00_ACCEPTANCE_MATRIX_V2"
+  REASON: "Disposable LAB infrastructure, exact dev21 deployment and restore-probed snapshots are now technically ready. V02 remains blocked only until protected external registration/owner-controller attestation, protected fixture/plan refs and an approved <=24h exact-dev21 lab_acceptance_suite are established."
+  TECHNICAL_LAB_ENVIRONMENT_MISSING: false
+  EVIDENCE: "lane/validation-p00 LAB candidate + authority request + authority draft; accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json; PHASE00_INFRA_DESIGN_V2 D00-11; PHASE00_ACCEPTANCE_MATRIX_V2"
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
   STATUS: OPEN
@@ -106,7 +131,7 @@ AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
 
-NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Verify whether the requested external disposable-LAB registration/containment/fixture/snapshot and exact dev21 LAB test-plan/suite authority now exist. If absent, remain BLOCKED and do not execute native mutation; if exact authority is verified, advance the same run to V03 and execute the mandatory reviewed LAB inventory."
+NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02 using the prepared AI-FILM-P00-LAB candidate. Do not build another LAB. Verify protected external registration/owner-controller attestation and instantiate protected fixture/plan refs plus an approved <=24h exact-dev21 lab_acceptance_suite. Only after exact authority verifies may the same run advance to V03 and execute native LAB stages."
 ```
 
-The code-review gate is closed PASS. Validation preparation is complete and durable, but V02 authority is still external. A public control-plane request is not itself authorization; no current development/SITE host may be treated as disposable LAB by assumption.
+The code-review gate is closed PASS. A disposable LAB candidate and restore-probed snapshots now exist, but technical preparation is not authority. All 86 native acceptance inventory entries remain `NOT_RUN`; qualification and HOST_READY remain unissued/unevaluated.
