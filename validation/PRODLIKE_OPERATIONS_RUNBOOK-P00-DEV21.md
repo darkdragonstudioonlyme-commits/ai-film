@@ -2,19 +2,19 @@
 
 ## Scope and invariant
 
-This runbook operates only the non-native production-like control plane for exact dev21. The native workflow remains `RUN-P00-VALIDATION-001 / V02_LAB_EXECUTION_AUTHORITY`. No runbook action may infer external approval, create protected authority objects, write the HKLM trust anchor, start `AI-FILM-P00-LAB` for native execution, execute acceptance cases, issue qualification, or claim HOST_READY.
+This runbook operates only the non-native production-like control plane for exact dev21. Native workflow remains `RUN-P00-VALIDATION-001 / V02_LAB_EXECUTION_AUTHORITY`. No action may infer approval, create protected authority, write HKLM trust, start LAB for native execution, run native acceptance, issue qualification or claim HOST_READY.
 
-## Fast status surface
+## Healthy baseline
 
-Primary operator command:
+Primary status command:
 
 ```bash
 /home/dragon/ai-film-runtime/bin/aifilm-prodlike-status.py
 ```
 
-Expected healthy/non-authorized classification is `READY_NON_NATIVE_PRODLIKE_OPERATIONS` together with `BLOCKED_EXTERNAL_AUTHORITY`. A V02 block is governance state, not a runtime-health failure.
+Expected healthy classification is `READY_NON_NATIVE_PRODLIKE_OPERATIONS` together with `BLOCKED_EXTERNAL_AUTHORITY` while authority is absent.
 
-Core verification sequence:
+Core checks:
 
 ```bash
 /home/dragon/ai-film-runtime/bin/verify-current
@@ -22,66 +22,68 @@ Core verification sequence:
 /home/dragon/ai-film-runtime/bin/verify-host-mirror.py
 /home/dragon/ai-film-runtime/bin/verify-rebuild-set.py --cold-probe
 /home/dragon/ai-film-runtime/bin/verify-offhost-export.py --drill
+/home/dragon/ai-film-runtime/bin/verify-operational-evidence.py
 /home/dragon/ai-film-runtime/bin/verify-recovery-state
 /home/dragon/ai-film-runtime/bin/runtime-health.py
 ```
 
-## Supervision contract
+## Supervision and resource contract
 
-Ten user-systemd timers are expected enabled/active: runtime integrity 15m, V02 watcher 5m, runtime health 10m, control backup 24h, recovery verify boot+6h, host mirror 2h, rebuild cold verify boot+12h, transfer export boot+6h, full DR rehearsal 24h, and fail-closed campaign 7d. User linger must remain enabled.
+Eleven user-systemd timers must remain enabled/active/Persistent: integrity 15m, V02 watcher 5m, health 10m, backup 24h, recovery boot+6h, mirror 2h, rebuild boot+12h, transfer export boot+6h, full DR 24h, fail-closed campaign 7d, and operational evidence ledger 24h.
 
-Control backup freshness limit is 30h; host mirror freshness limit is 30h; full DR rehearsal evidence limit is 30h; fail-closed campaign evidence limit is 8d. These are health invariants, not promises of external disaster recovery.
+All 11 AI-FILM oneshot services use accounting plus `MemoryMax=256M` and `TasksMax=128`. These bounds were chosen after observed peak RSS measurements; highest measured peak was ~44 MiB. Health verifies effective resource settings and previous results for ten supervised jobs.
 
-## Recovery chain
+The evidence ledger retains 30 safe hash-chained snapshots. It may preserve FAIL records; health requires ledger integrity/freshness, not that historical snapshots are all PASS.
 
-Normal refresh order when recovery schema or tooling changes:
+## Recovery migration order
 
-1. Run health/integrity checks for the live runtime.
-2. Create a new control backup.
-3. Verify it locally.
-4. Mirror the verified control backup to NTFS.
-5. Rebuild the deterministic transfer-ready export from the new backup + exact rebuild set.
-6. Run the export heavy drill.
-7. Run the full DR rehearsal against the new export.
-8. Run the fail-closed campaign against current artifacts.
-9. Run health last and require PASS.
+When control/recovery schema changes, producers must be regenerated before a stricter consumer may be declared healthy:
 
-Do not run a stricter new recovery rehearsal against an old export and then weaken the rehearsal to make it pass. During the P00 schema expansion, the new rehearsal correctly rejected the old 44-file export; the correct migration was to refresh backup/mirror/export first, yielding a 58-file control state.
+1. verify live runtime/health inputs;
+2. create and verify a new control backup;
+3. mirror the verified backup to NTFS;
+4. rebuild deterministic transfer export from new backup + exact rebuild set;
+5. run export heavy drill;
+6. run full DR rehearsal against the new export;
+7. run fail-closed campaign;
+8. run health;
+9. archive a new evidence-ledger snapshot.
+
+Do not weaken the DR consumer to accept an old payload. Both the 44→58 and 58→85 schema migrations intentionally produced `control-required-file` before producer refresh and passed after producer regeneration.
 
 ## Incident matrix
 
-| Symptom / failure class | Required response | Forbidden response |
+| Symptom | Required response | Forbidden response |
 |---|---|---|
-| `verify-current` fails | Stop release/DR assertions; inspect immutable app/runtime manifest drift; repair only by reviewed release activation/rebuild path. | Editing files inside active dev21 app tree to make hashes match. |
-| `BACKUP_STALE` | Run control-backup service; reverify; then mirror/export/rehearsal in recovery-chain order. | Extending freshness threshold to hide stale state. |
-| backup hash/member mismatch | Preserve bad archive for diagnosis; create a fresh verified backup from live known-good control state. | Rewriting sidecar to match an unexplained corrupted archive. |
-| host mirror stale/corrupt | Keep local verified backup as source of truth; rerun mirror and verify NTFS bytes. | Claiming second-filesystem recovery while mirror verifier fails. |
-| rebuild-set verify fails | Stop reconstruction claims; compare exact package/wheel/manifests against reviewed hashes. | Regenerating package/manifests without code review. |
-| transfer export stale/corrupt | Rebuild from latest verified backup + exact rebuild set; run heavy drill. | Editing ZIP/manifest manually or calling it off-host DR. |
-| full DR rehearsal fails | Inspect journal/evidence; identify whether failure is old-schema export, required-file gap, app-byte drift, venv reconstruction or inventory drift; refresh upstream artifacts if schema changed. | Removing required-file/timer checks to recover green status. |
-| fail-closed campaign fails | Treat verifier confidence as degraded; inspect which corrupted artifact was wrongly accepted or wrong failure class was returned; do not trust healthy-path verification alone. | Disabling the failing negative case. |
-| timer inactive/disabled | `daemon-reload`, enable/start the exact timer, run associated service once, then rerun health. | Ignoring timer state because last evidence is still fresh. |
-| supervised job `Result!=success` | Read service status/journal, correct root cause, rerun job and health. | Resetting failure state without rerunning job. |
-| disk free <=5 GiB | Halt nonessential artifact growth; inspect retained safe backups/logs and cleanup only according to documented retention. | Deleting current verified package/rebuild set or protected authority material. |
-| V02 `APPROVAL_ENVELOPE_MISSING` | Remain blocked; use external handoff and optional read-only preflight for a staging package. | Creating an approval envelope locally. |
-| V02 package INVALID | Return exact normalized reason to external owner/controller; they must correct/reissue protected records. | Editing protected external refs/objects to satisfy validator. |
-| acceptance suite expired | External authority must issue a new <=24h suite bound to exact identities. | Changing timestamps or expiry locally. |
-| V02 READY appears | Verify validator output and all immutable refs; proceed only through the reviewed V02→V03 staging procedure. | Starting LAB/native execution solely because an operator/user said “continue”. |
+| runtime integrity fails | stop readiness claims; use reviewed rebuild/activation path | editing active app bytes to match hashes |
+| backup stale/corrupt | preserve bad evidence; create fresh backup; then mirror→export→DR | rewriting sidecar to hide corruption |
+| mirror stale/corrupt | keep local verified backup as truth; rerun mirror and verify | claiming second-filesystem DR with failed mirror |
+| rebuild fails | stop reconstruction claims; compare exact reviewed identities | regenerating package/manifests without review |
+| export stale/corrupt | rebuild from verified backup + rebuild set; heavy drill | manually editing ZIP/manifest |
+| full DR fails | preserve failure; determine schema/tool/app/venv/inventory cause; migrate producers first | removing required-file/timer/resource/ledger checks |
+| fail-closed campaign fails | verifier confidence is degraded; inspect wrong acceptance/failure class | disabling negative case |
+| evidence-ledger verifier fails | preserve chain files; inspect sidecar/chain/state/freshness; do not rewrite history | deleting or re-signing incident history to make chain green |
+| timer disabled/inactive | reload, enable/start exact timer, run associated job once, rerun health | relying on old fresh evidence |
+| supervised job fails | inspect journal/root cause; rerun real job; require health PASS | `reset-failed` without rerunning job |
+| resource limit hit | inspect peak/task growth and code path; adjust only with measured evidence/review | disabling bounds to recover green status |
+| health FAIL during incident | archive evidence before repair when safe; fix root cause; rerun job+health; archive recovery snapshot | overwriting failure evidence before capture |
+| disk <=5 GiB | stop nonessential growth; clean only documented retained safe data | deleting exact package/rebuild/protected authority |
+| V02 envelope missing | remain blocked; external handoff/preflight only | creating local approval envelope |
+| V02 package invalid/expired | return normalized reason to external owner/controller for reissue | editing protected refs/timestamps locally |
+| V02 READY appears | independently verify exact validator output/refs then reviewed V02→V03 path | starting LAB/native solely from operator instruction |
+
+## Incident preservation drill
+
+The supervised failure drill proved the required sequence: inject a temporary service failure → observe `Result=exit-code` → health FAIL → archive ledger FAIL snapshot → remove temporary fault → rerun real service → health PASS → archive next ledger snapshot → verify hash-chain across FAIL→PASS. Temporary drill configuration must never be included in a backup/export.
 
 ## Authority staging preflight
-
-For a proposed external package in a staging directory:
 
 ```bash
 /home/dragon/ai-film-dev/validation-ops/v02-authority-preflight.py --inbox /path/to/staging --json
 ```
 
-Return codes: `0` means the exact V02 validator reports READY_FOR_INTAKE; `10` means envelope missing; `11` means invalid package; `3` means the staging tree changed while preflight was running and is rejected. Preflight never creates the authoritative READY flag and never changes V02 itself.
+Return codes: `0` READY_FOR_INTAKE, `10` missing envelope, `11` invalid package, `3` staging changed during preflight. It invokes the exact V02 validator and cannot create authoritative READY/trust/LAB/native state.
 
-## Off-host metadata semantics
+## Off-host and recovery limits
 
-The private Google Drive document is a static identity anchor for exact source/package/wheel/app/runtime/rebuild identities. Rotating control-backup/export hashes are deliberately not pinned there, because daily backup rotation would make such a claim stale. The binary payload remains on the original host; `OFF_HOST_DR_CLAIMED=false` remains mandatory.
-
-## Evidence and recovery limits
-
-The full DR rehearsal duration is useful as a regression metric for the local disposable rehearsal only; it is **not** a host-replacement RTO. Daily control backup and 30h freshness imply bounded local control-state age, but there is no off-host binary RPO until a trusted binary transport actually stores and verifies the payload on another host/provider.
+Private Google Drive stores only stable exact-candidate/rebuild identity metadata. Rotating control/export hashes are intentionally not pinned there. Binary payload remains on the original host; there is still no off-host binary RPO/RTO claim. Full DR rehearsal duration is a local regression metric, not a host-replacement RTO.
