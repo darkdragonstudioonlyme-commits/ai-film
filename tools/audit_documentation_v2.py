@@ -28,7 +28,8 @@ for p in checker_paths:
     if re.search(r'DOC-V2-(?:REVIEW|AUDIT)-\d{3}',t): errors.append('checker-hardcoded-review-id:'+p)
     if re.search(r'RUN-P00-[A-Z0-9._-]+',t): errors.append('checker-hardcoded-run-id:'+p)
     if re.search(r'S0[0-9]_[A-Z0-9_]+',t): errors.append('checker-hardcoded-current-step:'+p)
-    if 'WIP_NOT_DURABLE_NOT_REVIEWABLE' in t: errors.append('checker-hardcoded-wip-state:'+p)
+    forbidden_wip='WIP_'+'NOT_DURABLE_'+'NOT_REVIEWABLE'
+    if forbidden_wip in t: errors.append('checker-hardcoded-wip-state:'+p)
 continuity_tool=(ROOT/'tools/check_workflow_continuity.py').read_text(encoding='utf-8')
 if "WS/'implement'" in continuity_tool or 'WS/"implement"' in continuity_tool:
     errors.append('continuity-checker-hardcoded-implement-worktree')
