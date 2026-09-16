@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V36
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V37
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 36
+STATE_VERSION: 37
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -15,18 +15,18 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  REVISION: R3_V36_PRODLIKE_EFFECTIVENESS_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v36-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v36-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v36-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-004
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R4_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-004
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R4_PASS.md
-  ACTIVATION_CONDITION: "Exact V36 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
-  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R4 review/audit records to the exact reviewed/audited V36 tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
-  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md
-  NOTE: "V36 reconciles non-native production-like readiness, closes lifecycle-consistency effectiveness, and routes a newly discovered adversarial-fixture recurrence into successor learning 004 without changing the native V02 authority boundary."
+  REVISION: R4_V37_PHASED_PRODLIKE_EXPORT_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v37-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v37-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v37-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-005
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-005
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md
+  ACTIVATION_CONDITION: "Exact V37 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
+  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R5 review/audit records to the exact reviewed/audited V37 tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
+  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-006.md
+  NOTE: "V37 reconciles the phased production-like export automation and deterministic transfer readiness while preserving V02 external-authority gating and leaving learning 004 pending until V38."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -50,19 +50,6 @@ SOURCE_VISIBILITY:
   EXACT_PACKAGE_IDENTITY: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
   VISIBILITY_LIMITATIONS: "Exact dev21 source is available in the prepared WSL Git object database and verified package; no full remote source tree is claimed."
 
-FINDING_STATUS:
-  CR-P00-001: CLOSED_DEV21
-  CR-P00-012: CLOSED_DEV19
-  CR-P00-013: CLOSED_DEV18_REVERIFIED_DEV21
-  CR-P00-014: CLOSED_DEV19
-  CR-P00-015: CLOSED_DEV21
-
-TEST_GOVERNANCE:
-  CHANGE_ID: TEST_CHANGE-P00-DEV20-FACTORY-003
-  REVIEW_ID: TEST_REVIEW-P00-DEV20-FACTORY-003
-  VERDICT: PASS
-  ORACLE_CHANGED: false
-
 ACTIVE_RUN:
   RUN_ID: RUN-P00-VALIDATION-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
@@ -75,6 +62,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
+  PHASED_EXECUTION_RECORD: validation/PRODLIKE_PHASED_EXECUTION-P00-DEV21.md
   PLAN_RECORD: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
@@ -84,22 +72,17 @@ VALIDATION_PREPARATION:
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
-  ALL_AUTHOR_CONTROLLERS_IMPLEMENTED: true
   TECHNICAL_LAB_ENVIRONMENT:
     STATUS: READY_FOR_EXTERNAL_REGISTRATION
     CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
     DISTRO: AI-FILM-P00-LAB
     WSL_VERSION: 2
     OS: Ubuntu 24.04.5 LTS
-    TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
     NO_REAL_CREDENTIALS: true
     NO_PRODUCTION_MAPPINGS: true
     WINDOWS_AUTOMOUNT_ENABLED: false
     APP_BYTE_VERIFY: PASS
     PRE_V03_INVENTORY: "86 NOT_RUN / 0 parent cases / qualification false"
-    BASELINE_SNAPSHOT_SHA256: 0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd
-    PRISTINE_DEV21_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
-    SNAPSHOT_RESTORE_PROBE: PASS
     EXTERNAL_AUTHORITY_ATTESTED: false
     APPROVED: false
 
@@ -109,21 +92,31 @@ PRODUCTION_LIKE_READINESS:
   OPERATIONS_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_OPERATIONS-P00-DEV21.md"
   HOST_MIRROR_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_HOST_MIRROR-P00-DEV21.md"
   REBUILD_SET_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md"
+  OFFHOST_EXPORT_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_OFFHOST_EXPORT-P00-DEV21.md"
+  OPERATOR_STATUS_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_OPERATOR_STATUS-P00-DEV21.md"
+  VALIDATION_EVIDENCE_HEAD: f98185bab6ad140b930eaaaf1ab3ac35ea1aae7b
   RUNTIME_VERIFY: "PRODLIKE_RUNTIME_VERIFY_PASS 283 86 NOT_RUN"
-  SUPERVISED_TIMERS: 7
-  CONTROL_BACKUP_FILES: 39
+  SUPERVISED_TIMERS: 8
+  CONTROL_BACKUP_FILES: 44
   CONTROL_BACKUP_RETENTION: 14
   LOCAL_BACKUP_VERIFY: PASS
   NTFS_HOST_MIRROR_VERIFY: PASS
   RECOVERY_VERIFY: PASS
   NTFS_REBUILD_SET_VERIFY: PASS
   NTFS_REBUILD_COLD_PROBE: PASS
+  TRANSFER_EXPORT_STATUS: TRANSFER_READY_WITH_OFFHOST_METADATA
+  TRANSFER_EXPORT_DETERMINISTIC: true
+  TRANSFER_EXPORT_VERIFY: PASS
+  TRANSFER_EXPORT_SELF_CONTAINED_DRILL: PASS
+  TRANSFER_EXPORT_SUPERVISED: true
+  OFFHOST_METADATA_ANCHOR: PRIVATE_GOOGLE_DRIVE
+  OFFHOST_BINARY_PAYLOAD_UPLOADED: false
+  OFF_HOST_DR_CLAIMED: false
   RECONSTRUCTED_VERSION: 0.1.0.dev21
   RECONSTRUCTED_INVENTORY: "86 NOT_RUN"
   BOUNDED_EXECUTION: PASS
   NATIVE_AUTHORITY: false
   NATIVE_EXECUTION_STARTED: false
-  OFF_HOST_DR_CLAIMED: false
 
 LEARNING_ACTIVATION:
   LIFECYCLE_REGISTER: learning/LEARNING_STATE.json
@@ -135,7 +128,7 @@ LEARNING_ACTIVATION:
   HISTORICAL_INEFFECTIVE_LEARNING: 2
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-LIFECYCLE-CONSISTENCY-002
   CURRENT_PENDING_MEASUREMENT: LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004
-  LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
+  CURRENT_PENDING_MEASUREMENT_GATE: 38
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 VALIDATION_STATUS:
@@ -149,7 +142,7 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  REASON: "Technical disposable LAB and non-native production-like operations/recovery/rebuild preparation are complete. V02 remains blocked until protected external registration/owner-controller attestation, protected fixture/plan refs and an approved <=24h exact-dev21 lab_acceptance_suite are established."
+  REASON: "Disposable LAB and non-native production-like runtime/recovery/transfer-readiness are technically prepared. V02 remains blocked until independently verified protected external LAB authority exists."
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
@@ -158,8 +151,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-
-NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Production-like readiness does not grant native authority; only independently verified external LAB authority may advance V02 to V03."
+NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Do not infer native authority from production-like or transfer readiness; only independently verified external LAB authority may advance V02 to V03."
 ```
 
-State V36 reconciles production-like readiness, proves lifecycle-consistency effectiveness, and records the new adversarial state-independence learning without weakening the product/native validation boundary.
+State V37 reconciles phased production-like transfer readiness while keeping native execution, off-host binary DR and pending learning effectiveness claims fail-closed.
