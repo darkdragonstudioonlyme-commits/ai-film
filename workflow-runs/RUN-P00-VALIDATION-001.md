@@ -38,17 +38,19 @@ REPLAY_POLICY: SAFE_REEXECUTE
 - The pristine snapshot was imported into temporary distro `AI-FILM-P00-LAB-RP-552d6cf0`; exact app bytes and 86-case `NOT_RUN` inventory passed, then only the probe distro was unregistered. Recovery proof is therefore exercised rather than assumed.
 - Windows machine/operator identity is represented publicly only by domain-separated SHA-256 digests in the candidate record; raw identity is not published.
 - Exact authority draft summary: `validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md`; local JSON SHA-256 `746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5`; 86 total cases / 85 native fixture templates / 1 document case; self-check PASS; `approved=false`.
-- Native execution remains zero. No LAB result, qualification, SITE result or HOST_READY claim has been created by preparation.
+- Protected pending authority bundle: `validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md`. Windows store index SHA-256 `fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615` binds registration candidate `28ec95c3...`, technical facts `bca858e3...`, exact authority draft `746a2939...`, exact build identities and both snapshots. Store ACL inheritance is protected, has two access rules, and contains exactly four files.
+- The pending bundle is intentionally `approved=false`, `native_consumable=false`, external approval refs null and is not pinned into Phase00 HKLM trust authority.
+- `AI-FILM-P00-LAB` is currently `Stopped` pending authority. Native execution remains zero. No LAB result, qualification, SITE result or HOST_READY claim has been created by preparation.
 
 ## Validation steps
 
 | Step | State | Purpose |
 |---|---|---|
 | V01_CODE_REVIEW_GATE | COMPLETE | exact dev21 CODE_REVIEW_PASS |
-| V02_LAB_EXECUTION_AUTHORITY | BLOCKED | external-authority-only: protected registration/owner-controller attestation + protected fixture/plan refs + approved <=24h exact-dev21 suite |
+| V02_LAB_EXECUTION_AUTHORITY | BLOCKED | external-authority-only: approve protected registration/owner-controller attestation + protected fixture/plan refs + approved <=24h exact-dev21 suite |
 | V03_NATIVE_LAB_REGRESSION | NOT_STARTED | execute mandatory reviewed 86-case inventory only after V02 |
 | V04_QUALIFICATION_RECEIPT | NOT_STARTED | produce independently ledgered E00-13 from actual mandatory LAB results |
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
 | V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence/bundle/assessment; HOST_READY only if exact gate formula is satisfied |
 
-V02 is deliberately resumable. The disposable environment, exact-build deployment, isolation, baseline/pristine snapshots and recovery proof are now complete technical prerequisites. The remaining block is authority, not infrastructure: an external protected registration must bind the candidate identities/containment and instantiate approved fixture/plan refs plus an approved <=24h `lab_acceptance_suite`. Preparation records cannot self-issue that authority.
+V02 is deliberately resumable. The disposable environment, exact-build deployment, isolation, baseline/pristine snapshots, recovery proof, exact authority draft and protected pending bundle are now complete technical prerequisites. The remaining block is authority, not infrastructure: an external authority must turn the pending candidate into independently approved protected registration/fixture/plan/suite records. Preparation records cannot self-issue that authority.
