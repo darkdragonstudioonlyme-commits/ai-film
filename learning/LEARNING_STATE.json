@@ -31,7 +31,7 @@
       "activation_evidence": ["reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md", "AI_FILM_PROJECT_STATE_V30.json"],
       "activation_blocker": null,
       "effectiveness_status": "INEFFECTIVE",
-      "effectiveness_evidence": ["PROJECT_STATE.md", "learning/LEARNING-DOCSYS-ACTIVATION-001.md", "tools/check_documentation_governance.py"],
+      "effectiveness_evidence": ["workflow-health/HEALTH_REVIEW-DOCSYS-R9-001.md", "AI_FILM_PROJECT_STATE_V32.json", "learning/LEARNING-DOCSYS-ACTIVATION-001.md"],
       "success_metric": "No reviewed learning is silently treated as active before promotion and lifecycle state cannot remain stale after promotion.",
       "measurement_trigger": "learning activation or documentation release promotion",
       "measurement_gate": {"kind": "COMPLETE"},
