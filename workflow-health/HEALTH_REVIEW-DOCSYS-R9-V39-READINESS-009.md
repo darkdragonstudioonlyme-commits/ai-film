@@ -5,27 +5,36 @@ HEALTH_REVIEW_ID: DOCSYS-R9-V39-READINESS-009
 TARGET_STATE: V39
 LEARNING_MEASURED: LEARNING-PROMOTION-STATE-FINALIZATION-005
 NEW_LEARNING: LEARNING-RECOVERY-STATE-VERSIONING-006
-STATUS: PENDING_EXACT_V39_EXECUTION
+STATUS: PASS
 LEARNING_005_GATE: STATE_VERSION_AT_LEAST_39
 LEARNING_006_GATE: STATE_VERSION_AT_LEAST_41
+MEASURED_CANDIDATE_SHA: ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846
+MEASURED_CI_RUN: 35159608361
+MEASURED_CI_RESULT: SUCCESS
 ```
 
-## Long-horizon evidence already observed
+## Long-horizon readiness evidence
 
-The live production-like program completed P1–P6 before V39 authoring. Runtime stayed exact dev21 and native authority remained absent. Current recovery state is ten enabled timers, a 58-file verified control backup mirrored to NTFS, exact rebuild-set cold verification, deterministic transfer export with an embedded 58-file control state, daily full DR rehearsal, and weekly 8-case fail-closed verifier campaign.
+The live production-like program completed P1–P6 before V39 review. Runtime stayed exact dev21 and native authority remained absent. Current recovery state is ten enabled timers, a 58-file verified control backup mirrored to NTFS, exact rebuild-set cold verification, deterministic transfer export with an embedded 58-file control state, daily full DR rehearsal, and weekly 8-case fail-closed verifier campaign.
 
 The negative campaign uses the actual verifier modules against disposable copies and rejected all eight deliberate faults. Live artifacts passed again afterward. The full DR rehearsal restores control state into a disposable root, verifies ten timer definitions and 283 app files, creates a fresh venv, and reproduces `0.1.0.dev21`, `86 NOT_RUN` and `host_ready=false` without starting native execution.
 
 During control-schema expansion the stricter rehearsal rejected the old 44-file export with `control-required-file`. The failure was not hidden or bypassed. The producer chain was migrated in order: new control backup → NTFS mirror → deterministic export → rehearsal → negative campaign → health. The resulting 58-file state passed.
 
-The private Google Drive manifest was also corrected from a rotating export checksum anchor to a stable exact-candidate/rebuild identity anchor. Rotating backup/export hashes remain host-side freshness verified, so daily backup rotation no longer creates a stale off-host metadata claim. Binary payload remains on-host.
+The private Google Drive manifest was corrected from a rotating export checksum anchor to a stable exact-candidate/rebuild identity anchor. Rotating backup/export hashes remain host-side freshness verified, so daily backup rotation no longer creates a stale off-host metadata claim. Binary payload remains on-host.
 
-## Learning 005 measurement rule
+## Learning 005 measurement
 
-Learning 005 is EFFECTIVE only if the exact final V39 design tree demonstrates that prior promotion-only states are normalized before a later review/audit contract replaces their fields. V38 already finalized learning 005 to durable `PASS / ACTIVE`; V39 must pass lifecycle/adversarial/governance/docs/audit/continuity/runtime checks and CI without discovering another stale transition-only record.
+Learning 005 succeeds on its scheduled V39 gate. V38 had already normalized the completed V37 promotion state from transition-only `PASS_ON_FINAL_REVIEW / ACTIVE_ON_PROMOTION` to durable `PASS / ACTIVE` before V39 replaced the final review/audit contract.
+
+The first V39 executable continuity run exposed a different authoring regression: P6 had accidentally removed `code_review_record` from the V02 `INPUT_IDENTITY` while retaining the original idempotency key. The checker rejected the candidate with `current-step-idempotency-mismatch`. The correct fix restored the omitted field and preserved the original key/run; no new run or weaker checker was introduced.
+
+After that correction, exact V39 candidate `ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846` passed lifecycle with nine records, the unchanged 9-case adversarial suite, documentation governance, active-doc consistency, holistic audit, workflow continuity and runtime-state checks. GitHub Actions run `35159608361` on the same SHA concluded SUCCESS. No stale prior-promotion learning state was discovered.
+
+This demonstrates the learning-005 success metric: completed prior-promotion learning was normalized before a later promotion contract replaced final-review/final-audit fields, and continuity drift was independently caught rather than hidden. Learning 005 is therefore EFFECTIVE.
 
 ## Learning 006 boundary
 
-Learning 006 is review/audit-gated in V39 but not measured here. Its success metric concerns future recovery-schema migrations and off-host metadata changes. It remains pending until V41 or the next qualifying recovery-state transition under the structured gate.
+Learning 006 is review/audit-gated in V39 but is not measured here. Its success metric concerns future recovery-schema migrations and off-host metadata changes. It remains `PENDING_MEASUREMENT` with gate V41. V39 activation is not effectiveness evidence for learning 006.
 
-This record becomes PASS evidence for learning 005 only after the exact final V39 target passes local executable checks and GitHub Actions. No evidence in this record grants native LAB authority.
+Closing this evidence record changes the V39 design SHA; the final closure tree must still pass the full local executable suite and GitHub Actions before R7 review/A7 audit. No evidence in this record grants native LAB authority.
