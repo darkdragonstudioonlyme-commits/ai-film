@@ -15,7 +15,7 @@ BACKUP_VERIFY_SCRIPT_SHA256: 9aef87cc5af76de165145461e42d7534c8d8a61b95d6200e20d
 RECOVERY_VERIFY_SCRIPT_SHA256: 8297533df3c2c9d6bb838aea48b643031fac0d100c64f2be932439bbbb4d2ffe
 HOST_MIRROR_SCRIPT_SHA256: dd6436cd20a5041e0b0b88f31a0d62c2b94c1ce8d0525ee91bd2b0c5ce54aa57
 HOST_MIRROR_VERIFY_SCRIPT_SHA256: b473ba2d7937f4a2ab4442b1da3ac572fd4def66d9b1bf3c44ea75bba2909dca
-REBUILD_VERIFY_SCRIPT_SHA256: 7ae798d7a5b215357e6ff1bcab33ef4edb0dc0492fd9d93499ed728d9cbe17a6
+REBUILD_VERIFY_SCRIPT_SHA256: 8db9a92b236e2b718aabb9fcc177ce797bd09e27e68e8edba0a16351d3b1e473
 INTEGRITY_SERVICE_SHA256: c54a9ca3d2fe38d7f7f36b057e6e3f1b8d4aa1ae1fcbb8661273dac82235bd4f
 AUTHORITY_WATCH_SERVICE_SHA256: 911b262eee734028b278a4acc4251c24b263b997e326b19e5df7570ec896619c
 HEALTH_SERVICE_SHA256: 31e73156d59dfe8ad051fbaef3745e1d879e07931bd7dd9634e2e04d9a461356
@@ -37,15 +37,15 @@ SYSTEMD_SECURITY: "integrity/health/backup/recovery/host-mirror/rebuild 4.1 OK; 
 TIMERS: "integrity=15m authority-watch=5m health=10m backup=24h recovery=boot+6h host-mirror=2h rebuild=boot+12h; all enabled/active"
 SYSTEMD_USER_LINGER: true
 HEALTH_STATUS: PASS
-HEALTH_SAMPLE_SHA256: 05a60cd3e9c208c5edf289fc891dfd15b2f34491e23e7671e581a7a15c94aacd
+HEALTH_SAMPLE_SHA256: e1b6151fa3c5ef291f815afd91ad01ca987024fabb3e817ca3aa74e8f2cdf944
 HEALTH_AUTHORITY_STATUS: BLOCKED
 HEALTH_AUTHORITY_REASON: APPROVAL_ENVELOPE_MISSING
 HEALTH_CHECKS: "runtime integrity + authority signal + local backup freshness + NTFS mirror freshness + rebuild-set integrity + service timeouts + previous supervised job results"
 BACKUP_MAX_AGE_HOURS: 30
 HOST_MIRROR_MAX_AGE_HOURS: 30
 CONTROL_BACKUP_RETENTION: 14
-BACKUP_SAMPLE: control-state-20260916T183817Z.tar.gz
-BACKUP_SAMPLE_SHA256: 4c8ff1de63df7f58ae42b59766e8936b87dc9581c201b772d7fdd95453707905
+BACKUP_SAMPLE: control-state-20260916T200952Z.tar.gz
+BACKUP_SAMPLE_SHA256: 29a92f78683ff71ba118023516cd32783bc45cc8232dbebf3ddf90b9b52309e1
 BACKUP_SAMPLE_FILES: 39
 CONTROL_BACKUP_VERIFY: PASS
 CONTROL_BACKUP_RESTORE_PROBE: PASS
@@ -64,9 +64,13 @@ REBUILD_SET_FILESYSTEM: NTFS
 REBUILD_SET_INDEX_SHA256: 40cc6df68e8ca536acf183e8cbf63ce157845e4f33d2659c92efcb41fbc3ed54
 REBUILD_SET_VERIFY: PASS
 REBUILD_SET_COLD_PROBE: PASS
+REBUILD_SET_ISOLATED_VENV: PASS
+REBUILD_SET_LIVE_VENV_USED: false
+REBUILD_SET_PYTHONPATH_USED: false
 REBUILD_SET_PACKAGE_SHA256: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
 REBUILD_SET_RECONSTRUCTED_VERSION: 0.1.0.dev21
 REBUILD_SET_RECONSTRUCTED_INVENTORY: "86 NOT_RUN"
+VENV_REBUILD_VERIFIER_RECOVERABLE_FROM_NTFS_CONTROL_MIRROR: true
 PERIODIC_JOB_RESULTS: "integrity=success authority-watch=success backup=success recovery=success host-mirror=success rebuild=success"
 NATIVE_LAB_AUTHORITY: false
 NATIVE_EXECUTION_STARTED: false
@@ -77,10 +81,10 @@ HOST_READY: false
 
 Production-like operations are hardened without changing the exact dev21 app tree or native authority. The health collector verifies the stable release, exact runtime integrity, authority-signal consistency, operational-script permissions, disk headroom, all seven user-systemd timers, previous supervised job results, effective service timeouts, freshness/integrity of local and Windows control backups, and integrity of the Windows runtime rebuild set. V02 being `BLOCKED / APPROVAL_ENVELOPE_MISSING` is treated as a governance state rather than a runtime failure.
 
-Daily control-state backups contain only a fixed safe whitelist of runtime/control metadata, operational scripts, systemd units and timeout drop-ins. They exclude the protected approval inbox, authority objects, credentials, raw SID/MachineGuid and native authority. Local and NTFS mirror copies are hash/member verified, have retention 14 and a 30-hour freshness limit, and have passed restore and secret/protected-domain probes.
+Daily control-state backups contain only a fixed safe whitelist of runtime/control metadata, operational scripts, systemd units and timeout drop-ins. They exclude the protected approval inbox, authority objects, credentials, raw SID/MachineGuid and native authority. The current 39-file local/NTFS backup pair has SHA `29a92f78...`, passed hash/member verification and recovery checks, and contains the exact strengthened rebuild verifier SHA `8db9a92b...`.
 
-A separate NTFS rebuild set closes the WSL-distro-loss reconstruction gap. It carries the exact V21 implementation package, dev21 wheel, app manifest, runtime manifest and a hash-bound rebuild index. A cold probe using **only that NTFS set as source** reverified all 283 app files, reconstructed CLI version `0.1.0.dev21`, reproduced document-only preflight with `host_ready=false`, and reproduced the 86-case inventory as `NOT_RUN` with zero parent cases and no qualification. The rebuild verifier runs after boot and every twelve hours under a hardened service with a ten-minute timeout.
+The NTFS rebuild set closes the WSL-distro-loss reconstruction gap. The cold probe now goes beyond source execution: it creates a brand-new venv with `python3 -m venv --without-pip`, writes the same `app/src` `.pth` shape as the live runtime, and runs version/preflight/inventory through the new venv without using the live dev21 venv or `PYTHONPATH`. It still reconstructs `0.1.0.dev21`, `host_ready=false`, and `86 NOT_RUN` with zero parent cases and no qualification.
 
-Exact dev21 remains a gated CLI rather than a reviewed always-on network server, so no synthetic application daemon/listener was created. Existing unrelated listeners/processes outside `/home/dragon/ai-film-*` were not modified. The NTFS control mirror and rebuild set are same-host second-filesystem recovery measures, **not** off-host or independent-physical-device disaster recovery.
+Exact dev21 remains a gated CLI rather than a reviewed always-on network server, so no synthetic application daemon/listener was created. Existing unrelated listeners/processes outside `/home/dragon/ai-film-*` were not modified. The NTFS control mirror and rebuild set remain same-host second-filesystem recovery measures, **not** off-host or independent-physical-device disaster recovery.
 
 This record is operational-readiness evidence only. It does not create `LAB_EXECUTION_AUTHORITY_VERIFIED`, start `AI-FILM-P00-LAB`, write the HKLM trust anchor, execute any native acceptance case, issue qualification or advance `RUN-P00-VALIDATION-001` past V02.
