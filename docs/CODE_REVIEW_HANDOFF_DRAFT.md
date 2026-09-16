@@ -1,13 +1,20 @@
-# DEV8 handoff status
+# CODE-REVIEW-P00-001 — dev21 delta handoff draft
 
-**NOT_READY.** Dev8 is a partial lifecycle increment; REM-01…08 remain open at full-item scope. Do not start CODE_REVIEW-P00-001 yet.
+**READY_FOR_DELTA_REVIEW only after exact dev21 commit/package verification.**
 
----
+Dev20 independent CODE_REVIEW verified the complete production/source scope, reproduced 760 tests and 101 static checks, ran 46 targeted adversarial tests, and found zero residual production/source implementation gaps. It failed solely on `CR-P00-015`: stale active-facing documentation/package-state inside the exact candidate.
 
-# CODE-REVIEW-P00-001 — DRAFT / NOT_READY
+Dev21 corrects that documentation/package-state drift without changing reviewed FD/D00/public behavior, production execution logic, test oracle or native acceptance status.
 
-Exact V2 design remains approved. This dev5 source drop is partial and has not met the full author-complete exit condition. The companion diff, per-test actual reports, native request contracts and precise remaining-source register are supplied for continuation, not as an activated code review.
+## Required handoff identity
 
-New review-sensitive areas include original read-set identity and release, native append reservation, C0 capture/proposal provenance, primary factory dispatch, cross-stage snapshot applicability, failure capture and publication observation, route-controller journal oracles and lower-port construction tests. Author tests/inspection do not award CODE_REVIEW_PASS.
+The final dev21 handoff must bind:
 
-Before full handoff: close remaining native profile/trust/lifecycle/factory integration, complete nested/prior-guest/C3/failure/assessment evidence semantics and full supported failure-controller procedures. The new route runner and many workspace cases are not a substitute. No source blocker is reclassified as missing user host data or only missing native test evidence.
+- exact dev21 source commit and parent `51c9d3f7373a2922c1ea6a3e973d817bb4e16523`;
+- exact generated package manifest/member hashes + package SHA-256;
+- delivery-boundary author regression/static/secret scan;
+- `CR-P00-015: FIXED_PENDING_REVIEW`;
+- dev20 `TEST_REVIEW-P00-DEV20-FACTORY-003: PASS` with no new test/oracle change;
+- source-visibility/addressability limitations.
+
+REVIEW must independently verify the new exact package identity and the CR-P00-015 delta. No native Windows/WSL/LAB/SITE PASS, qualification, CODE_REVIEW_PASS or HOST_READY is implied by this draft.

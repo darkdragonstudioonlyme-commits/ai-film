@@ -1,3 +1,11 @@
+# DEV21 CR-P00-015 correction
+
+Independent dev20 CODE_REVIEW found **zero residual production/source implementation gaps**. The only blocker was stale active-facing documentation/package-state (`CR-P00-015`). Dev21 corrects those artifacts only; no reviewed behavior or test oracle changes.
+
+Remaining work is independent dev21 delta review and, only after CODE_REVIEW_PASS, native VALIDATION where all 86 cases are still NOT_RUN / acceptance-open. `CR-P00-001` remains open until the corrected exact candidate is independently accepted.
+
+---
+
 # DEV20 Residual Author-Completeness Audit
 
 Current audit compares exact reviewed Phase00 V2 contracts against dev20 candidate production source rather than carrying old REM labels forward.

@@ -1,3 +1,11 @@
+# IMPL-P00-001 Implementation Status — dev21 CR-P00-015 correction
+
+Dev21 is a documentation/package-state-only correction after independent dev20 CODE_REVIEW found zero residual production/source gaps and failed solely on `CR-P00-015`. Root README, handoff draft, tracked stale manifest, package module status text and version metadata are reconciled to the current author-complete-candidate state. The tracked stale V8 manifest is removed; the exact delivery `MANIFEST.json` is generated at packaging from the committed tree.
+
+No production behavior, reviewed contract or test oracle changes. `CR-P00-015` is FIXED_PENDING_REVIEW; `CR-P00-001` remains open until independent delta review. Native Windows/WSL/LAB/SITE remains NOT_RUN; CODE_REVIEW_PASS and HOST_READY remain unissued/not evaluated.
+
+---
+
 # IMPL-P00-001 Implementation Status — dev20 author-completeness candidate
 
 Dev20 is a residual completeness/test/docs increment; it does not change reviewed product behavior.

@@ -1,11 +1,11 @@
 [project]
 name = "aifilm-p00-contracts"
-version = "0.1.0.dev20"
-description = "Phase00 author-completeness candidate after residual reviewed-scope audit; native validation remains NOT_RUN"
+version = "0.1.0.dev21"
+description = "Phase00 corrected author-completeness candidate after CR-P00-015 documentation sync; native validation remains NOT_RUN"
 requires-python = ">=3.11"
 dependencies = []
 
 [tool.aifilm-p00]
 status = "AUTHOR_COMPLETE_CANDIDATE"
 native-backend-available = false
-code-review-status = "PENDING_CR_P00_001_REVIEW"
+code-review-status = "PENDING_CR_P00_015_DELTA_REVIEW"

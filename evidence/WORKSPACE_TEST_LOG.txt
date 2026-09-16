@@ -760,6 +760,6 @@ test_terminal_archive_retained (test_state_evidence.JournalTests.test_terminal_a
 test_truncated_journal_blocks (test_state_evidence.JournalTests.test_truncated_journal_blocks) ... ok
 
 ----------------------------------------------------------------------
-Ran 760 tests in 1.434s
+Ran 760 tests in 1.396s
 
 OK

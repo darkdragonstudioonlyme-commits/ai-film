@@ -1,7 +1,14 @@
 {
-  "parent_commit": "2ac37acdd3f81d3b86d4ffb019689655110a80c2",
-  "delivery": "0.1.0.dev20",
+  "parent_commit": "51c9d3f7373a2922c1ea6a3e973d817bb4e16523",
+  "delivery": "0.1.0.dev21",
+  "change_class": "DOCUMENTATION_PACKAGE_METADATA_ONLY",
+  "test_oracle_changed": false,
+  "product_behavior_changed": false,
   "changes": [
+    {
+      "status": "D",
+      "path": "MANIFEST.json"
+    },
     {
       "status": "M",
       "path": "NEXT_WORK_ITEM_IMPL-P00-001_CONTINUE.md"
@@ -11,12 +18,12 @@
       "path": "README.md"
     },
     {
-      "status": "M",
-      "path": "config/required-native-test-inventory.json"
+      "status": "A",
+      "path": "docs/CHANGELOG_DEV20_TO_DEV21.md"
     },
     {
-      "status": "A",
-      "path": "docs/CHANGELOG_DEV19_TO_DEV20.md"
+      "status": "M",
+      "path": "docs/CODE_REVIEW_HANDOFF_DRAFT.md"
     },
     {
       "status": "M",
@@ -24,15 +31,7 @@
     },
     {
       "status": "M",
-      "path": "docs/NATIVE_INTEGRATION_BOUNDARY.md"
-    },
-    {
-      "status": "M",
       "path": "docs/REMAINING_IMPLEMENTATION.md"
-    },
-    {
-      "status": "M",
-      "path": "docs/TRACEABILITY.json"
     },
     {
       "status": "M",
@@ -44,7 +43,7 @@
     },
     {
       "status": "A",
-      "path": "evidence/DEV20_SECRET_SCAN.json"
+      "path": "evidence/DEV21_SECRET_SCAN.json"
     },
     {
       "status": "M",
@@ -65,18 +64,6 @@
     {
       "status": "M",
       "path": "src/aifilm_p00/__init__.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/native/actuator.py"
-    },
-    {
-      "status": "M",
-      "path": "src/aifilm_p00/native/trust.py"
-    },
-    {
-      "status": "A",
-      "path": "tests/test_dev20_factory_integration.py"
     }
   ]
 }
