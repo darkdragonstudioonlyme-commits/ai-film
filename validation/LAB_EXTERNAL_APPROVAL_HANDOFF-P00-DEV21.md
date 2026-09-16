@@ -23,6 +23,7 @@ RESTORE_PROBE: PASS
 LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
 NATIVE_EXECUTION_STARTED: false
 APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
+AUTHORITY_PREFLIGHT_RECORD: validation/V02_AUTHORITY_PREFLIGHT-P00-DEV21.md
 ```
 
 ## External decision required
@@ -47,16 +48,26 @@ SUITE_ISSUED_AT_UTC: <lab_acceptance_suite.issued_at>
 SUITE_EXPIRES_AT_UTC: <lab_acceptance_suite.expires_at; issued <= expires; window <= 24h>
 ```
 
-The exact packaging contract for `approval-envelope.json`, object roles and `role_pins` is `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`. In particular, the safe alias, machine/operator protected provenance refs and suite timestamps are evidence/audit concepts; the intake validator binds authority through the protected registration and suite objects rather than trusting duplicated top-level summary fields.
+The exact packaging contract for `approval-envelope.json`, object roles and `role_pins` is `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`. The safe alias, protected provenance refs and suite timestamps are evidence/audit concepts; authority is bound by the protected registration/suite objects rather than duplicated top-level summaries.
 
 The protected registration must have `execution_class=LAB`, `controller_external=true`, `disposable=true`, `no_real_credentials=true`, `no_production_mappings=true`, `withdrawn=false`, exact host/operator scope, and bind this candidate. The approved suite must be schema 1, `source_kind=LAB`, `approved=true`, `withdrawn=false`, and bind the exact build/test/contract identities plus all 86 reviewed case procedure digests/approved fixture and request refs.
 
 `role_pins` must cover all documents used by pure authorization, including exact registration/design/code, approved `lab_plan`, exact `lab_acceptance_suite`, every execution plan, every native fixture spec, every per-plan approval object, and any additional plan-referenced role such as payload. A correct object that is not pinned remains untrusted and cannot advance V02.
 
+## Optional read-only staging preflight
+
+Before moving a proposed package into the protected authoritative inbox, the external owner/controller may lint a staging directory using:
+
+```bash
+/home/dragon/ai-film-dev/validation-ops/v02-authority-preflight.py --inbox /path/to/staging --json
+```
+
+This wrapper executes the exact V02 validator semantics and verifies that staging metadata is unchanged before/after. `READY_FOR_INTAKE` means the package satisfies the current validator when read from staging; it **does not** approve the package, create the authoritative READY flag, install trust or advance V02. `MISSING` and `INVALID` return the exact normalized failure reason so the external owner can correct/reissue the package without operator-side edits to protected objects.
+
 For a **REJECT** decision, return a protected decision ref plus the rejected assertion/identity. Validation will remain blocked or route a validation-preparation failure; it must not weaken the reviewed LAB predicates.
 
 ## Consumer rule
 
-The VALIDATION consumer must independently retrieve and verify the protected references. Only a successful verification may produce `LAB_EXECUTION_AUTHORITY_VERIFIED` and advance this same run from V02 to V03. No public document, operator statement, elapsed time, pending candidate, pending bundle, or local draft can substitute for that verification.
+The VALIDATION consumer must independently retrieve and verify the protected references. Only a successful verification may produce `LAB_EXECUTION_AUTHORITY_VERIFIED` and advance this same run from V02 to V03. No public document, operator statement, elapsed time, pending candidate, pending bundle, preflight result or local draft can substitute for that verification.
 
 Do not place passwords, raw SID, MachineGuid, private management paths, signing secrets or other protected identity material in GitHub.
