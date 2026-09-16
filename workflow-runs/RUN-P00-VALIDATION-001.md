@@ -31,11 +31,13 @@ REPLAY_POLICY: SAFE_REEXECUTE
 - Read-only current-host diagnostic: `validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md`.
 - WSL setup: `validation/WSL_SETUP-P00-DEV21.md`.
 - Production-like WSL runtime: `validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md`.
-- Exact dev21 metadata-only inventory: 86 unique cases; all `NOT_RUN` / acceptance-open; all author controllers implemented; inventory SHA-256 `2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6`.
-- Validation venv is now full pip-enabled after `python3.12-venv` installation. Reverification remains 760 tests PASS, 101 static PASS, package/Git byte PASS, dirty before/after = 0.
-- Production-like runtime is rooted at `/home/dragon/ai-film-runtime/dev21`, stable alias `/home/dragon/ai-film-runtime/current`; its app tree is read-only and 283/283 files byte-verified against exact dev21. Independent app manifest SHA-256 is `07fcf4a31c6ffabc3628ba12584d249680cea1344e26fb1d2cbe2983e30270fa`.
-- Runtime launcher clears inherited environment and re-adds only an explicit allowlist. Runtime verification reports `PRODLIKE_RUNTIME_VERIFY_PASS 283 86 NOT_RUN`; native execution remains zero.
-- Current development Windows host diagnostic found the Phase00 HKLM trust-anchor key absent. This is diagnostic-only, not trusted authority, and confirms there is no current-host registration/LAB suite to reuse.
+- Exact dev21 metadata-only inventory remains 86 unique cases, all `NOT_RUN` / acceptance-open; zero parent cases executed and no qualification issued.
+- Validation venv is full pip-enabled; latest safe rerun remains 760 tests PASS, 101 static PASS, package/Git byte PASS, dirty before/after = 0.
+- Active WSL runtime `/home/dragon/ai-film-runtime/current` resolves dev21, has a read-only 283-file app tree, exact app manifest SHA-256 `07fcf4a31c6ffabc3628ba12584d249680cea1344e26fb1d2cbe2983e30270fa`, and runtime manifest SHA-256 `8227e8350208314db087612889d2b481393c67ec3a5eb0bfa84a869c1d0829a2`.
+- Runtime verification reports `PRODLIKE_RUNTIME_VERIFY_PASS 283 86 NOT_RUN` through an inherited-environment-cleared boundary.
+- Hardened user-systemd integrity monitoring is enabled and active every 15 minutes with user linger enabled; observed `systemd-analyze security` exposure is `4.1 OK`.
+- Atomic release activation verifies the candidate first, updates `current` atomically, records a mode-600 history, and explicitly leaves native/SITE authority unchanged.
+- Current development Windows host still has no trusted Phase00 HKLM anchor; this diagnostic is not authority and there is no existing current-host LAB suite to reuse.
 
 ## Validation steps
 
@@ -48,4 +50,4 @@ REPLAY_POLICY: SAFE_REEXECUTE
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
 | V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence/bundle/assessment; HOST_READY only if exact gate formula is satisfied |
 
-V02 is deliberately resumable: future work first checks whether the external registration/authority record now exists and exactly matches dev21. Absence keeps this same RUN_ID blocked; it never creates a replacement run, provisions the current development host as LAB, or treats elapsed time as approval. WSL production-like readiness is preparation evidence only and does not satisfy V02.
+V02 is deliberately resumable. Production-live WSL readiness, monitoring, release activation and integrity checks are preparation evidence only; none satisfy or bypass V02, issue qualification, or authorize SITE/native execution.
