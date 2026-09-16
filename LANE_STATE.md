@@ -35,6 +35,14 @@ PREPARATION:
   VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   CURRENT_HOST_DIAGNOSTIC: validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md
+  WSL_SETUP_RECORD: validation/WSL_SETUP-P00-DEV21.md
+  WSL_SETUP_STATUS: COMPLETE
+  WSL_VALIDATION_WORKTREE: /home/dragon/ai-film-dev/validation
+  WSL_VALIDATION_HEAD: 934659f535d81d9a4a07389531acc2b9c304fa6d
+  WSL_VALIDATION_DIRTY_FILES: 0
+  WSL_SAFE_TESTS: "760 PASS"
+  WSL_SAFE_STATIC: "101 PASS"
+  PACKAGE_GIT_BYTE_VERIFY: PASS
   CURRENT_DEVELOPMENT_HOST_TRUST_ANCHOR: ABSENT_DIAGNOSTIC_ONLY
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
@@ -51,4 +59,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-No native mutation may start while V02 is blocked. Read-only diagnostic inspection found no Phase00 HKLM trust-anchor key on the current development Windows host; this is not trusted authority but confirms there is no existing current-host registration/suite to reuse. The lane cannot self-register that host as disposable LAB or self-issue LAB authority.
+WSL preparation is complete and reproducible. The current development host still has no trusted Phase00 LAB registration/authority, so V02 remains blocked. No native mutation may start while this block is open; the lane cannot self-register the development host as disposable LAB or self-issue LAB authority.
