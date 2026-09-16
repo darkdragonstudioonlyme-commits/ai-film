@@ -88,11 +88,19 @@ for learning_id,row in sorted(records.items()):
         err(f"stale-current-release-activation:{learning_id}")
     if av=="BLOCKED" and not blocker: err(f"blocked-without-blocker:{learning_id}")
     evidence=row.get("effectiveness_evidence")
-    if not isinstance(evidence,list): err(f"effectiveness-evidence-schema:{learning_id}")
-    if ev=="EFFECTIVE" and not evidence: err(f"effective-without-evidence:{learning_id}")
+    if not isinstance(evidence,list):
+        err(f"effectiveness-evidence-schema:{learning_id}")
+        evidence=[]
+    if ev in {"EFFECTIVE","INEFFECTIVE"}:
+        if not evidence: err(f"{ev.lower()}-without-evidence:{learning_id}")
+        for evidence_path in evidence:
+            if not isinstance(evidence_path,str) or not (ROOT/evidence_path).is_file():
+                err(f"effectiveness-evidence-missing:{learning_id}:{evidence_path}")
     if ev=="INEFFECTIVE":
         successor=row.get("successor")
         if not successor or successor not in records: err(f"ineffective-without-successor:{learning_id}")
+    if ev=="PENDING_MEASUREMENT" and av not in {"ACTIVE","ACTIVE_ON_PROMOTION"}:
+        err(f"pending-measurement-before-activation:{learning_id}")
     gate=row.get("measurement_gate")
     if isinstance(gate,dict):
         kind=gate.get("kind")
