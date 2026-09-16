@@ -4,7 +4,7 @@
 RUN_ID: RUN-P00-VALIDATION-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 LANE: VALIDATION
-STATUS: BLOCKED
+STATUS: BLOCKED_EXTERNAL_AUTHORITY_ONLY
 MODE: VALIDATION
 PHASE: "00 — Host / WSL"
 WORK_ITEM: M-P00-VALIDATION
@@ -22,25 +22,35 @@ INPUT_IDENTITY:
   RUN_RECORD: workflow-runs/RUN-P00-VALIDATION-001.md
   VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
-GOAL: "Resume the same validation run and close V02 only with independently verifiable disposable-LAB registration/containment/fixture/snapshot and exact dev21 LAB test-plan/suite authority; then execute the mandatory 86-case reviewed LAB inventory and produce qualification evidence before any SITE active operation."
+  LAB_CANDIDATE: validation/LAB_CANDIDATE-P00-DEV21.md
+  LAB_AUTHORITY_DRAFT: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
+  LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
+  LAB_BASELINE_SNAPSHOT_SHA256: 0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd
+  LAB_PRISTINE_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
+  LAB_SNAPSHOT_RESTORE_PROBE: PASS
+GOAL: "Close V02 only with protected external registration/owner-controller attestation and approved exact dev21 fixture/plan/suite authority for the already-prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory and produce qualification evidence before any SITE active operation."
 STEPS:
   - V01_CODE_REVIEW_GATE: COMPLETE
-  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED
+  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHORITY_ONLY
   - V03_NATIVE_LAB_REGRESSION: NOT_STARTED
   - V04_QUALIFICATION_RECEIPT: NOT_STARTED
   - V05_SITE_VALIDATION: NOT_STARTED
   - V06_GATE_ASSESSMENT: NOT_STARTED
 CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
-SUCCESS_OUTPUT: "Verified external LAB registration and approved exact-build suite/test-plan authority bound to dev21, sufficient to advance the same RUN_ID to V03 without self-authorizing the current development/SITE host."
+SUCCESS_OUTPUT: "Verified protected LAB registration/owner-controller attestation plus protected fixture/plan refs and approved <=24h exact-dev21 lab_acceptance_suite bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
 ON_SUCCESS: WF-P00-VALIDATION-LAB
 ON_FAIL: VALIDATION_FAILURE_ROUTE
 ON_BLOCK: BLOCK-P00-VAL-LAB-AUTH-001
-EXIT_CONDITION: "V02 authority/registration prerequisites are independently established for exact dev21; no native mutation has run before this condition."
+EXIT_CONDITION: "V02 authority prerequisites are independently established for the prepared LAB candidate; no native stage has run before this condition."
 ```
 
 ## Preparation completed
 
-The validation lane/run is durable. Exact dev21 metadata-only inventory inspection confirms 86 unique procedures, all currently `NOT_RUN` / acceptance-open, with all author controllers implemented. No native parent case was executed and no qualification/HOST_READY was issued.
+A real disposable LAB candidate is already installed and prepared. `AI-FILM-P00-LAB` is fresh Ubuntu 24.04.5 WSL2 rather than a clone of development, has a dedicated password-locked user, Windows-drive automount disabled, no appended Windows PATH, no copied real credentials and no production storage mapping. Exact dev21 is deployed read-only and byte-verified; source/test/contract identities reproduce exactly.
+
+The baseline and pristine-dev21 LAB snapshots exist outside the guest and the pristine snapshot has been independently restored into a temporary probe distro, exact app/inventory verified, then the probe unregistered. Pre-V03 inventory remains 86 `NOT_RUN`, zero native parent cases, no qualification, `HOST_READY=false`.
+
+An authority draft generated from exact reviewed `PROCEDURES` covers 86 cases (85 native fixture templates + 1 document case), SHA-256 `746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5`, self-check PASS and `approved=false`.
 
 ## Block record
 
@@ -48,13 +58,13 @@ The validation lane/run is durable. Exact dev21 metadata-only inventory inspecti
 BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 OWNER_LANE: VALIDATION
-REASON: "Reviewed Design V2 approval explicitly has NATIVE_LAB_EXECUTION_AUTHORIZED=false and SITE_EXECUTION_AUTHORIZED=false. V02 requires externally registered disposable Windows/WSL LAB identity, containment assertions, fixture/snapshot/recovery refs and approved exact dev21 LAB test-plan/suite authority."
+REASON: "Technical disposable LAB infrastructure is complete. Remaining V02 requirements are protected external registration/owner-controller attestation, protected fixture/plan refs and approved <=24h exact-dev21 suite authority."
+TECHNICAL_LAB_ENVIRONMENT_MISSING: false
 EVIDENCE:
-  - "lane/validation-p00:validation/VALIDATION_PLAN-P00-DEV21.md"
+  - "lane/validation-p00:validation/LAB_CANDIDATE-P00-DEV21.md"
   - "lane/validation-p00:validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md"
+  - "lane/validation-p00:validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md"
   - "accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json"
-  - "contracts/PHASE00_INFRA_DESIGN_V2.md D00-11"
-  - "contracts/PHASE00_ACCEPTANCE_MATRIX_V2.md"
 USER_ACTION_REQUIRED: true
 RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
 STATUS: OPEN
@@ -62,4 +72,4 @@ STATUS: OPEN
 
 ## Minimum external action
 
-Designate/confirm a **disposable Windows/WSL LAB environment** and establish the protected external registration/approval records requested by `LAB_REGISTRATION_REQUEST-P00-DEV21.md`. Return safe refs/digests only; do not place credentials, raw SID/private identity or management secrets in the public repository. Once those records exist, resume this same RUN_ID and verify them before any native command executes.
+Do **not** create another LAB. Externally register/approve the prepared candidate `336b12af-cada-4968-8083-8a5b41e479a2` by binding its protected raw machine/operator identities to the published safe digests, attesting the reviewed containment properties, approving protected fixture/plan refs and issuing the exact <=24h `lab_acceptance_suite`. Return safe protected refs/digests only; credentials and raw SID/machine identity stay out of the public repository.
