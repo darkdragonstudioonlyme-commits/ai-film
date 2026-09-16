@@ -16,7 +16,8 @@ RETURN_TO: V02_LAB_EXECUTION_AUTHORITY
 
 ```yaml
 STEP_ID: V02_LAB_EXECUTION_AUTHORITY
-STATE: BLOCKED_EXTERNAL_AUTHORITY_ONLY
+STATE: BLOCKED
+BLOCK_REASON_CLASS: EXTERNAL_AUTHORITY_ONLY
 INPUT_IDENTITY: {"block_id":"BLOCK-P00-VAL-LAB-AUTH-001","code_review_record":"reviews/CODE-REVIEW-P00-001_DEV21_DELTA.md","contract_digest":"f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee","inventory_sha256":"2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6","package_sha256":"f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3","source_commit":"934659f535d81d9a4a07389531acc2b9c304fa6d"}
 IDEMPOTENCY_KEY: b3a1a06122656189f43fb566e19441f6c05127b1f0129bc5fc0eda2f30b6cefe
 DONE_WHEN: {"execution_class":"LAB","kind":"LAB_EXECUTION_AUTHORITY_VERIFIED","registration_disposable":true,"source_commit":"934659f535d81d9a4a07389531acc2b9c304fa6d","suite_approved":true}
@@ -44,7 +45,7 @@ REPLAY_POLICY: SAFE_REEXECUTE
 | Step | State | Purpose |
 |---|---|---|
 | V01_CODE_REVIEW_GATE | COMPLETE | exact dev21 CODE_REVIEW_PASS |
-| V02_LAB_EXECUTION_AUTHORITY | BLOCKED_EXTERNAL_AUTHORITY_ONLY | protected external registration/owner-controller attestation + protected fixture/plan refs + approved <=24h exact-dev21 suite |
+| V02_LAB_EXECUTION_AUTHORITY | BLOCKED | external-authority-only: protected registration/owner-controller attestation + protected fixture/plan refs + approved <=24h exact-dev21 suite |
 | V03_NATIVE_LAB_REGRESSION | NOT_STARTED | execute mandatory reviewed 86-case inventory only after V02 |
 | V04_QUALIFICATION_RECEIPT | NOT_STARTED | produce independently ledgered E00-13 from actual mandatory LAB results |
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
