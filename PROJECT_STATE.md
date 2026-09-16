@@ -26,7 +26,7 @@ DOCUMENTATION_GOVERNANCE:
   ACTIVATION_CONDITION: "Exact V36 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
   PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R4 review/audit records to the exact reviewed/audited V36 tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md
-  NOTE: "V36 reconciles non-native production-like readiness and closes the scheduled lifecycle-consistency effectiveness measurement while preserving the native V02 authority boundary."
+  NOTE: "V36 reconciles non-native production-like readiness, closes lifecycle-consistency effectiveness, and routes a newly discovered adversarial-fixture recurrence into successor learning 004 without changing the native V02 authority boundary."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -130,10 +130,11 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 0
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
-  HISTORICAL_INEFFECTIVE_LEARNING: 1
+  HISTORICAL_INEFFECTIVE_LEARNING: 2
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-LIFECYCLE-CONSISTENCY-002
+  CURRENT_PENDING_MEASUREMENT: LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004
   LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
@@ -161,4 +162,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Production-like readiness does not grant native authority; only independently verified external LAB authority may advance V02 to V03."
 ```
 
-State V36 reconciles production-like readiness and the scheduled lifecycle-effectiveness measurement while preserving the exact product/native validation boundary.
+State V36 reconciles production-like readiness, proves lifecycle-consistency effectiveness, and records the new adversarial state-independence learning without weakening the product/native validation boundary.
