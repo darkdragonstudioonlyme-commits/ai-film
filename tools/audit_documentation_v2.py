@@ -38,7 +38,7 @@ if "WS/'implement'" in continuity_tool or 'WS/"implement"' in continuity_tool:
 if 'code is the subject under test' not in texts.get('TEST_STRATEGY.md',''): errors.append('test-code-authority-risk')
 if 'SUPERSEDED' not in texts.get('POLICY_REGISTRY.md','') or 'RETIRED' not in texts.get('POLICY_REGISTRY.md',''): errors.append('policy-lifecycle-incomplete')
 sl=texts.get('SELF_LEARNING.md','')
-for token in ['LEARNING_STATE.json','LIFECYCLE_STATE_DRIFT','MEASUREMENT_DEBT','Guarded automation']:
+for token in ['LEARNING_STATE.json','LIFECYCLE_STATE_DRIFT','MEASUREMENT_DEBT','Guarded automation','measurement_gate']:
     if token not in sl: errors.append('learning-semantics-missing:'+token)
 if 'CHECKER_DRIFT' not in texts.get('RECOVERY_PLAYBOOK.md',''): errors.append('checker-drift-route-missing')
 for path in ['environments/README.md','model-evaluations/README.md','learning/README.md','learning/LEARNING_STATE.json',
@@ -86,7 +86,7 @@ else:
         la=current.get('learning_activation')
         if not isinstance(la,dict): errors.append('learning-aggregate-json-missing')
         else:
-            for key in ('learned_but_not_active_backlog','unresolved_ineffective_learning','pending_effectiveness_measurement'):
+            for key in ('learned_but_not_active_backlog','unresolved_ineffective_learning','pending_effectiveness_measurement','overdue_effectiveness_measurement'):
                 if not isinstance(la.get(key),int): errors.append('learning-aggregate-json-missing:'+key)
 
 if errors:
