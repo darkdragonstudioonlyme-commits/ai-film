@@ -79,7 +79,7 @@ PREPARATION:
   LAB_PENDING_BUNDLE_APPROVED: false
   V02_AUTHORITY_INTAKE_RECORD: validation/V02_AUTHORITY_INTAKE-P00-DEV21.md
   V02_AUTHORITY_INTAKE_VALIDATOR_SHA256: 05143de5f2ba7b6e58c3e9256cfc0c724f7f38aea3d945368506e3cf1180bc89
-  V02_AUTHORITY_INTAKE_WATCHER_SHA256: bc57a031a781cbe7e64036eb9c462ba2c8d63a11b1ef1e182fd7229a73548c35
+  V02_AUTHORITY_INTAKE_WATCHER_SHA256: acb117e22af0a574a0912c3545b75d6d1d3ff6bbf6223408b693f48a863c05e1
   V02_AUTHORITY_INBOX_ACL_PROTECTED: true
   V02_AUTHORITY_INBOX_ACL_RULE_COUNT: 2
   V02_AUTHORITY_INBOX_APPROVAL_ENVELOPE_EXISTS: false
@@ -87,12 +87,16 @@ PREPARATION:
   V02_AUTHORITY_WATCH_SECURITY: "4.9 OK"
   V02_AUTHORITY_LATEST_STATUS: BLOCKED
   V02_AUTHORITY_LATEST_REASON: APPROVAL_ENVELOPE_MISSING
-  V02_AUTHORITY_NEGATIVE_CHECKS: "2 PASS / both exit 12 / no READY_TO_ADVANCE"
+  V02_AUTHORITY_NEGATIVE_CHECKS: "3 PASS incl stale READY flag removal"
   V02_NATIVE_POLICY_STAGING_RECORD: validation/V02_NATIVE_POLICY_STAGING-P00-DEV21.md
   V02_NATIVE_POLICY_MATERIALIZER_SHA256: 52083c05fc4fbeab15897a0ae4268f9963a13365909d37c1eca39da00d5c3b74
   V02_NATIVE_POLICY_MATERIALIZER_STATUS: BLOCKED_AUTHORITY_INTAKE_NOT_READY
   V02_NATIVE_POLICY_FILE_WRITTEN: false
   V02_HKLM_WRITTEN: false
+  V02_PRE_V03_GATE_RECORD: validation/V02_PRE_V03_GATE-P00-DEV21.md
+  V02_PRE_V03_STAGE_SHA256: f772cd994e73cc7da3e82ded3a7e9a97e4f9f823c33c91668c7a13404e8c25e5
+  V02_TRUST_ANCHOR_INSTALLER_SHA256: 34fa9e84a63f54c9164873db99d85aa914b662237714bd945744046e52f96f3c
+  V02_TRUST_ANCHOR_EXISTS: false
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
 ENTRY_BLOCK:
@@ -103,6 +107,7 @@ ENTRY_BLOCK:
   PENDING_AUTHORITY_BUNDLE_READY: true
   FAIL_CLOSED_AUTHORITY_INTAKE_READY: true
   NATIVE_POLICY_STAGING_READY: true
+  PRE_V03_GATE_READY: true
   USER_ACTION_REQUIRED: true
   STATUS: OPEN
 
@@ -113,4 +118,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The disposable LAB, restore-probed snapshots, sealed recovery artifacts, exact dev21 authority draft, ACL-protected pending authority bundle, fail-closed V02 intake watcher and non-installing native-policy staging tool are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: the approval inbox contains no real approval envelope and no policy/HKLM authority has been written.
+The disposable LAB, restore-probed snapshots, sealed recovery artifacts, exact dev21 authority draft, ACL-protected pending authority bundle, stale-safe fail-closed V02 intake watcher, non-installing native-policy staging and pre-V03 gate are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution.
