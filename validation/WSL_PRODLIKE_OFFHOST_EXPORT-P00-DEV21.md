@@ -2,7 +2,7 @@
 
 ```yaml
 EXPORT_RECORD_ID: WSL-PRODLIKE-OFFHOST-EXPORT-P00-DEV21-001
-STATUS: TRANSFER_READY_LOCAL_ONLY
+STATUS: TRANSFER_READY_WITH_OFFHOST_METADATA
 SOURCE_COMMIT: 934659f535d81d9a4a07389531acc2b9c304fa6d
 EXPORT_PATH: C:\Users\Admin\AppData\Local\AI-FILM\offhost-export\dev21\AI-FILM-P00-DEV21-OFFHOST-DR-EXPORT.zip
 EXPORT_SHA256: 11ab63f8a0ef155e9df5004798ef4ce1bd4c550938eddf01fc21e567de7de28b
@@ -24,6 +24,10 @@ DRILL_HOST_READY: false
 DRILL_ISOLATED_VENV: PASS
 WINDOWS_ACL_INHERITANCE: disabled
 WINDOWS_ACL_PRINCIPALS: "NT AUTHORITY\\SYSTEM + DESKTOP-LCISMET\\Admin only"
+OFF_HOST_METADATA_MANIFEST: STORED_PRIVATE_GOOGLE_DRIVE
+OFF_HOST_METADATA_FOLDER: "AI-FILM DR"
+OFF_HOST_METADATA_SHARED: false
+OFF_HOST_PAYLOAD_UPLOADED: false
 NATIVE_AUTHORITY_INCLUDED: false
 PROTECTED_IDENTITY_INCLUDED: false
 CREDENTIALS_INCLUDED: false
@@ -35,8 +39,10 @@ The export bundles the current verified 39-file control backup plus the exact re
 
 A self-contained transfer drill used **only the portable ZIP as its input**. It verified all seven payloads, independently reverified all 39 files in the embedded control backup, extracted the implementation package, verified all 283 source bytes, created a fresh `python3 -m venv --without-pip`, reproduced the live `.pth` runtime shape, and executed version/preflight/inventory from that rebuilt venv. The result was `0.1.0.dev21`, `host_ready=false`, `86 NOT_RUN`, zero parent cases and no qualification.
 
-The export directory has Windows ACL inheritance removed and only SYSTEM plus the current operator have Full Control. This makes the bundle ready for transfer through a future trusted transport without repackaging or touching the protected LAB authority domain.
+The export directory has Windows ACL inheritance removed and only SYSTEM plus the current operator have Full Control. This makes the bundle ready for transfer through a future trusted binary transport without repackaging or touching the protected LAB authority domain.
 
-The bundle is **not currently off-host**. Google Drive connector upload requires a connector `file_uri`, while the available Remote Desktop connector cannot materialize remote WSL/Windows files into that form; Google Drive Desktop is also not installed/mounted on this host. No OAuth credential workaround, base64 repository upload or weaker transport was introduced. Therefore canonical `OFF_HOST_DR_CLAIMED=false` remains correct.
+A private Google Drive integrity manifest is now stored under folder `AI-FILM DR`. Readback verified the export filename/SHA, exact candidate identities, current control-backup SHA, rebuild identities, exclusions and the explicit boundary `PAYLOAD_NOT_UPLOADED / OFF_HOST_DR_CLAIMED=false`. The Drive file is not publicly shared. This provides an off-host checksum/integrity anchor only; the binary DR export payload remains on the original host.
 
-This export does not grant LAB/SITE/native execution authority and does not advance `RUN-P00-VALIDATION-001` beyond V02.
+The binary bundle is therefore **not currently off-host**. Google Drive binary upload requires a connector `file_uri`, while the available Remote Desktop connector cannot materialize remote WSL/Windows files into that form; Google Drive Desktop is also not installed/mounted. No OAuth credential workaround, base64 repository upload or weaker transport was introduced. Canonical `OFF_HOST_DR_CLAIMED=false` remains correct.
+
+This export/metadata anchor does not grant LAB/SITE/native execution authority and does not advance `RUN-P00-VALIDATION-001` beyond V02.
