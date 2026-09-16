@@ -25,8 +25,13 @@ Any one of these requires at least a health assessment; repeated/severe cases fo
 - repeated flaky/timeout/OOM behavior is treated with retries instead of root-cause isolation;
 - a completed expensive/material step is repeated after interruption although its exact output identity was recoverable;
 - two active RUN_IDs exist for the same workflow/base, or a new chat restarts work instead of adopting the active run;
-- a reviewed reusable learning remains `PENDING_ACTIVATION` while the affected workflow continues and the same friction/incident class is still possible;
-- documentation-governance promotion is blocked by branch/worktree identity that standing policy hard-coded instead of deriving from canonical governance state.
+- `tools/check_learning_lifecycle.py` reports lifecycle/register/project-state drift;
+- a reusable learning remains `PENDING_ACTIVATION`/`BLOCKED` while the affected workflow continues;
+- an `INEFFECTIVE` learning has no active successor/meta-review path;
+- activated learning reaches its measurement trigger but remains without effectiveness evidence;
+- documentation-governance promotion is blocked by branch/worktree identity hard-coded in standing policy instead of canonical governance state.
+
+Learning debt is derived from `learning/LEARNING_STATE.json`; prose or an old learning record cannot override the register.
 
 ## Meta-review procedure
 
@@ -36,10 +41,12 @@ STOP affected workflow at safe boundary
 → classify failure: REQUIREMENT | DESIGN | TEST | PROCESS | TOOL | ENVIRONMENT | DATA | OWNERSHIP
 → identify repeated assumptions and wasted loops
 → inspect whether MD architecture/policy/router/test strategy caused or failed to prevent it
-→ inspect whether a known learning exists but is not yet active
+→ run learning lifecycle reconciliation
+→ inspect pending/ineffective/measurement-due learning
 → propose smallest systemic correction
 → independent review of workflow correction
 → activate the correction in canonical policy/tooling
+→ measure successor effectiveness
 → resume original work from explicit RETURN_TO
 ```
 
@@ -57,7 +64,9 @@ WASTED_WORK_PATTERN:
 SYSTEMIC_CHANGE:
 DOCS_OR_POLICY_CHANGED:
 TESTS_OR_CHECKERS_ADDED:
+LEARNING_IDS:
 LEARNING_ACTIVATION_STATUS:
+LEARNING_EFFECTIVENESS_STATUS:
 RETURN_TO:
 RESULT:
 ```
@@ -78,11 +87,14 @@ Track trends, not vanity counts:
 - documentation checker/audit failures;
 - time/steps spent on tooling errors versus project work;
 - percentage of reusable discoveries promoted into policy/checkers when warranted;
-- **learning activation lag**: reviewed reusable learning → canonical activation;
-- **learned-but-not-active backlog**: promoted learnings still pending activation/block resolution;
-- **source-visibility friction**: review/operator work repeated or blocked because exact source cannot be conveniently inspected remotely.
+- learning activation lag;
+- learned-but-not-active backlog;
+- unresolved ineffective learning count;
+- pending effectiveness measurement count;
+- lifecycle-state drift count;
+- source-visibility friction.
 
-Metrics diagnose workflow quality; they never lower acceptance.
+The first four learning metrics are derived/reconciled through `learning/LEARNING_STATE.json` and its checker. Metrics diagnose workflow quality; they never lower acceptance.
 
 ## Deadlock breaker
 
@@ -94,7 +106,7 @@ Material workflow/process failures must ask:
 
 > Would a better `WORKFLOW_ROUTER`, `WORKFLOW_CONTINUITY`, `TEST_STRATEGY`, `SELF_LEARNING`, `POLICY_REGISTRY`, `DOCUMENTATION_MAP`, checker, environment contract or recovery playbook have prevented or shortened this failure?
 
-If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT before declaring the learning complete. A PASS review without canonical activation is still an activation backlog item, not proof that the workflow changed.
+If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT before declaring the learning complete. Automatic detection may produce the candidate correction, but it cannot independently review or promote that correction.
 
 ## Durable health records
 
