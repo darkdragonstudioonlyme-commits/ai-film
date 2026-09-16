@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V34
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V35
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 34
+STATE_VERSION: 35
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -15,18 +15,18 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  REVISION: R1_CHECKER_REGRESSION_CORRECTION
-  DESIGN_BRANCH: lane/docs-v2-r9-r1-design
-  REVIEW_BRANCH: lane/docs-v2-r9-r1-review
-  AUDIT_BRANCH: lane/docs-v2-r9-r1-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-002
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R2_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-002
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R2_PASS.md
-  ACTIVATION_CONDITION: "Exact corrected R9 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
-  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R2 review/audit records to the exact reviewed/audited correction tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
-  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-CI-002.md
-  NOTE: "Initial R9 promotion lifecycle check resolved correctly, but post-promotion adversarial regression exposed ambient-state-dependent test fixture setup. This correction reopens review/audit rather than patching main outside governance."
+  REVISION: R2_POST_PROMOTION_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-r2-design
+  REVIEW_BRANCH: lane/docs-v2-r9-r2-review
+  AUDIT_BRANCH: lane/docs-v2-r9-r2-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-003
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R3_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-003
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R3_PASS.md
+  ACTIVATION_CONDITION: "Exact V35 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
+  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R3 review/audit records to the exact reviewed/audited reconciliation tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
+  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-CI-003.md
+  NOTE: "Corrected post-promotion CI is PASS. V35 closes fixture-isolation effectiveness evidence, generalizes the negative-test fixture against future absence of ACTIVE_ON_PROMOTION records, and restores NEXT_ACTION to the unchanged product validation run."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -105,12 +105,12 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 2
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 1
+  RECENTLY_PROVEN_EFFECTIVE: LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003
   LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
   GUARDED_SELF_OPTIMIZATION: ACTIVE
-  NEW_LEARNING: LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003
 
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
@@ -133,7 +133,7 @@ AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
 
-NEXT_ACTION: "Complete corrected R9 detailed review/audit/promotion for the adversarial fixture-isolation regression, then resume unchanged RUN-P00-VALIDATION-001 at V02. Documentation correction does not grant native authority."
+NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Do not create another LAB and do not infer authority from documentation-governance success; only independently verified external LAB authority may advance V02 to V03."
 ```
 
-State V34 is a documentation-governance recovery state only. The product/native validation run and all 86 `NOT_RUN` acceptance cases are unchanged.
+State V35 closes the documentation self-learning review/recovery loop while preserving the product/native validation boundary.
