@@ -3,6 +3,8 @@
 ```yaml
 RUNTIME_SETUP_ID: WSL-PRODLIKE-P00-DEV21-001
 STATUS: READY_NON_NATIVE_LIVE_MONITORED
+OPERATIONS_STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
+OPERATIONS_RECORD: validation/WSL_PRODLIKE_OPERATIONS-P00-DEV21.md
 SOURCE_COMMIT: 934659f535d81d9a4a07389531acc2b9c304fa6d
 SOURCE_DIGEST: a284645e9eb60661f27eba1ea436d7ff7bbe60d6cd3e312850f1b108d32b1c62
 TEST_DIGEST: c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383
@@ -38,6 +40,16 @@ SYSTEMD_SECURITY_EXPOSURE: "4.1 OK"
 ENVIRONMENT_POLICY: ENV_CLEARED_ALLOWLIST_ONLY
 RUNTIME_VERIFY: "PRODLIKE_RUNTIME_VERIFY_PASS 283 86 NOT_RUN"
 ATOMIC_RUNTIME_ACTIVATION: PASS
+HEALTH_SCRIPT_SHA256: dfd11d418b820a3083f7016d1a0ab3355f3bd9b650e3c4ffc2de67ba042b34d5
+HEALTH_TIMER: "enabled active 10min"
+HEALTH_SYSTEMD_SECURITY: "4.1 OK"
+HEALTH_LATEST_STATUS: PASS
+BACKUP_SCRIPT_SHA256: ce3fb2fbac2e6514ceeae930efd483fcc3a95017d87b638331bff2f29620f327
+BACKUP_TIMER: "enabled active 24h"
+BACKUP_SYSTEMD_SECURITY: "4.1 OK"
+CONTROL_BACKUP_RETENTION: 14
+CONTROL_BACKUP_RESTORE_PROBE: PASS
+NATIVE_INVENTORY_MODE: "0600"
 NATIVE_SITE_AUTHORITY_CHANGED_BY_ACTIVATION: false
 NATIVE_LAB_AUTHORITY: false
 NATIVE_EXECUTION_STARTED: false
@@ -50,16 +62,20 @@ The runtime is intentionally not a plain wheel install. The exact dev21 package 
 
 `/home/dragon/ai-film-runtime/dev21/app` was created from exact source commit `934659f...`, contains exactly 283 tracked files, and every deployed file byte was reverified against its Git blob. The app tree is read-only. Mutable state is separated into `var/lib`, `var/log`, `var/tmp`, and `evidence`; `current` points to dev21.
 
-Both the runtime launcher and release-control helpers re-exec with an empty inherited environment and an explicit allowlist. This prevents arbitrary shell environment secrets from being forwarded into the runtime. No stored privilege secret is required by runtime activation, integrity verification, monitoring, or the current validation workflow preparation.
+Both the runtime launcher and release-control helpers re-exec with an empty inherited environment and an explicit allowlist. This prevents arbitrary shell environment secrets from being forwarded into the runtime. No stored privilege secret is required by runtime activation, integrity verification, monitoring, health collection, backup, or the current validation workflow preparation.
 
-## Live-readiness controls
+## Live-readiness and production-like operations controls
 
 `aifilm-p00-dev21-verify.service` is a hardened user-systemd oneshot verifier and `aifilm-p00-dev21-verify.timer` runs it every 15 minutes. The timer is enabled and active; user linger is enabled so the user manager is not tied to the interactive session. The service has no Internet socket families, no capabilities, `NoNewPrivileges`, read-only home/system protection with only runtime tmp writable, private devices/tmp, W^X protection, and an observed `systemd-analyze security` exposure score of `4.1 OK`.
 
-`/home/dragon/ai-film-runtime/bin/activate-release` verifies the candidate release before an atomic `current` symlink switch and writes a mode-600 release history. Re-activation of dev21 passed and explicitly preserved native/SITE authority state. `/home/dragon/ai-film-runtime/bin/verify-current` verifies the stable active release through the same environment-cleared boundary.
+`aifilm-p00-runtime-health.timer` runs every 10 minutes. Its collector fails closed on release/symlink drift, runtime-integrity failure, inconsistent V02 READY/BLOCKED signaling, operational-script write-permission drift, inactive AI-FILM timers, native-authority/native-execution drift, low disk headroom, or evidence permission regression. Current health is PASS while the validation authority field correctly remains `BLOCKED / APPROVAL_ENVELOPE_MISSING`.
+
+`aifilm-p00-control-backup.timer` runs every 24 hours with 14-archive retention. The backup uses a fixed safe whitelist covering runtime/release manifests, release history, health, non-sensitive authority-watcher evidence, operational scripts and AI-FILM user-systemd units. It explicitly excludes the approval inbox, protected authority objects, raw host/operator identity and credentials. Archive/sidecar modes are `0600`; health/backup directories are `0700`. The latest archive was extracted into a temporary restore probe and every restored file rehashed against its embedded manifest before the probe was deleted; the restore probe PASSed.
+
+`/home/dragon/ai-film-runtime/bin/activate-release` verifies the candidate release before an atomic `current` symlink switch and writes a mode-600 release history. Re-activation of dev21 passed and explicitly preserved native/SITE authority state. `/home/dragon/ai-film-runtime/bin/verify-current` verifies the stable active release through the same environment-cleared boundary. Operational targets are owner-controlled and are not group/other writable; the stable launcher path is a symlink to the mode-0750 release launcher.
 
 ## Verification
 
 The monitored runtime independently passes 283/283 app-byte verification, app-manifest verification, isolated Python 3.12.3 and `pip check`, document-only workspace preflight, recovery notes, and the 86-case metadata inventory with all cases still `NOT_RUN`, zero parent cases executed, no qualification issued, and `host_ready=false`. Validation workspace remains exact dev21 and clean; the latest safe suite remains 760 tests PASS and 101 static PASS.
 
-This record is deployment-readiness evidence only. It does not register the current Windows/WSL host as disposable LAB, does not grant native LAB/SITE execution authority, and does not advance `RUN-P00-VALIDATION-001` beyond `V02_LAB_EXECUTION_AUTHORITY`.
+This record is deployment/operational-readiness evidence only. It does not register the current Windows/WSL host as disposable LAB, does not grant native LAB/SITE execution authority, and does not advance `RUN-P00-VALIDATION-001` beyond `V02_LAB_EXECUTION_AUTHORITY`.
