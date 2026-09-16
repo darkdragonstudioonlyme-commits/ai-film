@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """Adversarial regression tests for the learning lifecycle checker."""
 from pathlib import Path
-import json,shutil,subprocess,tempfile
+import json,re,shutil,subprocess,tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
 CHECKER=Path('tools/check_learning_lifecycle.py')
-REVIEW='reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md'
-AUDIT='reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md'
 
 
 def run_case(name, mutate, expected):
@@ -30,9 +28,35 @@ def write_reg(p,d):
     p.write_text(json.dumps(d,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 
 
+def state_field(dst,name):
+    text=(dst/'PROJECT_STATE.md').read_text(encoding='utf-8')
+    m=re.search(rf'^\s*{re.escape(name)}:\s*(\S+)\s*$',text,re.M)
+    if not m: raise AssertionError(f'missing state field {name}')
+    return m.group(1)
+
+
+def promotion_contract(dst):
+    return {
+        'release':state_field(dst,'DOCUMENTATION_SYSTEM'),
+        'review_id':state_field(dst,'FINAL_REVIEW_ID'),
+        'review_record':state_field(dst,'FINAL_REVIEW_RECORD'),
+        'audit_id':state_field(dst,'FINAL_AUDIT_ID'),
+        'audit_record':state_field(dst,'FINAL_AUDIT_RECORD'),
+    }
+
+
+def clear_promotion_verdicts(dst):
+    c=promotion_contract(dst)
+    for key in ('review_record','audit_record'):
+        p=dst/c[key]
+        if p.exists(): p.unlink()
+    return c
+
+
 def stale_activation(dst):
-    p,d=reg(dst); r=d['records']['LEARNING-LIFECYCLE-CONSISTENCY-002']
-    r['review_status']='PASS'; r['activation_status']='PENDING_ACTIVATION'
+    p,d=reg(dst)
+    current=next(k for k,v in d['records'].items() if v.get('activation_status')=='ACTIVE_ON_PROMOTION')
+    r=d['records'][current]; r['review_status']='PASS'; r['activation_status']='PENDING_ACTIVATION'
     write_reg(p,d)
 
 
@@ -55,29 +79,34 @@ def active_without_activation_evidence(dst):
 
 def overdue_measurement_drift(dst):
     p=dst/'PROJECT_STATE.md'; s=p.read_text(encoding='utf-8')
-    p.write_text(s.replace('STATE_VERSION: 33','STATE_VERSION: 36'),encoding='utf-8')
+    m=re.search(r'^STATE_VERSION: (\d+)$',s,re.M); assert m
+    current=int(m.group(1));
+    p.write_text(s.replace(f'STATE_VERSION: {current}',f'STATE_VERSION: {max(current,36)}'),encoding='utf-8')
 
 
 def release_drift(dst):
     p,d=reg(dst); d['candidate_documentation_release']='DOCSYS-V2-R999'; write_reg(p,d)
 
 
-def verdict_text(kind,target):
+def verdict_text(kind,target,c):
     if kind=='review':
-        return (f'REVIEW_ID: DOC-V2-R9-REVIEW-001\nTARGET_RELEASE: DOCSYS-V2-R9\n'
+        return (f"REVIEW_ID: {c['review_id']}\nTARGET_RELEASE: {c['release']}\n"
                 f'TARGET_DESIGN_COMMIT: {target}\nVERDICT: PASS\n')
-    return (f'AUDIT_ID: DOC-V2-R9-AUDIT-001\nTARGET_RELEASE: DOCSYS-V2-R9\n'
-            f'TARGET_DESIGN_COMMIT: {target}\nREQUIRED_REVIEW_ID: DOC-V2-R9-REVIEW-001\nVERDICT: PASS\n')
+    return (f"AUDIT_ID: {c['audit_id']}\nTARGET_RELEASE: {c['release']}\n"
+            f"TARGET_DESIGN_COMMIT: {target}\nREQUIRED_REVIEW_ID: {c['review_id']}\nVERDICT: PASS\n")
 
 
 def partial_promotion_verdict(dst):
-    p=dst/REVIEW; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(verdict_text('review','a'*40),encoding='utf-8')
+    c=clear_promotion_verdicts(dst)
+    p=dst/c['review_record']; p.parent.mkdir(parents=True,exist_ok=True)
+    p.write_text(verdict_text('review','a'*40,c),encoding='utf-8')
 
 
 def mismatched_promotion_target(dst):
-    rp=dst/REVIEW; ap=dst/AUDIT; rp.parent.mkdir(parents=True,exist_ok=True)
-    rp.write_text(verdict_text('review','a'*40),encoding='utf-8')
-    ap.write_text(verdict_text('audit','b'*40),encoding='utf-8')
+    c=clear_promotion_verdicts(dst)
+    rp=dst/c['review_record']; ap=dst/c['audit_record']; rp.parent.mkdir(parents=True,exist_ok=True)
+    rp.write_text(verdict_text('review','a'*40,c),encoding='utf-8')
+    ap.write_text(verdict_text('audit','b'*40,c),encoding='utf-8')
 
 
 def main():
