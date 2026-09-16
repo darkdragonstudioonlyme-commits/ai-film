@@ -39,16 +39,23 @@ PREPARATION:
   CURRENT_HOST_DIAGNOSTIC: validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md
   WSL_SETUP_RECORD: validation/WSL_SETUP-P00-DEV21.md
   WSL_PRODLIKE_RUNTIME_RECORD: validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md
+  WSL_PRODLIKE_OPERATIONS_RECORD: validation/WSL_PRODLIKE_OPERATIONS-P00-DEV21.md
   WSL_SETUP_STATUS: COMPLETE
   WSL_VALIDATION_HEAD: 934659f535d81d9a4a07389531acc2b9c304fa6d
   WSL_VALIDATION_DIRTY_FILES: 0
   WSL_SAFE_TESTS: "760 PASS"
   WSL_SAFE_STATIC: "101 PASS"
   PACKAGE_GIT_BYTE_VERIFY: PASS
-  PRODLIKE_STATUS: READY_NON_NATIVE_LIVE_MONITORED
+  PRODLIKE_STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
   PRODLIKE_RUNTIME_MANIFEST_SHA256: 8227e8350208314db087612889d2b481393c67ec3a5eb0bfa84a869c1d0829a2
   PRODLIKE_MONITOR_TIMER: "enabled active 15min"
-  PRODLIKE_SYSTEMD_SECURITY: "4.1 OK"
+  PRODLIKE_HEALTH_TIMER: "enabled active 10min"
+  PRODLIKE_BACKUP_TIMER: "enabled active 24h"
+  PRODLIKE_SYSTEMD_SECURITY: "verify/health/backup 4.1 OK"
+  PRODLIKE_HEALTH_STATUS: PASS
+  PRODLIKE_CONTROL_BACKUP_RESTORE_PROBE: PASS
+  PRODLIKE_CONTROL_BACKUP_SECRET_SCAN: PASS
+  PRODLIKE_CONTROL_BACKUP_RETENTION: 14
   LAB_CANDIDATE_RECORD: validation/LAB_CANDIDATE-P00-DEV21.md
   LAB_CANDIDATE_STATUS: READY_FOR_EXTERNAL_REGISTRATION
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
@@ -120,4 +127,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The disposable LAB, restore-probed snapshots, sealed recovery artifacts, exact dev21 authority draft, ACL-protected pending authority bundle, stale-safe fail-closed V02 intake watcher, non-installing native-policy staging and pre-V03 gate are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is now explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; this clarification does not constitute authority.
+The production-like WSL layer now has immutable app bytes, atomic activation, periodic integrity verification, machine-readable health, daily whitelisted control-state backups with retention and restore proof, and fail-closed V02 authority monitoring. The disposable LAB remains deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; none of the production-like operations controls constitute native authority.
