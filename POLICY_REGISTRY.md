@@ -13,7 +13,7 @@ Current guidance stays concise and authoritative. Obsolete rules do not remain m
 - **SUPERSEDED**: not current; successor ID required.
 - **RETIRED**: no longer part of active guidance.
 
-Git history and immutable review records preserve history. Active docs should remove obsolete detailed instructions after retirement; do not keep pages of crossed-out policy in current bootstrap files.
+Git history and immutable review records preserve history. Active docs remove obsolete detailed instructions after retirement.
 
 ## Active registry
 
@@ -23,14 +23,20 @@ Git history and immutable review records preserve history. Active docs should re
 | POL-ROUTE-001 | workflow | project-control | 2026-09-15 | routing ambiguity/deadlock | `continue` routes deterministically from verified state | `WORKFLOW_ROUTER.md` |
 | POL-LANE-001 | trust | governance | 2026-09-15 | workflow/lane model changes | producer/reviewer are independent; immutable handoff | `EXECUTION_LANES.md` |
 | POL-TEST-001 | testing | test-governance | 2026-09-15 | business/test authority change or repeated test debt | reviewed business behavior, not code, owns the oracle | `TEST_STRATEGY.md` |
-| POL-LEARN-001 | learning | governance | 2026-09-15 | learning recurrence or activation backlog | reusable discoveries are complete only after reviewed correction is canonically active and measured | `SELF_LEARNING.md` |
-| POL-HEALTH-001 | process | governance | 2026-09-15 | repeated inefficient/deadlocked cycles or learned-but-not-active backlog | workflow health triggers meta-review and activation follow-through | `WORKFLOW_HEALTH.md` |
+| POL-LEARN-002 | learning | governance | DOCSYS-V2-R9 | lifecycle drift, activation backlog, ineffectiveness or measurement debt | immutable learning evidence is separate from machine-owned lifecycle state; automation detects/routes but cannot self-review/promote | `SELF_LEARNING.md` / `learning/LEARNING_STATE.json` |
+| POL-HEALTH-001 | process | governance | 2026-09-15 | repeated inefficient/deadlocked cycles or learning debt | workflow health triggers meta-review and activation/effectiveness follow-through | `WORKFLOW_HEALTH.md` |
 | POL-ENV-001 | environment | model-evaluation | 2026-09-15 | material benchmark environment change | benchmark/model claims bind an exact environment snapshot | `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` |
-| POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling/source-visibility changes | exact identity + remote/artifact verification before durability; handoff states remote source addressability and never treats partial snapshot as full mirror | `GIT_WORKFLOW.md` |
+| POL-GIT-001 | persistence | project-control | 2026-09-15 | persistence/remote tooling/source-visibility changes | exact identity + remote/artifact verification before durability; partial snapshots never masquerade as full source | `GIT_WORKFLOW.md` |
 | POL-RECOVERY-001 | recovery | project-control | 2026-09-15 | recovery failure/state-loss incident | preserve WIP/evidence before repair; never guess current truth | `RECOVERY_PLAYBOOK.md` |
-| POL-CONTINUITY-001 | continuity | project-control | 2026-09-15 | interruption/duplicate-work incident | one logical RUN_ID; write-ahead step INTENT/COMPLETE; reconcile and reuse exact outputs | `WORKFLOW_CONTINUITY.md` |
+| POL-CONTINUITY-001 | continuity | project-control | 2026-09-15 | interruption/duplicate-work incident | one logical RUN_ID; write-ahead INTENT/COMPLETE; reconcile and reuse exact outputs | `WORKFLOW_CONTINUITY.md` |
 
-For non-ACTIVE policies, registry rows additionally identify `STATUS`, `SUCCESSOR`, and removal/migration condition. Review dates may be event-driven; when a calendar review is required add `REVIEW_DUE` explicitly.
+## Superseded registry
+
+| Policy ID | Status | Successor | Reason |
+|---|---|---|---|
+| POL-LEARN-001 | SUPERSEDED | POL-LEARN-002 | R8 defined activation/effectiveness semantics but did not provide a single machine-readable current lifecycle owner; stale learning records could disagree with project aggregates without checker failure. |
+
+For non-ACTIVE policies, successor/removal conditions are explicit. Review dates may be event-driven; when calendar review is required add `REVIEW_DUE`.
 
 ## Policy change record
 
@@ -51,6 +57,23 @@ EFFECTIVE_FROM:
 REVIEW_TRIGGER_OR_DUE:
 ```
 
+R9 policy change:
+
+```yaml
+POLICY_ID: POL-LEARN-001
+OLD_STATUS: ACTIVE
+NEW_STATUS: SUPERSEDED
+REASON: "Cross-session review found lifecycle-state drift between immutable learning records and canonical aggregate state."
+EVIDENCE_OR_LEARNING: LEARNING-LIFECYCLE-CONSISTENCY-002
+REPLACED_BY: POL-LEARN-002
+AFFECTED_DOCS: "SELF_LEARNING.md; WORKFLOW_HEALTH.md; WORKFLOW_ROUTER.md; DOCUMENTATION_MAP.md; learning/*; learning/LEARNING_STATE.json; checkers"
+MIGRATION_REQUIRED: true
+REVIEW_ID: DOC-V2-R9-REVIEW-001
+OWNER: governance
+EFFECTIVE_FROM: DOCSYS-V2-R9
+REVIEW_TRIGGER_OR_DUE: "any lifecycle drift, ineffective learning without successor, or aggregate mismatch"
+```
+
 ## Pruning rule
 
 During DOC-AUDIT:
@@ -66,8 +89,8 @@ A larger documentation corpus is not automatically better. The target is maximum
 
 ## Review triggers
 
-Review a policy when its assumptions change, it causes repeated exceptions/workarounds, a newer rule covers the same scope better, it references stale versions/paths, or a health review shows it contributes to rework. A reviewed policy change that remains unactivated while affected work proceeds is itself a review trigger.
+Review a policy when assumptions change, it causes repeated exceptions/workarounds, a newer rule covers the same scope better, it references stale versions/paths, or a health review shows it contributes to rework. A reviewed policy change that remains unactivated while affected work proceeds is itself a review trigger.
 
 ## Historical-guidance placement
 
-Superseded system-design/how-to files move out of active discovery paths into `history/` or remain retrievable from Git. Immutable review/checkpoint records may stay in their evidence locations, but active bootstrap files must not tell a new chat to follow retired instructions.
+Superseded system-design/how-to files move out of active discovery paths into `history/` or remain retrievable from Git. Immutable review/checkpoint records may stay in evidence locations, but active bootstrap files must not tell a new chat to follow retired instructions.
