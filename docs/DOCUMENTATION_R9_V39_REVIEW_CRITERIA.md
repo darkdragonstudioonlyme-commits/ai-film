@@ -5,7 +5,7 @@ A detailed review may PASS only if all conditions hold on one exact final V39 de
 1. `STATE_VERSION=39`, `DOCUMENTATION_SYSTEM=DOCSYS-V2-R9`, revision `R6_V39_LONG_HORIZON_READINESS_RECONCILIATION`.
 2. Accepted dev21 source/package/test/contract identities are unchanged and no product implementation/native configuration/test oracle changes exist.
 3. `RUN-P00-VALIDATION-001` remains BLOCKED at `V02_LAB_EXECUTION_AUTHORITY`; all 86 native cases remain NOT_RUN; qualification/SITE/HOST_READY remain absent.
-4. Canonical validation evidence head is `ab5754dd394b0ef070835f61639bf95c2b774319` and matches the durable long-horizon readiness records.
+4. Canonical validation evidence head is `bd569cd10976ac7b3e7ce6ee11ec7e60334f9fca`, matches the durable long-horizon readiness records, and preserves the original V02 input identity/idempotency binding including `code_review_record`.
 5. Production-like facts are supported by validation evidence: ten supervised timers, 58-file verified local/NTFS control state, exact rebuild cold probe, deterministic transfer export, daily full DR rehearsal, weekly 8/8 fail-closed campaign and explicit health/recovery integrity ordering.
 6. The migration failure against the old 44-file export is preserved as fail-closed evidence; producer migration completed before stricter consumer success was claimed and no recovery requirement was weakened.
 7. V02 authority preflight uses the exact V02 validator, leaves staging unchanged, and cannot create authoritative READY/trust/LAB/native state.
