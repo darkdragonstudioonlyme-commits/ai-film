@@ -6,7 +6,7 @@ Documentation system remains `DOCSYS-V2-R9`. V39 is a long-horizon production-li
 
 ## Long-horizon readiness program
 
-Validation evidence head `ab5754dd394b0ef070835f61639bf95c2b774319` records P1–P6 of `PRODLIKE-READINESS-P00-DEV21-002`:
+Validation evidence head `bd569cd10976ac7b3e7ce6ee11ec7e60334f9fca` records P1–P6 of `PRODLIKE-READINESS-P00-DEV21-002` and restores the unchanged V02 `code_review_record` input binding so the original idempotency key remains valid:
 
 - P1 baseline/drift inventory — PASS;
 - P2 fail-closed fault campaign — PASS, 8/8 negative cases;
