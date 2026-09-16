@@ -63,6 +63,21 @@ These files explain **what was learned and why**. Historical activation/review f
 
 `PROJECT_STATE` carries only **derived aggregates** such as pending activation, unresolved ineffective learning, pending measurement and overdue measurement. Those numbers must match the register; they are never maintained as an independent authority.
 
+## Evidence-gated lifecycle transactions
+
+The register is mutable state, but it is **not self-authorizing mutable state**. Each transition has an evidence gate:
+
+- **DISCOVERED / REVIEW_PENDING** — may be created from immutable learning/health evidence; grants no active policy authority.
+- **REVIEWED / PASS** — requires an immutable independent review record bound to the exact proposed correction.
+- **ACTIVE** — requires canonical activation evidence for the declared target release/policy and no activation blocker.
+- **EFFECTIVE** — requires immutable effectiveness/health evidence that evaluates the declared success metric.
+- **INEFFECTIVE** — requires immutable evidence and an explicit successor or meta-review route.
+- **SUPERSEDED / RETIRED** — requires successor/removal evidence when applicable.
+
+A data-only lifecycle transition that follows these existing rules does not itself require a new documentation-system release. Changing the lifecycle **schema, transition semantics, checker rules or policy meaning** is a DOCSYS design change and must go through DOC-DESIGN → DOC-REVIEW → DOC-AUDIT.
+
+Automation may prepare a candidate register transition and its evidence links, but the checker must be able to independently prove the transition from immutable evidence. Automation cannot manufacture the review/audit evidence that authorizes its own policy change.
+
 ## Discovery classes
 
 `DEFECT | TOOLING | TEST | PROCESS | SECURITY | RECOVERY | PERFORMANCE | ENVIRONMENT | ARCHITECTURE | BUSINESS_CLARIFICATION`.
