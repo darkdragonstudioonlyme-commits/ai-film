@@ -52,6 +52,7 @@ PREPARATION:
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   LAB_TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
   LAB_DISTRO: AI-FILM-P00-LAB
+  LAB_DISTRO_STATE: STOPPED_PENDING_AUTHORITY
   LAB_WINDOWS_AUTOMOUNT: false
   LAB_NO_REAL_CREDENTIALS: true
   LAB_NO_PRODUCTION_MAPPINGS: true
@@ -63,13 +64,22 @@ PREPARATION:
   LAB_AUTHORITY_DRAFT_RECORD: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
   LAB_AUTHORITY_DRAFT_SHA256: 746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5
   LAB_AUTHORITY_DRAFT_CASES: "86 total / 85 native / 1 document"
+  LAB_PENDING_BUNDLE_RECORD: validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md
+  LAB_PENDING_BUNDLE_INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
+  LAB_PENDING_REGISTRATION_SHA256: 28ec95c3ecdd8ea7615843601c4657e25b503248fa2c93582cadb86c45488916
+  LAB_PENDING_STORE_ACL_PROTECTED: true
+  LAB_PENDING_STORE_ACL_RULE_COUNT: 2
+  LAB_PENDING_STORE_FILE_COUNT: 4
+  LAB_PENDING_BUNDLE_NATIVE_CONSUMABLE: false
+  LAB_PENDING_BUNDLE_APPROVED: false
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
-  REMAINING_REQUIREMENT: "Protected external LAB registration + owner/controller attestation + protected fixture/plan refs + approved exact dev21 <=24h lab_acceptance_suite"
+  REMAINING_REQUIREMENT: "External approval of protected LAB registration/owner-controller attestation + protected fixture/plan refs + approved exact dev21 <=24h lab_acceptance_suite"
   REQUIRED_EXTERNAL_RECORD: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
+  PENDING_AUTHORITY_BUNDLE_READY: true
   USER_ACTION_REQUIRED: true
   STATUS: OPEN
 
@@ -80,4 +90,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The disposable LAB environment and recovery snapshots now exist and are independently restore-probed; exact dev21 is byte-verified in the LAB and all 86 cases remain `NOT_RUN`. This does **not** self-authorize execution. V02 remains blocked solely on protected external registration/attestation plus approved fixture/plan/suite authority.
+The disposable LAB, restore-probed snapshots, exact dev21 authority draft and ACL-protected pending authority bundle are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: the protected pending bundle is not consumable or approved, and external registration/attestation plus approved fixture/plan/suite authority must be independently established before any native stage.
