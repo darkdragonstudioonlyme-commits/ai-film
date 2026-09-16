@@ -8,28 +8,32 @@ WORKTREE_REL: review
 BASE_IDENTITY: 51c9d3f7373a2922c1ea6a3e973d817bb4e16523
 STATUS: RUNNING
 CONTINUITY_POLICY: DOCSYS-V2-R8_ACTIVE
-CURRENT_STEP: R01_CANDIDATE_IDENTITY_VERIFY
-RETURN_TO: R01_CANDIDATE_IDENTITY_VERIFY
+CURRENT_STEP: R02_INDEPENDENT_REGRESSION_STATIC
+RETURN_TO: R02_INDEPENDENT_REGRESSION_STATIC
 ```
 
 ## Current step contract
 
 ```yaml
-STEP_ID: R01_CANDIDATE_IDENTITY_VERIFY
+STEP_ID: R02_INDEPENDENT_REGRESSION_STATIC
 STATE: INTENT
-INPUT_IDENTITY: {"handoff_id":"HANDOFF-CODE-REVIEW-P00-DEV20-FINAL","package_sha256":"8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff","producer_handoff_commit":"0b462e686173d8a51d28c66740e11202cbafef3d","source_commit":"51c9d3f7373a2922c1ea6a3e973d817bb4e16523"}
-IDEMPOTENCY_KEY: 93587ba5333177cd8952b741112af22258324793232b7897b6190fd5fddc0bac
-DONE_WHEN: {"detached_head":"51c9d3f7373a2922c1ea6a3e973d817bb4e16523","kind":"REVIEW_CANDIDATE_IDENTITY_VERIFIED","package_sha256":"8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff","worktree_clean":true}
+INPUT_IDENTITY: {"package_sha256":"8104985b355815d58fbc28fec3e1b9b17c72dbf9d5a9c6dc8f7eb66f77a67fff","runner":"lane-test.sh review","source_commit":"51c9d3f7373a2922c1ea6a3e973d817bb4e16523","test_digest":"c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383"}
+IDEMPOTENCY_KEY: f73ec00d478575e9322c8990f2a1fbbdd44612cf8af877a334de3953620a8c59
+DONE_WHEN: {"kind":"INDEPENDENT_REVIEW_REGRESSION_STATIC","source_commit":"51c9d3f7373a2922c1ea6a3e973d817bb4e16523","static_failed":0,"tests_errors":0,"tests_failures":0,"tests_skipped":0}
 OUTPUT_IDENTITY: null
 REPLAY_POLICY: SAFE_REEXECUTE
 ```
+
+## Completed evidence
+
+R01 identity verification is COMPLETE: REVIEW worktree is detached at exact `51c9d3f...` and clean; package SHA-256 is `8104985b...67fff`; manifest binds dev20/source commit; all 281 manifest entries passed hash verification and independently byte-match `git show` for the exact review commit (`GIT_MISSING=0`, `GIT_BYTE_MISMATCH=0`).
 
 ## Review plan
 
 | Step | State | Purpose |
 |---|---|---|
-| R01_CANDIDATE_IDENTITY_VERIFY | INTENT | detached exact source + package/manifest identity verification |
-| R02_INDEPENDENT_REGRESSION_STATIC | PENDING | independent full workspace regression/static checks |
+| R01_CANDIDATE_IDENTITY_VERIFY | COMPLETE | detached exact source + package/manifest identity verification PASS |
+| R02_INDEPENDENT_REGRESSION_STATIC | INTENT | independent full workspace regression/static checks |
 | R03_RESIDUAL_COMPLETENESS_REVIEW | PENDING | contract/source/harness/factory completeness and CR-P00-001 review |
 | R04_ADVERSARIAL_NEGATIVE_REVIEW | PENDING | targeted negative/security/recovery reasoning/tests |
 | R05_FINAL_VERDICT | PENDING | immutable finding disposition and overall CODE_REVIEW verdict |
