@@ -43,7 +43,7 @@
     "local_worktree": null
   },
   "validation": {
-    "validation_evidence_head": "ab5754dd394b0ef070835f61639bf95c2b774319",
+    "validation_evidence_head": "bd569cd10976ac7b3e7ce6ee11ec7e60334f9fca",
     "native_windows_wsl": "NOT_RUN",
     "lab": "NOT_RUN",
     "site": "NOT_RUN",
