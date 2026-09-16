@@ -5,6 +5,8 @@ import json,shutil,subprocess,tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
 CHECKER=Path('tools/check_learning_lifecycle.py')
+REVIEW='reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md'
+AUDIT='reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md'
 
 
 def run_case(name, mutate, expected):
@@ -60,6 +62,24 @@ def release_drift(dst):
     p,d=reg(dst); d['candidate_documentation_release']='DOCSYS-V2-R999'; write_reg(p,d)
 
 
+def verdict_text(kind,target):
+    if kind=='review':
+        return (f'REVIEW_ID: DOC-V2-R9-REVIEW-001\nTARGET_RELEASE: DOCSYS-V2-R9\n'
+                f'TARGET_DESIGN_COMMIT: {target}\nVERDICT: PASS\n')
+    return (f'AUDIT_ID: DOC-V2-R9-AUDIT-001\nTARGET_RELEASE: DOCSYS-V2-R9\n'
+            f'TARGET_DESIGN_COMMIT: {target}\nREQUIRED_REVIEW_ID: DOC-V2-R9-REVIEW-001\nVERDICT: PASS\n')
+
+
+def partial_promotion_verdict(dst):
+    p=dst/REVIEW; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(verdict_text('review','a'*40),encoding='utf-8')
+
+
+def mismatched_promotion_target(dst):
+    rp=dst/REVIEW; ap=dst/AUDIT; rp.parent.mkdir(parents=True,exist_ok=True)
+    rp.write_text(verdict_text('review','a'*40),encoding='utf-8')
+    ap.write_text(verdict_text('audit','b'*40),encoding='utf-8')
+
+
 def main():
     cases=[
         ('stale_activation',stale_activation,'stale-current-release-activation'),
@@ -69,6 +89,8 @@ def main():
         ('active_without_activation_evidence',active_without_activation_evidence,'active-without-activation-evidence'),
         ('overdue_measurement_drift',overdue_measurement_drift,'learning-overdue-measurement-drift'),
         ('release_drift',release_drift,'register-documentation-release-drift'),
+        ('partial_promotion_verdict',partial_promotion_verdict,'partial-promotion-verdict-set'),
+        ('mismatched_promotion_target',mismatched_promotion_target,'promotion-target-design-mismatch'),
     ]
     for name,mutate,expected in cases: run_case(name,mutate,expected)
     print('ADVERSARIAL_LEARNING_LIFECYCLE_TEST_PASS',len(cases),'cases')
