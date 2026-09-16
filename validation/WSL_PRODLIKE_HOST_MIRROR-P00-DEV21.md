@@ -18,9 +18,9 @@ MIRROR_SERVICE_RESULT: success
 MIRROR_SYSTEMD_SECURITY: "4.1 OK"
 RETENTION: 14
 MIRROR_MAX_AGE_HOURS: 30
-SAMPLE_ARCHIVE: control-state-20260916T172440Z.tar.gz
-SAMPLE_ARCHIVE_SHA256: a992d525d752c270605b14ba65949cf3b035cda0e0e6754bc462cca01521ac0c
-SAMPLE_FILE_COUNT: 35
+SAMPLE_ARCHIVE: control-state-20260916T183817Z.tar.gz
+SAMPLE_ARCHIVE_SHA256: 4c8ff1de63df7f58ae42b59766e8936b87dc9581c201b772d7fdd95453707905
+SAMPLE_FILE_COUNT: 39
 MIRROR_VERIFY: PASS
 MIRROR_RESTORE_PROBE: PASS
 MIRROR_SECRET_SCAN: PASS
@@ -31,12 +31,10 @@ PROTECTED_IDENTITY_INCLUDED: false
 NATIVE_EXECUTION_STARTED: false
 ```
 
-The mirror copies only a control backup that has already passed the local backup verifier. Copy is performed through a temporary file followed by atomic replace on the Windows-side destination, and the destination bytes are rehashed before the mirror index is committed. The host-side index binds archive name, SHA-256, copy timestamp, retention and explicit `native_authority_included=false` / `protected_identity_included=false` assertions.
+The mirror copies only a control backup that has already passed the local verifier. Copy uses a temporary destination followed by atomic replace, then the NTFS bytes are rehashed before `mirror-index.json` is committed. The mirror index binds archive name, SHA-256, copy timestamp, retention and explicit `native_authority_included=false` / `protected_identity_included=false` assertions.
 
-The Windows directory has inheritance removed and only SYSTEM plus the current operator retain Full Control. No approval inbox, protected authority object, raw SID/MachineGuid, credential, password/token assignment or private-key marker is mirrored.
+The Windows directory has ACL inheritance removed and only SYSTEM plus the current operator retain Full Control. No approval inbox, protected authority object, raw SID/MachineGuid, credential or qualification evidence is mirrored.
 
-A restore probe was executed directly from the NTFS mirror rather than the local WSL backup. All 35 embedded control files — including the six bounded-execution timeout drop-ins — were rehashed against the archive manifest, unsafe paths were rejected, required recovery files were present and the secret/protected-domain scan passed. This provides a second-filesystem recovery copy for WSL-distro failure; it is **not claimed as off-host or independent-physical-device disaster recovery**.
+A restore probe executed directly from the NTFS copy rehashed all 39 control files against the embedded manifest, rejected unsafe paths and passed secret/protected-domain scanning. The 39-file control archive includes operational scripts, seven supervised timer/service definitions and bounded-execution drop-ins, including the rebuild-set verifier control files; the exact runtime reconstruction artifacts themselves are kept separately in `validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md`.
 
-The base service unit remains byte-identical to its previously recorded hash; bounded execution is supplied by a separate reviewed/backupable systemd drop-in, keeping deployment identity stable while enforcing a five-minute start timeout.
-
-The mirror is operational-readiness evidence only. It does not create LAB authority, write HKLM, start the disposable LAB, execute native acceptance cases or advance V02.
+This mirror is a same-host, second-filesystem recovery measure for WSL-distro failure. It is not claimed as off-host disaster recovery and does not create LAB authority, write HKLM, start the disposable LAB or execute native acceptance cases.
