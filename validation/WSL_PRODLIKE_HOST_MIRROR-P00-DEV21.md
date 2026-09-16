@@ -18,12 +18,14 @@ MIRROR_SERVICE_RESULT: success
 MIRROR_SYSTEMD_SECURITY: "4.1 OK"
 RETENTION: 14
 MIRROR_MAX_AGE_HOURS: 30
-SAMPLE_ARCHIVE: control-state-20260916T183817Z.tar.gz
-SAMPLE_ARCHIVE_SHA256: 4c8ff1de63df7f58ae42b59766e8936b87dc9581c201b772d7fdd95453707905
+SAMPLE_ARCHIVE: control-state-20260916T200952Z.tar.gz
+SAMPLE_ARCHIVE_SHA256: 29a92f78683ff71ba118023516cd32783bc45cc8232dbebf3ddf90b9b52309e1
 SAMPLE_FILE_COUNT: 39
+SAMPLE_REBUILD_VERIFIER_SHA256: 8db9a92b236e2b718aabb9fcc177ce797bd09e27e68e8edba0a16351d3b1e473
 MIRROR_VERIFY: PASS
 MIRROR_RESTORE_PROBE: PASS
 MIRROR_SECRET_SCAN: PASS
+VENV_REBUILD_VERIFIER_RECOVERABLE: true
 WINDOWS_ACL_INHERITANCE: disabled
 WINDOWS_ACL_PRINCIPALS: "NT AUTHORITY\\SYSTEM + DESKTOP-LCISMET\\Admin only"
 NATIVE_AUTHORITY_INCLUDED: false
@@ -35,6 +37,8 @@ The mirror copies only a control backup that has already passed the local verifi
 
 The Windows directory has ACL inheritance removed and only SYSTEM plus the current operator retain Full Control. No approval inbox, protected authority object, raw SID/MachineGuid, credential or qualification evidence is mirrored.
 
-A restore probe executed directly from the NTFS copy rehashed all 39 control files against the embedded manifest, rejected unsafe paths and passed secret/protected-domain scanning. The 39-file control archive includes operational scripts, seven supervised timer/service definitions and bounded-execution drop-ins, including the rebuild-set verifier control files; the exact runtime reconstruction artifacts themselves are kept separately in `validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md`.
+A restore probe executed directly from the current NTFS copy rehashed all 39 control files against the embedded manifest, rejected unsafe paths and passed secret/protected-domain scanning. It also verified that `bin/verify-rebuild-set.py` inside the mirror has SHA `8db9a92b...` and contains the isolated-venv rebuild logic (`python3 -m venv --without-pip` plus `app/src` `.pth`). Thus the stronger rebuild verifier itself is recoverable from the second filesystem.
+
+The 39-file control archive contains operational scripts, seven supervised timer/service definitions and bounded-execution drop-ins. Exact runtime reconstruction artifacts themselves remain separately protected under `validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md`.
 
 This mirror is a same-host, second-filesystem recovery measure for WSL-distro failure. It is not claimed as off-host disaster recovery and does not create LAB authority, write HKLM, start the disposable LAB or execute native acceptance cases.
