@@ -7,7 +7,7 @@ STEP_ID: V02_LAB_EXECUTION_AUTHORITY
 STATUS: BLOCKED_AWAITING_EXTERNAL_APPROVAL_ENVELOPE
 CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
 PENDING_BUNDLE_INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
-VALIDATOR_SHA256: 312a72ddc1a8551a85d93b275ea0ccfe84b87ca3ab9e575753d945c7b6f69667
+VALIDATOR_SHA256: 05143de5f2ba7b6e58c3e9256cfc0c724f7f38aea3d945368506e3cf1180bc89
 WATCHER_SHA256: bc57a031a781cbe7e64036eb9c462ba2c8d63a11b1ef1e182fd7229a73548c35
 ENVELOPE_TEMPLATE_SHA256: 77896f65483a1c3d367daaa9a73d6901ae15dd3c89681ba3a57007ff992015fd
 INBOX_README_SHA256: 3aad89410b9382c3c85d17c7f4c5ab38bccac573f2755655bf4ec404ec0595b2
@@ -34,9 +34,20 @@ The template is intentionally `decision=PENDING` and `approved_by_external_autho
 - approved LAB plan and exact <=24h `lab_acceptance_suite` covering all 86 reviewed procedures;
 - all 85 native fixture specs and every request route/plan reference;
 - hash-addressed objects and role pins;
+- `registration`, `design`, and `code` are single pins as required by native `store.one()` selection;
+- every `execution_plan` and `lab_case_fixture_spec` consumed by the suite is actually pinned, not merely present by hash;
 - pure `authority.authorize()` success for every approved execution plan.
 
 It never starts WSL LAB, writes HKLM, performs a native request, or converts `NOT_RUN` to PASS.
+
+## Adversarial fail-closed checks
+
+Two local negative-only intake tests were executed outside the protected inbox:
+
+- renaming the `PENDING` template to `approval-envelope.json` is rejected with `EXTERNAL_DECISION_NOT_APPROVE`, exit 12;
+- changing only the envelope flags to `APPROVE/true` while leaving immutable refs absent is rejected with `ENVELOPE_REF_MISSING`, exit 12.
+
+No synthetic package was permitted to produce `READY_TO_ADVANCE`.
 
 ## Watcher
 
