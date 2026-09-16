@@ -40,6 +40,7 @@ PREPARATION:
   WSL_SETUP_RECORD: validation/WSL_SETUP-P00-DEV21.md
   WSL_PRODLIKE_RUNTIME_RECORD: validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md
   WSL_PRODLIKE_OPERATIONS_RECORD: validation/WSL_PRODLIKE_OPERATIONS-P00-DEV21.md
+  WSL_PRODLIKE_HOST_MIRROR_RECORD: validation/WSL_PRODLIKE_HOST_MIRROR-P00-DEV21.md
   WSL_SETUP_STATUS: COMPLETE
   WSL_VALIDATION_HEAD: 934659f535d81d9a4a07389531acc2b9c304fa6d
   WSL_VALIDATION_DIRTY_FILES: 0
@@ -51,17 +52,24 @@ PREPARATION:
   PRODLIKE_MONITOR_TIMER: "enabled active 15min"
   PRODLIKE_HEALTH_TIMER: "enabled active 10min"
   PRODLIKE_BACKUP_TIMER: "enabled active 24h"
+  PRODLIKE_HOST_MIRROR_TIMER: "enabled active 2h"
   PRODLIKE_RECOVERY_TIMER: "enabled active boot+6h"
-  PRODLIKE_SYSTEMD_SECURITY: "verify/health/backup/recovery 4.1 OK"
+  PRODLIKE_SYSTEMD_SECURITY: "verify/health/backup/recovery/host_mirror 4.1 OK"
   PRODLIKE_HEALTH_STATUS: PASS
   PRODLIKE_HEALTH_BACKUP_FRESHNESS: PASS
-  PRODLIKE_PERIODIC_JOB_RESULTS: "backup=success recovery=success"
+  PRODLIKE_HEALTH_HOST_MIRROR_FRESHNESS: PASS
+  PRODLIKE_PERIODIC_JOB_RESULTS: "backup=success recovery=success host_mirror=success"
   PRODLIKE_BACKUP_MAX_AGE_HOURS: 30
   PRODLIKE_CONTROL_BACKUP_VERIFY: PASS
   PRODLIKE_CONTROL_BACKUP_RESTORE_PROBE: PASS
   PRODLIKE_CONTROL_BACKUP_SECRET_SCAN: PASS
   PRODLIKE_CONTROL_BACKUP_RETENTION: 14
   PRODLIKE_RECOVERY_VERIFY: PASS
+  PRODLIKE_HOST_MIRROR_VERIFY: PASS
+  PRODLIKE_HOST_MIRROR_RESTORE_PROBE: PASS
+  PRODLIKE_HOST_MIRROR_SECRET_SCAN: PASS
+  PRODLIKE_HOST_MIRROR_FILESYSTEM: NTFS
+  PRODLIKE_HOST_MIRROR_RETENTION: 14
   LAB_CANDIDATE_RECORD: validation/LAB_CANDIDATE-P00-DEV21.md
   LAB_CANDIDATE_STATUS: READY_FOR_EXTERNAL_REGISTRATION
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
@@ -133,4 +141,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The production-like WSL layer now has immutable app bytes, atomic activation, periodic integrity verification, machine-readable health, daily whitelisted control-state backups with retention, freshness/integrity verification and restore proof, plus boot/periodic recovery verification. The disposable LAB remains deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; none of the production-like operations controls constitute native authority.
+The production-like WSL layer now has immutable app bytes, atomic activation, periodic integrity verification, machine-readable health, daily whitelisted control-state backups with retention, freshness/integrity verification and restore proof, plus boot/periodic recovery verification and an ACL-protected Windows NTFS mirror of verified control backups. The disposable LAB remains deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; none of the production-like operations controls constitute native authority.
