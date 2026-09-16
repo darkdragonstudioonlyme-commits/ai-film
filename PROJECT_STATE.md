@@ -22,6 +22,9 @@ DOCUMENTATION_GOVERNANCE:
   FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md
   FINAL_AUDIT_ID: DOC-V2-R8-AUDIT-002
   FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md
+  ACTIVATION_CONDITION: "Exact final R8 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
+  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable final review/audit records to the exact reviewed/audited design tree; any other policy/state/checkpoint edit reopens DOC-REVIEW and DOC-AUDIT."
+  NOTE: "R8 remains the active documentation system while product/project mode advances independently from IMPLEMENTATION to VALIDATION."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
