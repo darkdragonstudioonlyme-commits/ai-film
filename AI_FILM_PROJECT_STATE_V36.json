@@ -85,10 +85,11 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 0,
+    "pending_effectiveness_measurement": 1,
     "overdue_effectiveness_measurement": 0,
-    "historical_ineffective_learning": 1,
+    "historical_ineffective_learning": 2,
     "recently_proven_effective": "LEARNING-LIFECYCLE-CONSISTENCY-002",
+    "current_pending_measurement": "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004",
     "guarded_self_optimization": "ACTIVE"
   },
   "runtime_reconciliation": {
