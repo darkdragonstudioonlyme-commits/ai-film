@@ -1,0 +1,9 @@
+# AI-FILM-SERVER — State Checkpoint V32
+
+Phase00 remains in `VALIDATION` with exact accepted code candidate `0.1.0.dev21` (`934659f535d81d9a4a07389531acc2b9c304fa6d`) and `CODE_REVIEW_PASS=true`. The active run remains `RUN-P00-VALIDATION-001` at `V02_LAB_EXECUTION_AUTHORITY`; no replacement run was created.
+
+A real disposable technical LAB candidate now exists: `AI-FILM-P00-LAB`, fresh Ubuntu 24.04.5 WSL2, candidate ID `336b12af-cada-4968-8083-8a5b41e479a2`. It is not a clone of development, has a password-locked dedicated user, Windows-drive automount disabled, no appended Windows PATH, no copied real credentials and no production storage mapping. Exact dev21 was controller-streamed into the LAB and 283/283 app bytes verify.
+
+The LAB independently reproduces accepted source/test/contract identities and its pre-V03 metadata inventory remains 86 `NOT_RUN`, zero native parent cases, no qualification and `HOST_READY=false`. Baseline snapshot SHA-256 is `0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd`; pristine dev21 snapshot SHA-256 is `552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d`. The pristine snapshot was successfully restored into a temporary probe distro, byte/inventory verified, then that probe alone was unregistered.
+
+An exact authority draft generated from reviewed `PROCEDURES` covers all 86 cases (85 native + 1 document) and self-checks PASS, but remains `approved=false`. V02 is therefore narrowed to **external authority only**: protected LAB registration/owner-controller attestation, protected fixture/plan refs and an approved <=24h exact-dev21 `lab_acceptance_suite` are still required. No native LAB/SITE operation may run before that authority is independently verified.
