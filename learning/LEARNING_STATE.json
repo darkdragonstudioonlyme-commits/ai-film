@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "owner": "SELF_LEARNING.md",
+  "candidate_documentation_release": "DOCSYS-V2-R9",
+  "records": {
+    "LEARNING-CONTROL-001": {
+      "record": "learning/LEARNING-CONTROL-001.md",
+      "score": 8,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": ["AI_FILM_PROJECT_STATE_V30.json", "AI_FILM_PROJECT_STATE_V31.json", "AI_FILM_PROJECT_STATE_V32.json"],
+      "success_metric": "State schema evolution after R8 does not require incident-specific checker hard-coding while true drift remains fail-closed.",
+      "measurement_trigger": "state/checker schema evolution",
+      "successor": null
+    },
+    "LEARNING-DOCSYS-ACTIVATION-001": {
+      "record": "learning/LEARNING-DOCSYS-ACTIVATION-001.md",
+      "score": 9,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_blocker": null,
+      "effectiveness_status": "INEFFECTIVE",
+      "effectiveness_evidence": ["PROJECT_STATE.md", "learning/LEARNING-DOCSYS-ACTIVATION-001.md", "tools/check_documentation_governance.py"],
+      "success_metric": "No reviewed learning is silently treated as active before promotion and lifecycle state cannot remain stale after promotion.",
+      "measurement_trigger": "learning activation or documentation release promotion",
+      "successor": "LEARNING-LIFECYCLE-CONSISTENCY-002"
+    },
+    "LEARNING-SOURCE-VISIBILITY-001": {
+      "record": "learning/LEARNING-SOURCE-VISIBILITY-001.md",
+      "score": 8,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": ["AI_FILM_PROJECT_STATE_V30.json", "AI_FILM_PROJECT_STATE_V31.json", "AI_FILM_PROJECT_STATE_V32.json"],
+      "success_metric": "Formal handoffs state exact source/package identity plus source addressability and never represent partial/artifact-only visibility as a full mirror.",
+      "measurement_trigger": "formal source handoff",
+      "successor": null
+    },
+    "LEARNING-WORKFLOW-CONTINUITY-001": {
+      "record": "learning/LEARNING-WORKFLOW-CONTINUITY-001.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": ["workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md", "AI_FILM_PROJECT_STATE_V32.json"],
+      "success_metric": "Interrupted/resumed workflows reuse the same RUN_ID and do not repeat completed expensive steps when exact output identity is recoverable.",
+      "measurement_trigger": "workflow interruption/resume",
+      "successor": null
+    },
+    "LEARNING-LIFECYCLE-CONSISTENCY-002": {
+      "record": "learning/LEARNING-LIFECYCLE-CONSISTENCY-002.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS_ON_FINAL_REVIEW",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md",
+      "activation_status": "ACTIVE_ON_PROMOTION",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "success_metric": "Zero lifecycle/register/project-state drift across subsequent sessions; ineffective learning always has a successor/meta-review path; no unreviewed correction auto-promotes.",
+      "measurement_trigger": "first lifecycle inconsistency or after three subsequent canonical state transitions",
+      "successor": null
+    }
+  }
+}
