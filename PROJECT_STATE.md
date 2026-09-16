@@ -25,8 +25,8 @@ DOCUMENTATION_GOVERNANCE:
   FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md
   ACTIVATION_CONDITION: "Exact V37 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
   PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R5 review/audit records to the exact reviewed/audited V37 tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
-  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-006.md
-  NOTE: "V37 reconciles the phased production-like export automation and deterministic transfer readiness while preserving V02 external-authority gating and leaving learning 004 pending until V38."
+  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-PROMOTION-FINALIZATION-007.md
+  NOTE: "V37 reconciles phased production-like export automation and finalizes prior promotion-only lifecycle state. The pre-review checker exposed the stale transition state; checker semantics were preserved and successor learning 005 was created."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -123,12 +123,12 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 1
+  PENDING_EFFECTIVENESS_MEASUREMENT: 2
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
-  HISTORICAL_INEFFECTIVE_LEARNING: 2
-  RECENTLY_PROVEN_EFFECTIVE: LEARNING-LIFECYCLE-CONSISTENCY-002
-  CURRENT_PENDING_MEASUREMENT: LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004
-  CURRENT_PENDING_MEASUREMENT_GATE: 38
+  HISTORICAL_INEFFECTIVE_LEARNING: 3
+  RECENTLY_PROVEN_EFFECTIVE: NONE_CURRENT
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004@V38; LEARNING-PROMOTION-STATE-FINALIZATION-005@V39"
+  LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 VALIDATION_STATUS:
@@ -154,4 +154,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Do not infer native authority from production-like or transfer readiness; only independently verified external LAB authority may advance V02 to V03."
 ```
 
-State V37 reconciles phased production-like transfer readiness while keeping native execution, off-host binary DR and pending learning effectiveness claims fail-closed.
+State V37 reconciles phased production-like transfer readiness and promotion-state finalization while keeping native execution, binary off-host DR and pending learning effectiveness claims fail-closed.
