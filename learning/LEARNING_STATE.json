@@ -90,8 +90,8 @@
     },
     "LEARNING-RECOVERY-STATE-VERSIONING-006": {
       "record": "learning/LEARNING-RECOVERY-STATE-VERSIONING-006.md", "score": 9, "activation_target": "DOCSYS-V2-R9",
-      "review_status": "PASS_ON_FINAL_REVIEW", "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md",
-      "activation_status": "ACTIVE_ON_PROMOTION", "activated_in": "DOCSYS-V2-R9",
+      "review_status": "PASS", "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md",
+      "activation_status": "ACTIVE", "activated_in": "DOCSYS-V2-R9",
       "activation_evidence": ["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md", "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R7_PASS.md", "AI_FILM_PROJECT_STATE_V39.json"],
       "activation_blocker": null, "effectiveness_status": "PENDING_MEASUREMENT", "effectiveness_evidence": [],
       "success_metric": "Recovery schema changes migrate producers before stricter consumer success is claimed, no recovery check is weakened to accept old-schema payload, and off-host metadata pins stable identity rather than rotating operational state.",
