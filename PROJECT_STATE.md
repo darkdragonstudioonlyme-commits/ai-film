@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V30
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V31
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 30
+STATE_VERSION: 31
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -24,7 +24,7 @@ DOCUMENTATION_GOVERNANCE:
   FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md
   ACTIVATION_CONDITION: "Exact final R8 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
   PROMOTION_RULE: "After final audit, main may add only the predeclared immutable final review/audit records to the exact reviewed/audited design tree; any other policy/state/checkpoint edit reopens DOC-REVIEW and DOC-AUDIT."
-  NOTE: "R8 remains the active documentation system while product/project mode advances independently from IMPLEMENTATION to VALIDATION."
+  NOTE: "R8 remains the active documentation system while product/project mode advances independently through VALIDATION."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -60,15 +60,24 @@ TEST_GOVERNANCE:
   VERDICT: PASS
   ORACLE_CHANGED: false
 
-LEARNING_ACTIVATION:
-  WORKFLOW_CONTINUITY_R8: ACTIVE
-  GOVERNANCE_RELEASE_SELECTION: ACTIVE
-  SOURCE_VISIBILITY_POLICY: ACTIVE
-  LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
+ACTIVE_RUN:
+  RUN_ID: RUN-P00-VALIDATION-001
+  WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
+  OWNER_LANE: VALIDATION
+  LOCAL_WORKTREE: null
+  RUN_RECORD: "lane/validation-p00:workflow-runs/RUN-P00-VALIDATION-001.md"
+  STATUS: BLOCKED
+  CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
+  CANONICAL_BASE: 934659f535d81d9a4a07389531acc2b9c304fa6d
 
-AUTHOR_COMPLETE: true
-CODE_REVIEW_HANDOFF_READY: true
-CODE_REVIEW_PASS: true
+VALIDATION_PREPARATION:
+  LANE: lane/validation-p00
+  PLAN_RECORD: validation/VALIDATION_PLAN-P00-DEV21.md
+  AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
+  INVENTORY_CASE_COUNT: 86
+  INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
+  ALL_CASES_STATUS: NOT_RUN
+  ALL_AUTHOR_CONTROLLERS_IMPLEMENTED: true
 
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
@@ -81,13 +90,23 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  REASON: "Exact Design Review V2 approval opens implementation authoring but explicitly sets NATIVE_LAB_EXECUTION_AUTHORIZED=false and SITE_EXECUTION_AUTHORIZED=false. Native LAB requires an externally registered disposable LAB identity/fixture/snapshot refs and approved LAB test plan/authority before execution."
-  EVIDENCE: "accepted candidate contracts/DESIGN_REVIEW_APPROVAL_V2.json; PHASE00_INFRA_DESIGN_V2 D00-11; PHASE00_ACCEPTANCE_MATRIX_V2"
+  REASON: "Exact Design Review V2 approval opens implementation authoring but explicitly sets NATIVE_LAB_EXECUTION_AUTHORIZED=false and SITE_EXECUTION_AUTHORIZED=false. Native LAB requires an externally registered disposable LAB identity/fixture/snapshot refs and approved exact-build LAB test plan/suite authority before execution."
+  EVIDENCE: "lane/validation-p00 validation plan + authority request; accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json; PHASE00_INFRA_DESIGN_V2 D00-11; PHASE00_ACCEPTANCE_MATRIX_V2"
   USER_ACTION_REQUIRED: true
-  RETURN_TO: WF-P00-VALIDATION-ENTRY
+  RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
   STATUS: OPEN
 
-NEXT_ACTION: "Establish/verify the externally registered disposable LAB identity and approved LAB test plan/native-execution authority for exact dev21. Until then, do not execute native Windows/WSL/LAB or SITE mutation. After authority is available, execute the approved mandatory LAB inventory and produce qualification evidence; SITE remains blocked until valid qualification."
+LEARNING_ACTIVATION:
+  WORKFLOW_CONTINUITY_R8: ACTIVE
+  GOVERNANCE_RELEASE_SELECTION: ACTIVE
+  SOURCE_VISIBILITY_POLICY: ACTIVE
+  LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
+
+AUTHOR_COMPLETE: true
+CODE_REVIEW_HANDOFF_READY: true
+CODE_REVIEW_PASS: true
+
+NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Verify whether the requested external disposable-LAB registration/containment/fixture/snapshot and exact dev21 LAB test-plan/suite authority now exist. If absent, remain BLOCKED and do not execute native mutation; if exact authority is verified, advance the same run to V03 and execute the mandatory reviewed LAB inventory."
 ```
 
-The code-review gate is closed PASS. The current blocker is validation-entry authority, not implementation completeness. Do not convert NOT_RUN/BLOCKED native cases into PASS and do not infer the current development machine is a disposable LAB.
+The code-review gate is closed PASS. Validation preparation is complete and durable, but V02 authority is still external. A public control-plane request is not itself authorization; no current development/SITE host may be treated as disposable LAB by assumption.
