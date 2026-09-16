@@ -28,10 +28,10 @@ Any one of these requires at least a health assessment; repeated/severe cases fo
 - `tools/check_learning_lifecycle.py` reports lifecycle/register/project-state drift;
 - a reusable learning remains `PENDING_ACTIVATION`/`BLOCKED` while the affected workflow continues;
 - an `INEFFECTIVE` learning has no active successor/meta-review path;
-- activated learning reaches its measurement trigger but remains without effectiveness evidence;
+- `OVERDUE_EFFECTIVENESS_MEASUREMENT > 0` after a structured measurement gate is reached;
 - documentation-governance promotion is blocked by branch/worktree identity hard-coded in standing policy instead of canonical governance state.
 
-Learning debt is derived from `learning/LEARNING_STATE.json`; prose or an old learning record cannot override the register.
+A merely pending measurement is visible planning state, not a blocker. Learning debt is derived from `learning/LEARNING_STATE.json`; prose or an old learning record cannot override the register.
 
 ## Meta-review procedure
 
@@ -42,7 +42,7 @@ STOP affected workflow at safe boundary
 → identify repeated assumptions and wasted loops
 → inspect whether MD architecture/policy/router/test strategy caused or failed to prevent it
 → run learning lifecycle reconciliation
-→ inspect pending/ineffective/measurement-due learning
+→ inspect pending/ineffective/overdue-measurement learning
 → propose smallest systemic correction
 → independent review of workflow correction
 → activate the correction in canonical policy/tooling
@@ -91,10 +91,11 @@ Track trends, not vanity counts:
 - learned-but-not-active backlog;
 - unresolved ineffective learning count;
 - pending effectiveness measurement count;
+- **overdue effectiveness measurement count**;
 - lifecycle-state drift count;
 - source-visibility friction.
 
-The first four learning metrics are derived/reconciled through `learning/LEARNING_STATE.json` and its checker. Metrics diagnose workflow quality; they never lower acceptance.
+The learning metrics are derived/reconciled through `learning/LEARNING_STATE.json` and its checker. Metrics diagnose workflow quality; they never lower acceptance.
 
 ## Deadlock breaker
 
