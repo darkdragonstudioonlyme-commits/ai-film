@@ -7,6 +7,9 @@ APPROVED: false
 EXTERNAL_AUTHORITY_ATTESTED: false
 CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
 TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
+PENDING_AUTHORITY_BUNDLE_RECORD: validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md
+PENDING_AUTHORITY_BUNDLE_INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
+PROTECTED_REGISTRATION_CANDIDATE_SHA256: 28ec95c3ecdd8ea7615843601c4657e25b503248fa2c93582cadb86c45488916
 DISTRO_NAME: AI-FILM-P00-LAB
 WSL_VERSION: 2
 OS: Ubuntu 24.04.5 LTS
@@ -63,6 +66,12 @@ RESTORE_PROBE_INVENTORY: 86_NOT_RUN
 RESTORE_PROBE_DISPOSITION: UNREGISTERED_AFTER_PASS
 ```
 
+## Pending protected authority bundle
+
+The Windows-side protected store now contains byte-verified copies of the non-consumable registration candidate (`28ec95c3...`), technical facts (`bca858e3...`) and exact 86-case authority draft (`746a2939...`). A non-consumable pending index binds those documents to dev21 and the recovery snapshots; its SHA-256 is `fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615`.
+
+The protected registration candidate may contain raw operator identity required for later authority binding, but raw SID/machine identity is not published here. The pending index explicitly has `approved=false`, `native_consumable=false` and no external approval/attestation/suite refs.
+
 The LAB was installed fresh from the WSL Ubuntu 24.04 source rather than cloned from the development distro. Its Windows-drive automount is disabled, its dedicated user has a locked password, and dev21 was controller-streamed without mounting development/production storage into the guest. Snapshot restore was independently exercised by importing the pristine snapshot into a temporary distro, verifying exact app bytes and the 86-case `NOT_RUN` inventory, then unregistering only that probe.
 
-This record is **technical preparation, not authority**. It does not set `registration.execution_class=LAB`, does not create an approved `lab_acceptance_suite`, and does not close V02. External registration/owner-controller attestation and exact approved suite authority remain required before any native LAB stage.
+This record is **technical preparation, not authority**. It does not set a trusted `registration.execution_class=LAB`, does not create or pin an approved `lab_acceptance_suite`, and does not close V02. External registration/owner-controller attestation and exact approved fixture/plan/suite authority remain required before any native LAB stage.
