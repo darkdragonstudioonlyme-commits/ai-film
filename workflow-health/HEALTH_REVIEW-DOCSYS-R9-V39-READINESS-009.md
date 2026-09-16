@@ -16,6 +16,7 @@ FINAL_FROZEN_SHA: 69c10e208346fa6d129dbbb3271287c4a1d2fa12
 FINAL_FROZEN_CI_RUN: 35159728506
 FINAL_FROZEN_CI_JOB: 105007454808
 FINAL_FROZEN_CI_RESULT: SUCCESS
+DESIGN_EVIDENCE_IMMUTABLE_AFTER_THIS_RECORD: true
 ```
 
 ## Long-horizon readiness evidence
@@ -34,9 +35,7 @@ Learning 005 succeeds on its scheduled V39 gate. V38 had already normalized the 
 
 The first V39 executable continuity run exposed a different authoring regression: P6 had accidentally removed `code_review_record` from the V02 `INPUT_IDENTITY` while retaining the original idempotency key. The checker rejected the candidate with `current-step-idempotency-mismatch`. The correct fix restored the omitted field and preserved the original key/run; no new run or weaker checker was introduced.
 
-After correction, exact V39 candidate `ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846` passed the full local executable suite and CI run `35159608361`. The closure tree `e772b7244d6e1884b1a1b0fd8e33f33b3a8d8582` passed the suite again and CI run `35159674622`.
-
-The frozen review target `69c10e208346fa6d129dbbb3271287c4a1d2fa12` then passed lifecycle with nine records, the unchanged 9-case adversarial suite, documentation governance, active-doc consistency, holistic audit, workflow continuity and runtime-state checks locally. GitHub Actions run `35159728506`, job `105007454808`, concluded SUCCESS with all five governance steps PASS.
+After correction, exact V39 candidate `ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846` passed the full local executable suite and CI run `35159608361`. The closure tree `e772b7244d6e1884b1a1b0fd8e33f33b3a8d8582` passed the suite again and CI run `35159674622`. The frozen evidence target `69c10e208346fa6d129dbbb3271287c4a1d2fa12` passed locally and CI run `35159728506`, job `105007454808`.
 
 This demonstrates the learning-005 success metric: completed prior-promotion learning was normalized before a later promotion contract replaced final-review/final-audit fields, and unrelated continuity drift was independently caught rather than hidden. Learning 005 is EFFECTIVE.
 
