@@ -1,6 +1,6 @@
 # AI-FILM-SERVER — Active Project Memory Index
 
-Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating rules: `POLICY_REGISTRY.md`. Current state is not stored here. Detailed historical reasoning remains in Git/review records.
+Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning lifecycle: `learning/LEARNING_STATE.json`. Active operating rules: `POLICY_REGISTRY.md`. Current project state is not stored here. Detailed historical reasoning remains in Git/review records.
 
 ## Active reusable lessons
 
@@ -40,9 +40,10 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Active operating 
 | MEM-20260916-001 | LEARNING | A reviewed reusable lesson is not operational until its policy/tool/checker change is canonically activated; track learned-but-not-active backlog and activation lag. | `SELF_LEARNING.md`, `WORKFLOW_HEALTH.md` |
 | MEM-20260916-002 | PERSISTENCE | Exact local source + verified package can preserve identity while still creating reviewer/operator friction when source is not remotely browseable; partial snapshots must be labeled and full-mirror state explicit. | `GIT_WORKFLOW.md`, handoff/state schema |
 | MEM-20260916-003 | GOVERNANCE | Standing documentation policy must derive release-scoped branch/worktree identity from canonical governance state, never pin one revision's names. | `EXECUTION_LANES.md`, `GIT_WORKFLOW.md`, governance checker |
+| MEM-20260916-004 | LEARNING | Immutable learning evidence must not also own mutable lifecycle state; one machine-readable register owns review/activation/effectiveness and project aggregates are derived from it. | `learning/LEARNING_STATE.json`, `SELF_LEARNING.md`, lifecycle checker |
 
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
 
-New learning uses the record/score/promotion/activation lifecycle in `SELF_LEARNING.md`.
+New learning uses immutable evidence plus the machine-owned lifecycle process in `SELF_LEARNING.md`.
