@@ -15,7 +15,7 @@
     "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md",
     "final_audit_id": "DOC-V2-R9-AUDIT-005",
     "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md",
-    "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-006.md"
+    "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-PROMOTION-FINALIZATION-007.md"
   },
   "accepted_code_candidate": {
     "version": "0.1.0.dev21",
@@ -91,12 +91,14 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 1,
+    "pending_effectiveness_measurement": 2,
     "overdue_effectiveness_measurement": 0,
-    "historical_ineffective_learning": 2,
-    "recently_proven_effective": "LEARNING-LIFECYCLE-CONSISTENCY-002",
-    "current_pending_measurement": "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004",
-    "current_pending_measurement_gate": 38,
+    "historical_ineffective_learning": 3,
+    "recently_proven_effective": null,
+    "current_pending_measurements": [
+      {"learning_id":"LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004","gate":38},
+      {"learning_id":"LEARNING-PROMOTION-STATE-FINALIZATION-005","gate":39}
+    ],
     "guarded_self_optimization": "ACTIVE"
   },
   "runtime_reconciliation": {
