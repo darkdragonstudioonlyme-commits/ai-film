@@ -81,10 +81,26 @@ def active_without_activation_evidence(dst):
 
 
 def overdue_measurement_drift(dst):
-    p=dst/'PROJECT_STATE.md'; s=p.read_text(encoding='utf-8')
+    """Construct a due pending measurement even when the live register has none."""
+    rp,d=reg(dst)
+    sp=dst/'PROJECT_STATE.md'; s=sp.read_text(encoding='utf-8')
     m=re.search(r'^STATE_VERSION: (\d+)$',s,re.M); assert m
     current=int(m.group(1))
-    p.write_text(s.replace(f'STATE_VERSION: {current}',f'STATE_VERSION: {max(current,36)}'),encoding='utf-8')
+    release=promotion_contract(dst)['release']
+    eligible=[r for r in d['records'].values()
+              if r.get('activation_target')==release and r.get('activation_status') in {'ACTIVE','ACTIVE_ON_PROMOTION'}]
+    if not eligible: raise AssertionError('no active learning for pending-measurement fixture')
+    r=eligible[0]
+    r['effectiveness_status']='PENDING_MEASUREMENT'
+    r['effectiveness_evidence']=[]
+    r['measurement_gate']={'kind':'STATE_VERSION_AT_LEAST','value':current}
+    write_reg(rp,d)
+    pending=sum(1 for row in d['records'].values() if row.get('effectiveness_status')=='PENDING_MEASUREMENT')
+    s=re.sub(r'^\s*PENDING_EFFECTIVENESS_MEASUREMENT:\s*\d+\s*$',
+             f'  PENDING_EFFECTIVENESS_MEASUREMENT: {pending}',s,flags=re.M)
+    s=re.sub(r'^\s*OVERDUE_EFFECTIVENESS_MEASUREMENT:\s*\d+\s*$',
+             '  OVERDUE_EFFECTIVENESS_MEASUREMENT: 0',s,flags=re.M)
+    sp.write_text(s,encoding='utf-8')
 
 
 def release_drift(dst):
