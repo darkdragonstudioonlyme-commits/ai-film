@@ -7,7 +7,7 @@ OWNER_LANE: VALIDATION
 WORKTREE_REL: NONE
 BASE_IDENTITY: 934659f535d81d9a4a07389531acc2b9c304fa6d
 STATUS: BLOCKED
-CONTINUITY_POLICY: DOCSYS-V2-R8_ACTIVE
+CONTINUITY_POLICY: DOCSYS-V2-R9_ACTIVE
 CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
 RETURN_TO: V02_LAB_EXECUTION_AUTHORITY
 ```
@@ -29,6 +29,8 @@ REPLAY_POLICY: SAFE_REEXECUTE
 
 - Exact validation procedure: `validation/VALIDATION_PLAN-P00-DEV21.md`.
 - External authority request: `validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md`.
+- Final external approval handoff: `validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`.
+- Exact envelope/object/role-pin packaging map: `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; this is packaging guidance only and does not constitute approval.
 - Production-like development/runtime preparation remains healthy: 760 tests PASS, 101 static PASS, exact dev21 source clean, monitored runtime integrity PASS.
 - Disposable technical LAB candidate: `validation/LAB_CANDIDATE-P00-DEV21.md`, candidate `336b12af-cada-4968-8083-8a5b41e479a2`, status `READY_FOR_EXTERNAL_REGISTRATION`.
 - LAB was freshly installed as Ubuntu 24.04.5 WSL2 instead of cloned from development. Default user `aifilmlab` is password-locked; Windows automount and appended Windows PATH are disabled; no development credential/storage mapping was copied into the guest.
