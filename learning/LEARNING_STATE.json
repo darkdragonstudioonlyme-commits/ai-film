@@ -49,10 +49,11 @@
       "review_status": "PASS", "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md",
       "activation_status": "ACTIVE", "activated_in": "DOCSYS-V2-R9",
       "activation_evidence": ["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md", "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md", "AI_FILM_PROJECT_STATE_V33.json"],
-      "activation_blocker": null, "effectiveness_status": "PENDING_MEASUREMENT", "effectiveness_evidence": [],
+      "activation_blocker": null, "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": ["AI_FILM_PROJECT_STATE_V34.json", "AI_FILM_PROJECT_STATE_V35.json", "AI_FILM_PROJECT_STATE_V36.json", "workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md"],
       "success_metric": "Zero lifecycle/register/project-state drift across subsequent sessions; ineffective learning always has a successor/meta-review path; no unreviewed correction auto-promotes.",
       "measurement_trigger": "first lifecycle inconsistency or after three subsequent canonical state transitions",
-      "measurement_gate": {"kind": "STATE_VERSION_AT_LEAST", "value": 36}, "successor": null
+      "measurement_gate": {"kind": "COMPLETE"}, "successor": null
     },
     "LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003": {
       "record": "learning/LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003.md", "score": 9, "activation_target": "DOCSYS-V2-R9",
