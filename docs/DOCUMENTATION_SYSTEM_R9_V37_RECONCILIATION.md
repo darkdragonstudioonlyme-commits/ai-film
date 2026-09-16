@@ -16,7 +16,7 @@ A private Google Drive document stores checksum/identity metadata for the curren
 
 ## Phase contract
 
-The operational sequence is explicitly split into six phases so later sessions resume at a precise boundary:
+The operational sequence is split into six phases so later sessions resume at a precise boundary:
 
 1. **A — State/authority recheck:** confirm V02, LAB stopped, READY absent, trust absent.
 2. **B — DR export automation:** repeatable atomic builder + verifier + heavy drill.
@@ -27,9 +27,13 @@ The operational sequence is explicitly split into six phases so later sessions r
 
 No phase before F can change V02 `DONE_WHEN`.
 
-## Learning lifecycle constraint
+## Promotion-state finalization correction
 
-Learning 004 remains pending until state version 38. V37 is intentionally one canonical transition before that gate. The lifecycle register is not edited in V37. Any attempt to mark learning 004 EFFECTIVE here is a review/audit failure.
+The first exact V37 pre-review lifecycle run failed because learning 004 still held transition-only `ACTIVE_ON_PROMOTION / PASS_ON_FINAL_REVIEW` from the completed V36 R4/A4 promotion. The lifecycle checker was not changed. V37 normalizes learning 004 to durable `ACTIVE / PASS` while preserving its immutable R4/A4/V36 activation evidence.
+
+The drift invalidates the zero-drift success metric of `LEARNING-LIFECYCLE-CONSISTENCY-002`; that learning becomes `INEFFECTIVE` and points to new successor `LEARNING-PROMOTION-STATE-FINALIZATION-005`. Learning 005 is R5/A5-gated and remains pending effectiveness until V39. Learning 004 remains pending until V38.
+
+Promotion-ready aggregates are backlog=0, unresolved ineffective=0, pending measurement=2, overdue=0, historical ineffective=3. The correction finalizes lifecycle state; it does not weaken checker semantics or create product/native authority.
 
 ## Promotion contract
 
