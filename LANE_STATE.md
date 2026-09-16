@@ -7,7 +7,7 @@ STATUS: BLOCKED_EXTERNAL_LAB_AUTHORITY
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION
 REMOTE_BRANCH: lane/validation-p00
-CONTINUITY_POLICY: DOCSYS-V2-R8_ACTIVE
+CONTINUITY_POLICY: DOCSYS-V2-R9_ACTIVE
 
 ACTIVE_RUN_ID: RUN-P00-VALIDATION-001
 RUN_RECORD: workflow-runs/RUN-P00-VALIDATION-001.md
@@ -34,6 +34,8 @@ LAB_INVENTORY:
 PREPARATION:
   VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
+  EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
+  APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
   CURRENT_HOST_DIAGNOSTIC: validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md
   WSL_SETUP_RECORD: validation/WSL_SETUP-P00-DEV21.md
   WSL_PRODLIKE_RUNTIME_RECORD: validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md
@@ -118,4 +120,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The disposable LAB, restore-probed snapshots, sealed recovery artifacts, exact dev21 authority draft, ACL-protected pending authority bundle, stale-safe fail-closed V02 intake watcher, non-installing native-policy staging and pre-V03 gate are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution.
+The disposable LAB, restore-probed snapshots, sealed recovery artifacts, exact dev21 authority draft, ACL-protected pending authority bundle, stale-safe fail-closed V02 intake watcher, non-installing native-policy staging and pre-V03 gate are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is now explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; this clarification does not constitute authority.
