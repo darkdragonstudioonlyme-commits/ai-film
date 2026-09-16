@@ -9,8 +9,11 @@ STATUS: PASS
 LEARNING_005_GATE: STATE_VERSION_AT_LEAST_39
 LEARNING_006_GATE: STATE_VERSION_AT_LEAST_41
 MEASURED_CANDIDATE_SHA: ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846
-MEASURED_CI_RUN: 35159608361
-MEASURED_CI_RESULT: SUCCESS
+MEASURED_CANDIDATE_CI_RUN: 35159608361
+FINAL_CLOSURE_SHA: e772b7244d6e1884b1a1b0fd8e33f33b3a8d8582
+FINAL_CLOSURE_CI_RUN: 35159674622
+FINAL_CLOSURE_CI_JOB: 105007294683
+FINAL_CLOSURE_CI_RESULT: SUCCESS
 ```
 
 ## Long-horizon readiness evidence
@@ -29,12 +32,14 @@ Learning 005 succeeds on its scheduled V39 gate. V38 had already normalized the 
 
 The first V39 executable continuity run exposed a different authoring regression: P6 had accidentally removed `code_review_record` from the V02 `INPUT_IDENTITY` while retaining the original idempotency key. The checker rejected the candidate with `current-step-idempotency-mismatch`. The correct fix restored the omitted field and preserved the original key/run; no new run or weaker checker was introduced.
 
-After that correction, exact V39 candidate `ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846` passed lifecycle with nine records, the unchanged 9-case adversarial suite, documentation governance, active-doc consistency, holistic audit, workflow continuity and runtime-state checks. GitHub Actions run `35159608361` on the same SHA concluded SUCCESS. No stale prior-promotion learning state was discovered.
+After correction, exact V39 candidate `ff6dbdf4370a16c9bdc88b6ee99ab026c2a35846` passed lifecycle with nine records, the unchanged 9-case adversarial suite, documentation governance, active-doc consistency, holistic audit, workflow continuity and runtime-state checks; GitHub Actions run `35159608361` succeeded.
 
-This demonstrates the learning-005 success metric: completed prior-promotion learning was normalized before a later promotion contract replaced final-review/final-audit fields, and continuity drift was independently caught rather than hidden. Learning 005 is therefore EFFECTIVE.
+Closing this health record produced final closure tree `e772b7244d6e1884b1a1b0fd8e33f33b3a8d8582`. The full local executable suite passed again on that exact SHA. GitHub Actions run `35159674622`, job `105007294683`, also concluded SUCCESS with Learning lifecycle, Adversarial lifecycle regression, Documentation governance, Active documentation consistency and Holistic documentation audit all PASS.
+
+This demonstrates the learning-005 success metric: completed prior-promotion learning was normalized before a later promotion contract replaced final-review/final-audit fields, and unrelated continuity drift was independently caught rather than hidden. Learning 005 is therefore EFFECTIVE.
 
 ## Learning 006 boundary
 
 Learning 006 is review/audit-gated in V39 but is not measured here. Its success metric concerns future recovery-schema migrations and off-host metadata changes. It remains `PENDING_MEASUREMENT` with gate V41. V39 activation is not effectiveness evidence for learning 006.
 
-Closing this evidence record changes the V39 design SHA; the final closure tree must still pass the full local executable suite and GitHub Actions before R7 review/A7 audit. No evidence in this record grants native LAB authority.
+No evidence in this record grants native LAB authority.
