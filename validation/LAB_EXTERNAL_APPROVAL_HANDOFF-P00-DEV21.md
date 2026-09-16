@@ -22,31 +22,36 @@ PRISTINE_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc94
 RESTORE_PROBE: PASS
 LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
 NATIVE_EXECUTION_STARTED: false
+APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
 ```
 
 ## External decision required
 
 The external owner/controller must independently inspect the protected Windows-side bundle whose public identity is the bundle hash above. Approval must not be inferred from this repository or from the operator asking to continue work.
 
-For an **APPROVE** decision, the protected authority system must return immutable references that satisfy all of the following:
+For an **APPROVE** decision, the external authority must establish the following protected evidence:
 
 ```yaml
 DECISION: APPROVE
 LAB_REGISTRATION_REF: <protected ref>
-LAB_HOST_SAFE_ALIAS: <safe alias>
-MACHINE_IDENTITY_PROTECTED_REF: <protected ref>
-OPERATOR_IDENTITY_PROTECTED_REF: <protected ref>
+LAB_HOST_SAFE_ALIAS: <safe alias; bookkeeping only, not trusted instead of host_id>
+MACHINE_IDENTITY_PROTECTED_REF: <protected authority provenance ref>
+OPERATOR_IDENTITY_PROTECTED_REF: <protected authority provenance ref>
 OWNER_ATTESTATION_REF: <protected ref>
 CONTROLLER_ATTESTATION_REF: <protected ref>
 FIXTURE_SET_REF: <protected ref>
 MANAGEMENT_ISOLATION_RECOVERY_REF: <protected ref>
 LAB_TEST_PLAN_APPROVAL_REF: <protected ref>
 LAB_ACCEPTANCE_SUITE_REF: <protected ref>
-SUITE_ISSUED_AT_UTC: <timestamp>
-SUITE_EXPIRES_AT_UTC: <timestamp; issued <= expires; window <= 24h>
+SUITE_ISSUED_AT_UTC: <lab_acceptance_suite.issued_at>
+SUITE_EXPIRES_AT_UTC: <lab_acceptance_suite.expires_at; issued <= expires; window <= 24h>
 ```
 
+The exact packaging contract for `approval-envelope.json`, object roles and `role_pins` is `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`. In particular, the safe alias, machine/operator protected provenance refs and suite timestamps are evidence/audit concepts; the intake validator binds authority through the protected registration and suite objects rather than trusting duplicated top-level summary fields.
+
 The protected registration must have `execution_class=LAB`, `controller_external=true`, `disposable=true`, `no_real_credentials=true`, `no_production_mappings=true`, `withdrawn=false`, exact host/operator scope, and bind this candidate. The approved suite must be schema 1, `source_kind=LAB`, `approved=true`, `withdrawn=false`, and bind the exact build/test/contract identities plus all 86 reviewed case procedure digests/approved fixture and request refs.
+
+`role_pins` must cover all documents used by pure authorization, including exact registration/design/code, approved `lab_plan`, exact `lab_acceptance_suite`, every execution plan, every native fixture spec, every per-plan approval object, and any additional plan-referenced role such as payload. A correct object that is not pinned remains untrusted and cannot advance V02.
 
 For a **REJECT** decision, return a protected decision ref plus the rejected assertion/identity. Validation will remain blocked or route a validation-preparation failure; it must not weaken the reviewed LAB predicates.
 
