@@ -9,6 +9,7 @@ on:
       - 'learning/**'
       - 'workflow-health/**'
       - 'tools/check_*.py'
+      - 'tools/test_learning_lifecycle_checker.py'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
@@ -19,6 +20,7 @@ on:
       - 'learning/**'
       - 'workflow-health/**'
       - 'tools/check_*.py'
+      - 'tools/test_learning_lifecycle_checker.py'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
@@ -39,6 +41,8 @@ jobs:
           python-version: '3.12'
       - name: Learning lifecycle
         run: python3 tools/check_learning_lifecycle.py
+      - name: Adversarial lifecycle regression
+        run: python3 tools/test_learning_lifecycle_checker.py
       - name: Documentation governance
         run: python3 tools/check_documentation_governance.py
       - name: Active documentation consistency
