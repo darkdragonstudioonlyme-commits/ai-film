@@ -9,11 +9,14 @@ fetch origin/main + relevant lane refs
 → read PROJECT_STATE + owning LANE_STATE
 → if ACTIVE_RUN_ID exists, read its workflow-runs ledger first
 → run workflow-continuity + runtime-state reconciliation
+→ run learning lifecycle reconciliation
 → read NEXT_WORK_ITEM
 → verify local selected worktree identity/status if used
 → evaluate WORKFLOW_HEALTH triggers
 → route
 ```
+
+Run `python3 tools/check_learning_lifecycle.py` during bootstrap. Lifecycle drift or unresolved learning debt is routing evidence; an old learning record or stale memory note cannot override the lifecycle register.
 
 Never route from cached `origin/lane/*` refs without a fresh fetch.
 
@@ -30,17 +33,18 @@ Use the first matching rule:
 1. **Active RUN_ID is not COMPLETE** → resume/reconcile that same run via `WORKFLOW_CONTINUITY.md`; never create a duplicate run for the same workflow/base.
 2. **INTENT exists without COMPLETE or producer output is ahead of canonical state** → classify `CONTINUITY_RECOVERY`; verify/adopt exact output before rerunning any step.
 3. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
-4. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
-5. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
-6. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
-7. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
-8. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
-9. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
-10. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
-11. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-12. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
-13. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
-14. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+4. **Learning lifecycle checker fails, unresolved ineffective learning exists, or measurement debt is due** → route `WORKFLOW_REVIEW`/DOC-DESIGN before more affected work; preserve the current run return point.
+5. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
+6. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
+7. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
+8. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
+9. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
+10. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
+11. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
+12. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
+13. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
+14. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
+15. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
 
 ## 4. Block protocol
 
@@ -65,7 +69,7 @@ If `USER_ACTION_REQUIRED=true`, request only the minimum external action that ca
 
 Candidate-specific defects become immutable findings bound to target SHA/package identity. They route back to the producing lane as `FIX_PENDING_REVIEW` and close only when REVIEW verifies a new immutable candidate.
 
-Informational comments that produce reusable knowledge go to `PROJECT_MEMORY.md`; they do not become findings unless they affect correctness/gate acceptance.
+Reusable observations go through `SELF_LEARNING.md`: immutable learning evidence plus lifecycle register update. A memory note alone does not close learning lifecycle.
 
 ## 6. Design-gap route
 
@@ -125,9 +129,12 @@ When `WORKFLOW_HEALTH.md` triggers `META_REVIEW_REQUIRED`:
 preserve WIP/evidence
 → stop affected loop
 → create health review
+→ reconcile learning lifecycle state
 → classify root cause
 → update workflow/test/policy/docs/tooling if systemic
 → independent review of correction
+→ canonical activation
+→ effectiveness measurement trigger
 → RETURN_TO original workflow
 ```
 
