@@ -69,6 +69,7 @@
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
     "pending_effectiveness_measurement": 1,
+    "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 1,
     "guarded_self_optimization": "ACTIVE"
   },
