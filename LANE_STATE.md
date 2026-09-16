@@ -36,13 +36,23 @@ PREPARATION:
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   CURRENT_HOST_DIAGNOSTIC: validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md
   WSL_SETUP_RECORD: validation/WSL_SETUP-P00-DEV21.md
+  WSL_PRODLIKE_RUNTIME_RECORD: validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md
   WSL_SETUP_STATUS: COMPLETE
   WSL_VALIDATION_WORKTREE: /home/dragon/ai-film-dev/validation
   WSL_VALIDATION_HEAD: 934659f535d81d9a4a07389531acc2b9c304fa6d
   WSL_VALIDATION_DIRTY_FILES: 0
+  WSL_VALIDATION_VENV: FULL_PIP_ENABLED
   WSL_SAFE_TESTS: "760 PASS"
   WSL_SAFE_STATIC: "101 PASS"
   PACKAGE_GIT_BYTE_VERIFY: PASS
+  PRODLIKE_RUNTIME_ROOT: /home/dragon/ai-film-runtime/dev21
+  PRODLIKE_STABLE_CURRENT: /home/dragon/ai-film-runtime/current
+  PRODLIKE_APP_READ_ONLY: true
+  PRODLIKE_APP_FILES: 283
+  PRODLIKE_APP_BYTE_VERIFY: PASS
+  PRODLIKE_APP_MANIFEST_SHA256: 07fcf4a31c6ffabc3628ba12584d249680cea1344e26fb1d2cbe2983e30270fa
+  PRODLIKE_RUNTIME_VERIFY: "PASS 283 files / 86 cases NOT_RUN"
+  PRODLIKE_ENVIRONMENT_POLICY: ENV_CLEARED_ALLOWLIST_ONLY
   CURRENT_DEVELOPMENT_HOST_TRUST_ANCHOR: ABSENT_DIAGNOSTIC_ONLY
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
@@ -59,4 +69,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-WSL preparation is complete and reproducible. The current development host still has no trusted Phase00 LAB registration/authority, so V02 remains blocked. No native mutation may start while this block is open; the lane cannot self-register the development host as disposable LAB or self-issue LAB authority.
+WSL preparation is complete and now includes an immutable production-like runtime layout with an environment-scrubbing launcher and independent integrity manifest. The current development host still has no trusted Phase00 LAB registration/authority, so V02 remains blocked. No native mutation may start while this block is open; the lane cannot self-register the development host as disposable LAB or self-issue LAB authority.
