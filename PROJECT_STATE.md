@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V37
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V38
 
-> Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
+> Read first in every new chat. Current global truth candidate. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 37
+STATE_VERSION: 38
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -15,18 +15,18 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  REVISION: R4_V37_PHASED_PRODLIKE_EXPORT_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v37-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v37-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v37-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-005
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-005
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md
-  ACTIVATION_CONDITION: "Exact V37 reconciliation tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
-  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable R5 review/audit records to the exact reviewed/audited V37 tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
-  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-PROMOTION-FINALIZATION-007.md
-  NOTE: "V37 reconciles phased production-like export automation and finalizes prior promotion-only lifecycle state. The pre-review checker exposed the stale transition state; checker semantics were preserved and successor learning 005 was created."
+  REVISION: R5_V38_LIFECYCLE_MEASUREMENT_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v38-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v38-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v38-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-006
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R6_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-006
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R6_PASS.md
+  ACTIVATION_CONDITION: "Exact V38 tree requires R6 review PASS and A6 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only the two predeclared R6/A6 verdict records to the exact reviewed/audited V38 tree; post-promotion CI is mandatory."
+  RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V38-ADVERSARIAL-008.md
+  NOTE: "V38 reconciles validation evidence-head drift, measures learning 004 at its scheduled gate, and finalizes learning 005 promotion state while preserving its V39 effectiveness gate."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -48,7 +48,6 @@ SOURCE_VISIBILITY:
   FULL_SOURCE_GIT_MIRROR: false
   EXACT_SOURCE_IDENTITY: 934659f535d81d9a4a07389531acc2b9c304fa6d
   EXACT_PACKAGE_IDENTITY: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
-  VISIBILITY_LIMITATIONS: "Exact dev21 source is available in the prepared WSL Git object database and verified package; no full remote source tree is claimed."
 
 ACTIVE_RUN:
   RUN_ID: RUN-P00-VALIDATION-001
@@ -62,13 +61,12 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
+  VALIDATION_EVIDENCE_HEAD: 179c475007802bf61414f043a0cf189b0fdc371a
   PHASED_EXECUTION_RECORD: validation/PRODLIKE_PHASED_EXECUTION-P00-DEV21.md
   PLAN_RECORD: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
   APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
-  LAB_CANDIDATE_RECORD: validation/LAB_CANDIDATE-P00-DEV21.md
-  LAB_AUTHORITY_DRAFT_RECORD: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
@@ -94,7 +92,7 @@ PRODUCTION_LIKE_READINESS:
   REBUILD_SET_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md"
   OFFHOST_EXPORT_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_OFFHOST_EXPORT-P00-DEV21.md"
   OPERATOR_STATUS_RECORD: "lane/validation-p00:validation/WSL_PRODLIKE_OPERATOR_STATUS-P00-DEV21.md"
-  VALIDATION_EVIDENCE_HEAD: f98185bab6ad140b930eaaaf1ab3ac35ea1aae7b
+  PHASED_EXECUTION_RECORD: "lane/validation-p00:validation/PRODLIKE_PHASED_EXECUTION-P00-DEV21.md"
   RUNTIME_VERIFY: "PRODLIKE_RUNTIME_VERIFY_PASS 283 86 NOT_RUN"
   SUPERVISED_TIMERS: 8
   CONTROL_BACKUP_FILES: 44
@@ -123,11 +121,11 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 2
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 3
-  RECENTLY_PROVEN_EFFECTIVE: NONE_CURRENT
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004@V38; LEARNING-PROMOTION-STATE-FINALIZATION-005@V39"
+  RECENTLY_PROVEN_EFFECTIVE: LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-PROMOTION-STATE-FINALIZATION-005@V39"
   LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
@@ -142,7 +140,7 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  REASON: "Disposable LAB and non-native production-like runtime/recovery/transfer-readiness are technically prepared. V02 remains blocked until independently verified protected external LAB authority exists."
+  REASON: "All internally executable production-like phases are complete; V02 remains blocked until independently verified protected external LAB authority exists."
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
@@ -151,7 +149,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Do not infer native authority from production-like or transfer readiness; only independently verified external LAB authority may advance V02 to V03."
+NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02_LAB_EXECUTION_AUTHORITY. Only independently verified external LAB authority may advance V02 to V03."
 ```
 
-State V37 reconciles phased production-like transfer readiness and promotion-state finalization while keeping native execution, binary off-host DR and pending learning effectiveness claims fail-closed.
+State V38 is valid only if the exact V38 executable suite and R6/A6 review/audit confirm the scheduled learning-004 measurement and lifecycle finalization without changing the native boundary.
