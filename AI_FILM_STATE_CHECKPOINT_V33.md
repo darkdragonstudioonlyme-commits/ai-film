@@ -4,7 +4,7 @@ Phase00 remains in `VALIDATION` with exact accepted candidate `0.1.0.dev21` (`93
 
 Documentation-system candidate is `DOCSYS-V2-R9`. R9 preserves R8 continuity, release-selected governance and source-visibility controls while correcting cross-session self-learning lifecycle drift.
 
-The review found that canonical aggregate state could say learning backlog `0` while durable learning records still contained stale `PENDING_ACTIVATION`/pending-review snapshots. R9 therefore makes `learning/LEARNING_STATE.json` the sole current lifecycle owner and adds `tools/check_learning_lifecycle.py` to reconcile every durable learning, activation/effectiveness state, successor path and `PROJECT_STATE` aggregates.
+The review found that canonical aggregate state could say learning backlog `0` while durable learning records still contained stale `PENDING_ACTIVATION`/pending-review snapshots. R9 therefore makes `learning/LEARNING_STATE.json` the sole current lifecycle owner and adds `tools/check_learning_lifecycle.py` to reconcile every durable learning, activation/effectiveness state, activation evidence, structured measurement gate, successor path and `PROJECT_STATE` aggregates.
 
 Intended post-promotion learning aggregates are:
 
@@ -12,10 +12,11 @@ Intended post-promotion learning aggregates are:
 LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
 UNRESOLVED_INEFFECTIVE_LEARNING: 0
 PENDING_EFFECTIVENESS_MEASUREMENT: 1
+OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
 HISTORICAL_INEFFECTIVE_LEARNING: 1
 ```
 
-`LEARNING-DOCSYS-ACTIVATION-001` is preserved as historically ineffective enforcement with successor `LEARNING-LIFECYCLE-CONSISTENCY-002`; continuity/source-visibility/checker-neutrality learnings are recorded as effective with evidence.
+`LEARNING-DOCSYS-ACTIVATION-001` is preserved as historically ineffective enforcement with successor `LEARNING-LIFECYCLE-CONSISTENCY-002`; continuity/source-visibility/checker-neutrality learnings are recorded as effective with evidence. The new R9 successor is pending measurement, but its structured state-version gate is not due until V36 unless an earlier lifecycle inconsistency itself triggers meta-review.
 
 Final R9 review/audit are predeclared as `DOC-V2-R9-REVIEW-001` / `reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md` and `DOC-V2-R9-AUDIT-001` / `reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md`. After final audit, only those immutable verdict records may be added before promotion.
 
