@@ -24,6 +24,14 @@ OUTPUT_IDENTITY: null
 REPLAY_POLICY: SAFE_REEXECUTE
 ```
 
+## Preparation / diagnostic evidence
+
+- Exact validation procedure: `validation/VALIDATION_PLAN-P00-DEV21.md`.
+- External authority request: `validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md`.
+- Read-only current-host diagnostic: `validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md`.
+- Exact dev21 metadata-only inventory: 86 unique cases; all `NOT_RUN` / acceptance-open; all author controllers implemented; inventory SHA-256 `2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6`.
+- Current development Windows host diagnostic found the Phase00 HKLM trust-anchor key absent. This is diagnostic-only, not trusted authority, and confirms there is no current-host registration/LAB suite to reuse.
+
 ## Validation steps
 
 | Step | State | Purpose |
@@ -35,4 +43,4 @@ REPLAY_POLICY: SAFE_REEXECUTE
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
 | V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence/bundle/assessment; HOST_READY only if exact gate formula is satisfied |
 
-V02 is deliberately resumable: future work first checks whether the external registration/authority record now exists and exactly matches dev21. Absence keeps this same RUN_ID blocked; it never creates a replacement run or treats elapsed time as approval.
+V02 is deliberately resumable: future work first checks whether the external registration/authority record now exists and exactly matches dev21. Absence keeps this same RUN_ID blocked; it never creates a replacement run, provisions the current development host as LAB, or treats elapsed time as approval.
