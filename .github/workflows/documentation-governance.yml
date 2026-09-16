@@ -1,0 +1,47 @@
+name: Documentation Governance
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '*.md'
+      - 'docs/**'
+      - 'learning/**'
+      - 'workflow-health/**'
+      - 'tools/check_*.py'
+      - 'tools/audit_documentation_v2.py'
+      - 'AI_FILM_PROJECT_STATE_V*.json'
+      - '.github/workflows/documentation-governance.yml'
+  pull_request:
+    paths:
+      - '*.md'
+      - 'docs/**'
+      - 'learning/**'
+      - 'workflow-health/**'
+      - 'tools/check_*.py'
+      - 'tools/audit_documentation_v2.py'
+      - 'AI_FILM_PROJECT_STATE_V*.json'
+      - '.github/workflows/documentation-governance.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Learning lifecycle
+        run: python3 tools/check_learning_lifecycle.py
+      - name: Documentation governance
+        run: python3 tools/check_documentation_governance.py
+      - name: Active documentation consistency
+        run: python3 tools/check_project_docs.py
+      - name: Holistic documentation audit
+        run: python3 tools/audit_documentation_v2.py
