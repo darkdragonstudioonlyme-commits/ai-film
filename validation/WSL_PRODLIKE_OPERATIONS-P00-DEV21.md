@@ -22,8 +22,8 @@ BACKUP_TIMER: "enabled active / 24h"
 INTEGRITY_TIMER: "enabled active / 15min"
 V02_AUTHORITY_TIMER: "enabled active / 5min"
 SYSTEMD_USER_LINGER: true
-HEALTH_LATEST_STATUS: PASS
-HEALTH_LATEST_SHA256: 02352d1e10b5ed62a88b3f0a72c8889c5cb3bb223309b3d3fb8fe499c07f93ed
+HEALTH_STATUS: PASS
+HEALTH_SAMPLE_SHA256: c640d49fdcfae608fc4dd00e3e52a091e09cf634e351327e2ab3a9c8519d6ea1
 HEALTH_AUTHORITY_STATUS: BLOCKED
 HEALTH_AUTHORITY_REASON: APPROVAL_ENVELOPE_MISSING
 OPERATIONS_SCRIPTS_NOT_GROUP_OR_OTHER_WRITABLE: true
@@ -31,10 +31,11 @@ NATIVE_INVENTORY_MODE: "0600"
 HEALTH_DIR_MODE: "0700"
 BACKUP_DIR_MODE: "0700"
 CONTROL_BACKUP_RETENTION: 14
-LATEST_CONTROL_BACKUP: control-state-20260916T145912Z.tar.gz
-LATEST_CONTROL_BACKUP_SHA256: 4c1f1c5c818b3615dcdd787718a0e5bf5a65082992a052a23b20a26214b91823
-LATEST_CONTROL_BACKUP_FILES: 21
+BACKUP_SAMPLE: control-state-20260916T145912Z.tar.gz
+BACKUP_SAMPLE_SHA256: 4c1f1c5c818b3615dcdd787718a0e5bf5a65082992a052a23b20a26214b91823
+BACKUP_SAMPLE_FILES: 21
 CONTROL_BACKUP_RESTORE_PROBE: PASS
+CONTROL_BACKUP_SECRET_SCAN: PASS
 CONTROL_BACKUP_INCLUDES_NATIVE_AUTHORITY: false
 CONTROL_BACKUP_INCLUDES_PROTECTED_IDENTITY: false
 NATIVE_LAB_AUTHORITY: false
@@ -44,11 +45,11 @@ HOST_READY: false
 
 ## What changed
 
-Production-like operations were hardened without changing the exact dev21 app tree or native authority. The mutable native inventory evidence was tightened from `0644` to `0600`. A machine-readable health collector now verifies the stable release, exact runtime integrity, authority-signal consistency, operational-script permissions, disk headroom and all four user-systemd timers. Its latest result is PASS while correctly reporting V02 as `BLOCKED / APPROVAL_ENVELOPE_MISSING` rather than treating the governance block as runtime failure.
+Production-like operations were hardened without changing the exact dev21 app tree or native authority. The mutable native inventory evidence was tightened from `0644` to `0600`. A machine-readable health collector now verifies the stable release, exact runtime integrity, authority-signal consistency, operational-script permissions, disk headroom and all four user-systemd timers. Its sampled result is PASS while correctly reporting V02 as `BLOCKED / APPROVAL_ENVELOPE_MISSING` rather than treating the governance block as runtime failure.
 
 A daily control-state backup now archives only a fixed safe whitelist: release/runtime manifests, release history, health state, non-sensitive V02 watcher evidence, the operational scripts and the eight AI-FILM user-systemd units. It deliberately excludes the protected approval inbox, protected authority objects, credentials, raw SID/MachineGuid and native authority. Archives and sidecars are mode `0600`; directories are mode `0700`; retention is the newest 14 archives.
 
-The current backup was extracted into an isolated temporary restore probe, every restored file was rehashed against the embedded manifest, unsafe archive paths were rejected, forbidden protected-content indicators were checked, and the probe passed before being deleted. This proves the backup is restorable rather than merely hashable.
+The sampled backup was extracted into an isolated temporary restore probe, every restored file was rehashed against the embedded manifest, unsafe archive paths were rejected, and the probe passed before being deleted. A separate content scan found no raw SID pattern, MachineGuid label, private-key marker, password assignment or token assignment. This proves the backup is restorable while remaining outside the protected authority/credential domain.
 
 ## Runtime/service boundary
 
