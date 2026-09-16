@@ -72,6 +72,16 @@ PREPARATION:
   LAB_PENDING_STORE_FILE_COUNT: 4
   LAB_PENDING_BUNDLE_NATIVE_CONSUMABLE: false
   LAB_PENDING_BUNDLE_APPROVED: false
+  V02_AUTHORITY_INTAKE_RECORD: validation/V02_AUTHORITY_INTAKE-P00-DEV21.md
+  V02_AUTHORITY_INTAKE_VALIDATOR_SHA256: 312a72ddc1a8551a85d93b275ea0ccfe84b87ca3ab9e575753d945c7b6f69667
+  V02_AUTHORITY_INTAKE_WATCHER_SHA256: bc57a031a781cbe7e64036eb9c462ba2c8d63a11b1ef1e182fd7229a73548c35
+  V02_AUTHORITY_INBOX_ACL_PROTECTED: true
+  V02_AUTHORITY_INBOX_ACL_RULE_COUNT: 2
+  V02_AUTHORITY_INBOX_APPROVAL_ENVELOPE_EXISTS: false
+  V02_AUTHORITY_WATCH_TIMER: "enabled active 5min"
+  V02_AUTHORITY_WATCH_SECURITY: "4.9 OK"
+  V02_AUTHORITY_LATEST_STATUS: BLOCKED
+  V02_AUTHORITY_LATEST_REASON: APPROVAL_ENVELOPE_MISSING
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
 ENTRY_BLOCK:
@@ -80,6 +90,7 @@ ENTRY_BLOCK:
   REQUIRED_EXTERNAL_RECORD: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   PENDING_AUTHORITY_BUNDLE_READY: true
+  FAIL_CLOSED_AUTHORITY_INTAKE_READY: true
   USER_ACTION_REQUIRED: true
   STATUS: OPEN
 
@@ -90,4 +101,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The disposable LAB, restore-probed snapshots, exact dev21 authority draft and ACL-protected pending authority bundle are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: the protected pending bundle is not consumable or approved, and external registration/attestation plus approved fixture/plan/suite authority must be independently established before any native stage.
+The disposable LAB, restore-probed snapshots, exact dev21 authority draft, ACL-protected pending authority bundle and fail-closed V02 intake watcher are ready. The LAB is deliberately stopped. V02 remains `BLOCKED`: the approval inbox contains no real approval envelope, the pending bundle is not consumable or approved, and external registration/attestation plus approved fixture/plan/suite authority must be independently established before any native stage.
