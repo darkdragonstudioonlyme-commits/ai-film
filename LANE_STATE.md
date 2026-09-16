@@ -31,10 +31,16 @@ LAB_INVENTORY:
   ALL_ACCEPTANCE_CLOSED: false
   ALL_AUTHOR_CONTROLLERS_IMPLEMENTED: true
 
+PREPARATION:
+  VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
+  AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
+  CURRENT_HOST_DIAGNOSTIC: validation/VALIDATION_ENTRY_DIAGNOSTIC-P00-DEV21.md
+  CURRENT_DEVELOPMENT_HOST_TRUST_ANCHOR: ABSENT_DIAGNOSTIC_ONLY
+  NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
+
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   REQUIRED_EXTERNAL_RECORD: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
-  APPROVED_EXECUTION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
   USER_ACTION_REQUIRED: true
   STATUS: OPEN
 
@@ -45,4 +51,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-No native mutation may start while V02 is blocked. This lane records preparation/reconciliation only; it cannot self-register the current development host as disposable LAB and cannot self-issue LAB authority.
+No native mutation may start while V02 is blocked. Read-only diagnostic inspection found no Phase00 HKLM trust-anchor key on the current development Windows host; this is not trusted authority but confirms there is no existing current-host registration/suite to reuse. The lane cannot self-register that host as disposable LAB or self-issue LAB authority.
