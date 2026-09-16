@@ -19,7 +19,7 @@ required_state_tokens=(
     "FINAL_REVIEW_ID:","FINAL_REVIEW_RECORD:","FINAL_AUDIT_ID:","FINAL_AUDIT_RECORD:",
     "PROMOTION_RULE:","SOURCE_VISIBILITY:","REMOTE_SOURCE_ADDRESSABILITY:","FULL_SOURCE_GIT_MIRROR:",
     "LEARNING_ACTIVATION:","LEARNED_BUT_NOT_ACTIVE_BACKLOG:","UNRESOLVED_INEFFECTIVE_LEARNING:",
-    "PENDING_EFFECTIVENESS_MEASUREMENT:",
+    "PENDING_EFFECTIVENESS_MEASUREMENT:","OVERDUE_EFFECTIVENESS_MEASUREMENT:",
 )
 for token in required_state_tokens:
     if token not in state: errors.append(f"project-state-missing:{token}")
@@ -30,7 +30,7 @@ for name,text in standing.items():
         if literal in text: errors.append(f"stale-governance-identity:{name}:{literal}")
 
 learning=read("SELF_LEARNING.md")
-for token in ("LEARNING_STATE.json","ACTIVE_BUT_NOT_EFFECTIVE","LIFECYCLE_STATE_DRIFT","Guarded automation"):
+for token in ("LEARNING_STATE.json","ACTIVE_BUT_NOT_EFFECTIVE","LIFECYCLE_STATE_DRIFT","Guarded automation","measurement_gate"):
     if token not in learning: errors.append(f"learning-governance-missing:{token}")
 
 if not (ROOT/"learning/LEARNING_STATE.json").is_file(): errors.append("learning-state-register-missing")
