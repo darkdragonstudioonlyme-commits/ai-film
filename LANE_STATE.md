@@ -51,11 +51,17 @@ PREPARATION:
   PRODLIKE_MONITOR_TIMER: "enabled active 15min"
   PRODLIKE_HEALTH_TIMER: "enabled active 10min"
   PRODLIKE_BACKUP_TIMER: "enabled active 24h"
-  PRODLIKE_SYSTEMD_SECURITY: "verify/health/backup 4.1 OK"
+  PRODLIKE_RECOVERY_TIMER: "enabled active boot+6h"
+  PRODLIKE_SYSTEMD_SECURITY: "verify/health/backup/recovery 4.1 OK"
   PRODLIKE_HEALTH_STATUS: PASS
+  PRODLIKE_HEALTH_BACKUP_FRESHNESS: PASS
+  PRODLIKE_PERIODIC_JOB_RESULTS: "backup=success recovery=success"
+  PRODLIKE_BACKUP_MAX_AGE_HOURS: 30
+  PRODLIKE_CONTROL_BACKUP_VERIFY: PASS
   PRODLIKE_CONTROL_BACKUP_RESTORE_PROBE: PASS
   PRODLIKE_CONTROL_BACKUP_SECRET_SCAN: PASS
   PRODLIKE_CONTROL_BACKUP_RETENTION: 14
+  PRODLIKE_RECOVERY_VERIFY: PASS
   LAB_CANDIDATE_RECORD: validation/LAB_CANDIDATE-P00-DEV21.md
   LAB_CANDIDATE_STATUS: READY_FOR_EXTERNAL_REGISTRATION
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
@@ -127,4 +133,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The production-like WSL layer now has immutable app bytes, atomic activation, periodic integrity verification, machine-readable health, daily whitelisted control-state backups with retention and restore proof, and fail-closed V02 authority monitoring. The disposable LAB remains deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; none of the production-like operations controls constitute native authority.
+The production-like WSL layer now has immutable app bytes, atomic activation, periodic integrity verification, machine-readable health, daily whitelisted control-state backups with retention, freshness/integrity verification and restore proof, plus boot/periodic recovery verification. The disposable LAB remains deliberately stopped. V02 remains `BLOCKED`: there is no real approval envelope, no trust anchor and no native execution. Packaging guidance is explicit in `validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md`; none of the production-like operations controls constitute native authority.
