@@ -13,6 +13,11 @@ def read(path):
     if not p.is_file(): err(f"missing:{path}"); return ""
     return p.read_text(encoding="utf-8")
 
+def state_str(name):
+    m=re.search(rf"^\s*{re.escape(name)}:\s*(\S+)\s*$",state_text,re.M)
+    if not m: err(f"project-state-field-missing:{name}"); return None
+    return m.group(1)
+
 state_text=read("PROJECT_STATE.md")
 state_match=re.search(r"^STATE_VERSION: (\d+)$",state_text,re.M)
 docsys_match=re.search(r"^DOCUMENTATION_SYSTEM: (\S+)$",state_text,re.M)
@@ -20,8 +25,34 @@ if not state_match: err("project-state-version-missing")
 if not docsys_match: err("project-documentation-system-missing")
 state_version=int(state_match.group(1)) if state_match else -1
 current_docsys=docsys_match.group(1) if docsys_match else ""
-final_audit_match=re.search(r"^\s*FINAL_AUDIT_RECORD:\s*(\S+)\s*$",state_text,re.M)
-final_audit_record=final_audit_match.group(1) if final_audit_match else None
+final_review_id=state_str("FINAL_REVIEW_ID")
+final_review_record=state_str("FINAL_REVIEW_RECORD")
+final_audit_id=state_str("FINAL_AUDIT_ID")
+final_audit_record=state_str("FINAL_AUDIT_RECORD")
+
+# Promotion-ready design trees predeclare verdict paths; promoted trees contain both.
+review_path=ROOT/final_review_record if final_review_record else None
+audit_path=ROOT/final_audit_record if final_audit_record else None
+review_exists=bool(review_path and review_path.is_file())
+audit_exists=bool(audit_path and audit_path.is_file())
+promotion_resolved=False
+promotion_target=None
+if review_exists != audit_exists:
+    err("partial-promotion-verdict-set")
+elif review_exists and audit_exists:
+    review_text=review_path.read_text(encoding="utf-8")
+    audit_text=audit_path.read_text(encoding="utf-8")
+    for token in (f"REVIEW_ID: {final_review_id}",f"TARGET_RELEASE: {current_docsys}","VERDICT: PASS"):
+        if token not in review_text: err(f"final-review-invalid:{token}")
+    for token in (f"AUDIT_ID: {final_audit_id}",f"TARGET_RELEASE: {current_docsys}",f"REQUIRED_REVIEW_ID: {final_review_id}","VERDICT: PASS"):
+        if token not in audit_text: err(f"final-audit-invalid:{token}")
+    rm=re.search(r"^TARGET_DESIGN_COMMIT:\s*([0-9a-f]{40})$",review_text,re.M)
+    am=re.search(r"^TARGET_DESIGN_COMMIT:\s*([0-9a-f]{40})$",audit_text,re.M)
+    if not rm or not am or rm.group(1)!=am.group(1):
+        err("promotion-target-design-mismatch")
+    else:
+        promotion_target=rm.group(1)
+        promotion_resolved=True
 
 reg_path=ROOT/"learning/LEARNING_STATE.json"
 try:
@@ -84,6 +115,10 @@ for learning_id,row in sorted(records.items()):
         if review_record not in activation_evidence: err(f"promotion-review-not-activation-evidence:{learning_id}")
         if not final_audit_record or final_audit_record not in activation_evidence:
             err(f"promotion-audit-not-activation-evidence:{learning_id}")
+        if promotion_resolved:
+            if review_record!=final_review_record: err(f"promotion-review-record-mismatch:{learning_id}")
+            if activated!=target: err(f"promotion-activated-release-mismatch:{learning_id}")
+            if blocker not in (None,""): err(f"promotion-active-has-blocker:{learning_id}")
     if av in {"PENDING_ACTIVATION","BLOCKED"} and target==current_docsys:
         err(f"stale-current-release-activation:{learning_id}")
     if av=="BLOCKED" and not blocker: err(f"blocked-without-blocker:{learning_id}")
@@ -153,4 +188,6 @@ print("LEARNING_LIFECYCLE_CHECK_PASS",len(records),"records",
       f"pending_activation={pending_activation}",
       f"unresolved_ineffective={unresolved_ineffective}",
       f"pending_measurement={pending_measurement}",
-      f"overdue_measurement={overdue_measurement}")
+      f"overdue_measurement={overdue_measurement}",
+      f"promotion_evidence={'resolved' if promotion_resolved else 'predeclared'}",
+      f"promotion_target={promotion_target or 'PENDING'}")
