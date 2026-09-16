@@ -20,6 +20,7 @@ TECHNICAL_CANDIDATE:
   CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
   DISTRO: AI-FILM-P00-LAB
+  CURRENT_DISTRO_STATE: STOPPED_PENDING_AUTHORITY
   WSL_VERSION: 2
   OS: Ubuntu 24.04.5 LTS
   MACHINE_IDENTITY_SHA256: 0705fb633dc0155a9f501e007e6ede7bcb85c17491f7ebcbe183391051bfecf6
@@ -33,6 +34,19 @@ TECHNICAL_CANDIDATE:
   NATIVE_EXECUTION_STARTED: false
   APPROVED: false
   EXTERNAL_AUTHORITY_ATTESTED: false
+
+PENDING_PROTECTED_BUNDLE:
+  RECORD: validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md
+  INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
+  REGISTRATION_CANDIDATE_SHA256: 28ec95c3ecdd8ea7615843601c4657e25b503248fa2c93582cadb86c45488916
+  TECHNICAL_FACTS_SHA256: bca858e356faa2430a04ca2c8a069d02f3f4468927b130ef5a860fa844ecec79
+  AUTHORITY_DRAFT_SHA256: 746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5
+  WINDOWS_STORE_ACL_PROTECTED: true
+  WINDOWS_STORE_ACL_RULE_COUNT: 2
+  WINDOWS_STORE_FILE_COUNT: 4
+  NATIVE_CONSUMABLE: false
+  APPROVED: false
+  EXTERNAL_APPROVAL_REF: null
 
 EXTERNAL_AUTHORITY_REQUIRED:
   LAB_REGISTRATION_REF: PENDING_EXTERNAL
@@ -68,8 +82,8 @@ REQUIRED_SUITE_BINDING:
 
 ## V02 closure check
 
-The disposable LAB environment, exact dev21 deployment, isolation settings, baseline/pristine snapshots and independent restore probe are now technically prepared. They materially reduce V02 preparation work but **do not constitute authority**.
+The disposable LAB environment, exact dev21 deployment, isolation settings, baseline/pristine snapshots, independent restore probe and a protected pending authority bundle are now technically prepared. The LAB itself is stopped pending authority. These artifacts materially reduce V02 preparation work but **do not constitute authority**.
 
-The validation consumer closes V02 only after it can independently verify the protected registration and suite/test-plan authority against the exact dev21 identities above, including host/operator scope, all containment assertions, exact case/procedure bindings, fixture refs and validity interval. The external authority may bind the safe technical digests above to its protected raw identities; the raw values are not required in this public record.
+The validation consumer closes V02 only after it can independently verify an externally approved protected registration and suite/test-plan authority against the exact dev21 identities above, including host/operator scope, all containment assertions, exact case/procedure bindings, fixture refs and validity interval. The existing pending bundle is deliberately non-consumable and unapproved.
 
 A user statement such as “use this PC as lab”, a changed CLI flag, a repository file authored by the build itself, or elapsed time is **not** sufficient authority. External owner/controller registration and approved suite/test-plan authority remain required before any native LAB stage.
