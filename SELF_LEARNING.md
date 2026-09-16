@@ -56,12 +56,12 @@ These files explain **what was learned and why**. Historical activation/review f
 - immutable record path and score;
 - activation target;
 - review status + immutable review record;
-- activation status / activated release / blocker;
+- activation status, activated release, **activation evidence**, and blocker;
 - effectiveness status + evidence;
-- measurement trigger;
+- human-readable measurement trigger plus a **structured measurement gate**;
 - successor when ineffective/superseded.
 
-`PROJECT_STATE` carries only **derived aggregates** such as pending activation, unresolved ineffective learning and measurement debt. Those numbers must match the register; they are never maintained as an independent authority.
+`PROJECT_STATE` carries only **derived aggregates** such as pending activation, unresolved ineffective learning, pending measurement and overdue measurement. Those numbers must match the register; they are never maintained as an independent authority.
 
 ## Discovery classes
 
@@ -91,27 +91,38 @@ DISCOVERED
 
 Promotion-ready documentation trees may use `PASS_ON_FINAL_REVIEW` / `ACTIVE_ON_PROMOTION` when exact final review/audit record paths are predeclared. These are conditional states, not permission to skip review/audit.
 
-## Proof of learning
+An `ACTIVE` learning must carry immutable activation evidence. `ACTIVE_ON_PROMOTION` must predeclare both final review and final audit evidence paths.
+
+## Proof and measurement of learning
 
 A promoted learning defines a future detector or behavior change: checker, router rule, test, schema, policy, workflow or recovery step. It is counted as **applied** only after canonical activation. Later workflow-health review evaluates the success metric.
+
+For machine-evaluable time/state progression, `measurement_gate` uses structured forms. R9 supports:
+
+```json
+{"kind":"COMPLETE"}
+{"kind":"STATE_VERSION_AT_LEAST","value":36}
+```
+
+A pending measurement is informative but is not automatically a blocker. It becomes **overdue measurement debt** only when its structured gate is satisfied and effectiveness evidence is still absent. Event-based incidents such as lifecycle-check failure independently trigger meta-review immediately.
 
 Tracked failure modes:
 
 - **LEARNED_BUT_NOT_ACTIVE** — reusable correction is reviewed/proposed but not canonically active;
 - **ACTIVE_BUT_NOT_EFFECTIVE** — correction is active but recurrence/friction did not improve;
 - **LIFECYCLE_STATE_DRIFT** — immutable record, lifecycle register and project aggregate disagree;
-- **MEASUREMENT_DEBT** — activated correction has reached its measurement trigger without effectiveness evidence.
+- **MEASUREMENT_DEBT** — activated correction has reached its structured measurement gate without effectiveness evidence.
 
 `ACTIVE_BUT_NOT_EFFECTIVE` must name a successor or explicit meta-review return path; it is never silently counted as success.
 
 ## Guarded automation
 
-Every fresh session/bootstrap runs `tools/check_learning_lifecycle.py` before final routing. The checker may fail/route work when it finds lifecycle drift or overdue learning debt.
+Every fresh session/bootstrap runs `tools/check_learning_lifecycle.py` before final routing. The checker may fail/route work when it finds lifecycle drift or **overdue** learning debt.
 
 Automation MAY:
 
 - discover schema/lifecycle inconsistencies;
-- derive backlog and effectiveness counts;
+- derive activation, ineffective, pending-measurement and overdue-measurement counts;
 - create candidate health/learning evidence;
 - trigger `WORKFLOW_HEALTH` meta-review;
 - generate a candidate documentation-system correction.
@@ -130,7 +141,9 @@ Automation MUST NOT:
 - pending/blocked activation while affected work continues;
 - unresolved ineffective learning;
 - lifecycle-state drift;
-- measurement debt.
+- **overdue** effectiveness measurement.
+
+`PENDING_EFFECTIVENESS_MEASUREMENT` is visible planning state; `OVERDUE_EFFECTIVENESS_MEASUREMENT` is the machine-routable debt count.
 
 An active successor may close the **unresolved ineffective** count for an older learning, but historical ineffectiveness remains in provenance/evidence.
 
