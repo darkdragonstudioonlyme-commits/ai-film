@@ -54,9 +54,12 @@ def clear_promotion_verdicts(dst):
 
 
 def stale_activation(dst):
-    p,d=reg(dst)
-    current=next(k for k,v in d['records'].items() if v.get('activation_status')=='ACTIVE_ON_PROMOTION')
-    r=d['records'][current]; r['review_status']='PASS'; r['activation_status']='PENDING_ACTIVATION'
+    p,d=reg(dst); release=promotion_contract(dst)['release']
+    eligible=[(k,v) for k,v in d['records'].items()
+              if v.get('activation_target')==release and v.get('activation_status') in {'ACTIVE','ACTIVE_ON_PROMOTION'}]
+    if not eligible: raise AssertionError('no current-release active learning fixture')
+    current,r=eligible[0]
+    r['review_status']='PASS'; r['activation_status']='PENDING_ACTIVATION'; r['activation_blocker']=None
     write_reg(p,d)
 
 
@@ -80,7 +83,7 @@ def active_without_activation_evidence(dst):
 def overdue_measurement_drift(dst):
     p=dst/'PROJECT_STATE.md'; s=p.read_text(encoding='utf-8')
     m=re.search(r'^STATE_VERSION: (\d+)$',s,re.M); assert m
-    current=int(m.group(1));
+    current=int(m.group(1))
     p.write_text(s.replace(f'STATE_VERSION: {current}',f'STATE_VERSION: {max(current,36)}'),encoding='utf-8')
 
 
