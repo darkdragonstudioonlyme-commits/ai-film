@@ -30,32 +30,42 @@ LAB_INVENTORY:
   ALL_ACCEPTANCE_CLOSED: false
 
 PRODLIKE_PREPARATION:
+  PHASED_EXECUTION_RECORD: validation/PRODLIKE_PHASED_EXECUTION-P00-DEV21.md
   RUNTIME_RECORD: validation/WSL_PRODLIKE_RUNTIME-P00-DEV21.md
   OPERATIONS_RECORD: validation/WSL_PRODLIKE_OPERATIONS-P00-DEV21.md
   HOST_MIRROR_RECORD: validation/WSL_PRODLIKE_HOST_MIRROR-P00-DEV21.md
   REBUILD_SET_RECORD: validation/WSL_PRODLIKE_REBUILD_SET-P00-DEV21.md
+  OFFHOST_EXPORT_RECORD: validation/WSL_PRODLIKE_OFFHOST_EXPORT-P00-DEV21.md
+  OPERATOR_STATUS_RECORD: validation/WSL_PRODLIKE_OPERATOR_STATUS-P00-DEV21.md
   STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
   APP_BYTE_VERIFY: PASS
   RUNTIME_VERIFY: "283 PASS / 86 NOT_RUN"
-  CONTROL_BACKUP_FILES: 39
+  CONTROL_BACKUP_FILES: 44
   CONTROL_BACKUP_RETENTION: 14
+  CONTROL_BACKUP_SHA256: c31250cf400221f7872ed0001fbdf513ca158b8735dc7a4fd4694a11ecc8ed6f
   CONTROL_BACKUP_VERIFY: PASS
-  CONTROL_BACKUP_RESTORE_PROBE: PASS
   HOST_MIRROR_FILESYSTEM: NTFS
   HOST_MIRROR_VERIFY: PASS
-  HOST_MIRROR_RESTORE_PROBE: PASS
   REBUILD_SET_FILESYSTEM: NTFS
   REBUILD_SET_VERIFY: PASS
   REBUILD_SET_COLD_PROBE: PASS
   REBUILD_SET_RECONSTRUCTED_VERSION: 0.1.0.dev21
   REBUILD_SET_RECONSTRUCTED_INVENTORY: "86 NOT_RUN"
   REBUILD_SET_RECONSTRUCTED_HOST_READY: false
-  SUPERVISED_TIMERS: 7
-  TIMER_CADENCE: "integrity=15m authority-watch=5m health=10m backup=24h recovery=boot+6h host-mirror=2h rebuild=boot+12h"
+  OFFHOST_EXPORT_STATUS: TRANSFER_READY_WITH_OFFHOST_METADATA
+  OFFHOST_EXPORT_SHA256: 0f603dec5e48d64bccc52271abfd0e83deb93a0655193c4cb7741c850500bbf8
+  OFFHOST_EXPORT_DETERMINISTIC: true
+  OFFHOST_EXPORT_VERIFY: PASS
+  OFFHOST_EXPORT_DRILL: PASS
+  OFFHOST_METADATA_ANCHOR: PRIVATE_GOOGLE_DRIVE
+  OFFHOST_BINARY_PAYLOAD_UPLOADED: false
+  OFFHOST_DR_CLAIMED: false
+  SUPERVISED_TIMERS: 8
+  TIMER_CADENCE: "integrity=15m authority-watch=5m health=10m backup=24h recovery=boot+6h host-mirror=2h rebuild=boot+12h offhost-export=boot+6h"
   ALL_TIMERS_ENABLED_ACTIVE: true
   ALL_SUPERVISED_LAST_RESULTS_SUCCESS: true
   BOUNDED_EXECUTION: true
-  SYSTEMD_SECURITY: "prodlike services 4.1 OK; authority watcher 4.9 OK"
+  SYSTEMD_SECURITY: "prodlike services including offhost-export 4.1 OK; authority watcher 4.9 OK"
   NATIVE_AUTHORITY_INCLUDED_IN_BACKUPS: false
   PROTECTED_IDENTITY_INCLUDED_IN_BACKUPS: false
 
@@ -96,4 +106,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-The non-native production-like layer now covers immutable deployment, atomic activation, integrity/health supervision, bounded execution, safe control backup, NTFS control mirror, boot/periodic recovery verification, and an independently cold-probed NTFS exact-dev21 runtime rebuild set. None of these controls grant native execution authority. V02 remains blocked until protected external LAB authority is independently verified.
+The non-native production-like layer now covers immutable deployment, integrity/health supervision, bounded execution, 44-file safe control backup, NTFS mirror, cold rebuild, and a deterministic supervised transfer-ready DR export with a private off-host checksum metadata anchor. The binary export payload has not left the host and no off-host DR claim is made. None of these controls grant native execution authority; V02 remains blocked until protected external LAB authority is independently verified.
