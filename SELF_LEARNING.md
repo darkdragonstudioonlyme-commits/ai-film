@@ -1,8 +1,10 @@
-# AI-FILM-SERVER — Self-Learning and Continuous Workflow Improvement
+# AI-FILM-SERVER — Self-Learning and Guarded Continuous Improvement
 
 ## Objective
 
 Every meaningful failure or improvement should make future work cheaper, safer or more accurate. Logging history without changing future behavior is not sufficient learning.
+
+The system may automatically **detect, reconcile, measure and route** learning debt. It must never automatically promote its own unreviewed governance correction.
 
 ## Learning loop
 
@@ -11,32 +13,24 @@ OBSERVE
 → EXPLAIN
 → GENERALIZE
 → SCORE REUSABILITY
-→ PERSIST
+→ PERSIST IMMUTABLE EVIDENCE
 → PROPOSE POLICY/TOOL/CHECKER CHANGE WHEN WARRANTED
 → INDEPENDENTLY REVIEW
 → ACTIVATE THE REVIEWED CHANGE
 → APPLY
 → MEASURE WHETHER RECURRENCE/FRICTION DECREASES
-→ RETIRE/SUPERSEDE WHEN NO LONGER TRUE
+→ RETIRE/SUPERSEDE OR REOPEN META-REVIEW
 ```
 
-A reviewed learning is **not yet operational learning** until its successor policy/tool/checker is active in the canonical control plane, or the activation is explicitly blocked with an owner and return path.
+A reviewed learning is **not operational learning** until its successor policy/tool/checker is canonically active, or activation is explicitly blocked with owner/return path. An active learning is **not proven effective** until its success metric has evidence.
 
-## Discovery classes
+## Two-layer ownership model
 
-`DEFECT | TOOLING | TEST | PROCESS | SECURITY | RECOVERY | PERFORMANCE | ENVIRONMENT | ARCHITECTURE | BUSINESS_CLARIFICATION`.
+R9 separates immutable provenance from mutable lifecycle state.
 
-## Learning score
+### Immutable learning evidence
 
-Score 0–2 for each: recurrence likelihood, impact, generality, safety relevance, cost avoided. Total guides action:
-
-- 0–3: candidate-specific note/finding only;
-- 4–6: memory entry;
-- 7–10: memory + proposed policy/checker/workflow change, independently reviewed and activated.
-
-Critical security/correctness lessons may be promoted regardless of score.
-
-## Learning record
+`learning/LEARNING-<scope>-<nnn>.md` owns:
 
 ```yaml
 LEARNING_ID:
@@ -49,42 +43,107 @@ REUSABLE_RULE:
 SCORE:
 CURRENT_ACTION:
 POLICY_OR_TOOL_PROMOTION:
-ACTIVATION_TARGET:
-ACTIVATION_STATUS: NOT_REQUIRED|PENDING_REVIEW|PENDING_ACTIVATION|ACTIVE|BLOCKED
-ACTIVATION_BLOCKER:
-ACTIVATED_IN:
 SUCCESS_METRIC:
-REVIEW_STATUS:
 STATUS: ACTIVE|SUPERSEDED|RETIRED
 ```
 
+These files explain **what was learned and why**. Historical activation/review fields in pre-R9 records are snapshots only and no longer own current lifecycle truth.
+
+### Canonical lifecycle register
+
+`learning/LEARNING_STATE.json` is the sole machine-readable owner of current lifecycle state. Every active reusable learning has exactly one register entry with:
+
+- immutable record path and score;
+- activation target;
+- review status + immutable review record;
+- activation status / activated release / blocker;
+- effectiveness status + evidence;
+- measurement trigger;
+- successor when ineffective/superseded.
+
+`PROJECT_STATE` carries only **derived aggregates** such as pending activation, unresolved ineffective learning and measurement debt. Those numbers must match the register; they are never maintained as an independent authority.
+
+## Discovery classes
+
+`DEFECT | TOOLING | TEST | PROCESS | SECURITY | RECOVERY | PERFORMANCE | ENVIRONMENT | ARCHITECTURE | BUSINESS_CLARIFICATION`.
+
+## Learning score
+
+Score 0–2 for each: recurrence likelihood, impact, generality, safety relevance, cost avoided.
+
+- 0–3: candidate-specific note/finding only;
+- 4–6: memory entry;
+- 7–10: durable learning + proposed policy/checker/workflow change, independently reviewed and activated.
+
+Critical security/correctness lessons may be promoted regardless of score.
+
+## Lifecycle state machine
+
+```text
+DISCOVERED
+→ REVIEW_PENDING
+→ REVIEWED
+→ PENDING_ACTIVATION | BLOCKED
+→ ACTIVE_UNMEASURED
+→ EFFECTIVE | INEFFECTIVE
+→ SUPERSEDED | RETIRED
+```
+
+Promotion-ready documentation trees may use `PASS_ON_FINAL_REVIEW` / `ACTIVE_ON_PROMOTION` when exact final review/audit record paths are predeclared. These are conditional states, not permission to skip review/audit.
+
 ## Proof of learning
 
-A promoted learning defines a future detector or behavior change, for example a checker, router rule, test, schema, policy or recovery step. The learning is counted as **applied** only after that change is active in the canonical workflow. Later workflow-health reviews ask whether recurrence or friction decreased. If not, the learning was incomplete and is reviewed again.
+A promoted learning defines a future detector or behavior change: checker, router rule, test, schema, policy, workflow or recovery step. It is counted as **applied** only after canonical activation. Later workflow-health review evaluates the success metric.
 
-Two failure modes are explicitly tracked:
+Tracked failure modes:
 
-- **LEARNED_BUT_NOT_ACTIVE** — useful correction exists/reviewed but promotion/activation has not completed;
-- **ACTIVE_BUT_NOT_EFFECTIVE** — correction is active but recurrence/friction did not improve.
+- **LEARNED_BUT_NOT_ACTIVE** — reusable correction is reviewed/proposed but not canonically active;
+- **ACTIVE_BUT_NOT_EFFECTIVE** — correction is active but recurrence/friction did not improve;
+- **LIFECYCLE_STATE_DRIFT** — immutable record, lifecycle register and project aggregate disagree;
+- **MEASUREMENT_DEBT** — activated correction has reached its measurement trigger without effectiveness evidence.
 
-## Activation backlog
+`ACTIVE_BUT_NOT_EFFECTIVE` must name a successor or explicit meta-review return path; it is never silently counted as success.
 
-`PROJECT_MEMORY.md` remains an active index, but any promoted learning with `PENDING_ACTIVATION`/`BLOCKED` must point to its activation target and blocker. `WORKFLOW_HEALTH.md` treats an accumulating learned-but-not-active backlog as process debt when affected workflows continue to incur the same friction.
+## Guarded automation
 
-## Durable learning records
+Every fresh session/bootstrap runs `tools/check_learning_lifecycle.py` before final routing. The checker may fail/route work when it finds lifecycle drift or overdue learning debt.
 
-Persist standalone reusable learning under `learning/LEARNING-<scope>-<nnn>.md`. If the complete learning is already captured by an immutable review/health record, the memory index may point there instead of duplicating it. Follow-up evidence updates the learning lifecycle through a new reviewed record/commit; do not erase the original observation.
+Automation MAY:
 
-## Memory compaction
+- discover schema/lifecycle inconsistencies;
+- derive backlog and effectiveness counts;
+- create candidate health/learning evidence;
+- trigger `WORKFLOW_HEALTH` meta-review;
+- generate a candidate documentation-system correction.
 
-`PROJECT_MEMORY.md` is an active index, not an ever-growing diary.
+Automation MUST NOT:
 
-- keep active reusable rules and short provenance;
-- move detailed historical reasoning to immutable review/health records or Git history;
-- mark superseded entries and remove their obsolete instructions from active guidance;
-- DOC-AUDIT periodically consolidates duplicates and verifies successors;
-- never delete evidence needed to understand why an active safety policy exists.
+- mark its own correction independently reviewed;
+- write PASS review/audit verdicts into its own design step;
+- promote a documentation-system release without the declared review/audit sequence;
+- delete or rewrite evidence merely to remove a failed metric.
+
+## Activation and effectiveness debt
+
+`WORKFLOW_HEALTH.md` treats any of the following as process debt:
+
+- pending/blocked activation while affected work continues;
+- unresolved ineffective learning;
+- lifecycle-state drift;
+- measurement debt.
+
+An active successor may close the **unresolved ineffective** count for an older learning, but historical ineffectiveness remains in provenance/evidence.
+
+## Durable learning and compaction
+
+`PROJECT_MEMORY.md` is a compact active lesson index, not lifecycle authority and not an ever-growing diary.
+
+- durable observation/provenance stays in `learning/LEARNING-*.md` or immutable review/health records;
+- current lifecycle stays in `learning/LEARNING_STATE.json`;
+- detailed historical reasoning stays in Git/review/health records;
+- obsolete active guidance is removed after successor activation;
+- evidence explaining an active safety rule is never deleted.
 
 ## Anti-overfitting
 
-Do not create global policy from one accidental tool quirk unless the rule generalizes or materially improves safety. Conversely, repeated mistakes that share a root cause should become one systemic rule, not many near-duplicate memory entries.
+Do not create global policy from one accidental tool quirk unless the rule generalizes or materially improves safety. Repeated incidents sharing one root cause become one systemic learning, not many near-duplicate rules.
