@@ -1,30 +1,30 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V32
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V33
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 32
+STATE_VERSION: 33
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
 TARGET_GATE: M-P00-VALIDATION
 PHASE_GATE: HOST_READY
-DOCUMENTATION_SYSTEM: DOCSYS-V2-R8
+DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 
 DOCUMENTATION_GOVERNANCE:
-  RELEASE_ID: DOCSYS-V2-R8
-  PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R6
-  DESIGN_BRANCH: lane/docs-v2-r8-design
-  REVIEW_BRANCH: lane/docs-v2-r8-review
-  AUDIT_BRANCH: lane/docs-v2-r8-audit
-  FINAL_REVIEW_ID: DOC-V2-R8-REVIEW-002
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R8-AUDIT-002
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md
-  ACTIVATION_CONDITION: "Exact final R8 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
-  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable final review/audit records to the exact reviewed/audited design tree; any other policy/state/checkpoint edit reopens DOC-REVIEW and DOC-AUDIT."
-  NOTE: "R8 remains the active documentation system while product/project mode advances independently through VALIDATION."
+  RELEASE_ID: DOCSYS-V2-R9
+  PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R8
+  DESIGN_BRANCH: lane/docs-v2-r9-design
+  REVIEW_BRANCH: lane/docs-v2-r9-review
+  AUDIT_BRANCH: lane/docs-v2-r9-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-001
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-001
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md
+  ACTIVATION_CONDITION: "Exact final R9 design tree requires FINAL_REVIEW_ID PASS and FINAL_AUDIT_ID PASS bound to that same design commit."
+  PROMOTION_RULE: "After final audit, main may add only the predeclared immutable final review/audit records to the exact reviewed/audited design tree; any other policy/state/checker edit reopens DOC-REVIEW and DOC-AUDIT."
+  NOTE: "R9 keeps R8 continuity/source-visibility/governance controls and adds machine-owned learning lifecycle/effectiveness reconciliation with guarded automation."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -103,6 +103,16 @@ VALIDATION_PREPARATION:
     SELF_CHECK: PASS
     APPROVED: false
 
+LEARNING_ACTIVATION:
+  LIFECYCLE_REGISTER: learning/LEARNING_STATE.json
+  LEARNING_POLICY: POL-LEARN-002
+  LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
+  UNRESOLVED_INEFFECTIVE_LEARNING: 0
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
+  HISTORICAL_INEFFECTIVE_LEARNING: 1
+  LIFECYCLE_CHECKER: tools/check_learning_lifecycle.py
+  GUARDED_SELF_OPTIMIZATION: ACTIVE
+
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
   LAB: NOT_RUN
@@ -114,24 +124,17 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
   WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  REASON: "Disposable LAB infrastructure, exact dev21 deployment and restore-probed snapshots are now technically ready. V02 remains blocked only until protected external registration/owner-controller attestation, protected fixture/plan refs and an approved <=24h exact-dev21 lab_acceptance_suite are established."
+  REASON: "Disposable LAB infrastructure and validation tooling are technically prepared. V02 remains blocked until protected external registration/owner-controller attestation, protected fixture/plan refs and an approved <=24h exact-dev21 lab_acceptance_suite are established."
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
-  EVIDENCE: "lane/validation-p00 LAB candidate + authority request + authority draft; accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json; PHASE00_INFRA_DESIGN_V2 D00-11; PHASE00_ACCEPTANCE_MATRIX_V2"
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
   STATUS: OPEN
-
-LEARNING_ACTIVATION:
-  WORKFLOW_CONTINUITY_R8: ACTIVE
-  GOVERNANCE_RELEASE_SELECTION: ACTIVE
-  SOURCE_VISIBILITY_POLICY: ACTIVE
-  LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
 
-NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02 using the prepared AI-FILM-P00-LAB candidate. Do not build another LAB. Verify protected external registration/owner-controller attestation and instantiate protected fixture/plan refs plus an approved <=24h exact-dev21 lab_acceptance_suite. Only after exact authority verifies may the same run advance to V03 and execute native LAB stages."
+NEXT_ACTION: "After R9 promotion, resume unchanged RUN-P00-VALIDATION-001 at V02. Do not create another LAB. Learning lifecycle reconciliation is now part of bootstrap; it does not grant native authority. Only independently verified external LAB authority may advance V02 to V03."
 ```
 
-The code-review gate is closed PASS. A disposable LAB candidate and restore-probed snapshots now exist, but technical preparation is not authority. All 86 native acceptance inventory entries remain `NOT_RUN`; qualification and HOST_READY remain unissued/unevaluated.
+R9 is documentation/control-plane governance only. It does not convert any of the 86 `NOT_RUN` cases into PASS, issue qualification, write native authority, or change HOST_READY.
