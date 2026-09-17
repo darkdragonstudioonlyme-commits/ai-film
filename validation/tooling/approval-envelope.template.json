@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "kind": "P00_LAB_EXTERNAL_AUTHORITY_INTAKE",
+  "decision": "PENDING",
+  "approved_by_external_authority": false,
+  "candidate_id": "336b12af-cada-4968-8083-8a5b41e479a2",
+  "pending_bundle_index_sha256": "fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615",
+  "source_commit": "934659f535d81d9a4a07389531acc2b9c304fa6d",
+  "build_digest": "a284645e9eb60661f27eba1ea436d7ff7bbe60d6cd3e312850f1b108d32b1c62",
+  "test_set_digest": "c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383",
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "lab_registration_ref": null,
+  "owner_attestation_ref": null,
+  "controller_attestation_ref": null,
+  "fixture_set_ref": null,
+  "management_isolation_recovery_ref": null,
+  "lab_test_plan_approval_ref": null,
+  "lab_acceptance_suite_ref": null,
+  "role_pins": {}
+}

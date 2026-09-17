@@ -67,6 +67,20 @@ The external system may retain safe aliases/protected identity refs as its own a
 
 `owner_attestation`, `controller_attestation`, `lab_fixture_set`, and `management_isolation_recovery` are loaded and verified directly by the intake validator; they remain mandatory envelope refs even though they are not the documents passed to `authority.authorize()`.
 
+## Detached external signature
+
+The envelope/object graph also requires external authenticity. `approval-envelope.sig.json` is a sibling of `approval-envelope.json` and signs the exact raw envelope bytes under the separately activated Ed25519 trust anchor:
+
+```yaml
+schema_version: 1
+algorithm: ED25519
+key_id: <activated external authority key id>
+payload_sha256: <sha256 exact approval-envelope.json bytes>
+signature_b64: <detached Ed25519 signature>
+```
+
+The signature is verified before any object ref is consumed. Since direct refs and `role_pins` are in the signed envelope and every object is content-addressed, a valid external signature authenticates the exact object graph selected for V02. The trust-anchor config itself is hash-pinned by the verifier; runtime substitution is rejected.
+
 ## Fail-closed rule
 
 Missing, unpinned, wrongly scoped, expired, withdrawn, hash-mismatched, wrong-role, wrong-procedure, wrong-route, wrong-fixture, or wrong-build authority remains `BLOCKED`. This mapping must never be used to relax validator checks or manufacture external approval.

@@ -66,6 +66,21 @@ This wrapper executes the exact V02 validator semantics and verifies that stagin
 
 For a **REJECT** decision, return a protected decision ref plus the rejected assertion/identity. Validation will remain blocked or route a validation-preparation failure; it must not weaken the reviewed LAB predicates.
 
+## External authenticity prerequisite
+
+Forensic review found that the local approved inbox is writable by the current operator, so content-addressed refs alone cannot prove external authorship. Before any APPROVE package can be consumable, the external owner/controller must first establish an **Ed25519 public-key identity out-of-band**:
+
+```yaml
+EXTERNAL_AUTHORITY_KEY_ID: <stable non-secret key id>
+EXTERNAL_AUTHORITY_PUBLIC_KEY_B64: <raw 32-byte Ed25519 public key, base64>
+EXTERNAL_AUTHORITY_PUBLIC_KEY_SHA256: <sha256 of raw public-key bytes>
+EXTERNAL_AUTHORITY_KEY_PROVENANCE_REF: <independently verifiable protected/out-of-band provenance ref>
+```
+
+The private key must never be placed on this host or in GitHub. Key activation is a separate reviewed trust-anchor update; the current anchor remains `PENDING_EXTERNAL_KEY`. After activation, the external authority signs the **exact raw bytes** of `approval-envelope.json` and supplies `approval-envelope.sig.json` containing schema 1, `algorithm=ED25519`, the activated `key_id`, exact payload SHA-256 and the detached signature in base64.
+
+An unsigned envelope, a locally substituted public key, trust-config drift, key-id mismatch, payload tamper or invalid signature remains BLOCKED before any protected object is consumed.
+
 ## Consumer rule
 
 The VALIDATION consumer must independently retrieve and verify the protected references. Only a successful verification may produce `LAB_EXECUTION_AUTHORITY_VERIFIED` and advance this same run from V02 to V03. No public document, operator statement, elapsed time, pending candidate, pending bundle, preflight result or local draft can substitute for that verification.

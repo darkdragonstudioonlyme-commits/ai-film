@@ -31,3 +31,7 @@ The Windows host normally blocks the UNC `.ps1` under its current execution poli
 A subsequent read-only Windows check confirmed both `HKLM\SOFTWARE\AI-FILM-SERVER\Phase00\Trust` and the real `approval-envelope.json` remain absent.
 
 This record is preparation only. No trust authority has been installed and V02 remains BLOCKED.
+
+## External-authenticity hardening candidate
+
+Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The reviewed candidate in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` adds a hash-pinned Ed25519 trust anchor and detached signature gate ahead of object consumption. Until that candidate is independently reviewed/deployed and the external key is established out-of-band, this step remains BLOCKED and no existing readiness/preflight result may be interpreted as authority.

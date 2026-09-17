@@ -35,3 +35,7 @@ Observed tests:
 2. A disposable staging directory containing an empty `approval-envelope.json` returned `INVALID / ENVELOPE_SCHEMA`, with identical before/after staging metadata and no READY flag.
 
 This tool is intended for external-owner packaging QA before a package is moved into the protected authoritative inbox. It cannot create independent authority, approve a package, install trust, or satisfy V02 by itself.
+
+## External-authenticity hardening candidate
+
+Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The reviewed candidate in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` adds a hash-pinned Ed25519 trust anchor and detached signature gate ahead of object consumption. Until that candidate is independently reviewed/deployed and the external key is established out-of-band, this step remains BLOCKED and no existing readiness/preflight result may be interpreted as authority.

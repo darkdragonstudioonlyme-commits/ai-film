@@ -20,3 +20,7 @@ Only after a valid external intake exists may it build a candidate NativeStore p
 The materializer never writes the Windows registry. The current run against the real protected inbox returned `AUTHORITY_INTAKE_NOT_READY / APPROVAL_ENVELOPE_MISSING`; `native-policy.candidate.json` was confirmed absent afterward.
 
 This staging step therefore cannot close V02, start the LAB, install an HKLM trust anchor, execute native acceptance, or issue qualification/HOST_READY.
+
+## External-authenticity hardening candidate
+
+Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The reviewed candidate in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` adds a hash-pinned Ed25519 trust anchor and detached signature gate ahead of object consumption. Until that candidate is independently reviewed/deployed and the external key is established out-of-band, this step remains BLOCKED and no existing readiness/preflight result may be interpreted as authority.

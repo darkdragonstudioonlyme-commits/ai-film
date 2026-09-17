@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_EXTERNAL_LAB_AUTHORITY
+STATUS: BLOCKED_EXTERNAL_AUTHENTICITY_AND_LAB_AUTHORITY
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION
 REMOTE_BRANCH: lane/validation-p00
@@ -75,6 +75,9 @@ LAB_PREPARATION:
   EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
   APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
   AUTHORITY_PREFLIGHT: validation/V02_AUTHORITY_PREFLIGHT-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_HARDENING: validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md
+  AUTHENTICITY_FINDING: V02-AUTHENTICITY-001
+  AUTHENTICITY_HARDENING_STATUS: CANDIDATE_NOT_DEPLOYED
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   LAB_DISTRO: AI-FILM-P00-LAB
   LAB_DISTRO_STATE: STOPPED_PENDING_AUTHORITY
@@ -90,7 +93,7 @@ LAB_PREPARATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
-  REMAINING_REQUIREMENT: "Independently verified protected external LAB authority for exact dev21"
+  REMAINING_REQUIREMENT: "Independently authenticated external LAB authority for exact dev21: out-of-band external key provenance, signed approval envelope, exact protected object graph and successful V02 verification"
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   PRODLIKE_NON_NATIVE_READINESS_COMPLETE: true
   USER_ACTION_REQUIRED: true
@@ -103,4 +106,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Execution SLA monitoring now rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes are explicitly modeled as rotating samples rather than immutable identities. None of these controls grants native authority; V02 remains external-authority-only.
+Execution SLA monitoring now rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes are explicitly modeled as rotating samples rather than immutable identities. None of these controls grants native authority. Forensic audit also found that the operator-writable approved inbox provides integrity but not external provenance; V02 remains blocked until the authenticity hardening is reviewed/deployed and an external trust anchor plus signed approval are independently established.
