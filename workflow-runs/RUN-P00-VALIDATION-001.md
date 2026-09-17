@@ -29,8 +29,9 @@ REPLAY_POLICY: SAFE_REEXECUTE
 
 - Exact dev21 identities remain unchanged and all 86 native cases remain `NOT_RUN`.
 - V02 remains BLOCKED and `AI-FILM-P00-LAB` remains stopped. External-authenticity hardening is deployed and verified fail-closed; the real inbox still has no approval envelope and the Ed25519 trust config remains `PENDING_EXTERNAL_KEY`. A future APPROVE package cannot close V02 until independently established external key provenance is reviewed/activated and the exact envelope signature plus protected object graph verify successfully.
+- Post-deployment fail-closed hardening is deployed from audited design `2ed82c780ec988caafd7dd0b8086d0cefc534e49`: stale/partial `native-policy.candidate.json` is invalidated on every unsuccessful reevaluation and staging preflight now binds regular-file bytes plus symlink identity. Deployment evidence is `validation/V02_POSTDEPLOY_FAILCLOSED_DEPLOYMENT-P00-DEV21.md`; post-copy full regressions and LAB artifact seal passed without native execution.
 - `validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md` records N1–N6 execution-SLA, retention and rotating-state work.
-- Runtime health now checks monotonic last-completion freshness for all eleven services in addition to timer enabled/active state and previous job result. Production-function negative tests reject both stale completion and never-completed-after-boot-grace states.
+- Runtime health checks monotonic last-completion freshness for all eleven services in addition to timer enabled/active state and previous job result. Production-function negative tests reject both stale completion and never-completed-after-boot-grace states.
 - Real producer retention overflow tests prove control backup retention=14 and evidence-ledger retention=30; pruned ledger history preserves predecessor continuity through the chain anchor.
 - Kernel cgroup probe verified systemd resource values are materialized to `memory.max` and `pids.max`; live AI-FILM services remain bounded at `MemoryMax=256M`, `TasksMax=128`.
 - Current producer-first recovery refresh passes. At the latest observation, backup/mirror sample contained 87 files at SHA `c213efff4aeff5585bf14efea172889dffe3b33af815dabaf30f3b5e14c887d2`; deterministic transfer-export sample SHA was `023eb0d5275eeb1b27974c908664f17b46a4bbe11a12376d4e085602a7135d11`.
@@ -49,4 +50,4 @@ REPLAY_POLICY: SAFE_REEXECUTE
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
 | V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence-based HOST_READY assessment |
 
-The same run remains resumable at V02. No SLA, retention, recovery or rotating-state control can satisfy V02 `DONE_WHEN` or self-issue protected authority.
+The same run remains resumable at V02. No SLA, retention, recovery, rotating-state or deployed fail-closed control can satisfy V02 `DONE_WHEN` or self-issue protected authority.
