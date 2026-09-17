@@ -45,6 +45,10 @@ A fresh canonical reread found a semantic contradiction that the historical R11/
 4. derives the expected live `R<n>/A<n>` pair from canonical final review/audit IDs and rejects a mismatched pair on current authority surfaces unless the line is explicitly historical/superseded context;
 5. finalizes learning 007 from conditional `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-existing historical R11/A11 activation evidence, so it does not depend on the new promotion's verdict fields.
 
+The first detector implementation deliberately failed closed twice on design refinement (`35223022725`, `35223154818`) before line-local historical classification was made precise. Exact detector commit `0d106cbad7e144b737cb43eb17409339d107021d` then passed GitHub Actions run `35223256888` / job `105208358932` across lifecycle, adversarial lifecycle, governance, active-doc consistency, workflow continuity and holistic audit.
+
+That real semantic checker/schema evolution satisfies the trigger for `LEARNING-CONTROL-001`; the candidate receipt `learning/measurements/MEASUREMENT-LEARNING-CONTROL-001-001.md` marks it EFFECTIVE only subject to independent R12/A12 semantic verification. New `LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008` captures the reusable rule and remains pending future effectiveness measurement after conditional R12/A12 activation.
+
 The new correction must be reviewed by R12 and audited by A12 on one exact design SHA. Historical R10/A10 and R11/A11 references remain available when explicitly labeled as prior/superseded evidence; they are not live authority for the new tree.
 
 Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`; documentation-governance repair cannot substitute for protected external LAB authority.

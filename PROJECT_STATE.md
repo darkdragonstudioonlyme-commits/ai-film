@@ -136,10 +136,10 @@ LEARNING_ACTIVATION:
   PENDING_EFFECTIVENESS_MEASUREMENT: 4
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 4
-  RECENTLY_PROVEN_EFFECTIVE: LEARNING-RECOVERY-STATE-VERSIONING-006
-  SEMANTICALLY_VERIFIED_EFFECTIVE: 2
+  RECENTLY_PROVEN_EFFECTIVE: LEARNING-CONTROL-001
+  SEMANTICALLY_VERIFIED_EFFECTIVE: 3
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-CONTROL-001@NEXT_STATE_OR_CHECKER_SCHEMA_EVOLUTION; LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42; LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008@NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 FORENSIC_HARDENING:
@@ -177,4 +177,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. Only independently verified external LAB authority may advance V02 to V03."
 ```
 
-V41 authority-reference correction is valid only if the exact correction tree passes executable checks and independent R12/A12 review confirms that current authority prose derives from canonical governance, historical verdict references are explicitly historical, and product/native authority remains unchanged.
+V41 authority-reference correction is valid only if the exact correction tree passes executable checks and independent R12/A12 review confirms that current authority prose derives from canonical governance, historical verdict references are explicitly historical, the CONTROL-001 effectiveness receipt is semantically valid, learning 008 is only conditionally activated, and product/native authority remains unchanged.

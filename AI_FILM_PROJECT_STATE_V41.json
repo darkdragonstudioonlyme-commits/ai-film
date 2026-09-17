@@ -112,12 +112,8 @@
     "pending_effectiveness_measurement": 4,
     "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 4,
-    "recently_proven_effective": "LEARNING-RECOVERY-STATE-VERSIONING-006",
+    "recently_proven_effective": "LEARNING-CONTROL-001",
     "current_pending_measurements": [
-      {
-        "learning_id": "LEARNING-CONTROL-001",
-        "gate": "NEXT_STATE_OR_CHECKER_SCHEMA_EVOLUTION"
-      },
       {
         "learning_id": "LEARNING-SOURCE-VISIBILITY-001",
         "gate": "NEXT_FORMAL_SOURCE_HANDOFF"
@@ -130,17 +126,21 @@
       {
         "learning_id": "LEARNING-EVIDENCE-SEMANTICS-007",
         "gate": 42
+      },
+      {
+        "learning_id": "LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008",
+        "gate": "NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION"
       }
     ],
     "guarded_self_optimization": "ACTIVE",
-    "semantically_verified_effective": 2,
+    "semantically_verified_effective": 3,
     "effective_claims_downgraded_for_remeasurement": 3,
     "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
     "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "platform_main_protection": "NOT_ENFORCED",
-    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md"
+    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
   },
   "forensic_hardening": {
     "status": "ACTIVE_ON_PROMOTION",

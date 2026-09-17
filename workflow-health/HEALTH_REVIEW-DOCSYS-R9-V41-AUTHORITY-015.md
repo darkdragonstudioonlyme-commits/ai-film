@@ -10,6 +10,9 @@ PRIOR_EXACT_DESIGN_SHA: 237228e0c5ed3e3cde20379cb6099365f2ef938b
 NEW_REVISION: R11_V41_AUTHORITY_REFERENCE_CONSISTENCY
 NEW_REVIEW_ID: DOC-V2-R9-REVIEW-012
 NEW_AUDIT_ID: DOC-V2-R9-AUDIT-012
+DETECTOR_MEASUREMENT_COMMIT: 0d106cbad7e144b737cb43eb17409339d107021d
+DETECTOR_GREEN_RUN: 35223256888
+DETECTOR_GREEN_JOB: 105208358932
 PRODUCT_SOURCE_CHANGED: false
 NATIVE_VALIDATION_ADVANCED: false
 STATUS: CORRECTION_CANDIDATE_REQUIRES_R12_A12
@@ -31,14 +34,29 @@ The control plane validated required tokens, lifecycle structure, exact verdict 
 
 This is a method weakness, not a reason to erase prior PASS evidence: R11/A11 correctly reviewed their exact target under the then-existing checks, while the checks were incomplete for cross-surface authority semantics.
 
+## Detector execution evidence
+
+The first candidate detector failed closed on the new design branch in run `35223022725`, exposing three line-local historical-context false positives. After wording refinement, run `35223154818` failed on the remaining `reusing` morphology case. The checker was then generalized from literal `reused` to reuse-stem context rather than disabling the invariant.
+
+Exact detector commit `0d106cbad7e144b737cb43eb17409339d107021d` passed run `35223256888` / job `105208358932`: learning lifecycle, 16 adversarial lifecycle cases, documentation governance, active documentation consistency, workflow continuity and holistic audit were all green.
+
+This sequence is retained as negative/positive control-plane evidence. It demonstrates fail-closed behavior plus correction of false positives without removing the semantic invariant.
+
+## Learning/control-plane reconciliation
+
+- `LEARNING-CONTROL-001` reached its real `STATE_OR_CHECKER_SCHEMA_EVOLUTION` trigger. Its immutable metric allows checker edits when a semantic invariant changes; this incident required exactly such an invariant. The candidate metric-bound receipt is `learning/measurements/MEASUREMENT-LEARNING-CONTROL-001-001.md` and remains subject to R12/A12 semantic review.
+- `LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008` records the reusable rule. It is only `ACTIVE_ON_PROMOTION` through predeclared R12/A12 evidence and remains `PENDING_MEASUREMENT` afterward.
+- `LEARNING-EVIDENCE-SEMANTICS-007` is finalized from its already-completed R11/A11 activation evidence and no longer depends on the current promotion's final fields.
+
 ## Correction candidate
 
 1. Allocate new R12/A12 verdict identities for the changed exact tree; never reuse R11/A11.
 2. Add `DESIGN_RECORD` to canonical governance and enforce Markdown/JSON parity for governance identity fields.
 3. Derive the expected live verdict pair from canonical final IDs and scan current state, current checkpoint and active design record for mismatched pairs.
-4. Permit mismatched pairs only when the same line explicitly marks them as prior/old/historical/superseded/reused/earlier/previous/pre-promotion evidence.
-5. Finalize learning 007 from `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-completed R11/A11 activation evidence, preventing the next promotion's final-verdict fields from becoming an accidental dependency.
-6. After the detector passes server CI, route the reusable rule into a new reviewed learning candidate and measure the pending checker/schema-evolution learning against this real event.
+4. Permit mismatched pairs only when the same line explicitly marks them as prior/old/historical/superseded/reuse/earlier/previous/pre-promotion evidence.
+5. Add persistent adversarial active-doc tests proving stale live authority fails, explicit historical authority passes and structured-governance parity drift fails.
+6. Finalize learning 007 from `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-completed R11/A11 activation evidence.
+7. Submit CONTROL-001 effectiveness and learning 008 activation as candidate lifecycle transitions for independent R12/A12 verification.
 
 ## Non-claims
 

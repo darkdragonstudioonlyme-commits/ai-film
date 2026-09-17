@@ -68,6 +68,12 @@ R10_V41 predeclared `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENI
 
 Post-promotion canonical reread found that three live-authority sentences still used superseded R10/A10 wording even though structured governance selected R11/A11. That contradiction demonstrates a checker blind spot: token presence and structured parity did not prove that current prose used the same verdict authority.
 
-Revision `R11_V41_AUTHORITY_REFERENCE_CONSISTENCY` records the incident in `workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md`, allocates new R12/A12 verdicts for the changed exact tree, exposes the active `DESIGN_RECORD` in canonical governance, and extends active-document checking so the expected live verdict pair is derived from canonical final IDs. Mismatched `R<n>/A<n>` pairs fail on current authority surfaces unless their line explicitly marks the reference as prior, old, historical, superseded, reused, earlier, previous, or pre-promotion evidence.
+Revision `R11_V41_AUTHORITY_REFERENCE_CONSISTENCY` records the incident in `workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md`, allocates new R12/A12 verdicts for the changed exact tree, exposes the active `DESIGN_RECORD` in canonical governance, and extends active-document checking so the expected live verdict pair is derived from canonical final IDs. Mismatched `R<n>/A<n>` pairs fail on current authority surfaces unless their line explicitly marks the reference as prior, old, historical, superseded, reuse, earlier, previous, or pre-promotion evidence.
+
+The detector is now protected by `tools/test_project_docs_checker.py`: the baseline must pass, stale live authority must fail, explicit historical authority must pass, and structured governance parity drift must fail. The workflow path filter covers all `tools/test_*.py` regression files.
+
+Exact detector commit `0d106cbad7e144b737cb43eb17409339d107021d` passed GitHub Actions run `35223256888` / job `105208358932` after two fail-closed refinement runs. That real semantic schema/checker evolution is the candidate measurement event for `LEARNING-CONTROL-001`, bound by `learning/measurements/MEASUREMENT-LEARNING-CONTROL-001-001.md` and still requiring R12/A12 semantic verification.
+
+`LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008` captures the new reusable rule and is only conditionally active through R12/A12; its effectiveness remains pending for a future documentation promotion or authority-reference regression.
 
 This correction does not rewrite immutable historical verdict records and does not treat earlier PASS labels as proof that the blind spot never existed. R12/A12 must independently review/audit the new exact design tree before promotion.

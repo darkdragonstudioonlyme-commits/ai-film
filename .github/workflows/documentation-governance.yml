@@ -16,7 +16,7 @@ on:
       - 'deliveries/**'
       - 'pyproject.toml'
       - 'tools/check_*.py'
-      - 'tools/test_learning_lifecycle_checker.py'
+      - 'tools/test_*.py'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
@@ -34,7 +34,7 @@ on:
       - 'deliveries/**'
       - 'pyproject.toml'
       - 'tools/check_*.py'
-      - 'tools/test_learning_lifecycle_checker.py'
+      - 'tools/test_*.py'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
@@ -61,6 +61,8 @@ jobs:
         run: python3 tools/check_documentation_governance.py
       - name: Active documentation consistency
         run: python3 tools/check_project_docs.py
+      - name: Adversarial active docs regression
+        run: python3 tools/test_project_docs_checker.py
       - name: Workflow continuity
         run: python3 tools/check_workflow_continuity.py
       - name: Holistic documentation audit
