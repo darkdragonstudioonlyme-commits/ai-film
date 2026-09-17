@@ -26,7 +26,11 @@ Correct a post-promotion semantic lag without rewriting the historical/prior-tre
 - normalize learning 009 to durable `ACTIVE / PASS` using completed historical R13/A13 activation evidence before prospective R14/A14 final IDs replace the old pair;
 - add learning 010 so this recurrence becomes a reusable pre-promotion invariant;
 - preserve exact product/native/V02 state;
-- use the post-activation authority reevaluation only as a measurement sample for learning 009 until a later receipt-bearing commit is independently reviewed.
+- bind the post-activation authority reevaluation to an explicit learning 009 receipt; treat EFFECTIVE as candidate state until prospective R14/A14 independently verify the immutable metric and evidence.
+
+## Learning 009 measurement binding
+
+The post-activation event on exact main `60e030de9c234c4ec6cd242c335f94250d448188` is bound by `learning/measurements/MEASUREMENT-LEARNING-CURRENT-EVALUATION-EVIDENCE-009-001.md`. The pre-receipt promotion-finalization sample `006cfc008ac35db1acee463b62ad2b2eb2e72568` passed run `35274405813` / job `105381371417` with 009 ACTIVE/PENDING and 010 predeclared. The later receipt-bearing design marks 009 EFFECTIVE only while preserving the same promotion/native invariants and passing the full executable suite.
 
 ## Exact-tree rule
 
