@@ -19,5 +19,7 @@ A detailed R10 review may PASS only if all conditions hold on one exact final fo
 
 Any contradiction, hidden enforcement debt, unresolved provenance, weakened metric, or product/native-state advancement requires review FAIL or a new exact design SHA.
 
-- R10/A10 must verify the metric-bound receipts for learning 004/005/006 and confirm the three downgraded prior claims remain pending rather than being re-promoted by structural evidence alone.
-- Canonical lifecycle aggregate must be exactly 3 `EFFECTIVE`, 4 `PENDING_MEASUREMENT`, 3 historical `INEFFECTIVE`, zero unresolved ineffective and zero overdue; learning 007 remains pending until its later gate.
+- R10/A10 must verify current metric-bound receipts for learning 005/006, confirm learning 004 prior PASS receipt is superseded by CI-013 recurrence evidence, and confirm the three structurally under-proven prior claims remain pending rather than being re-promoted by structural evidence alone.
+- Canonical lifecycle aggregate must be exactly 2 `EFFECTIVE`, 4 `PENDING_MEASUREMENT`, 4 historical `INEFFECTIVE`, zero unresolved ineffective and zero overdue; learning 007 remains pending until its later gate.
+
+- Review/audit must verify CI-013 recurrence handling: learning 004 is INEFFECTIVE with successor 007 and generic adversarial fixtures neutralize ambient GitHub branch-role environment.

@@ -8,6 +8,8 @@ CHECKER=Path('tools/check_learning_lifecycle.py')
 
 def execute(dst,role=None):
     env=os.environ.copy()
+    for key in ('GITHUB_REF_NAME','GITHUB_REF','GITHUB_HEAD_REF','GITHUB_BASE_REF','AIFILM_DOCSYS_ROLE'):
+        env.pop(key,None)
     if role: env['AIFILM_DOCSYS_ROLE']=role
     return subprocess.run(['python3',str(CHECKER)],cwd=dst,text=True,capture_output=True,env=env)
 def run_case(name,mutate,expected,role=None):
@@ -54,16 +56,16 @@ def ineffective_without_successor(dst):
 def aggregate_drift(dst):
     p=dst/'PROJECT_STATE.md'; s=p.read_text(); p.write_text(s.replace('LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0','LEARNED_BUT_NOT_ACTIVE_BACKLOG: 9'))
 def effective_without_evidence(dst):
-    p,d=reg(dst); d['records']['LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004']['effectiveness_evidence']=[]; write_reg(p,d)
+    p,d=reg(dst); d['records']['LEARNING-PROMOTION-STATE-FINALIZATION-005']['effectiveness_evidence']=[]; write_reg(p,d)
 def effective_without_receipt(dst):
-    p,d=reg(dst); d['records']['LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004']['effectiveness_receipt']=None; write_reg(p,d)
+    p,d=reg(dst); d['records']['LEARNING-PROMOTION-STATE-FINALIZATION-005']['effectiveness_receipt']=None; write_reg(p,d)
 def success_metric_drift(dst):
     p,d=reg(dst); d['records']['LEARNING-WORKFLOW-CONTINUITY-001']['success_metric']='weakened metric'; write_reg(p,d)
 def receipt_metric_hash_mismatch(dst):
-    _,d=reg(dst); rp=dst/d['records']['LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004']['effectiveness_receipt']
+    _,d=reg(dst); rp=dst/d['records']['LEARNING-PROMOTION-STATE-FINALIZATION-005']['effectiveness_receipt']
     s=rp.read_text(); rp.write_text(re.sub(r'(?m)^SUCCESS_METRIC_SHA256: .*$', 'SUCCESS_METRIC_SHA256: '+'0'*64,s))
 def unrelated_effectiveness_evidence(dst):
-    p,d=reg(dst); d['records']['LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004']['effectiveness_evidence']=['README.md']; write_reg(p,d)
+    p,d=reg(dst); d['records']['LEARNING-PROMOTION-STATE-FINALIZATION-005']['effectiveness_evidence']=['README.md']; write_reg(p,d)
 def active_without_activation_evidence(dst):
     p,d=reg(dst); d['records']['LEARNING-SOURCE-VISIBILITY-001']['activation_evidence']=[]; write_reg(p,d)
 def overdue_measurement_drift(dst):

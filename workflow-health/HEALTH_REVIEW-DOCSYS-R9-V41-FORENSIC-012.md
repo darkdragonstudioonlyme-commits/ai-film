@@ -46,3 +46,7 @@ Strict reconciliation found that the mutable register had paraphrased all immuta
 The candidate now implements immutable metric equality, receipt hash/evidence binding, branch-role-aware verdict checking, canonical TEST_REVIEW provenance checking, expanded CI lifecycle-domain triggers, and server-side workflow-continuity execution. It still does **not** claim fully automatic semantic interpretation of observations or GitHub branch/ruleset enforcement. R10/A10 must independently review receipt semantics and keep platform enforcement debt explicit.
 
 No product source, native procedure, LAB authority, qualification, SITE result or HOST_READY state is changed by this health review.
+
+## Post-candidate CI recurrence
+
+GitHub Actions run `35218316047` exposed ambient branch-role leakage in the adversarial harness. See `workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md`. This recurrence reclassifies learning 004 as INEFFECTIVE with successor 007; it is not hidden by the earlier V38 PASS receipt.

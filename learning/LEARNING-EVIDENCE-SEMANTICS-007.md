@@ -11,7 +11,7 @@ SCORE: 10
 CURRENT_ACTION: "Harden lifecycle checker/adversarial tests, add stage-aware verdict validation, expand CI lifecycle-domain triggers, and measure recurrence at the next documentation promotion."
 POLICY_OR_TOOL_PROMOTION: "SELF_LEARNING.md; WORKFLOW_HEALTH.md; GIT_WORKFLOW.md; tools/check_learning_lifecycle.py; tools/test_learning_lifecycle_checker.py; .github/workflows/documentation-governance.yml"
 SUCCESS_METRIC: "Future EFFECTIVE transitions bind the immutable success metric to explicit scope/sample/predicate evidence, unrelated existing files cannot satisfy effectiveness, metric-definition drift fails closed, and legitimate DESIGN/REVIEW/AUDIT verdict stages do not generate false promotion-state CI failures."
-STATUS: ACTIVE
+STATUS: CANDIDATE_PENDING_R10_A10
 ```
 
 The current candidate predeclares activation through R10/A10. Effectiveness is not claimed by this record; it must be measured after a later qualifying lifecycle/promotion transition.

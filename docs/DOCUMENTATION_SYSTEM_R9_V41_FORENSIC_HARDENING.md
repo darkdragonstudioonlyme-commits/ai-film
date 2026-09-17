@@ -44,7 +44,9 @@ The hardened lifecycle checker now machine-enforces immutable-metric equality, r
 
 ## Truthful reclassification of prior effectiveness claims
 
-Forensic reconciliation restored every register `success_metric` to the immutable learning record. Three older structural `EFFECTIVE` claims (control-checker generality, source visibility, and workflow continuity) did not have evidence sufficient for the immutable metric and are returned to `PENDING_MEASUREMENT`. Learning 004/005/006 retain `EFFECTIVE` with explicit metric-bound receipts. New learning 007 captures this forensic failure class and is pending measurement after activation.
+Forensic reconciliation restored every register `success_metric` to the immutable learning record. Three older structural `EFFECTIVE` claims (control-checker generality, source visibility, and workflow continuity) did not have evidence sufficient for the immutable metric and are returned to `PENDING_MEASUREMENT`. Learning 005/006 retain `EFFECTIVE` with explicit metric-bound receipts. GitHub Actions then exposed ambient-environment recurrence in learning 004, so 004 is reclassified `INEFFECTIVE` with successor 007. New learning 007 captures semantic binding plus stage/environment isolation and is pending measurement after activation.
+
+GitHub Actions run `35218316047` is preserved as negative evidence: exact design SHA `57296cc...` passed the lifecycle checker but failed the adversarial suite because the fixture inherited `GITHUB_REF_NAME`. The correction neutralizes ambient role variables for generic fixtures and routes the recurrence through learning 004 → 007.
 
 ## Promotion/review boundary
 

@@ -172,18 +172,17 @@
         "AI_FILM_PROJECT_STATE_V36.json"
       ],
       "activation_blocker": null,
-      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_status": "INEFFECTIVE",
       "effectiveness_evidence": [
         "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V38-ADVERSARIAL-008.md",
-        "AI_FILM_PROJECT_STATE_V37.json",
-        "AI_FILM_PROJECT_STATE_V38.json"
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md"
       ],
       "success_metric": "The unchanged lifecycle checker plus the corrected adversarial suite must PASS on a canonical state with zero ambient pending measurements while the synthesized overdue fixture is still rejected as `learning-overdue-measurement-drift`. A later effectiveness measurement must also show the suite remains stable across subsequent canonical lifecycle-state changes. This learning changes regression-fixture construction only. It does not alter lifecycle policy, checker acceptance predicates, product code or native execution authority.",
       "measurement_trigger": "subsequent canonical lifecycle-state changes after V36 activation",
       "measurement_gate": {
         "kind": "COMPLETE"
       },
-      "successor": null,
+      "successor": "LEARNING-EVIDENCE-SEMANTICS-007",
       "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004-001.md"
     },
     "LEARNING-PROMOTION-STATE-FINALIZATION-005": {

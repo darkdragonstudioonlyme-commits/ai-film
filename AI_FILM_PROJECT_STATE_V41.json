@@ -107,7 +107,7 @@
     "unresolved_ineffective_learning": 0,
     "pending_effectiveness_measurement": 4,
     "overdue_effectiveness_measurement": 0,
-    "historical_ineffective_learning": 3,
+    "historical_ineffective_learning": 4,
     "recently_proven_effective": "LEARNING-RECOVERY-STATE-VERSIONING-006",
     "current_pending_measurements": [
       {
@@ -129,12 +129,13 @@
       }
     ],
     "guarded_self_optimization": "ACTIVE",
-    "semantically_verified_effective": 3,
+    "semantically_verified_effective": 2,
     "effective_claims_downgraded_for_remeasurement": 3,
     "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
     "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
-    "platform_main_protection": "NOT_ENFORCED"
+    "platform_main_protection": "NOT_ENFORCED",
+    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md"
   },
   "forensic_hardening": {
     "status": "DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10",
