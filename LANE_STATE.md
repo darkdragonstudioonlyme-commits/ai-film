@@ -79,6 +79,11 @@ LAB_PREPARATION:
   AUTHENTICITY_FINDING: V02-AUTHENTICITY-001
   AUTHENTICITY_HARDENING_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
   AUTHENTICITY_DEPLOYMENT_EVIDENCE: validation/V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT-P00-DEV21.md
+  POSTDEPLOY_FAILCLOSED_HARDENING: validation/V02_POSTDEPLOY_FAILCLOSED_HARDENING-P00-DEV21.md
+  POSTDEPLOY_FAILCLOSED_DEPLOYMENT: validation/V02_POSTDEPLOY_FAILCLOSED_DEPLOYMENT-P00-DEV21.md
+  POSTDEPLOY_FAILCLOSED_STATUS: DEPLOYED
+  POLICY_CANDIDATE_CURRENT_EVALUATION_ONLY: true
+  PREFLIGHT_BYTE_INTEGRITY_ENFORCED: true
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   LAB_DISTRO: AI-FILM-P00-LAB
   LAB_DISTRO_STATE: STOPPED_PENDING_AUTHORITY
@@ -107,4 +112,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Execution SLA monitoring now rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes are explicitly modeled as rotating samples rather than immutable identities. None of these controls grants native authority. Forensic audit also found that the operator-writable approved inbox provides integrity but not external provenance; V02 authenticity hardening is deployed and verified fail-closed. V02 remains blocked until an external public-key identity/provenance is independently established, the reviewed trust config is separately activated, and an externally signed approval package passes full intake.
+Execution SLA monitoring rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes remain rotating samples rather than immutable identities. None of these controls grants native authority. External-authenticity hardening is deployed, and the post-deployment fail-closed correction now also invalidates stale derived policy on unsuccessful reevaluation and binds staging read-only claims to file bytes. V02 remains blocked until an external public-key identity/provenance is independently established, the reviewed trust config is separately activated, and an externally signed approval package passes full intake.
