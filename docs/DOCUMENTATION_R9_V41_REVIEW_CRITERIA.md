@@ -1,21 +1,20 @@
-# Documentation R9 V41 — Detailed Review Criteria
+# DOCSYS-V2-R9 V41 Forensic Hardening — R10 Detailed Review Criteria
 
-A detailed review may PASS only if all conditions hold on one exact final V41 design SHA:
+A detailed R10 review may PASS only if all conditions hold on one exact final forensic-hardening design SHA:
 
-1. `STATE_VERSION=41`, `DOCUMENTATION_SYSTEM=DOCSYS-V2-R9`, revision `R8_V41_RECOVERY_EFFECTIVENESS_RECONCILIATION`.
-2. Exact dev21 source/package/test/contract identities are unchanged; no product implementation/native configuration/test oracle changes exist.
-3. `RUN-P00-VALIDATION-001` remains BLOCKED at V02; all 86 native cases remain NOT_RUN; qualification/SITE/HOST_READY remain absent.
-4. Canonical validation evidence head is `8024990809364168f7bd04cde44ccf7b30c60b66`.
-5. Health supervises 11 service execution-freshness states in addition to timer state/results; stale and never-completed-after-grace negative tests are PASS.
-6. Actual producer overflow tests prove backup retention=14 and evidence-ledger retention=30 with prune-anchor chain continuity.
-7. Resource bounds are still `MemoryMax=256M` / `TasksMax=128`; safe cgroup binding probe confirms kernel materialization without destructive resource exhaustion.
-8. The post-V40 recovery transition follows producer-first ordering and current verifiers/full-DR/fail-closed campaign/ledger/health are PASS.
-9. Current backup count/SHA and export SHA are represented as rotating observed samples, not stable candidate identity.
-10. Private off-host metadata still pins stable exact-candidate/rebuild identity only; binary payload remains on-host and `OFF_HOST_DR_CLAIMED=false`.
-11. Learning 006 is EFFECTIVE only because its V41 gate and recovery-change trigger are both satisfied and the exact V41 executable suite/CI pass without weakened predicates.
-12. Learning aggregates are backlog=0, unresolved ineffective=0, pending measurement=0, overdue=0, historical ineffective=3.
-13. Lifecycle checker, 9-case adversarial suite, documentation governance, active-doc consistency, holistic audit checker, workflow continuity and runtime-state checks PASS on the exact target.
-14. R9/A9 verdict paths are predeclared and absent from the frozen design tree.
-15. Promotion may add only the immutable R9/A9 verdict records and must be followed by post-promotion CI.
+1. `STATE_VERSION=41`, `DOCUMENTATION_SYSTEM=DOCSYS-V2-R9`, revision `R9_V41_FORENSIC_HARDENING` and R10/A10 identities are predeclared.
+2. Exact dev21 product identity and blocked V02/native `NOT_RUN` boundary remain unchanged.
+3. V41 recovery-effectiveness evidence remains intact; the forensic revision does not manufacture new native or product PASS claims.
+4. `SELF_LEARNING.md` states that evidence-file existence/structural lifecycle PASS is insufficient for EFFECTIVE and defines metric scope/sample/predicate proof.
+5. Immutable learning `SUCCESS_METRIC` is the semantic authority; any register copy may not silently weaken or redefine it.
+6. Event-count metrics cannot be satisfied by a state-version proxy or smaller sample without a reviewed metric change/successor learning.
+7. `WORKFLOW_HEALTH.md` routes semantic-evidence mismatch, metric-definition drift and PASS/CI contradictions into meta-review.
+8. `TEST_REVIEW-P00-DEV20-FACTORY-003` resolves to a byte-identical canonical `TEST_CHANGE-P00-DEV20-FACTORY-003.md` or an equally strong immutable locator/digest.
+9. Root `pyproject.toml` is explicitly non-authoritative for current candidate truth unless PROJECT_STATE delegates that authority.
+10. `GIT_WORKFLOW.md` distinguishes procedural policy from verified platform enforcement and requires lifecycle-domain CI coverage to be audited.
+11. Review verifies exact-design-target CI separately from verdict-bearing branch CI; a red verdict commit is disclosed and never silently called green.
+12. Existing portable documentation/lifecycle/adversarial checks PASS on the exact design target.
+13. Any control specified but not implemented is labeled `SPECIFIED_NOT_YET_MACHINE_ENFORCED`; documentation must not claim operational closure.
+14. No reused R9/A9 verdict may authorize the new SHA; R10/A10 must be new immutable verdicts.
 
-Any discrepancy or open finding requires review FAIL or a new exact design SHA.
+Any contradiction, hidden enforcement debt, unresolved provenance, weakened metric, or product/native-state advancement requires review FAIL or a new exact design SHA.

@@ -132,6 +132,20 @@ After remote writes, re-fetch the branch/ref and verify the expected file/commit
 
 Exact environment snapshots live under `environments/`; reviewed model results live under `model-evaluations/`. Methodology files point to these records rather than accumulating mutable/historical result prose.
 
+## Repository enforcement versus procedural policy
+
+Documentation must distinguish **project policy** from **platform enforcement**. Do not claim that review/CI is repository-enforced unless the current branch/ruleset configuration has been independently verified. When platform capabilities allow it, canonical `main` promotion should require the applicable governance checks; absence of required status enforcement is governance debt, not evidence that a design PASS is false.
+
+## Verdict-branch CI role
+
+DOC-DESIGN, DOC-REVIEW and DOC-AUDIT are different workflow roles. A checker intended for a promoted tree must not mechanically reject a legitimate intermediate review/audit tree merely because only one verdict artifact exists. Tooling must become branch-role aware or stage verdicts so each role has a coherent invariant set.
+
+Until that automation is implemented, a `partial-promotion-verdict-set` failure on a verdict-bearing review/audit commit is process-health evidence and must be disclosed; it may not be silently ignored or misrepresented as proof that the exact design target failed. Promotion still requires a green exact design target and a green post-promotion canonical tree.
+
+## CI lifecycle-domain coverage
+
+CI path filters are part of the control plane. `workflow-runs/**`, `test-governance/**`, `learning/**`, `workflow-health/**`, `environments/**`, `model-evaluations/**`, delivery/state artifacts and governance tools must trigger the checks relevant to the authority they can change. Missing trigger coverage is automation debt and must be recorded by DOC-AUDIT until corrected.
+
 ## Documentation promotion exact-tree rule
 
 A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. The state must predeclare the exact final review/audit IDs and immutable record paths. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.

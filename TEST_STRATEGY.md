@@ -126,3 +126,9 @@ TEST_GAP-*     explicit missing capability/risk
 ```
 
 `TEST_CHANGE` includes `ORACLE_CHANGED`, upstream authority, changed test IDs/scripts, before/after behavior, migration impact and review status. A changed expected outcome without a recorded authority/review is not durable test policy.
+
+### Canonical review provenance
+
+Every `TEST_REVIEW` must resolve the exact `TEST_CHANGE_ID` or `TEST_GAP_ID` it disposes. Preferred form: the proposal/gap exists byte-identically in the same canonical tree. If it must remain lane-local, the review must record an immutable commit/ref plus content digest so a cold-start reviewer can retrieve the exact proposal without relying on conversation memory or a mutable branch tip.
+
+A producer-lane proposal that is independently reviewed and then used as canonical gate evidence must be canonicalized before the gate is treated as durable. A review whose proposal cannot be resolved is `TEST_GOVERNANCE_PROVENANCE_MISSING`; its PASS label alone is not sufficient authority.

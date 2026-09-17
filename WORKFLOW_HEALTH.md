@@ -29,6 +29,10 @@ Any one of these requires at least a health assessment; repeated/severe cases fo
 - a reusable learning remains `PENDING_ACTIVATION`/`BLOCKED` while the affected workflow continues;
 - an `INEFFECTIVE` learning has no active successor/meta-review path;
 - `OVERDUE_EFFECTIVENESS_MEASUREMENT > 0` after a structured measurement gate is reached;
+- an `EFFECTIVE` learning has only path-existence/structural evidence and no independently reviewable proof of its metric scope, sample requirement and predicate;
+- the lifecycle register silently changes or weakens the success metric owned by an immutable learning record;
+- a DOC-REVIEW/DOC-AUDIT artifact declares PASS while the verdict-bearing commit has a required governance CI failure;
+- a canonical `TEST_REVIEW` references a `TEST_CHANGE`/`TEST_GAP` that cannot be resolved from the canonical tree or an exact immutable commit locator;
 - documentation-governance promotion is blocked by branch/worktree identity hard-coded in standing policy instead of canonical governance state.
 
 A merely pending measurement is visible planning state, not a blocker. Learning debt is derived from `learning/LEARNING_STATE.json`; prose or an old learning record cannot override the register.
@@ -93,9 +97,15 @@ Track trends, not vanity counts:
 - pending effectiveness measurement count;
 - **overdue effectiveness measurement count**;
 - lifecycle-state drift count;
-- source-visibility friction.
+- source-visibility friction;
+- semantic-effectiveness verification rate (`verified metric receipts / EFFECTIVE claims`);
+- unsupported/self-reported PASS count;
+- verdict-branch CI contradiction count;
+- canonical test-governance provenance closure rate.
 
-The learning metrics are derived/reconciled through `learning/LEARNING_STATE.json` and its checker. Metrics diagnose workflow quality; they never lower acceptance.
+The learning lifecycle counts are derived/reconciled through `learning/LEARNING_STATE.json`; semantic effectiveness is a separate proof obligation and must not be inferred from those counts. Metrics diagnose workflow quality; they never lower acceptance.
+
+Periodically persist an immutable workflow-health measurement snapshot when enough comparable executions exist. A snapshot must state its population/time window and source artifacts; without a baseline and comparable later measurement, a change is not yet proven to be an improvement.
 
 ## Deadlock breaker
 

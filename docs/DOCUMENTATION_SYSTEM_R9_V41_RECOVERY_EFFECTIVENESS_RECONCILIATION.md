@@ -1,5 +1,7 @@
 # Documentation System R9 V41 — Recovery Effectiveness Reconciliation
 
+> **Superseded promotion contract:** the recovery-effectiveness analysis in this record remains evidence, but its original R9/A9 promotion contract is superseded by `DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md`. Do not use this file as the current final-review/audit identity source.
+
 ## Purpose
 
 V41 is a canonical reconciliation for a real post-V40 operational transition. It does not change product source or native validation state. Its primary lifecycle purpose is the scheduled effectiveness measurement of `LEARNING-RECOVERY-STATE-VERSIONING-006`.

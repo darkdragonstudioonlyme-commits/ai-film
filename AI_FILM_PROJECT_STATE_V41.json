@@ -7,15 +7,16 @@
   "documentation_governance": {
     "release_id": "DOCSYS-V2-R9",
     "previous_active_release": "DOCSYS-V2-R9",
-    "revision": "R8_V41_RECOVERY_EFFECTIVENESS_RECONCILIATION",
-    "design_branch": "lane/docs-v2-r9-v41-design",
-    "review_branch": "lane/docs-v2-r9-v41-review",
-    "audit_branch": "lane/docs-v2-r9-v41-audit",
-    "final_review_id": "DOC-V2-R9-REVIEW-009",
-    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R9_PASS.md",
-    "final_audit_id": "DOC-V2-R9-AUDIT-009",
-    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R9_PASS.md",
-    "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md"
+    "revision": "R9_V41_FORENSIC_HARDENING",
+    "design_branch": "lane/docs-v2-r9-v41-forensic-design",
+    "review_branch": "lane/docs-v2-r9-v41-forensic-review",
+    "audit_branch": "lane/docs-v2-r9-v41-forensic-audit",
+    "final_review_id": "DOC-V2-R9-REVIEW-010",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md",
+    "final_audit_id": "DOC-V2-R9-AUDIT-010",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R10_PASS.md",
+    "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
+    "forensic_hardening_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md"
   },
   "accepted_code_candidate": {
     "version": "0.1.0.dev21",
@@ -110,6 +111,14 @@
     "recently_proven_effective": "LEARNING-RECOVERY-STATE-VERSIONING-006",
     "current_pending_measurements": [],
     "guarded_self_optimization": "ACTIVE"
+  },
+  "forensic_hardening": {
+    "status": "DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10",
+    "semantic_effectiveness_contract": "SPECIFIED_NOT_YET_MACHINE_ENFORCED",
+    "verdict_branch_ci_role_contract": "SPECIFIED_NOT_YET_MACHINE_ENFORCED",
+    "test_governance_provenance": "DEV20_PROPOSAL_CANONICALIZED_BYTE_IDENTICAL",
+    "root_metadata_authority": "EXPLICIT_NON_AUTHORITY_UNLESS_DELEGATED_BY_PROJECT_STATE",
+    "platform_main_protection": "EXTERNAL_SETTING_NOT_ASSUMED_OR_CLAIMED"
   },
   "runtime_reconciliation": {
     "schema_version": 1,

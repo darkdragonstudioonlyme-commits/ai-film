@@ -22,7 +22,7 @@ OBSERVE
 → RETIRE/SUPERSEDE OR REOPEN META-REVIEW
 ```
 
-A reviewed learning is **not operational learning** until its successor policy/tool/checker is canonically active, or activation is explicitly blocked with owner/return path. An active learning is **not proven effective** until its success metric has evidence.
+A reviewed learning is **not operational learning** until its successor policy/tool/checker is canonically active, or activation is explicitly blocked with owner/return path. An active learning is **not proven effective** until its success metric has evidence. Evidence-file existence is necessary but not sufficient: the evidence must semantically prove the declared metric for the declared scope and sample requirement. A checker that only proves that an evidence path exists proves structural lifecycle integrity, not effectiveness.
 
 ## Two-layer ownership model
 
@@ -59,6 +59,7 @@ These files explain **what was learned and why**. Historical activation/review f
 - activation status, activated release, **activation evidence**, and blocker;
 - effectiveness status + evidence;
 - human-readable measurement trigger plus a **structured measurement gate**;
+- immutable success-metric binding: if the register repeats `success_metric`, it must match the immutable learning record; a changed metric requires a successor/new reviewed learning, not silent register editing;
 - successor when ineffective/superseded.
 
 `PROJECT_STATE` carries only **derived aggregates** such as pending activation, unresolved ineffective learning, pending measurement and overdue measurement. Those numbers must match the register; they are never maintained as an independent authority.
@@ -112,6 +113,28 @@ An `ACTIVE` learning must carry immutable activation evidence. `ACTIVE_ON_PROMOT
 
 A promoted learning defines a future detector or behavior change: checker, router rule, test, schema, policy, workflow or recovery step. It is counted as **applied** only after canonical activation. Later workflow-health review evaluates the success metric.
 
+### Semantic effectiveness proof
+
+An `EFFECTIVE` transition must bind the metric to what was actually observed. Use an immutable measurement receipt (normally `learning/measurements/MEASUREMENT-<learning-id>-<nnn>.md`) or an equivalent independently reviewed health record containing at least:
+
+```yaml
+LEARNING_ID:
+METRIC_ID:
+METRIC_VERSION:
+SCOPE:
+SAMPLE_REQUIREMENT:
+OBSERVATIONS:
+EXPECTED_PREDICATE:
+RESULT: PASS|FAIL
+EVIDENCE_IDENTITIES:
+MEASUREMENT_COMMIT:
+REVIEW_ID:
+```
+
+The receipt must make sample cardinality and scope explicit. A metric that requires three interrupted workflows is not satisfied by one recovered run plus a later state number. An unrelated existing file, a state-version increment, or a checker PASS that does not evaluate the metric predicate cannot prove effectiveness.
+
+If current tooling cannot machine-express an event-count or semantic predicate, the measurement remains human-reviewed evidence debt until independent review proves the receipt. Do not weaken the metric to fit the current checker.
+
 For machine-evaluable time/state progression, `measurement_gate` uses structured forms. R9 supports:
 
 ```json
@@ -127,6 +150,8 @@ Tracked failure modes:
 - **ACTIVE_BUT_NOT_EFFECTIVE** — correction is active but recurrence/friction did not improve;
 - **LIFECYCLE_STATE_DRIFT** — immutable record, lifecycle register and project aggregate disagree;
 - **MEASUREMENT_DEBT** — activated correction has reached its structured measurement gate without effectiveness evidence.
+- **SEMANTIC_EVIDENCE_MISMATCH** — evidence paths exist or structural checks pass, but the evidence does not prove the immutable success metric, scope or sample requirement.
+- **METRIC_DEFINITION_DRIFT** — the lifecycle register and immutable learning record disagree on the success metric or silently change its meaning.
 
 `ACTIVE_BUT_NOT_EFFECTIVE` must name a successor or explicit meta-review return path; it is never silently counted as success.
 
@@ -138,7 +163,7 @@ Automation MAY:
 
 - discover schema/lifecycle inconsistencies;
 - derive activation, ineffective, pending-measurement and overdue-measurement counts;
-- create candidate health/learning evidence;
+- create candidate health/learning evidence and semantic measurement receipts;
 - trigger `WORKFLOW_HEALTH` meta-review;
 - generate a candidate documentation-system correction.
 
@@ -147,7 +172,8 @@ Automation MUST NOT:
 - mark its own correction independently reviewed;
 - write PASS review/audit verdicts into its own design step;
 - promote a documentation-system release without the declared review/audit sequence;
-- delete or rewrite evidence merely to remove a failed metric.
+- delete or rewrite evidence merely to remove a failed metric;
+- mark a learning EFFECTIVE merely because referenced files exist or a structural lifecycle checker passes.
 
 ## Activation and effectiveness debt
 

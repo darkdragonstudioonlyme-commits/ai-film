@@ -20,7 +20,7 @@ Business/Reviewed Contracts
      state/router     roadmap       memory/policy
 ```
 
-No workflow trusts another workflow's self-declared PASS. Consumers verify immutable identity and evidence.
+No workflow trusts another workflow's self-declared PASS. Consumers verify immutable identity and evidence. Evidence existence is not proof of a claim: where a verdict depends on a metric, the consumer also verifies semantic binding from metric → scope/sample → predicate → evidence → result.
 
 ## Workflow classes
 
@@ -46,7 +46,7 @@ No workflow trusts another workflow's self-declared PASS. Consumers verify immut
 
 ## Trust rule
 
-A label such as PASS, COMPLETE, REVIEWED or CURRENT has no authority without the identity/evidence contract owned by that workflow.
+A label such as PASS, COMPLETE, REVIEWED or CURRENT has no authority without the identity/evidence contract owned by that workflow. A green structural checker has authority only over the predicates it actually checks; it cannot substitute for semantic measurement or independent review.
 
 ## Continuity plane
 

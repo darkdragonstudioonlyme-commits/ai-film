@@ -27,11 +27,13 @@ Learning 006 reaches its structured V41 gate and its trigger is satisfied by the
 
 The V41 candidate marks learning 006 EFFECTIVE only subject to exact executable checks, CI, R9 review and A9 audit. Any failure invalidates that candidate conclusion.
 
-## R9/A9 contract
+## Forensic hardening and R10/A10 contract
 
-- `DOC-V2-R9-REVIEW-009` → `reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R9_PASS.md`
-- `DOC-V2-R9-AUDIT-009` → `reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R9_PASS.md`
+- `DOC-V2-R9-REVIEW-010` → `reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md`
+- `DOC-V2-R9-AUDIT-010` → `reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R10_PASS.md`
 
-Both verdicts must bind one exact final V41 design SHA. Promotion may add only those two immutable verdict records and requires post-promotion CI.
+The forensic hardening adds a semantic-proof contract for learning effectiveness, explicit separation of platform enforcement from project policy, canonical test-governance proposal traceability, and a branch-role requirement for verdict CI. It deliberately does **not** claim those tooling/platform controls are already machine-enforced.
+
+Both R10/A10 verdicts must bind one exact final V41 forensic-hardening design SHA. Promotion may add only those two immutable verdict records and requires post-promotion CI.
 
 Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`; resilience work cannot substitute for protected external LAB authority.

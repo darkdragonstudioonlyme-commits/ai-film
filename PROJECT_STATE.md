@@ -15,18 +15,19 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  REVISION: R8_V41_RECOVERY_EFFECTIVENESS_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v41-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v41-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v41-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-009
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R9_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-009
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R9_PASS.md
-  ACTIVATION_CONDITION: "Exact V41 tree requires R9 review PASS and A9 audit PASS bound to the same design commit."
-  PROMOTION_RULE: "After audit, main may add only R9/A9 immutable verdict records to the exact audited V41 tree; post-promotion CI is mandatory."
+  REVISION: R9_V41_FORENSIC_HARDENING
+  DESIGN_BRANCH: lane/docs-v2-r9-v41-forensic-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v41-forensic-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v41-forensic-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-010
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-010
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R10_PASS.md
+  ACTIVATION_CONDITION: "Exact V41 forensic-hardening tree requires R10 review PASS and A10 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only R10/A10 immutable verdict records to the exact audited V41 forensic-hardening tree; post-promotion CI is mandatory."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
-  NOTE: "V41 measures recovery-state versioning learning 006 at its scheduled gate after a real post-V40 recovery-state transition; native V02 remains unchanged."
+  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
+  NOTE: "V41 preserves the recovery-effectiveness reconciliation while hardening semantic learning proof, verdict-branch CI semantics, test-governance provenance, metadata authority and improvement measurement; native V02 remains unchanged."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -135,6 +136,15 @@ LEARNING_ACTIVATION:
   CURRENT_PENDING_MEASUREMENTS: "NONE"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
+FORENSIC_HARDENING:
+  STATUS: DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10
+  HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
+  SEMANTIC_EFFECTIVENESS_CONTRACT: SPECIFIED_NOT_YET_MACHINE_ENFORCED
+  VERDICT_BRANCH_CI_ROLE_CONTRACT: SPECIFIED_NOT_YET_MACHINE_ENFORCED
+  TEST_GOVERNANCE_PROVENANCE: DEV20_PROPOSAL_CANONICALIZED_BYTE_IDENTICAL
+  ROOT_METADATA_AUTHORITY: EXPLICIT_NON_AUTHORITY_UNLESS_DELEGATED_BY_PROJECT_STATE
+  PLATFORM_MAIN_PROTECTION: EXTERNAL_SETTING_NOT_ASSUMED_OR_CLAIMED
+
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
   LAB: NOT_RUN
@@ -156,4 +166,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. Only independently verified external LAB authority may advance V02 to V03."
 ```
 
-V41 is valid only if the exact V41 executable suite, R9 review and A9 audit confirm learning-006 effectiveness using the real post-V40 recovery transition without weakening recovery or native-authority boundaries.
+V41 is valid only if the exact V41 forensic-hardening tree passes existing executable checks and independent R10/A10 review confirms that semantic evidence obligations are stated truthfully, unresolved tooling/platform enforcement debt is not misrepresented as closed, and native-authority boundaries remain unchanged.

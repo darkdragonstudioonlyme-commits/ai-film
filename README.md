@@ -18,7 +18,7 @@ This repository is the cross-chat control plane for **AI-FILM-SERVER**. A fresh 
 12. Use `WORKFLOW_HEALTH.md` / `RECOVERY_PLAYBOOK.md` when degraded, blocked or recovering.
 13. Read only task-specific contracts/source/evidence referenced by state/next-work.
 
-Never use an old checkpoint, cached remote-tracking ref, directory name or conversation summary as current truth.
+Never use an old checkpoint, cached remote-tracking ref, directory name, conversation summary, or root `pyproject.toml` package metadata as current project/candidate truth unless `PROJECT_STATE.md` explicitly delegates that authority.
 
 ## One-line routing
 

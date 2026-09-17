@@ -33,8 +33,8 @@ Use the first matching rule:
 1. **Active RUN_ID is not COMPLETE** → resume/reconcile that same run via `WORKFLOW_CONTINUITY.md`; never create a duplicate run for the same workflow/base.
 2. **INTENT exists without COMPLETE or producer output is ahead of canonical state** → classify `CONTINUITY_RECOVERY`; verify/adopt exact output before rerunning any step.
 3. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
-4. **Learning lifecycle checker fails, unresolved ineffective learning exists, or measurement debt is due** → route `WORKFLOW_REVIEW`/DOC-DESIGN before more affected work; preserve the current run return point.
-5. **Workflow health is META_REVIEW_REQUIRED** → route `WORKFLOW_REVIEW` before more brute-force patches.
+4. **Learning lifecycle checker fails, unresolved ineffective learning exists, measurement debt is due, or health evidence reports `SEMANTIC_EVIDENCE_MISMATCH` / `METRIC_DEFINITION_DRIFT`** → route `WORKFLOW_REVIEW`/DOC-DESIGN before more affected work; preserve the current run return point. Structural checker PASS never clears semantic evidence debt by itself.
+5. **Workflow health is META_REVIEW_REQUIRED, including a self-declared PASS whose required verdict-bearing CI is red** → route `WORKFLOW_REVIEW` before more brute-force patches; bind the distinction between exact design-target evidence and verdict-branch process health.
 6. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
 7. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
 8. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.

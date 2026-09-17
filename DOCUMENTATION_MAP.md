@@ -37,6 +37,7 @@ PROJECT_STATE
 | `PROJECT_MEMORY.md` | compact active lesson index/provenance pointers | useful learning activated/superseded | current learning lifecycle state |
 | `learning/LEARNING-*.md` | immutable learning observation/provenance | new reusable learning is discovered | current review/activation/effectiveness state |
 | `learning/LEARNING_STATE.json` | canonical current learning review/activation/effectiveness lifecycle | learning lifecycle changes | observation/root-cause prose |
+| `learning/measurements/*` | immutable semantic effectiveness receipts: metric, scope, sample, predicate, evidence identities and review | effectiveness is measured | mutable lifecycle state |
 | `SELF_LEARNING.md` | learning process, guarded automation, lifecycle ownership and measurement | learning process changes | candidate state |
 | `TEST_STRATEGY.md` | business-first test authority and test-change rules | test philosophy/oracle policy changes | candidate-specific test results |
 | `WORKFLOW_HEALTH.md` | deadlock/inefficiency/learning-debt triggers and meta-review | workflow health policy changes | implementation fixes |
@@ -49,7 +50,7 @@ PROJECT_STATE
 | `OPERATING_ARCHITECTURE.md` | process/trust architecture and separation of concerns | operating architecture changes | mutable status |
 | `GIT_WORKFLOW.md` | commit/branch/artifact/persistence/source-addressability rules | persistence policy changes | project roadmap |
 | `WORKSPACE_WSL.md` | stable local paths/tools/worktree capabilities | workspace changes | release-specific documentation worktree names or mutable candidate state |
-| `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records | material test governance event | active test policy |
+| `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records; every review must resolve its proposal/gap in the canonical tree or by exact immutable commit locator | material test governance event | active test policy |
 | `workflow-health/*` | immutable health/meta-review records | workflow meta-review completes | current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
@@ -66,6 +67,10 @@ PROJECT_STATE
 7. A reusable learning is not applied merely because an immutable learning record exists; current lifecycle comes from `learning/LEARNING_STATE.json`.
 8. `PROJECT_STATE` learning aggregates are derived from the lifecycle register and must be checker-equal.
 9. An ineffective learning with no active successor/meta-review path is process debt.
+10. `EFFECTIVE` requires semantic proof of the immutable success metric; evidence path existence or lifecycle-check PASS alone is not effectiveness proof.
+11. Root/control-plane package metadata such as `pyproject.toml` is not current candidate/version/review authority unless `PROJECT_STATE` explicitly delegates that role. Current candidate truth comes from `PROJECT_STATE` and the exact source/package handoff.
+12. A canonical TEST_REVIEW whose TEST_CHANGE/TEST_GAP cannot be resolved is provenance debt, even if the review verdict itself is present.
+13. CI path-filter coverage is part of documentation governance: changes to lifecycle domains must either trigger their required checker or carry explicit manual audit evidence until automation is extended.
 
 ## Documentation Sync Gate
 
@@ -79,7 +84,8 @@ Did routing/process change?   → WORKFLOW_ROUTER / EXECUTION_LANES / GIT_WORKFL
 Did reusable knowledge emerge?→ immutable learning record + PROJECT_MEMORY pointer
 Did learning lifecycle change?→ learning/LEARNING_STATE.json + derived PROJECT_STATE aggregates
 Did learning become ineffective or due for measurement?→ WORKFLOW_HEALTH + health record/meta-review
-Did test philosophy/oracle change?→ TEST_STRATEGY + test-governance + independent TEST_REVIEW
+Did learning become EFFECTIVE? → semantic measurement receipt/health record proving metric scope + sample + predicate
+Did test philosophy/oracle change?→ TEST_STRATEGY + canonical TEST_CHANGE/TEST_GAP + independent TEST_REVIEW
 Did policy become stale/duplicate? → POLICY_REGISTRY + prune active docs
 Did environment/model context change?→ SERVER_ENVIRONMENT/environments or MODEL_EVALUATION/model-evaluations
 Did recovery behavior change?       → RECOVERY_PLAYBOOK
@@ -114,4 +120,4 @@ python3 tools/check_workflow_continuity.py
 python3 tools/check_runtime_state.py
 ```
 
-These guardrails do not substitute for independent DOC-REVIEW or holistic DOC-AUDIT.
+These guardrails do not substitute for independent DOC-REVIEW or holistic DOC-AUDIT. A checker PASS proves only the invariants it actually evaluates; reviewers must not elevate structural existence checks into semantic effectiveness proof.
