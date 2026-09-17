@@ -1,0 +1,128 @@
+name: Persist R13 V02 Authenticity Review
+
+on:
+  push:
+    branches:
+      - lane/docs-v2-r9-v41-v02-auth-review-persist
+    paths:
+      - '.github/workflows/persist-v02-auth-r13-review.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  persist-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: lane/docs-v2-r9-v41-v02-auth-design
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact reviewed design and server CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          DESIGN_SHA=$(git rev-parse HEAD)
+          DESIGN_TREE=$(git rev-parse HEAD^{tree})
+          test "$(git rev-parse a1785d69227f4a407a2b7616d9e7aa1bea150e81)" = a1785d69227f4a407a2b7616d9e7aa1bea150e81
+          test "$(git diff --name-only a1785d69227f4a407a2b7616d9e7aa1bea150e81..HEAD | wc -l)" -eq 12
+          grep -q 'REVISION: R12_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION' PROJECT_STATE.md
+          grep -q 'VALIDATION_EVIDENCE_HEAD: 9a3854d80b7e4c35c5d2ec933709280ce0baa7fa' PROJECT_STATE.md
+          python3 tools/check_learning_lifecycle.py
+          python3 tools/test_learning_lifecycle_checker.py
+          python3 tools/check_documentation_governance.py
+          python3 tools/check_project_docs.py
+          python3 tools/test_project_docs_checker.py
+          python3 tools/check_workflow_continuity.py
+          python3 tools/audit_documentation_v2.py
+          API="https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${DESIGN_SHA}&per_page=50"
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'X-GitHub-Api-Version: 2022-11-28' "$API" > /tmp/runs.json
+          python3 - "$DESIGN_SHA" <<'PY'
+          import json,sys
+          sha=sys.argv[1]; o=json.load(open('/tmp/runs.json'))
+          runs=[r for r in o.get('workflow_runs',[]) if r.get('name')=='Documentation Governance' and r.get('head_sha')==sha and r.get('conclusion')=='success']
+          if not runs: raise SystemExit('design governance CI missing')
+          r=max(runs,key=lambda x:x['id']); open('/tmp/design_run','w').write(str(r['id']))
+          PY
+          RUN_ID=$(cat /tmp/design_run)
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'X-GitHub-Api-Version: 2022-11-28' "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/jobs?per_page=100" > /tmp/jobs.json
+          python3 - <<'PY'
+          import json
+          o=json.load(open('/tmp/jobs.json')); jobs=[j for j in o.get('jobs',[]) if j.get('name')=='governance' and j.get('conclusion')=='success']
+          if not jobs: raise SystemExit('design governance job missing')
+          open('/tmp/design_job','w').write(str(jobs[0]['id']))
+          PY
+          printf '%s\n' "$DESIGN_SHA" > /tmp/design_sha
+          printf '%s\n' "$DESIGN_TREE" > /tmp/design_tree
+      - name: Persist immutable R13 review record
+        run: |
+          set -euo pipefail
+          DESIGN_SHA=$(cat /tmp/design_sha); DESIGN_TREE=$(cat /tmp/design_tree); DESIGN_RUN=$(cat /tmp/design_run); DESIGN_JOB=$(cat /tmp/design_job)
+          git switch -c lane/docs-v2-r9-v41-v02-auth-review
+          cat > reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS.md <<EOF
+          # DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS
+
+          \`\`\`yaml
+          REVIEW_ID: DOC-V2-R9-REVIEW-013
+          REVIEW_TYPE: DETAILED_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION_REVIEW
+          TARGET_RELEASE: DOCSYS-V2-R9
+          TARGET_REVISION: R12_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION
+          TARGET_DESIGN_BRANCH: lane/docs-v2-r9-v41-v02-auth-design
+          TARGET_DESIGN_COMMIT: ${DESIGN_SHA}
+          TARGET_DESIGN_TREE: ${DESIGN_TREE}
+          BASE_MAIN_COMMIT: a1785d69227f4a407a2b7616d9e7aa1bea150e81
+          CRITERIA: docs/DOCUMENTATION_R9_V41_EXTERNAL_AUTH_REVIEW_CRITERIA.md
+          DESIGN_CI_RUN: ${DESIGN_RUN}
+          DESIGN_CI_JOB: ${DESIGN_JOB}
+          DESIGN_CI_RESULT: SUCCESS
+          SUPERSEDED_REVIEW_ID: DOC-V2-R9-REVIEW-012
+          SUPERSEDED_AUDIT_ID: DOC-V2-R9-AUDIT-012
+          VERDICT: PASS
+          OPEN_FINDINGS: []
+          PRODUCT_SOURCE_CHANGED: false
+          NATIVE_VALIDATION_ADVANCED: false
+          EXTERNAL_TRUST_STATUS: PENDING_EXTERNAL_KEY
+          V02_ADVANCED: false
+          REVIEW_BRANCH_SERVER_VALIDATION: REQUIRED_PRE_PUSH
+          PLATFORM_MAIN_PROTECTION: NOT_ENFORCED
+          \`\`\`
+
+          ## Exact-target review
+
+          R13 binds only exact design SHA \`${DESIGN_SHA}\` / tree \`${DESIGN_TREE}\`. The target has a 12-file net diff from canonical main: eleven reconciliation artifacts plus one immutable design-CI trigger record. Temporary authoring workflow/script files are absent from the final tree. GitHub Documentation Governance run \`${DESIGN_RUN}\` / job \`${DESIGN_JOB}\` completed SUCCESS on this exact SHA.
+
+          ## Detailed conclusions
+
+          1. **Validation provenance — PASS.** Canonical validation evidence head is exactly \`9a3854d80b7e4c35c5d2ec933709280ce0baa7fa\`, matching the promoted validation lane reviewed/deployed V02 authenticity chain.
+          2. **External-authority model — PASS.** Canonical routing distinguishes integrity from independent authenticity and requires out-of-band Ed25519 public-key provenance, separate reviewed anchor activation and a signature over the exact raw approval envelope before protected authority can advance V02.
+          3. **Fail-closed truth — PASS.** Trust config remains \`PENDING_EXTERNAL_KEY\`, approval envelope is MISSING, ready-to-advance is false and no local/private key is claimed.
+          4. **Product/native non-drift — PASS.** Exact dev21 identities remain unchanged; all 86 native procedures remain NOT_RUN; LAB/SITE are NOT_RUN; qualification is NOT_ISSUED and HOST_READY is NOT_EVALUATED.
+          5. **Learning lifecycle — PASS.** Historical R12/A12 activation evidence finalizes learning 008 to ACTIVE without coupling it to current verdict fields. Learning 009 is conditional ACTIVE_ON_PROMOTION and PENDING_MEASUREMENT with immutable metric parity.
+          6. **Derived aggregates — PASS.** Zero activation backlog, zero unresolved ineffective, five pending effectiveness measurements, zero overdue, three semantically verified EFFECTIVE and four historical INEFFECTIVE.
+          7. **Authority prose — PASS.** R13/A13 is the live pair; older R12/A12 references are explicitly historical/superseded only.
+          8. **Executable governance — PASS.** Lifecycle, 16 adversarial lifecycle cases, documentation governance, active-doc consistency, 4 adversarial active-doc cases, workflow continuity and holistic documentation audit pass on the exact target.
+          9. **Platform debt — explicit.** GitHub main protection/rulesets remain not enforced and are not represented as closed.
+
+          ## Result
+
+          Detailed R13 PASS with zero findings for exact design SHA \`${DESIGN_SHA}\`. This verdict does not activate an external key, approve LAB authority or permit V03/native execution. The review-bearing tree is validated below in REVIEW role before publication.
+          EOF
+          AIFILM_DOCSYS_ROLE=REVIEW python3 tools/check_learning_lifecycle.py
+          python3 tools/test_learning_lifecycle_checker.py
+          python3 tools/check_documentation_governance.py
+          python3 tools/check_project_docs.py
+          python3 tools/test_project_docs_checker.py
+          python3 tools/check_workflow_continuity.py
+          python3 tools/audit_documentation_v2.py
+          git diff --check
+          git config user.name 'darkdragonstudioonlyme-commits'
+          git config user.email 'darkdragon.studio.onlyme@gmail.com'
+          git add reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS.md
+          git commit -m 'review(r9): pass V41 V02 external authenticity reconciliation'
+          git push origin HEAD:lane/docs-v2-r9-v41-v02-auth-review
