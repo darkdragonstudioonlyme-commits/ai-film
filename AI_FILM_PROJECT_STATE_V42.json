@@ -7,19 +7,19 @@
   "documentation_governance": {
     "release_id": "DOCSYS-V2-R9",
     "previous_active_release": "DOCSYS-V2-R9",
-    "revision": "R13_V42_PROMOTION_FINALIZATION",
-    "design_branch": "lane/docs-v2-r9-v42-promotion-finalization-design",
-    "review_branch": "lane/docs-v2-r9-v42-promotion-finalization-review",
-    "audit_branch": "lane/docs-v2-r9-v42-promotion-finalization-audit",
-    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V42_PROMOTION_FINALIZATION.md",
-    "final_review_id": "DOC-V2-R9-REVIEW-014",
-    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R14_PASS.md",
-    "final_audit_id": "DOC-V2-R9-AUDIT-014",
-    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R14_PASS.md",
+    "revision": "R14_V42_PROMOTED_SEMANTIC_GUARD",
+    "design_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-design",
+    "review_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-review",
+    "audit_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-audit",
+    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V42_PROMOTED_SEMANTIC_GUARD.md",
+    "final_review_id": "DOC-V2-R9-REVIEW-015",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R15_PASS.md",
+    "final_audit_id": "DOC-V2-R9-AUDIT-015",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R15_PASS.md",
     "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
     "forensic_hardening_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md",
     "promotion_state": "ACTIVE_ON_PROMOTION",
-    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTION-FINALIZATION-017.md",
+    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md",
     "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
     "validation_reconciliation_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-VALIDATION-016.md"
   },
@@ -116,7 +116,7 @@
     "unresolved_ineffective_learning": 0,
     "pending_effectiveness_measurement": 3,
     "overdue_effectiveness_measurement": 0,
-    "historical_ineffective_learning": 4,
+    "historical_ineffective_learning": 5,
     "recently_proven_effective": "LEARNING-CURRENT-EVALUATION-EVIDENCE-009",
     "guarded_self_optimization": "ACTIVE",
     "semantically_verified_effective": 6,
@@ -126,11 +126,21 @@
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "platform_main_protection": "NOT_ENFORCED",
-    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-VALIDATION-016.md",
+    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md",
     "current_pending_measurements": [
-      {"learning_id": "LEARNING-SOURCE-VISIBILITY-001", "gate": "NEXT_FORMAL_SOURCE_HANDOFF"},
-      {"learning_id": "LEARNING-WORKFLOW-CONTINUITY-001", "gate": "EVENT_COUNT_AT_LEAST", "value": 3},
-      {"learning_id": "LEARNING-PROMOTION-CANONICAL-STATE-010", "gate": "NEXT_DOCUMENTATION_PROMOTION"}
+      {
+        "learning_id": "LEARNING-SOURCE-VISIBILITY-001",
+        "gate": "NEXT_FORMAL_SOURCE_HANDOFF"
+      },
+      {
+        "learning_id": "LEARNING-WORKFLOW-CONTINUITY-001",
+        "gate": "EVENT_COUNT_AT_LEAST",
+        "value": 3
+      },
+      {
+        "learning_id": "LEARNING-PROMOTED-SEMANTIC-SURFACE-011",
+        "gate": "NEXT_DOCUMENTATION_PROMOTION"
+      }
     ]
   },
   "forensic_hardening": {
@@ -142,7 +152,8 @@
     "platform_main_protection": "NOT_ENFORCED",
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
-    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
+    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
+    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md"
   },
   "runtime_reconciliation": {
     "schema_version": 1,
@@ -150,9 +161,19 @@
     "implement_head": "934659f535d81d9a4a07389531acc2b9c304fa6d",
     "review_head": "934659f535d81d9a4a07389531acc2b9c304fa6d",
     "implement_dirty_files": [],
-    "implement_lane_required_tokens": ["934659f535d81d9a4a07389531acc2b9c304fa6d", "HANDOFF-CODE-REVIEW-P00-DEV21-DELTA"],
-    "review_lane_required_tokens": ["934659f535d81d9a4a07389531acc2b9c304fa6d", "CODE_REVIEW_PASS: true"],
-    "package": {"required": true, "path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V21.zip", "sha256": "f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3"}
+    "implement_lane_required_tokens": [
+      "934659f535d81d9a4a07389531acc2b9c304fa6d",
+      "HANDOFF-CODE-REVIEW-P00-DEV21-DELTA"
+    ],
+    "review_lane_required_tokens": [
+      "934659f535d81d9a4a07389531acc2b9c304fa6d",
+      "CODE_REVIEW_PASS: true"
+    ],
+    "package": {
+      "required": true,
+      "path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V21.zip",
+      "sha256": "f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3"
+    }
   },
   "author_complete": true,
   "code_review_handoff_ready": true,

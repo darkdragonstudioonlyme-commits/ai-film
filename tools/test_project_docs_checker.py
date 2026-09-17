@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Adversarial regression cases for current documentation-authority semantics."""
 from pathlib import Path
-import json,re,shutil,subprocess,sys,tempfile
+import json,re,shutil,subprocess,sys,tempfile,os
 
 ROOT=Path(__file__).resolve().parents[1]
 STATE=(ROOT/'PROJECT_STATE.md').read_text(encoding='utf-8')
@@ -28,14 +28,15 @@ stale_pair=f'R{stale_review}/A{stale_audit}'
 checkpoint=f'AI_FILM_STATE_CHECKPOINT_V{state_version}.md'
 
 
-def run_case(mutator=None):
+def run_case(mutator=None,role='PROMOTED'):
     with tempfile.TemporaryDirectory(prefix='aifilm-docs-check-') as td:
         dst=Path(td)/'repo'
         shutil.copytree(ROOT,dst,ignore=shutil.ignore_patterns('.git','__pycache__'))
         if mutator: mutator(dst)
+        env=os.environ.copy(); env['AIFILM_DOCSYS_ROLE']=role
         return subprocess.run(
             [sys.executable,str(dst/'tools/check_project_docs.py')],
-            cwd=dst,text=True,capture_output=True
+            cwd=dst,text=True,capture_output=True,env=env
         )
 
 def require(name,proc,should_pass,needle=None):
@@ -66,4 +67,21 @@ def governance_parity_drift(dst):
     p.write_text(text,encoding='utf-8')
 require('governance_parity_drift',run_case(governance_parity_drift),False,'governance-parity:FINAL_REVIEW_ID')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 4 cases')
+
+
+def promoted_candidate_state(dst):
+    p=dst/'PROJECT_STATE.md'; text=p.read_text(encoding='utf-8')
+    text=re.sub(r'(?m)^(\s*PROMOTION_STATE:)\s*\S+',r'\1 CANDIDATE_REVIEW_REQUIRED',text,count=1)
+    p.write_text(text,encoding='utf-8')
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'; data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['promotion_state']='CANDIDATE_REVIEW_REQUIRED'
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('promoted_candidate_state',run_case(promoted_candidate_state),False,'promoted-promotion-state-stale')
+
+def prospective_current_pair(dst):
+    p=dst/checkpoint
+    p.write_text(p.read_text(encoding='utf-8')+f'\nCurrent tree still requires prospective R{review_n}/A{audit_n} review/audit before promotion.\n',encoding='utf-8')
+require('promoted_current_pair_prospective',run_case(prospective_current_pair),False,'promoted-current-verdict-stage-drift')
+require('design_current_pair_prospective',run_case(prospective_current_pair,role='DESIGN'),True,'DOCS_CHECK_PASS')
+
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 7 cases')

@@ -26,6 +26,14 @@ Canonical next action is unchanged: resume `RUN-P00-VALIDATION-001/V02_LAB_EXECU
 
 ## Promotion-finalization revision
 
-Post-promotion main CI `35273366855` resolved historical/prior-tree R13/A13 and learning promotion evidence, but canonical state still carried `CANDIDATE_REVIEW_REQUIRED`. This revision treats that as semantic lag rather than silently editing the audited tree: prospective R14/A14 govern a separate exact correction. The candidate already says `ACTIVE_ON_PROMOTION` and normalizes learning 009 to durable `ACTIVE / PASS` with immutable historical R13/A13 evidence before allocating the new verdict pair.
+Post-promotion main CI `35273366855` resolved historical/prior-tree R13/A13 and learning promotion evidence, but canonical state still carried `CANDIDATE_REVIEW_REQUIRED`. This revision treats that as semantic lag rather than silently editing the audited tree: historical/prior-tree R14/A14 governed that separate exact correction. The candidate already says `ACTIVE_ON_PROMOTION` and normalizes learning 009 to durable `ACTIVE / PASS` with immutable historical R13/A13 evidence before allocating the new verdict pair.
 
-A post-activation real V02 reevaluation on main `60e030de9c234c4ec6cd242c335f94250d448188` removed seeded stale READY/policy artifacts under the blocked authority condition, and byte-integrity/source-addressability regressions remained green. This post-activation event is now bound by `MEASUREMENT-LEARNING-CURRENT-EVALUATION-EVIDENCE-009-001.md`; the candidate marks learning 009 EFFECTIVE subject to independent prospective R14/A14 semantic review. Learning 010 remains pending future promotion measurement.
+A post-activation real V02 reevaluation on main `60e030de9c234c4ec6cd242c335f94250d448188` removed seeded stale READY/policy artifacts under the blocked authority condition, and byte-integrity/source-addressability regressions remained green. This post-activation event is now bound by `MEASUREMENT-LEARNING-CURRENT-EVALUATION-EVIDENCE-009-001.md`; the candidate marks learning 009 EFFECTIVE after independent historical/prior-tree R14/A14 semantic review. Learning 010 remains pending future promotion measurement.
+
+## Promoted semantic-surface guard
+
+Post-promotion reread of main `176aa7452e1c14c67b0768dd75181331f561d95e` found that machine promotion state was correct but current authority prose on the historical/prior-tree R14/A14 promotion still described that then-current pair as prospective and the current tree as a candidate awaiting replacement. The existing checker only rejected stale verdict ordinals, so same-ordinal stage drift escaped.
+
+Revision `R14_V42_PROMOTED_SEMANTIC_GUARD` adds role-aware checks: on PROMOTED/GENERIC surfaces, candidate/pending promotion state fails closed, and the current verdict pair cannot be described with prospective/pending/awaiting-review language unless the line is explicitly historical. DESIGN/REVIEW/AUDIT roles remain allowed to express their real stage.
+
+Learning 010 is therefore recorded INEFFECTIVE and points to successor learning 011. This exact revision uses final verdict IDs R15/A15; branch role controls verdict-artifact presence, while the same prose remains valid after promotion. No product/native/V02 state changes.

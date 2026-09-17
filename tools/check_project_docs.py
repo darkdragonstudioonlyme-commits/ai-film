@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import re,sys,json
+import re,sys,json,os,subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 required=[
@@ -31,12 +31,29 @@ def trailing_ordinal(value):
     m=re.search(r'-(\d+)$',str(value or ''))
     return int(m.group(1)) if m else None
 
+
+def current_doc_role():
+    forced=os.environ.get('AIFILM_DOCSYS_ROLE')
+    if forced: return forced.upper()
+    branch=os.environ.get('GITHUB_REF_NAME','').strip()
+    if not branch:
+        try:
+            branch=subprocess.check_output(['git','-C',str(ROOT),'branch','--show-current'],text=True,stderr=subprocess.DEVNULL).strip()
+        except Exception:
+            branch=''
+    if branch and branch==state_field('DESIGN_BRANCH'): return 'DESIGN'
+    if branch and branch==state_field('REVIEW_BRANCH'): return 'REVIEW'
+    if branch and branch==state_field('AUDIT_BRANCH'): return 'AUDIT'
+    if branch in {'main','master'}: return 'PROMOTED'
+    return 'GENERIC'
+
 mv=re.search(r'^STATE_VERSION: (\d+)$',state,re.M)
 if not mv:
     errors.append('state-version-missing'); state_version=None
 else:
     state_version=int(mv.group(1))
 
+doc_role=current_doc_role()
 state_json=None
 mp=None
 if state_version is not None:
@@ -78,6 +95,10 @@ if state_json:
             elif str(gov.get(json_key))!=md_value:
                 errors.append(f'governance-parity:{md_key}:{gov.get(json_key)}!={md_value}')
 
+        promotion_state=str(gov.get('promotion_state',''))
+        if doc_role in {'PROMOTED','GENERIC'} and re.search(r'(?:CANDIDATE|PENDING|REVIEW_REQUIRED|AUDIT_REQUIRED)',promotion_state,re.I):
+            errors.append(f'promoted-promotion-state-stale:{promotion_state}')
+
         review_n=trailing_ordinal(gov.get('final_review_id'))
         audit_n=trailing_ordinal(gov.get('final_audit_id'))
         if review_n is None or audit_n is None:
@@ -105,7 +126,15 @@ if state_json:
                     low=line.lower()
                     for match in pair_rx.finditer(line):
                         pair=f'R{int(match.group(1))}/A{int(match.group(2))}'
-                        if pair==expected_pair: continue
+                        if pair==expected_pair:
+                            stage_markers=(
+                                'prospective','awaiting review','awaiting audit','pending review','pending audit',
+                                'review required','audit required','requires review','requires audit',
+                                'before replacing current main','before promotion'
+                            )
+                            if doc_role in {'PROMOTED','GENERIC'} and any(marker in low for marker in stage_markers) and not any(marker in low for marker in historical_markers):
+                                errors.append(f'promoted-current-verdict-stage-drift:{surface_name}:{lineno}:{expected_pair}')
+                            continue
                         if any(marker in low for marker in historical_markers): continue
                         errors.append(f'stale-verdict-authority:{surface_name}:{lineno}:{pair}!={expected_pair}')
 
