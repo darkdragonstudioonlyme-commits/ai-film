@@ -15,16 +15,17 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  REVISION: R9_V41_FORENSIC_HARDENING
-  DESIGN_BRANCH: lane/docs-v2-r9-v41-forensic-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v41-forensic-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v41-forensic-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-010
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-010
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R10_PASS.md
-  ACTIVATION_CONDITION: "Exact V41 forensic-hardening tree requires R10 review PASS and A10 audit PASS bound to the same design commit."
-  PROMOTION_RULE: "After audit, main may add only R10/A10 immutable verdict records to the exact audited V41 forensic-hardening tree; post-promotion CI is mandatory."
+  PROMOTION_STATE: ACTIVE_ON_PROMOTION
+  REVISION: R10_V41_FORENSIC_PROMOTION_FINALIZATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v41-forensic-final-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v41-forensic-final-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v41-forensic-final-audit
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-011
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R11_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-011
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R11_PASS.md
+  ACTIVATION_CONDITION: "Exact V41 forensic-finalization tree requires R11 review PASS and A11 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only R11/A11 immutable verdict records to the exact audited V41 forensic-finalization tree; post-promotion CI is mandatory."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   NOTE: "V41 preserves the recovery-effectiveness reconciliation while hardening semantic learning proof, verdict-branch CI semantics, test-governance provenance, metadata authority and improvement measurement; native V02 remains unchanged."
@@ -139,9 +140,10 @@ LEARNING_ACTIVATION:
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 FORENSIC_HARDENING:
-  STATUS: DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10
+  STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md
+  PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
   VERDICT_BRANCH_CI_ROLE_CONTRACT: MACHINE_ENFORCED
   CI_LIFECYCLE_DOMAIN_COVERAGE: MACHINE_ENFORCED

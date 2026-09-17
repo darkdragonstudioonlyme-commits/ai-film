@@ -11,7 +11,7 @@ OBSERVATIONS: "V41 recovery health evidence shows producer-first regeneration be
 EXPECTED_PREDICATE: "A real later recovery transition regenerates producers before stricter consumer success, does not weaken recovery predicates, and separates stable from rotating identity."
 MEASUREMENT_COMMIT: 59b288a39470475acdc34a545f0edfa5b4303650
 RESULT: PASS
-REVIEW_ID: DOC-V2-R9-REVIEW-010
+REVIEW_ID: DOC-V2-R9-REVIEW-011
 ```
 
 ## Immutable success metric

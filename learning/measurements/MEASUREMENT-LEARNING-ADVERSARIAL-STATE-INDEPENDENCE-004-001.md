@@ -11,7 +11,7 @@ OBSERVATIONS: "V38 health record reports 9/9 adversarial cases PASS after ambien
 EXPECTED_PREDICATE: "Adversarial suite remains state-independent across changed ambient lifecycle state and synthesized negative fixtures still force the intended failure class."
 MEASUREMENT_COMMIT: 0d3c2f7167707f82ab295766b8be978d7554ee4b
 RESULT: PASS
-REVIEW_ID: DOC-V2-R9-REVIEW-010
+REVIEW_ID: DOC-V2-R9-REVIEW-011
 ```
 
 ## Immutable success metric

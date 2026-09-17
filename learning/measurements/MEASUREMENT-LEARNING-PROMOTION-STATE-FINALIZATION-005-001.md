@@ -11,7 +11,7 @@ OBSERVATIONS: "V39 health record shows prior transition-only promotion state was
 EXPECTED_PREDICATE: "Completed prior-promotion transient state is finalized before a later promotion contract replaces final-review/final-audit fields, with exact suites remaining fail-closed."
 MEASUREMENT_COMMIT: 69c10e208346fa6d129dbbb3271287c4a1d2fa12
 RESULT: PASS
-REVIEW_ID: DOC-V2-R9-REVIEW-010
+REVIEW_ID: DOC-V2-R9-REVIEW-011
 ```
 
 ## Immutable success metric

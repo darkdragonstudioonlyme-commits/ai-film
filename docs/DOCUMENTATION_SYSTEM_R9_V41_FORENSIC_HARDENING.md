@@ -50,15 +50,21 @@ GitHub Actions run `35218316047` is preserved as negative evidence: exact design
 
 ## Promotion/review boundary
 
-This is revision `R9_V41_FORENSIC_HARDENING`. It supersedes the earlier unpromoted V41 R8 design target for promotion purposes. The prior R9/A9 verdict artifacts remain immutable evidence for their old SHA and are not reused.
+This is revision `R10_V41_FORENSIC_PROMOTION_FINALIZATION`. It supersedes the earlier unpromoted V41 R8 design target for promotion purposes. The prior R9/A9 verdict artifacts remain immutable evidence for their old SHA and are not reused.
 
 The final candidate predeclares new review/audit identities:
 
-- `DOC-V2-R9-REVIEW-010`
-- `DOC-V2-R9-AUDIT-010`
+- `DOC-V2-R9-REVIEW-011`
+- `DOC-V2-R9-AUDIT-011`
 
-Independent R10/A10 must bind the exact final forensic-hardening SHA. Promotion remains verdict-only after audit and requires post-promotion CI.
+Independent R11/A11 must bind the exact final forensic-hardening SHA. Promotion remains verdict-only after audit and requires post-promotion CI.
 
 ## Non-claims
 
 This revision modifies lifecycle/governance checkers and CI coverage, but does not change product source, native validation procedures, LAB authority, qualification, SITE evidence or HOST_READY. Full semantic interpretation remains independent-review responsibility, and GitHub repository protection/rulesets remain external platform debt until separately configured and verified.
+
+## Promotion-state finalization correction
+
+Pre-promotion inspection of the green R10/A10 chain found that `FORENSIC_HARDENING.STATUS` still said `DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10` and JSON still described two implemented controls as merely specified. Merging that exact tree would have created immediate canonical state drift. The R10/A10 verdicts therefore remain valid evidence for their old design SHA but are not promotion authority for this corrected tree.
+
+R10_V41 predeclares `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENING.STATUS: ACTIVE_ON_PROMOTION`, aligns JSON with the machine-enforced checker/CI reality, and requires new R11/A11 verdicts bound to the corrected exact SHA. No product/native state changes.
