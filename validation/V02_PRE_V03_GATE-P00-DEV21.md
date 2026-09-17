@@ -5,9 +5,12 @@ GATE_ID: V02-PRE-V03-GATE-P00-DEV21-001
 RUN_ID: RUN-P00-VALIDATION-001
 STEP_ID: V02_LAB_EXECUTION_AUTHORITY
 CURRENT_STATUS: BLOCKED_EXTERNAL_AUTHORITY
-PRE_V03_STAGE_SHA256: cbf4e25d7d6a544ca5709f7661f56b927ac766cdbc5bb5292c4475bc410a407a
+PRE_V03_STAGE_SHA256: 4808eabfdea1e7104100d9e2342962e0b9f3ce518db35d21bff4e57d66b50f31
 POLICY_MATERIALIZER_SHA256: cd71be5a65dfc90fa6fdf76f2e865a4651fd717c03fbb6b05cc1dad147020b0e
 TRUST_ANCHOR_INSTALLER_SHA256: 34fa9e84a63f54c9164873db99d85aa914b662237714bd945744046e52f96f3c
+POSTDEPLOY_FAILCLOSED_HARDENING: CANDIDATE_REVIEW_REQUIRED
+POLICY_CANDIDATE_CURRENT_EVALUATION_ONLY: true
+POLICY_CANDIDATE_REMOVED_ON_FAILED_STAGE: true
 TRUST_ANCHOR_EXISTS: false
 APPROVAL_ENVELOPE_EXISTS: false
 LAB_STATE: STOPPED
@@ -18,20 +21,20 @@ NATIVE_EXECUTION_STARTED: false
 
 ## Staging sequence
 
-`pre-v03-authority-stage.sh` is fail-closed. It first runs the V02 intake validator; only after intake is READY does it verify the sealed LAB artifacts, invoke the non-installing NativeStore policy materializer, require a real policy candidate, and re-check that `AI-FILM-P00-LAB` is still Stopped. It currently exits 12 at the authority step and creates no policy candidate.
+`pre-v03-authority-stage.sh` treats `native-policy.candidate.json` as an ephemeral artifact of the **current successful evaluation**, not as durable authority. It deletes any prior candidate before evaluating V02 and registers an EXIT cleanup that removes the candidate on every unsuccessful exit. Only a run in which authority intake, artifact seal, NativeStore materialization and the final `AI-FILM-P00-LAB = Stopped` check all succeed may retain the current candidate for the separate trust-anchor installation review.
 
-`materialize-v02-native-policy.py` can only write a mode-600 candidate policy after the approved intake has passed exact dev21 admission/suite checks and after the candidate policy successfully instantiates dev21 `NativeStore`. It never writes HKLM.
+This closes a post-deployment fail-closed gap: a policy candidate produced by an earlier READY evaluation cannot survive a later authority, seal, materializer or LAB-state failure and be mistaken for current evidence. The regression suite covers blocked authority, seal failure, materializer partial-write failure, LAB-running failure and the successful retention case.
 
-`install-phase00-trust-anchor.ps1` is the final provisioning tool but defaults to non-commit behavior. A registry write requires explicit `-Commit`, an existing policy file, exact expected SHA-256, matching MachineGuid-derived host scope, matching current operator SID and an elevated Windows administrator context. It refuses to overwrite an existing Phase00 trust anchor and removes a newly-created key if create/write/readback fails.
+`materialize-v02-native-policy.py` itself is unchanged. It can only write a mode-600 candidate policy after approved intake passes exact-dev21 admission/suite checks and after the policy successfully instantiates the exact dev21 `NativeStore`; it never writes HKLM.
 
-## Negative install check
+## Review evidence boundary
 
-The Windows host normally blocks the UNC `.ps1` under its current execution policy. A one-process test used `-ExecutionPolicy Bypass` only to reach the script's first guard with a deliberately nonexistent policy path. The installer rejected it with `POLICY_NOT_FOUND` and returned nonzero. The machine execution policy was not changed.
+Portable server-side checks are enforced by `.github/workflows/validation-v02-tooling.yml`. GitHub Actions run `35269442201` passed compile, shell syntax, external-authenticity, byte-integrity preflight, watcher fail-closed, pre-V03 stale-policy cleanup and manifest-integrity checks. The exact-source-dependent hardened-validator regression cannot be truthfully reconstructed from the GitHub checkout because exact dev21 source remains artifact-only; it was rerun in a detached local review tree against exact source commit `934659f535d81d9a4a07389531acc2b9c304fa6d` and passed all six cases.
 
-A subsequent read-only Windows check confirmed both `HKLM\SOFTWARE\AI-FILM-SERVER\Phase00\Trust` and the real `approval-envelope.json` remain absent.
+The two earlier CI failures remain part of the evidence history: run `35268841620` exposed an invalid assumption that the stale root `pyproject.toml` could install the candidate source, and run `35269310254` exposed the invalid assumption that the GitHub checkout could stand in for exact dev21 source. Neither failure weakened a V02 predicate; the final workflow separates portable checks from exact-source review obligations.
 
-This record is preparation only. No trust authority has been installed and V02 remains BLOCKED.
+## Trust-anchor boundary
 
-## Deployed external-authenticity hardening
+`install-phase00-trust-anchor.ps1` remains the final provisioning tool and defaults to non-commit behavior. A registry write still requires explicit `-Commit`, an existing current policy file, exact expected SHA-256, matching MachineGuid-derived host scope, matching current operator SID and an elevated Windows administrator context. It refuses to overwrite an existing Phase00 trust anchor and removes a newly-created key if create/write/readback fails.
 
-Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The independently reviewed/audited hardening in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` is deployed. The Ed25519 trust config intentionally remains `PENDING_EXTERNAL_KEY`; therefore this step remains BLOCKED until external key provenance is established and separately activated, and no readiness/preflight result may be interpreted as authority.
+The Windows trust key and real `approval-envelope.json` remain absent, the external Ed25519 trust config remains `PENDING_EXTERNAL_KEY`, and `AI-FILM-P00-LAB` remains stopped. This candidate does not approve authority, install trust, start LAB execution, advance V02, run V03, issue qualification or change HOST_READY.
