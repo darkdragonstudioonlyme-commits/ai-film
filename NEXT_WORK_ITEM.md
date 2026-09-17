@@ -4,7 +4,7 @@
 RUN_ID: RUN-P00-VALIDATION-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 LANE: VALIDATION
-STATUS: BLOCKED_EXTERNAL_AUTHORITY_ONLY
+STATUS: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
 MODE: VALIDATION
 PHASE: "00 — Host / WSL"
 WORK_ITEM: M-P00-VALIDATION
@@ -33,16 +33,19 @@ INPUT_IDENTITY:
   LAB_PRISTINE_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
   LAB_SNAPSHOT_RESTORE_PROBE: PASS
   LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
-GOAL: "Close V02 only with independently approved protected registration/owner-controller attestation and approved exact dev21 fixture/plan/suite authority for the already-prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory and produce qualification evidence before any SITE active operation."
+  VALIDATION_EVIDENCE_HEAD: 0e9fea427d9ec0385326c9fc1dc1c4d8ec9b27c3
+  EXTERNAL_AUTHENTICITY_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
+  POSTDEPLOY_FAILCLOSED_STATUS: DEPLOYED
+GOAL: "Close V02 only with independently authenticated external key provenance, an externally signed exact approval envelope and protected registration/fixture/plan/suite authority for the prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory before qualification or SITE."
 STEPS:
   - V01_CODE_REVIEW_GATE: COMPLETE
-  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHORITY_ONLY
+  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
   - V03_NATIVE_LAB_REGRESSION: NOT_STARTED
   - V04_QUALIFICATION_RECEIPT: NOT_STARTED
   - V05_SITE_VALIDATION: NOT_STARTED
   - V06_GATE_ASSESSMENT: NOT_STARTED
 CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
-SUCCESS_OUTPUT: "Verified protected LAB registration/owner-controller attestation plus protected fixture/plan refs and approved <=24h exact-dev21 lab_acceptance_suite bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
+SUCCESS_OUTPUT: "Verified external Ed25519 key provenance plus valid signature over the exact approval envelope and protected registration/fixture/plan/<=24h suite object graph bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
 ON_SUCCESS: WF-P00-VALIDATION-LAB
 ON_FAIL: VALIDATION_FAILURE_ROUTE
 ON_BLOCK: BLOCK-P00-VAL-LAB-AUTH-001
@@ -65,7 +68,7 @@ The Windows-side protected pending store is ACL-protected (inheritance protected
 BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 OWNER_LANE: VALIDATION
-REASON: "Technical disposable LAB infrastructure and the sealed pending authority bundle are complete. Remaining V02 requirement is an independent external authority decision that turns the protected pending candidate into approved registration/attestation, fixture/plan and <=24h suite records."
+REASON: "Technical LAB and fail-closed tooling are complete. Remaining V02 requirement is independently authenticated external authority: reviewed external key provenance, signed exact approval envelope and protected registration/fixture/plan/<=24h suite records."
 TECHNICAL_LAB_ENVIRONMENT_MISSING: false
 PENDING_AUTHORITY_BUNDLE_READY: true
 EXTERNAL_APPROVAL_HANDOFF: "lane/validation-p00:validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md"
@@ -82,4 +85,4 @@ STATUS: OPEN
 
 ## Minimum external action
 
-Do **not** create another LAB and do not start the stopped LAB for native execution. The external owner/controller must review the protected bundle identified by `fa38540df...` and return the immutable protected refs specified by `LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`. Credentials and raw SID/MachineGuid stay out of GitHub. Only after those records independently verify may this same run advance V02 → V03.
+Do **not** create another LAB and do not start the stopped LAB for native execution. The external owner/controller must establish out-of-band Ed25519 public-key provenance, then return a signed exact approval envelope and immutable protected refs specified by `LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`. Credentials, private keys and raw SID/MachineGuid stay out of GitHub. Only after signature, object graph and current gate independently verify may this same run advance V02 → V03.
