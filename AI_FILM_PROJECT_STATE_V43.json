@@ -114,12 +114,12 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 3,
+    "pending_effectiveness_measurement": 2,
     "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 6,
-    "recently_proven_effective": "LEARNING-CURRENT-EVALUATION-EVIDENCE-009",
+    "recently_proven_effective": "LEARNING-SOURCE-VISIBILITY-001",
     "guarded_self_optimization": "ACTIVE",
-    "semantically_verified_effective": 6,
+    "semantically_verified_effective": 7,
     "effective_claims_downgraded_for_remeasurement": 3,
     "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
     "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
@@ -128,10 +128,6 @@
     "platform_main_protection": "NOT_ENFORCED",
     "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md",
     "current_pending_measurements": [
-      {
-        "learning_id": "LEARNING-SOURCE-VISIBILITY-001",
-        "gate": "NEXT_FORMAL_SOURCE_HANDOFF"
-      },
       {
         "learning_id": "LEARNING-WORKFLOW-CONTINUITY-001",
         "gate": "EVENT_COUNT_AT_LEAST",

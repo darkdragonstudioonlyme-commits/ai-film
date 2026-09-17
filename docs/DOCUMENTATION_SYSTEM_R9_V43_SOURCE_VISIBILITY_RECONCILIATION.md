@@ -28,3 +28,7 @@ R17/A17 are the final verdict identities for this exact semantic tree. The same 
 ## Non-goals
 
 No product code/package, code-review verdict, validation tooling, external key/approval/trust state, native execution, qualification, SITE or HOST_READY state changes.
+
+## Measurement sample
+
+Exact sample 6ff7077182065b7b7ba7107c9faf1f86cf0c35f5 passed Documentation Governance run 35284855642 / job 105414825148 while source-visibility learning 001 was still PENDING_MEASUREMENT. Receipt MEASUREMENT-LEARNING-SOURCE-VISIBILITY-001-001.md is a later design artifact and remains subject to R17/A17 semantic review. Learning 012 is intentionally not measured by this design-stage sample.

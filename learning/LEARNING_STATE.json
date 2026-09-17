@@ -67,16 +67,18 @@
         "AI_FILM_PROJECT_STATE_V30.json"
       ],
       "activation_blocker": null,
-      "effectiveness_status": "PENDING_MEASUREMENT",
-      "effectiveness_evidence": [],
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "reviews/CODE-REVIEW-P00-001_DEV21_SOURCE_VISIBILITY_HANDOFF.md",
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V43-SOURCE-VISIBILITY-020.md"
+      ],
       "success_metric": "Formal CODE_REVIEW handoffs always state exact source/package identity plus remote source visibility; no reader mistakes partial snapshot for full candidate.",
       "measurement_trigger": "formal source handoff",
       "measurement_gate": {
-        "kind": "NEXT_QUALIFYING_EVENT",
-        "event_kind": "FORMAL_SOURCE_HANDOFF"
+        "kind": "COMPLETE"
       },
       "successor": null,
-      "effectiveness_receipt": null
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-SOURCE-VISIBILITY-001-001.md"
     },
     "LEARNING-WORKFLOW-CONTINUITY-001": {
       "record": "learning/LEARNING-WORKFLOW-CONTINUITY-001.md",

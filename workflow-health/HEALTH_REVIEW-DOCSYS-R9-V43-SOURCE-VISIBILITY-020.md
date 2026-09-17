@@ -18,7 +18,7 @@ The exact source history contains 20 commits and 474 unique reachable blobs, all
 
 ## Learning measurement discipline
 
-The first V43 design sample retains LEARNING-SOURCE-VISIBILITY-001 as PENDING_MEASUREMENT while publishing the formal source handoff. Observation must precede EFFECTIVE. Learning 012 is also retained pending because its metric requires a completed later promotion.
+The first V43 design sample 6ff7077182065b7b7ba7107c9faf1f86cf0c35f5 retained LEARNING-SOURCE-VISIBILITY-001 as PENDING_MEASUREMENT while publishing the formal source handoff. GitHub Actions run 35284855642 / job 105414825148 passed all documentation/lifecycle checks. The later receipt MEASUREMENT-LEARNING-SOURCE-VISIBILITY-001-001.md binds that observation to the immutable metric and marks EFFECTIVE only as an R17/A17-review-gated candidate. Learning 012 remains pending because its metric requires a completed later promotion.
 
 ## Boundary
 

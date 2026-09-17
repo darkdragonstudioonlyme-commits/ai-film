@@ -12,7 +12,7 @@ Publication safety was checked across all 20 reachable commits / 474 unique blob
 
 Historical/prior-tree R16/A16 activated learning 012; V43 normalizes it to durable PASS/ACTIVE before changing final verdict IDs. Learning 012 remains PENDING_MEASUREMENT. R17/A17 is the qualifying promotion event for the immutable metric; effectiveness is evaluated only after that event has a verified outcome.
 
-LEARNING-SOURCE-VISIBILITY-001 also remains PENDING_MEASUREMENT in this first V43 sample. The formal source handoff exists before any effectiveness conclusion; a later design commit may add a metric-bound receipt only after this sample passes executable checks.
+The first V43 sample kept LEARNING-SOURCE-VISIBILITY-001 PENDING_MEASUREMENT while the formal handoff existed. Exact sample 6ff7077182065b7b7ba7107c9faf1f86cf0c35f5 then passed Documentation Governance run 35284855642 / job 105414825148. A later receipt-bearing design commit now marks source-visibility learning EFFECTIVE candidate, bound to the immutable metric and formal handoff; R17/A17 must independently verify that evidence. Learning 012 remains PENDING_MEASUREMENT because its qualifying event is the completed V43 promotion, not the design sample.
 
 ## Current authority
 
