@@ -28,7 +28,7 @@ REPLAY_POLICY: SAFE_REEXECUTE
 ## Current preparation evidence
 
 - Exact dev21 identities remain unchanged and all 86 native cases remain `NOT_RUN`.
-- V02 remains BLOCKED and `AI-FILM-P00-LAB` remains stopped. The real inbox still has no approval envelope, and forensic review additionally found that the operator-writable approved inbox cannot by itself prove external provenance; finding `V02-AUTHENTICITY-001` requires external-key/signature hardening before any future APPROVE package can close V02.
+- V02 remains BLOCKED and `AI-FILM-P00-LAB` remains stopped. External-authenticity hardening is deployed and verified fail-closed; the real inbox still has no approval envelope and the Ed25519 trust config remains `PENDING_EXTERNAL_KEY`. A future APPROVE package cannot close V02 until independently established external key provenance is reviewed/activated and the exact envelope signature plus protected object graph verify successfully.
 - `validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md` records N1–N6 execution-SLA, retention and rotating-state work.
 - Runtime health now checks monotonic last-completion freshness for all eleven services in addition to timer enabled/active state and previous job result. Production-function negative tests reject both stale completion and never-completed-after-boot-grace states.
 - Real producer retention overflow tests prove control backup retention=14 and evidence-ledger retention=30; pruned ledger history preserves predecessor continuity through the chain anchor.

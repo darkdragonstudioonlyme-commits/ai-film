@@ -4,7 +4,7 @@
 PREFLIGHT_RECORD_ID: V02-AUTHORITY-PREFLIGHT-P00-DEV21-001
 STATUS: PASS
 SCRIPT: /home/dragon/ai-film-dev/validation-ops/v02-authority-preflight.py
-SCRIPT_SHA256: abf0ca0ef4411d50e1f384755c25d2fbf0f97851f344aa0998a25cf18cf9914e
+SCRIPT_SHA256: 6518908e72f39fd6ba1200b0066220e94140d88cc927c2d2180c0f8e17408785
 VALIDATOR: /home/dragon/ai-film-dev/validation-ops/v02-authority-intake.py
 USES_EXACT_V02_VALIDATOR_SEMANTICS: true
 WRITES_READY_FLAG: false
@@ -36,6 +36,6 @@ Observed tests:
 
 This tool is intended for external-owner packaging QA before a package is moved into the protected authoritative inbox. It cannot create independent authority, approve a package, install trust, or satisfy V02 by itself.
 
-## External-authenticity hardening candidate
+## Deployed external-authenticity hardening
 
-Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The reviewed candidate in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` adds a hash-pinned Ed25519 trust anchor and detached signature gate ahead of object consumption. Until that candidate is independently reviewed/deployed and the external key is established out-of-band, this step remains BLOCKED and no existing readiness/preflight result may be interpreted as authority.
+Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The independently reviewed/audited hardening in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` is deployed. The Ed25519 trust config intentionally remains `PENDING_EXTERNAL_KEY`; therefore this step remains BLOCKED until external key provenance is established and separately activated, and no readiness/preflight result may be interpreted as authority.

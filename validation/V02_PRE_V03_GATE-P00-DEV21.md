@@ -5,8 +5,8 @@ GATE_ID: V02-PRE-V03-GATE-P00-DEV21-001
 RUN_ID: RUN-P00-VALIDATION-001
 STEP_ID: V02_LAB_EXECUTION_AUTHORITY
 CURRENT_STATUS: BLOCKED_EXTERNAL_AUTHORITY
-PRE_V03_STAGE_SHA256: f772cd994e73cc7da3e82ded3a7e9a97e4f9f823c33c91668c7a13404e8c25e5
-POLICY_MATERIALIZER_SHA256: 52083c05fc4fbeab15897a0ae4268f9963a13365909d37c1eca39da00d5c3b74
+PRE_V03_STAGE_SHA256: cbf4e25d7d6a544ca5709f7661f56b927ac766cdbc5bb5292c4475bc410a407a
+POLICY_MATERIALIZER_SHA256: cd71be5a65dfc90fa6fdf76f2e865a4651fd717c03fbb6b05cc1dad147020b0e
 TRUST_ANCHOR_INSTALLER_SHA256: 34fa9e84a63f54c9164873db99d85aa914b662237714bd945744046e52f96f3c
 TRUST_ANCHOR_EXISTS: false
 APPROVAL_ENVELOPE_EXISTS: false
@@ -32,6 +32,6 @@ A subsequent read-only Windows check confirmed both `HKLM\SOFTWARE\AI-FILM-SERVE
 
 This record is preparation only. No trust authority has been installed and V02 remains BLOCKED.
 
-## External-authenticity hardening candidate
+## Deployed external-authenticity hardening
 
-Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The reviewed candidate in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` adds a hash-pinned Ed25519 trust anchor and detached signature gate ahead of object consumption. Until that candidate is independently reviewed/deployed and the external key is established out-of-band, this step remains BLOCKED and no existing readiness/preflight result may be interpreted as authority.
+Finding `V02-AUTHENTICITY-001` shows that the operator-writable approved inbox is not by itself proof of external provenance. The independently reviewed/audited hardening in `validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md` is deployed. The Ed25519 trust config intentionally remains `PENDING_EXTERNAL_KEY`; therefore this step remains BLOCKED until external key provenance is established and separately activated, and no readiness/preflight result may be interpreted as authority.

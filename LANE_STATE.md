@@ -77,7 +77,8 @@ LAB_PREPARATION:
   AUTHORITY_PREFLIGHT: validation/V02_AUTHORITY_PREFLIGHT-P00-DEV21.md
   EXTERNAL_AUTHENTICITY_HARDENING: validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md
   AUTHENTICITY_FINDING: V02-AUTHENTICITY-001
-  AUTHENTICITY_HARDENING_STATUS: CANDIDATE_NOT_DEPLOYED
+  AUTHENTICITY_HARDENING_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
+  AUTHENTICITY_DEPLOYMENT_EVIDENCE: validation/V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT-P00-DEV21.md
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   LAB_DISTRO: AI-FILM-P00-LAB
   LAB_DISTRO_STATE: STOPPED_PENDING_AUTHORITY
@@ -106,4 +107,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Execution SLA monitoring now rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes are explicitly modeled as rotating samples rather than immutable identities. None of these controls grants native authority. Forensic audit also found that the operator-writable approved inbox provides integrity but not external provenance; V02 remains blocked until the authenticity hardening is reviewed/deployed and an external trust anchor plus signed approval are independently established.
+Execution SLA monitoring now rejects stale service completion even when a timer remains active. Retention overflow tests prove backup=14 and ledger=30 behavior, and current recovery bytes are explicitly modeled as rotating samples rather than immutable identities. None of these controls grants native authority. Forensic audit also found that the operator-writable approved inbox provides integrity but not external provenance; V02 authenticity hardening is deployed and verified fail-closed. V02 remains blocked until an external public-key identity/provenance is independently established, the reviewed trust config is separately activated, and an externally signed approval package passes full intake.
