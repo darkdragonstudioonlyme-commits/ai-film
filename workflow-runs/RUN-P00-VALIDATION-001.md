@@ -29,14 +29,14 @@ REPLAY_POLICY: SAFE_REEXECUTE
 
 - Exact dev21 identities remain unchanged and all 86 native cases remain `NOT_RUN`.
 - V02 remains `BLOCKED / APPROVAL_ENVELOPE_MISSING`; READY flag/trust anchor are absent and `AI-FILM-P00-LAB` remains stopped.
-- `validation/PRODLIKE_OPERATIONAL_MATURITY-P00-DEV21.md` records M1–M6: capacity/retention audit, hash-chained evidence history, resource containment, user-manager reexec rehearsal, supervised incident FAIL→PASS recovery drill and producer-first recovery-schema migration.
-- Supervision now has 11 enabled/active/Persistent timers, ten previous-job results monitored by health and 11 resource-bound services (`MemoryMax=256M`, `TasksMax=128`).
-- Safe control backup and NTFS mirror contain 85 files and share SHA `daa43ca4d72052881f7ac6aabfd2eae95c9ffcff7ca3f43e8a6d1d1a25ca58de`.
-- Deterministic transfer export SHA is `b4cf49cd4e177c7ea6777e5ead4da3bf5d1669088bfbd136ce180a322faa31c5`; export drill PASSes with the embedded 85-file control state.
-- Full DR restores 85 control files, 11 timer definitions, 11 resource drop-ins and the bounded operational-ledger chain before reconstructing exact dev21 (`283 files / 0.1.0.dev21 / 86 NOT_RUN / host_ready=false`).
-- Incident drill proved a supervised service failure changes health to FAIL and is persisted in ledger history before recovery; the next PASS record chains through the incident.
-- Fail-closed campaign remains 8/8 PASS. The authority staging preflight remains read-only and cannot create READY/trust/LAB/native state.
-- Private Drive metadata anchors only stable exact-candidate/rebuild identities; binary off-host payload is absent and `OFF_HOST_DR_CLAIMED=false`.
+- `validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md` records N1–N6 execution-SLA, retention and rotating-state work.
+- Runtime health now checks monotonic last-completion freshness for all eleven services in addition to timer enabled/active state and previous job result. Production-function negative tests reject both stale completion and never-completed-after-boot-grace states.
+- Real producer retention overflow tests prove control backup retention=14 and evidence-ledger retention=30; pruned ledger history preserves predecessor continuity through the chain anchor.
+- Kernel cgroup probe verified systemd resource values are materialized to `memory.max` and `pids.max`; live AI-FILM services remain bounded at `MemoryMax=256M`, `TasksMax=128`.
+- Current producer-first recovery refresh passes. At the latest observation, backup/mirror sample contained 87 files at SHA `c213efff4aeff5585bf14efea172889dffe3b33af815dabaf30f3b5e14c887d2`; deterministic transfer-export sample SHA was `023eb0d5275eeb1b27974c908664f17b46a4bbe11a12376d4e085602a7135d11`.
+- Those backup/export identities are rotating operational samples because bounded ledger history advances. They are not exact candidate/release identities. Stable invariants remain exact dev21 identity, verifier PASS, freshness/retention limits, 11 timer/resource definitions, chain validity and producer-before-consumer migration.
+- Full DR currently restores the sampled control state plus 11 timer definitions and 11 resource drop-ins before exact-dev21 reconstruction; fail-closed campaign remains 8/8 PASS.
+- Private Drive metadata anchors only stable exact-candidate/rebuild identities; binary off-host payload remains absent and `OFF_HOST_DR_CLAIMED=false`.
 
 ## Validation steps
 
@@ -49,4 +49,4 @@ REPLAY_POLICY: SAFE_REEXECUTE
 | V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
 | V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence-based HOST_READY assessment |
 
-The same run remains resumable at V02. Operational maturity strengthens non-native resilience only and does not satisfy V02 `DONE_WHEN`.
+The same run remains resumable at V02. No SLA, retention, recovery or rotating-state control can satisfy V02 `DONE_WHEN` or self-issue protected authority.
