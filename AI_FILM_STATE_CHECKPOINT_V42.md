@@ -14,9 +14,9 @@ V42 reconciles the independently reviewed validation lane head `0e9fea427d9ec038
 
 ## V42 measurement sample
 
-This first V42 candidate intentionally leaves `LEARNING-EVIDENCE-SEMANTICS-007` pending at its structured state-version gate, so lifecycle aggregation must report one overdue measurement rather than silently hiding it. It finalizes learning 008's prior V41 activation evidence from historical R12/A12 and predeclares learning 009 only for prospective R13/A13 activation.
+The first V42 sample intentionally left `LEARNING-EVIDENCE-SEMANTICS-007` pending at its structured state-version gate, so lifecycle aggregation reported one overdue measurement instead of silently hiding it. It finalized learning 008's prior V41 activation evidence from historical R12/A12 and predeclared learning 009 only for prospective R13/A13 activation.
 
-If this exact candidate passes lifecycle/adversarial/governance/active-doc/continuity checks, it becomes the qualifying measurement sample for learning 007 and the next-documentation-promotion sample for learning 008. A later design commit may add immutable receipts and EFFECTIVE transitions only if those exact predicates are independently reviewable.
+Exact remote measurement sample `2beb094a2d2e60e5b08eed221977772e1ae87e6b` passed GitHub Actions run `35272505044` / job `105375038565`: lifecycle exposed the due gate as `pending_measurement=5 / overdue_measurement=1`, all 16 adversarial lifecycle cases passed, and active-doc/authority adversarial/governance/continuity/holistic checks passed. Candidate receipts therefore mark learning 007 and 008 EFFECTIVE subject to independent R13/A13 semantic review; learning 009 remains pending future measurement.
 
 ## Authority semantics
 
