@@ -27,15 +27,24 @@ Learning 006 reaches its structured V41 gate and its trigger is satisfied by the
 
 The V41 candidate marks learning 006 EFFECTIVE only subject to exact executable checks, CI, R9 review and A9 audit. Any failure invalidates that candidate conclusion.
 
-## Forensic hardening and R10/A10 contract
+## Forensic-hardening promotion history
 
-- `DOC-V2-R9-REVIEW-011` → `reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R11_PASS.md`
-- `DOC-V2-R9-AUDIT-011` → `reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R11_PASS.md`
+The finalized forensic-hardening tree was independently reviewed as `DOC-V2-R9-REVIEW-011` and audited as `DOC-V2-R9-AUDIT-011`. Those R11/A11 verdicts remain immutable evidence for their exact prior design SHA only.
 
-The forensic hardening adds a semantic-proof contract for learning effectiveness, explicit separation of platform enforcement from project policy, canonical test-governance proposal traceability, and a branch-role requirement for verdict CI. It deliberately does **not** claim those tooling/platform controls are already machine-enforced.
+The earlier R10/A10 chain is historical evidence only: pre-promotion inspection found stale pending-review state and understated enforcement metadata, so those verdicts were intentionally not used as promotion authority.
 
-Both R10/A10 verdicts must bind one exact final V41 forensic-hardening design SHA. Promotion may add only those two immutable verdict records and requires post-promotion CI.
+## Post-promotion authority-reference correction
 
-Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`; resilience work cannot substitute for protected external LAB authority.
+A fresh canonical reread found a semantic contradiction that the R11/A11 structural checks did not catch: live-authority prose in `PROJECT_STATE.md` and this checkpoint still named superseded R10/A10 as if they could authorize the current tree, even though canonical governance fields correctly selected R11/A11. The forensic design also contained one unqualified sentence assigning semantic-review authority to R10/A10.
 
-The corrected tree predeclares documentation/forensic status `ACTIVE_ON_PROMOTION`; verdict-only promotion must not leave a `pending review/audit` status in canonical main.
+`workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md` preserves this failure instead of erasing it behind the earlier PASS. Revision `R11_V41_AUTHORITY_REFERENCE_CONSISTENCY` therefore:
+
+1. allocates new exact-tree verdicts R12/A12 rather than reusing R11/A11;
+2. adds `DESIGN_RECORD` to canonical governance so the active design surface is machine-addressable;
+3. requires Markdown/JSON governance parity for revision, branch roles, design record and final verdict identities;
+4. derives the expected live `R<n>/A<n>` pair from canonical final review/audit IDs and rejects a mismatched pair on current authority surfaces unless the line is explicitly historical/superseded context;
+5. finalizes learning 007 from conditional `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-existing R11/A11 activation evidence, so it does not depend on the new promotion's verdict fields.
+
+The new correction must be reviewed by R12 and audited by A12 on one exact design SHA. Historical R10/A10 and R11/A11 references remain available when explicitly labeled as prior/superseded evidence; they are not live authority for the new tree.
+
+Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`; documentation-governance repair cannot substitute for protected external LAB authority.

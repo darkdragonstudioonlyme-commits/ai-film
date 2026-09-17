@@ -40,7 +40,7 @@ Activity counts are not improvement. Workflow health now requires comparable pop
 
 A semantic effectiveness receipt records at minimum `LEARNING_ID`, `METRIC_ID`, metric version, scope, sample requirement, observations, expected predicate, result, immutable evidence identities, measurement commit and independent review ID. A receipt with N=1 cannot satisfy a metric requiring N=3.
 
-The hardened lifecycle checker now machine-enforces immutable-metric equality, receipt-to-metric hash binding, receipt/evidence-path binding, and stage-aware DESIGN/REVIEW/AUDIT verdict invariants. Semantic truth of a receipt's observations remains independently review-gated: tooling proves the binding, while R10/A10 decide whether the evidence actually satisfies the predicate. CI path filters now cover workflow-runs, test-governance, environments, model-evaluations, deliveries and root metadata, and server-side continuity checking is included. GitHub `main` branch protection/ruleset enforcement remains external platform debt.
+The hardened lifecycle checker now machine-enforces immutable-metric equality, receipt-to-metric hash binding, receipt/evidence-path binding, and stage-aware DESIGN/REVIEW/AUDIT verdict invariants. Semantic truth of a receipt's observations remains independently review-gated: tooling proves the binding, while the release-selected final independent review/audit decide whether the evidence actually satisfies the predicate. CI path filters cover workflow-runs, test-governance, environments, model-evaluations, deliveries and root metadata, and server-side continuity checking is included. GitHub `main` branch protection/ruleset enforcement remains external platform debt.
 
 ## Truthful reclassification of prior effectiveness claims
 
@@ -48,23 +48,26 @@ Forensic reconciliation restored every register `success_metric` to the immutabl
 
 GitHub Actions run `35218316047` is preserved as negative evidence: exact design SHA `57296cc...` passed the lifecycle checker but failed the adversarial suite because the fixture inherited `GITHUB_REF_NAME`. The correction neutralizes ambient role variables for generic fixtures and routes the recurrence through learning 004 → 007.
 
-## Promotion/review boundary
+## Promotion/review boundary history
 
-This is revision `R10_V41_FORENSIC_PROMOTION_FINALIZATION`. It supersedes the earlier unpromoted V41 R8 design target for promotion purposes. The prior R9/A9 verdict artifacts remain immutable evidence for their old SHA and are not reused.
+Revision `R10_V41_FORENSIC_PROMOTION_FINALIZATION` superseded the earlier unpromoted V41 R8 design target for promotion purposes. The prior R9/A9 verdict artifacts remain immutable evidence for their old SHA and were not reused.
 
-The final candidate predeclares new review/audit identities:
-
-- `DOC-V2-R9-REVIEW-011`
-- `DOC-V2-R9-AUDIT-011`
-
-Independent R11/A11 must bind the exact final forensic-hardening SHA. Promotion remains verdict-only after audit and requires post-promotion CI.
+That finalization revision predeclared new review/audit identities R11/A11. Independent R11/A11 subsequently bound its exact finalized forensic-hardening SHA; promotion added only those verdict records. Those verdicts remain authority for that exact historical SHA, not for later edits.
 
 ## Non-claims
 
 This revision modifies lifecycle/governance checkers and CI coverage, but does not change product source, native validation procedures, LAB authority, qualification, SITE evidence or HOST_READY. Full semantic interpretation remains independent-review responsibility, and GitHub repository protection/rulesets remain external platform debt until separately configured and verified.
 
-## Promotion-state finalization correction
+## Promotion-state finalization correction history
 
-Pre-promotion inspection of the green R10/A10 chain found that `FORENSIC_HARDENING.STATUS` still said `DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10` and JSON still described two implemented controls as merely specified. Merging that exact tree would have created immediate canonical state drift. The R10/A10 verdicts therefore remain valid evidence for their old design SHA but are not promotion authority for this corrected tree.
+Pre-promotion inspection of the green R10/A10 chain found that `FORENSIC_HARDENING.STATUS` still said `DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10` and JSON still described two implemented controls as merely specified. Merging that exact tree would have created immediate canonical state drift. The R10/A10 verdicts therefore remain valid historical evidence for their old design SHA but are not promotion authority for the corrected tree.
 
-R10_V41 predeclares `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENING.STATUS: ACTIVE_ON_PROMOTION`, aligns JSON with the machine-enforced checker/CI reality, and requires new R11/A11 verdicts bound to the corrected exact SHA. No product/native state changes.
+R10_V41 predeclared `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENING.STATUS: ACTIVE_ON_PROMOTION`, aligned JSON with the machine-enforced checker/CI reality, and required new R11/A11 verdicts bound to the corrected exact SHA. No product/native state changed.
+
+## R11_V41 authority-reference consistency correction
+
+Post-promotion canonical reread found that three live-authority sentences still used superseded R10/A10 wording even though structured governance selected R11/A11. That contradiction demonstrates a checker blind spot: token presence and structured parity did not prove that current prose used the same verdict authority.
+
+Revision `R11_V41_AUTHORITY_REFERENCE_CONSISTENCY` records the incident in `workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md`, allocates new R12/A12 verdicts for the changed exact tree, exposes the active `DESIGN_RECORD` in canonical governance, and extends active-document checking so the expected live verdict pair is derived from canonical final IDs. Mismatched `R<n>/A<n>` pairs fail on current authority surfaces unless their line explicitly marks the reference as prior, old, historical, superseded, reused, earlier, previous, or pre-promotion evidence.
+
+This correction does not rewrite immutable historical verdict records and does not treat earlier PASS labels as proof that the blind spot never existed. R12/A12 must independently review/audit the new exact design tree before promotion.

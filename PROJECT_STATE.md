@@ -16,19 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R10_V41_FORENSIC_PROMOTION_FINALIZATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v41-forensic-final-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v41-forensic-final-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v41-forensic-final-audit
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-011
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R11_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-011
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R11_PASS.md
-  ACTIVATION_CONDITION: "Exact V41 forensic-finalization tree requires R11 review PASS and A11 audit PASS bound to the same design commit."
-  PROMOTION_RULE: "After audit, main may add only R11/A11 immutable verdict records to the exact audited V41 forensic-finalization tree; post-promotion CI is mandatory."
+  REVISION: R11_V41_AUTHORITY_REFERENCE_CONSISTENCY
+  DESIGN_BRANCH: lane/docs-v2-r9-v41-authority-reference-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v41-authority-reference-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v41-authority-reference-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-012
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R12_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-012
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R12_PASS.md
+  ACTIVATION_CONDITION: "Exact V41 authority-reference-consistency tree requires R12 review PASS and A12 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only R12/A12 immutable verdict records to the exact audited V41 authority-reference-consistency tree; post-promotion CI is mandatory."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  NOTE: "V41 preserves the recovery-effectiveness reconciliation while hardening semantic learning proof, verdict-branch CI semantics, test-governance provenance, metadata authority and improvement measurement; native V02 remains unchanged."
+  PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md
+  AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
+  NOTE: "R11/A11 remain immutable authority for their prior exact SHA only. This correction removes live-authority prose that still named superseded R10/A10 and adds machine checks that derive the current verdict pair from canonical governance state. Native V02 remains unchanged."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -144,9 +147,11 @@ FORENSIC_HARDENING:
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md
+  AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
   VERDICT_BRANCH_CI_ROLE_CONTRACT: MACHINE_ENFORCED
   CI_LIFECYCLE_DOMAIN_COVERAGE: MACHINE_ENFORCED
+  CURRENT_VERDICT_PAIR_CONSISTENCY: MACHINE_ENFORCED
   TEST_GOVERNANCE_PROVENANCE: DEV20_PROPOSAL_CANONICALIZED_BYTE_IDENTICAL
   ROOT_METADATA_AUTHORITY: EXPLICIT_NON_AUTHORITY_UNLESS_DELEGATED_BY_PROJECT_STATE
   PLATFORM_MAIN_PROTECTION: EXTERNAL_SETTING_NOT_ASSUMED_OR_CLAIMED
@@ -172,4 +177,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. Only independently verified external LAB authority may advance V02 to V03."
 ```
 
-V41 is valid only if the exact V41 forensic-hardening tree passes existing executable checks and independent R10/A10 review confirms that semantic evidence obligations are stated truthfully, unresolved tooling/platform enforcement debt is not misrepresented as closed, and native-authority boundaries remain unchanged.
+V41 authority-reference correction is valid only if the exact correction tree passes executable checks and independent R12/A12 review confirms that current authority prose derives from canonical governance, historical verdict references are explicitly historical, and product/native authority remains unchanged.

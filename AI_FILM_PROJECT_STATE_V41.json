@@ -7,18 +7,20 @@
   "documentation_governance": {
     "release_id": "DOCSYS-V2-R9",
     "previous_active_release": "DOCSYS-V2-R9",
-    "revision": "R10_V41_FORENSIC_PROMOTION_FINALIZATION",
-    "design_branch": "lane/docs-v2-r9-v41-forensic-final-design",
-    "review_branch": "lane/docs-v2-r9-v41-forensic-final-review",
-    "audit_branch": "lane/docs-v2-r9-v41-forensic-final-audit",
-    "final_review_id": "DOC-V2-R9-REVIEW-011",
-    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R11_PASS.md",
-    "final_audit_id": "DOC-V2-R9-AUDIT-011",
-    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R11_PASS.md",
+    "revision": "R11_V41_AUTHORITY_REFERENCE_CONSISTENCY",
+    "design_branch": "lane/docs-v2-r9-v41-authority-reference-design",
+    "review_branch": "lane/docs-v2-r9-v41-authority-reference-review",
+    "audit_branch": "lane/docs-v2-r9-v41-authority-reference-audit",
+    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md",
+    "final_review_id": "DOC-V2-R9-REVIEW-012",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R12_PASS.md",
+    "final_audit_id": "DOC-V2-R9-AUDIT-012",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R12_PASS.md",
     "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
     "forensic_hardening_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md",
     "promotion_state": "ACTIVE_ON_PROMOTION",
-    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md"
+    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md",
+    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
   },
   "accepted_code_candidate": {
     "version": "0.1.0.dev21",
@@ -136,6 +138,7 @@
     "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
     "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
+    "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "platform_main_protection": "NOT_ENFORCED",
     "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-CI-013.md"
   },
@@ -146,7 +149,9 @@
     "test_governance_provenance": "DEV20_PROPOSAL_CANONICALIZED_BYTE_IDENTICAL",
     "root_metadata_authority": "EXPLICIT_NON_AUTHORITY_UNLESS_DELEGATED_BY_PROJECT_STATE",
     "platform_main_protection": "NOT_ENFORCED",
-    "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED"
+    "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
+    "current_verdict_pair_consistency": "MACHINE_ENFORCED",
+    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
   },
   "runtime_reconciliation": {
     "schema_version": 1,
