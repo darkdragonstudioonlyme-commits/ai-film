@@ -10,22 +10,22 @@ MIRROR_SERVICE_RESULT: success
 MIRROR_SYSTEMD_SECURITY: "4.1 OK"
 RETENTION: 14
 MIRROR_MAX_AGE_HOURS: 30
-SAMPLE_ARCHIVE: control-state-20260916T232534Z.tar.gz
-SAMPLE_ARCHIVE_SHA256: daa43ca4d72052881f7ac6aabfd2eae95c9ffcff7ca3f43e8a6d1d1a25ca58de
-SAMPLE_FILE_COUNT: 85
+LATEST_SAMPLE_ARCHIVE: control-state-20260917T090226Z.tar.gz
+LATEST_SAMPLE_SHA256: c213efff4aeff5585bf14efea172889dffe3b33af815dabaf30f3b5e14c887d2
+LATEST_SAMPLE_FILE_COUNT: 87
 MIRROR_VERIFY: PASS
 EVIDENCE_LEDGER_RECOVERABLE: true
-EVIDENCE_HISTORY_RECOVERABLE: true
 RESOURCE_DROPINS_RECOVERABLE: 11
 TIMER_DEFINITIONS_RECOVERABLE: 11
-FULL_DR_TOOLING_RECOVERABLE: true
-FAILCLOSED_CAMPAIGN_TOOLING_RECOVERABLE: true
+EXECUTION_FRESHNESS_HEALTH_RECOVERABLE: true
 WINDOWS_ACL_INHERITANCE: disabled
 NATIVE_AUTHORITY_INCLUDED: false
 PROTECTED_IDENTITY_INCLUDED: false
 NATIVE_EXECUTION_STARTED: false
 ```
 
-The NTFS mirror contains the current locally verified 85-file control backup and matches SHA `daa43ca4...`. The expanded state carries the evidence-ledger producer/verifier, bounded ledger history, all 11 timer definitions, all 11 resource-bound drop-ins, DR/fault tooling and their safe evidence.
+The NTFS mirror matches the latest locally verified recovery sample SHA `c213efff...` and contains the current 87-file sample. The count is not a fixed schema invariant because bounded evidence-ledger history is part of recovery state and legitimately rotates.
 
-The full DR rehearsal restored this mirrored/exported control schema in a disposable root and verified ledger-chain integrity before reconstructing exact dev21. The mirror remains a same-host second-filesystem measure; it is not binary off-host DR and excludes protected authority/identity domains.
+Stable mirror requirements are: source backup verifies, NTFS bytes rehash to the same archive SHA, retention/freshness limits hold, protected authority/identity domains are excluded, and the restored control set contains the required timer/resource/health/recovery tooling. Current full DR verifies those stable requirements before exact-dev21 reconstruction.
+
+This remains same-host second-filesystem recovery, not binary off-host DR or native execution authority.
