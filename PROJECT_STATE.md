@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V41
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V42
 
 > Read first in every new chat. Current global truth candidate. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 41
+STATE_VERSION: 42
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -15,23 +15,23 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R11_V41_AUTHORITY_REFERENCE_CONSISTENCY
-  DESIGN_BRANCH: lane/docs-v2-r9-v41-authority-reference-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v41-authority-reference-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v41-authority-reference-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-012
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R12_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-012
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R12_PASS.md
-  ACTIVATION_CONDITION: "Exact V41 authority-reference-consistency tree requires R12 review PASS and A12 audit PASS bound to the same design commit."
-  PROMOTION_RULE: "After audit, main may add only R12/A12 immutable verdict records to the exact audited V41 authority-reference-consistency tree; post-promotion CI is mandatory."
+  PROMOTION_STATE: CANDIDATE_REVIEW_REQUIRED
+  REVISION: R12_V42_VALIDATION_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v42-validation-reconciliation-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v42-validation-reconciliation-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v42-validation-reconciliation-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V42_VALIDATION_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-013
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-013
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R13_PASS.md
+  ACTIVATION_CONDITION: "Exact V42 validation-reconciliation tree requires R13 review PASS and A13 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only R13/A13 immutable verdict records to the exact audited V42 tree; post-promotion CI is mandatory."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "R11/A11 remain immutable authority for their prior exact SHA only. This correction removes live-authority prose that still named superseded R10/A10 and adds machine checks that derive the current verdict pair from canonical governance state. Native V02 remains unchanged."
+  NOTE: "Historical R12/A12 remain immutable authority for the prior V41 exact SHA only. V42 reconciles the independently reviewed validation lane at 0e9fea42..., keeps V02 blocked, and measures learning 007/008 without granting native authority."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -66,13 +66,19 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 8024990809364168f7bd04cde44ccf7b30c60b66
+  VALIDATION_EVIDENCE_HEAD: 0e9fea427d9ec0385326c9fc1dc1c4d8ec9b27c3
   EXECUTION_SLA_RETENTION_PROGRAM: validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md
   OPERATIONAL_MATURITY_PROGRAM: validation/PRODLIKE_OPERATIONAL_MATURITY-P00-DEV21.md
   OPERATIONS_RUNBOOK: validation/PRODLIKE_OPERATIONS_RUNBOOK-P00-DEV21.md
   AUTHORITY_PREFLIGHT: validation/V02_AUTHORITY_PREFLIGHT-P00-DEV21.md
   EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
   APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_HARDENING: validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
+  POSTDEPLOY_FAILCLOSED_HARDENING: validation/V02_POSTDEPLOY_FAILCLOSED_HARDENING-P00-DEV21.md
+  POSTDEPLOY_FAILCLOSED_DEPLOYMENT: validation/V02_POSTDEPLOY_FAILCLOSED_DEPLOYMENT-P00-DEV21.md
+  POLICY_CANDIDATE_CURRENT_EVALUATION_ONLY: true
+  PREFLIGHT_BYTE_INTEGRITY_ENFORCED: true
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
@@ -133,13 +139,13 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 4
-  OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
+  PENDING_EFFECTIVENESS_MEASUREMENT: 5
+  OVERDUE_EFFECTIVENESS_MEASUREMENT: 1
   HISTORICAL_INEFFECTIVE_LEARNING: 4
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-CONTROL-001
   SEMANTICALLY_VERIFIED_EFFECTIVE: 3
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42; LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008@NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42_OVERDUE_SAMPLE; LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008@V42_PROMOTION_SAMPLE; LEARNING-CURRENT-EVALUATION-EVIDENCE-009@NEXT_AUTHORITY_REEVALUATION_OR_EVIDENCE_INTEGRITY_REGRESSION"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 FORENSIC_HARDENING:
@@ -165,7 +171,7 @@ VALIDATION_STATUS:
 
 VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
-  REASON: "Recovery-state effectiveness is reconciled, but V02 remains blocked until independently verified protected external LAB authority exists."
+  REASON: "V02 remains blocked until independently authenticated external LAB authority exists: reviewed external key provenance, signed exact approval envelope, protected object graph and successful V02 verification."
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
@@ -174,7 +180,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. Only independently verified external LAB authority may advance V02 to V03."
+NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-V41 authority-reference correction is valid only if the exact correction tree passes executable checks and independent R12/A12 review confirms that current authority prose derives from canonical governance, historical verdict references are explicitly historical, the CONTROL-001 effectiveness receipt is semantically valid, learning 008 is only conditionally activated, and product/native authority remains unchanged.
+V42 is a documentation/state reconciliation candidate only. Historical R12/A12 remain prior-tree evidence; prospective R13/A13 must independently verify the exact V42 design, learning measurements and unchanged V02/native authority boundary before promotion.
