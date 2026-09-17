@@ -43,6 +43,7 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning 
 | MEM-20260916-004 | LEARNING | Immutable learning evidence must not also own mutable lifecycle state; one machine-readable register owns review/activation/effectiveness and project aggregates are derived from it. | `learning/LEARNING_STATE.json`, `SELF_LEARNING.md`, lifecycle checker |
 | MEM-20260916-005 | TOOLING | Adversarial tests must establish their own fixture preconditions; they must not depend on ambient pre-/post-promotion repository state. | `tools/test_learning_lifecycle_checker.py` |
 | MEM-20260917-001 | GOVERNANCE | Live review/audit authority in prose must derive from canonical final verdict IDs; older verdict pairs are valid only when explicitly historical/superseded context is stated. | `tools/check_project_docs.py`, `tools/test_project_docs_checker.py` |
+| MEM-20260918-001 | SECURITY | External authority is not established by operator-writable ACL protection or content hashes alone; root authenticity in independently established cryptographic provenance outside the constrained operator boundary. | V02 authority tooling/contract, `NEXT_WORK_ITEM.md` |
 
 ## Compaction rule
 

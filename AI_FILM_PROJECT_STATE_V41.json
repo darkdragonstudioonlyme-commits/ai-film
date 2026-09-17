@@ -7,20 +7,21 @@
   "documentation_governance": {
     "release_id": "DOCSYS-V2-R9",
     "previous_active_release": "DOCSYS-V2-R9",
-    "revision": "R11_V41_AUTHORITY_REFERENCE_CONSISTENCY",
-    "design_branch": "lane/docs-v2-r9-v41-authority-reference-design",
-    "review_branch": "lane/docs-v2-r9-v41-authority-reference-review",
-    "audit_branch": "lane/docs-v2-r9-v41-authority-reference-audit",
-    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md",
-    "final_review_id": "DOC-V2-R9-REVIEW-012",
-    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R12_PASS.md",
-    "final_audit_id": "DOC-V2-R9-AUDIT-012",
-    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R12_PASS.md",
+    "revision": "R12_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION",
+    "design_branch": "lane/docs-v2-r9-v41-v02-auth-design",
+    "review_branch": "lane/docs-v2-r9-v41-v02-auth-review",
+    "audit_branch": "lane/docs-v2-r9-v41-v02-auth-audit",
+    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION.md",
+    "final_review_id": "DOC-V2-R9-REVIEW-013",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS.md",
+    "final_audit_id": "DOC-V2-R9-AUDIT-013",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R13_PASS.md",
     "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
     "forensic_hardening_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md",
     "promotion_state": "ACTIVE_ON_PROMOTION",
     "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md",
-    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
+    "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
+    "v02_external_authenticity_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-V02-AUTHENTICITY-016.md"
   },
   "accepted_code_candidate": {
     "version": "0.1.0.dev21",
@@ -48,7 +49,7 @@
     "local_worktree": null
   },
   "validation": {
-    "validation_evidence_head": "8024990809364168f7bd04cde44ccf7b30c60b66",
+    "validation_evidence_head": "9a3854d80b7e4c35c5d2ec933709280ce0baa7fa",
     "native_windows_wsl": "NOT_RUN",
     "lab": "NOT_RUN",
     "site": "NOT_RUN",
@@ -62,6 +63,17 @@
       "user_action_required": true,
       "return_to": "RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY",
       "status": "OPEN"
+    },
+    "external_authenticity": {
+      "status": "DEPLOYED_PENDING_EXTERNAL_KEY",
+      "algorithm": "ED25519",
+      "trust_config_status": "PENDING_EXTERNAL_KEY",
+      "approval_envelope_status": "MISSING",
+      "ready_to_advance": false,
+      "external_key_provenance_verified": false,
+      "external_signature_verified": false,
+      "deployment_record": "validation/V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT-P00-DEV21.md",
+      "deployment_review": "reviews/VALIDATION-V02-AUTHENTICITY-DEPLOYMENT-REVIEW-001_PASS.md"
     }
   },
   "production_like_readiness": {
@@ -109,7 +121,7 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 4,
+    "pending_effectiveness_measurement": 5,
     "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 4,
     "recently_proven_effective": "LEARNING-CONTROL-001",
@@ -130,6 +142,10 @@
       {
         "learning_id": "LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008",
         "gate": "NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION"
+      },
+      {
+        "learning_id": "LEARNING-EXTERNAL-AUTHORITY-AUTHENTICITY-009",
+        "gate": "NEXT_EXTERNAL_KEY_ACTIVATION_OR_SIGNED_APPROVAL"
       }
     ],
     "guarded_self_optimization": "ACTIVE",
@@ -140,7 +156,8 @@
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "platform_main_protection": "NOT_ENFORCED",
-    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md"
+    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
+    "external_authenticity_learning": "LEARNING-EXTERNAL-AUTHORITY-AUTHENTICITY-009"
   },
   "forensic_hardening": {
     "status": "ACTIVE_ON_PROMOTION",

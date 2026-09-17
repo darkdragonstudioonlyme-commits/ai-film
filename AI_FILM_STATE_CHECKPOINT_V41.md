@@ -47,8 +47,18 @@ A fresh canonical reread found a semantic contradiction that the historical R11/
 
 The first detector implementation deliberately failed closed twice on design refinement (`35223022725`, `35223154818`) before line-local historical classification was made precise. Exact detector commit `0d106cbad7e144b737cb43eb17409339d107021d` then passed GitHub Actions run `35223256888` / job `105208358932` across lifecycle, adversarial lifecycle, governance, active-doc consistency, workflow continuity and holistic audit.
 
-That real semantic checker/schema evolution satisfies the trigger for `LEARNING-CONTROL-001`; the candidate receipt `learning/measurements/MEASUREMENT-LEARNING-CONTROL-001-001.md` marks it EFFECTIVE only subject to independent R12/A12 semantic verification. New `LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008` captures the reusable rule and remains pending future effectiveness measurement after conditional R12/A12 activation.
+That real semantic checker/schema evolution satisfies the trigger for `LEARNING-CONTROL-001`; the candidate receipt `learning/measurements/MEASUREMENT-LEARNING-CONTROL-001-001.md` was later confirmed by historical R12/A12 semantic review. New `LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008` captures the reusable rule and remains pending future effectiveness measurement after conditional R12/A12 activation.
 
-The new correction must be reviewed by R12 and audited by A12 on one exact design SHA. Historical R10/A10 and R11/A11 references remain available when explicitly labeled as prior/superseded evidence; they are not live authority for the new tree.
+The historical R12/A12 correction was reviewed/audited on its exact prior design SHA. Historical R10/A10, R11/A11 and R12/A12 references remain evidence only and are not live authority for the new tree.
 
-Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`; documentation-governance repair cannot substitute for protected external LAB authority.
+## V02 external-authenticity reconciliation
+
+Validation lane head `9a3854d80b7e4c35c5d2ec933709280ce0baa7fa` records a forensic trust-boundary correction without native execution. The approved local inbox was confirmed writable by the constrained Windows operator, so ACL protection plus content hashes could prove local integrity but not independent external authorship. Reviewed/audited tooling now requires an Ed25519 signature over the exact raw approval-envelope bytes under a hash-pinned external trust config.
+
+Runtime deployment is verified fail-closed: trust config remains `PENDING_EXTERNAL_KEY`, `approval-envelope.json` is missing, READY and native-policy candidates are absent, HKLM native trust is absent, the V02 watcher is enabled/active, and `AI-FILM-P00-LAB` remains Stopped. All 86 native procedures remain `NOT_RUN`; qualification, SITE and HOST_READY remain unchanged.
+
+New `LEARNING-EXTERNAL-AUTHORITY-AUTHENTICITY-009` captures the reusable rule: local ACL ownership and content-addressing are not independent authority when the constrained operator can write the store. External authority must be cryptographically rooted outside that operator boundary, and key activation itself is a separate reviewed transaction.
+
+The exact reconciliation tree must be independently reviewed by R13 and audited by A13. Historical R12/A12 remains authority only for its prior exact documentation tree.
+
+Canonical next action remains `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`: obtain external Ed25519 public-key provenance, review/activate only that public key, then require a genuinely externally signed exact approval envelope before V03.

@@ -16,22 +16,23 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R11_V41_AUTHORITY_REFERENCE_CONSISTENCY
-  DESIGN_BRANCH: lane/docs-v2-r9-v41-authority-reference-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v41-authority-reference-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v41-authority-reference-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V41_FORENSIC_HARDENING.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-012
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R12_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-012
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R12_PASS.md
-  ACTIVATION_CONDITION: "Exact V41 authority-reference-consistency tree requires R12 review PASS and A12 audit PASS bound to the same design commit."
-  PROMOTION_RULE: "After audit, main may add only R12/A12 immutable verdict records to the exact audited V41 authority-reference-consistency tree; post-promotion CI is mandatory."
+  REVISION: R12_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v41-v02-auth-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v41-v02-auth-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v41-v02-auth-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V41_EXTERNAL_AUTHENTICITY_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-013
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R13_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-013
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R13_PASS.md
+  ACTIVATION_CONDITION: "Exact V41 external-authenticity reconciliation tree requires R13 review PASS and A13 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "After audit, main may add only R13/A13 immutable verdict records to the exact audited V41 external-authenticity reconciliation tree; post-promotion CI is mandatory."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-PROMOTION-FINALIZATION-014.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "R11/A11 remain immutable authority for their prior exact SHA only. This correction removes live-authority prose that still named superseded R10/A10 and adds machine checks that derive the current verdict pair from canonical governance state. Native V02 remains unchanged."
+  V02_EXTERNAL_AUTHENTICITY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-V02-AUTHENTICITY-016.md
+  NOTE: "Historical R12/A12 authorized the prior authority-reference tree. This revision reconciles the independently reviewed/deployed V02 external-authenticity boundary from validation lane head 9a3854d8... while preserving all native NOT_RUN and qualification/SITE/HOST_READY boundaries."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -66,13 +67,21 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 8024990809364168f7bd04cde44ccf7b30c60b66
+  VALIDATION_EVIDENCE_HEAD: 9a3854d80b7e4c35c5d2ec933709280ce0baa7fa
   EXECUTION_SLA_RETENTION_PROGRAM: validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md
   OPERATIONAL_MATURITY_PROGRAM: validation/PRODLIKE_OPERATIONAL_MATURITY-P00-DEV21.md
   OPERATIONS_RUNBOOK: validation/PRODLIKE_OPERATIONS_RUNBOOK-P00-DEV21.md
   AUTHORITY_PREFLIGHT: validation/V02_AUTHORITY_PREFLIGHT-P00-DEV21.md
   EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
   APPROVAL_ENVELOPE_MAPPING: validation/LAB_APPROVAL_ENVELOPE_MAPPING-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_HARDENING: validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_DEPLOYMENT: validation/V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT-P00-DEV21.md
+  EXTERNAL_AUTHENTICITY_DEPLOYMENT_REVIEW: reviews/VALIDATION-V02-AUTHENTICITY-DEPLOYMENT-REVIEW-001_PASS.md
+  EXTERNAL_AUTHENTICITY_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
+  EXTERNAL_TRUST_ALGORITHM: ED25519
+  EXTERNAL_TRUST_CONFIG_STATUS: PENDING_EXTERNAL_KEY
+  APPROVAL_ENVELOPE_STATUS: MISSING
+  V02_READY_TO_ADVANCE: false
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
@@ -88,6 +97,8 @@ VALIDATION_PREPARATION:
     APP_BYTE_VERIFY: PASS
     PRE_V03_INVENTORY: "86 NOT_RUN / 0 parent cases / qualification false"
     EXTERNAL_AUTHORITY_ATTESTED: false
+    EXTERNAL_AUTHORITY_SIGNATURE_VERIFIED: false
+    EXTERNAL_KEY_PROVENANCE_VERIFIED: false
     APPROVED: false
 
 PRODUCTION_LIKE_READINESS:
@@ -133,14 +144,15 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 4
+  PENDING_EFFECTIVENESS_MEASUREMENT: 5
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 4
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-CONTROL-001
   SEMANTICALLY_VERIFIED_EFFECTIVE: 3
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42; LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008@NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-SOURCE-VISIBILITY-001@NEXT_FORMAL_SOURCE_HANDOFF; LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-EVIDENCE-SEMANTICS-007@V42; LEARNING-AUTHORITY-REFERENCE-CONSISTENCY-008@NEXT_DOCUMENTATION_PROMOTION_OR_AUTHORITY_REFERENCE_REGRESSION; LEARNING-EXTERNAL-AUTHORITY-AUTHENTICITY-009@NEXT_EXTERNAL_KEY_ACTIVATION_OR_SIGNED_APPROVAL"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
+  EXTERNAL_AUTHENTICITY_LEARNING: LEARNING-EXTERNAL-AUTHORITY-AUTHENTICITY-009
 
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
@@ -165,7 +177,7 @@ VALIDATION_STATUS:
 
 VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
-  REASON: "Recovery-state effectiveness is reconciled, but V02 remains blocked until independently verified protected external LAB authority exists."
+  REASON: "V02 authenticity hardening is deployed, but authority remains blocked until independently established external Ed25519 key provenance is reviewed/activated and a signed exact approval envelope plus protected object graph verify successfully."
   TECHNICAL_LAB_ENVIRONMENT_MISSING: false
   USER_ACTION_REQUIRED: true
   RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
@@ -174,7 +186,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. Only independently verified external LAB authority may advance V02 to V03."
+NEXT_ACTION: "Resume unchanged RUN-P00-VALIDATION-001 at V02. First obtain independently established external Ed25519 public-key provenance for separate reviewed trust-anchor activation; only a subsequently signed exact approval envelope plus protected authority graph may advance V02 to V03."
 ```
 
-V41 authority-reference correction is valid only if the exact correction tree passes executable checks and independent R12/A12 review confirms that current authority prose derives from canonical governance, historical verdict references are explicitly historical, the CONTROL-001 effectiveness receipt is semantically valid, learning 008 is only conditionally activated, and product/native authority remains unchanged.
+V41 external-authenticity reconciliation is valid only if the exact design tree passes executable checks and independent R13/A13 review confirms the promoted validation head, external-key/signature boundary, learning lifecycle and native NOT_RUN/qualification/SITE/HOST_READY non-drift. Historical R12/A12 remains evidence for the prior exact documentation tree only.

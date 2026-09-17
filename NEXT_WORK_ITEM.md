@@ -4,7 +4,7 @@
 RUN_ID: RUN-P00-VALIDATION-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 LANE: VALIDATION
-STATUS: BLOCKED_EXTERNAL_AUTHORITY_ONLY
+STATUS: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
 MODE: VALIDATION
 PHASE: "00 — Host / WSL"
 WORK_ITEM: M-P00-VALIDATION
@@ -19,6 +19,7 @@ INPUT_IDENTITY:
   CODE_REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV21_DELTA.md
   CODE_REVIEW_PASS: true
   VALIDATION_LANE: lane/validation-p00
+  VALIDATION_EVIDENCE_HEAD: 9a3854d80b7e4c35c5d2ec933709280ce0baa7fa
   RUN_RECORD: workflow-runs/RUN-P00-VALIDATION-001.md
   VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
   AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
@@ -26,6 +27,13 @@ INPUT_IDENTITY:
   LAB_AUTHORITY_DRAFT: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
   LAB_PENDING_AUTHORITY_BUNDLE: validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md
   LAB_EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
+  V02_EXTERNAL_AUTHENTICITY_HARDENING: validation/V02_EXTERNAL_AUTHENTICITY_HARDENING-P00-DEV21.md
+  V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT: validation/V02_EXTERNAL_AUTHENTICITY_DEPLOYMENT-P00-DEV21.md
+  V02_DEPLOYMENT_REVIEW: reviews/VALIDATION-V02-AUTHENTICITY-DEPLOYMENT-REVIEW-001_PASS.md
+  EXTERNAL_TRUST_ALGORITHM: ED25519
+  EXTERNAL_TRUST_CONFIG_STATUS: PENDING_EXTERNAL_KEY
+  APPROVAL_ENVELOPE_STATUS: MISSING
+  READY_TO_ADVANCE: false
   LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
   LAB_PENDING_BUNDLE_INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
   LAB_PROTECTED_REGISTRATION_CANDIDATE_SHA256: 28ec95c3ecdd8ea7615843601c4657e25b503248fa2c93582cadb86c45488916
@@ -33,20 +41,20 @@ INPUT_IDENTITY:
   LAB_PRISTINE_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
   LAB_SNAPSHOT_RESTORE_PROBE: PASS
   LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
-GOAL: "Close V02 only with independently approved protected registration/owner-controller attestation and approved exact dev21 fixture/plan/suite authority for the already-prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory and produce qualification evidence before any SITE active operation."
+GOAL: "Close V02 only after independently established external Ed25519 public-key provenance is separately reviewed/activated and the external authority signs the exact approval envelope binding the protected registration/attestation/fixture/plan/suite graph for the prepared LAB; then execute the mandatory 86-case reviewed LAB inventory before qualification or SITE activity."
 STEPS:
   - V01_CODE_REVIEW_GATE: COMPLETE
-  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHORITY_ONLY
+  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
   - V03_NATIVE_LAB_REGRESSION: NOT_STARTED
   - V04_QUALIFICATION_RECEIPT: NOT_STARTED
   - V05_SITE_VALIDATION: NOT_STARTED
   - V06_GATE_ASSESSMENT: NOT_STARTED
 CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
-SUCCESS_OUTPUT: "Verified protected LAB registration/owner-controller attestation plus protected fixture/plan refs and approved <=24h exact-dev21 lab_acceptance_suite bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
+SUCCESS_OUTPUT: "Verified independently rooted external Ed25519 signature over the exact approval envelope plus protected LAB registration/owner-controller attestation, fixture/plan refs and approved <=24h exact-dev21 lab_acceptance_suite bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
 ON_SUCCESS: WF-P00-VALIDATION-LAB
 ON_FAIL: VALIDATION_FAILURE_ROUTE
 ON_BLOCK: BLOCK-P00-VAL-LAB-AUTH-001
-EXIT_CONDITION: "V02 authority prerequisites are independently established for the prepared LAB candidate; no native stage has run before this condition."
+EXIT_CONDITION: "External key provenance is independently verified and separately activated; the exact signed authority graph passes V02 intake; no native stage has run before this condition."
 ```
 
 ## Preparation completed
@@ -65,7 +73,7 @@ The Windows-side protected pending store is ACL-protected (inheritance protected
 BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 OWNER_LANE: VALIDATION
-REASON: "Technical disposable LAB infrastructure and the sealed pending authority bundle are complete. Remaining V02 requirement is an independent external authority decision that turns the protected pending candidate into approved registration/attestation, fixture/plan and <=24h suite records."
+REASON: "Technical LAB infrastructure and V02 authenticity enforcement are complete. Remaining V02 requirements are independently established external Ed25519 public-key provenance, separate reviewed trust-anchor activation, then an externally signed exact approval envelope and protected authority graph."
 TECHNICAL_LAB_ENVIRONMENT_MISSING: false
 PENDING_AUTHORITY_BUNDLE_READY: true
 EXTERNAL_APPROVAL_HANDOFF: "lane/validation-p00:validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md"
@@ -82,4 +90,6 @@ STATUS: OPEN
 
 ## Minimum external action
 
-Do **not** create another LAB and do not start the stopped LAB for native execution. The external owner/controller must review the protected bundle identified by `fa38540df...` and return the immutable protected refs specified by `LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`. Credentials and raw SID/MachineGuid stay out of GitHub. Only after those records independently verify may this same run advance V02 → V03.
+Do **not** create another LAB and do not start the stopped LAB for native execution. The next external action is **not** to write an `APPROVE` file into the local inbox. The external owner/controller must first establish an Ed25519 public-key identity and protected/out-of-band provenance. That public key is then activated only through a separate reviewed trust-anchor transaction; the private key never belongs on this host or in GitHub.
+
+After activation, the external authority reviews the sealed bundle `fa38540df...`, returns the protected refs required by `LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`, and signs the **exact raw bytes** of `approval-envelope.json`. Only a signature under the activated external key plus the fully verified hash-addressed authority graph may advance this same run V02 → V03. Credentials, raw SID/MachineGuid and private signing material stay out of GitHub.
