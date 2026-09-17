@@ -1,17 +1,33 @@
 #!/usr/bin/env python3
-import argparse, json, os, subprocess
+import argparse, hashlib, json, os, stat, subprocess
 from pathlib import Path
 
 VALIDATOR=Path(__file__).resolve().with_name('v02-authority-intake.py')
 DEFAULT=Path('/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev21')
 
+def file_sha256(path):
+ h=hashlib.sha256()
+ with path.open('rb') as f:
+  for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
+ return h.hexdigest()
+
 def snapshot(root):
  out={}
  if not root.exists(): return out
  for p in sorted(root.rglob('*')):
+  rel=str(p.relative_to(root))
   try:
-   st=p.lstat(); out[str(p.relative_to(root))]=(p.is_dir(),st.st_size,st.st_mtime_ns)
-  except OSError: out[str(p.relative_to(root))]=('unreadable',)
+   st=p.lstat(); mode=stat.S_IFMT(st.st_mode)
+   if p.is_symlink():
+    out[rel]=('symlink',os.readlink(p),mode,st.st_size,st.st_mtime_ns)
+   elif p.is_dir():
+    out[rel]=('dir',mode,st.st_mtime_ns)
+   elif p.is_file():
+    out[rel]=('file',mode,st.st_size,st.st_mtime_ns,file_sha256(p))
+   else:
+    out[rel]=('other',mode,st.st_size,st.st_mtime_ns)
+  except OSError:
+   out[rel]=('unreadable',)
  return out
 
 def main():
