@@ -1,0 +1,49 @@
+name: Validation V02 Tooling
+
+on:
+  push:
+    branches:
+      - lane/validation-p00
+      - 'lane/validation-p00-v02-*'
+    paths:
+      - 'validation/tooling/**'
+      - '.github/workflows/validation-v02-tooling.yml'
+  pull_request:
+    paths:
+      - 'validation/tooling/**'
+      - '.github/workflows/validation-v02-tooling.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  v02-tooling:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install candidate dependencies
+        run: python -m pip install -e .
+      - name: Bind reviewed validation source path
+        run: |
+          sudo mkdir -p /home/dragon/ai-film-dev
+          sudo ln -s "$GITHUB_WORKSPACE" /home/dragon/ai-film-dev/validation
+      - name: Python compile
+        run: python -m py_compile validation/tooling/*.py validation/tooling/tests/*.py
+      - name: Shell syntax
+        run: bash -n validation/tooling/*.sh
+      - name: External authenticity regression
+        run: python validation/tooling/tests/test_v02_external_authenticity.py
+      - name: Hardened validator regression
+        run: python validation/tooling/tests/test_v02_hardened_validator.py
+      - name: Preflight byte-integrity regression
+        run: python validation/tooling/tests/test_v02_preflight_content_integrity.py
+      - name: Watcher fail-closed regression
+        run: python validation/tooling/tests/test_v02_watcher_failclosed.py
+      - name: Pre-V03 policy fail-closed regression
+        run: python validation/tooling/tests/test_v02_pre_v03_failclosed.py
+      - name: Tooling manifest integrity
+        run: python validation/tooling/tests/test_v02_tooling_manifest.py
