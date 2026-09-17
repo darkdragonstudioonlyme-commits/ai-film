@@ -35,7 +35,7 @@ The earlier R10/A10 chain is historical evidence only: pre-promotion inspection 
 
 ## Post-promotion authority-reference correction
 
-A fresh canonical reread found a semantic contradiction that the R11/A11 structural checks did not catch: live-authority prose in `PROJECT_STATE.md` and this checkpoint still named superseded R10/A10 as if they could authorize the current tree, even though canonical governance fields correctly selected R11/A11. The forensic design also contained one unqualified sentence assigning semantic-review authority to R10/A10.
+A fresh canonical reread found a semantic contradiction that the historical R11/A11 structural checks did not catch: live-authority prose in `PROJECT_STATE.md` and this checkpoint still named superseded R10/A10 as if they could authorize the current tree, even though canonical governance fields correctly selected R11/A11. The forensic design also contained one unqualified sentence assigning semantic-review authority to R10/A10.
 
 `workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md` preserves this failure instead of erasing it behind the earlier PASS. Revision `R11_V41_AUTHORITY_REFERENCE_CONSISTENCY` therefore:
 
@@ -43,7 +43,7 @@ A fresh canonical reread found a semantic contradiction that the R11/A11 structu
 2. adds `DESIGN_RECORD` to canonical governance so the active design surface is machine-addressable;
 3. requires Markdown/JSON governance parity for revision, branch roles, design record and final verdict identities;
 4. derives the expected live `R<n>/A<n>` pair from canonical final review/audit IDs and rejects a mismatched pair on current authority surfaces unless the line is explicitly historical/superseded context;
-5. finalizes learning 007 from conditional `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-existing R11/A11 activation evidence, so it does not depend on the new promotion's verdict fields.
+5. finalizes learning 007 from conditional `ACTIVE_ON_PROMOTION` to `ACTIVE` using its already-existing historical R11/A11 activation evidence, so it does not depend on the new promotion's verdict fields.
 
 The new correction must be reviewed by R12 and audited by A12 on one exact design SHA. Historical R10/A10 and R11/A11 references remain available when explicitly labeled as prior/superseded evidence; they are not live authority for the new tree.
 

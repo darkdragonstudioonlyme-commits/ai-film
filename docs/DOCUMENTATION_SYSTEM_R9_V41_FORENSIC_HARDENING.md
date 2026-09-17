@@ -62,7 +62,7 @@ This revision modifies lifecycle/governance checkers and CI coverage, but does n
 
 Pre-promotion inspection of the green R10/A10 chain found that `FORENSIC_HARDENING.STATUS` still said `DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10` and JSON still described two implemented controls as merely specified. Merging that exact tree would have created immediate canonical state drift. The R10/A10 verdicts therefore remain valid historical evidence for their old design SHA but are not promotion authority for the corrected tree.
 
-R10_V41 predeclared `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENING.STATUS: ACTIVE_ON_PROMOTION`, aligned JSON with the machine-enforced checker/CI reality, and required new R11/A11 verdicts bound to the corrected exact SHA. No product/native state changed.
+R10_V41 predeclared `PROMOTION_STATE: ACTIVE_ON_PROMOTION` and `FORENSIC_HARDENING.STATUS: ACTIVE_ON_PROMOTION`, aligned JSON with the machine-enforced checker/CI reality, and historically required new R11/A11 verdicts bound to the corrected exact SHA. No product/native state changed.
 
 ## R11_V41 authority-reference consistency correction
 
