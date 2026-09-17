@@ -65,5 +65,9 @@ jobs:
         run: python3 tools/test_project_docs_checker.py
       - name: Workflow continuity
         run: python3 tools/check_workflow_continuity.py
+      - name: Continuity effectiveness measurement
+        run: python3 tools/check_continuity_measurements.py
+      - name: Adversarial continuity measurement regression
+        run: python3 tools/test_continuity_measurements.py
       - name: Holistic documentation audit
         run: python3 tools/audit_documentation_v2.py
