@@ -25,8 +25,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install candidate dependencies
-        run: python -m pip install -e .
+      - name: Install tooling dependency
+        run: python -m pip install cryptography
       - name: Bind reviewed validation source path
         run: |
           sudo mkdir -p /home/dragon/ai-film-dev
