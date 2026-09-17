@@ -101,4 +101,20 @@ def mixed_line_historical_current_stage(dst):
     p.write_text(p.read_text(encoding='utf-8')+f'\nHistorical {older} evidence remains prior. Current {current} is still prospective before promotion.\n',encoding='utf-8')
 require('mixed_line_historical_does_not_mask_current_stage',run_case(mixed_line_historical_current_stage),False,'promoted-current-verdict-stage-drift')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 9 cases')
+def source_visibility_parity_drift(dst):
+    p=dst/'PROJECT_STATE.md'
+    text=p.read_text(encoding='utf-8').replace('FULL_SOURCE_GIT_MIRROR: true','FULL_SOURCE_GIT_MIRROR: false',1)
+    p.write_text(text,encoding='utf-8')
+require('source_visibility_parity_drift',run_case(source_visibility_parity_drift),False,'source-visibility-parity:FULL_SOURCE_GIT_MIRROR')
+
+def full_git_tree_missing_ref(dst):
+    p=dst/'PROJECT_STATE.md'
+    text=p.read_text(encoding='utf-8').replace('REMOTE_SOURCE_REF: source/p00-dev21-exact','REMOTE_SOURCE_REF: null',1)
+    p.write_text(text,encoding='utf-8')
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['source_visibility']['remote_source_ref']=None
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('full_git_tree_missing_ref',run_case(full_git_tree_missing_ref),False,'source-visibility-full-tree-contract')
+
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 11 cases')

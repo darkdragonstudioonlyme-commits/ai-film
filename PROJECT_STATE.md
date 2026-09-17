@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V42
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V43
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 42
+STATE_VERSION: 43
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R15_V42_PAIR_LOCAL_AUTHORITY_GUARD
-  DESIGN_BRANCH: lane/docs-v2-r9-v42-pair-local-authority-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v42-pair-local-authority-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v42-pair-local-authority-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V42_PAIR_LOCAL_AUTHORITY_GUARD.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-016
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R16_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-016
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R16_PASS.md
-  ACTIVATION_CONDITION: "Exact V42 pair-local-authority-guard tree binds R16/A16 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R16/A16 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/prose is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
+  REVISION: R16_V43_SOURCE_VISIBILITY_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v43-source-visibility-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v43-source-visibility-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v43-source-visibility-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V43_SOURCE_VISIBILITY_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-017
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R17_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-017
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R17_PASS.md
+  ACTIVATION_CONDITION: "Exact V43 source-visibility tree binds R17/A17 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R17/A17 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/prose is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R15/A15 remain immutable authority for the preceding promoted-semantic-guard tree. This revision scopes historical classification to each verdict-pair clause so one historical pair cannot mask a separate stale/live pair on the same line."
+  NOTE: "Historical/prior-tree R16/A16 remain immutable authority for the V42 pair-local guard. V43 canonicalizes the exact remote dev21 source mirror without changing product or native authority."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -48,12 +48,13 @@ ACCEPTED_CODE_CANDIDATE:
   OVERALL_CODE_REVIEW_VERDICT: PASS
 
 SOURCE_VISIBILITY:
-  REMOTE_SOURCE_ADDRESSABILITY: ARTIFACT_ONLY
-  REMOTE_SOURCE_REF: null
-  FULL_SOURCE_GIT_MIRROR: false
+  REMOTE_SOURCE_ADDRESSABILITY: FULL_GIT_TREE
+  REMOTE_SOURCE_REF: source/p00-dev21-exact
+  FULL_SOURCE_GIT_MIRROR: true
   EXACT_SOURCE_IDENTITY: 934659f535d81d9a4a07389531acc2b9c304fa6d
   EXACT_PACKAGE_IDENTITY: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
-  VISIBILITY_LIMITATIONS: "Exact dev21 source is available in the prepared WSL Git object database and verified package; no full remote source tree is claimed."
+  VISIBILITY_LIMITATIONS: "Exact dev21 commit 934659f535d81d9a4a07389531acc2b9c304fa6d is remotely browseable at source/p00-dev21-exact; exact commit identity remains authoritative over the mutable branch name."
+  FORMAL_SOURCE_HANDOFF: reviews/CODE-REVIEW-P00-001_DEV21_SOURCE_VISIBILITY_HANDOFF.md
 
 ACTIVE_RUN:
   RUN_ID: RUN-P00-VALIDATION-001
@@ -183,4 +184,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R15/A15 remain bound to the preceding exact tree. R16/A16 are the final verdict identities for this exact semantic tree; branch role changes verdict-artifact presence only. V02/native authority remains unchanged.
+Historical/prior-tree R16/A16 remain bound to the V42 pair-local authority tree. R17/A17 are the final verdict identities for this exact V43 semantic tree; branch role changes verdict-artifact presence only. V02/native authority remains unchanged.

@@ -145,6 +145,37 @@ if state_json:
                         if is_historical: continue
                         errors.append(f'stale-verdict-authority:{surface_name}:{lineno}:{pair}!={expected_pair}')
 
+    sv=state_json.get('source_visibility')
+    if not isinstance(sv,dict):
+        errors.append('source-visibility-json-missing')
+    else:
+        source_parity={
+            'remote_source_addressability':'REMOTE_SOURCE_ADDRESSABILITY',
+            'remote_source_ref':'REMOTE_SOURCE_REF',
+            'full_source_git_mirror':'FULL_SOURCE_GIT_MIRROR',
+            'exact_source_identity':'EXACT_SOURCE_IDENTITY',
+            'exact_package_identity':'EXACT_PACKAGE_IDENTITY',
+        }
+        def md_scalar(value):
+            if value=='null': return None
+            if value=='true': return True
+            if value=='false': return False
+            return value
+        for json_key,md_key in source_parity.items():
+            md_value=state_field(md_key)
+            if md_value is None:
+                errors.append('source-visibility-field-missing:'+md_key)
+            elif sv.get(json_key)!=md_scalar(md_value):
+                errors.append(f'source-visibility-parity:{md_key}:{sv.get(json_key)}!={md_scalar(md_value)}')
+        candidate=state_json.get('accepted_code_candidate',{})
+        if sv.get('exact_source_identity')!=candidate.get('source_commit'):
+            errors.append('source-visibility-source-identity-drift')
+        if sv.get('exact_package_identity')!=candidate.get('package_sha256'):
+            errors.append('source-visibility-package-identity-drift')
+        if sv.get('remote_source_addressability')=='FULL_GIT_TREE':
+            if sv.get('full_source_git_mirror') is not True or not isinstance(sv.get('remote_source_ref'),str) or not sv.get('remote_source_ref'):
+                errors.append('source-visibility-full-tree-contract')
+
     ar=state_json.get('active_run')
     if ar is not None:
         if type(ar) is not dict or not ar.get('run_id') or not ar.get('workflow_id') or not ar.get('run_record') or not ar.get('current_step') or 'local_worktree' not in ar:

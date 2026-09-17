@@ -34,6 +34,9 @@ INPUT_IDENTITY:
   LAB_SNAPSHOT_RESTORE_PROBE: PASS
   LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
   VALIDATION_EVIDENCE_HEAD: 0e9fea427d9ec0385326c9fc1dc1c4d8ec9b27c3
+  REMOTE_SOURCE_ADDRESSABILITY: FULL_GIT_TREE
+  REMOTE_SOURCE_REF: source/p00-dev21-exact
+  FULL_SOURCE_GIT_MIRROR: true
   EXTERNAL_AUTHENTICITY_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
   POSTDEPLOY_FAILCLOSED_STATUS: DEPLOYED
 GOAL: "Close V02 only with independently authenticated external key provenance, an externally signed exact approval envelope and protected registration/fixture/plan/suite authority for the prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory before qualification or SITE."
