@@ -52,6 +52,7 @@ PROJECT_STATE
 | `WORKSPACE_WSL.md` | stable local paths/tools/worktree capabilities | workspace changes | release-specific documentation worktree names or mutable candidate state |
 | `test-governance/*` | immutable TEST_CHANGE/TEST_GAP/TEST_REVIEW records; every review must resolve its proposal/gap in the canonical tree or by exact immutable commit locator | material test governance event | active test policy |
 | `workflow-health/*` | immutable health/meta-review records | workflow meta-review completes | current routing state |
+| `workflow-health/metrics/*` | immutable comparable workflow-health measurement snapshots/baselines | comparable metric population/window closes | mutable current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
 | `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |

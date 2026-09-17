@@ -16,3 +16,6 @@ A10 audit may PASS only if R10 detailed review PASS exists and binds the same ex
 12. Product/native boundaries remain unchanged: no LAB run, qualification, SITE evidence or HOST_READY is invented by documentation hardening.
 
 Any false closure, hidden red CI, unsupported effectiveness claim, unresolved proposal provenance, stale-authority ambiguity or native-state advancement requires audit FAIL.
+
+- R10/A10 must verify the metric-bound receipts for learning 004/005/006 and confirm the three downgraded prior claims remain pending rather than being re-promoted by structural evidence alone.
+- Canonical lifecycle aggregate must be exactly 3 `EFFECTIVE`, 4 `PENDING_MEASUREMENT`, 3 historical `INEFFECTIVE`, zero unresolved ineffective and zero overdue; learning 007 remains pending until its later gate.

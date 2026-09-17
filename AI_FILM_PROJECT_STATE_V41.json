@@ -105,12 +105,36 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 0,
+    "pending_effectiveness_measurement": 4,
     "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 3,
     "recently_proven_effective": "LEARNING-RECOVERY-STATE-VERSIONING-006",
-    "current_pending_measurements": [],
-    "guarded_self_optimization": "ACTIVE"
+    "current_pending_measurements": [
+      {
+        "learning_id": "LEARNING-CONTROL-001",
+        "gate": "NEXT_STATE_OR_CHECKER_SCHEMA_EVOLUTION"
+      },
+      {
+        "learning_id": "LEARNING-SOURCE-VISIBILITY-001",
+        "gate": "NEXT_FORMAL_SOURCE_HANDOFF"
+      },
+      {
+        "learning_id": "LEARNING-WORKFLOW-CONTINUITY-001",
+        "gate": "EVENT_COUNT_AT_LEAST",
+        "value": 3
+      },
+      {
+        "learning_id": "LEARNING-EVIDENCE-SEMANTICS-007",
+        "gate": 42
+      }
+    ],
+    "guarded_self_optimization": "ACTIVE",
+    "semantically_verified_effective": 3,
+    "effective_claims_downgraded_for_remeasurement": 3,
+    "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
+    "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
+    "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
+    "platform_main_protection": "NOT_ENFORCED"
   },
   "forensic_hardening": {
     "status": "DESIGN_CANDIDATE_PENDING_INDEPENDENT_R10_A10",
@@ -126,9 +150,19 @@
     "implement_head": "934659f535d81d9a4a07389531acc2b9c304fa6d",
     "review_head": "934659f535d81d9a4a07389531acc2b9c304fa6d",
     "implement_dirty_files": [],
-    "implement_lane_required_tokens": ["934659f535d81d9a4a07389531acc2b9c304fa6d", "HANDOFF-CODE-REVIEW-P00-DEV21-DELTA"],
-    "review_lane_required_tokens": ["934659f535d81d9a4a07389531acc2b9c304fa6d", "CODE_REVIEW_PASS: true"],
-    "package": {"required": true, "path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V21.zip", "sha256": "f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3"}
+    "implement_lane_required_tokens": [
+      "934659f535d81d9a4a07389531acc2b9c304fa6d",
+      "HANDOFF-CODE-REVIEW-P00-DEV21-DELTA"
+    ],
+    "review_lane_required_tokens": [
+      "934659f535d81d9a4a07389531acc2b9c304fa6d",
+      "CODE_REVIEW_PASS: true"
+    ],
+    "package": {
+      "required": true,
+      "path": "/home/dragon/ai-film-dev/artifacts/IMPL-P00-001_IMPLEMENTATION_PACKAGE_V21.zip",
+      "sha256": "f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3"
+    }
   },
   "author_complete": true,
   "code_review_handoff_ready": true,

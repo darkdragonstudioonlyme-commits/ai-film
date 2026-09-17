@@ -37,8 +37,12 @@ RESULT: SYSTEMIC_CORRECTION_AUTHORED_PENDING_INDEPENDENT_REVIEW
 - `DOCUMENTATION_MAP.md` explicitly classifies root package metadata as non-authoritative for current candidate truth and adds semantic measurement receipts to the source-of-truth model.
 - `POLICY_REGISTRY.md` hardens existing learning/test/persistence policy wording without claiming new checker implementation.
 
+## Effectiveness reclassification
+
+Strict reconciliation found that the mutable register had paraphrased all immutable metrics. The register is corrected to the immutable meanings. `LEARNING-CONTROL-001`, `LEARNING-SOURCE-VISIBILITY-001` and `LEARNING-WORKFLOW-CONTINUITY-001` are returned from structural `EFFECTIVE` to `PENDING_MEASUREMENT`; the continuity metric again requires three interrupted/resumed workflows. 004/005/006 retain `EFFECTIVE` only through explicit metric-bound receipts. New `LEARNING-EVIDENCE-SEMANTICS-007` captures the systemic correction and remains pending measurement.
+
 ## Unresolved implementation debt
 
-This MD correction **does not** claim to have implemented semantic-evidence parsing, branch-role-aware lifecycle checking, expanded CI path filters, or GitHub branch/ruleset enforcement. Those remain tooling/platform work. R10/A10 must fail any wording that implies these controls are already machine-enforced.
+The candidate now implements immutable metric equality, receipt hash/evidence binding, branch-role-aware verdict checking, canonical TEST_REVIEW provenance checking, expanded CI lifecycle-domain triggers, and server-side workflow-continuity execution. It still does **not** claim fully automatic semantic interpretation of observations or GitHub branch/ruleset enforcement. R10/A10 must independently review receipt semantics and keep platform enforcement debt explicit.
 
 No product source, native procedure, LAB authority, qualification, SITE result or HOST_READY state is changed by this health review.

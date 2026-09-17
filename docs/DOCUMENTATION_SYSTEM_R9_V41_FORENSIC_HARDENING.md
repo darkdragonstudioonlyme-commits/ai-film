@@ -40,7 +40,11 @@ Activity counts are not improvement. Workflow health now requires comparable pop
 
 A semantic effectiveness receipt records at minimum `LEARNING_ID`, `METRIC_ID`, metric version, scope, sample requirement, observations, expected predicate, result, immutable evidence identities, measurement commit and independent review ID. A receipt with N=1 cannot satisfy a metric requiring N=3.
 
-Current tooling does not yet machine-evaluate this full contract. This candidate therefore marks semantic-effectiveness enforcement and verdict-branch CI-role enforcement as `SPECIFIED_NOT_YET_MACHINE_ENFORCED` rather than claiming completion.
+The hardened lifecycle checker now machine-enforces immutable-metric equality, receipt-to-metric hash binding, receipt/evidence-path binding, and stage-aware DESIGN/REVIEW/AUDIT verdict invariants. Semantic truth of a receipt's observations remains independently review-gated: tooling proves the binding, while R10/A10 decide whether the evidence actually satisfies the predicate. CI path filters now cover workflow-runs, test-governance, environments, model-evaluations, deliveries and root metadata, and server-side continuity checking is included. GitHub `main` branch protection/ruleset enforcement remains external platform debt.
+
+## Truthful reclassification of prior effectiveness claims
+
+Forensic reconciliation restored every register `success_metric` to the immutable learning record. Three older structural `EFFECTIVE` claims (control-checker generality, source visibility, and workflow continuity) did not have evidence sufficient for the immutable metric and are returned to `PENDING_MEASUREMENT`. Learning 004/005/006 retain `EFFECTIVE` with explicit metric-bound receipts. New learning 007 captures this forensic failure class and is pending measurement after activation.
 
 ## Promotion/review boundary
 
@@ -55,4 +59,4 @@ Independent R10/A10 must bind the exact final forensic-hardening SHA. Promotion 
 
 ## Non-claims
 
-This revision does not itself modify the lifecycle checker, CI YAML, repository protection/rulesets, product source, native validation procedures, LAB authority, qualification, SITE evidence or HOST_READY. Those gaps may be specified here but remain open until their owning implementation/platform mechanism is independently verified.
+This revision modifies lifecycle/governance checkers and CI coverage, but does not change product source, native validation procedures, LAB authority, qualification, SITE evidence or HOST_READY. Full semantic interpretation remains independent-review responsibility, and GitHub repository protection/rulesets remain external platform debt until separately configured and verified.

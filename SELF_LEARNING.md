@@ -121,6 +121,7 @@ An `EFFECTIVE` transition must bind the metric to what was actually observed. Us
 LEARNING_ID:
 METRIC_ID:
 METRIC_VERSION:
+SUCCESS_METRIC_SHA256:
 SCOPE:
 SAMPLE_REQUIREMENT:
 OBSERVATIONS:
@@ -140,9 +141,11 @@ For machine-evaluable time/state progression, `measurement_gate` uses structured
 ```json
 {"kind":"COMPLETE"}
 {"kind":"STATE_VERSION_AT_LEAST","value":36}
+{"kind":"NEXT_QUALIFYING_EVENT","event_kind":"FORMAL_SOURCE_HANDOFF"}
+{"kind":"EVENT_COUNT_AT_LEAST","event_kind":"INTERRUPTED_RESUME","value":3}
 ```
 
-A pending measurement is informative but is not automatically a blocker. It becomes **overdue measurement debt** only when its structured gate is satisfied and effectiveness evidence is still absent. Event-based incidents such as lifecycle-check failure independently trigger meta-review immediately.
+A pending measurement is informative but is not automatically a blocker. `STATE_VERSION_AT_LEAST` becomes machine-overdue when its version gate is crossed without effectiveness evidence. `NEXT_QUALIFYING_EVENT` and `EVENT_COUNT_AT_LEAST` preserve event semantics when a state-version proxy would weaken the metric; until the qualifying event/count is independently evidenced they remain pending rather than being guessed from version progression. Event-based incidents such as lifecycle-check failure independently trigger meta-review immediately.
 
 Tracked failure modes:
 

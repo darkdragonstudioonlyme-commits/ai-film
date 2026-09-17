@@ -9,6 +9,12 @@ on:
       - 'learning/**'
       - 'reviews/**'
       - 'workflow-health/**'
+      - 'workflow-runs/**'
+      - 'test-governance/**'
+      - 'environments/**'
+      - 'model-evaluations/**'
+      - 'deliveries/**'
+      - 'pyproject.toml'
       - 'tools/check_*.py'
       - 'tools/test_learning_lifecycle_checker.py'
       - 'tools/audit_documentation_v2.py'
@@ -21,6 +27,12 @@ on:
       - 'learning/**'
       - 'reviews/**'
       - 'workflow-health/**'
+      - 'workflow-runs/**'
+      - 'test-governance/**'
+      - 'environments/**'
+      - 'model-evaluations/**'
+      - 'deliveries/**'
+      - 'pyproject.toml'
       - 'tools/check_*.py'
       - 'tools/test_learning_lifecycle_checker.py'
       - 'tools/audit_documentation_v2.py'
@@ -49,5 +61,7 @@ jobs:
         run: python3 tools/check_documentation_governance.py
       - name: Active documentation consistency
         run: python3 tools/check_project_docs.py
+      - name: Workflow continuity
+        run: python3 tools/check_workflow_continuity.py
       - name: Holistic documentation audit
         run: python3 tools/audit_documentation_v2.py

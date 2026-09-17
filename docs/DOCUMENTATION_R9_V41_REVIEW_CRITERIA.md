@@ -14,7 +14,10 @@ A detailed R10 review may PASS only if all conditions hold on one exact final fo
 10. `GIT_WORKFLOW.md` distinguishes procedural policy from verified platform enforcement and requires lifecycle-domain CI coverage to be audited.
 11. Review verifies exact-design-target CI separately from verdict-bearing branch CI; a red verdict commit is disclosed and never silently called green.
 12. Existing portable documentation/lifecycle/adversarial checks PASS on the exact design target.
-13. Any control specified but not implemented is labeled `SPECIFIED_NOT_YET_MACHINE_ENFORCED`; documentation must not claim operational closure.
+13. Checker-enforced controls are demonstrated by adversarial tests; semantic receipt interpretation remains independent-review-gated and GitHub main protection remains explicit external debt.
 14. No reused R9/A9 verdict may authorize the new SHA; R10/A10 must be new immutable verdicts.
 
 Any contradiction, hidden enforcement debt, unresolved provenance, weakened metric, or product/native-state advancement requires review FAIL or a new exact design SHA.
+
+- R10/A10 must verify the metric-bound receipts for learning 004/005/006 and confirm the three downgraded prior claims remain pending rather than being re-promoted by structural evidence alone.
+- Canonical lifecycle aggregate must be exactly 3 `EFFECTIVE`, 4 `PENDING_MEASUREMENT`, 3 historical `INEFFECTIVE`, zero unresolved ineffective and zero overdue; learning 007 remains pending until its later gate.

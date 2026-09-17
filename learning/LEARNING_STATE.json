@@ -3,14 +3,268 @@
   "owner": "SELF_LEARNING.md",
   "candidate_documentation_release": "DOCSYS-V2-R9",
   "records": {
-    "LEARNING-CONTROL-001": {"record":"learning/LEARNING-CONTROL-001.md","score":8,"activation_target":"DOCSYS-V2-R8","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R8","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md","AI_FILM_PROJECT_STATE_V30.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V30.json","AI_FILM_PROJECT_STATE_V31.json","AI_FILM_PROJECT_STATE_V32.json"],"success_metric":"State schema evolution after R8 does not require incident-specific checker hard-coding while true drift remains fail-closed.","measurement_trigger":"state/checker schema evolution","measurement_gate":{"kind":"COMPLETE"},"successor":null},
-    "LEARNING-DOCSYS-ACTIVATION-001": {"record":"learning/LEARNING-DOCSYS-ACTIVATION-001.md","score":9,"activation_target":"DOCSYS-V2-R8","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R8","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md","AI_FILM_PROJECT_STATE_V30.json"],"activation_blocker":null,"effectiveness_status":"INEFFECTIVE","effectiveness_evidence":["workflow-health/HEALTH_REVIEW-DOCSYS-R9-001.md","AI_FILM_PROJECT_STATE_V32.json","learning/LEARNING-DOCSYS-ACTIVATION-001.md"],"success_metric":"No reviewed learning is silently treated as active before promotion and lifecycle state cannot remain stale after promotion.","measurement_trigger":"learning activation or documentation release promotion","measurement_gate":{"kind":"COMPLETE"},"successor":"LEARNING-LIFECYCLE-CONSISTENCY-002"},
-    "LEARNING-SOURCE-VISIBILITY-001": {"record":"learning/LEARNING-SOURCE-VISIBILITY-001.md","score":8,"activation_target":"DOCSYS-V2-R8","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R8","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md","AI_FILM_PROJECT_STATE_V30.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V30.json","AI_FILM_PROJECT_STATE_V31.json","AI_FILM_PROJECT_STATE_V32.json"],"success_metric":"Formal handoffs state exact source/package identity plus source addressability and never represent partial/artifact-only visibility as a full mirror.","measurement_trigger":"formal source handoff","measurement_gate":{"kind":"COMPLETE"},"successor":null},
-    "LEARNING-WORKFLOW-CONTINUITY-001": {"record":"learning/LEARNING-WORKFLOW-CONTINUITY-001.md","score":10,"activation_target":"DOCSYS-V2-R8","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R8","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md","AI_FILM_PROJECT_STATE_V30.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["workflow-runs/snapshots/RUN-P00-CR001-001-MIGRATION.md","AI_FILM_PROJECT_STATE_V32.json"],"success_metric":"Interrupted/resumed workflows reuse the same RUN_ID and do not repeat completed expensive steps when exact output identity is recoverable.","measurement_trigger":"workflow interruption/resume","measurement_gate":{"kind":"COMPLETE"},"successor":null},
-    "LEARNING-LIFECYCLE-CONSISTENCY-002": {"record":"learning/LEARNING-LIFECYCLE-CONSISTENCY-002.md","score":10,"activation_target":"DOCSYS-V2-R9","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R9","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md","reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md","AI_FILM_PROJECT_STATE_V33.json"],"activation_blocker":null,"effectiveness_status":"INEFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V34.json","AI_FILM_PROJECT_STATE_V35.json","AI_FILM_PROJECT_STATE_V36.json","workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md","workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-PROMOTION-FINALIZATION-007.md","AI_FILM_PROJECT_STATE_V37.json"],"success_metric":"Zero lifecycle/register/project-state drift across subsequent sessions; ineffective learning always has a successor/meta-review path; no unreviewed correction auto-promotes.","measurement_trigger":"first lifecycle inconsistency or after three subsequent canonical state transitions","measurement_gate":{"kind":"COMPLETE"},"successor":"LEARNING-PROMOTION-STATE-FINALIZATION-005"},
-    "LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003": {"record":"learning/LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003.md","score":9,"activation_target":"DOCSYS-V2-R9","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R2_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R9","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R2_PASS.md","reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R2_PASS.md","AI_FILM_PROJECT_STATE_V34.json"],"activation_blocker":null,"effectiveness_status":"INEFFECTIVE","effectiveness_evidence":["workflow-health/HEALTH_REVIEW-DOCSYS-R9-V36-005.md","AI_FILM_PROJECT_STATE_V36.json"],"success_metric":"The identical adversarial lifecycle regression suite passes before and after promotion while still rejecting partial and mixed-target simulated verdict sets.","measurement_trigger":"next documentation promotion and after three subsequent canonical state transitions","measurement_gate":{"kind":"COMPLETE"},"successor":"LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004"},
-    "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004": {"record":"learning/LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004.md","score":10,"activation_target":"DOCSYS-V2-R9","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R4_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R9","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R4_PASS.md","reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R4_PASS.md","AI_FILM_PROJECT_STATE_V36.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V37.json","AI_FILM_PROJECT_STATE_V38.json","workflow-health/HEALTH_REVIEW-DOCSYS-R9-V38-ADVERSARIAL-008.md"],"success_metric":"Adversarial lifecycle fixtures construct their own semantic preconditions and remain valid across subsequent ambient lifecycle states while still forcing the intended checker failure class.","measurement_trigger":"subsequent canonical lifecycle-state changes after V36 activation","measurement_gate":{"kind":"COMPLETE"},"successor":null},
-    "LEARNING-PROMOTION-STATE-FINALIZATION-005": {"record":"learning/LEARNING-PROMOTION-STATE-FINALIZATION-005.md","score":10,"activation_target":"DOCSYS-V2-R9","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R9","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md","reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md","AI_FILM_PROJECT_STATE_V37.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V38.json","AI_FILM_PROJECT_STATE_V39.json","workflow-health/HEALTH_REVIEW-DOCSYS-R9-V39-READINESS-009.md"],"success_metric":"Completed prior-promotion learning is normalized from transition-only ACTIVE_ON_PROMOTION into durable ACTIVE/PASS before a later promotion contract replaces final-review/final-audit fields.","measurement_trigger":"subsequent canonical promotion-state transitions after V37 activation","measurement_gate":{"kind":"COMPLETE"},"successor":null},
-    "LEARNING-RECOVERY-STATE-VERSIONING-006": {"record":"learning/LEARNING-RECOVERY-STATE-VERSIONING-006.md","score":9,"activation_target":"DOCSYS-V2-R9","review_status":"PASS","review_record":"reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md","activation_status":"ACTIVE","activated_in":"DOCSYS-V2-R9","activation_evidence":["reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md","reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R7_PASS.md","AI_FILM_PROJECT_STATE_V39.json"],"activation_blocker":null,"effectiveness_status":"EFFECTIVE","effectiveness_evidence":["AI_FILM_PROJECT_STATE_V40.json","AI_FILM_PROJECT_STATE_V41.json","workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md"],"success_metric":"Recovery schema changes migrate producers before stricter consumer success is claimed, no recovery check is weakened to accept old-schema payload, and off-host metadata pins stable identity rather than rotating operational state.","measurement_trigger":"next recovery-schema/off-host-metadata change or two subsequent canonical state transitions","measurement_gate":{"kind":"COMPLETE"},"successor":null}
+    "LEARNING-CONTROL-001": {
+      "record": "learning/LEARNING-CONTROL-001.md",
+      "score": 8,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md",
+        "AI_FILM_PROJECT_STATE_V30.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "success_metric": "Future state schema evolution does not require checker edits unless a semantic invariant changes; true lane/worktree/artifact drift still fails closed.",
+      "measurement_trigger": "state/checker schema evolution",
+      "measurement_gate": {
+        "kind": "NEXT_QUALIFYING_EVENT",
+        "event_kind": "STATE_OR_CHECKER_SCHEMA_EVOLUTION"
+      },
+      "successor": null,
+      "effectiveness_receipt": null
+    },
+    "LEARNING-DOCSYS-ACTIVATION-001": {
+      "record": "learning/LEARNING-DOCSYS-ACTIVATION-001.md",
+      "score": 9,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md",
+        "AI_FILM_PROJECT_STATE_V30.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "INEFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-001.md",
+        "AI_FILM_PROJECT_STATE_V32.json",
+        "learning/LEARNING-DOCSYS-ACTIVATION-001.md"
+      ],
+      "success_metric": "Zero reviewed systemic corrections silently treated as active before canonical promotion; learning activation lag/backlog visible in health review.",
+      "measurement_trigger": "learning activation or documentation release promotion",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": "LEARNING-LIFECYCLE-CONSISTENCY-002"
+    },
+    "LEARNING-SOURCE-VISIBILITY-001": {
+      "record": "learning/LEARNING-SOURCE-VISIBILITY-001.md",
+      "score": 8,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md",
+        "AI_FILM_PROJECT_STATE_V30.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "success_metric": "Formal CODE_REVIEW handoffs always state exact source/package identity plus remote source visibility; no reader mistakes partial snapshot for full candidate.",
+      "measurement_trigger": "formal source handoff",
+      "measurement_gate": {
+        "kind": "NEXT_QUALIFYING_EVENT",
+        "event_kind": "FORMAL_SOURCE_HANDOFF"
+      },
+      "successor": null,
+      "effectiveness_receipt": null
+    },
+    "LEARNING-WORKFLOW-CONTINUITY-001": {
+      "record": "learning/LEARNING-WORKFLOW-CONTINUITY-001.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R8",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R8_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R8",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R8_AUDIT_R2_PASS.md",
+        "AI_FILM_PROJECT_STATE_V30.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "success_metric": "Next three interrupted/resumed workflows continue from the last verified step with zero duplicate logical runs and zero repeated completed expensive steps unless identity changed.",
+      "measurement_trigger": "workflow interruption/resume",
+      "measurement_gate": {
+        "kind": "EVENT_COUNT_AT_LEAST",
+        "event_kind": "INTERRUPTED_RESUME",
+        "value": 3
+      },
+      "successor": null,
+      "effectiveness_receipt": null
+    },
+    "LEARNING-LIFECYCLE-CONSISTENCY-002": {
+      "record": "learning/LEARNING-LIFECYCLE-CONSISTENCY-002.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R1_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R1_PASS.md",
+        "AI_FILM_PROJECT_STATE_V33.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "INEFFECTIVE",
+      "effectiveness_evidence": [
+        "AI_FILM_PROJECT_STATE_V34.json",
+        "AI_FILM_PROJECT_STATE_V35.json",
+        "AI_FILM_PROJECT_STATE_V36.json",
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-LIFECYCLE-004.md",
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V37-PROMOTION-FINALIZATION-007.md",
+        "AI_FILM_PROJECT_STATE_V37.json"
+      ],
+      "success_metric": "Across subsequent state/session transitions: zero stale active-release learning entries, project learning backlog equals checker-derived backlog, ineffective learnings trigger an explicit successor/meta-review, and no unreviewed correction is auto-promoted.",
+      "measurement_trigger": "first lifecycle inconsistency or after three subsequent canonical state transitions",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": "LEARNING-PROMOTION-STATE-FINALIZATION-005"
+    },
+    "LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003": {
+      "record": "learning/LEARNING-ADVERSARIAL-FIXTURE-ISOLATION-003.md",
+      "score": 9,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R2_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R2_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R2_PASS.md",
+        "AI_FILM_PROJECT_STATE_V34.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "INEFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V36-005.md",
+        "AI_FILM_PROJECT_STATE_V36.json"
+      ],
+      "success_metric": "The identical adversarial lifecycle regression suite passes on both promotion-ready trees (no final verdicts) and promoted trees (real final verdicts present), while still rejecting partial/mismatched simulated verdict sets.",
+      "measurement_trigger": "next documentation promotion and after three subsequent canonical state transitions",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004"
+    },
+    "LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004": {
+      "record": "learning/LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R4_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R4_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R4_PASS.md",
+        "AI_FILM_PROJECT_STATE_V36.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V38-ADVERSARIAL-008.md",
+        "AI_FILM_PROJECT_STATE_V37.json",
+        "AI_FILM_PROJECT_STATE_V38.json"
+      ],
+      "success_metric": "The unchanged lifecycle checker plus the corrected adversarial suite must PASS on a canonical state with zero ambient pending measurements while the synthesized overdue fixture is still rejected as `learning-overdue-measurement-drift`. A later effectiveness measurement must also show the suite remains stable across subsequent canonical lifecycle-state changes. This learning changes regression-fixture construction only. It does not alter lifecycle policy, checker acceptance predicates, product code or native execution authority.",
+      "measurement_trigger": "subsequent canonical lifecycle-state changes after V36 activation",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": null,
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-ADVERSARIAL-STATE-INDEPENDENCE-004-001.md"
+    },
+    "LEARNING-PROMOTION-STATE-FINALIZATION-005": {
+      "record": "learning/LEARNING-PROMOTION-STATE-FINALIZATION-005.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R5_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R5_PASS.md",
+        "AI_FILM_PROJECT_STATE_V37.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V39-READINESS-009.md",
+        "AI_FILM_PROJECT_STATE_V38.json",
+        "AI_FILM_PROJECT_STATE_V39.json"
+      ],
+      "success_metric": "Across later canonical promotion boundaries, no learning from a completed prior promotion remains dependent on the new promotion's final-review/final-audit fields. Exact lifecycle/adversarial suites remain PASS before and after promotion, and transient promotion state is finalized without deleting immutable evidence.",
+      "measurement_trigger": "subsequent canonical promotion-state transitions after V37 activation",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": null,
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-PROMOTION-STATE-FINALIZATION-005-001.md"
+    },
+    "LEARNING-RECOVERY-STATE-VERSIONING-006": {
+      "record": "learning/LEARNING-RECOVERY-STATE-VERSIONING-006.md",
+      "score": 9,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md",
+      "activation_status": "ACTIVE",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R7_PASS.md",
+        "AI_FILM_PROJECT_STATE_V39.json"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
+        "AI_FILM_PROJECT_STATE_V40.json",
+        "AI_FILM_PROJECT_STATE_V41.json"
+      ],
+      "success_metric": "Future recovery/control-plane schema changes complete producer migration before stricter consumer success is claimed; no verifier/rehearsal requirement is weakened to accept an old-schema payload; and off-host metadata does not pin rotating state as if it were stable identity.",
+      "measurement_trigger": "next recovery-schema/off-host-metadata change or two subsequent canonical state transitions",
+      "measurement_gate": {
+        "kind": "COMPLETE"
+      },
+      "successor": null,
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-RECOVERY-STATE-VERSIONING-006-001.md"
+    },
+    "LEARNING-EVIDENCE-SEMANTICS-007": {
+      "record": "learning/LEARNING-EVIDENCE-SEMANTICS-007.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS_ON_FINAL_REVIEW",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md",
+      "activation_status": "ACTIVE_ON_PROMOTION",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R10_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R10_PASS.md"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "effectiveness_receipt": null,
+      "success_metric": "Future EFFECTIVE transitions bind the immutable success metric to explicit scope/sample/predicate evidence, unrelated existing files cannot satisfy effectiveness, metric-definition drift fails closed, and legitimate DESIGN/REVIEW/AUDIT verdict stages do not generate false promotion-state CI failures.",
+      "measurement_trigger": "next documentation promotion or semantic-evidence regression",
+      "measurement_gate": {
+        "kind": "STATE_VERSION_AT_LEAST",
+        "value": 42
+      },
+      "successor": null
+    }
   }
 }
