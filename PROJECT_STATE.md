@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V43
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V44
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 43
+STATE_VERSION: 44
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R16_V43_SOURCE_VISIBILITY_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v43-source-visibility-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v43-source-visibility-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v43-source-visibility-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V43_SOURCE_VISIBILITY_RECONCILIATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-017
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R17_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-017
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R17_PASS.md
-  ACTIVATION_CONDITION: "Exact V43 source-visibility tree binds R17/A17 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R17/A17 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/prose is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
+  REVISION: R17_V44_PAIR_LOCAL_EFFECTIVENESS
+  DESIGN_BRANCH: lane/docs-v2-r9-v44-pair-local-effectiveness-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v44-pair-local-effectiveness-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v44-pair-local-effectiveness-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V44_PAIR_LOCAL_EFFECTIVENESS.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-018
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R18_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-018
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R18_PASS.md
+  ACTIVATION_CONDITION: "Exact V44 pair-local-effectiveness tree binds R18/A18 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R18/A18 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/prose is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
+  PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R16/A16 remain immutable authority for the V42 pair-local guard. V43 canonicalizes the exact remote dev21 source mirror without changing product or native authority."
+  NOTE: "Historical/prior-tree R17/A17 are the completed qualifying promotion for learning 012. V44 records its metric-bound effectiveness without changing source, review verdict or V02/native authority."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -140,19 +140,19 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 2
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 6
-  RECENTLY_PROVEN_EFFECTIVE: LEARNING-SOURCE-VISIBILITY-001
-  SEMANTICALLY_VERIFIED_EFFECTIVE: 7
+  RECENTLY_PROVEN_EFFECTIVE: LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012
+  SEMANTICALLY_VERIFIED_EFFECTIVE: 8
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012@NEXT_DOCUMENTATION_PROMOTION"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -184,4 +184,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R16/A16 remain bound to the V42 pair-local authority tree. R17/A17 are the final verdict identities for this exact V43 semantic tree; branch role changes verdict-artifact presence only. V02/native authority remains unchanged.
+Historical/prior-tree R17/A17 are the completed qualifying promotion evidence for learning 012. R18/A18 are the final verdict identities for this exact V44 semantic tree; branch role changes verdict-artifact presence only. V02/native authority remains unchanged.

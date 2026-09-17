@@ -388,14 +388,17 @@
         "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R16_PASS.md"
       ],
       "activation_blocker": null,
-      "effectiveness_status": "PENDING_MEASUREMENT",
-      "effectiveness_evidence": [],
-      "effectiveness_receipt": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R17_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R17_PASS.md"
+      ],
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012-001.md",
       "success_metric": "The next documentation promotion classifies historical/live review-audit authority per verdict-pair clause: a historical marker for one pair cannot mask a separate stale or stage-drift pair on the same line; DESIGN, REVIEW, AUDIT and PROMOTED checks all pass on one exact semantic tree.",
       "measurement_trigger": "next documentation promotion after activation",
       "measurement_gate": {
-        "kind": "NEXT_QUALIFYING_EVENT",
-        "event_kind": "DOCUMENTATION_PROMOTION"
+        "kind": "COMPLETE"
       },
       "successor": null
     }

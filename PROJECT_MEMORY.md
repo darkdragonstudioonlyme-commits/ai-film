@@ -45,6 +45,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning 
 | MEM-20260917-001 | GOVERNANCE | Live review/audit authority in prose must derive from canonical final verdict IDs; older verdict pairs are valid only when explicitly historical/superseded context is stated. | `tools/check_project_docs.py`, `tools/test_project_docs_checker.py` |
 | MEM-20260918-001 | GOVERNANCE | READY-derived authority artifacts are valid only for the current successful evaluation; failed reevaluation invalidates them, unchanged-tree claims bind bytes/link identity, and CI must respect exact source addressability. | Learning 009, activated by R13/A13 |
 
+| MEM-20260918-002 | GOVERNANCE | Historical/current review-audit authority context is verdict-pair-local; a historical marker for one pair never masks another pair elsewhere on the same line. | pair-local authority checker / learning 012 |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
