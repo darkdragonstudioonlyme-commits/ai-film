@@ -27,7 +27,13 @@ NATIVE_EXECUTION_ADVANCED: false
 
 ## Two-commit measurement discipline
 
-The first design commit establishes V42 state, leaves learning 007 pending/overdue, finalizes the prior activation state of learning 008, and predeclares learning 009. Its CI result is a measurement sample, not an effectiveness claim. Only a later design commit may add receipts for 007/008 and update their effectiveness state, with the first commit's exact SHA and CI/evidence identities recorded.
+The first design sample established V42 state, left learning 007 pending/overdue, finalized the prior activation state of learning 008, and predeclared learning 009. Its CI result was an observation rather than an effectiveness claim. The later receipt-bearing design binds 007/008 to that exact sample and keeps learning 009 pending future effectiveness measurement.
+
+## Measurement sample identity
+
+Commit `2beb094a2d2e60e5b08eed221977772e1ae87e6b`, GitHub Actions run `35272505044` / job `105375038565`, is the immutable V42 measurement sample. It passed lifecycle with the due 007 gate visible as `pending_measurement=5 / overdue_measurement=1`, all 16 adversarial lifecycle cases, active-document consistency, all four authority-reference adversarial cases, documentation governance, workflow continuity and holistic audit.
+
+The receipt-bearing design must retain all product/native/authority invariants, pass the same executable suites with 007/008 receipt bindings resolved, and remain subject to independent R13/A13 semantic review. The receipts do not self-authorize their own EFFECTIVE conclusions.
 
 ## Non-goals
 
