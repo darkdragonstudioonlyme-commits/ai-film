@@ -96,8 +96,8 @@ if state_json:
                 else: surfaces.append((design_record,dp.read_text(encoding='utf-8')))
 
             historical_markers=(
-                'prior','old ','historical','supersed','reused','earlier','previous',
-                'pre-promotion','remain valid evidence','not promotion authority','not reused'
+                'prior','old ','historical','supersed','reus','earlier','previous',
+                'pre-promotion','remain valid evidence','not promotion authority'
             )
             pair_rx=re.compile(r'\bR(\d+)/A(\d+)\b')
             for surface_name,body in surfaces:
