@@ -7,10 +7,20 @@ on:
       - 'lane/validation-p00-v02-*'
     paths:
       - 'validation/tooling/**'
+      - 'validation/V02_*.md'
+      - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
+      - 'reviews/VALIDATION-V02-*.md'
+      - 'LANE_STATE.md'
+      - 'workflow-runs/RUN-P00-VALIDATION-001.md'
       - '.github/workflows/validation-v02-tooling.yml'
   pull_request:
     paths:
       - 'validation/tooling/**'
+      - 'validation/V02_*.md'
+      - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
+      - 'reviews/VALIDATION-V02-*.md'
+      - 'LANE_STATE.md'
+      - 'workflow-runs/RUN-P00-VALIDATION-001.md'
       - '.github/workflows/validation-v02-tooling.yml'
 
 permissions:
