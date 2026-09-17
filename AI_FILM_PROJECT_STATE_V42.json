@@ -7,19 +7,19 @@
   "documentation_governance": {
     "release_id": "DOCSYS-V2-R9",
     "previous_active_release": "DOCSYS-V2-R9",
-    "revision": "R14_V42_PROMOTED_SEMANTIC_GUARD",
-    "design_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-design",
-    "review_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-review",
-    "audit_branch": "lane/docs-v2-r9-v42-promoted-semantic-guard-audit",
-    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V42_PROMOTED_SEMANTIC_GUARD.md",
-    "final_review_id": "DOC-V2-R9-REVIEW-015",
-    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R15_PASS.md",
-    "final_audit_id": "DOC-V2-R9-AUDIT-015",
-    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R15_PASS.md",
+    "revision": "R15_V42_PAIR_LOCAL_AUTHORITY_GUARD",
+    "design_branch": "lane/docs-v2-r9-v42-pair-local-authority-design",
+    "review_branch": "lane/docs-v2-r9-v42-pair-local-authority-review",
+    "audit_branch": "lane/docs-v2-r9-v42-pair-local-authority-audit",
+    "design_record": "docs/DOCUMENTATION_SYSTEM_R9_V42_PAIR_LOCAL_AUTHORITY_GUARD.md",
+    "final_review_id": "DOC-V2-R9-REVIEW-016",
+    "final_review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R16_PASS.md",
+    "final_audit_id": "DOC-V2-R9-AUDIT-016",
+    "final_audit_record": "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R16_PASS.md",
     "recovery_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md",
     "forensic_hardening_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md",
     "promotion_state": "ACTIVE_ON_PROMOTION",
-    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md",
+    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md",
     "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
     "validation_reconciliation_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-VALIDATION-016.md"
   },
@@ -116,7 +116,7 @@
     "unresolved_ineffective_learning": 0,
     "pending_effectiveness_measurement": 3,
     "overdue_effectiveness_measurement": 0,
-    "historical_ineffective_learning": 5,
+    "historical_ineffective_learning": 6,
     "recently_proven_effective": "LEARNING-CURRENT-EVALUATION-EVIDENCE-009",
     "guarded_self_optimization": "ACTIVE",
     "semantically_verified_effective": 6,
@@ -126,7 +126,7 @@
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "platform_main_protection": "NOT_ENFORCED",
-    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md",
+    "recent_ci_meta_review": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md",
     "current_pending_measurements": [
       {
         "learning_id": "LEARNING-SOURCE-VISIBILITY-001",
@@ -138,7 +138,7 @@
         "value": 3
       },
       {
-        "learning_id": "LEARNING-PROMOTED-SEMANTIC-SURFACE-011",
+        "learning_id": "LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012",
         "gate": "NEXT_DOCUMENTATION_PROMOTION"
       }
     ]
@@ -153,7 +153,7 @@
     "ci_lifecycle_domain_coverage": "MACHINE_ENFORCED",
     "current_verdict_pair_consistency": "MACHINE_ENFORCED",
     "authority_reference_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md",
-    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PROMOTED-STATE-018.md"
+    "promotion_finalization_evidence": "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md"
   },
   "runtime_reconciliation": {
     "schema_version": 1,

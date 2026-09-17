@@ -20,7 +20,7 @@ Exact remote measurement sample `2beb094a2d2e60e5b08eed221977772e1ae87e6b` passe
 
 ## Authority semantics
 
-Historical R12/A12 remain evidence for the prior V41 tree, and historical/prior-tree R13/A13 remain evidence for the promoted V42 validation-reconciliation tree. Prospective R14/A14 are the only pair that may authorize this promotion-finalization correction. Older verdict pairs remain readable only when explicitly historical/superseded.
+Historical R12/A12 remain evidence for the prior V41 tree, and historical/prior-tree R13/A13 remain evidence for the promoted V42 validation-reconciliation tree. Historical/prior-tree R14/A14 authorized the promotion-finalization correction. Older verdict pairs remain readable only when explicitly historical/superseded.
 
 Canonical next action is unchanged: resume `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`. Documentation reconciliation, learning measurement and deployed fail-closed tooling cannot substitute for independently authenticated protected external LAB authority.
 
@@ -36,4 +36,12 @@ Post-promotion reread of main `176aa7452e1c14c67b0768dd75181331f561d95e` found t
 
 Revision `R14_V42_PROMOTED_SEMANTIC_GUARD` adds role-aware checks: on PROMOTED/GENERIC surfaces, candidate/pending promotion state fails closed, and the current verdict pair cannot be described with prospective/pending/awaiting-review language unless the line is explicitly historical. DESIGN/REVIEW/AUDIT roles remain allowed to express their real stage.
 
-Learning 010 is therefore recorded INEFFECTIVE and points to successor learning 011. This exact revision uses final verdict IDs R15/A15; branch role controls verdict-artifact presence, while the same prose remains valid after promotion. No product/native/V02 state changes.
+Learning 010 is therefore recorded INEFFECTIVE and points to successor learning 011. This exact revision uses final verdict IDs historical/prior-tree R15/A15; branch role controls verdict-artifact presence, while the same prose remains valid after promotion. No product/native/V02 state changes.
+
+## Pair-local authority context guard
+
+Post-promotion reread of historical/prior-tree R15/A15 main 8c118bf3203fa149b143a525a9e45aceedd5c4a3 found a mixed sentence where an explicitly historical R13/A13 clause masked a separate stale prospective R14/A14 clause because the checker applied historical markers to the entire line.
+
+R16/A16 are the final verdict identities for this exact semantic tree. The checker classifies each verdict pair using only its local sentence/clause; historical context for one pair cannot suppress stale-live or promoted-stage errors for another pair on the same line. DESIGN/REVIEW/AUDIT role semantics remain valid, while PROMOTED/GENERIC roles fail closed on current-pair prospective/pending wording.
+
+Learning 011 is normalized from completed historical/prior-tree R15/A15 activation to durable ACTIVE/PASS and marked INEFFECTIVE for this recurrence. Successor learning 012 carries the pair-local invariant and remains pending effectiveness until the next documentation promotion. Product/native/V02 state is unchanged.

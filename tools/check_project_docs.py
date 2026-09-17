@@ -121,21 +121,28 @@ if state_json:
                 'pre-promotion','remain valid evidence','not promotion authority'
             )
             pair_rx=re.compile(r'\bR(\d+)/A(\d+)\b')
+            clause_separators='.;|'
+            def pair_clause(line,start,end):
+                left=max(line.rfind(sep,0,start) for sep in clause_separators)
+                rights=[pos for sep in clause_separators if (pos:=line.find(sep,end))!=-1]
+                right=min(rights) if rights else len(line)
+                return line[left+1:right].lower()
             for surface_name,body in surfaces:
                 for lineno,line in enumerate(body.splitlines(),1):
-                    low=line.lower()
                     for match in pair_rx.finditer(line):
                         pair=f'R{int(match.group(1))}/A{int(match.group(2))}'
+                        context=pair_clause(line,match.start(),match.end())
+                        is_historical=any(marker in context for marker in historical_markers)
                         if pair==expected_pair:
                             stage_markers=(
                                 'prospective','awaiting review','awaiting audit','pending review','pending audit',
                                 'review required','audit required','requires review','requires audit',
                                 'before replacing current main','before promotion'
                             )
-                            if doc_role in {'PROMOTED','GENERIC'} and any(marker in low for marker in stage_markers) and not any(marker in low for marker in historical_markers):
+                            if doc_role in {'PROMOTED','GENERIC'} and any(marker in context for marker in stage_markers) and not is_historical:
                                 errors.append(f'promoted-current-verdict-stage-drift:{surface_name}:{lineno}:{expected_pair}')
                             continue
-                        if any(marker in low for marker in historical_markers): continue
+                        if is_historical: continue
                         errors.append(f'stale-verdict-authority:{surface_name}:{lineno}:{pair}!={expected_pair}')
 
     ar=state_json.get('active_run')

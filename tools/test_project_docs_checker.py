@@ -84,4 +84,21 @@ def prospective_current_pair(dst):
 require('promoted_current_pair_prospective',run_case(prospective_current_pair),False,'promoted-current-verdict-stage-drift')
 require('design_current_pair_prospective',run_case(prospective_current_pair,role='DESIGN'),True,'DOCS_CHECK_PASS')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 7 cases')
+def mixed_line_historical_mask(dst):
+    p=dst/checkpoint
+    older_review=max(1,review_n-2) if review_n>2 else review_n+2
+    older_audit=max(1,audit_n-2) if audit_n>2 else audit_n+2
+    older=f'R{older_review}/A{older_audit}'
+    p.write_text(p.read_text(encoding='utf-8')+f'\nHistorical {older} evidence remains prior. Current review/audit authority: {stale_pair}.\n',encoding='utf-8')
+require('mixed_line_historical_does_not_mask_live_stale',run_case(mixed_line_historical_mask),False,'stale-verdict-authority')
+
+def mixed_line_historical_current_stage(dst):
+    p=dst/checkpoint
+    older_review=max(1,review_n-1) if review_n>1 else review_n+1
+    older_audit=max(1,audit_n-1) if audit_n>1 else audit_n+1
+    older=f'R{older_review}/A{older_audit}'
+    current=f'R{review_n}/A{audit_n}'
+    p.write_text(p.read_text(encoding='utf-8')+f'\nHistorical {older} evidence remains prior. Current {current} is still prospective before promotion.\n',encoding='utf-8')
+require('mixed_line_historical_does_not_mask_current_stage',run_case(mixed_line_historical_current_stage),False,'promoted-current-verdict-stage-drift')
+
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 9 cases')
