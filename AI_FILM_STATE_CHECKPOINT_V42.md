@@ -14,12 +14,18 @@ V42 reconciles the independently reviewed validation lane head `0e9fea427d9ec038
 
 ## V42 measurement sample
 
-The first V42 sample intentionally left `LEARNING-EVIDENCE-SEMANTICS-007` pending at its structured state-version gate, so lifecycle aggregation reported one overdue measurement instead of silently hiding it. It finalized learning 008's prior V41 activation evidence from historical R12/A12 and predeclared learning 009 only for prospective R13/A13 activation.
+The first V42 sample intentionally left `LEARNING-EVIDENCE-SEMANTICS-007` pending at its structured state-version gate, so lifecycle aggregation reported one overdue measurement instead of silently hiding it. It finalized learning 008's prior V41 activation evidence from historical R12/A12 and predeclared learning 009 for the now-completed historical/prior-tree R13/A13 activation.
 
-Exact remote measurement sample `2beb094a2d2e60e5b08eed221977772e1ae87e6b` passed GitHub Actions run `35272505044` / job `105375038565`: lifecycle exposed the due gate as `pending_measurement=5 / overdue_measurement=1`, all 16 adversarial lifecycle cases passed, and active-doc/authority adversarial/governance/continuity/holistic checks passed. Candidate receipts therefore mark learning 007 and 008 EFFECTIVE subject to independent R13/A13 semantic review; learning 009 remains pending future measurement.
+Exact remote measurement sample `2beb094a2d2e60e5b08eed221977772e1ae87e6b` passed GitHub Actions run `35272505044` / job `105375038565`: lifecycle exposed the due gate as `pending_measurement=5 / overdue_measurement=1`, all 16 adversarial lifecycle cases passed, and active-doc/authority adversarial/governance/continuity/holistic checks passed. Candidate receipts marked learning 007 and 008 EFFECTIVE after completed historical/prior-tree R13/A13 semantic review; learning 009 was activated by that prior promotion and is now normalized before the new verdict pair.
 
 ## Authority semantics
 
-Historical R12/A12 are immutable evidence for the prior V41 tree only. Prospective R13/A13 are the only review/audit pair that may authorize the V42 tree, and neither exists on the design-stage candidate. Older verdict pairs remain readable only when explicitly historical/superseded.
+Historical R12/A12 remain evidence for the prior V41 tree, and historical/prior-tree R13/A13 remain evidence for the promoted V42 validation-reconciliation tree. Prospective R14/A14 are the only pair that may authorize this promotion-finalization correction. Older verdict pairs remain readable only when explicitly historical/superseded.
 
 Canonical next action is unchanged: resume `RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY`. Documentation reconciliation, learning measurement and deployed fail-closed tooling cannot substitute for independently authenticated protected external LAB authority.
+
+## Promotion-finalization revision
+
+Post-promotion main CI `35273366855` resolved historical/prior-tree R13/A13 and learning promotion evidence, but canonical state still carried `CANDIDATE_REVIEW_REQUIRED`. This revision treats that as semantic lag rather than silently editing the audited tree: prospective R14/A14 govern a separate exact correction. The candidate already says `ACTIVE_ON_PROMOTION` and normalizes learning 009 to durable `ACTIVE / PASS` with immutable historical R13/A13 evidence before allocating the new verdict pair.
+
+A post-activation real V02 reevaluation on main `60e030de9c234c4ec6cd242c335f94250d448188` removed seeded stale READY/policy artifacts under the blocked authority condition, and byte-integrity/source-addressability regressions remained green. This is a measurement sample for learning 009; no effectiveness claim is made until an explicit receipt and R14/A14 semantic review.
