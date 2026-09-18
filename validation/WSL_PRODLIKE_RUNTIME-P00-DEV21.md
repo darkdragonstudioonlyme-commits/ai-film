@@ -35,6 +35,12 @@ SYSTEMD_VERIFY_TIMER_SHA256: 2e3568c72d1be9c3b82d487bc5c3128daec02c3ed3e0cf62b07
 SYSTEMD_TIMER_ENABLED: true
 SYSTEMD_TIMER_ACTIVE: true
 SYSTEMD_USER_LINGER: true
+USER_SYSTEMD_RECOVERY_STATUS: RECOVERED_VERIFIED_USER_SCOPE
+USER_SYSTEMD_RECOVERY_RECORD: validation/PRODLIKE_USER_SYSTEMD_RECOVERY-P00-DEV21.md
+USER_SYSTEMD_VERIFIER: validation/tooling/verify_prodlike_user_systemd.py
+USER_SYSTEMD_UNIT_FILE_COUNT: 46
+USER_SYSTEMD_TIMER_COUNT: 11
+POSTRESTORE_HEALTH_SHA256: b2fa7347c966c8b85e781ae88931f87c331426f27492f9bb39cdc290b50d5cf5
 MONITOR_INTERVAL: 15min
 SYSTEMD_SECURITY_EXPOSURE: "4.1 OK"
 ENVIRONMENT_POLICY: ENV_CLEARED_ALLOWLIST_ONLY
@@ -65,6 +71,8 @@ The runtime is intentionally not a plain wheel install. The exact dev21 package 
 Both the runtime launcher and release-control helpers re-exec with an empty inherited environment and an explicit allowlist. This prevents arbitrary shell environment secrets from being forwarded into the runtime. No stored privilege secret is required by runtime activation, integrity verification, monitoring, health collection, backup, or the current validation workflow preparation.
 
 ## Live-readiness and production-like operations controls
+
+A live recovery check on 2026-09-18 found the user-systemd unit deployment absent even though runtime bytes, backup/export artifacts and V02 fail-closed tooling remained intact. Recovery used the verified control backup `control-state-20260918T041624Z.tar.gz` (`ab2ddc7f...`, 91 files). An initial system-scope copy was detected as wrong scope before any timer activation because root execution violated the runtime writability invariant (`APP_WRITABLE_DRIFT`); it was fully rolled back. Exact 46 unit/drop-in files were then restored to `~/.config/systemd/user`, verified byte-for-byte, loaded through the lingering `dragon` user manager, and all eleven timers plus periodic services returned healthy state. Fresh postrestore control backup/export/health evidence is recorded in `validation/PRODLIKE_USER_SYSTEMD_RECOVERY-P00-DEV21.md`.
 
 `aifilm-p00-dev21-verify.service` is a hardened user-systemd oneshot verifier and `aifilm-p00-dev21-verify.timer` runs it every 15 minutes. The timer is enabled and active; user linger is enabled so the user manager is not tied to the interactive session. The service has no Internet socket families, no capabilities, `NoNewPrivileges`, read-only home/system protection with only runtime tmp writable, private devices/tmp, W^X protection, and an observed `systemd-analyze security` exposure score of `4.1 OK`.
 

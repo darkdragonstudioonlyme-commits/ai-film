@@ -5,11 +5,16 @@ on:
     branches:
       - lane/validation-p00
       - 'lane/validation-p00-v02-*'
+      - 'lane/validation-p00-prodlike-*'
     paths:
       - 'validation/tooling/**'
       - 'validation/V02_*.md'
+      - 'validation/PRODLIKE_*.md'
+      - 'validation/WSL_PRODLIKE_*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
+      - 'workflow-health/HEALTH_REVIEW-WF-P00-PRODLIKE-*.md'
       - 'reviews/VALIDATION-V02-*.md'
+      - 'reviews/VALIDATION-PRODLIKE-*.md'
       - 'LANE_STATE.md'
       - 'workflow-runs/RUN-P00-VALIDATION-001.md'
       - '.github/workflows/validation-v02-tooling.yml'
@@ -17,8 +22,12 @@ on:
     paths:
       - 'validation/tooling/**'
       - 'validation/V02_*.md'
+      - 'validation/PRODLIKE_*.md'
+      - 'validation/WSL_PRODLIKE_*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
+      - 'workflow-health/HEALTH_REVIEW-WF-P00-PRODLIKE-*.md'
       - 'reviews/VALIDATION-V02-*.md'
+      - 'reviews/VALIDATION-PRODLIKE-*.md'
       - 'LANE_STATE.md'
       - 'workflow-runs/RUN-P00-VALIDATION-001.md'
       - '.github/workflows/validation-v02-tooling.yml'
@@ -53,6 +62,8 @@ jobs:
         run: python validation/tooling/tests/test_v02_pre_v03_failclosed.py
       - name: Tooling manifest integrity
         run: python validation/tooling/tests/test_v02_tooling_manifest.py
+      - name: Prodlike user-systemd verifier regression
+        run: python validation/tooling/tests/test_prodlike_user_systemd_verifier.py
       - name: Checkout exact dev21 source authority
         uses: actions/checkout@v4
         with:

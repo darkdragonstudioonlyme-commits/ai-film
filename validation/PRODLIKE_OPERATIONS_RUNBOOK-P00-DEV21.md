@@ -65,6 +65,22 @@ A current sample may be logged for traceability, but it must not be treated as a
 
 Private Google Drive therefore pins only stable exact-candidate/rebuild identities. Rotating backup/export hashes are deliberately not pinned there.
 
+## User-systemd deployment recovery
+
+The eleven AI-FILM timers are **user-systemd** units owned by the lingering `dragon` user manager. They must not be installed under `/etc/systemd/system`: the runtime verifier intentionally evaluates writability from the unprivileged runtime identity, and root execution can produce `APP_WRITABLE_DRIFT` even when bytes are correct.
+
+Authoritative recovery input is a verified control backup containing `backup-manifest.json` plus `systemd/`. Before any activation, verify the archive and current runtime scripts, restore the exact `systemd/` members to `~/.config/systemd/user` (drop-ins become `<service>.d/`), and require byte-for-byte manifest match. Attach to the lingering user manager with `XDG_RUNTIME_DIR=/run/user/1000` and `DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus`, then `systemctl --user daemon-reload` and `systemd-analyze --user verify`.
+
+Machine verification command after restore:
+
+```bash
+python3 validation/tooling/verify_prodlike_user_systemd.py   --backup-archive /path/to/control-state-*.tar.gz   --unit-dir /home/dragon/.config/systemd/user   --check-timers
+```
+
+The verifier validates archive manifest bytes, deployed unit/drop-in hashes, and optionally all timer enabled/active states. After unit verification, execute the real periodic oneshots and run runtime-health last. Recovery is complete only when health reports PASS with every check true, authority remains BLOCKED when no external envelope exists, `native_execution_started=false`, and a fresh control backup/offhost export has been produced and verified.
+
+Never recover by inventing unit text from documentation, by changing hashes to match drifted files, or by installing the user units as root/system services.
+
 ## Incident matrix
 
 | Symptom | Required response | Forbidden response |
