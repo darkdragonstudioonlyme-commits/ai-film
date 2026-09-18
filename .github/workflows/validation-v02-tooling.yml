@@ -51,8 +51,19 @@ jobs:
         run: python validation/tooling/tests/test_v02_pre_v03_failclosed.py
       - name: Tooling manifest integrity
         run: python validation/tooling/tests/test_v02_tooling_manifest.py
-      - name: Exact-source regression remains review-gated
+      - name: Checkout exact dev21 source authority
+        uses: actions/checkout@v4
+        with:
+          ref: 934659f535d81d9a4a07389531acc2b9c304fa6d
+          path: exact-source
+      - name: Verify exact dev21 source identity
         run: |
-          echo 'test_v02_hardened_validator.py requires exact dev21 source authority.'
-          echo 'GitHub repository source is ARTIFACT_ONLY/non-authoritative for current dev21.'
-          echo 'Run that regression in the exact reviewed validation workspace before promotion.'
+          test "$(git -C exact-source rev-parse HEAD)" = "934659f535d81d9a4a07389531acc2b9c304fa6d"
+          test -f exact-source/src/aifilm_p00/__init__.py
+      - name: Bind exact source to reviewed runtime path
+        run: |
+          sudo mkdir -p /home/dragon/ai-film-dev/validation
+          sudo ln -s "$GITHUB_WORKSPACE/exact-source/src" /home/dragon/ai-film-dev/validation/src
+          test -f /home/dragon/ai-film-dev/validation/src/aifilm_p00/__init__.py
+      - name: Exact-source hardened validator regression
+        run: python validation/tooling/tests/test_v02_hardened_validator.py
