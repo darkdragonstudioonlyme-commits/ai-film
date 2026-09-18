@@ -1,0 +1,7 @@
+# AI-FILM-SERVER — State Checkpoint V57
+
+Exact dev22 remains accepted and `RUN-P00-VALIDATION-002` remains BLOCKED at V02. Canonical validation advances to `c5f2d43aaa0d2e0ae796ea7981f578bcb2b0a148` after correcting a local-key identity-parity defect and independently reviewing/auditing the real WSL deployment. The durable current key is `AI-FILM-P00-DEV22-LOCAL-001` / public SHA `7f14c158dd09ec9e40572131538bab6818e768cc9f33cb1ec3708a09df9a8a69`; the old `5d595732...` identity is historical/superseded because its private identity is unavailable.
+
+The deployed validation-ops surface matches all 20 manifest-bound files, manifest SHA `797bec82d024ab75be5abbb29029f6b80c0b301ca37fb0939e442e7ca76c6501`, trust SHA `0af4f9adadcd64bbc2b23a51d572d01af08bdf197c7d96150abdf1ffc9acbbe8`, and machine key-parity PASS. Deployment receipt SHA is `9f4fed765335b7aba64358b0f76be83b8bdf51a07218230483326cb74d1bdc60`. Live preflight/intake/pre-V03 remain 10/12/12 on `APPROVAL_ENVELOPE_MISSING`; READY/native-policy are absent and `AI-FILM-P00-LAB` is stopped. No native case, qualification, SITE or HOST_READY state advances.
+
+Learning `LEARNING-LOCAL-AUTHORITY-KEY-PARITY-015` captures the reusable rule that cryptographic key deployment must prove private-derived public identity parity, not only restrictive file mode. It is R31/A31 activation-gated and PENDING_MEASUREMENT until a later qualifying key deployment/recovery recheck. Pending effectiveness becomes 3; workflow continuity remains 0/3. Platform main protection remains NOT_ENFORCED.

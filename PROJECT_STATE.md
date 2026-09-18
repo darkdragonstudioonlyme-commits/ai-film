@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V56
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V57
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 56
+STATE_VERSION: 57
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION-DEV22
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R29_V56_VALIDATION_LOCAL_KEY_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V56_VALIDATION_LOCAL_KEY_RECONCILIATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-030
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R30_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-030
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R30_PASS.md
-  ACTIVATION_CONDITION: "Exact V56 validation-local-key reconciliation tree binds R30/A30 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R30/A30 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no validation-run/trust/deployment/native semantic change is allowed after review."
+  REVISION: R30_V57_LOCAL_KEY_PARITY_DEPLOYMENT_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v57-local-key-parity-deployment-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v57-local-key-parity-deployment-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v57-local-key-parity-deployment-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V57_LOCAL_KEY_PARITY_DEPLOYMENT_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-031
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R31_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-031
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R31_PASS.md
+  ACTIVATION_CONDITION: "Exact V57 local-key parity/deployment reconciliation tree binds R31/A31 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R31/A31 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no validation/trust/deployment/learning/native semantic change is allowed after review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V53-GOVERNANCE-EVIDENCE-PARITY-030.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R29/A29 completed V55. V56 reconciles the canonical validation lane after dev22 run activation, local-authority tooling review/audit, local-key activation and post-promotion semantic finalization."
+  NOTE: "Historical/prior-tree R30/A30 completed V56. V57 reconciles corrected local-key identity parity plus audited WSL deployment evidence; it does not close V02 or start native execution."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev22
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 66e5d30a6bde9dcdcb310fc1772bccb16702db24
+  VALIDATION_EVIDENCE_HEAD: c5f2d43aaa0d2e0ae796ea7981f578bcb2b0a148
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -83,19 +83,25 @@ VALIDATION_PREPARATION:
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
   CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
-  LOCAL_KEY_GIT_STATUS: REVIEWED_AUDITED_PROMOTED
-  KEY_ID: AI-FILM-LOCAL-DEV22-20260918-5d5957324955
-  PUBLIC_KEY_SHA256: 5d5957324955fb92d998aa7ab54bf551f580ef14b29cad0086274328526a285e
-  TRUST_ANCHOR_SHA256: 93dd4d3d411fe60dc711a13ed010eb6d0e620271ec0c44a101603f2dba4bacf9
-  TRUST_ANCHOR_STATUS: ACTIVE_REVIEWED_AUDITED
-  TRUST_OPS_DEPLOYMENT_STATUS: NOT_CLAIMED_BY_GIT_EVIDENCE
-  LOCAL_AUTHORITY_RECORD: "lane/validation-p00:validation/V02_LOCAL_OPERATOR_AUTHORITY-P00-DEV22.md"
-  LOCAL_KEY_ACTIVATION_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md"
-  LOCAL_KEY_ACTIVATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md"
-  LOCAL_KEY_ACTIVATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md"
-  LOCAL_KEY_FINALIZATION_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_PROMOTION_FINALIZATION-P00-DEV22.md"
-  LOCAL_KEY_FINALIZATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-PROMOTION-FINALIZATION-DEV22-REVIEW-001_PASS.md"
-  LOCAL_KEY_FINALIZATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-PROMOTION-FINALIZATION-DEV22-AUDIT-001_PASS.md"
+  LOCAL_KEY_GIT_STATUS: REACTIVATED_REVIEWED_AUDITED_PROMOTED
+  KEY_ID: AI-FILM-P00-DEV22-LOCAL-001
+  PUBLIC_KEY_SHA256: 7f14c158dd09ec9e40572131538bab6818e768cc9f33cb1ec3708a09df9a8a69
+  TRUST_ANCHOR_SHA256: 0af4f9adadcd64bbc2b23a51d572d01af08bdf197c7d96150abdf1ffc9acbbe8
+  TRUST_ANCHOR_STATUS: ACTIVE_REACTIVATED_REVIEWED_AUDITED_DEPLOYED
+  TRUST_OPS_DEPLOYMENT_STATUS: DEPLOYED_VERIFIED_KEY_PARITY
+  KEY_PARITY_STATUS: PASS
+  PREVIOUS_KEY_ID: AI-FILM-LOCAL-DEV22-20260918-5d5957324955
+  PREVIOUS_KEY_DISPOSITION: HISTORICAL_SUPERSEDED_PRIVATE_KEY_IDENTITY_UNAVAILABLE
+  LOCAL_KEY_REACTIVATION_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_REACTIVATION-P00-DEV22.md"
+  LOCAL_KEY_REACTIVATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEV22-REVIEW-002_PASS.md"
+  LOCAL_KEY_REACTIVATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEV22-AUDIT-002_PASS.md"
+  LOCAL_KEY_DEPLOYMENT_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_REACTIVATION_DEPLOYMENT-P00-DEV22.md"
+  LOCAL_KEY_DEPLOYMENT_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-REVIEW-001_PASS.md"
+  LOCAL_KEY_DEPLOYMENT_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-AUDIT-001_PASS.md"
+  DEPLOYMENT_RECEIPT_SHA256: 9f4fed765335b7aba64358b0f76be83b8bdf51a07218230483326cb74d1bdc60
+  DEPLOYED_MANIFEST_SHA256: 797bec82d024ab75be5abbb29029f6b80c0b301ca37fb0939e442e7ca76c6501
+  LOCAL_IDENTITY_CONTEXT_SHA256: c56a13e65ac76f6fe59245a5706ec6270c3c85fd69c81aa50fa2e3ce7165acbc
+  VALIDATION_CANONICAL_CI_RUN: 35320747377
   DEV21_PREPARATION_REUSABLE_AS_DEV22_AUTHORITY: false
   DEV22_LAB_REBUILD_REQUIRED: true
   CURRENT_RUNTIME_MATCHES_DEV22: false
@@ -123,13 +129,13 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 2
+  PENDING_EFFECTIVENESS_MEASUREMENT: 3
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 6
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-CI-CREDENTIAL-ISOLATION-013
   SEMANTICALLY_VERIFIED_EFFECTIVE: 9
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-PRODLIKE-SUPERVISION-DEPLOYABILITY-014@NEXT_PRODLIKE_SUPERVISION_DEPLOYMENT_RECHECK"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-PRODLIKE-SUPERVISION-DEPLOYABILITY-014@NEXT_PRODLIKE_SUPERVISION_DEPLOYMENT_RECHECK; LEARNING-LOCAL-AUTHORITY-KEY-PARITY-015@NEXT_LOCAL_AUTHORITY_KEY_DEPLOYMENT_RECHECK"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 CONTINUITY_EFFECTIVENESS_MEASUREMENT:
@@ -142,7 +148,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V56-VALIDATION-LOCAL-KEY-033.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V57-LOCAL-KEY-PARITY-DEPLOYMENT-034.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -165,7 +171,7 @@ VALIDATION_STATUS:
 
 VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REASON: "Run002 is canonically active on exact dev22, but V02 still requires WSL validation-ops deployment/reverification of the reviewed local trust/tooling, exact-dev22 prodlike/LAB rebuild and a current signed local-authority object graph before any native stage."
+  REASON: "Corrected local trust/tooling is reviewed, audited and deployed with machine key-parity proof. V02 remains blocked until prodlike runtime and stopped LAB are rebuilt/sealed to exact dev22 and a fresh candidate-specific local authority graph is created, signed and verified."
   USER_ACTION_REQUIRED: false
   RETURN_TO: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
   STATUS: OPEN
@@ -173,7 +179,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: deploy/reverify the exact reviewed local-authority tooling/public trust identity on the WSL validation-ops surface, rebuild prodlike runtime and stopped LAB to exact dev22, create/sign the current authority graph, and pass current V02 verification before V03."
+NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: rebuild/rebind prodlike runtime and stopped disposable LAB to exact dev22, create/sign the current local-authority object graph with durable key AI-FILM-P00-DEV22-LOCAL-001, then pass staging preflight, authoritative intake and pre-V03 verification before V03."
 ```
 
-Historical/prior-tree R29/A29 remain immutable V55 authority. V56 reconciles validation head `66e5d30...`: run002 is canonically active on exact dev22, local-key Git authority is reviewed/audited/promoted, and R30/A30 bind this exact V56 semantic tree. Git promotion is not WSL deployment evidence. V02 remains BLOCKED, the runtime/LAB remain dev21-mismatched, and all 86 native cases remain NOT_RUN.
+Historical/prior-tree R30/A30 remain immutable V56 authority. V57 reconciles canonical validation head `c5f2d43aaa0d2e0ae796ea7981f578bcb2b0a148` and live deployment evidence: the old `5d595732...` identity is historical/superseded, durable key `7f14c158dd09...` is machine-bound to the deployed trust anchor, and current V02 gates remain blocked/missing with LAB stopped. Learning 015 is activation-gated by R31/A31 and remains PENDING_MEASUREMENT; this incident is observation/activation evidence, not post-activation effectiveness evidence. All 86 native cases remain NOT_RUN and platform main protection remains NOT_ENFORCED.
