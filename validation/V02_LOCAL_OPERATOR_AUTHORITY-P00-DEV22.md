@@ -4,7 +4,7 @@
 V02_AUTHORITY_ID: V02-LOCAL-OPERATOR-AUTHORITY-P00-DEV22-001
 RUN_ID: RUN-P00-VALIDATION-002
 STEP_ID: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-STATUS: REVIEW_CANDIDATE_PENDING_LOCAL_KEY_AND_DEV22_LAB_REBUILD
+STATUS: LOCAL_KEY_ACTIVATION_DESIGN_PENDING_REVIEW_AND_DEV22_LAB_REBUILD
 AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
 ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
 CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
@@ -14,7 +14,7 @@ PACKAGE_SHA256: c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae
 BUILD_DIGEST: 69fdc1840472a96bce8f8841e4d780543827e3cefdd3fe3bc8445f8a1fb4a0d6
 TEST_SET_DIGEST: 47d4ae767b26b05ef16d6809ea9377ef4e1b21bfbc4c44093dbd1cc158b75698
 CONTRACT_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
-TRUST_ANCHOR_STATUS: PENDING_LOCAL_KEY
+TRUST_ANCHOR_STATUS: ACTIVE_CANDIDATE_PENDING_REVIEW
 PRIVATE_KEY_IN_GIT: false
 NATIVE_EXECUTION_STARTED: false
 ```
@@ -33,7 +33,7 @@ The lower provenance assurance does not remove the remaining gates. Registration
 
 ## Pending actions after audit
 
-1. generate WSL-local private key mode 0600 and activate only its public identity in the reviewed trust anchor;
+1. independently review/audit and deploy the generated WSL-local key's public trust identity;
 2. rebuild prodlike runtime and stopped LAB to exact dev22, create fresh candidate-specific snapshots/seal and keep all native cases NOT_RUN;
 3. generate a new local approval object graph with `controller_external=false` and current <=24h suite;
 4. sign exact envelope locally, run read-only staging preflight, then authoritative intake and pre-V03 stage;
