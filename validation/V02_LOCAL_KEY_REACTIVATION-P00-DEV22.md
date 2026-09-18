@@ -4,7 +4,7 @@ REACTIVATION_ID: V02-LOCAL-KEY-REACTIVATION-P00-DEV22-001
 RUN_ID: RUN-P00-VALIDATION-002
 STEP_ID: V02_LOCAL_OPERATOR_LAB_AUTHORITY
 BASE_VALIDATION_HEAD: 9673283c3a8422485db4c3e48baa481dd720551d
-STATUS: DESIGN_CANDIDATE_PENDING_REVIEW
+STATUS: DEPLOYED_ON_AUDIT_PROMOTION
 FINDING: V02-LOCAL-KEY-PARITY-001
 PREVIOUS_KEY_ID: AI-FILM-LOCAL-DEV22-20260918-5d5957324955
 PREVIOUS_PUBLIC_KEY_SHA256: 5d5957324955fb92d998aa7ab54bf551f580ef14b29cad0086274328526a285e
@@ -28,3 +28,7 @@ The old key identity remains immutable historical evidence; it is not regenerate
 This reactivation adds `verify_local_authority_key_parity.py`. Deployment/recovery must now prove, without emitting private bytes: owner/mode 0600, Ed25519 private-key parse, derived-public equality to the raw public file, metadata equality, and exact ACTIVE trust-anchor key/provenance equality. A mode-only receipt can no longer satisfy key deployment parity.
 
 The committed trust anchor is rebound to the durable key above and the signature verifier/manifest are repinned. This transaction does not approve an envelope, rebuild LAB, create READY/native policy, or advance V03.
+
+## Deployment transaction
+
+Exact reviewed/audited reactivation head `665d34959c48854bd089423874ea9abb9e6515bc` was deployed to the WSL validation-ops surface after canonical CI `35319634603` succeeded. Deployment is governed by `validation/V02_LOCAL_KEY_REACTIVATION_DEPLOYMENT-P00-DEV22.md` and becomes canonical deployment authority only with its predeclared independent deployment review/audit records on promotion.

@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_LOCAL_KEY_REACTIVATION_REVIEW_AND_DEV22_LAB_PREPARATION
+STATUS: BLOCKED_DEV22_LAB_REBUILD_AND_LOCAL_AUTHORITY_PACKAGE
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -60,7 +60,7 @@ LAB_PREPARATION:
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   TOOLING_MANIFEST: validation/tooling/V02_TOOLING_MANIFEST.json
   TOOLING_MANIFEST_FILE_COUNT: 20
-  TOOLING_STATUS: LOCAL_KEY_REACTIVATION_DESIGN_CANDIDATE
+  TOOLING_STATUS: LOCAL_KEY_REACTIVATION_DEPLOYED_ON_AUDIT_PROMOTION
   LOCAL_KEY_ACTIVATION_RECORD: validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md
   LOCAL_KEY_ACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md
   LOCAL_KEY_ACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md
@@ -73,12 +73,22 @@ LAB_PREPARATION:
   CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
   CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
   TRUST_ANCHOR_FILE: validation/tooling/local-operator-trust-anchor.json
-  TRUST_ANCHOR_STATUS: ACTIVE_REACTIVATION_CANDIDATE_PENDING_REVIEW
-  TRUST_OPS_DEPLOYMENT_STATUS: PRIOR_ACTIVATION_DEPLOYED_BUT_KEY_PARITY_FAILED
+  TRUST_ANCHOR_STATUS: ACTIVE_REACTIVATION_DEPLOYED_ON_AUDIT_PROMOTION
+  TRUST_OPS_DEPLOYMENT_STATUS: PASS_ON_DEPLOYMENT_AUDIT_PROMOTION
   PRIVATE_KEY_GENERATED: true
   PREVIOUS_ACTIVATION_DISPOSITION: SUPERSEDED_PRIVATE_KEY_IDENTITY_UNAVAILABLE
   KEY_PARITY_VERIFIER: validation/tooling/verify_local_authority_key_parity.py
-  KEY_PARITY_LIVE_STATUS: PASS_DESIGN_TIME
+  KEY_PARITY_LIVE_STATUS: PASS_DEPLOYMENT
+  LOCAL_KEY_REACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEV22-REVIEW-002_PASS.md
+  LOCAL_KEY_REACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEV22-AUDIT-002_PASS.md
+  LOCAL_KEY_REACTIVATION_PROMOTED_HEAD: 665d34959c48854bd089423874ea9abb9e6515bc
+  LOCAL_KEY_REACTIVATION_PROMOTION_CI_RUN: 35319634603
+  LOCAL_KEY_REACTIVATION_DEPLOYMENT: validation/V02_LOCAL_KEY_REACTIVATION_DEPLOYMENT-P00-DEV22.md
+  LOCAL_KEY_REACTIVATION_DEPLOYMENT_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-REVIEW-001_PASS.md
+  LOCAL_KEY_REACTIVATION_DEPLOYMENT_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-AUDIT-001_PASS.md
+  DEPLOYMENT_RECEIPT_SHA256: 9f4fed765335b7aba64358b0f76be83b8bdf51a07218230483326cb74d1bdc60
+  DEPLOYED_MANIFEST_SHA256: 797bec82d024ab75be5abbb29029f6b80c0b301ca37fb0939e442e7ca76c6501
+  DEPLOYED_TRUST_ANCHOR_SHA256: 0af4f9adadcd64bbc2b23a51d572d01af08bdf197c7d96150abdf1ffc9acbbe8
   APPROVAL_ENVELOPE_KIND: P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE
   LOCAL_SIGNATURE_REQUIRED: true
   EXTERNAL_PROVENANCE_CLAIMED: false
@@ -96,7 +106,7 @@ LAB_PREPARATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Review/audit and deploy the corrected local-key reactivation with machine key-parity proof, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Promote independently reviewed/audited deployment evidence, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -107,4 +117,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; only public identity is committed and the corrected transaction is pending new independent review/audit/deployment. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion remain pending; all 86 native procedures remain NOT_RUN.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion remain pending; all 86 native procedures remain NOT_RUN.
