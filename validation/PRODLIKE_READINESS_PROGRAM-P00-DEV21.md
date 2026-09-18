@@ -3,7 +3,7 @@
 ```yaml
 PROGRAM_ID: PRODLIKE-READINESS-P00-DEV21-002
 SOURCE_COMMIT: 934659f535d81d9a4a07389531acc2b9c304fa6d
-STATUS: P1_P6_COMPLETE_P7_RECONCILIATION_PENDING
+STATUS: P1_P7_COMPLETE_CANONICALLY_RECONCILED
 ACTIVE_RUN: RUN-P00-VALIDATION-001
 NATIVE_STEP: V02_LAB_EXECUTION_AUTHORITY
 NATIVE_STEP_STATE: BLOCKED_EXTERNAL_AUTHORITY
@@ -14,7 +14,13 @@ P3_FULL_DR_RECOVERY_REHEARSAL: PASS
 P4_BOOT_SERVICE_RESILIENCE: PASS
 P5_EXTERNAL_AUTHORITY_PREFLIGHT: PASS
 P6_RUNBOOK_INCIDENT_MATRIX: PASS
-P7_CANONICAL_RECONCILIATION: PENDING
+P7_CANONICAL_RECONCILIATION: PASS_V39
+P7_CANONICAL_STATE_VERSION: 39
+P7_CANONICAL_DESIGN_COMMIT: 41a6b698b7c81f5afbebde3332c12afe17fdbab1
+P7_CANONICAL_REVIEW: main:reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R7_PASS.md
+P7_CANONICAL_AUDIT: main:reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R7_PASS.md
+P7_CANONICAL_PROMOTION_COMMIT: a3ca649e7f98d73d820ae572c2cd024cfa9cc2a2
+P7_RECONCILIATION_RECORD: validation/PRODLIKE_P7_CANONICAL_RECONCILIATION-P00-DEV21.md
 
 SUPERVISED_TIMERS: 10
 SUPERVISED_JOB_RESULTS_REQUIRED: 9
@@ -71,4 +77,6 @@ Operational response is defined in `validation/PRODLIKE_OPERATIONS_RUNBOOK-P00-D
 
 ### P7 — canonical reconciliation
 
-P7 is intentionally deferred until the validation records below are reconciled and the exact canonical design can be reviewed/audited as one state transition. This is a real state change (10 timers, 58-file control state, supervised negative testing/full DR rehearsal and read-only V02 preflight), so the next canonical transition is justified rather than a version-only bump.
+P7 completed in canonical state V39. Exact V39 design `41a6b698b7c81f5afbebde3332c12afe17fdbab1` reconciled this program's 10-timer / 58-file readiness snapshot, full DR rehearsal, 8/8 fail-closed campaign and read-only V02 preflight. R7 detailed review and A7 holistic audit both PASS the same design target; promotion commit `a3ca649e7f98d73d820ae572c2cd024cfa9cc2a2` made that reviewed state canonical.
+
+The counts above remain the immutable V39 program snapshot and are not rewritten to later operational-maturity values. Subsequent 11-timer / rotating recovery-state improvements are owned by later operational-maturity records. This P7 closure is evidence reconciliation only and grants no V02/LAB/native authority.
