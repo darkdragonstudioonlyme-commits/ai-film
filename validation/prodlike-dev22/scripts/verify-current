@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${AIFILM_CLEAN_REEXEC:-}" != 1 ]]; then
+  exec env -i HOME=/home/dragon USER=dragon LOGNAME=dragon LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+    PATH=/usr/bin:/bin AIFILM_CLEAN_REEXEC=1 "$0" "$@"
+fi
+exec /home/dragon/ai-film-runtime/current/bin/verify-runtime

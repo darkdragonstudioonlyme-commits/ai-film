@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically cold-verify AI-FILM current NTFS rebuild set
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=12h
+AccuracySec=5min
+Persistent=true
+Unit=aifilm-p00-rebuild-verify.service
+
+[Install]
+WantedBy=timers.target

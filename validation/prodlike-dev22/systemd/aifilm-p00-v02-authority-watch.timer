@@ -1,0 +1,12 @@
+[Unit]
+Description=Poll AI-FILM Phase00 V02 authority inbox
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=30s
+Persistent=true
+Unit=aifilm-p00-v02-authority-watch.service
+
+[Install]
+WantedBy=timers.target

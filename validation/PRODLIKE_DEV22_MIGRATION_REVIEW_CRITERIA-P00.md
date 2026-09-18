@@ -1,0 +1,3 @@
+# Prodlike dev22 migration — review criteria
+
+Independent review must verify exact dev22 artifact identities, 64-file control bundle manifest, absence of stale dev21/external-authority tokens, generic current verifier semantics, user-systemd-only scope, correct dev22 authority evidence root, exact-artifact staging hashes and 284/58/86-NOT_RUN results, synthetic 6-case bundle and 4-case release-builder regressions, systemd-analyze user verification, rollback/producer-order semantics and unchanged V02/native authority. Review must specifically verify runtime-health is not used as proof of its own scheduler deployment.

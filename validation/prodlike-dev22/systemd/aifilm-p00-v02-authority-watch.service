@@ -1,0 +1,19 @@
+[Unit]
+Description=AI-FILM Phase00 V02 local operator authority intake watcher
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/dragon/ai-film-dev/validation-ops/watch-v02-authority.sh
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=

@@ -1,0 +1,30 @@
+[Unit]
+Description=AI-FILM Phase00 fail-closed verifier fault campaign
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/dragon/ai-film-runtime/bin/run-failclosed-campaign.py
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/dragon/ai-film-runtime/state-snapshots /home/dragon/ai-film-runtime/run-evidence/prodlike-program/failclosed-campaign
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=
+AmbientCapabilities=
+StandardOutput=journal
+StandardError=journal

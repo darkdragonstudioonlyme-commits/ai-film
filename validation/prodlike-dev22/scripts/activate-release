@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${AIFILM_CLEAN_REEXEC:-}" != 1 ]]; then
+  exec env -i HOME=/home/dragon USER=dragon LOGNAME=dragon LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+    PATH=/usr/bin:/bin AIFILM_CLEAN_REEXEC=1 "$0" "$@"
+fi
+umask 077
+BASE=/home/dragon/ai-film-runtime
+RELEASE="${1:?release name required}"
+[[ "$RELEASE" =~ ^dev[0-9]+$ ]] || { echo INVALID_RELEASE >&2; exit 2; }
+TARGET="$BASE/$RELEASE"
+[[ -d "$TARGET/app" && -x "$TARGET/bin/verify-runtime" && -f "$TARGET/runtime-manifest.json" ]] || { echo INCOMPLETE_RELEASE >&2; exit 3; }
+"$TARGET/bin/verify-runtime" >/dev/null
+OLD=$(readlink -f "$BASE/current" 2>/dev/null || true)
+NEXT="$BASE/.current.next.$$"
+ln -s "$TARGET" "$NEXT"
+mv -Tf "$NEXT" "$BASE/current"
+HASH=$(sha256sum "$TARGET/runtime-manifest.json" | awk '{print $1}')
+printf '%s old=%s new=%s manifest=%s runtime_only=true\n' "$(date -u +%FT%TZ)" "${OLD:-NONE}" "$TARGET" "$HASH" >> "$BASE/release-history.log"
+chmod 600 "$BASE/release-history.log"
+echo "RUNTIME_ACTIVATION_PASS $RELEASE NATIVE_SITE_AUTHORITY_UNCHANGED"

@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically verify AI-FILM Phase00 current runtime
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+AccuracySec=1min
+Persistent=true
+Unit=aifilm-p00-current-verify.service
+
+[Install]
+WantedBy=timers.target

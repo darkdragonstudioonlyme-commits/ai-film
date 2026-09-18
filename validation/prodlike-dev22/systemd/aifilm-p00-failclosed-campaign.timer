@@ -1,0 +1,12 @@
+[Unit]
+Description=Weekly AI-FILM Phase00 fail-closed verifier campaign
+
+[Timer]
+OnBootSec=45min
+OnUnitActiveSec=7d
+AccuracySec=30min
+Persistent=true
+Unit=aifilm-p00-failclosed-campaign.service
+
+[Install]
+WantedBy=timers.target

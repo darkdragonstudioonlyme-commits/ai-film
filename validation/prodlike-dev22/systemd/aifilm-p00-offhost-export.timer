@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh AI-FILM Phase00 current transfer-ready DR export every 6 hours
+
+[Timer]
+OnBootSec=20min
+OnUnitActiveSec=6h
+AccuracySec=2min
+Persistent=true
+Unit=aifilm-p00-offhost-export.service
+
+[Install]
+WantedBy=timers.target

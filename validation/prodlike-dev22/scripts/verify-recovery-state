@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${AIFILM_CLEAN_REEXEC:-}" != 1 ]]; then
+  exec env -i HOME=/home/dragon USER=dragon LOGNAME=dragon \
+    LANG=C.UTF-8 LC_ALL=C.UTF-8 PATH=/usr/bin:/bin \
+    AIFILM_CLEAN_REEXEC=1 "$0" "$@"
+fi
+/home/dragon/ai-film-runtime/bin/verify-current >/dev/null
+/home/dragon/ai-film-runtime/bin/verify-control-backup.py >/dev/null
+CURRENT=$(readlink -f /home/dragon/ai-film-runtime/current)
+EXPECTED=$(/usr/bin/python3 - <<'PY2'
+import sys
+sys.path.insert(0,'/home/dragon/ai-film-runtime/bin')
+from control_common import load_control
+print(load_control()['runtime_root'])
+PY2
+)
+RELEASE=$(/usr/bin/python3 - <<'PY2'
+import sys
+sys.path.insert(0,'/home/dragon/ai-film-runtime/bin')
+from control_common import load_control
+print(load_control()['release_name'])
+PY2
+)
+[[ "$CURRENT" == "$EXPECTED" ]] || { echo RECOVERY_CURRENT_DRIFT >&2; exit 1; }
+echo AIFILM_RECOVERY_STATE_VERIFY_PASS "$RELEASE" backup_fresh=true native_authority_unchanged=true

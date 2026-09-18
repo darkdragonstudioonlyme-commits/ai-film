@@ -10,6 +10,7 @@ on:
       - 'validation/tooling/**'
       - 'validation/V02_*.md'
       - 'validation/PRODLIKE_*.md'
+      - 'validation/prodlike-dev22/**'
       - 'validation/WSL_PRODLIKE_*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-PRODLIKE-*.md'
@@ -24,6 +25,7 @@ on:
       - 'validation/tooling/**'
       - 'validation/V02_*.md'
       - 'validation/PRODLIKE_*.md'
+      - 'validation/prodlike-dev22/**'
       - 'validation/WSL_PRODLIKE_*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-V02-*.md'
       - 'workflow-health/HEALTH_REVIEW-WF-P00-PRODLIKE-*.md'
@@ -68,6 +70,19 @@ jobs:
         run: python validation/tooling/tests/test_v02_tooling_manifest.py
       - name: Prodlike user-systemd verifier regression
         run: python validation/tooling/tests/test_prodlike_user_systemd_verifier.py
+      - name: Prodlike dev22 control bundle regression
+        run: python validation/tooling/tests/test_prodlike_dev22_control_bundle.py
+      - name: Prodlike dev22 release builder regression
+        run: python validation/tooling/tests/test_prodlike_dev22_release_builder.py
+      - name: Prodlike dev22 bundled script syntax
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          for p in Path('validation/prodlike-dev22/scripts').glob('*.py'):
+              ast.parse(p.read_text(), filename=str(p))
+          PY
+          bash -n validation/prodlike-dev22/scripts/activate-release validation/prodlike-dev22/scripts/verify-current validation/prodlike-dev22/scripts/verify-recovery-state
       - name: Checkout exact dev22 source authority
         uses: actions/checkout@v4
         with:

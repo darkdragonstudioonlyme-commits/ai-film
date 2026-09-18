@@ -1,0 +1,31 @@
+[Unit]
+Description=AI-FILM Phase00 production-like runtime health snapshot
+After=default.target aifilm-p00-current-verify.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/dragon/ai-film-runtime/bin/runtime-health.py
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/dragon/ai-film-runtime/health /home/dragon/ai-film-runtime/current/var/tmp
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=
+AmbientCapabilities=
+StandardOutput=journal
+StandardError=journal

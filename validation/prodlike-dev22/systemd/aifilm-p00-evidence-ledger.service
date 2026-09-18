@@ -1,0 +1,31 @@
+[Unit]
+Description=Archive AI-FILM Phase00 safe operational evidence ledger
+After=aifilm-p00-runtime-health.service aifilm-p00-dr-rehearsal.service aifilm-p00-failclosed-campaign.service
+Wants=aifilm-p00-runtime-health.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/dragon/ai-film-runtime/bin/archive-operational-evidence.py
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/dragon/ai-film-runtime/run-evidence/prodlike-program/history
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=
+AmbientCapabilities=
+StandardOutput=journal
+StandardError=journal

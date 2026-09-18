@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically mirror AI-FILM Phase00 control backup to Windows host
+
+[Timer]
+OnBootSec=20min
+OnUnitActiveSec=2h
+AccuracySec=5min
+Persistent=true
+Unit=aifilm-p00-host-mirror.service
+
+[Install]
+WantedBy=timers.target

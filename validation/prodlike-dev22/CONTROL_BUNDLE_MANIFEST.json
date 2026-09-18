@@ -1,0 +1,331 @@
+{
+  "files": {
+    "release-control.json": {
+      "deploy_mode": "600",
+      "sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803",
+      "size": 1547
+    },
+    "scripts/activate-release": {
+      "deploy_mode": "750",
+      "sha256": "b175d934787eec0fe919de96b2ebcdd1f5abe9c5249b9b62d8e88bd53a7531cf",
+      "size": 1053
+    },
+    "scripts/aifilm-prodlike-status.py": {
+      "deploy_mode": "700",
+      "sha256": "ea1e77c89e7d314c55c00abd235bbe6e7f7104277ff433249752bd3866c2d147",
+      "size": 4277
+    },
+    "scripts/archive-operational-evidence.py": {
+      "deploy_mode": "700",
+      "sha256": "b444f5c912f3585d9dd63a35f863cd9e90edb5ed3f8b73ecf8422e1f9601f938",
+      "size": 3907
+    },
+    "scripts/backup-control-state.py": {
+      "deploy_mode": "700",
+      "sha256": "a257ddc534b7b3a820441e102e1f46fbfa1bc95af108efb82f66c48a695204aa",
+      "size": 9034
+    },
+    "scripts/build-offhost-export.py": {
+      "deploy_mode": "700",
+      "sha256": "9b1dbf870b019ffc578093218cfcfa1222bbd81c66d787c2923101b3e7c769cc",
+      "size": 3648
+    },
+    "scripts/control_common.py": {
+      "deploy_mode": "700",
+      "sha256": "edb692e833c084ea3b5dc9b0a812e518f5057deb5b9db349347a9932ad61feff",
+      "size": 2069
+    },
+    "scripts/mirror-control-backup.py": {
+      "deploy_mode": "700",
+      "sha256": "2b8e27ed2c71dabf4dc12ce91e2c1882d723fa2cebf1950a5de6afd1e0ef0f34",
+      "size": 2662
+    },
+    "scripts/run-dr-recovery-rehearsal.py": {
+      "deploy_mode": "700",
+      "sha256": "ae3b3a618732583c03620de869b07f14403372c5b96178ef5bcc0983cfa5c21b",
+      "size": 7368
+    },
+    "scripts/run-failclosed-campaign.py": {
+      "deploy_mode": "700",
+      "sha256": "bde90067d515b788991adc4badc9651fc0449f2bdc40d488093a6468cb485601",
+      "size": 6936
+    },
+    "scripts/runtime-health.py": {
+      "deploy_mode": "700",
+      "sha256": "e043511477e4c646e16ddc725454d559515f20046687bb8c95524eb85aa126ab",
+      "size": 14274
+    },
+    "scripts/verify-control-backup.py": {
+      "deploy_mode": "700",
+      "sha256": "9aef87cc5af76de165145461e42d7534c8d8a61b95d6200e20d2b50f99151881",
+      "size": 3510
+    },
+    "scripts/verify-current": {
+      "deploy_mode": "750",
+      "sha256": "93e6d32a0b6c7a8a980ed3c80a654e6256fa9f000cc0746a3dbb9b030819032f",
+      "size": 293
+    },
+    "scripts/verify-host-mirror.py": {
+      "deploy_mode": "700",
+      "sha256": "af50ef9cfb97ddb6c4111c2b3aadfa24dd231cc878a6362086578f574b8f1a0b",
+      "size": 3055
+    },
+    "scripts/verify-offhost-export.py": {
+      "deploy_mode": "700",
+      "sha256": "3af2fefaef82bd9e59a29720d3b24ce4623b0547d7d1058d797ae9b7d046d1ee",
+      "size": 6489
+    },
+    "scripts/verify-operational-evidence.py": {
+      "deploy_mode": "700",
+      "sha256": "fb6198d92188f147c9b5a7212a996b89a57e101c36014346295fdd1a3085c257",
+      "size": 2337
+    },
+    "scripts/verify-rebuild-set.py": {
+      "deploy_mode": "700",
+      "sha256": "820a5c39fda3cf03bceeb7d1550bd67a1ec2753ebe11385b9b2258171e88ef0f",
+      "size": 4631
+    },
+    "scripts/verify-recovery-state": {
+      "deploy_mode": "750",
+      "sha256": "2f051a43b1285ed3e1ca72345c7eb1dd2a4ab2a6cdfd23735c740ab013205be2",
+      "size": 979
+    },
+    "systemd/aifilm-p00-control-backup.service": {
+      "deploy_mode": "644",
+      "sha256": "3b676b732d073c9bdee366cdc842120dbaad43acb185fc2a000358713b7cf252",
+      "size": 790
+    },
+    "systemd/aifilm-p00-control-backup.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-control-backup.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-control-backup.timer": {
+      "deploy_mode": "644",
+      "sha256": "9aad58f9c2eb94e8aeeefba036a256349d682d13790b1d7f3b09c36ff6ad667d",
+      "size": 229
+    },
+    "systemd/aifilm-p00-current-verify.service": {
+      "deploy_mode": "644",
+      "sha256": "ddacc5c299b51196e998376fc4c35830c7572da102752df4d266153c09709c9b",
+      "size": 796
+    },
+    "systemd/aifilm-p00-current-verify.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-current-verify.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5",
+      "size": 50
+    },
+    "systemd/aifilm-p00-current-verify.timer": {
+      "deploy_mode": "644",
+      "sha256": "a6341b2f48da35a21ced2cf723a6f45b244afab811500e15c4fa666b8b0176e2",
+      "size": 223
+    },
+    "systemd/aifilm-p00-dr-rehearsal.service": {
+      "deploy_mode": "644",
+      "sha256": "a2d77f3a9beb871e2a1d9a558d8ce3357254f26fa39c55011c47afc2fd86b359",
+      "size": 855
+    },
+    "systemd/aifilm-p00-dr-rehearsal.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-dr-rehearsal.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-dr-rehearsal.timer": {
+      "deploy_mode": "644",
+      "sha256": "cf1854b78388932da0ea5e6fa7fcbc53746f7b1c0d6990d69d59082d5a298232",
+      "size": 218
+    },
+    "systemd/aifilm-p00-evidence-ledger.service": {
+      "deploy_mode": "644",
+      "sha256": "02d135cd3139873b67f76d8040711858afede82f43d4886f0e970b38b0745278",
+      "size": 905
+    },
+    "systemd/aifilm-p00-evidence-ledger.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-evidence-ledger.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "8eb4f434128696bbed55d83fbaac4bc995446af73f4dac7bf522babe71ab7a85",
+      "size": 50
+    },
+    "systemd/aifilm-p00-evidence-ledger.timer": {
+      "deploy_mode": "644",
+      "sha256": "7b9d1091096d50bcb81cf9047703c2373dae2c6e10037d9b6dfd5161890059ef",
+      "size": 226
+    },
+    "systemd/aifilm-p00-failclosed-campaign.service": {
+      "deploy_mode": "644",
+      "sha256": "a06bab5e29cc74a7e377922b54156db960b1de992d88e1ec936c2becd973641d",
+      "size": 822
+    },
+    "systemd/aifilm-p00-failclosed-campaign.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-failclosed-campaign.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-failclosed-campaign.timer": {
+      "deploy_mode": "644",
+      "sha256": "b58d0ee541a6541a58530b4fbc132a24ce39cdd99456b71296fbdfb3f7f50310",
+      "size": 228
+    },
+    "systemd/aifilm-p00-host-mirror.service": {
+      "deploy_mode": "644",
+      "sha256": "1e33d8063e707a6ac2d25a5af38ae6756df4afacefe403dbfc4fabca8b43590c",
+      "size": 764
+    },
+    "systemd/aifilm-p00-host-mirror.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-host-mirror.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5",
+      "size": 50
+    },
+    "systemd/aifilm-p00-host-mirror.timer": {
+      "deploy_mode": "644",
+      "sha256": "024fc001ccb5749791c55b11fab94430c5d907f4437036b50ce7aab973923186",
+      "size": 233
+    },
+    "systemd/aifilm-p00-offhost-export.service": {
+      "deploy_mode": "644",
+      "sha256": "7f84a1ecfc263682e573805bdc4caf93b75f34143bd3f1c66861116cc0419290",
+      "size": 937
+    },
+    "systemd/aifilm-p00-offhost-export.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-offhost-export.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-offhost-export.timer": {
+      "deploy_mode": "644",
+      "sha256": "f2836daa142ce82538dcab31b079d4f7ec28ef12207d8e767459db0e35e7174d",
+      "size": 240
+    },
+    "systemd/aifilm-p00-rebuild-verify.service": {
+      "deploy_mode": "644",
+      "sha256": "4ebf1e718924c91d7ba00c2ae639a21152bdb310b5eacbf79b1fd6c95838365a",
+      "size": 745
+    },
+    "systemd/aifilm-p00-rebuild-verify.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-rebuild-verify.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-rebuild-verify.timer": {
+      "deploy_mode": "644",
+      "sha256": "7ff35cdf7105520c124db6cd60e362f6086520b0413235a3ceae290f34bf29e3",
+      "size": 227
+    },
+    "systemd/aifilm-p00-recovery-verify.service": {
+      "deploy_mode": "644",
+      "sha256": "1b78a95fbe25ab6d8a35315772af065cd75aa2d1db8bae9fa0317e4e0f3b97cc",
+      "size": 740
+    },
+    "systemd/aifilm-p00-recovery-verify.service.d/ordering.conf": {
+      "deploy_mode": "644",
+      "sha256": "27f37f107ffaf556a5a36fe15c71c6009d955134f174c8457a740e2e995524dc",
+      "size": 87
+    },
+    "systemd/aifilm-p00-recovery-verify.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-recovery-verify.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed",
+      "size": 51
+    },
+    "systemd/aifilm-p00-recovery-verify.timer": {
+      "deploy_mode": "644",
+      "sha256": "8609834b5903565266155d9547f9a9268d7f9537e446aa84812b6e0aba43f56d",
+      "size": 235
+    },
+    "systemd/aifilm-p00-runtime-health.service": {
+      "deploy_mode": "644",
+      "sha256": "2e2220272a95fcb93d3ea916c46bb0ae3e9528da1d806d3ff19ca1c8958d8abe",
+      "size": 846
+    },
+    "systemd/aifilm-p00-runtime-health.service.d/ordering.conf": {
+      "deploy_mode": "644",
+      "sha256": "27f37f107ffaf556a5a36fe15c71c6009d955134f174c8457a740e2e995524dc",
+      "size": 87
+    },
+    "systemd/aifilm-p00-runtime-health.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-runtime-health.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5",
+      "size": 50
+    },
+    "systemd/aifilm-p00-runtime-health.timer": {
+      "deploy_mode": "644",
+      "sha256": "d99307b488f902f9a7879bcad00e689150497ebb609a7263e1aecccc65e53a12",
+      "size": 232
+    },
+    "systemd/aifilm-p00-v02-authority-watch.service": {
+      "deploy_mode": "644",
+      "sha256": "38a0764ac26d304c453ea8c693619ea91f8579dcb26e9df5bafde6abfc1a1394",
+      "size": 461
+    },
+    "systemd/aifilm-p00-v02-authority-watch.service.d/resources.conf": {
+      "deploy_mode": "644",
+      "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5",
+      "size": 100
+    },
+    "systemd/aifilm-p00-v02-authority-watch.service.d/timeout.conf": {
+      "deploy_mode": "644",
+      "sha256": "8eb4f434128696bbed55d83fbaac4bc995446af73f4dac7bf522babe71ab7a85",
+      "size": 50
+    },
+    "systemd/aifilm-p00-v02-authority-watch.timer": {
+      "deploy_mode": "644",
+      "sha256": "14524c2606790fd828f725cce6295a4f75341a71234e88a3ac531a45e2fe936d",
+      "size": 215
+    }
+  },
+  "kind": "AIFILM_P00_DEV22_CONTROL_BUNDLE",
+  "release_name": "dev22",
+  "schema_version": 1,
+  "script_count": 17,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "systemd_file_count": 46,
+  "timer_count": 11
+}

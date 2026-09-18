@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically snapshot AI-FILM Phase00 production-like health
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=10min
+AccuracySec=1min
+Persistent=true
+Unit=aifilm-p00-runtime-health.service
+
+[Install]
+WantedBy=timers.target

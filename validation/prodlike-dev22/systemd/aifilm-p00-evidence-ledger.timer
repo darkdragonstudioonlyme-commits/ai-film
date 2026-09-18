@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily AI-FILM Phase00 safe operational evidence ledger
+
+[Timer]
+OnBootSec=30min
+OnUnitActiveSec=24h
+AccuracySec=5min
+Persistent=true
+Unit=aifilm-p00-evidence-ledger.service
+
+[Install]
+WantedBy=timers.target
