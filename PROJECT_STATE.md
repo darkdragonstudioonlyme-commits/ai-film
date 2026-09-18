@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V47
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V48
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 47
+STATE_VERSION: 48
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R20_V47_VALIDATION_CREDENTIAL_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v47-validation-credential-reconciliation-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v47-validation-credential-reconciliation-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v47-validation-credential-reconciliation-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V47_VALIDATION_CREDENTIAL_RECONCILIATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-021
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R21_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-021
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R21_PASS.md
-  ACTIVATION_CONDITION: "Exact V47 validation-credential reconciliation tree binds R21/A21 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R21/A21 are the final verdict IDs for this exact tree. Branch role changes verdict-record presence only; semantic state is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
+  REVISION: R21_V48_CI_CREDENTIAL_ISOLATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V48_CI_CREDENTIAL_ISOLATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-022
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-022
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R22_PASS.md
+  ACTIVATION_CONDITION: "Exact V48 CI-credential-isolation tree binds R22/A22 to one design SHA and activates learning 013 only after the same semantic tree passes DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R22/A22 are the final verdict IDs for this exact tree. Branch role changes verdict-record presence only; semantic state/workflow is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
-  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
+  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V48-CI-CREDENTIAL-025.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R20/A20 remain immutable authority for V46. V47 reconciles the promoted validation credential-isolation hardening without changing V02/native authority or continuity measurement."
+  NOTE: "Historical/prior-tree R21/A21 remain immutable V47 authority. V48 generalizes the repeated checkout-credential exposure into learning 013 and prevents Documentation Governance from handing persisted GitHub authorization to repository-controlled code."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -153,13 +153,13 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 1
+  PENDING_EFFECTIVENESS_MEASUREMENT: 2
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 6
   RECENTLY_PROVEN_EFFECTIVE: LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012
   SEMANTICALLY_VERIFIED_EFFECTIVE: 8
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-CI-CREDENTIAL-ISOLATION-013@NEXT_CI_CREDENTIAL_ISOLATION_RECHECK"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 
@@ -173,7 +173,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V47-VALIDATION-CREDENTIAL-024.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V48-CI-CREDENTIAL-025.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -183,6 +183,9 @@ FORENSIC_HARDENING:
   TEST_GOVERNANCE_PROVENANCE: DEV20_PROPOSAL_CANONICALIZED_BYTE_IDENTICAL
   ROOT_METADATA_AUTHORITY: EXPLICIT_NON_AUTHORITY_UNLESS_DELEGATED_BY_PROJECT_STATE
   PLATFORM_MAIN_PROTECTION: EXTERNAL_SETTING_NOT_ASSUMED_OR_CLAIMED
+  DOCUMENTATION_CI_CHECKOUT_CREDENTIAL_PERSISTENCE: FORBIDDEN
+  DOCUMENTATION_CI_CREDENTIAL_ISOLATION: ENFORCED
+  CI_CREDENTIAL_ISOLATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V48-CI-CREDENTIAL-025.md
 
 VALIDATION_STATUS:
   NATIVE_WINDOWS_WSL: NOT_RUN
@@ -205,4 +208,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R20/A20 remain immutable V46 authority. R21/A21 are the final verdict identities for this exact V47 semantic tree; branch role changes verdict-artifact presence only. Canonical validation CI now requires non-persistent checkout credentials and proves no authorization extraheader remains before exact source execution. V02/native authority and continuity measurement remain unchanged.
+Historical/prior-tree R21/A21 remain immutable V47 authority. R22/A22 are the final verdict identities for this exact V48 semantic tree; branch role changes verdict-artifact presence only. Documentation Governance now requires non-persistent checkout credentials plus an explicit no-extraheader check before repository-controlled Python runs. Learning 013 is activation-gated by R22/A22 and remains PENDING_MEASUREMENT. V02/native authority and continuity 0/3 remain unchanged.

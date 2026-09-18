@@ -50,6 +50,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          persist-credentials: false
+      - name: Verify checkout credentials are not persisted
+        run: "! git config --local --get-regexp '^http\..*\.extraheader$'"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

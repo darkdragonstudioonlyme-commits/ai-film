@@ -401,6 +401,30 @@
         "kind": "COMPLETE"
       },
       "successor": null
+    },
+    "LEARNING-CI-CREDENTIAL-ISOLATION-013": {
+      "record": "learning/LEARNING-CI-CREDENTIAL-ISOLATION-013.md",
+      "score": 10,
+      "activation_target": "DOCSYS-V2-R9",
+      "review_status": "PASS_ON_FINAL_REVIEW",
+      "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md",
+      "activation_status": "ACTIVE_ON_PROMOTION",
+      "activated_in": "DOCSYS-V2-R9",
+      "activation_evidence": [
+        "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md",
+        "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R22_PASS.md"
+      ],
+      "activation_blocker": null,
+      "effectiveness_status": "PENDING_MEASUREMENT",
+      "effectiveness_evidence": [],
+      "effectiveness_receipt": null,
+      "success_metric": "The next qualifying CI workflow change or documentation promotion executes repository-controlled code only after checkout credentials are non-persistent and an explicit no-extraheader check passes; no reviewed workflow reintroduces persisted checkout authorization, while required read-only fetches still succeed.",
+      "measurement_trigger": "next CI workflow change or documentation promotion after activation",
+      "measurement_gate": {
+        "kind": "NEXT_QUALIFYING_EVENT",
+        "event_kind": "CI_CREDENTIAL_ISOLATION_RECHECK"
+      },
+      "successor": null
     }
   }
 }
