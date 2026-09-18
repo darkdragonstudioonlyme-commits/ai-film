@@ -31,6 +31,10 @@ First correction commit `9f912ce0fcd08bac60bb41430c270db69515e62c` produced run 
 
 Clean checker rebuild `33201f568064018ff6dbd6b5f53b13b4f8359d93` produced run `35303968562` / job `105472239414`. Lifecycle and documentation-governance steps passed, but baseline Active documentation consistency rejected three V49 provenance references because historical/prior-tree R23/A23 was not marked historical within the pair-local clause. The correction changes only those provenance phrases; the forensic pointer values, checker predicates and 18 adversarial expectations remain unchanged.
 
+## Pre-review adversarial-harness reconstruction failure
+
+After baseline provenance wording was corrected, commit `f5bdb3c95f4970bacab96e01e9b4a7f4685c97b7` produced run `35304071871` / job `105472543742`: baseline Active documentation consistency passed, then Adversarial active docs regression failed because the remote reconstruction of `tools/test_project_docs_checker.py` had corrupted/duplicated its helper region. The final correction rebuilds the test harness from exact canonical V51 bytes and reapplies the four already-declared V52 cases unchanged. No expected error, checker predicate or canonical state value is weakened.
+
 ## Correction
 
 V52 adds section-aware field parsing and enforces machine/Markdown equality plus target existence for:

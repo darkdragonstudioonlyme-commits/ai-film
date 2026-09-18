@@ -26,6 +26,10 @@ Correction commit `9f912ce0fcd08bac60bb41430c270db69515e62c` produced run `35303
 
 After the checker was rebuilt cleanly, run `35303968562` / job `105472239414` failed baseline Active documentation consistency because V49 R23/A23 provenance was not marked historical within three pair-local clauses. Existing pair-local authority enforcement correctly rejected the wording. The correction adds explicit historical/prior-tree qualification only; no V52 parity predicate or test expectation changes.
 
+## Adversarial-harness reconstruction correction
+
+Run `35304071871` / job `105472543742` passed the corrected V52 baseline checker and failed only when the corrupted reconstructed adversarial harness executed. The final pre-review correction rebuilds that harness from canonical V51 bytes and adds the same four V52 parity/missing-target cases without changing expectations.
+
 ## Correction
 
 V52 enforces the three FORENSIC_HARDENING evidence-pointer pairs using section-specific Markdown lookup and verifies each target exists. The promotion-finalization pointer is reconciled to the already reviewed V49 machine value; the two already-matching pointers remain unchanged.
