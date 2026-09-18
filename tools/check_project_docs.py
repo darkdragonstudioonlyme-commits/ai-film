@@ -139,7 +139,15 @@ if state_json:
                                 'review required','audit required','requires review','requires audit',
                                 'before replacing current main','before promotion'
                             )
-                            if doc_role in {'PROMOTED','GENERIC'} and any(marker in context for marker in stage_markers) and not is_historical:
+                            stage_patterns=(
+                                re.compile(r'\\bsubject\\s+to\\b.{0,120}\\b(?:review|audit)\\b'),
+                                re.compile(r'\\bcondition(?:al|ed)?\\s+(?:on|upon)\\b.{0,120}\\b(?:review|audit)\\b'),
+                            )
+                            stage_drift=(
+                                any(marker in context for marker in stage_markers)
+                                or any(rx.search(context) for rx in stage_patterns)
+                            )
+                            if doc_role in {'PROMOTED','GENERIC'} and stage_drift and not is_historical:
                                 errors.append(f'promoted-current-verdict-stage-drift:{surface_name}:{lineno}:{expected_pair}')
                             continue
                         if is_historical: continue

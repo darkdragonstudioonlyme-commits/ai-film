@@ -49,6 +49,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning 
 
 | MEM-20260918-003 | SECURITY | CI checkout credentials must be non-persistent and explicitly absent from local Git config before repository-controlled code runs; keep workflow token permissions least-privilege. | learning 013 / CI workflows |
 
+| MEM-20260918-004 | GOVERNANCE | Promoted current-pair stage checks must recognize semantic review-gating patterns (for example `subject to` / conditional review), not only a fixed prospective/pending keyword list. | promoted semantic checker / V50 health review |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

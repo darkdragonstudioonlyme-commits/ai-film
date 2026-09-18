@@ -84,6 +84,12 @@ def prospective_current_pair(dst):
 require('promoted_current_pair_prospective',run_case(prospective_current_pair),False,'promoted-current-verdict-stage-drift')
 require('design_current_pair_prospective',run_case(prospective_current_pair,role='DESIGN'),True,'DOCS_CHECK_PASS')
 
+def subject_to_current_pair_review(dst):
+    p=dst/checkpoint
+    p.write_text(p.read_text(encoding='utf-8')+f'\nLearning state is EFFECTIVE candidate, subject to R{review_n}/A{audit_n} semantic review before it is final.\n',encoding='utf-8')
+require('promoted_current_pair_subject_to_review',run_case(subject_to_current_pair_review),False,'promoted-current-verdict-stage-drift')
+require('design_current_pair_subject_to_review',run_case(subject_to_current_pair_review,role='DESIGN'),True,'DOCS_CHECK_PASS')
+
 def mixed_line_historical_mask(dst):
     p=dst/checkpoint
     older_review=max(1,review_n-2) if review_n>2 else review_n+2
@@ -117,4 +123,4 @@ def full_git_tree_missing_ref(dst):
     jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 require('full_git_tree_missing_ref',run_case(full_git_tree_missing_ref),False,'source-visibility-full-tree-contract')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 11 cases')
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 13 cases')
