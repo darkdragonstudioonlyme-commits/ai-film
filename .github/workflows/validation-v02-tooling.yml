@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 jobs:
-  v02-portable-tooling:
+  v02-tooling:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install portable tooling dependency
+      - name: Install tooling dependency
         run: python -m pip install cryptography
       - name: Python compile
         run: python -m py_compile validation/tooling/*.py validation/tooling/tests/*.py
