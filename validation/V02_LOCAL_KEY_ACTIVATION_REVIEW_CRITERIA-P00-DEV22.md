@@ -1,0 +1,5 @@
+# Phase00 dev22 — V02 local-key activation review criteria
+
+Review must verify the exact active trust-anchor public identity against the owner-only WSL key metadata without reading or copying private key bytes into Git/evidence; confirm private-key mode 0600; verify the anchor and verifier hash pin match; verify the tooling manifest binds the active anchor; repeat the local-signature, hardened-validator, byte-integrity, watcher, pre-V03, manifest and prodlike-systemd regressions; and confirm all native cases remain NOT_RUN.
+
+The review must explicitly preserve the lower-assurance statement: this is same-trust-domain local authorization, not independent/external provenance. No approval envelope, READY flag, native policy, LAB native request, qualification, SITE activation or HOST_READY assessment may be created during key-activation review.
