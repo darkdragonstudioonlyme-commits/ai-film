@@ -119,6 +119,7 @@ if state_json:
     else:
         parity={
             'release_id':'RELEASE_ID',
+            'previous_active_release':'PREVIOUS_ACTIVE_RELEASE',
             'revision':'REVISION',
             'design_branch':'DESIGN_BRANCH',
             'review_branch':'REVIEW_BRANCH',
@@ -136,6 +137,22 @@ if state_json:
                 errors.append('governance-field-missing:'+md_key)
             elif str(gov.get(json_key))!=md_value:
                 errors.append(f'governance-parity:{md_key}:{gov.get(json_key)}!={md_value}')
+
+        governance_evidence_fields=(
+            ('RECOVERY_EVIDENCE','recovery_evidence'),
+            ('FORENSIC_HARDENING_EVIDENCE','forensic_hardening_evidence'),
+            ('PROMOTION_FINALIZATION_EVIDENCE','promotion_finalization_evidence'),
+            ('AUTHORITY_REFERENCE_EVIDENCE','authority_reference_evidence'),
+        )
+        for markdown_name,machine_name in governance_evidence_fields:
+            markdown_value=state_section_field('DOCUMENTATION_GOVERNANCE',markdown_name)
+            machine_value=gov.get(machine_name)
+            if not isinstance(machine_value,str) or not machine_value or not markdown_value:
+                errors.append(f'governance-evidence-field-missing:{markdown_name}')
+            elif markdown_value!=machine_value:
+                errors.append(f'governance-evidence-parity:{markdown_name}:{machine_value}!={markdown_value}')
+            elif not (ROOT/machine_value).is_file():
+                errors.append(f'governance-evidence-missing:{markdown_name}:{machine_value}')
 
         promotion_state=str(gov.get('promotion_state',''))
         if doc_role in {'PROMOTED','GENERIC'} and re.search(r'(?:CANDIDATE|PENDING|REVIEW_REQUIRED|AUDIT_REQUIRED)',promotion_state,re.I):
