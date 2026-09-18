@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V58
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V59
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 58
+STATE_VERSION: 59
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION-DEV22
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R31_V58_PRODLIKE_DEV22_SUPERVISION_EFFECTIVENESS
-  DESIGN_BRANCH: lane/docs-v2-r9-v58-prodlike-dev22-supervision-effectiveness-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v58-prodlike-dev22-supervision-effectiveness-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v58-prodlike-dev22-supervision-effectiveness-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V58_PRODLIKE_DEV22_SUPERVISION_EFFECTIVENESS.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-032
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R32_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-032
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R32_PASS.md
-  ACTIVATION_CONDITION: "Exact V58 prodlike-dev22/supervision-effectiveness tree binds R32/A32 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R32/A32 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no validation/prodlike/learning/native semantic change is allowed after review."
+  REVISION: R32_V59_LAB_DEV22_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V59_LAB_DEV22_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-033
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R33_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-033
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R33_PASS.md
+  ACTIVATION_CONDITION: "Exact V59 LAB-dev22 reconciliation tree binds R33/A33 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R33/A33 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no LAB/authority/native/learning semantic change is allowed after review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V53-GOVERNANCE-EVIDENCE-PARITY-030.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R31/A31 completed V57. V58 reconciles audited prodlike dev22 migration and review-gates learning 014 effectiveness while preserving V02/native boundaries."
+  NOTE: "Historical/prior-tree R32/A32 completed V58. V59 reconciles audited exact-dev22 LAB rebuild/seal/restore-probe evidence while preserving V02 BLOCKED and all native boundaries."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev22
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 046f428e46e463923864ee325b44b32746dde597
+  VALIDATION_EVIDENCE_HEAD: 4b5a25ef3ec1ebdaefeaac5e9f5bf4231b641f36
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -98,9 +98,25 @@ VALIDATION_PREPARATION:
   PRODLIKE_CONTROL_BACKUP_SHA256: 2f51196688bb4af3f505104e435218ec4a7610dc7dc14d3a193e68d5c25b62d3
   PRODLIKE_USER_SYSTEMD_UNIT_FILE_COUNT: 46
   PRODLIKE_USER_SYSTEMD_TIMER_COUNT: 11
-  DEV21_PREPARATION_REUSABLE_AS_DEV22_AUTHORITY: false
-  DEV22_LAB_REBUILD_REQUIRED: true
   CURRENT_RUNTIME_MATCHES_DEV22: true
+  LAB_TECHNICAL_STATUS: DEV22_REBUILT_SEALED_RESTORE_PROBED
+  LAB_STATE: STOPPED_DEV22_SEALED_PENDING_AUTHORITY
+  DEV22_LAB_REBUILD_REQUIRED: false
+  LAB_REBUILD_DEPLOYMENT_RECORD: "lane/validation-p00:validation/V02_LAB_DEV22_REBUILD_DEPLOYMENT-P00.md"
+  LAB_REBUILD_DEPLOYMENT_RECEIPT: "lane/validation-p00:validation/V02_LAB_DEV22_REBUILD_DEPLOYMENT_RECEIPT-P00.json"
+  LAB_REBUILD_DEPLOYMENT_RECEIPT_SHA256: df3652621d71d13efebcab50fcb8743b4c203b08c0e28f27a5360f00a6321f97
+  LAB_REBUILD_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LAB-DEV22-DEPLOYMENT-REVIEW-001_PASS.md"
+  LAB_REBUILD_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LAB-DEV22-DEPLOYMENT-AUDIT-001_PASS.md"
+  LAB_APP_TAR_SHA256: 4205d83634bae063786cac198d7b066deef94156d403755b5bf65cfa640d644a
+  LAB_APP_MANIFEST_SHA256: 8f31bb6359387257f00388e12f05e2cb6014867ebb90295d1684d3b6fab00471
+  LAB_PRE_V03_INVENTORY_SHA256: 7ef70d5cb5134b3328dee96747a7a7d4b26c5b8e7f2dcaffa39aa96e0556851a
+  LAB_PRISTINE_RAW_SHA256: e1d0af02c41318c628faa21aba545435a9516b59f319ad2ebb13e35433a8d0e1
+  LAB_PRISTINE_SEALED_SHA256: 08cff85babf4e8733bffbd56423ebaee3f7f85c67944d86a32172f39d53541b6
+  LAB_TECHNICAL_FACTS_SHA256: 9ae252272f2a1090afa708b877570891661cb393f21b59626fe2526c8bd5d64a
+  LAB_ARTIFACT_SEAL_SHA256: 326718e74673d390750f691e9b319df344de58a2d8e8f296384caf716e2ce461
+  LAB_RESTORE_PROBE: PASS
+  AUTHORITY_ENVELOPE_CREATED: false
+  DEV21_PREPARATION_REUSABLE_AS_DEV22_AUTHORITY: false
   ALL_CASES_STATUS: NOT_RUN
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
@@ -117,7 +133,7 @@ VALIDATION_PREPARATION:
   DEPLOYMENT_RECEIPT_SHA256: 9f4fed765335b7aba64358b0f76be83b8bdf51a07218230483326cb74d1bdc60
   DEPLOYED_MANIFEST_SHA256: 797bec82d024ab75be5abbb29029f6b80c0b301ca37fb0939e442e7ca76c6501
   LOCAL_IDENTITY_CONTEXT_SHA256: c56a13e65ac76f6fe59245a5706ec6270c3c85fd69c81aa50fa2e3ce7165acbc
-  VALIDATION_CANONICAL_CI_RUN: 35345567793
+  VALIDATION_CANONICAL_CI_RUN: 35350270947
 
 PRODUCTION_LIKE_READINESS:
   STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
@@ -163,7 +179,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V58-PRODLIKE-DEV22-035.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V59-LAB-DEV22-036.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -186,7 +202,7 @@ VALIDATION_STATUS:
 
 VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REASON: "Prodlike runtime/control is exact dev22 and independently verified. V02 remains blocked until stopped LAB is rebuilt/sealed to exact dev22 and a fresh candidate-specific local authority graph is created, signed and verified."
+  REASON: "Exact dev22 prodlike and stopped LAB substrates are verified. Remaining V02 requirement is a fresh candidate-specific local authority object graph, detached signature, preflight/intake and pre-V03 verification."
   USER_ACTION_REQUIRED: false
   RETURN_TO: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
   STATUS: OPEN
@@ -194,7 +210,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: rebuild/reseal the stopped disposable LAB to exact dev22, create/sign the current local-authority object graph with durable key AI-FILM-P00-DEV22-LOCAL-001, then pass staging preflight, authoritative intake and pre-V03 verification before V03."
+NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: create/sign the fresh exact-dev22 local authority graph from the sealed stopped LAB evidence, run staging preflight, authoritative intake and pre-V03 fail-closed verification; do not start V03 until current V02 done-when succeeds."
 ```
 
-Historical/prior-tree R31/A31 remain immutable V57 authority. V58 reconciles canonical validation head `046f428e46e463923864ee325b44b32746dde597`: non-native prodlike runtime/control is exact dev22 and independently supervised, while V02 remains BLOCKED because LAB is still stopped on dev21 bytes and the fresh signed local-authority graph is absent. Learning 014 is EFFECTIVE with receipt-bound qualifying post-activation deployment evidence; R32/A32 bind this exact V58 semantic tree. Learning 015 is normalized to durable ACTIVE and remains PENDING_MEASUREMENT. All 86 native cases remain NOT_RUN and platform main protection remains NOT_ENFORCED.
+Historical/prior-tree R32/A32 remain immutable V58 authority. V59 reconciles validation head `4b5a25e...`: prodlike and LAB are both exact dev22; LAB is stopped, sealed and restore-probed; V02 remains BLOCKED solely on the fresh local-authority object graph/signature/intake. All 86 native cases remain NOT_RUN.
