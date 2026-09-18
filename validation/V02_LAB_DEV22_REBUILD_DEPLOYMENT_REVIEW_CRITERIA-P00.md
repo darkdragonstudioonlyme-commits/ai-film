@@ -1,0 +1,3 @@
+# V02 LAB dev22 deployment — review criteria
+
+Independent review must bind the byte-identical deployment receipt, exact app/inventory/snapshot/facts/seal identities, fresh pre-migration rollback export, guest-local venv and immutable app bytes, metadata-only 86 NOT_RUN verification, stopped pre/post LAB state, pristine export and independent restore-probe/unregistration, preservation of historical dev21 facts/seal, canonical artifact-seal verifier PASS, durable-key parity, prodlike dev22 continuity and V02 still BLOCKED on missing approval envelope. Review must confirm no native execution or authority envelope was created.

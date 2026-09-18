@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_DEV22_LAB_REBUILD_AND_LOCAL_AUTHORITY_PACKAGE
+STATUS: BLOCKED_LOCAL_AUTHORITY_PACKAGE
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -107,7 +107,21 @@ LAB_PREPARATION:
   EXACT_SOURCE_REMOTE_REF: source/p00-dev22-local-authority-exact
   EXACT_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
   LAB_DISTRO: AI-FILM-P00-LAB
-  LAB_DISTRO_STATE: STOPPED_DEV21_BYTES_DEV22_REBUILD_REQUIRED
+  LAB_DISTRO_STATE: STOPPED_DEV22_SEALED_PENDING_AUTHORITY
+  LAB_TECHNICAL_STATUS: DEV22_REBUILT_SEALED_RESTORE_PROBED
+  LAB_REBUILD_DEPLOYMENT_RECORD: validation/V02_LAB_DEV22_REBUILD_DEPLOYMENT-P00.md
+  LAB_REBUILD_DEPLOYMENT_RECEIPT: validation/V02_LAB_DEV22_REBUILD_DEPLOYMENT_RECEIPT-P00.json
+  LAB_REBUILD_DEPLOYMENT_RECEIPT_SHA256: df3652621d71d13efebcab50fcb8743b4c203b08c0e28f27a5360f00a6321f97
+  LAB_REBUILD_REVIEW: reviews/VALIDATION-V02-LAB-DEV22-DEPLOYMENT-REVIEW-001_PASS.md
+  LAB_REBUILD_AUDIT: reviews/VALIDATION-V02-LAB-DEV22-DEPLOYMENT-AUDIT-001_PASS.md
+  LAB_APP_TAR_SHA256: 4205d83634bae063786cac198d7b066deef94156d403755b5bf65cfa640d644a
+  LAB_APP_MANIFEST_SHA256: 8f31bb6359387257f00388e12f05e2cb6014867ebb90295d1684d3b6fab00471
+  LAB_PRE_V03_INVENTORY_SHA256: 7ef70d5cb5134b3328dee96747a7a7d4b26c5b8e7f2dcaffa39aa96e0556851a
+  LAB_PRISTINE_RAW_SHA256: e1d0af02c41318c628faa21aba545435a9516b59f319ad2ebb13e35433a8d0e1
+  LAB_PRISTINE_SEALED_SHA256: 08cff85babf4e8733bffbd56423ebaee3f7f85c67944d86a32172f39d53541b6
+  LAB_TECHNICAL_FACTS_SHA256: 9ae252272f2a1090afa708b877570891661cb393f21b59626fe2526c8bd5d64a
+  LAB_ARTIFACT_SEAL_SHA256: 326718e74673d390750f691e9b319df344de58a2d8e8f296384caf716e2ce461
+  LAB_RESTORE_PROBE: PASS
   V02_AUTHORITY_READY_TO_ADVANCE: false
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
@@ -141,7 +155,7 @@ PRODLIKE_DEV22_MIGRATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Rebuild/seal the stopped LAB to exact dev22, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Create/sign the fresh dev22 local authority object graph from the sealed stopped LAB evidence and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -152,4 +166,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB still contains dev21 product bytes; LAB rebuild/seal, signed authority intake and V02 completion remain pending. All 86 native procedures remain NOT_RUN.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB is now exact dev22, candidate-bound, artifact-sealed and independently restore-probed. Only the fresh signed local authority object graph/intake remains before V02 can close. All 86 native procedures remain NOT_RUN.
