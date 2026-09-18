@@ -23,6 +23,10 @@ V47 main run `35296390094` / job `105449688523` logs `persist-credentials: true`
 
 V48 sets checkout `persist-credentials: false` and immediately verifies no local `http.*.extraheader` exists before Python/checker execution. The workflow remains `contents: read` and uses no custom token. Transient masked authentication internal to the fetch is acceptable only if removed before checkout action completion.
 
+## Pre-review authoring evidence
+
+The first remote design commit `bf5565ca84c5a266b5fc727c9e983cc88fd76fe1` produced GitHub Actions run `35296591786` with zero jobs because the no-extraheader command was placed in a YAML double-quoted scalar containing `\.`. YAML rejected that escape before job creation. The credential predicate itself was unchanged; the command is now a block scalar, matching the already proven validation-workflow form. The failed run is retained as pre-review evidence and is not treated as a control failure.
+
 ## Learning lifecycle
 
 `LEARNING-CI-CREDENTIAL-ISOLATION-013` captures the systemic rule because the same exposure occurred independently in validation CI and Documentation Governance. R22/A22 may activate it, but its effectiveness remains PENDING_MEASUREMENT until the next qualifying CI workflow change or documentation promotion after activation.

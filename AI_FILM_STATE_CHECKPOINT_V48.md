@@ -10,6 +10,8 @@ V48 sets `persist-credentials: false` on the Documentation Governance checkout a
 
 The checkout action may use masked authorization transiently while performing its own fetch; the protected boundary is that it must remove that config before returning control to subsequent steps.
 
+The first remote V48 design push produced run `35296591786` with no jobs because the regex command used an invalid YAML double-quoted escape. The command is now expressed as a block scalar; the security predicate is unchanged.
+
 ## Reusable learning 013
 
 This is the second independently observed workflow with the same default checkout exposure, after V02 validation CI. V48 therefore generalizes the rule into `LEARNING-CI-CREDENTIAL-ISOLATION-013`, predeclared `ACTIVE_ON_PROMOTION / PENDING_MEASUREMENT` under R22/A22. Activation is not effectiveness; a later qualifying CI workflow change or documentation promotion must prove the rule persists.

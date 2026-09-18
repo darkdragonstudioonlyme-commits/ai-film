@@ -19,6 +19,10 @@ This is a recurrence across two workflow domains, not a validation-specific exce
 
 V48 disables credential persistence in Documentation Governance and adds a fail-closed no-extraheader check immediately after checkout. The check examines config-key presence only and never prints the credential. `contents: read` remains the only declared GitHub token permission.
 
+## Pre-review authoring failure
+
+Initial design run `35296591786` failed before job creation (`jobs=0`). The cause was YAML syntax: the regex command was double-quoted and `\.` is not a valid YAML double-quoted escape. The fix changes only scalar syntax to a block form; `persist-credentials: false` and the no-extraheader predicate remain unchanged. This negative run is preserved rather than hidden.
+
 ## Learning disposition
 
 The recurrence creates `LEARNING-CI-CREDENTIAL-ISOLATION-013`: code-executing CI must not inherit persisted checkout authorization after fetch. R22/A22 activate the rule only; effectiveness requires a later qualifying workflow change or documentation promotion and an explicit metric-bound receipt.
