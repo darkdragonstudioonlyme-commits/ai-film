@@ -17,6 +17,7 @@ on:
       - 'reviews/VALIDATION-PRODLIKE-*.md'
       - 'LANE_STATE.md'
       - 'workflow-runs/RUN-P00-VALIDATION-001.md'
+      - 'workflow-runs/RUN-P00-VALIDATION-002.md'
       - '.github/workflows/validation-v02-tooling.yml'
   pull_request:
     paths:
@@ -30,6 +31,7 @@ on:
       - 'reviews/VALIDATION-PRODLIKE-*.md'
       - 'LANE_STATE.md'
       - 'workflow-runs/RUN-P00-VALIDATION-001.md'
+      - 'workflow-runs/RUN-P00-VALIDATION-002.md'
       - '.github/workflows/validation-v02-tooling.yml'
 
 permissions:
@@ -52,8 +54,8 @@ jobs:
         run: python -m py_compile validation/tooling/*.py validation/tooling/tests/*.py
       - name: Shell syntax
         run: bash -n validation/tooling/*.sh
-      - name: External authenticity regression
-        run: python validation/tooling/tests/test_v02_external_authenticity.py
+      - name: Local authority signature regression
+        run: python validation/tooling/tests/test_v02_local_authority_signature.py
       - name: Preflight byte-integrity regression
         run: python validation/tooling/tests/test_v02_preflight_content_integrity.py
       - name: Watcher fail-closed regression
@@ -64,19 +66,19 @@ jobs:
         run: python validation/tooling/tests/test_v02_tooling_manifest.py
       - name: Prodlike user-systemd verifier regression
         run: python validation/tooling/tests/test_prodlike_user_systemd_verifier.py
-      - name: Checkout exact dev21 source authority
+      - name: Checkout exact dev22 source authority
         uses: actions/checkout@v4
         with:
-          ref: 934659f535d81d9a4a07389531acc2b9c304fa6d
+          ref: 86bb64938a136e3f8d6cfd0266685a01cb832b77
           path: exact-source
           persist-credentials: false
       - name: Verify checkout credentials are not persisted
         run: |
           ! git config --local --get-regexp '^http\..*\.extraheader$'
           ! git -C exact-source config --local --get-regexp '^http\..*\.extraheader$'
-      - name: Verify exact dev21 source identity
+      - name: Verify exact dev22 source identity
         run: |
-          test "$(git -C exact-source rev-parse HEAD)" = "934659f535d81d9a4a07389531acc2b9c304fa6d"
+          test "$(git -C exact-source rev-parse HEAD)" = "86bb64938a136e3f8d6cfd0266685a01cb832b77"
           test -f exact-source/src/aifilm_p00/__init__.py
       - name: Bind exact source to reviewed runtime path
         run: |

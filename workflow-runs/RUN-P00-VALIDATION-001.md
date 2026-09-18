@@ -1,4 +1,4 @@
-# RUN-P00-VALIDATION-001 — Phase00 native validation
+# RUN-P00-VALIDATION-001 — Phase00 dev21 native validation (closed)
 
 ```yaml
 RUN_ID: RUN-P00-VALIDATION-001
@@ -6,51 +6,26 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 OWNER_LANE: VALIDATION
 WORKTREE_REL: NONE
 BASE_IDENTITY: 934659f535d81d9a4a07389531acc2b9c304fa6d
-STATUS: BLOCKED
+STATUS: COMPLETE
 CONTINUITY_POLICY: DOCSYS-V2-R9_ACTIVE
-CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
-RETURN_TO: V02_LAB_EXECUTION_AUTHORITY
+CURRENT_STEP: RUN_CLOSED_SUPERSEDED_BY_DEV22
+RETURN_TO: NONE
 ```
 
-## Current step contract
+## Closure contract
 
 ```yaml
-STEP_ID: V02_LAB_EXECUTION_AUTHORITY
-STATE: BLOCKED
-BLOCK_REASON_CLASS: EXTERNAL_AUTHENTICITY_AND_AUTHORITY
-INPUT_IDENTITY: {"block_id":"BLOCK-P00-VAL-LAB-AUTH-001","code_review_record":"reviews/CODE-REVIEW-P00-001_DEV21_DELTA.md","contract_digest":"f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee","inventory_sha256":"2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6","package_sha256":"f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3","source_commit":"934659f535d81d9a4a07389531acc2b9c304fa6d"}
-IDEMPOTENCY_KEY: b3a1a06122656189f43fb566e19441f6c05127b1f0129bc5fc0eda2f30b6cefe
-DONE_WHEN: {"execution_class":"LAB","external_authority_key_provenance_verified":true,"external_authority_signature_verified":true,"kind":"LAB_EXECUTION_AUTHORITY_VERIFIED","registration_disposable":true,"source_commit":"934659f535d81d9a4a07389531acc2b9c304fa6d","suite_approved":true}
-OUTPUT_IDENTITY: null
-REPLAY_POLICY: SAFE_REEXECUTE
+STEP_ID: RUN_CLOSED_SUPERSEDED_BY_DEV22
+STATE: COMPLETE
+INPUT_IDENTITY: {"previous_source_commit":"934659f535d81d9a4a07389531acc2b9c304fa6d","previous_step":"V02_LAB_EXECUTION_AUTHORITY","successor_run":"RUN-P00-VALIDATION-002","successor_source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77"}
+IDEMPOTENCY_KEY: b3312b59b68f28df8849ad4459e07479319b5a7bc2475c612d062716a1aa23e5
+DONE_WHEN: {"kind":"VALIDATION_RUN_SUPERSEDED_BEFORE_NATIVE_EXECUTION","native_cases_executed":0,"successor_run":"RUN-P00-VALIDATION-002","successor_source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77"}
+OUTPUT_IDENTITY: {"disposition":"SUPERSEDED_BY_DEV22_BEFORE_NATIVE_EXECUTION","native_cases_executed":0,"qualification_issued":false,"site_started":false,"host_ready_evaluated":false}
+REPLAY_POLICY: NEVER_REEXECUTE
 ```
 
-## Current preparation evidence
+## Historical V02 disposition
 
-- Exact dev21 identities remain unchanged and all 86 native cases remain `NOT_RUN`.
-- V02 remains BLOCKED and `AI-FILM-P00-LAB` remains stopped. External-authenticity hardening is deployed and verified fail-closed; the real inbox still has no approval envelope and the Ed25519 trust config remains `PENDING_EXTERNAL_KEY`. A future APPROVE package cannot close V02 until independently established external key provenance is reviewed/activated and the exact envelope signature plus protected object graph verify successfully.
-- Post-deployment fail-closed hardening is deployed from audited design `2ed82c780ec988caafd7dd0b8086d0cefc534e49`: stale/partial `native-policy.candidate.json` is invalidated on every unsuccessful reevaluation and staging preflight now binds regular-file bytes plus symlink identity. Deployment evidence is `validation/V02_POSTDEPLOY_FAILCLOSED_DEPLOYMENT-P00-DEV21.md`; post-copy full regressions and LAB artifact seal passed without native execution.
-- Exact dev21 source is now remotely addressable as a full Git tree at `source/p00-dev21-exact`; validation CI binds the immutable source commit `934659f535d81d9a4a07389531acc2b9c304fa6d` and requires the hardened-validator regression server-side. This strengthens evidence enforcement only and does not satisfy V02 `DONE_WHEN`.
-- V02 CI checkout credentials are required to be non-persistent before exact source execution; server CI must fail if either checkout retains an HTTP authorization extraheader. This changes CI credential exposure only and does not satisfy V02 `DONE_WHEN`.
-- `validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md` records N1–N6 execution-SLA, retention and rotating-state work.
-- Runtime health checks monotonic last-completion freshness for all eleven services in addition to timer enabled/active state and previous job result. Production-function negative tests reject both stale completion and never-completed-after-boot-grace states.
-- A live control-plane incident found the user-systemd deployment missing while runtime/control bytes remained intact. Exact 46 systemd files were recovered from verified control backup `ab2ddc7f...` into the lingering `dragon` user manager, 11 timers were re-enabled, all ten non-health periodic services plus runtime-health returned success, fresh health SHA is `b2fa7347...`, and V02/native state remained unchanged. Recovery evidence is `validation/PRODLIKE_USER_SYSTEMD_RECOVERY-P00-DEV21.md`.
-- Real producer retention overflow tests prove control backup retention=14 and evidence-ledger retention=30; pruned ledger history preserves predecessor continuity through the chain anchor.
-- Kernel cgroup probe verified systemd resource values are materialized to `memory.max` and `pids.max`; live AI-FILM services remain bounded at `MemoryMax=256M`, `TasksMax=128`.
-- Current producer-first recovery refresh passes. At the latest observation, backup/mirror sample contained 87 files at SHA `c213efff4aeff5585bf14efea172889dffe3b33af815dabaf30f3b5e14c887d2`; deterministic transfer-export sample SHA was `023eb0d5275eeb1b27974c908664f17b46a4bbe11a12376d4e085602a7135d11`.
-- Those backup/export identities are rotating operational samples because bounded ledger history advances. They are not exact candidate/release identities. Stable invariants remain exact dev21 identity, verifier PASS, freshness/retention limits, 11 timer/resource definitions, chain validity and producer-before-consumer migration.
-- Full DR currently restores the sampled control state plus 11 timer definitions and 11 resource drop-ins before exact-dev21 reconstruction; fail-closed campaign remains 8/8 PASS.
-- Private Drive metadata anchors only stable exact-candidate/rebuild identities; binary off-host payload remains absent and `OFF_HOST_DR_CLAIMED=false`.
+The dev21 run reached `V02_LAB_EXECUTION_AUTHORITY` but never obtained authority and never started native execution. All 86 procedures remained NOT_RUN, qualification was not issued, SITE did not start and HOST_READY was not evaluated. Historical external-authenticity tooling, dev21 candidate IDs, snapshots, pending bundles, authority objects and any derived readiness artifacts are **not reusable** for dev22.
 
-## Validation steps
-
-| Step | State | Purpose |
-|---|---|---|
-| V01_CODE_REVIEW_GATE | COMPLETE | exact dev21 CODE_REVIEW_PASS |
-| V02_LAB_EXECUTION_AUTHORITY | BLOCKED | independently authenticated external LAB authority: external key provenance + signed exact envelope + protected object graph |
-| V03_NATIVE_LAB_REGRESSION | NOT_STARTED | reviewed 86-case native LAB inventory only after V02 |
-| V04_QUALIFICATION_RECEIPT | NOT_STARTED | qualification from actual LAB results |
-| V05_SITE_VALIDATION | NOT_STARTED | qualified SITE active validation only after V04 |
-| V06_GATE_ASSESSMENT | NOT_STARTED | terminal evidence-based HOST_READY assessment |
-
-The same run remains resumable at V02. No SLA, retention, recovery, rotating-state or deployed fail-closed control can satisfy V02 `DONE_WHEN` or self-issue protected authority.
+The owner later selected Choice B: truthful same-WSL local operator authority. Because this changes product/source identity, a new validation run is required rather than mutating the base identity of this run. This record is closed immutably as superseded-before-native; it is not a failed native validation and cannot resume.

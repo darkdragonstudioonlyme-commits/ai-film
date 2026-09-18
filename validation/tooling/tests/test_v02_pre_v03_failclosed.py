@@ -11,8 +11,8 @@ def prepare(base):
     tool=base/'tool'; tool.mkdir(); root=base/'evidence'; root.mkdir(); inbox=base/'inbox'; inbox.mkdir()
     interop=base/'private-windows-interop.sh'
     script=(SOURCE/'pre-v03-authority-stage.sh').read_text()
-    script=script.replace('ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority',f'ROOT={root}')
-    script=script.replace('INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev21',f'INBOX={inbox}')
+    script=script.replace('ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22',f'ROOT={root}')
+    script=script.replace('INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22',f'INBOX={inbox}')
     script=script.replace('/home/dragon/ai-film-dev/root-ops/private-windows-interop.sh',str(interop))
     stage=tool/'pre-v03-authority-stage.sh'; stage.write_text(script); os.chmod(stage,0o755)
     return tool,root,interop
@@ -52,7 +52,7 @@ def main():
 
         executable(interop,"#!/usr/bin/env bash\necho 'AI-FILM-P00-LAB Stopped 2'\n")
         p=run(stage)
-        assert p.returncode==0 and policy.is_file() and 'READY_FOR_TRUST_ANCHOR_INSTALL_REVIEW' in p.stdout
+        assert p.returncode==0 and policy.is_file() and 'READY_FOR_LOCAL_NATIVE_POLICY_REVIEW' in p.stdout
         print('PASS success_preserves_current_policy')
     print('V02_PRE_V03_FAILCLOSED_TEST_PASS 5 cases')
 

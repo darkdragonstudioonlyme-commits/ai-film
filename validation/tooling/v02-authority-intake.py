@@ -10,23 +10,22 @@ from aifilm_p00.authority import PinnedStore, Context, authorize
 from aifilm_p00.codec import sha256
 from aifilm_p00.native.harness_cases import PROCEDURES
 from aifilm_p00.plans import interface_check
-from v02_external_authenticity import verify_external_authenticity
+from v02_local_authority_signature import verify_local_authority_signature
 from v02_local_identity import load_local_identity
 
-CANDIDATE_ID='336b12af-cada-4968-8083-8a5b41e479a2'
-PENDING_BUNDLE='fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615'
-SOURCE_COMMIT='934659f535d81d9a4a07389531acc2b9c304fa6d'
-BUILD='a284645e9eb60661f27eba1ea436d7ff7bbe60d6cd3e312850f1b108d32b1c62'
-TEST='c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383'
+CANDIDATE_ID='6f895394-e0b4-5434-bebc-79ee4e576282'
+CANDIDATE_BINDING_SHA256='4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384'
+SOURCE_COMMIT='86bb64938a136e3f8d6cfd0266685a01cb832b77'
+BUILD='69fdc1840472a96bce8f8841e4d780543827e3cefdd3fe3bc8445f8a1fb4a0d6'
+TEST='47d4ae767b26b05ef16d6809ea9377ef4e1b21bfbc4c44093dbd1cc158b75698'
+AUTHORITY_MODEL='LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN'
 HOST_ID=None
 OPERATOR_DIGEST=None
-BASELINE='0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd'
-PRISTINE='552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d'
 H64=re.compile(r'^[0-9a-f]{64}$')
 
 def fail(reason, **extra):
     out={'kind':'V02_AUTHORITY_INTAKE','status':'BLOCKED','reason':reason,
-         'candidate_id':CANDIDATE_ID,'pending_bundle_index_sha256':PENDING_BUNDLE,
+         'candidate_id':CANDIDATE_ID,'candidate_binding_sha256':CANDIDATE_BINDING_SHA256,
          'native_execution_started':False,'ready_to_advance':False,**extra}
     print(json.dumps(out,sort_keys=True,separators=(',',':')))
     raise SystemExit(12)
@@ -70,7 +69,7 @@ def ref_field(env,name):
 def verify_attestation(obj,role):
     require(obj.get('role')==role,'ATTESTATION_ROLE',role=role)
     require(obj.get('candidate_id')==CANDIDATE_ID,'ATTESTATION_CANDIDATE',role=role)
-    require(obj.get('pending_bundle_index_sha256')==PENDING_BUNDLE,'ATTESTATION_BUNDLE',role=role)
+    require(obj.get('candidate_binding_sha256')==CANDIDATE_BINDING_SHA256,'ATTESTATION_BINDING',role=role)
     require(obj.get('approved') is True and obj.get('withdrawn') is False,'ATTESTATION_STATUS',role=role)
 
 def verify_registration(reg):
@@ -78,7 +77,8 @@ def verify_registration(reg):
     require(reg.get('host_id')==HOST_ID,'REGISTRATION_HOST')
     require(reg.get('execution_class')=='LAB','REGISTRATION_CLASS')
     require(reg.get('withdrawn') is False,'REGISTRATION_WITHDRAWN')
-    for k in ('controller_external','disposable','no_real_credentials','no_production_mappings'):
+    require(reg.get('controller_external') is False,'REGISTRATION_CONTROLLER_MODE')
+    for k in ('disposable','no_real_credentials','no_production_mappings'):
         require(reg.get(k) is True,'REGISTRATION_CONTAINMENT',field=k)
     sids=reg.get('operator_sids')
     require(isinstance(sids,list) and sids,'REGISTRATION_OPERATORS')
@@ -89,8 +89,8 @@ def verify_registration(reg):
 def verify_recovery(obj):
     require(obj.get('role')=='management_isolation_recovery','RECOVERY_ROLE')
     require(obj.get('candidate_id')==CANDIDATE_ID,'RECOVERY_CANDIDATE')
-    require(obj.get('baseline_snapshot_sha256')==BASELINE,'RECOVERY_BASELINE')
-    require(obj.get('pristine_snapshot_sha256')==PRISTINE,'RECOVERY_PRISTINE')
+    require(isinstance(obj.get('baseline_snapshot_sha256'),str) and H64.fullmatch(obj['baseline_snapshot_sha256']),'RECOVERY_BASELINE')
+    require(isinstance(obj.get('pristine_snapshot_sha256'),str) and H64.fullmatch(obj['pristine_snapshot_sha256']),'RECOVERY_PRISTINE')
     require(obj.get('restore_probe')=='PASS','RECOVERY_PROBE')
     require(obj.get('approved') is True and obj.get('withdrawn') is False,'RECOVERY_STATUS')
 
@@ -116,7 +116,8 @@ def verify_fixture_set(obj,suite,objects):
         require(spec['case_id']==cid and spec['procedure_digest']==proc.procedure_digest,
                 'FIXTURE_SPEC_PROCEDURE',case_id=cid)
         require(tuple(spec['preparations'])==proc.preparations,'FIXTURE_SPEC_PREPARATIONS',case_id=cid)
-        for k in ('controller_external','disposable','no_real_credentials','no_production_mappings'):
+        require(spec['controller_external'] is False,'FIXTURE_SPEC_CONTROLLER_MODE',case_id=cid)
+        for k in ('disposable','no_real_credentials','no_production_mappings'):
             require(spec[k] is True,'FIXTURE_SPEC_CONTAINMENT',case_id=cid,field=k)
 
 def verify_suite(suite,objects,now):
@@ -164,7 +165,7 @@ def build_store(env,objects):
             blobs[ref]=raw; seen.append(ref)
         require(len(seen)==len(set(seen)),'ROLE_PIN_DUPLICATE',role=role)
         outpins[role]=frozenset(seen)
-    return PinnedStore(outpins,blobs,'EXTERNAL_AUTHORITY_INTAKE')
+    return PinnedStore(outpins,blobs,'LOCAL_OPERATOR_AUTHORITY_INTAKE')
 
 def verify_plan_authorities(suite,store,objects,now):
     count=0
@@ -186,7 +187,7 @@ def verify_plan_authorities(suite,store,objects,now):
 def main():
     global HOST_ID,OPERATOR_DIGEST
     ap=argparse.ArgumentParser()
-    ap.add_argument('--inbox',default='/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev21')
+    ap.add_argument('--inbox',default='/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22')
     args=ap.parse_args(); root=Path(args.inbox); env_path=root/'approval-envelope.json'
     if not env_path.is_file(): fail('APPROVAL_ENVELOPE_MISSING',inbox=str(root))
     identity=load_local_identity(fail); HOST_ID=identity['host_id']; OPERATOR_DIGEST=identity['operator_digest']
@@ -196,25 +197,32 @@ def main():
         fail('JSON_UNREADABLE',path=env_path.name)
     require(isinstance(env,dict),'ENVELOPE_SCHEMA')
     objects=root/'objects'
-    require(env.get('schema_version')==1 and env.get('kind')=='P00_LAB_EXTERNAL_AUTHORITY_INTAKE',
+    required_env={'schema_version','kind','decision','approved_by_local_operator','authority_model',
+                  'candidate_id','candidate_binding_sha256','source_commit','build_digest','test_set_digest',
+                  'contract_digest','lab_registration_ref','owner_attestation_ref','local_operator_attestation_ref',
+                  'fixture_set_ref','management_isolation_recovery_ref','lab_test_plan_approval_ref',
+                  'lab_acceptance_suite_ref','role_pins'}
+    require(set(env)==required_env and env.get('schema_version')==1 and env.get('kind')=='P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE',
             'ENVELOPE_SCHEMA')
-    require(env.get('decision')=='APPROVE' and env.get('approved_by_external_authority') is True,
-            'EXTERNAL_DECISION_NOT_APPROVE')
-    require(env.get('candidate_id')==CANDIDATE_ID and env.get('pending_bundle_index_sha256')==PENDING_BUNDLE,
+    require(env.get('authority_model')==AUTHORITY_MODEL,'ENVELOPE_AUTHORITY_MODEL')
+    require(env.get('decision')=='APPROVE' and env.get('approved_by_local_operator') is True,
+            'LOCAL_DECISION_NOT_APPROVE')
+    require(env.get('candidate_id')==CANDIDATE_ID and env.get('candidate_binding_sha256')==CANDIDATE_BINDING_SHA256,
             'ENVELOPE_CANDIDATE_BINDING')
     require(env.get('source_commit')==SOURCE_COMMIT and env.get('build_digest')==BUILD,
             'ENVELOPE_BUILD_BINDING')
     require(env.get('test_set_digest')==TEST and env.get('contract_digest')==CONTRACT_DIGEST,
             'ENVELOPE_CONTENT_BINDING')
-    external_auth=verify_external_authenticity(root,env_raw,fail)
+    local_auth=verify_local_authority_signature(root,env_raw,fail)
     now=datetime.now(timezone.utc)
     reg_ref=ref_field(env,'lab_registration_ref'); suite_ref=ref_field(env,'lab_acceptance_suite_ref')
-    owner_ref=ref_field(env,'owner_attestation_ref'); ctrl_ref=ref_field(env,'controller_attestation_ref')
+    owner_ref=ref_field(env,'owner_attestation_ref'); local_ref=ref_field(env,'local_operator_attestation_ref')
     fixture_ref=ref_field(env,'fixture_set_ref'); recovery_ref=ref_field(env,'management_isolation_recovery_ref')
     labplan_ref=ref_field(env,'lab_test_plan_approval_ref')
     reg,_=load_object(objects,reg_ref,'registration'); sids=verify_registration(reg)
     owner,_=load_object(objects,owner_ref,'owner_attestation'); verify_attestation(owner,'owner_attestation')
-    ctrl,_=load_object(objects,ctrl_ref,'controller_attestation'); verify_attestation(ctrl,'controller_attestation')
+    local,_=load_object(objects,local_ref,'local_operator_attestation'); verify_attestation(local,'local_operator_attestation')
+    require(local.get('authority_model')==AUTHORITY_MODEL,'LOCAL_ATTESTATION_AUTHORITY_MODEL')
     recovery,_=load_object(objects,recovery_ref,'management_isolation_recovery'); verify_recovery(recovery)
     labplan,_=load_object(objects,labplan_ref,'lab_plan')
     require(labplan.get('host_id')==HOST_ID and labplan.get('build_digest')==BUILD,'LAB_PLAN_SCOPE')
@@ -235,13 +243,15 @@ def main():
     fixtures,_=load_object(objects,fixture_ref,'lab_fixture_set'); verify_fixture_set(fixtures,suite,objects)
     plan_count=verify_plan_authorities(suite,store,objects,now)
     out={'kind':'V02_AUTHORITY_INTAKE','status':'READY_TO_ADVANCE','ready_to_advance':True,
-         'candidate_id':CANDIDATE_ID,'pending_bundle_index_sha256':PENDING_BUNDLE,
+         'candidate_id':CANDIDATE_ID,'candidate_binding_sha256':CANDIDATE_BINDING_SHA256,
          'registration_ref':reg_ref,'lab_plan_ref':labplan_ref,'lab_acceptance_suite_ref':suite_ref,
          'suite_execution_id':suite['execution_id'],'suite_expires_at':suite['expires_at'],
          'case_count':len(suite['cases']),'authorized_plan_count':plan_count,
-         'external_authority_key_id':external_auth['key_id'],
-         'external_authority_payload_sha256':external_auth['payload_sha256'],
-         'external_authority_provenance_ref':external_auth['provenance_ref'],
+         'authority_model':AUTHORITY_MODEL,
+         'local_authority_key_id':local_auth['key_id'],
+         'local_authority_payload_sha256':local_auth['payload_sha256'],
+         'local_authority_provenance_ref':local_auth['provenance_ref'],
+         'local_authority_assurance_class':local_auth['assurance_class'],
          'native_execution_started':False}
     print(json.dumps(out,sort_keys=True,separators=(',',':')))
 

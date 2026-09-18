@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 umask 077
-ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority
-INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev21
+ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22
+INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22
 TOOL_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 VALIDATOR="$TOOL_DIR/v02-authority-intake.py"
 MATERIALIZER="$TOOL_DIR/materialize-v02-native-policy.py"
@@ -50,8 +50,8 @@ if ! grep -Eq 'AI-FILM-P00-LAB[[:space:]]+Stopped' <<<"$wsl_state"; then
 fi
 python3 - "$policy_sha" <<'PY'
 import json,sys
-print(json.dumps({'kind':'PRE_V03_AUTHORITY_STAGE','status':'READY_FOR_TRUST_ANCHOR_INSTALL_REVIEW',
- 'candidate_id':'336b12af-cada-4968-8083-8a5b41e479a2','policy_sha256':sys.argv[1],
+print(json.dumps({'kind':'PRE_V03_AUTHORITY_STAGE','status':'READY_FOR_LOCAL_NATIVE_POLICY_REVIEW',
+ 'candidate_id':'6f895394-e0b4-5434-bebc-79ee4e576282','policy_sha256':sys.argv[1],
  'lab_state':'STOPPED','hklm_written':False,'native_execution_started':False},
  sort_keys=True,separators=(',',':')))
 PY

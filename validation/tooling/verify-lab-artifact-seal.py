@@ -3,9 +3,9 @@ import hashlib,json,os,stat,sys
 from pathlib import Path
 ROOT=Path('/home/dragon/ai-film-dev/artifacts/lab')
 SEAL=ROOT/'LAB_ARTIFACT_SEAL_V1.json'
-EXPECTED_CANDIDATE='336b12af-cada-4968-8083-8a5b41e479a2'
-EXPECTED_SOURCE='934659f535d81d9a4a07389531acc2b9c304fa6d'
-EXPECTED_BUNDLE='fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615'
+EXPECTED_CANDIDATE='6f895394-e0b4-5434-bebc-79ee4e576282'
+EXPECTED_SOURCE='86bb64938a136e3f8d6cfd0266685a01cb832b77'
+EXPECTED_BINDING='4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384'
 
 def h(path):
     d=hashlib.sha256()
@@ -22,7 +22,7 @@ def main():
     except Exception: fail('SEAL_UNREADABLE')
     if seal.get('candidate_id')!=EXPECTED_CANDIDATE: fail('CANDIDATE_DRIFT')
     if seal.get('source_commit')!=EXPECTED_SOURCE: fail('SOURCE_DRIFT')
-    if seal.get('pending_bundle_index_sha256')!=EXPECTED_BUNDLE: fail('BUNDLE_DRIFT')
+    if seal.get('candidate_binding_sha256')!=EXPECTED_BINDING: fail('CANDIDATE_BINDING_DRIFT')
     if seal.get('pristine_restore_probe')!='PASS': fail('RESTORE_PROBE_NOT_PASS')
     rows=seal.get('artifacts')
     if not isinstance(rows,list) or not rows: fail('ARTIFACT_ROWS_INVALID')

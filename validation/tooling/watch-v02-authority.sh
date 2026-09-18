@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 umask 077
-OUT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority
+OUT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22
 TOOL_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 VALIDATOR="$TOOL_DIR/v02-authority-intake.py"
-INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev21
+INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22
 mkdir -p "$OUT"
 flag="$OUT/READY_TO_ADVANCE.flag"
 # Fail closed before every evaluation: READY exists only as a product of the current successful evaluation.
