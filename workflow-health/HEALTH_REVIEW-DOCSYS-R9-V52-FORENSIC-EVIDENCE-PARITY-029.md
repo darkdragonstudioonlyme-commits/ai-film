@@ -18,6 +18,10 @@ After V51 fixed the rolling recent-meta-review pointer, section-aware inventory 
 
 The test-only negative commit added three parity mutations plus one matching-but-missing-target mutation without modifying the checker. Server run `35303654597` / job `105471313759` passed baseline lifecycle/governance/docs and failed at the expanded adversarial active-doc suite.
 
+## Pre-review correction failure
+
+Correction commit `9f912ce0fcd08bac60bb41430c270db69515e62c` produced run `35303823020` / job `105471804671`: lifecycle and documentation governance passed, then baseline Active documentation consistency failed because remote reconstruction corrupted/duplicated the checker helper region. The final pre-review correction rebuilds the checker from exact canonical V51 bytes and adds only the intended section parser and forensic pointer predicates. The negative-first test expectations remain unchanged.
+
 ## Correction
 
 V52 enforces the three FORENSIC_HARDENING evidence-pointer pairs using section-specific Markdown lookup and verifies each target exists. The promotion-finalization pointer is reconciled to the already reviewed V49 machine value; the two already-matching pointers remain unchanged.

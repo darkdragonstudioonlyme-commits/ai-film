@@ -23,6 +23,10 @@ This is distinct from `DOCUMENTATION_GOVERNANCE.PROMOTION_FINALIZATION_EVIDENCE`
 
 Test-only commit `7a70127065abb6e42bdfff1c233b7feac545fac9` expands active-doc adversarial coverage from 14 to 18 cases: parity mutations for the three forensic evidence pointers plus a matching-but-nonexistent promotion-finalization target. Run `35303654597` / job `105471313759` passed baseline lifecycle/governance/docs and failed at Adversarial active docs regression before the checker correction.
 
+## Pre-review baseline authoring failure
+
+First correction commit `9f912ce0fcd08bac60bb41430c270db69515e62c` produced run `35303823020` / job `105471804671`. Lifecycle and documentation-governance steps passed, but baseline Active documentation consistency failed before adversarial execution because remote source reconstruction had corrupted/duplicated the checker helper region. The correction rebuilds `tools/check_project_docs.py` from the exact canonical V51 checker and reapplies only the intended section helper plus forensic parity/existence block. No V52 predicate or adversarial expectation is weakened.
+
 ## Correction
 
 V52 adds section-aware field parsing and enforces machine/Markdown equality plus target existence for:
