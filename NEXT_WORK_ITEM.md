@@ -1,91 +1,51 @@
-# NEXT WORK ITEM — resume Phase00 validation authority run
+# NEXT WORK ITEM — activate dev22 validation run
 
 ```yaml
-RUN_ID: RUN-P00-VALIDATION-001
+RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 LANE: VALIDATION
-STATUS: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
+STATUS: READY_PENDING_VALIDATION_LANE_ACTIVATION
 MODE: VALIDATION
 PHASE: "00 — Host / WSL"
-WORK_ITEM: M-P00-VALIDATION
+WORK_ITEM: M-P00-VALIDATION-DEV22
 INPUT_IDENTITY:
-  ACCEPTED_VERSION: 0.1.0.dev21
-  SOURCE_COMMIT: 934659f535d81d9a4a07389531acc2b9c304fa6d
-  PACKAGE_SHA256: f6ee158a318614f8bbef28be7af82549e0a268425da28147a2fa7b14c7b3d3e3
-  SOURCE_DIGEST: a284645e9eb60661f27eba1ea436d7ff7bbe60d6cd3e312850f1b108d32b1c62
-  TEST_DIGEST: c645f3d9f88fcb716f78fcff9cd9b4144b320dc4f0c8c7082346a5cfbe6d9383
+  ACCEPTED_VERSION: 0.1.0.dev22
+  SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
+  PACKAGE_SHA256: c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae
+  SOURCE_DIGEST: 69fdc1840472a96bce8f8841e4d780543827e3cefdd3fe3bc8445f8a1fb4a0d6
+  TEST_DIGEST: 47d4ae767b26b05ef16d6809ea9377ef4e1b21bfbc4c44093dbd1cc158b75698
   CONTRACT_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
-  INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
-  CODE_REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV21_DELTA.md
+  CODE_REVIEW_RECORD: reviews/CODE-REVIEW-P00-001_DEV22_LOCAL_AUTHORITY.md
   CODE_REVIEW_PASS: true
-  VALIDATION_LANE: lane/validation-p00
-  RUN_RECORD: workflow-runs/RUN-P00-VALIDATION-001.md
-  VALIDATION_PLAN: validation/VALIDATION_PLAN-P00-DEV21.md
-  AUTHORITY_REQUEST: validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md
-  LAB_CANDIDATE: validation/LAB_CANDIDATE-P00-DEV21.md
-  LAB_AUTHORITY_DRAFT: validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md
-  LAB_PENDING_AUTHORITY_BUNDLE: validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md
-  LAB_EXTERNAL_APPROVAL_HANDOFF: validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md
-  LAB_CANDIDATE_ID: 336b12af-cada-4968-8083-8a5b41e479a2
-  LAB_PENDING_BUNDLE_INDEX_SHA256: fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615
-  LAB_PROTECTED_REGISTRATION_CANDIDATE_SHA256: 28ec95c3ecdd8ea7615843601c4657e25b503248fa2c93582cadb86c45488916
-  LAB_BASELINE_SNAPSHOT_SHA256: 0b91d4947754be40bdb4fd3d07c8eb452dde1b6bc160829923c8e0ef005dfffd
-  LAB_PRISTINE_SNAPSHOT_SHA256: 552d6cf0ec7158ebebc5385f7dfeb7b0b3216f3536d2915877bc9425ad02127d
-  LAB_SNAPSHOT_RESTORE_PROBE: PASS
-  LAB_CURRENT_STATE: STOPPED_PENDING_AUTHORITY
-  VALIDATION_EVIDENCE_HEAD: 0e9fea427d9ec0385326c9fc1dc1c4d8ec9b27c3
-  REMOTE_SOURCE_ADDRESSABILITY: FULL_GIT_TREE
-  REMOTE_SOURCE_REF: source/p00-dev21-exact
-  FULL_SOURCE_GIT_MIRROR: true
-  EXTERNAL_AUTHENTICITY_STATUS: DEPLOYED_PENDING_EXTERNAL_KEY
-  POSTDEPLOY_FAILCLOSED_STATUS: DEPLOYED
-GOAL: "Close V02 only with independently authenticated external key provenance, an externally signed exact approval envelope and protected registration/fixture/plan/suite authority for the prepared AI-FILM-P00-LAB candidate; then execute the mandatory 86-case reviewed LAB inventory before qualification or SITE."
+  AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
+  REMOTE_SOURCE_REF: source/p00-dev22-local-authority-exact
+  PREVIOUS_VALIDATION_RUN: RUN-P00-VALIDATION-001
+  PREVIOUS_VALIDATION_BASE: 934659f535d81d9a4a07389531acc2b9c304fa6d
+  LAST_VALIDATION_EVIDENCE_HEAD: cdb18e4b5a8f84ca0c89b9fe17a8a2d486234eaa
+GOAL: "Activate candidate-specific dev22 validation, migrate V02 authority semantics to truthful local-operator same-WSL authority, and preserve all containment/native qualification boundaries."
 STEPS:
+  - V00_VALIDATION_LANE_ACTIVATION: PENDING
   - V01_CODE_REVIEW_GATE: COMPLETE
-  - V02_LAB_EXECUTION_AUTHORITY: BLOCKED_EXTERNAL_AUTHENTICITY_AND_AUTHORITY
+  - V02_LOCAL_OPERATOR_LAB_AUTHORITY: NOT_STARTED
   - V03_NATIVE_LAB_REGRESSION: NOT_STARTED
   - V04_QUALIFICATION_RECEIPT: NOT_STARTED
   - V05_SITE_VALIDATION: NOT_STARTED
   - V06_GATE_ASSESSMENT: NOT_STARTED
-CURRENT_STEP: V02_LAB_EXECUTION_AUTHORITY
-SUCCESS_OUTPUT: "Verified external Ed25519 key provenance plus valid signature over the exact approval envelope and protected registration/fixture/plan/<=24h suite object graph bound to candidate 336b12af-cada-4968-8083-8a5b41e479a2."
-ON_SUCCESS: WF-P00-VALIDATION-LAB
-ON_FAIL: VALIDATION_FAILURE_ROUTE
-ON_BLOCK: BLOCK-P00-VAL-LAB-AUTH-001
-EXIT_CONDITION: "V02 authority prerequisites are independently established for the prepared LAB candidate; no native stage has run before this condition."
+CURRENT_STEP: V00_VALIDATION_LANE_ACTIVATION
+SUCCESS_OUTPUT: "RUN-P00-VALIDATION-002 canonically active on exact dev22 with dev21 run001 closed as superseded-before-native and local-authority migration plan bound."
+ON_SUCCESS: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
+ON_FAIL: VALIDATION_TRANSITION_FAILURE_ROUTE
+ON_BLOCK: BLOCK-P00-VAL-DEV22-TRANSITION-001
+EXIT_CONDITION: "Canonical validation lane binds exact dev22/run002; no native stage runs during candidate transition."
 ```
 
-## Preparation completed
+## Required sequence
 
-A real disposable LAB candidate is already installed and prepared. `AI-FILM-P00-LAB` is fresh Ubuntu 24.04.5 WSL2 rather than a clone of development, has a dedicated password-locked user, Windows-drive automount disabled, no appended Windows PATH, no copied real credentials and no production storage mapping. Exact dev21 is deployed read-only and byte-verified; source/test/contract identities reproduce exactly. The LAB is currently stopped pending authority.
+1. Close dev21 `RUN-P00-VALIDATION-001` on the validation lane as `COMPLETE / SUPERSEDED_BY_DEV22_BEFORE_NATIVE_EXECUTION`; preserve all historical evidence.
+2. Create and activate `RUN-P00-VALIDATION-002` with base identity `86bb64938a136e3f8d6cfd0266685a01cb832b77`. Do not reuse dev21 V02 authority receipts or candidate IDs.
+3. Rebuild/rebind production-like runtime and stopped LAB to exact dev22 package/source; all 86 native cases remain NOT_RUN.
+4. Replace external-authenticity wording/schema with truthful local-operator authority semantics. Keep content addressing, role pins, exact identity binding, <=24h suite, fail-closed watcher/pre-V03 and current-evaluation invalidation.
+5. After tooling/schema design is independently reviewed/audited, generate the local Ed25519 private key inside WSL with mode `0600`; commit only the public trust anchor. Local signature proves integrity/key possession, not external independence.
+6. Build/sign the exact dev22 approval object graph locally, run staging preflight, then authoritative intake. V03 begins only after the new V02 done-when succeeds.
 
-The baseline and pristine-dev21 LAB snapshots exist outside the guest and the pristine snapshot has been independently restored into a temporary probe distro, exact app/inventory verified, then the probe unregistered. Pre-V03 inventory remains 86 `NOT_RUN`, zero native parent cases, no qualification, `HOST_READY=false`.
-
-An authority draft generated from exact reviewed `PROCEDURES` covers 86 cases (85 native fixture templates + 1 document case), SHA-256 `746a2939d2b8983a952dcedf69ff173cc05f458ac7032a7001aff96c911450b5`, self-check PASS and `approved=false`.
-
-The Windows-side protected pending store is ACL-protected (inheritance protected, two access rules) and contains exactly four byte-verified files. Its non-consumable pending index SHA-256 is `fa38540df54df9ebb87929c43e9fe8fbcd09e290e93d8c5d53d7af991df8f615`; it is `approved=false`, `native_consumable=false`, and all external approval refs remain null.
-
-## Block record
-
-```yaml
-BLOCK_ID: BLOCK-P00-VAL-LAB-AUTH-001
-WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-OWNER_LANE: VALIDATION
-REASON: "Technical LAB and fail-closed tooling are complete. Remaining V02 requirement is independently authenticated external authority: reviewed external key provenance, signed exact approval envelope and protected registration/fixture/plan/<=24h suite records."
-TECHNICAL_LAB_ENVIRONMENT_MISSING: false
-PENDING_AUTHORITY_BUNDLE_READY: true
-EXTERNAL_APPROVAL_HANDOFF: "lane/validation-p00:validation/LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md"
-EVIDENCE:
-  - "lane/validation-p00:validation/LAB_CANDIDATE-P00-DEV21.md"
-  - "lane/validation-p00:validation/LAB_REGISTRATION_REQUEST-P00-DEV21.md"
-  - "lane/validation-p00:validation/LAB_AUTHORITY_DRAFT-P00-DEV21.md"
-  - "lane/validation-p00:validation/LAB_PENDING_AUTHORITY_BUNDLE-P00-DEV21.md"
-  - "accepted dev21 contracts/DESIGN_REVIEW_APPROVAL_V2.json"
-USER_ACTION_REQUIRED: true
-RETURN_TO: RUN-P00-VALIDATION-001/V02_LAB_EXECUTION_AUTHORITY
-STATUS: OPEN
-```
-
-## Minimum external action
-
-Do **not** create another LAB and do not start the stopped LAB for native execution. The external owner/controller must establish out-of-band Ed25519 public-key provenance, then return a signed exact approval envelope and immutable protected refs specified by `LAB_EXTERNAL_APPROVAL_HANDOFF-P00-DEV21.md`. Credentials, private keys and raw SID/MachineGuid stay out of GitHub. Only after signature, object graph and current gate independently verify may this same run advance V02 → V03.
+No dev21 technical preparation is authority for dev22. No native execution is authorized by this transition document.
