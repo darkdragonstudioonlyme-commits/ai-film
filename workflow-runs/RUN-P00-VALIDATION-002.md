@@ -17,7 +17,7 @@ RETURN_TO: V02_LOCAL_OPERATOR_LAB_AUTHORITY
 ```yaml
 STEP_ID: V02_LOCAL_OPERATOR_LAB_AUTHORITY
 STATE: BLOCKED
-BLOCK_REASON_CLASS: LOCAL_AUTHORITY_PACKAGE_MISSING
+BLOCK_REASON_CLASS: HOST_SUPPORT_UPDATE_BEFORE_EPHEMERAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY: {"authority_model":"LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN","candidate_binding_sha256":"4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384","candidate_id":"6f895394-e0b4-5434-bebc-79ee4e576282","code_review_record":"reviews/CODE-REVIEW-P00-001_DEV22_LOCAL_AUTHORITY.md","contract_digest":"f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee","inventory_sha256":"2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6","package_sha256":"c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae","source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77"}
 IDEMPOTENCY_KEY: 048c70614f2779a0ec675aebdc2565dab0c19bb56eb57447717fe884c15f49e5
 DONE_WHEN: {"authority_model":"LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN","candidate_id":"6f895394-e0b4-5434-bebc-79ee4e576282","controller_external":false,"execution_class":"LAB","kind":"LAB_LOCAL_OPERATOR_AUTHORITY_VERIFIED","local_authority_signature_verified":true,"registration_disposable":true,"source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77","suite_approved":true}
@@ -37,6 +37,7 @@ REPLAY_POLICY: SAFE_REEXECUTE
 - Current prodlike runtime/control plane is exact dev22 and READY for non-native operations. The stopped LAB is also exact dev22, candidate-bound and artifact-sealed; pristine export restore-probe PASS, 86 procedures remain NOT_RUN. V02 still requires a fresh signed local-authority object graph before it can close or V03 can start.
 - LAB technical rebuild deployment is receipt-bound at `validation/V02_LAB_DEV22_REBUILD_DEPLOYMENT-P00.md`: app tar `4205d836...`, inventory `7ef70d5c...`, pristine raw `e1d0af02...`, sealed pristine `08cff85b...`, facts `9ae25227...`, seal `326718e7...`, restore probe PASS, LAB Stopped and native=false.
 - WSL-local authority inbox deployment is receipt-bound at `validation/V02_WSL_LOCAL_AUTHORITY_INBOX_DEPLOYMENT-P00-DEV22.md`: canonical inbox `/home/dragon/ai-film-dev/local-authority/dev22/inbox`, manifest `5a1c7512...`, durable-key parity PASS, preflight/intake `10/12` on expected `APPROVAL_ENVELOPE_MISSING`, watcher active/enabled, READY/native-policy absent. Private key remains a sibling outside the inbox and outside Git.
+- Live Windows support observation is Windows 11 Pro / Professional, DisplayVersion 23H2, build 22631.3296. Microsoft lifecycle evidence marks Home/Pro 23H2 out of updates, while product host_profile requires at least 90 days remaining support. Because the authority suite is valid for <=24h, suite generation/signing is deliberately deferred until the host is updated to 25H2 or later with the required margin and rebooted.
 - All 86 native procedures remain NOT_RUN. No qualification, SITE activation or HOST_READY assessment exists.
 
 ## Validation steps
