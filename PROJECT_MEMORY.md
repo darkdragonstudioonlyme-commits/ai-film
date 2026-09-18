@@ -51,6 +51,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning 
 
 | MEM-20260918-004 | GOVERNANCE | Promoted current-pair stage checks must recognize semantic review-gating patterns (for example `subject to` / conditional review), not only a fixed prospective/pending keyword list. | promoted semantic checker / V50 health review |
 
+| MEM-20260918-005 | GOVERNANCE | Evidence pointers duplicated between canonical Markdown and machine state require explicit parity plus target-existence checks; green aggregate checks alone do not prove pointer consistency. | active-doc checker / V51 health review |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V50
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V51
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 50
+STATE_VERSION: 51
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R23_V50_PROMOTED_STAGE_LANGUAGE_HARDENING
-  DESIGN_BRANCH: lane/docs-v2-r9-v50-promoted-stage-language-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v50-promoted-stage-language-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v50-promoted-stage-language-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V50_PROMOTED_STAGE_LANGUAGE_HARDENING.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-024
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R24_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-024
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R24_PASS.md
-  ACTIVATION_CONDITION: "Exact V50 promoted-stage-language hardening tree binds R24/A24 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R24/A24 are the final verdict IDs for this exact tree. Verdict artifacts may be added after design freeze; no semantic state/checker/test change is allowed after review."
+  REVISION: R24_V51_FORENSIC_META_REVIEW_PARITY
+  DESIGN_BRANCH: lane/docs-v2-r9-v51-forensic-meta-review-parity-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v51-forensic-meta-review-parity-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v51-forensic-meta-review-parity-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V51_FORENSIC_META_REVIEW_PARITY.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-025
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R25_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-025
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R25_PASS.md
+  ACTIVATION_CONDITION: "Exact V51 forensic-meta-review parity tree binds R25/A25 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R25/A25 are the final verdict IDs for this exact tree. Verdict artifacts may be added after design freeze; no semantic state/checker/test change is allowed after review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
-  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V50-PROMOTED-STAGE-LANGUAGE-027.md
+  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V51-FORENSIC-META-PARITY-028.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R23/A23 completed V49 and learning 013 effectiveness. V50 hardens promoted current-pair stage-language detection after canonical V49 exposed an unrecognized subject-to-review morphology."
+  NOTE: "Historical/prior-tree R24/A24 completed V50. V51 reconciles and machine-enforces RECENT_CI_META_REVIEW parity between canonical Markdown and machine state."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -175,7 +175,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V51-FORENSIC-META-PARITY-028.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -210,4 +210,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R23/A23 remain immutable V49 authority and learning-013 effectiveness evidence. V50 hardens the promoted semantic-surface detector so current-pair `subject to` / conditional review-gating wording is rejected on PROMOTED/GENERIC trees while remaining valid on DESIGN. Validation head, V02/native authority, learning lifecycle outcomes and continuity 0/3 are unchanged.
+Historical/prior-tree R24/A24 remain immutable V50 authority. V51 enforces that the canonical `RECENT_CI_META_REVIEW` evidence pointer equals machine `learning_activation.recent_ci_meta_review` and resolves to an existing file. Validation head, product/native/V02 authority, learning outcomes and continuity 0/3 are unchanged.

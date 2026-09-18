@@ -71,6 +71,19 @@ if state_json:
     if not mode or state_json.get('current_mode')!=mode.group(1): errors.append('state-mode-mismatch')
     if state_json.get('documentation_system','').startswith('DOCSYS-V2-') is False: errors.append('documentation-system-not-v2')
 
+    learning_state=state_json.get('learning_activation')
+    if not isinstance(learning_state,dict):
+        errors.append('learning-activation-json-missing')
+    else:
+        machine_meta_review=learning_state.get('recent_ci_meta_review')
+        md_meta_review=state_field('RECENT_CI_META_REVIEW')
+        if not isinstance(machine_meta_review,str) or not machine_meta_review:
+            errors.append('learning-meta-review-field-missing')
+        elif md_meta_review!=machine_meta_review:
+            errors.append(f'learning-meta-review-parity:{machine_meta_review}!={md_meta_review}')
+        elif not (ROOT/machine_meta_review).is_file():
+            errors.append(f'learning-meta-review-evidence-missing:{machine_meta_review}')
+
     gov=state_json.get('documentation_governance')
     if not isinstance(gov,dict):
         errors.append('documentation-governance-json-missing')
