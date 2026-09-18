@@ -2,7 +2,7 @@
 set -euo pipefail
 umask 077
 ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22
-INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22
+INBOX=/home/dragon/ai-film-dev/local-authority/dev22/inbox
 TOOL_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 VALIDATOR="$TOOL_DIR/v02-authority-intake.py"
 MATERIALIZER="$TOOL_DIR/materialize-v02-native-policy.py"

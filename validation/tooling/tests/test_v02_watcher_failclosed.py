@@ -8,7 +8,7 @@ def prepare(base):
     tool=base/'tool'; tool.mkdir(); out=base/'out'; inbox=base/'inbox'; inbox.mkdir()
     script=(SOURCE/'watch-v02-authority.sh').read_text()
     script=script.replace('OUT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22',f'OUT={out}')
-    script=script.replace('INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22',f'INBOX={inbox}')
+    script=script.replace('INBOX=/home/dragon/ai-film-dev/local-authority/dev22/inbox',f'INBOX={inbox}')
     (tool/'watch-v02-authority.sh').write_text(script); os.chmod(tool/'watch-v02-authority.sh',0o755)
     return tool,out
 

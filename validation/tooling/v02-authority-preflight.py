@@ -3,7 +3,7 @@ import argparse, hashlib, json, os, stat, subprocess
 from pathlib import Path
 
 VALIDATOR=Path(__file__).resolve().with_name('v02-authority-intake.py')
-DEFAULT=Path('/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22')
+DEFAULT=Path('/home/dragon/ai-film-dev/local-authority/dev22/inbox')
 
 def file_sha256(path):
  h=hashlib.sha256()

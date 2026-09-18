@@ -12,7 +12,7 @@ def prepare(base):
     interop=base/'private-windows-interop.sh'
     script=(SOURCE/'pre-v03-authority-stage.sh').read_text()
     script=script.replace('ROOT=/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22',f'ROOT={root}')
-    script=script.replace('INBOX=/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22',f'INBOX={inbox}')
+    script=script.replace('INBOX=/home/dragon/ai-film-dev/local-authority/dev22/inbox',f'INBOX={inbox}')
     script=script.replace('/home/dragon/ai-film-dev/root-ops/private-windows-interop.sh',str(interop))
     stage=tool/'pre-v03-authority-stage.sh'; stage.write_text(script); os.chmod(stage,0o755)
     return tool,root,interop

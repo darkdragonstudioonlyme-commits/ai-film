@@ -9,7 +9,7 @@ from aifilm_p00.native.trust import NativeStore
 from v02_local_identity import load_local_identity
 
 VALIDATOR=Path(__file__).resolve().with_name('v02-authority-intake.py')
-DEFAULT_INBOX=Path('/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22')
+DEFAULT_INBOX=Path('/home/dragon/ai-film-dev/local-authority/dev22/inbox')
 DEFAULT_OUT=Path('/home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22/native-policy.candidate.json')
 
 def blocked(reason,**extra):

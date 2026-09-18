@@ -187,7 +187,7 @@ def verify_plan_authorities(suite,store,objects,now):
 def main():
     global HOST_ID,OPERATOR_DIGEST
     ap=argparse.ArgumentParser()
-    ap.add_argument('--inbox',default='/mnt/c/Users/Admin/AppData/Local/AI-FILM/LAB/authority-approved/dev22')
+    ap.add_argument('--inbox',default='/home/dragon/ai-film-dev/local-authority/dev22/inbox')
     args=ap.parse_args(); root=Path(args.inbox); env_path=root/'approval-envelope.json'
     if not env_path.is_file(): fail('APPROVAL_ENVELOPE_MISSING',inbox=str(root))
     identity=load_local_identity(fail); HOST_ID=identity['host_id']; OPERATOR_DIGEST=identity['operator_digest']
