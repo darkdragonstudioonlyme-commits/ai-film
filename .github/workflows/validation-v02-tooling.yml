@@ -74,6 +74,8 @@ jobs:
         run: python validation/tooling/tests/test_prodlike_dev22_control_bundle.py
       - name: Prodlike dev22 release builder regression
         run: python validation/tooling/tests/test_prodlike_dev22_release_builder.py
+      - name: LAB dev22 payload builder regression
+        run: python validation/tooling/tests/test_lab_dev22_payload_builder.py
       - name: Prodlike dev22 bundled script syntax
         run: |
           python - <<'PY'
