@@ -170,6 +170,60 @@ def forensic_promotion_missing_target(dst):
     jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 require('forensic_promotion_finalization_missing_target',run_case(forensic_promotion_missing_target),False,'forensic-evidence-missing:PROMOTION_FINALIZATION_EVIDENCE')
 
+gov_previous=section_field('DOCUMENTATION_GOVERNANCE','PREVIOUS_ACTIVE_RELEASE')
+gov_recovery=section_field('DOCUMENTATION_GOVERNANCE','RECOVERY_EVIDENCE')
+gov_forensic=section_field('DOCUMENTATION_GOVERNANCE','FORENSIC_HARDENING_EVIDENCE')
+gov_promotion=section_field('DOCUMENTATION_GOVERNANCE','PROMOTION_FINALIZATION_EVIDENCE')
+gov_authority=section_field('DOCUMENTATION_GOVERNANCE','AUTHORITY_REFERENCE_EVIDENCE')
+
+def governance_previous_active_release_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['previous_active_release']='DOCSYS-V2-R8'
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_previous_active_release_drift',run_case(governance_previous_active_release_drift),False,'governance-parity:PREVIOUS_ACTIVE_RELEASE')
+
+def governance_recovery_evidence_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['recovery_evidence']=gov_authority
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_recovery_evidence_drift',run_case(governance_recovery_evidence_drift),False,'governance-evidence-parity:RECOVERY_EVIDENCE')
+
+def governance_forensic_evidence_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['forensic_hardening_evidence']=gov_authority
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_forensic_evidence_drift',run_case(governance_forensic_evidence_drift),False,'governance-evidence-parity:FORENSIC_HARDENING_EVIDENCE')
+
+def governance_promotion_evidence_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['promotion_finalization_evidence']=gov_authority
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_promotion_evidence_drift',run_case(governance_promotion_evidence_drift),False,'governance-evidence-parity:PROMOTION_FINALIZATION_EVIDENCE')
+
+def governance_authority_evidence_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['authority_reference_evidence']=gov_recovery
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_authority_evidence_drift',run_case(governance_authority_evidence_drift),False,'governance-evidence-parity:AUTHORITY_REFERENCE_EVIDENCE')
+
+def governance_recovery_missing_target(dst):
+    missing='workflow-health/DOES-NOT-EXIST-V53.md'
+    p=dst/'PROJECT_STATE.md'; text=p.read_text(encoding='utf-8')
+    old=f'  RECOVERY_EVIDENCE: {gov_recovery}'
+    if old not in text: raise RuntimeError('governance recovery line missing')
+    text=text.replace(old,f'  RECOVERY_EVIDENCE: {missing}',1)
+    p.write_text(text,encoding='utf-8')
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['documentation_governance']['recovery_evidence']=missing
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('governance_recovery_missing_target',run_case(governance_recovery_missing_target),False,'governance-evidence-missing:RECOVERY_EVIDENCE')
+
 def full_git_tree_missing_ref(dst):
     p=dst/'PROJECT_STATE.md'
     text=p.read_text(encoding='utf-8').replace('REMOTE_SOURCE_REF: source/p00-dev21-exact','REMOTE_SOURCE_REF: null',1)
@@ -180,4 +234,4 @@ def full_git_tree_missing_ref(dst):
     jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 require('full_git_tree_missing_ref',run_case(full_git_tree_missing_ref),False,'source-visibility-full-tree-contract')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 18 cases')
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 24 cases')
