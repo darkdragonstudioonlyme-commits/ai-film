@@ -19,8 +19,8 @@ from ..evidence_catalog import PROTECTED_PATHS
 
 def _lab_registration(reg):
     require(reg.get('execution_class')=='LAB',12,'REGISTERED_LAB_REQUIRED')
-    require(all(reg.get(k) is True for k in ('controller_external','disposable',
-            'no_real_credentials','no_production_mappings')),
+    require(type(reg.get('controller_external')) is bool,12,'LAB_CONTROLLER_MODE')
+    require(all(reg.get(k) is True for k in ('disposable','no_real_credentials','no_production_mappings')),
             12,'LAB_REGISTRATION_INCOMPLETE')
 
 
@@ -77,7 +77,7 @@ def _collector(store,ref,suite,reason):
     return value
 
 
-def validate_fixture_spec(store,ref,proc,host_id,owner_sid):
+def validate_fixture_spec(store,ref,proc,host_id,owner_sid,controller_external):
     if not proc.actual_native_required:
         require(ref is None,12,'DOCUMENT_FIXTURE_FORBIDDEN');return None
     hash_value(ref);value=store.get('lab_case_fixture_spec',ref)
@@ -88,8 +88,10 @@ def validate_fixture_spec(store,ref,proc,host_id,owner_sid):
             and value['source_kind']=='LAB' and value['host_id']==host_id and value['owner_sid']==owner_sid
             and value['case_id']==proc.case_id and value['procedure_digest']==proc.procedure_digest
             and tuple(value['preparations'])==proc.preparations,15,'LAB_FIXTURE_SPEC')
-    require(all(value[k] is True for k in ('controller_external','disposable',
-            'no_real_credentials','no_production_mappings')),12,'LAB_FIXTURE_ISOLATION')
+    require(type(value.get('controller_external')) is bool,12,'LAB_FIXTURE_CONTROLLER_MODE')
+    require(value['controller_external'] is controller_external,12,'LAB_FIXTURE_CONTROLLER_MODE')
+    require(all(value[k] is True for k in ('disposable','no_real_credentials','no_production_mappings')),
+            12,'LAB_FIXTURE_ISOLATION')
     return value
 
 
@@ -367,8 +369,8 @@ def _validate_controller_windows(steps,stages,proc):
 
 
 def finalize_case(root,suite_ref,result_ref,case_id):
-    _,store,facts,_,_,suite,row,proc=authorize_suite(root,suite_ref,case_id)
-    owner=facts['principal']['execution_sid'];spec=validate_fixture_spec(store,row['fixture_spec_ref'],proc,store.host_id,owner)
+    _,store,facts,_,reg,suite,row,proc=authorize_suite(root,suite_ref,case_id)
+    owner=facts['principal']['execution_sid'];spec=validate_fixture_spec(store,row['fixture_spec_ref'],proc,store.host_id,owner,reg['controller_external'])
     result=_result_set(store,result_ref,proc,suite_ref,suite,store.host_id,owner);rr=result['record']
     fixture=validate_fixture_result(store,rr['fixture_result_ref'],row['fixture_spec_ref'],proc,suite_ref,suite,store.host_id,owner)
     require(len(rr['controller_step_refs'])==len(proc.controller_steps),22,'LAB_CONTROLLER_STEPS_INCOMPLETE')
@@ -410,8 +412,8 @@ def _request_row(row,proc,index):
 def execute_stage(root,suite_ref,fixture_result_ref,case_id,index):
     """Execute one authorized production request stage; never close parent case."""
     require(os.name=='nt',11,'WINDOWS_X64_REQUIRED')
-    _,store,facts,_,_,suite,row,proc=authorize_suite(root,suite_ref,case_id)
-    owner=facts['principal']['execution_sid'];validate_fixture_spec(store,row['fixture_spec_ref'],proc,store.host_id,owner)
+    _,store,facts,_,reg,suite,row,proc=authorize_suite(root,suite_ref,case_id)
+    owner=facts['principal']['execution_sid'];validate_fixture_spec(store,row['fixture_spec_ref'],proc,store.host_id,owner,reg['controller_external'])
     validate_fixture_result(store,fixture_result_ref,row['fixture_spec_ref'],proc,suite_ref,suite,store.host_id,owner)
     require(proc.actual_native_required,10,'DOCUMENT_CASE_NO_NATIVE_STAGE')
     request=_request_row(row,proc,index)

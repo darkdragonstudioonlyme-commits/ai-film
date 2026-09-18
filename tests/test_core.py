@@ -130,6 +130,17 @@ class AuthorityTests(Checks):
         i,p,c,s=authority_case(); self.assertEqual(authorize(i,p,c,s).purpose,'CREATE')
     def test_registered_lab_needs_no_prior_qualification(self):
         i,p,c,s=authority_case(execution_class='LAB',omit='qualification'); authorize(i,p,c,s)
+    def test_registered_local_controller_lab_needs_no_prior_qualification(self):
+        i,p,c,s=authority_case(execution_class='LAB',omit='qualification',controller_external=False)
+        self.assertEqual(authorize(i,p,c,s).execution_class,'LAB')
+    def test_lab_controller_mode_must_be_boolean(self):
+        i,p,c,s=authority_case(execution_class='LAB',omit='qualification',
+            modify=('registration',lambda x:x.update(controller_external='LOCAL')))
+        self.assertEqual(self.reject(12,authorize,i,p,c,s),'LAB_CONTROLLER_MODE')
+    def test_local_controller_does_not_relax_lab_containment(self):
+        i,p,c,s=authority_case(execution_class='LAB',omit='qualification',controller_external=False,
+            modify=('registration',lambda x:x.update(disposable=False)))
+        self.assertEqual(self.reject(12,authorize,i,p,c,s),'LAB_REGISTRATION_INCOMPLETE')
     def test_missing_qualification(self):
         i,p,c,s=authority_case(omit='qualification'); self.reject(11,authorize,i,p,c,s)
     def test_site_faked_lab_flag(self):

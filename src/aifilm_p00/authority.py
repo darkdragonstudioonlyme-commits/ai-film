@@ -74,7 +74,12 @@ def authorize(interface:str,plan:dict,ctx:Context,store:PinnedStore)->Admission:
         payload=store.get('payload',refs['payload'])
         require(payload.get('payload_digest')==s['payload_digest'] and payload.get('trusted_metadata_digest') is not None and payload.get('trust_anchor') is not None and payload.get('withdrawn') is False,15,'PAYLOAD_TRUST_INVALID')
     if ctx.registered_class=='LAB':
-        require(registration.get('controller_external') is True and registration.get('disposable') is True and registration.get('no_real_credentials') is True and registration.get('no_production_mappings') is True,12,'LAB_REGISTRATION_INCOMPLETE')
+        # controller_external is an explicit authority-mode claim, not a containment prerequisite.
+        # True preserves independently controlled LABs; False permits owner-selected local-operator
+        # LAB authority. Both modes retain the same disposable/no-credential/no-production barriers.
+        require(type(registration.get('controller_external')) is bool,12,'LAB_CONTROLLER_MODE')
+        require(registration.get('disposable') is True and registration.get('no_real_credentials') is True
+                and registration.get('no_production_mappings') is True,12,'LAB_REGISTRATION_INCOMPLETE')
         require('lab_plan' in refs,12,'LAB_PLAN_REQUIRED')
         lab=store.get('lab_plan',refs['lab_plan'])
         require(lab.get('host_id')==ctx.host_id and lab.get('build_digest')==ctx.build_digest and lab.get('approved') is True and lab.get('withdrawn') is False and s['purpose'] in lab.get('purposes',[]),12,'LAB_PLAN_INVALID')

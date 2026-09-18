@@ -9,7 +9,7 @@ from aifilm_p00.errors import P00Error
 from aifilm_p00.native.harness_cases import (
     PROCEDURES,case_ids,procedure,validate_inventory,controller_stage_indices,
 )
-from aifilm_p00.native.harness_controller import (validate_stage,validate_fixture_result,_validate_journal,
+from aifilm_p00.native.harness_controller import (validate_stage,validate_fixture_result,validate_fixture_spec,_validate_journal,
     _validate_preparation_action,_validate_preparation_witness,_validate_evidence,_validate_controller_step,
     _validate_controller_windows,_collector)
 from aifilm_p00.native.request_entry import prepare_execution
@@ -58,6 +58,35 @@ class HarnessCatalogTests(unittest.TestCase):
     def test_production_prepare_seam_has_no_backend_argument(self):
         self.assertEqual(tuple(inspect.signature(prepare_execution).parameters),
                          ('root','interface','ref'))
+
+
+class LocalControllerFixtureTests(unittest.TestCase):
+    owner='S-1-5-21-1'
+    ref='e'*64
+    def spec(self,controller_external=False,**changes):
+        proc=procedure('T05-A')
+        value={'role':'lab_case_fixture_spec','schema_version':1,'withdrawn':False,'source_kind':'LAB',
+            'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,
+            'procedure_digest':proc.procedure_digest,'preparations':list(proc.preparations),
+            'controller_external':controller_external,'disposable':True,'no_real_credentials':True,
+            'no_production_mappings':True}
+        value.update(changes); return proc,value
+    def test_local_fixture_mode_matches_local_registration(self):
+        proc,value=self.spec(False)
+        self.assertFalse(validate_fixture_spec(Store({('lab_case_fixture_spec',self.ref):value}),self.ref,
+            proc,'lab-host',self.owner,False)['controller_external'])
+    def test_fixture_controller_mode_must_match_registration(self):
+        proc,value=self.spec(True)
+        with self.assertRaises(P00Error) as cm:
+            validate_fixture_spec(Store({('lab_case_fixture_spec',self.ref):value}),self.ref,
+                proc,'lab-host',self.owner,False)
+        self.assertEqual(cm.exception.reason,'LAB_FIXTURE_CONTROLLER_MODE')
+    def test_local_fixture_mode_does_not_relax_isolation(self):
+        proc,value=self.spec(False,no_real_credentials=False)
+        with self.assertRaises(P00Error) as cm:
+            validate_fixture_spec(Store({('lab_case_fixture_spec',self.ref):value}),self.ref,
+                proc,'lab-host',self.owner,False)
+        self.assertEqual(cm.exception.reason,'LAB_FIXTURE_ISOLATION')
 
 
 class HarnessCliTests(unittest.TestCase):

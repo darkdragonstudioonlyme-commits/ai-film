@@ -24,13 +24,13 @@ def binding(purpose='CREATE',execution_class='SITE'):
         'budgets':[{'volume_id':'volume1','roles':['OS','DISTRO'],'allocations':{'distro':20*GIB,'logs':1024}}],
         'payload_digest':None,'source_class':'CLEAN_P00','refs':{},'final_state':'RUNNING'}
 
-def authority_case(purpose='CREATE',execution_class='SITE',omit=None,modify=None):
+def authority_case(purpose='CREATE',execution_class='SITE',omit=None,modify=None,controller_external=True):
     pins={}; blobs={}
     def put(role,obj):
         value={'role':role,**deepcopy(obj)}; raw=canonical(value); ref=sha256(raw)
         blobs[ref]=raw; pins.setdefault(role,set()).add(ref); return ref
     reg={'host_id':'synthetic-host','execution_class':execution_class,'operator_sids':[SID],'withdrawn':False,
-         'controller_external':True,'disposable':True,'no_real_credentials':True,'no_production_mappings':True}
+         'controller_external':controller_external,'disposable':True,'no_real_credentials':True,'no_production_mappings':True}
     if modify and modify[0]=='registration': modify[1](reg)
     refs={
         'registration':put('registration',reg),
