@@ -113,6 +113,13 @@ def source_visibility_parity_drift(dst):
     p.write_text(text,encoding='utf-8')
 require('source_visibility_parity_drift',run_case(source_visibility_parity_drift),False,'source-visibility-parity:FULL_SOURCE_GIT_MIRROR')
 
+def recent_ci_meta_review_parity_drift(dst):
+    jp=dst/f'AI_FILM_PROJECT_STATE_V{state_version}.json'
+    data=json.loads(jp.read_text(encoding='utf-8'))
+    data['learning_activation']['recent_ci_meta_review']='workflow-health/README.md'
+    jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+require('recent_ci_meta_review_parity_drift',run_case(recent_ci_meta_review_parity_drift),False,'learning-meta-review-parity')
+
 def full_git_tree_missing_ref(dst):
     p=dst/'PROJECT_STATE.md'
     text=p.read_text(encoding='utf-8').replace('REMOTE_SOURCE_REF: source/p00-dev21-exact','REMOTE_SOURCE_REF: null',1)
@@ -123,4 +130,4 @@ def full_git_tree_missing_ref(dst):
     jp.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 require('full_git_tree_missing_ref',run_case(full_git_tree_missing_ref),False,'source-visibility-full-tree-contract')
 
-print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 13 cases')
+print('ADVERSARIAL_PROJECT_DOCS_TEST_PASS 14 cases')
