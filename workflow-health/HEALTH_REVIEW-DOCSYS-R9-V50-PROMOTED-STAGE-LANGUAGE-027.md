@@ -15,6 +15,10 @@ After V49 promotion, canonical prose still stated that an already reviewed EFFEC
 
 Before changing the checker, adversarial case `promoted_current_pair_subject_to_review` was added and failed the test harness because the mutated PROMOTED tree incorrectly returned `DOCS_CHECK_PASS`. The corresponding DESIGN-role case remains expected PASS.
 
+## Remote reconstruction finding
+
+Atomic remote design `a106bb37f1e91eba7fe2da6777a77105affd3cac` preserved the intended files but double-escaped the two new Python raw-regex patterns during transport reconstruction. Server run `35302630870` therefore passed baseline documentation consistency and failed the adversarial suite at the new case. This is pre-review authoring evidence: the rule was not weakened; only the regex escape encoding is corrected before design freeze.
+
 ## Correction
 
 The checker keeps clause-local verdict-pair classification and adds bounded semantic patterns for `subject to ... review/audit` and `conditional/conditioned on ... review/audit`. This expands the existing promoted-stage rule without changing historical-pair handling or DESIGN semantics.

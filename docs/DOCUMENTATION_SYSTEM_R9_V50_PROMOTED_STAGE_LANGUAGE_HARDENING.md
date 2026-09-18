@@ -19,6 +19,10 @@ V49 promoted successfully, but its historical/prior-tree R23/A23 authority prose
 
 A new adversarial case was added first and failed against the unchanged checker, proving the gap independently of the correction. The detector is then generalized at the verdict-pair clause level: under PROMOTED/GENERIC roles, current-pair review/audit gating expressed through `subject to` or `conditional/conditioned on` is stage drift. DESIGN remains allowed to contain prospective current-pair wording.
 
+## Pre-review server negative evidence
+
+Initial atomic remote design `a106bb37f1e91eba7fe2da6777a77105affd3cac` produced Documentation Governance run `35302630870`. Baseline active-document checking passed, but the new adversarial stage-language case failed because transport reconstruction had written Python raw regex boundaries as double-escaped literals (`r'\\\\b...'`) instead of word-boundary escapes. The correction changes only those regex escapes to the already locally tested single-boundary form; the stage predicate, role contract and test expectations are unchanged. The failed run is retained as authoring evidence.
+
 ## Scope
 
 This is documentation-governance detector/test/state hardening only. It does not change accepted product source/package identity, validation head, V02 predicates, LAB/SITE/native procedures, qualification, HOST_READY, learning effectiveness outcomes or continuity event count.

@@ -140,8 +140,8 @@ if state_json:
                                 'before replacing current main','before promotion'
                             )
                             stage_patterns=(
-                                re.compile(r'\\bsubject\\s+to\\b.{0,120}\\b(?:review|audit)\\b'),
-                                re.compile(r'\\bcondition(?:al|ed)?\\s+(?:on|upon)\\b.{0,120}\\b(?:review|audit)\\b'),
+                                re.compile(r'\bsubject\s+to\b.{0,120}\b(?:review|audit)\b'),
+                                re.compile(r'\bcondition(?:al|ed)?\s+(?:on|upon)\b.{0,120}\b(?:review|audit)\b'),
                             )
                             stage_drift=(
                                 any(marker in context for marker in stage_markers)
