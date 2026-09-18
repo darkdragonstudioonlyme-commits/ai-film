@@ -4,7 +4,7 @@ from pathlib import Path
 TOOL=Path(__file__).resolve().parents[1];MANIFEST=TOOL/'V02_TOOLING_MANIFEST.json'
 def h(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
- m=json.loads(MANIFEST.read_text());assert m.get('schema_version')==1 and m.get('status')=='LOCAL_KEY_ACTIVATION_CANDIDATE'
+ m=json.loads(MANIFEST.read_text());assert m.get('schema_version')==1 and m.get('status') in {'LOCAL_KEY_ACTIVATION_CANDIDATE','LOCAL_KEY_REACTIVATION_CANDIDATE'}
  rows=m.get('files');assert isinstance(rows,dict) and rows
  for rel,want in sorted(rows.items()):
   p=TOOL/rel;assert p.is_file(),rel;got=h(p);assert got==want,(rel,got,want);print('PASS',rel)

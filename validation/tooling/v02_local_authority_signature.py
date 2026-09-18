@@ -11,7 +11,7 @@ except Exception as exc:
     _CRYPTO_IMPORT_ERROR=type(exc).__name__
 
 DEFAULT_TRUST_CONFIG=Path(__file__).resolve().with_name('local-operator-trust-anchor.json')
-EXPECTED_TRUST_CONFIG_SHA256='93dd4d3d411fe60dc711a13ed010eb6d0e620271ec0c44a101603f2dba4bacf9'
+EXPECTED_TRUST_CONFIG_SHA256='0af4f9adadcd64bbc2b23a51d572d01af08bdf197c7d96150abdf1ffc9acbbe8'
 SIGNATURE_FILENAME='approval-envelope.sig.json'
 ASSURANCE_CLASS='LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN'
 

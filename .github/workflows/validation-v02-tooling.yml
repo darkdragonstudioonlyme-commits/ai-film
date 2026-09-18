@@ -56,6 +56,8 @@ jobs:
         run: bash -n validation/tooling/*.sh
       - name: Local authority signature regression
         run: python validation/tooling/tests/test_v02_local_authority_signature.py
+      - name: Local key parity regression
+        run: python validation/tooling/tests/test_v02_local_key_parity.py
       - name: Preflight byte-integrity regression
         run: python validation/tooling/tests/test_v02_preflight_content_integrity.py
       - name: Watcher fail-closed regression

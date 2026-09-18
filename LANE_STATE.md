@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_DEV22_LAB_REBUILD_AND_LOCAL_AUTHORITY_PACKAGE
+STATUS: BLOCKED_LOCAL_KEY_REACTIVATION_REVIEW_AND_DEV22_LAB_PREPARATION
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -59,19 +59,26 @@ LAB_PREPARATION:
   AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   TOOLING_MANIFEST: validation/tooling/V02_TOOLING_MANIFEST.json
-  TOOLING_MANIFEST_FILE_COUNT: 18
-  TOOLING_STATUS: LOCAL_KEY_REVIEWED_AUDITED_PROMOTED
+  TOOLING_MANIFEST_FILE_COUNT: 20
+  TOOLING_STATUS: LOCAL_KEY_REACTIVATION_DESIGN_CANDIDATE
   LOCAL_KEY_ACTIVATION_RECORD: validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md
   LOCAL_KEY_ACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md
   LOCAL_KEY_ACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md
   LOCAL_KEY_ACTIVATION_PROMOTED_HEAD: 9673283c3a8422485db4c3e48baa481dd720551d
   LOCAL_KEY_ACTIVATION_PROMOTION_CI_RUN: 35315862290
+  LOCAL_KEY_ACTIVATION_HISTORICAL_STATUS: SUPERSEDED_PRIVATE_KEY_IDENTITY_UNAVAILABLE
+  LOCAL_KEY_ACTIVATION_HISTORICAL_KEY_ID: AI-FILM-LOCAL-DEV22-20260918-5d5957324955
+  LOCAL_KEY_ACTIVATION_HISTORICAL_PUBLIC_KEY_SHA256: 5d5957324955fb92d998aa7ab54bf551f580ef14b29cad0086274328526a285e
+  LOCAL_KEY_REACTIVATION_RECORD: validation/V02_LOCAL_KEY_REACTIVATION-P00-DEV22.md
   CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
   CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
   TRUST_ANCHOR_FILE: validation/tooling/local-operator-trust-anchor.json
-  TRUST_ANCHOR_STATUS: ACTIVE_REVIEWED_AUDITED
-  TRUST_OPS_DEPLOYMENT_STATUS: NOT_CLAIMED_BY_GIT_EVIDENCE
+  TRUST_ANCHOR_STATUS: ACTIVE_REACTIVATION_CANDIDATE_PENDING_REVIEW
+  TRUST_OPS_DEPLOYMENT_STATUS: PRIOR_ACTIVATION_DEPLOYED_BUT_KEY_PARITY_FAILED
   PRIVATE_KEY_GENERATED: true
+  PREVIOUS_ACTIVATION_DISPOSITION: SUPERSEDED_PRIVATE_KEY_IDENTITY_UNAVAILABLE
+  KEY_PARITY_VERIFIER: validation/tooling/verify_local_authority_key_parity.py
+  KEY_PARITY_LIVE_STATUS: PASS_DESIGN_TIME
   APPROVAL_ENVELOPE_KIND: P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE
   LOCAL_SIGNATURE_REQUIRED: true
   EXTERNAL_PROVENANCE_CLAIMED: false
@@ -89,7 +96,7 @@ LAB_PREPARATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Deploy/reverify the exact reviewed local-authority tooling/public trust identity on the WSL validation-ops surface, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Review/audit and deploy the corrected local-key reactivation with machine key-parity proof, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -100,4 +107,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The local-key activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...` and promoted-lane CI `35315862290` are PASS. Git therefore canonically owns the reviewed public trust identity, but Git evidence alone does not prove deployment of that identity onto the WSL validation-ops surface. The private key remains outside Git with owner-only mode 0600. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion are still pending; all 86 native procedures remain NOT_RUN.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; only public identity is committed and the corrected transaction is pending new independent review/audit/deployment. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion remain pending; all 86 native procedures remain NOT_RUN.

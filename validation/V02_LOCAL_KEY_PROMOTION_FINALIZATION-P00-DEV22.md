@@ -11,6 +11,8 @@ PRODUCT_SOURCE_CHANGED: false
 TOOLING_BYTES_CHANGED: false
 PRIVATE_KEY_BYTES_CHANGED: false
 NATIVE_EXECUTION_ADVANCED: false
+CURRENT_DISPOSITION: HISTORICAL_SUPERSEDED_BY_V02_LOCAL_KEY_PARITY_001
+SUPERSEDED_BY: validation/V02_LOCAL_KEY_REACTIVATION-P00-DEV22.md
 
 ## Problem
 
@@ -30,3 +32,7 @@ It does not claim that Git promotion equals WSL deployment. It does not alter tr
 - WSL validation-ops deployment status is explicitly `NOT_CLAIMED_BY_GIT_EVIDENCE`.
 - Current runtime/LAB candidate remains dev21-mismatched and requires exact dev22 rebuild/reseal.
 - All 86 native cases remain NOT_RUN; V03 remains NOT_STARTED.
+
+## Later supersession
+
+After this finalization, pre-signing forensic verification found that the durable WSL private key did not derive the promoted public fingerprint. `V02-LOCAL-KEY-PARITY-001` therefore supersedes the old activation identity without invalidating this record as historical evidence. The intended-state bullets above describe the state immediately after this transaction, not current signing authority.
