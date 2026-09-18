@@ -27,7 +27,7 @@ Learning 014 was activated by historical V54 R28/A28 and remained PENDING_MEASUR
 
 Independent review also executed isolated negative probes without touching live state: missing current-verify timer and synthetic timer byte drift both failed as `DEPLOYED_SYSTEMD_DRIFT`; a byte-correct copy under a non-user-manager path failed as `WRONG_SYSTEMD_SCOPE`. Live verification remained PASS afterward. Runtime-health was therefore never used as the sole proof that its own scheduler existed.
 
-Receipt `MEASUREMENT-LEARNING-PRODLIKE-SUPERVISION-DEPLOYABILITY-014-001.md` binds immutable metric hash `5e1e3a7ef024fb0bee3bc59a6de6848718c926f048f0976d163ee77f3b23c967`, sample commit `046f428e...`, validation review/audit evidence and this V58 health/design evidence. EFFECTIVE remains R32/A32 promotion-gated.
+Receipt `MEASUREMENT-LEARNING-PRODLIKE-SUPERVISION-DEPLOYABILITY-014-001.md` binds immutable metric hash `5e1e3a7ef024fb0bee3bc59a6de6848718c926f048f0976d163ee77f3b23c967`, sample commit `046f428e...`, validation review/audit evidence and this V58 health/design evidence. V58 encodes the resulting EFFECTIVE state; R32/A32 bind this exact semantic tree.
 
 ## Learning 015 normalization
 
