@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_KEY_ACTIVATION_REVIEW_AND_DEV22_LAB_PREPARATION
+STATUS: BLOCKED_DEV22_LAB_REBUILD_AND_LOCAL_AUTHORITY_PACKAGE
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -60,11 +60,17 @@ LAB_PREPARATION:
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   TOOLING_MANIFEST: validation/tooling/V02_TOOLING_MANIFEST.json
   TOOLING_MANIFEST_FILE_COUNT: 18
-  TOOLING_STATUS: LOCAL_KEY_ACTIVATION_DESIGN_CANDIDATE
+  TOOLING_STATUS: LOCAL_KEY_REVIEWED_AUDITED_PROMOTED
+  LOCAL_KEY_ACTIVATION_RECORD: validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md
+  LOCAL_KEY_ACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md
+  LOCAL_KEY_ACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md
+  LOCAL_KEY_ACTIVATION_PROMOTED_HEAD: 9673283c3a8422485db4c3e48baa481dd720551d
+  LOCAL_KEY_ACTIVATION_PROMOTION_CI_RUN: 35315862290
   CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
   CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
   TRUST_ANCHOR_FILE: validation/tooling/local-operator-trust-anchor.json
-  TRUST_ANCHOR_STATUS: ACTIVE_CANDIDATE_PENDING_REVIEW
+  TRUST_ANCHOR_STATUS: ACTIVE_REVIEWED_AUDITED
+  TRUST_OPS_DEPLOYMENT_STATUS: NOT_CLAIMED_BY_GIT_EVIDENCE
   PRIVATE_KEY_GENERATED: true
   APPROVAL_ENVELOPE_KIND: P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE
   LOCAL_SIGNATURE_REQUIRED: true
@@ -78,14 +84,12 @@ LAB_PREPARATION:
   EXACT_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
   LAB_DISTRO: AI-FILM-P00-LAB
   LAB_DISTRO_STATE: STOPPED_DEV21_BYTES_DEV22_REBUILD_REQUIRED
-  LAB_NO_REAL_CREDENTIALS: true
-  LAB_NO_PRODUCTION_MAPPINGS: true
   V02_AUTHORITY_READY_TO_ADVANCE: false
   NATIVE_CASES_EXECUTED_DURING_PREPARATION: 0
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Review/audit and deploy the active local-key trust transaction, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Deploy/reverify the exact reviewed local-authority tooling/public trust identity on the WSL validation-ops surface, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -96,4 +100,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B is explicit: local authority is intentionally same-trust-domain and lower assurance. Local Ed25519 signature is retained for integrity/current-evaluation binding, not independent provenance. The local key was generated only after the tooling semantics audit passed; this design transaction commits only its public identity and remains pending independent activation review/audit. Dev21 validation and operational artifacts remain historical and are not dev22 product/authority evidence.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The local-key activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...` and promoted-lane CI `35315862290` are PASS. Git therefore canonically owns the reviewed public trust identity, but Git evidence alone does not prove deployment of that identity onto the WSL validation-ops surface. The private key remains outside Git with owner-only mode 0600. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion are still pending; all 86 native procedures remain NOT_RUN.
