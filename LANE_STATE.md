@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_LOCAL_KEY_AND_DEV22_LAB_PREPARATION
+STATUS: BLOCKED_KEY_ACTIVATION_REVIEW_AND_DEV22_LAB_PREPARATION
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -60,12 +60,12 @@ LAB_PREPARATION:
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   TOOLING_MANIFEST: validation/tooling/V02_TOOLING_MANIFEST.json
   TOOLING_MANIFEST_FILE_COUNT: 18
-  TOOLING_STATUS: REVIEW_CANDIDATE_PENDING_LOCAL_KEY
+  TOOLING_STATUS: LOCAL_KEY_ACTIVATION_DESIGN_CANDIDATE
   CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
   CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
   TRUST_ANCHOR_FILE: validation/tooling/local-operator-trust-anchor.json
-  TRUST_ANCHOR_STATUS: PENDING_LOCAL_KEY
-  PRIVATE_KEY_GENERATED: false
+  TRUST_ANCHOR_STATUS: ACTIVE_CANDIDATE_PENDING_REVIEW
+  PRIVATE_KEY_GENERATED: true
   APPROVAL_ENVELOPE_KIND: P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE
   LOCAL_SIGNATURE_REQUIRED: true
   EXTERNAL_PROVENANCE_CLAIMED: false
@@ -85,7 +85,7 @@ LAB_PREPARATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Audit and activate the local-authority tooling/key, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Review/audit and deploy the active local-key trust transaction, rebuild and seal exact dev22 runtime/LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -96,4 +96,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B is explicit: local authority is intentionally same-trust-domain and lower assurance. Local Ed25519 signature is retained for integrity/current-evaluation binding, not independent provenance. The private key has not yet been generated because tooling/trust semantics must pass review/audit first. Dev21 validation and operational artifacts remain historical and are not dev22 product/authority evidence.
+Choice B is explicit: local authority is intentionally same-trust-domain and lower assurance. Local Ed25519 signature is retained for integrity/current-evaluation binding, not independent provenance. The local key was generated only after the tooling semantics audit passed; this design transaction commits only its public identity and remains pending independent activation review/audit. Dev21 validation and operational artifacts remain historical and are not dev22 product/authority evidence.
