@@ -32,6 +32,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -56,6 +58,11 @@ jobs:
         with:
           ref: 934659f535d81d9a4a07389531acc2b9c304fa6d
           path: exact-source
+          persist-credentials: false
+      - name: Verify checkout credentials are not persisted
+        run: |
+          ! git config --local --get-regexp '^http\..*\.extraheader$'
+          ! git -C exact-source config --local --get-regexp '^http\..*\.extraheader$'
       - name: Verify exact dev21 source identity
         run: |
           test "$(git -C exact-source rev-parse HEAD)" = "934659f535d81d9a4a07389531acc2b9c304fa6d"
