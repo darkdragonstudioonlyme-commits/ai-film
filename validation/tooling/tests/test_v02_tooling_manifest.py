@@ -4,13 +4,13 @@ from pathlib import Path
 TOOL=Path(__file__).resolve().parents[1];MANIFEST=TOOL/'V02_TOOLING_MANIFEST.json'
 def h(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
- m=json.loads(MANIFEST.read_text());assert m.get('schema_version')==1 and m.get('status')=='CANDIDATE_SOURCE_FROZEN'
+ m=json.loads(MANIFEST.read_text());assert m.get('schema_version')==1 and m.get('status')=='LOCAL_KEY_ACTIVATION_CANDIDATE'
  rows=m.get('files');assert isinstance(rows,dict) and rows
  for rel,want in sorted(rows.items()):
   p=TOOL/rel;assert p.is_file(),rel;got=h(p);assert got==want,(rel,got,want);print('PASS',rel)
  local_sha=m.get('local_identity_context_expected_sha256');assert isinstance(local_sha,str) and re.fullmatch(r'[0-9a-f]{64}',local_sha)
  assert f"EXPECTED_CONTEXT_SHA256='{local_sha}'" in (TOOL/'v02_local_identity.py').read_text()
- trust_sha=m.get('pending_local_trust_config_sha256');assert trust_sha==h(TOOL/'local-operator-trust-anchor.json')
+ trust_sha=m.get('local_trust_config_sha256');assert trust_sha==h(TOOL/'local-operator-trust-anchor.json')
  sig=(TOOL/'v02_local_authority_signature.py').read_text();assert f"EXPECTED_TRUST_CONFIG_SHA256='{trust_sha}'" in sig
  bind_sha=m.get('candidate_binding_sha256');assert bind_sha==h(TOOL/'dev22-candidate-binding.json')
  binding=json.loads((TOOL/'dev22-candidate-binding.json').read_text());assert binding['candidate_id']==m['candidate_id']
