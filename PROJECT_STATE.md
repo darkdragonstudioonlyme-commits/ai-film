@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V59
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V60
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 59
+STATE_VERSION: 60
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION-DEV22
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R32_V59_LAB_DEV22_RECONCILIATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v59-lab-dev22-reconciliation-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V59_LAB_DEV22_RECONCILIATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-033
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R33_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-033
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R33_PASS.md
-  ACTIVATION_CONDITION: "Exact V59 LAB-dev22 reconciliation tree binds R33/A33 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R33/A33 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no LAB/authority/native/learning semantic change is allowed after review."
+  REVISION: R33_V60_WSL_AUTHORITY_HOST_SUPPORT
+  DESIGN_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V60_WSL_AUTHORITY_HOST_SUPPORT.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-034
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R34_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-034
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R34_PASS.md
+  ACTIVATION_CONDITION: "Exact V60 WSL-authority/host-support tree binds R34/A34 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R34/A34 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no authority/host-support/native/learning semantic change is allowed after review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V53-GOVERNANCE-EVIDENCE-PARITY-030.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R32/A32 completed V58. V59 reconciles audited exact-dev22 LAB rebuild/seal/restore-probe evidence while preserving V02 BLOCKED and all native boundaries."
+  NOTE: "Historical/prior-tree R33/A33 completed V59. V60 reconciles WSL-local authority inbox deployment and the audited Windows host-support blocker without weakening V02/V03/native policy."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev22
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 4b5a25ef3ec1ebdaefeaac5e9f5bf4231b641f36
+  VALIDATION_EVIDENCE_HEAD: 517783d29aecb3d6ae1b0548109480733fa36fe6
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -88,6 +88,17 @@ VALIDATION_PREPARATION:
   TRUST_ANCHOR_SHA256: 0af4f9adadcd64bbc2b23a51d572d01af08bdf197c7d96150abdf1ffc9acbbe8
   TRUST_OPS_DEPLOYMENT_STATUS: DEPLOYED_VERIFIED_KEY_PARITY
   KEY_PARITY_STATUS: PASS
+  AUTHORITY_INBOX_PATH: /home/dragon/ai-film-dev/local-authority/dev22/inbox
+  AUTHORITY_INBOX_STORAGE: WSL_LOCAL
+  WSL_INBOX_TOOLING_MANIFEST_SHA256: 5a1c751256e5da00f5096207a8f06188e06cd363ad71d0c059f831db36a2a24d
+  WSL_INBOX_DEPLOYMENT_RECEIPT_SHA256: 8bb2f75cfe493d3e4d50f5a78e16f77d902870a7607928cb58fe2a69dbedc014
+  HOST_SUPPORT_STATUS: UPDATE_REQUIRED_BEFORE_EPHEMERAL_AUTHORITY_SUITE
+  HOST_OBSERVED_EDITION: Professional
+  HOST_OBSERVED_DISPLAY_VERSION: 23H2
+  HOST_OBSERVED_BUILD: 22631
+  HOST_OBSERVED_UBR: 3296
+  HOST_POLICY_MIN_SUPPORT_MARGIN_DAYS: 90
+  HOST_MINIMUM_TARGET: 25H2_OR_LATER_WITH_90_DAY_MARGIN
   PRODLIKE_MIGRATION_RECORD: "lane/validation-p00:validation/PRODLIKE_DEV22_MIGRATION_DEPLOYMENT-P00.md"
   PRODLIKE_MIGRATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-REVIEW-001_PASS.md"
   PRODLIKE_MIGRATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-AUDIT-001_PASS.md"
@@ -133,7 +144,7 @@ VALIDATION_PREPARATION:
   DEPLOYMENT_RECEIPT_SHA256: 9f4fed765335b7aba64358b0f76be83b8bdf51a07218230483326cb74d1bdc60
   DEPLOYED_MANIFEST_SHA256: 797bec82d024ab75be5abbb29029f6b80c0b301ca37fb0939e442e7ca76c6501
   LOCAL_IDENTITY_CONTEXT_SHA256: c56a13e65ac76f6fe59245a5706ec6270c3c85fd69c81aa50fa2e3ce7165acbc
-  VALIDATION_CANONICAL_CI_RUN: 35350270947
+  VALIDATION_CANONICAL_CI_RUN: 35358874092
 
 PRODUCTION_LIKE_READINESS:
   STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
@@ -179,7 +190,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V59-LAB-DEV22-036.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V60-WSL-AUTH-HOST-SUPPORT-037.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -201,16 +212,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REASON: "Exact dev22 prodlike and stopped LAB substrates are verified. Remaining V02 requirement is a fresh candidate-specific local authority object graph, detached signature, preflight/intake and pre-V03 verification."
-  USER_ACTION_REQUIRED: false
-  RETURN_TO: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
+  BLOCK_ID: BLOCK-P00-VAL-HOST-SUPPORT-001
+  REASON: "All WSL-local authority/key/tooling/LAB prerequisites are ready, but Windows 11 Pro 23H2/build 22631 is outside support and cannot satisfy the exact >=90-day support-margin policy. Update to 25H2 or later and reboot before generating the <=24h authority suite."
+  USER_ACTION_REQUIRED: true
+  RETURN_TO: NEXT_WORK_ITEM/V02A_WINDOWS_HOST_SUPPORT_UPDATE
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: create/sign the fresh exact-dev22 local authority graph from the sealed stopped LAB evidence, run staging preflight, authoritative intake and pre-V03 fail-closed verification; do not start V03 until current V02 done-when succeeds."
+NEXT_ACTION: "Update Windows to 25H2 or later and reboot. Validation will then re-observe exact host facts and create/sign/verify the fresh V02 authority graph entirely inside WSL before any V03 native execution."
 ```
 
-Historical/prior-tree R32/A32 remain immutable V58 authority. V59 reconciles validation head `4b5a25e...`: prodlike and LAB are both exact dev22; LAB is stopped, sealed and restore-probed; V02 remains BLOCKED solely on the fresh local-authority object graph/signature/intake. All 86 native cases remain NOT_RUN.
+Historical/prior-tree R33/A33 remain immutable V59 authority. V60 reconciles validation head `517783d...`: authority tooling, key and inbox are fully WSL-local/deployment-verified; exact dev22 prodlike/LAB substrates remain ready and all 86 cases remain NOT_RUN. The only current blocker is the audited Windows host-support update before ephemeral authority generation. R34/A34 bind this exact V60 semantic tree.
