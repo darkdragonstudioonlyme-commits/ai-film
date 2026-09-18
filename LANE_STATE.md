@@ -67,7 +67,14 @@ LAB_PREPARATION:
   ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
   TOOLING_MANIFEST: validation/tooling/V02_TOOLING_MANIFEST.json
   TOOLING_MANIFEST_FILE_COUNT: 20
-  TOOLING_STATUS: LOCAL_KEY_REACTIVATION_DEPLOYED_ON_AUDIT_PROMOTION
+  TOOLING_STATUS: WSL_LOCAL_AUTHORITY_INBOX_DEPLOYED_VERIFIED
+  AUTHORITY_INBOX_PATH: /home/dragon/ai-film-dev/local-authority/dev22/inbox
+  AUTHORITY_INBOX_STORAGE: WSL_LOCAL
+  WSL_INBOX_TOOLING_MANIFEST_SHA256: 5a1c751256e5da00f5096207a8f06188e06cd363ad71d0c059f831db36a2a24d
+  WSL_INBOX_DEPLOYMENT_RECEIPT_SHA256: 8bb2f75cfe493d3e4d50f5a78e16f77d902870a7607928cb58fe2a69dbedc014
+  WSL_INBOX_KEY_PARITY_STATUS: PASS
+  WSL_INBOX_PREFLIGHT_STATUS: MISSING_APPROVAL_ENVELOPE_EXPECTED
+  WSL_INBOX_WATCHER_STATUS: ACTIVE_ENABLED_BLOCKED_EXPECTED
   LOCAL_KEY_ACTIVATION_RECORD: validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md
   LOCAL_KEY_ACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md
   LOCAL_KEY_ACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md
@@ -155,7 +162,7 @@ PRODLIKE_DEV22_MIGRATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Create/sign the fresh dev22 local authority object graph from the sealed stopped LAB evidence and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Create/sign the fresh dev22 local authority object graph inside the WSL-local inbox and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -166,4 +173,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB is now exact dev22, candidate-bound, artifact-sealed and independently restore-probed. Only the fresh signed local authority object graph/intake remains before V02 can close. All 86 native procedures remain NOT_RUN.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB is now exact dev22, candidate-bound, artifact-sealed and independently restore-probed. The reviewed authority tooling, durable signing key and canonical authority inbox are now all WSL-local and deployment-verified. Only the fresh signed local authority object graph/intake remains before V02 can close. All 86 native procedures remain NOT_RUN.

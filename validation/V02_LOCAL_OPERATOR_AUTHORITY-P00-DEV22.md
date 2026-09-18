@@ -4,7 +4,7 @@
 V02_AUTHORITY_ID: V02-LOCAL-OPERATOR-AUTHORITY-P00-DEV22-001
 RUN_ID: RUN-P00-VALIDATION-002
 STEP_ID: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-STATUS: LOCAL_KEY_REACTIVATION_DEPLOYED_ON_AUDIT_PROMOTION_DEV22_LAB_AND_AUTHORITY_PACKAGE_PENDING
+STATUS: WSL_LOCAL_INBOX_DEPLOYED_DEV22_LAB_READY_AUTHORITY_PACKAGE_PENDING
 AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
 ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
 CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
@@ -24,6 +24,11 @@ LOCAL_KEY_REACTIVATION_DEPLOYMENT: validation/V02_LOCAL_KEY_REACTIVATION_DEPLOYM
 LOCAL_KEY_REACTIVATION_DEPLOYMENT_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-REVIEW-001_PASS.md
 LOCAL_KEY_REACTIVATION_DEPLOYMENT_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-REACTIVATION-DEPLOYMENT-DEV22-AUDIT-001_PASS.md
 KEY_PARITY_VERIFIER: validation/tooling/verify_local_authority_key_parity.py
+AUTHORITY_INBOX_PATH: /home/dragon/ai-film-dev/local-authority/dev22/inbox
+AUTHORITY_INBOX_STORAGE: WSL_LOCAL
+AUTHORITY_INBOX_DEPLOYMENT: validation/V02_WSL_LOCAL_AUTHORITY_INBOX_DEPLOYMENT-P00-DEV22.md
+AUTHORITY_INBOX_DEPLOYMENT_RECEIPT: validation/V02_WSL_LOCAL_AUTHORITY_INBOX_DEPLOYMENT_RECEIPT-P00.json
+AUTHORITY_INBOX_DEPLOYMENT_RECEIPT_SHA256: 8bb2f75cfe493d3e4d50f5a78e16f77d902870a7607928cb58fe2a69dbedc014
 PRIVATE_KEY_IN_GIT: false
 NATIVE_EXECUTION_STARTED: false
 ```
@@ -42,8 +47,7 @@ The lower provenance assurance does not remove the remaining gates. Registration
 
 ## Remaining actions
 
-1. independently review/audit the observed exact deployment transaction and promote its deployment evidence;
-2. rebuild prodlike runtime and stopped LAB to exact dev22, create fresh candidate-specific snapshots/seal and keep all native cases NOT_RUN;
-3. generate a new local approval object graph with `controller_external=false` and current <=24h suite;
-4. sign exact envelope locally, run read-only staging preflight, then authoritative intake and pre-V03 stage;
-5. only a successful current evaluation may close V02 and allow V03.
+1. generate a fresh local approval object graph inside the WSL-local inbox with `controller_external=false` and a current <=24h suite;
+2. sign the exact envelope with the existing durable WSL-local key while keeping private bytes outside the inbox;
+3. run read-only staging preflight, authoritative intake and pre-V03 stage;
+4. only a successful current evaluation may close V02 and allow V03.
