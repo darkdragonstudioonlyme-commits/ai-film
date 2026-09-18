@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V45
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V46
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 45
+STATE_VERSION: 46
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R18_V45_CONTINUITY_MEASUREMENT_INSTRUMENTATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v45-continuity-measurement-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v45-continuity-measurement-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v45-continuity-measurement-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V45_CONTINUITY_MEASUREMENT_INSTRUMENTATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-019
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R19_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-019
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R19_PASS.md
-  ACTIVATION_CONDITION: "Exact V45 continuity-measurement tree binds R19/A19 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R19/A19 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/prose is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
+  REVISION: R19_V46_VALIDATION_CI_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v46-validation-ci-reconciliation-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v46-validation-ci-reconciliation-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v46-validation-ci-reconciliation-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V46_VALIDATION_CI_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-020
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R20_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-020
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R20_PASS.md
+  ACTIVATION_CONDITION: "Exact V46 validation-CI reconciliation tree binds R20/A20 to one design SHA and uses identical semantic state across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R20/A20 are the final verdict IDs for this exact tree. Branch role changes verdict-record presence only; semantic state is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R18/A18 remain immutable authority for V44. V45 adds structured interruption/resume effectiveness measurement without backfilling uncertain events or changing product/native authority."
+  NOTE: "Historical/prior-tree R19/A19 remain immutable authority for V45. V46 reconciles the promoted validation lane head and records exact-source hardened-validator regression as server-enforced without changing V02/native authority."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -67,7 +67,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 0e9fea427d9ec0385326c9fc1dc1c4d8ec9b27c3
+  VALIDATION_EVIDENCE_HEAD: f1d4755759c5abb1f4008cf757b75a0b2072277a
   EXECUTION_SLA_RETENTION_PROGRAM: validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md
   OPERATIONAL_MATURITY_PROGRAM: validation/PRODLIKE_OPERATIONAL_MATURITY-P00-DEV21.md
   OPERATIONS_RUNBOOK: validation/PRODLIKE_OPERATIONS_RUNBOOK-P00-DEV21.md
@@ -80,6 +80,12 @@ VALIDATION_PREPARATION:
   POSTDEPLOY_FAILCLOSED_DEPLOYMENT: validation/V02_POSTDEPLOY_FAILCLOSED_DEPLOYMENT-P00-DEV21.md
   POLICY_CANDIDATE_CURRENT_EVALUATION_ONLY: true
   PREFLIGHT_BYTE_INTEGRITY_ENFORCED: true
+  EXACT_SOURCE_SERVER_REGRESSION: ENFORCED
+  EXACT_SOURCE_SERVER_CI_RUN: 35295269302
+  EXACT_SOURCE_COMMIT: 934659f535d81d9a4a07389531acc2b9c304fa6d
+  EXACT_SOURCE_CI_HARDENING: validation/V02_EXACT_SOURCE_CI_HARDENING-P00-DEV21.md
+  EXACT_SOURCE_CI_REVIEW: reviews/VALIDATION-V02-EXACT-SOURCE-CI-REVIEW-001_PASS.md
+  EXACT_SOURCE_CI_AUDIT: reviews/VALIDATION-V02-EXACT-SOURCE-CI-AUDIT-001_PASS.md
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
@@ -160,7 +166,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V45-CONTINUITY-MEASUREMENT-022.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V46-VALIDATION-CI-023.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -192,4 +198,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R18/A18 remain bound to the V44 exact tree. R19/A19 are the final verdict identities for this exact V45 semantic tree; branch role changes verdict-artifact presence only. Continuity effectiveness remains 0/3 pending measured events. V02/native authority remains unchanged.
+Historical/prior-tree R19/A19 remain immutable V45 authority. R20/A20 are the final verdict identities for this exact V46 semantic tree; branch role changes verdict-artifact presence only. Validation CI now enforces exact-source hardened-validator regression against immutable dev21 source commit `934659f535d81d9a4a07389531acc2b9c304fa6d`. V02/native authority remains unchanged.
