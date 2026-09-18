@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V48
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V49
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 48
+STATE_VERSION: 49
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R21_V48_CI_CREDENTIAL_ISOLATION
-  DESIGN_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v48-ci-credential-isolation-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V48_CI_CREDENTIAL_ISOLATION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-022
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-022
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R22_PASS.md
-  ACTIVATION_CONDITION: "Exact V48 CI-credential-isolation tree binds R22/A22 to one design SHA and activates learning 013 only after the same semantic tree passes DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R22/A22 are the final verdict IDs for this exact tree. Branch role changes verdict-record presence only; semantic state/workflow is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
+  REVISION: R22_V49_VALIDATION_P7_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v49-validation-p7-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v49-validation-p7-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v49-validation-p7-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V49_VALIDATION_P7_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-023
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R23_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-023
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R23_PASS.md
+  ACTIVATION_CONDITION: "Exact V49 validation-P7 reconciliation tree requires R23 review PASS and A23 audit PASS bound to the same design commit."
+  PROMOTION_RULE: "R23/A23 are the final verdict IDs for this exact tree. Branch role controls only verdict-record presence; semantic state/learning content is unchanged by exact fast-forward, followed by mandatory post-promotion CI."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
-  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V48-CI-CREDENTIAL-025.md
+  FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R21/A21 remain immutable V47 authority. V48 generalizes the repeated checkout-credential exposure into learning 013 and prevents Documentation Governance from handing persisted GitHub authorization to repository-controlled code."
+  NOTE: "Historical/prior-tree R22/A22 activated learning 013 on V48. V49 reconciles validation head 5edb3f65..., closes stale prodlike P7 metadata against immutable V39 evidence, and measures CI credential isolation only after a qualifying post-activation design CI sample."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev21
@@ -67,7 +67,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: cf819edd0e05ffd8afd4bc2051116d5a4392368b
+  VALIDATION_EVIDENCE_HEAD: 5edb3f65ddd369321c6a5a4286a8fa5027494a18
   EXECUTION_SLA_RETENTION_PROGRAM: validation/PRODLIKE_EXECUTION_SLA_RETENTION-P00-DEV21.md
   OPERATIONAL_MATURITY_PROGRAM: validation/PRODLIKE_OPERATIONAL_MATURITY-P00-DEV21.md
   OPERATIONS_RUNBOOK: validation/PRODLIKE_OPERATIONS_RUNBOOK-P00-DEV21.md
@@ -93,6 +93,8 @@ VALIDATION_PREPARATION:
   CI_CREDENTIAL_ISOLATION_HARDENING: validation/V02_CI_CREDENTIAL_ISOLATION-P00-DEV21.md
   CI_CREDENTIAL_ISOLATION_REVIEW: reviews/VALIDATION-V02-CI-CREDENTIAL-ISOLATION-REVIEW-001_PASS.md
   CI_CREDENTIAL_ISOLATION_AUDIT: reviews/VALIDATION-V02-CI-CREDENTIAL-ISOLATION-AUDIT-001_PASS.md
+  PRODLIKE_READINESS_P7_RECONCILIATION: PASS_V39
+  PRODLIKE_READINESS_P7_RECORD: "lane/validation-p00:validation/PRODLIKE_P7_CANONICAL_RECONCILIATION-P00-DEV21.md"
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
   ALL_CASES_STATUS: NOT_RUN
@@ -173,7 +175,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V48-CI-CREDENTIAL-025.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V42-PAIR-LOCAL-AUTHORITY-019.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -208,4 +210,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R21/A21 remain immutable V47 authority. R22/A22 are the final verdict identities for this exact V48 semantic tree; branch role changes verdict-artifact presence only. Documentation Governance now requires non-persistent checkout credentials plus an explicit no-extraheader check before repository-controlled Python runs. Learning 013 is activation-gated by R22/A22 and remains PENDING_MEASUREMENT. V02/native authority and continuity 0/3 remain unchanged.
+Historical/prior-tree R22/A22 are the completed V48 activation evidence for learning 013. R23/A23 are the final verdict identities for this exact V49 semantic tree. Validation evidence head is now 5edb3f65ddd369321c6a5a4286a8fa5027494a18 with prodlike P7 reconciled to immutable V39 evidence. Learning 013 is durable ACTIVE/PASS but remains PENDING_MEASUREMENT until the qualifying post-activation V49 design CI sample is reviewed; continuity remains 0/3 and V02/native authority is unchanged.

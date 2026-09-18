@@ -47,6 +47,8 @@ Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning 
 
 | MEM-20260918-002 | GOVERNANCE | Historical/current review-audit authority context is verdict-pair-local; a historical marker for one pair never masks another pair elsewhere on the same line. | pair-local authority checker / learning 012 |
 
+| MEM-20260918-003 | SECURITY | CI checkout credentials must be non-persistent and explicitly absent from local Git config before repository-controlled code runs; keep workflow token permissions least-privilege. | learning 013 / CI workflows |
+
 ## Compaction rule
 
 This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.

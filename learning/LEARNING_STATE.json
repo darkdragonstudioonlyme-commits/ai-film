@@ -406,9 +406,9 @@
       "record": "learning/LEARNING-CI-CREDENTIAL-ISOLATION-013.md",
       "score": 10,
       "activation_target": "DOCSYS-V2-R9",
-      "review_status": "PASS_ON_FINAL_REVIEW",
+      "review_status": "PASS",
       "review_record": "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md",
-      "activation_status": "ACTIVE_ON_PROMOTION",
+      "activation_status": "ACTIVE",
       "activated_in": "DOCSYS-V2-R9",
       "activation_evidence": [
         "reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R22_PASS.md",
