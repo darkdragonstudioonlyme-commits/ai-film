@@ -415,9 +415,12 @@
         "reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R22_PASS.md"
       ],
       "activation_blocker": null,
-      "effectiveness_status": "PENDING_MEASUREMENT",
-      "effectiveness_evidence": [],
-      "effectiveness_receipt": null,
+      "effectiveness_status": "EFFECTIVE",
+      "effectiveness_evidence": [
+        "workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md",
+        "docs/DOCUMENTATION_SYSTEM_R9_V49_VALIDATION_P7_RECONCILIATION.md"
+      ],
+      "effectiveness_receipt": "learning/measurements/MEASUREMENT-LEARNING-CI-CREDENTIAL-ISOLATION-013-001.md",
       "success_metric": "The next qualifying CI workflow change or documentation promotion executes repository-controlled code only after checkout credentials are non-persistent and an explicit no-extraheader check passes; no reviewed workflow reintroduces persisted checkout authorization, while required read-only fetches still succeed.",
       "measurement_trigger": "next CI workflow change or documentation promotion after activation",
       "measurement_gate": {

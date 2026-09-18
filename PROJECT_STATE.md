@@ -155,13 +155,13 @@ LEARNING_ACTIVATION:
   LEARNING_POLICY: POL-LEARN-002
   LEARNED_BUT_NOT_ACTIVE_BACKLOG: 0
   UNRESOLVED_INEFFECTIVE_LEARNING: 0
-  PENDING_EFFECTIVENESS_MEASUREMENT: 2
+  PENDING_EFFECTIVENESS_MEASUREMENT: 1
   OVERDUE_EFFECTIVENESS_MEASUREMENT: 0
   HISTORICAL_INEFFECTIVE_LEARNING: 6
-  RECENTLY_PROVEN_EFFECTIVE: LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012
-  SEMANTICALLY_VERIFIED_EFFECTIVE: 8
+  RECENTLY_PROVEN_EFFECTIVE: LEARNING-CI-CREDENTIAL-ISOLATION-013
+  SEMANTICALLY_VERIFIED_EFFECTIVE: 9
   EFFECTIVE_CLAIMS_DOWNGRADED_FOR_REMEASUREMENT: 3
-  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS; LEARNING-CI-CREDENTIAL-ISOLATION-013@NEXT_CI_CREDENTIAL_ISOLATION_RECHECK"
+  CURRENT_PENDING_MEASUREMENTS: "LEARNING-WORKFLOW-CONTINUITY-001@3_INTERRUPTED_RESUME_EVENTS"
   GUARDED_SELF_OPTIMIZATION: ACTIVE
 
 
@@ -210,4 +210,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Resume RUN-P00-VALIDATION-001 at V02. Only independently authenticated external key provenance plus a signed exact approval package that passes full V02 verification may advance to V03."
 ```
 
-Historical/prior-tree R22/A22 are the completed V48 activation evidence for learning 013. R23/A23 are the final verdict identities for this exact V49 semantic tree. Validation evidence head is now 5edb3f65ddd369321c6a5a4286a8fa5027494a18 with prodlike P7 reconciled to immutable V39 evidence. Learning 013 is durable ACTIVE/PASS but remains PENDING_MEASUREMENT until the qualifying post-activation V49 design CI sample is reviewed; continuity remains 0/3 and V02/native authority is unchanged.
+Historical/prior-tree R22/A22 are the completed V48 activation evidence for learning 013. R23/A23 are the final verdict identities for this exact V49 semantic tree. Validation evidence head is now 5edb3f65ddd369321c6a5a4286a8fa5027494a18 with prodlike P7 reconciled to immutable V39 evidence. Learning 013 is receipt-bound EFFECTIVE candidate from the qualifying post-activation V49 design CI sample, subject to R23/A23 semantic review; continuity remains 0/3 and V02/native authority is unchanged.

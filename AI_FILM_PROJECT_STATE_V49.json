@@ -129,12 +129,12 @@
     "learning_policy": "POL-LEARN-002",
     "learned_but_not_active_backlog": 0,
     "unresolved_ineffective_learning": 0,
-    "pending_effectiveness_measurement": 2,
+    "pending_effectiveness_measurement": 1,
     "overdue_effectiveness_measurement": 0,
     "historical_ineffective_learning": 6,
-    "recently_proven_effective": "LEARNING-PAIR-LOCAL-AUTHORITY-CONTEXT-012",
+    "recently_proven_effective": "LEARNING-CI-CREDENTIAL-ISOLATION-013",
     "guarded_self_optimization": "ACTIVE",
-    "semantically_verified_effective": 8,
+    "semantically_verified_effective": 9,
     "effective_claims_downgraded_for_remeasurement": 3,
     "semantic_effectiveness_contract": "MACHINE_BOUND_REVIEW_GATED",
     "verdict_branch_ci_role_contract": "MACHINE_ENFORCED",
@@ -147,11 +147,6 @@
         "learning_id": "LEARNING-WORKFLOW-CONTINUITY-001",
         "gate": "EVENT_COUNT_AT_LEAST",
         "value": 3
-      },
-      {
-        "learning_id": "LEARNING-CI-CREDENTIAL-ISOLATION-013",
-        "gate": "NEXT_QUALIFYING_EVENT",
-        "event_kind": "CI_CREDENTIAL_ISOLATION_RECHECK"
       }
     ],
     "continuity_measurement": {

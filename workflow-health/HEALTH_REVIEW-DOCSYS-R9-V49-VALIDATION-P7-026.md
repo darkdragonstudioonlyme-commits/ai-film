@@ -5,7 +5,7 @@ STATE_VERSION: 49
 BASE_MAIN_COMMIT: 03f6b381125452acb8c39da30708aefbbc196971
 VALIDATION_HEAD: 5edb3f65ddd369321c6a5a4286a8fa5027494a18
 MEASURED_LEARNING: LEARNING-CI-CREDENTIAL-ISOLATION-013
-MEASUREMENT_STATE: SAMPLE_REQUIRED_BEFORE_EFFECTIVENESS
+MEASUREMENT_STATE: SAMPLE_OBSERVED_RECEIPT_CANDIDATE
 PRODUCT_SOURCE_CHANGED: false
 NATIVE_EXECUTION_ADVANCED: false
 
@@ -15,7 +15,7 @@ Validation P7 reconciliation closed stale readiness-program bookkeeping using im
 
 ## Learning boundary
 
-V48 R22/A22 activation is complete, so learning 013 is normalized to durable PASS/ACTIVE. Effectiveness is intentionally still pending in this sample. The first qualifying post-activation event must be a later Documentation Governance execution on this V49 design branch proving checkout credentials non-persistent and absent before repository-controlled code while read-only fetch/checks still succeed. Observation must precede any receipt/EFFECTIVE transition.
+V48 R22/A22 activation is complete, so learning 013 is normalized to durable PASS/ACTIVE. Exact V49 sample `171922f3c1bcdbec405687a69e06c974c88cac49` produced Documentation Governance run `35299469231` / job `105458870819`. Checkout used non-persistent credentials, explicit no-extraheader step 3 passed before setup-python/repository-controlled code, permissions remained `contents: read`, checkout/read-only checks succeeded, and the complete governance suite passed. `MEASUREMENT-LEARNING-CI-CREDENTIAL-ISOLATION-013-001.md` now binds this observation; EFFECTIVE remains R23/A23 review/audit gated.
 
 ## Native boundary
 

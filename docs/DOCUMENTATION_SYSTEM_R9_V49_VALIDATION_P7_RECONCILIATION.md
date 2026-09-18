@@ -20,7 +20,7 @@ Reconcile canonical state to audited validation head `5edb3f65ddd369321c6a5a4286
 
 ## Learning 013 measurement discipline
 
-Historical R22/A22 completed learning 013 activation in V48. V49 normalizes that completed activation to durable `PASS / ACTIVE` before replacing the final verdict pair. This sample tree deliberately leaves effectiveness `PENDING_MEASUREMENT`. A qualifying post-activation Documentation Governance run on this exact semantic design must first prove `persist-credentials: false`, the explicit no-extraheader check before repository-controlled Python, `contents: read`, and successful read-only checkout. Only a later receipt-bearing design commit may claim EFFECTIVE, subject to R23/A23 semantic review.
+Historical R22/A22 completed learning 013 activation in V48. V49 normalizes that completed activation to durable `PASS / ACTIVE` before replacing the final verdict pair. Sample A `171922f3c1bcdbec405687a69e06c974c88cac49` deliberately left effectiveness PENDING and passed Documentation Governance run `35299469231` / job `105458870819`: non-persistent checkout, explicit no-extraheader check before repository-controlled Python, `contents: read`, successful read-only fetch and full governance PASS. The later receipt-bearing design commit may therefore mark learning 013 EFFECTIVE candidate, still subject to R23/A23 semantic review/audit.
 
 ## Invariants
 
