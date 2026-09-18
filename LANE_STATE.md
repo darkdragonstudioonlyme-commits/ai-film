@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_PRODLIKE_DEV22_MIGRATION_REVIEW_AND_LOCAL_AUTHORITY_PACKAGE
+STATUS: BLOCKED_DEV22_LAB_REBUILD_AND_LOCAL_AUTHORITY_PACKAGE
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -40,15 +40,22 @@ LAB_INVENTORY:
   PARENT_CASES_EXECUTED: 0
 
 PRODLIKE_PREPARATION:
-  STATUS: DEV21_RUNTIME_HEALTHY_DEV22_REBUILD_REQUIRED
-  CANDIDATE_MATCH: false
-  CURRENT_RUNTIME_VERSION: 0.1.0.dev21
+  STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS_DEV22
+  CANDIDATE_MATCH: true
+  CURRENT_RUNTIME_VERSION: 0.1.0.dev22
   TARGET_VERSION: 0.1.0.dev22
   SUPERVISED_TIMERS: 11
   USER_SYSTEMD_RECOVERY_STATUS: RECOVERED_VERIFIED_USER_SCOPE
   USER_SYSTEMD_UNIT_FILE_COUNT: 46
   USER_SYSTEMD_TIMER_COUNT: 11
   USER_SYSTEMD_LIVE_VERIFIER: PASS
+  DEV22_RUNTIME_MANIFEST_SHA256: ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a
+  DEV22_APP_MANIFEST_SHA256: 8f31bb6359387257f00388e12f05e2cb6014867ebb90295d1684d3b6fab00471
+  DEV22_REBUILD_INDEX_SHA256: 24338195fe4bb7adda35b4d4484728a0c30f235c4b88b11a9c2fc4171de1ddef
+  DEV22_RUNTIME_HEALTH_SHA256: a8e8a8e202e024013e9260d9cb314eaed89ddc87f8f168e8cea14b0a1524184a
+  DEV22_CONTROL_BACKUP_SHA256: 2f51196688bb4af3f505104e435218ec4a7610dc7dc14d3a193e68d5c25b62d3
+  DEV22_USER_SYSTEMD_UNIT_FILE_COUNT: 46
+  DEV22_USER_SYSTEMD_TIMER_COUNT: 11
   DEV21_OPERATIONAL_EVIDENCE_REUSABLE_AS_DEV22_PRODUCT_PROOF: false
   NATIVE_AUTHORITY: false
   NATIVE_EXECUTION_STARTED: false
@@ -120,13 +127,21 @@ PRODLIKE_DEV22_MIGRATION:
   TARGET_TIMER_COUNT: 11
   TARGET_VERIFY_UNIT: aifilm-p00-current-verify.service
   TARGET_AUTHORITY_EVIDENCE_ROOT: /home/dragon/ai-film-dev/run-evidence/validation/v02-authority-dev22
-  STATUS: DESIGN_CANDIDATE_PENDING_REVIEW
-  LIVE_DEPLOYMENT_STARTED: false
+  DEPLOYMENT_RECORD: validation/PRODLIKE_DEV22_MIGRATION_DEPLOYMENT-P00.md
+  DEPLOYMENT_RECEIPT: validation/PRODLIKE_DEV22_MIGRATION_DEPLOYMENT_RECEIPT-P00.json
+  DEPLOYMENT_RECEIPT_SHA256: dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a
+  DEPLOYMENT_SOURCE_VALIDATION_HEAD: 60a58c8e3ce2f9d7e7ec793a5edd8f066115732e
+  DEPLOYMENT_REVIEW: reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-REVIEW-001_PASS.md
+  DEPLOYMENT_AUDIT: reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-AUDIT-001_PASS.md
+  STATUS: DEPLOYED_VERIFIED_ON_AUDIT_PROMOTION
+  LIVE_DEPLOYMENT_COMPLETED: true
+  LEARNING_014_SAMPLE_OBSERVED: true
+  LEARNING_014_EFFECTIVENESS_CLAIMED: false
   NATIVE_EXECUTION_STARTED: false
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Review/audit then deploy the canonical dev22 prodlike control/runtime migration, rebuild/seal the stopped dev22 LAB, create/sign the dev22 local authority object graph, and pass current V02 verification."
+  REMAINING_REQUIREMENT: "Rebuild/seal the stopped LAB to exact dev22, create/sign the dev22 local authority object graph, and pass current V02 verification."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -137,4 +152,4 @@ QUALIFICATION: NOT_ISSUED
 HOST_READY: NOT_EVALUATED
 ```
 
-Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. Dev22 runtime/LAB rebuild, signed authority intake and V02 completion remain pending; all 86 native procedures remain NOT_RUN.
+Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB still contains dev21 product bytes; LAB rebuild/seal, signed authority intake and V02 completion remain pending. All 86 native procedures remain NOT_RUN.
