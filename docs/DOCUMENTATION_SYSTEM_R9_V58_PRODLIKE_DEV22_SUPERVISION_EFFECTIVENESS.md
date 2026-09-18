@@ -31,7 +31,7 @@ Receipt `MEASUREMENT-LEARNING-PRODLIKE-SUPERVISION-DEPLOYABILITY-014-001.md` bin
 
 ## Learning 015 normalization
 
-V57 R31/A31 completed activation of learning 015. V58 normalizes only its completed transition markers from PASS_ON_FINAL_REVIEW / ACTIVE_ON_PROMOTION to durable PASS / ACTIVE. Learning 015 effectiveness remains PENDING_MEASUREMENT and receives no receipt from the prodlike migration event.
+Historical V57 R31/A31 completed activation of learning 015. V58 normalizes only its completed transition markers from PASS_ON_FINAL_REVIEW / ACTIVE_ON_PROMOTION to durable PASS / ACTIVE. Learning 015 effectiveness remains PENDING_MEASUREMENT and receives no receipt from the prodlike migration event.
 
 ## Boundary
 
