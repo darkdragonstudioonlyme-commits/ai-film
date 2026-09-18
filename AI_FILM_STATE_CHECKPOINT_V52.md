@@ -4,7 +4,7 @@ Phase00 product/native state is unchanged: exact dev21 remains reviewed, validat
 
 ## Forensic evidence-pointer parity
 
-Section-aware inventory after V51 found one remaining same-owner mismatch: `FORENSIC_HARDENING.PROMOTION_FINALIZATION_EVIDENCE` was V42 in Markdown while machine `forensic_hardening.promotion_finalization_evidence` was the V49 health record included in the exact R23/A23-reviewed V49 machine state. Authority-reference and CI-credential-isolation evidence pointers already matched.
+Section-aware inventory after V51 found one remaining same-owner mismatch: `FORENSIC_HARDENING.PROMOTION_FINALIZATION_EVIDENCE` was V42 in Markdown while machine `forensic_hardening.promotion_finalization_evidence` was the V49 health record included in the exact historical/prior-tree R23/A23-reviewed V49 machine state. Authority-reference and CI-credential-isolation evidence pointers already matched.
 
 V52 reconciles the Markdown promotion-finalization pointer to the reviewed machine V49 value and enforces equality plus target existence for all three section-owned forensic evidence pointers. The checker deliberately does not raw-string-compare `PLATFORM_MAIN_PROTECTION`, whose Markdown and machine representations encode the same external/non-enforced condition at different abstraction levels.
 

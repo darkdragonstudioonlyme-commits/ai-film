@@ -22,6 +22,10 @@ The test-only negative commit added three parity mutations plus one matching-but
 
 Correction commit `9f912ce0fcd08bac60bb41430c270db69515e62c` produced run `35303823020` / job `105471804671`: lifecycle and documentation governance passed, then baseline Active documentation consistency failed because remote reconstruction corrupted/duplicated the checker helper region. The final pre-review correction rebuilds the checker from exact canonical V51 bytes and adds only the intended section parser and forensic pointer predicates. The negative-first test expectations remain unchanged.
 
+## Pair-local provenance correction
+
+After the checker was rebuilt cleanly, run `35303968562` / job `105472239414` failed baseline Active documentation consistency because V49 R23/A23 provenance was not marked historical within three pair-local clauses. Existing pair-local authority enforcement correctly rejected the wording. The correction adds explicit historical/prior-tree qualification only; no V52 parity predicate or test expectation changes.
+
 ## Correction
 
 V52 enforces the three FORENSIC_HARDENING evidence-pointer pairs using section-specific Markdown lookup and verifies each target exists. The promotion-finalization pointer is reconciled to the already reviewed V49 machine value; the two already-matching pointers remain unchanged.
