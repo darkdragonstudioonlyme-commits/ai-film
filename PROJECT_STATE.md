@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V55
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V56
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 55
+STATE_VERSION: 56
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: M-P00-VALIDATION-DEV22-TRANSITION
+CURRENT_TASK: M-P00-VALIDATION-DEV22
 TARGET_GATE: M-P00-VALIDATION
 PHASE_GATE: HOST_READY
 DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
@@ -16,22 +16,22 @@ DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
   PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R28_V55_DEV22_LOCAL_AUTHORITY_TRANSITION
-  DESIGN_BRANCH: lane/docs-v2-r9-v55-dev22-local-authority-transition-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v55-dev22-local-authority-transition-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v55-dev22-local-authority-transition-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V55_DEV22_LOCAL_AUTHORITY_TRANSITION.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-029
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R29_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-029
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R29_PASS.md
-  ACTIVATION_CONDITION: "Exact V55 dev22-transition tree binds R29/A29 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R29/A29 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no accepted-candidate/transition semantic change is allowed after review."
+  REVISION: R29_V56_VALIDATION_LOCAL_KEY_RECONCILIATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v56-validation-local-key-reconciliation-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V56_VALIDATION_LOCAL_KEY_RECONCILIATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-030
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R30_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-030
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R30_PASS.md
+  ACTIVATION_CONDITION: "Exact V56 validation-local-key reconciliation tree binds R30/A30 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R30/A30 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no validation-run/trust/deployment/native semantic change is allowed after review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V53-GOVERNANCE-EVIDENCE-PARITY-030.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R28/A28 completed V54. V55 accepts exact dev22 and establishes a no-active-run bridge before candidate-specific validation-lane activation."
+  NOTE: "Historical/prior-tree R29/A29 completed V55. V56 reconciles the canonical validation lane after dev22 run activation, local-authority tooling review/audit, local-key activation and post-promotion semantic finalization."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev22
@@ -61,32 +61,47 @@ SOURCE_VISIBILITY:
   VISIBILITY_LIMITATIONS: "Exact dev22 commit is remotely browseable; exact commit identity remains authoritative over mutable ref names."
   FORMAL_SOURCE_HANDOFF: reviews/CODE-REVIEW-P00-001_DEV22_LOCAL_AUTHORITY.md
 
-VALIDATION_TRANSITION:
-  STATUS: DEV22_ACCEPTED_RUN_ACTIVATION_PENDING
-  ACTIVE_RUN: null
-  PREVIOUS_RUN_ID: RUN-P00-VALIDATION-001
-  PREVIOUS_RUN_BASE: 934659f535d81d9a4a07389531acc2b9c304fa6d
-  PREVIOUS_RUN_DISPOSITION: CLOSE_AS_SUPERSEDED_BEFORE_NATIVE_EXECUTION_ON_VALIDATION_TRANSITION
-  NEXT_RUN_ID: RUN-P00-VALIDATION-002
-  NEXT_RUN_BASE: 86bb64938a136e3f8d6cfd0266685a01cb832b77
-  NEXT_WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
+ACTIVE_RUN:
+  RUN_ID: RUN-P00-VALIDATION-002
+  WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
   OWNER_LANE: VALIDATION
-  AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
-  USER_ACTION_REQUIRED: false
+  RUN_RECORD: "lane/validation-p00:workflow-runs/RUN-P00-VALIDATION-002.md"
+  STATUS: BLOCKED
+  CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
+  CANONICAL_BASE: 86bb64938a136e3f8d6cfd0266685a01cb832b77
+  LOCAL_WORKTREE: null
+  PREVIOUS_RUN_ID: RUN-P00-VALIDATION-001
+  PREVIOUS_RUN_DISPOSITION: COMPLETE_SUPERSEDED_BY_DEV22_BEFORE_NATIVE_EXECUTION
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  LAST_CANONICAL_EVIDENCE_HEAD: cdb18e4b5a8f84ca0c89b9fe17a8a2d486234eaa
-  LAST_EVIDENCE_CANDIDATE: "0.1.0.dev21 / 934659f535d81d9a4a07389531acc2b9c304fa6d"
-  LAST_PREPARATION_STATUS: DEV21_HISTORICAL_NOT_DEV22_AUTHORITY
+  VALIDATION_EVIDENCE_HEAD: 66e5d30a6bde9dcdcb310fc1772bccb16702db24
+  EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
+  RUN002_STATUS: BLOCKED
+  RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
+  AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
+  ASSURANCE_CLASS: SAME_TRUST_DOMAIN_LOCAL_OPERATOR
+  CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
+  CANDIDATE_BINDING_SHA256: 4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384
+  LOCAL_KEY_GIT_STATUS: REVIEWED_AUDITED_PROMOTED
+  KEY_ID: AI-FILM-LOCAL-DEV22-20260918-5d5957324955
+  PUBLIC_KEY_SHA256: 5d5957324955fb92d998aa7ab54bf551f580ef14b29cad0086274328526a285e
+  TRUST_ANCHOR_SHA256: 93dd4d3d411fe60dc711a13ed010eb6d0e620271ec0c44a101603f2dba4bacf9
+  TRUST_ANCHOR_STATUS: ACTIVE_REVIEWED_AUDITED
+  TRUST_OPS_DEPLOYMENT_STATUS: NOT_CLAIMED_BY_GIT_EVIDENCE
+  LOCAL_AUTHORITY_RECORD: "lane/validation-p00:validation/V02_LOCAL_OPERATOR_AUTHORITY-P00-DEV22.md"
+  LOCAL_KEY_ACTIVATION_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md"
+  LOCAL_KEY_ACTIVATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md"
+  LOCAL_KEY_ACTIVATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md"
+  LOCAL_KEY_FINALIZATION_RECORD: "lane/validation-p00:validation/V02_LOCAL_KEY_PROMOTION_FINALIZATION-P00-DEV22.md"
+  LOCAL_KEY_FINALIZATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-PROMOTION-FINALIZATION-DEV22-REVIEW-001_PASS.md"
+  LOCAL_KEY_FINALIZATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02-LOCAL-KEY-PROMOTION-FINALIZATION-DEV22-AUDIT-001_PASS.md"
   DEV21_PREPARATION_REUSABLE_AS_DEV22_AUTHORITY: false
-  DEV22_VALIDATION_LANE_ACTIVATION_REQUIRED: true
   DEV22_LAB_REBUILD_REQUIRED: true
-  DEV22_V02_TOOLING_MIGRATION_REQUIRED: true
-  TARGET_AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
+  CURRENT_RUNTIME_MATCHES_DEV22: false
+  ALL_CASES_STATUS: NOT_RUN
   INVENTORY_CASE_COUNT: 86
   INVENTORY_SHA256: 2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6
-  ALL_CASES_STATUS: NOT_RUN
 
 PRODUCTION_LIKE_READINESS:
   STATUS: DEV21_RUNTIME_HEALTHY_DEV22_REBUILD_REQUIRED
@@ -127,7 +142,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
 FORENSIC_HARDENING:
   STATUS: ACTIVE_ON_PROMOTION
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
-  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V55-DEV22-TRANSITION-032.md
+  RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V56-VALIDATION-LOCAL-KEY-033.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
   SEMANTIC_EFFECTIVENESS_CONTRACT: MACHINE_BOUND_REVIEW_GATED
@@ -149,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-DEV22-TRANSITION-001
-  REASON: "Exact dev22 is accepted, but canonical validation still owns historical dev21 preparation. Activate candidate-specific run002, rebuild dev22 runtime/LAB, and migrate V02 semantics to truthful local-operator authority before any native stage."
+  BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
+  REASON: "Run002 is canonically active on exact dev22, but V02 still requires WSL validation-ops deployment/reverification of the reviewed local trust/tooling, exact-dev22 prodlike/LAB rebuild and a current signed local-authority object graph before any native stage."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/V00_VALIDATION_LANE_ACTIVATION
+  RETURN_TO: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Activate RUN-P00-VALIDATION-002 on lane/validation-p00 for exact dev22, close dev21 run001 as superseded-before-native, rebuild candidate-specific runtime/LAB, migrate V02 to local-operator authority, then review/deploy a WSL-local signing key and package before V03."
+NEXT_ACTION: "Continue RUN-P00-VALIDATION-002 at V02: deploy/reverify the exact reviewed local-authority tooling/public trust identity on the WSL validation-ops surface, rebuild prodlike runtime and stopped LAB to exact dev22, create/sign the current authority graph, and pass current V02 verification before V03."
 ```
 
-Historical/prior-tree R28/A28 remain immutable V54 authority. V55 accepts exact dev22 and intentionally has no active validation run while the canonical validation lane is transitioned from dev21 to dev22. The same-host local authority model is lower assurance by owner choice and may use local cryptographic integrity after reviewed tooling migration, but it must never be represented as independent/external approval. All native cases remain NOT_RUN.
+Historical/prior-tree R29/A29 remain immutable V55 authority. V56 reconciles validation head `66e5d30...`: run002 is canonically active on exact dev22, local-key Git authority is reviewed/audited/promoted, and R30/A30 bind this exact V56 semantic tree. Git promotion is not WSL deployment evidence. V02 remains BLOCKED, the runtime/LAB remain dev21-mismatched, and all 86 native cases remain NOT_RUN.
