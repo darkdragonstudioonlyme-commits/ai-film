@@ -9,7 +9,7 @@
     "local-operator-trust-anchor.json": "93dd4d3d411fe60dc711a13ed010eb6d0e620271ec0c44a101603f2dba4bacf9",
     "materialize-v02-native-policy.py": "d6aa208e43c8cb01c48bb95fc4e66676dba7bedecf463b1f496c1169d7ba2043",
     "pre-v03-authority-stage.sh": "ec731ad11602dc0ff58241d743de9225c03a704acefed45749e3abde12490850",
-    "tests/test_v02_hardened_validator.py": "e6b55cf25698473651d4e736ceda799c7bfe3917835743902918b31b2d35db48",
+    "tests/test_v02_hardened_validator.py": "90f8d440df1c5b8db2d571d76eb7ea32cef981999945074764bfb2e8b81b2731",
     "tests/test_v02_local_authority_signature.py": "25390a4572182d6cd4361cec7d829a6b2199bc939dc437cd8a3b0c0d72f2f6ef",
     "tests/test_v02_pre_v03_failclosed.py": "7b16ee34e289ce43dfa16dcebe3b660e7e37acac7853df35b464ad150beb6c0e",
     "tests/test_v02_preflight_content_integrity.py": "77f86ae590f565991344dca7c77a4907f683708003a87aee6f8d0132f093ccdb",
