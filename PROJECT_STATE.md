@@ -1,11 +1,11 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V67
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V68
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 67
-CURRENT_MODE: DESIGN
+STATE_VERSION: 68
+CURRENT_MODE: TEST_DESIGN
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-V03-AUTHORITY-BINDING-PRODUCER-001
 TARGET_GATE: M-P00-VALIDATION
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 197627470480b6718e8d0326b35f853b7369d7d8
+  VALIDATION_EVIDENCE_HEAD: 416f25d26fe47ddfd800bd94a620a11a28b5a99d
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -140,17 +140,31 @@ VALIDATION_PREPARATION:
   LATE_BOUND_EXECUTION_PRODUCT_SOURCE_CHANGE_REQUIRED: true
   LATE_BOUND_EXECUTION_ORACLE_CHANGED: false
   DESIGN_GAP_TARGET_ID: DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001
-  DESIGN_GAP_STATUS: READY
-  DESIGN_GAP_RECORD: null
-  DESIGN_GAP_REVIEW: null
+  DESIGN_GAP_STATUS: COMPLETE_REVIEWED
+  DESIGN_GAP_RECORD: "lane/validation-p00:docs/DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001.md"
+  DESIGN_GAP_REVIEW: "lane/validation-p00:reviews/DESIGN-REVIEW-P00-V03-STAGE-DERIVED-AUTHORITY-001.md"
+  DESIGN_GAP_DEPENDENCY_CATALOG: "lane/validation-p00:docs/PHASE00_STAGE_DERIVED_AUTHORITY_DEPENDENCY_CATALOG_V1.json"
+  DESIGN_GAP_DEPENDENCY_CATALOG_SHA256: fac26f07965257a75eee93c61f9861bf2a0e24f033008bd366cf5478849f54a0
+  DESIGN_GAP_AUTHOR_COMMIT: 3475c8de57e0cec3a2bb02f488c373366d9e7885
+  DESIGN_GAP_AUTHOR_TREE: 4bfd8144a35ab8ac860e00e0a6b86e1418768506
+  DESIGN_GAP_REVIEW_COMMIT: 416f25d26fe47ddfd800bd94a620a11a28b5a99d
+  DESIGN_GAP_REVIEW_TREE: b583552a433a5ba014825ab97205d5735c6a7360
+  DESIGN_GAP_AUTHORITY_MODE_COUNTS: "94_CONCRETE;15_STAGE_DERIVED;10_ENTRY_PROBE;14_FENCE_BOUND_RECONCILIATION"
+  DESIGN_GAP_LATE_BOUND_PROOF_ROLE_COUNT: 9
+  DESIGN_GAP_ORACLE_CHANGED: false
+  DESIGN_GAP_EXPECTED_BUSINESS_BEHAVIOR_CHANGED: false
+  DESIGN_GAP_PRODUCT_SOURCE_CHANGE_REQUIRED: true
+  DESIGN_GAP_PRODUCT_IMPLEMENTATION_AUTHORIZED: false
+  STAGE_DERIVED_DESIGN_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-DESIGN-CANONICAL-SYNC-REVIEW-001.md
+  STAGE_DERIVED_DESIGN_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-DESIGN-CANONICAL-SYNC-AUDIT-001.md
   TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006
-  TEST_DESIGN_STATUS: BLOCKED_PENDING_DESIGN_GAP_APPROVAL
+  TEST_DESIGN_STATUS: READY
   TEST_DESIGN_ORACLE_CHANGED: false
   TEST_DESIGN_RECORD: null
   TEST_DESIGN_REVIEW: null
   TEST_DESIGN_RECIPE_CATALOG: null
   TEST_DESIGN_RECIPE_CATALOG_SHA256: null
-  BINDING_PRODUCER_IMPLEMENTATION_STATUS: BLOCKED_PENDING_DESIGN_AND_TEST_DESIGN
+  BINDING_PRODUCER_IMPLEMENTATION_STATUS: BLOCKED_PENDING_TEST_REVIEW_006_AND_NEW_CANDIDATE
   STAGE_DERIVED_AUTHORITY_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-AUTHORITY-ROUTING-SYNC-REVIEW-001.md
   STAGE_DERIVED_AUTHORITY_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-AUTHORITY-ROUTING-SYNC-AUDIT-001.md
   BINDING_PRODUCER_IMPLEMENTATION_SCOPE: VALIDATION_TEST_TOOLING_ONLY
@@ -280,16 +294,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-STAGE-DERIVED-AUTHORITY-004
-  REASON: "Workflow review proved the fixed pre-V03 suite/plan-ref schema cannot represent exact RESTORE_EXPORT-produced checkpoint identity required by a later RESTORE_IMPORT without guessed authority or post-sign mutation. A reviewed DESIGN_GAP/source-authority schema correction is required before TEST_CHANGE 006 or implementation resumes."
+  BLOCK_ID: BLOCK-P00-VAL-V03-STAGE-DERIVED-TEST-DESIGN-005
+  REASON: "DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001 now has independent DESIGN_REVIEW PASS. V02 remains blocked until TEST_CHANGE 006 and independent TEST_REVIEW bind the exact product/harness/validation delta before any dev23-or-later implementation."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/AUTHOR_STAGE_DERIVED_AUTHORITY_DESIGN
+  RETURN_TO: NEXT_WORK_ITEM/AUTHOR_TEST_CHANGE_006
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Author DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001 and a bounded source/harness authority design. Preserve all Phase00 oracles, define stage-derived execution authority for values produced by earlier native stages, inventory all 133 stage dependencies, and hand the exact design to independent DESIGN_REVIEW before any product implementation or TEST_CHANGE 006."
+NEXT_ACTION: "Author TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006 against the reviewed stage-derived authority design. Preserve ORACLE_CHANGED=false, bind the exact product/harness/reconciliation and validation-tooling delta plus adversarial coverage, then hand it to independent TEST_REVIEW before any dev23-or-later implementation."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V67 is an evidence/state routing correction, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Workflow review now requires a product/harness DESIGN_GAP because the fixed suite/plan-ref schema cannot represent the reviewed export-to-import temporal authority. Business/test oracles remain unchanged; product-source changes are not yet implemented and require DESIGN_REVIEW first. V02 stays BLOCKED.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V68 is an evidence/state routing correction, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. The stage-derived authority DESIGN_GAP now has independent DESIGN_REVIEW PASS with ORACLE_CHANGED=false and authorizes TEST-DESIGN 006 only. Product source changes are required by the reviewed design but are not yet implementation-authorized; V02 stays BLOCKED.
