@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_LOCAL_AUTHORITY_PACKAGE_NOT_CREATED
+STATUS: BLOCKED_TEST_EXECUTION_BINDING_PRODUCER_MISSING
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -174,8 +174,8 @@ PRODLIKE_DEV22_MIGRATION:
   NATIVE_EXECUTION_STARTED: false
 
 ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Windows update/reboot has been observed and its support prerequisite passes. Create/review/sign the fresh dev22 local authority graph inside WSL, bind the exact current host/profile and plans, then pass preflight/intake/pre-V03 before native execution."
+  BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
+  REMAINING_REQUIREMENT: "Close TEST_GAP-P00-V03-AUTHORITY-BINDING-001 through WORKFLOW_REVIEW and TEST-DESIGN/TEST-REVIEW so the dev22 local-authority graph can be generated from approved oracles plus fresh observations without hand-authored native bindings."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -189,3 +189,5 @@ HOST_READY: NOT_EVALUATED
 Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB is now exact dev22, candidate-bound, artifact-sealed and independently restore-probed. The reviewed authority tooling, durable signing key and canonical authority inbox are now all WSL-local and deployment-verified. Only the fresh signed local authority object graph/intake remains before V02 can close. All 86 native procedures remain NOT_RUN.
 
 Post-update evidence on 2026-09-21 supersedes only the old Windows-update blocker. Historical prodlike/rebuild verdicts are preserved, not rerun or promoted into new native proof. The new receipt verifies host support, key/source/tooling/seal parity and missing-envelope fail-closed behavior. Canonical main synchronization is pending; the original run and all native gates remain unchanged.
+
+V02B binding-gap evidence is test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md. No authority envelope was created or signed and no native case started.
