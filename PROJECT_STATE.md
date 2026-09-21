@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V61
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V62
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 61
+STATE_VERSION: 62
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION-DEV22
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 517783d29aecb3d6ae1b0548109480733fa36fe6
+  VALIDATION_EVIDENCE_HEAD: 43956bf0f125ee551c1c815220034a42b6a82b7e
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -92,13 +92,24 @@ VALIDATION_PREPARATION:
   AUTHORITY_INBOX_STORAGE: WSL_LOCAL
   WSL_INBOX_TOOLING_MANIFEST_SHA256: 5a1c751256e5da00f5096207a8f06188e06cd363ad71d0c059f831db36a2a24d
   WSL_INBOX_DEPLOYMENT_RECEIPT_SHA256: 8bb2f75cfe493d3e4d50f5a78e16f77d902870a7607928cb58fe2a69dbedc014
-  HOST_SUPPORT_STATUS: UPDATE_REQUIRED_BEFORE_EPHEMERAL_AUTHORITY_SUITE
+  HOST_SUPPORT_STATUS: POST_UPDATE_SUPPORT_MARGIN_VERIFIED
   HOST_OBSERVED_EDITION: Professional
-  HOST_OBSERVED_DISPLAY_VERSION: 23H2
-  HOST_OBSERVED_BUILD: 22631
-  HOST_OBSERVED_UBR: 3296
+  HOST_OBSERVED_DISPLAY_VERSION: 25H2
+  HOST_OBSERVED_BUILD: 26200
+  HOST_OBSERVED_UBR: 9457
   HOST_POLICY_MIN_SUPPORT_MARGIN_DAYS: 90
   HOST_MINIMUM_TARGET: 25H2_OR_LATER_WITH_90_DAY_MARGIN
+  HOST_SUPPORT_END_DATE: 2027-10-12
+  HOST_REMAINING_SUPPORT_FLOOR_DAYS: 385
+  HOST_POST_UPDATE_RECORD: "lane/validation-p00:validation/V02_POST_UPDATE_REOBSERVATION-P00-DEV22.md"
+  HOST_POST_UPDATE_RECEIPT: "lane/validation-p00:validation/evidence/V02A-POST-UPDATE-20260921/receipt.json"
+  HOST_POST_UPDATE_RECEIPT_SHA256: 2cd680bbd8a411584ba60f1455833dc357327a5ac9a28d194664fcd46968692c
+  HOST_POST_UPDATE_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-REVIEW-001.md"
+  HOST_POST_UPDATE_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-AUDIT-001.md"
+  V02A_WINDOWS_UPDATE_AND_REBOOT: COMPLETE_OBSERVED_REVIEWED_AUDITED
+  V02B_LOCAL_AUTHORITY_PACKAGE: NOT_CREATED
+  CANONICAL_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02A-CANONICAL-SYNC-DEV22-REVIEW-001.md
+  CANONICAL_SYNC_AUDIT_RECORD: reviews/VALIDATION-V02A-CANONICAL-SYNC-DEV22-AUDIT-001.md
   PRODLIKE_MIGRATION_RECORD: "lane/validation-p00:validation/PRODLIKE_DEV22_MIGRATION_DEPLOYMENT-P00.md"
   PRODLIKE_MIGRATION_REVIEW: "lane/validation-p00:reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-REVIEW-001_PASS.md"
   PRODLIKE_MIGRATION_AUDIT: "lane/validation-p00:reviews/VALIDATION-PRODLIKE-DEV22-MIGRATION-DEPLOYMENT-AUDIT-001_PASS.md"
@@ -212,16 +223,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-HOST-SUPPORT-001
-  REASON: "All WSL-local authority/key/tooling/LAB prerequisites are ready, but Windows 11 Pro 23H2/build 22631 is outside support and cannot satisfy the exact >=90-day support-margin policy. Update to 25H2 or later and reboot before generating the <=24h authority suite."
-  USER_ACTION_REQUIRED: true
-  RETURN_TO: NEXT_WORK_ITEM/V02A_WINDOWS_HOST_SUPPORT_UPDATE
+  BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
+  REASON: "The Windows update/reboot prerequisite is reviewed and audited complete on Professional 25H2/build 26200.9457 with 385 conservative support days. V02 remains blocked only because the fresh <=24h signed WSL-local authority graph has not been created and passed current preflight/intake/pre-V03 verification."
+  USER_ACTION_REQUIRED: false
+  RETURN_TO: NEXT_WORK_ITEM/V02B_LOCAL_AUTHORITY_PACKAGE
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Update Windows to 25H2 or later and reboot. Validation will then re-observe exact host facts and create/sign/verify the fresh V02 authority graph entirely inside WSL before any V03 native execution."
+NEXT_ACTION: "Continue V02B entirely inside WSL: reobserve durable prerequisites, construct and independently review the exact current local-authority graph, sign the <=24h envelope with the existing durable key, then pass current preflight/intake/artifact-seal/pre-V03 gates before any native execution."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 bind the V61 control-plane optimization tree. Product source, accepted candidate, learning register, validation run, host-support blocker and native results are unchanged. This documentation transaction grants no native or HOST_READY authority. Review assurance is same-chat role separation, not external certification.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V62 is an evidence/state synchronization, not a DOCSYS policy revision. Product source, accepted candidate, learning register, validation run and native results are unchanged. The reviewed/audited V02A receipt supersedes only the old Windows-update blocker. V02 remains BLOCKED pending the fresh signed local-authority graph. This transaction grants no native, qualification, SITE or HOST_READY authority. Review assurance is same-chat role separation, not external certification.
