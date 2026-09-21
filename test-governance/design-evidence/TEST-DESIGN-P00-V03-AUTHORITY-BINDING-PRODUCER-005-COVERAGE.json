@@ -1,0 +1,3713 @@
+{
+  "all_preparation_type_count": 79,
+  "case_count": 86,
+  "cases": {
+    "F00-01": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-02"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "VIRTUALIZATION_BLOCKED"
+      ],
+      "procedure_digest": "b98bac5b887b04a87e68f523efa411206f9740e3076b4e8647ddc100aa0dd541",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "F00-02": {
+      "accepted_exits": [
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-01",
+        "E00-10"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "WRONG_ACTOR"
+      ],
+      "procedure_digest": "c4b76fe98dd0e9c692aadbe47f996c120bfeb3c7db94878757e5d961f1da4a94",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "F00-03": {
+      "accepted_exits": [
+        10,
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-03",
+        "E00-11"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "COLLISION_OR_PATH_ATTACK"
+      ],
+      "procedure_digest": "b4f1d972733a00b4639d08d07a913a7a9ab9832f805a72c5a00bcaf15f60e6e0",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "F00-04": {
+      "accepted_exits": [
+        11,
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-01",
+        "E00-02",
+        "E00-13"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "UNSUPPORTED_PROFILE"
+      ],
+      "procedure_digest": "c7e4c4f83e09deb3d95eb2904ab9d83a517e3cd7a7f583b6179cbae9a1b1aa1c",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "F00-05": {
+      "accepted_exits": [
+        13,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-06",
+        "E00-11"
+      ],
+      "oracles": [
+        "RESOURCE_CAPACITY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "RESOURCE_FLOOR_FAILURE"
+      ],
+      "procedure_digest": "098d7194908d9eea7804b694455ca5fccf0046843fc5eccf688f698f6999c13b",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "F00-06": {
+      "accepted_exits": [
+        14,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-08",
+        "E00-14"
+      ],
+      "oracles": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "NETWORK_FAILURE"
+      ],
+      "procedure_digest": "a1242819dfc5f5c03d04f2cbde60a9bc8e3abc7b342b6a0a041c560390047972",
+      "routes": [
+        "SITE_VERIFY"
+      ]
+    },
+    "F00-07": {
+      "accepted_exits": [
+        11,
+        15
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10",
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "TRUST_FAILURE"
+      ],
+      "procedure_digest": "4def1fd94f1dda8648e021b331436a514372a562fca0acb3a8d09c8c9a9925a4",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "F00-08": {
+      "accepted_exits": [
+        11,
+        16,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10",
+        "E00-14"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "MATERIAL_DRIFT"
+      ],
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "routes": [
+        "ENTRY_ONLY",
+        "SITE_VERIFY"
+      ]
+    },
+    "F00-09": {
+      "accepted_exits": [
+        17,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "RESUME_OR_RECONCILE",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CONCURRENCY_OR_CRASH"
+      ],
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "routes": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "F00-10": {
+      "accepted_exits": [
+        17,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11",
+        "E00-12"
+      ],
+      "oracles": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "REBOOT_OOBE_WAIT"
+      ],
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "routes": [
+        "ENGINE",
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "F00-11": {
+      "accepted_exits": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_PROTECTION",
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "C3_PROTECTION_FAILURE"
+      ],
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "routes": [
+        "ENGINE",
+        "HOST_RESTART"
+      ]
+    },
+    "F00-12": {
+      "accepted_exits": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "RESTORE_FAILURE"
+      ],
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "routes": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "F00-13": {
+      "accepted_exits": [
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16",
+        "E00-17"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_RECOVERY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "EVIDENCE_FAILURE"
+      ],
+      "procedure_digest": "6594ff8fafef7b395b371c032bba6fa6498d191f5e076c3501198adebfd0fb25",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "F00-14": {
+      "accepted_exits": [
+        0,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "OBSERVE_ONLY"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-04",
+        "E00-10"
+      ],
+      "oracles": [
+        "PASSIVE_NO_LAUNCH",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "PASSIVE_UNKNOWN_GUEST"
+      ],
+      "procedure_digest": "65f29bc4e751ff81735f10d66f008df6ec9e6f0e281441f73e57e922c06f7878",
+      "routes": [
+        "PASSIVE"
+      ]
+    },
+    "F00-15": {
+      "accepted_exits": [
+        11,
+        16,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION",
+        "RUN_OWNER_LIFECYCLE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "GLOBAL_POLICY_DRIFT"
+      ],
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "routes": [
+        "HOST_RESTART",
+        "RESTORE_IMPORT"
+      ]
+    },
+    "F00-16": {
+      "accepted_exits": [
+        16,
+        18
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11",
+        "E00-16"
+      ],
+      "oracles": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "JOURNAL_IO_FAILURE"
+      ],
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "routes": [
+        "CREATE",
+        "SUPPORT_BUNDLE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T00-01": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": false,
+      "controller_steps": [
+        "REVIEW_EXACT_CONTENT"
+      ],
+      "destructive": false,
+      "environment": "DOCUMENT",
+      "evidence": [
+        "E00-10"
+      ],
+      "oracles": [
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "EXACT_REVIEW_SET"
+      ],
+      "procedure_digest": "9bdc7aba8eb58fb86e5f7540a96c3487d41c2bf427c9b39d182733f0b4a691ec",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T00-02": {
+      "accepted_exits": [
+        0,
+        11,
+        16,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-01",
+        "E00-02",
+        "E00-04",
+        "E00-07",
+        "E00-14"
+      ],
+      "oracles": [
+        "IDENTITY_PROFILE",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "MATCHING_PROFILE"
+      ],
+      "procedure_digest": "d28ce7ec2724bc0843ba3d9108bfb55b0831ab4630243b196a54ed4b5114d3f0",
+      "routes": [
+        "SITE_VERIFY"
+      ]
+    },
+    "T00-03": {
+      "accepted_exits": [
+        0,
+        13,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-06",
+        "E00-11"
+      ],
+      "oracles": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "RESOURCE_BOUNDARY_MATRIX"
+      ],
+      "procedure_digest": "f0f62105e4605ec9fb0023430629043bc0f23b94857a4b07ad9afa9bde00e465",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T00-04": {
+      "accepted_exits": [
+        0,
+        14,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-08",
+        "E00-14"
+      ],
+      "oracles": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "NETWORK_CONTEXT_MATRIX"
+      ],
+      "procedure_digest": "29a2dc4ab644a2bf610d134e8d6ac163afc50c1cacd3d32caf611824ccd7dc0b",
+      "routes": [
+        "SITE_VERIFY"
+      ]
+    },
+    "T00-05": {
+      "accepted_exits": [
+        0,
+        19,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_OWNER_LIFECYCLE",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "oracles": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "routes": [
+        "TARGET_LIFECYCLE",
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ]
+    },
+    "T00-06": {
+      "accepted_exits": [
+        0,
+        10,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "OBSERVE_ONLY",
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "oracles": [
+        "PASSIVE_NO_LAUNCH",
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "STOPPED_TARGET"
+      ],
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "routes": [
+        "PASSIVE",
+        "DISCOVERY"
+      ]
+    },
+    "T00-07": {
+      "accepted_exits": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "RESUME_OR_RECONCILE",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "ACTIVE_GUARD_HOLDER"
+      ],
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "routes": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T00-08": {
+      "accepted_exits": [
+        0,
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16",
+        "E00-17"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "BUNDLE_COMPLETE"
+      ],
+      "procedure_digest": "31362a971a1a17eff9b5096b644dcc4d9d13ae82836dc9b8cfd7c785765b6a29",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T00-09": {
+      "accepted_exits": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-09",
+        "E00-15"
+      ],
+      "oracles": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "routes": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "T00-10": {
+      "accepted_exits": [
+        0,
+        19,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_OWNER_LIFECYCLE",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-12",
+        "E00-14"
+      ],
+      "oracles": [
+        "COEXISTENCE_HEALTH",
+        "C3_PROTECTION"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "COEXISTING_RESOURCE"
+      ],
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "routes": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ]
+    },
+    "T00-11": {
+      "accepted_exits": [
+        0,
+        10,
+        16,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-03",
+        "E00-04",
+        "E00-09",
+        "E00-11"
+      ],
+      "oracles": [
+        "CREATE_ROUTE",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "CREATE_CLEAN_HOST"
+      ],
+      "procedure_digest": "c3b7cf5e1725bf478c6e6c77155cb41d05d8b0f27a624d9820673619106eba41",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T00-12": {
+      "accepted_exits": [
+        0,
+        11,
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-03",
+        "E00-04",
+        "E00-09"
+      ],
+      "oracles": [
+        "ADOPT_ROUTE",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "ADOPT_ELIGIBLE"
+      ],
+      "procedure_digest": "5b1e3b996c65077ac64e4400b2e232cd74bc0b56d5b9face4840e07e45c472ae",
+      "routes": [
+        "ADOPT"
+      ]
+    },
+    "T00-13": {
+      "accepted_exits": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_PROTECTION",
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12",
+        "E00-11"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "ENGINE_CLEAN_HOST"
+      ],
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "routes": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T00-14": {
+      "accepted_exits": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION",
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB_SITE",
+      "evidence": [
+        "E00-10",
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "routes": [
+        "ENTRY_ONLY",
+        "DISCOVERY",
+        "ENGINE",
+        "CREATE",
+        "ADOPT",
+        "SITE_VERIFY",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T05-A": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_OWNER_LIFECYCLE",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-09",
+        "E00-14"
+      ],
+      "oracles": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "routes": [
+        "TARGET_LIFECYCLE",
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ]
+    },
+    "T05-B": {
+      "accepted_exits": [
+        14,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_OWNER_LIFECYCLE",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "oracles": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "STAGED_CONFIG_INACTIVE"
+      ],
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "routes": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ]
+    },
+    "T05-C": {
+      "accepted_exits": [
+        14,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_OWNER_LIFECYCLE",
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-08",
+        "E00-14"
+      ],
+      "oracles": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "NETWORK_BOUNDARY_CHANGE"
+      ],
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "routes": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ]
+    },
+    "T05-D": {
+      "accepted_exits": [
+        0,
+        16,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "oracles": [
+        "IDENTITY_PROFILE",
+        "CREATE_ROUTE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "PLANNED_ENGINE_TRANSITION"
+      ],
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "routes": [
+        "ENGINE",
+        "CREATE"
+      ]
+    },
+    "T05-E": {
+      "accepted_exits": [
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_TERMINAL_SWEEP"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-14"
+      ],
+      "oracles": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "MISSED_EPOCH_WITNESS"
+      ],
+      "procedure_digest": "199245d3248215879acd885bae5f3062273dd73b1cdbea333402ba0f5ef7792f",
+      "routes": [
+        "SITE_VERIFY"
+      ]
+    },
+    "T05-F": {
+      "accepted_exits": [
+        19,
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_TERMINAL_SWEEP",
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-14",
+        "E00-17"
+      ],
+      "oracles": [
+        "TERMINAL_FRESHNESS",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "STALE_TERMINAL_CLOCK"
+      ],
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "routes": [
+        "SITE_VERIFY",
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T07-A": {
+      "accepted_exits": [
+        0,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "ACTIVE_GUARD_HOLDER"
+      ],
+      "procedure_digest": "b6501d8c0d72b02a0c5c36efcebaaf8656411ed09008afa4fabd5037e1517443",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T07-B": {
+      "accepted_exits": [
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "routes": [
+        "ENGINE",
+        "RESTORE_IMPORT",
+        "TARGET_LIFECYCLE"
+      ]
+    },
+    "T07-C": {
+      "accepted_exits": [
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "routes": [
+        "RESTORE_EXPORT",
+        "CREATE",
+        "SITE_VERIFY",
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T07-D": {
+      "accepted_exits": [
+        13,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-06",
+        "E00-11"
+      ],
+      "oracles": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SHARED_VOLUME_PRESSURE"
+      ],
+      "procedure_digest": "95ad07b2aad98a10648608fe1e421f33f6461d8163998c29829877b752e8cfde",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T07-E": {
+      "accepted_exits": [
+        12,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_CONTENDER",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-01",
+        "E00-11"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CROSS_SID_HOLDER"
+      ],
+      "procedure_digest": "0ac5902157b694ab4de6759087e4e5221b36285f4feffe8063859fc1fb21fb72",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T07-F": {
+      "accepted_exits": [
+        17,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "INVOKE_CONTENDER",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "NATIVE_TIMEOUT"
+      ],
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "routes": [
+        "RESTORE_IMPORT",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T07-G": {
+      "accepted_exits": [
+        0,
+        20,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "ABANDONED_GUARD"
+      ],
+      "procedure_digest": "f2fbd7e1d09be132f5b3932ee90aa15bba39a2e949283f93c629dedff8cbbb39",
+      "routes": [
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T07-H": {
+      "accepted_exits": [
+        20,
+        21
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-03",
+        "E00-11"
+      ],
+      "oracles": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "POST_REGISTRATION_CRASH"
+      ],
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "routes": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T07-I": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE",
+        "VERIFY_CONCURRENCY_TRACE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11",
+        "E00-15"
+      ],
+      "oracles": [
+        "JOURNAL_NO_OVERLAP",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SOURCE_DESTINATION_RESTORE"
+      ],
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "routes": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T07-J": {
+      "accepted_exits": [
+        18
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "JOURNAL_WRITE_FAILURE"
+      ],
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "routes": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T08-A": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "BUNDLE_COMPLETE"
+      ],
+      "procedure_digest": "f647219bf1353ddb20e5405a06a26e3e1b7aca783f784a8b0345938260117b91",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-B": {
+      "accepted_exits": [
+        2
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "OPTIONAL_COLLECTOR_FAILURE"
+      ],
+      "procedure_digest": "65f1cf8f350de5eccc78905c22e95ec494892aadc29ab3f60838459c6890830e",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-C": {
+      "accepted_exits": [
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "MANDATORY_COLLECTOR_FAILURE"
+      ],
+      "procedure_digest": "673b1c938cf9673506e08cc0076b06ca02c6c5c96bf74155c38c866d547011a1",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-D": {
+      "accepted_exits": [
+        2
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "OPTIONAL_CAP"
+      ],
+      "procedure_digest": "a2ef8d14f1e55cd3ddb2a6c23787ae7bf6485f489a211d4882063ca67bff7a0c",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-E": {
+      "accepted_exits": [
+        0,
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "MANDATORY_CAP"
+      ],
+      "procedure_digest": "86959d17437c65fdb6cf38dbbb0b3f26c4fc6e8f11eeac8e2c9b541ac4b6a43d",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-F": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "NESTED_SECRET_CANARY"
+      ],
+      "procedure_digest": "747917c3203aad515d4a6fd55852323ebc1364228aa943cd7dc74b4bd0376294",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-G": {
+      "accepted_exits": [
+        23
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "REDACTION_RESIDUAL"
+      ],
+      "procedure_digest": "c44f7730ec51b680b6af515b28295bfebbe701902bf261a2f00cf2f200b097a6",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-H": {
+      "accepted_exits": [
+        23
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "PRIVACY_NO_OUTPUT",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "MULTI_FAILURE_PRIVACY"
+      ],
+      "procedure_digest": "adf3ae582a37068a815e422a66a833439d6365b826d09851a10408ba4cfb4ef8",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-I": {
+      "accepted_exits": [
+        15
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "BUNDLE_HASH_TAMPER"
+      ],
+      "procedure_digest": "edfa3d95765beb93c8b221249cd76bbecce80d3811d098b4791f7d6d6c665216",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-J": {
+      "accepted_exits": [
+        18
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "OUTPUT_PUBLISH_FAILURE"
+      ],
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "routes": [
+        "SUPPORT_BUNDLE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T08-K": {
+      "accepted_exits": [
+        0,
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-04",
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "PRECREATE_INVENTORY"
+      ],
+      "procedure_digest": "e22c2ea4a53daf043b2261fba0ab3ad2d2a5426036ecc061fa6d7de0fb5d5afd",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-L": {
+      "accepted_exits": [
+        0,
+        2,
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "FAILED_RUN_EVIDENCE"
+      ],
+      "procedure_digest": "fabd8e7395bccf3cd55e637cc86ad2a0a3bb622e5966f0962f855af5dac6a245",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-M": {
+      "accepted_exits": [
+        10,
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "PATH_ESCAPE"
+      ],
+      "procedure_digest": "394b984bd50ed8acf927493ebf1634b91ca1e8a3cba5cd6c934ab4a1cec46835",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T08-N": {
+      "accepted_exits": [
+        0,
+        18,
+        22
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_SUPPORT_BUNDLE",
+        "VERIFY_EVIDENCE_OUTPUT"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-16",
+        "E00-17"
+      ],
+      "oracles": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_RECOVERY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "GATE_ASSESSMENT_BOUNDARY"
+      ],
+      "procedure_digest": "d97c5235687b0a97adebf6dc8a28e8cc06e13c0a2d5a7fb349aa721a7dc0e236",
+      "routes": [
+        "SUPPORT_BUNDLE"
+      ]
+    },
+    "T09-A": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-09",
+        "E00-15"
+      ],
+      "oracles": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "routes": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "T09-B": {
+      "accepted_exits": [
+        0,
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION",
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "ADOPT_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "c7a8eedf1c78464981a36cd8f10f925ab4ee785ef0a9e8c1bc6060819c058457",
+      "routes": [
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T09-C": {
+      "accepted_exits": [
+        11,
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "ISOLATION_MISSING"
+      ],
+      "procedure_digest": "e532afc445c349d1bd6db757e0cbd3ff63098d4ec5febf78a4c33ecca628867c",
+      "routes": [
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T09-D": {
+      "accepted_exits": [
+        0,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE",
+        "VERIFY_ISOLATION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SYNTHETIC_ISOLATION_CANARY"
+      ],
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "routes": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "T09-E": {
+      "accepted_exits": [
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "ISOLATION_DRIFT"
+      ],
+      "procedure_digest": "2d4359dd365193a87b19db02619d2de36ae99ed8a9f38366ae341a7f97f88043",
+      "routes": [
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T09-F": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SAME_HOST_DIRTY"
+      ],
+      "procedure_digest": "b154b9ffa96eada347d7871f66ffc4135deb6988ceae74d1a79eae5290154ad3",
+      "routes": [
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T09-G": {
+      "accepted_exits": [
+        11,
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SENSITIVE_SOURCE"
+      ],
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "routes": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T09-H": {
+      "accepted_exits": [
+        11,
+        15,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-15"
+      ],
+      "oracles": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CHECKPOINT_TAMPER"
+      ],
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "routes": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "T09-I": {
+      "accepted_exits": [
+        13,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "RUN_RESTORE_SEQUENCE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-06",
+        "E00-15"
+      ],
+      "oracles": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "RETAINED_CAPACITY_PRESSURE"
+      ],
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "routes": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ]
+    },
+    "T09-J": {
+      "accepted_exits": [
+        10,
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10"
+      ],
+      "oracles": [
+        "PURPOSE_SEPARATION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "VERIFY_MUTATION_REQUEST"
+      ],
+      "procedure_digest": "964ec7ccb124353e5b506786132e7f2f3ec84d385c30adf307408ff6bddfc69b",
+      "routes": [
+        "RESTORE_IMPORT"
+      ]
+    },
+    "T13-A": {
+      "accepted_exits": [
+        0,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_PROTECTION",
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "ENGINE_CLEAN_HOST"
+      ],
+      "procedure_digest": "87af9ddfc3bcd7e3ccb943a50f3a28b2f0d97c8149f38375708671a8565447f6",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "T13-B": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "PROTECTION_MISSING"
+      ],
+      "procedure_digest": "784ca80ab8d6442f3cbf1fca2070d8cc1546d7612b6cc3b3fdf1fabb10b80445",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "T13-C": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "RECOVERY_DEPENDS_ON_SOURCE"
+      ],
+      "procedure_digest": "48fa1b13cb6565b1decd06b5e92d878acfb4d4701e4669e88cc9342b24f43ef3",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "T13-D": {
+      "accepted_exits": [
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "CONSISTENCY_BOUNDARY_DRIFT"
+      ],
+      "procedure_digest": "89449ce31c93fe5316ce9e647f3ca32e3475d48d7b168839b1e7233c1de7d11d",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "T13-E": {
+      "accepted_exits": [
+        17,
+        18,
+        19
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12",
+        "E00-11"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "C3_CRASH"
+      ],
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "routes": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T13-F": {
+      "accepted_exits": [
+        11,
+        12,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_PROTECTION",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "OWNER_POSTCHECK_MISSING"
+      ],
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "routes": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ]
+    },
+    "T13-G": {
+      "accepted_exits": [
+        0,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_PROTECTION",
+        "RUN_OWNER_LIFECYCLE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-12"
+      ],
+      "oracles": [
+        "C3_PROTECTION",
+        "LIFECYCLE_EPOCH"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "EXISTING_TARGET_PROTECTION"
+      ],
+      "procedure_digest": "6bb7048007b64bcc5025ddab7e762aade9442a2f3725fc76b6003abe2b06dc2e",
+      "routes": [
+        "HOST_RESTART"
+      ]
+    },
+    "T14-A": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "QUALIFICATION_MISSING"
+      ],
+      "procedure_digest": "694c6a0c9042a118cb1772eca21b078417eaa1a2a0fd41b8a61eee4b42c5d2d5",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T14-B": {
+      "accepted_exits": [
+        11
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "QUALIFICATION_INVALID"
+      ],
+      "procedure_digest": "bf18eaf3e5d3899a02f229031f866fd52504bf908bf4ef480bd46f99f1028897",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T14-C": {
+      "accepted_exits": [
+        16
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "QUALIFICATION_MISMATCH"
+      ],
+      "procedure_digest": "2a3aeb5d52744808ead70b4220435a2d13f1ec7e4a634b94085d4fd131a136f1",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T14-D": {
+      "accepted_exits": [
+        12,
+        15
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10",
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "TRUST_FORGERY"
+      ],
+      "procedure_digest": "494c3960d445205cd51e20ebc59a9b58c28af157083af22bc2c86aabb10c2d7b",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T14-E": {
+      "accepted_exits": [
+        0
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "CREATE_ROUTE"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "a26603a2bcdfd39c20120c1c800a07e3a2027d924aa2b43e046ab849cc8965d9",
+      "routes": [
+        "CREATE"
+      ]
+    },
+    "T14-F": {
+      "accepted_exits": [
+        12
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "VERIFY_ENTRY_REJECTION"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-10"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "SITE_FAKE_LAB"
+      ],
+      "procedure_digest": "7012f1881893f7db1743c1b5cade7146d6032227e296e669393f5041948682ea",
+      "routes": [
+        "ENTRY_ONLY"
+      ]
+    },
+    "T14-G": {
+      "accepted_exits": [
+        0,
+        11,
+        16,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": false,
+      "environment": "LAB",
+      "evidence": [
+        "E00-04",
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "DISCOVERY_UNKNOWN_GUEST"
+      ],
+      "procedure_digest": "5da8bf2a4b95baa60b660d80d97611d34e2fa70ec3324eded33bb7336c2d1936",
+      "routes": [
+        "DISCOVERY"
+      ]
+    },
+    "T14-H": {
+      "accepted_exits": [
+        0,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-02",
+        "E00-13"
+      ],
+      "oracles": [
+        "ENTRY_GATE",
+        "C3_PROTECTION"
+      ],
+      "preparation_modes": [
+        "OBSERVE"
+      ],
+      "preparations": [
+        "ENGINE_ABSENT_PROFILE"
+      ],
+      "procedure_digest": "276f7f9b5c7e22d4b66354c0f4603762bd9c7569301110c992ce930b07c91231",
+      "routes": [
+        "ENGINE"
+      ]
+    },
+    "T14-I": {
+      "accepted_exits": [
+        12,
+        20
+      ],
+      "actual_native_required": true,
+      "controller_steps": [
+        "INVOKE_PRODUCTION_REQUEST",
+        "RESUME_OR_RECONCILE"
+      ],
+      "destructive": true,
+      "environment": "LAB",
+      "evidence": [
+        "E00-11"
+      ],
+      "oracles": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparation_modes": [
+        "ARRANGE"
+      ],
+      "preparations": [
+        "APPROVAL_EXPIRES_ON_RESUME"
+      ],
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "routes": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ]
+    }
+  },
+  "document_case_count": 1,
+  "document_case_ids": [
+    "T00-01"
+  ],
+  "document_only_preparations": [
+    "EXACT_REVIEW_SET"
+  ],
+  "kind": "TEST_DESIGN_AUTHORITY_BINDING_PRODUCER_COVERAGE",
+  "native_arrange_preparation_type_count": 65,
+  "native_case_count": 85,
+  "native_case_ids": [
+    "T00-02",
+    "T00-03",
+    "T00-04",
+    "T00-05",
+    "T00-06",
+    "T00-07",
+    "T00-08",
+    "T00-09",
+    "T00-10",
+    "T00-11",
+    "T00-12",
+    "T00-13",
+    "T00-14",
+    "F00-01",
+    "F00-02",
+    "F00-03",
+    "F00-04",
+    "F00-05",
+    "F00-06",
+    "F00-07",
+    "F00-08",
+    "F00-09",
+    "F00-10",
+    "F00-11",
+    "F00-12",
+    "F00-13",
+    "F00-14",
+    "F00-15",
+    "F00-16",
+    "T05-A",
+    "T05-B",
+    "T05-C",
+    "T05-D",
+    "T05-E",
+    "T05-F",
+    "T07-A",
+    "T07-B",
+    "T07-C",
+    "T07-D",
+    "T07-E",
+    "T07-F",
+    "T07-G",
+    "T07-H",
+    "T07-I",
+    "T07-J",
+    "T08-A",
+    "T08-B",
+    "T08-C",
+    "T08-D",
+    "T08-E",
+    "T08-F",
+    "T08-G",
+    "T08-H",
+    "T08-I",
+    "T08-J",
+    "T08-K",
+    "T08-L",
+    "T08-M",
+    "T08-N",
+    "T09-A",
+    "T09-B",
+    "T09-C",
+    "T09-D",
+    "T09-E",
+    "T09-F",
+    "T09-G",
+    "T09-H",
+    "T09-I",
+    "T09-J",
+    "T13-A",
+    "T13-B",
+    "T13-C",
+    "T13-D",
+    "T13-E",
+    "T13-F",
+    "T13-G",
+    "T14-A",
+    "T14-B",
+    "T14-C",
+    "T14-D",
+    "T14-E",
+    "T14-F",
+    "T14-G",
+    "T14-H",
+    "T14-I"
+  ],
+  "native_execution_authorized": false,
+  "native_observe_preparation_type_count": 13,
+  "native_preparation_type_count": 78,
+  "native_request_count": 133,
+  "oracle_changed": false,
+  "preparations": {
+    "ABANDONED_GUARD": {
+      "cases": [
+        "T07-G"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-G"
+      ]
+    },
+    "ACTIVE_GUARD_HOLDER": {
+      "cases": [
+        "T00-07",
+        "T07-A"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T00-07",
+        "T07-A"
+      ]
+    },
+    "ADOPT_ELIGIBLE": {
+      "cases": [
+        "T00-12"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-12"
+      ]
+    },
+    "ADOPT_RESTORE_SOURCE": {
+      "cases": [
+        "T09-B"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T09-B"
+      ]
+    },
+    "APPROVAL_EXPIRES_ON_RESUME": {
+      "cases": [
+        "T14-I"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-I"
+      ]
+    },
+    "BUNDLE_COMPLETE": {
+      "cases": [
+        "T00-08",
+        "T08-A"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-08",
+        "T08-A"
+      ]
+    },
+    "BUNDLE_HASH_TAMPER": {
+      "cases": [
+        "T08-I"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-I"
+      ]
+    },
+    "C3_CRASH": {
+      "cases": [
+        "T13-E"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-E"
+      ]
+    },
+    "C3_PROTECTION_FAILURE": {
+      "cases": [
+        "F00-11"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-11"
+      ]
+    },
+    "CHECKPOINT_TAMPER": {
+      "cases": [
+        "T09-H"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-H"
+      ]
+    },
+    "CLEAN_RESTORE_SOURCE": {
+      "cases": [
+        "T00-09",
+        "T09-A"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-09",
+        "T09-A"
+      ]
+    },
+    "COEXISTING_RESOURCE": {
+      "cases": [
+        "T00-10"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-10"
+      ]
+    },
+    "COLLISION_OR_PATH_ATTACK": {
+      "cases": [
+        "F00-03"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-03"
+      ]
+    },
+    "CONCURRENCY_OR_CRASH": {
+      "cases": [
+        "F00-09"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-09"
+      ]
+    },
+    "CONSISTENCY_BOUNDARY_DRIFT": {
+      "cases": [
+        "T13-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-D"
+      ]
+    },
+    "CREATE_CLEAN_HOST": {
+      "cases": [
+        "T00-11"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-11"
+      ]
+    },
+    "CROSS_SCOPE_HOLDER": {
+      "cases": [
+        "T07-B",
+        "T07-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-B",
+        "T07-C"
+      ]
+    },
+    "CROSS_SID_HOLDER": {
+      "cases": [
+        "T07-E"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-E"
+      ]
+    },
+    "DISCOVERY_UNKNOWN_GUEST": {
+      "cases": [
+        "T14-G"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T14-G"
+      ]
+    },
+    "ENGINE_ABSENT_PROFILE": {
+      "cases": [
+        "T14-H"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T14-H"
+      ]
+    },
+    "ENGINE_CLEAN_HOST": {
+      "cases": [
+        "T00-13",
+        "T13-A"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-13",
+        "T13-A"
+      ]
+    },
+    "EVIDENCE_FAILURE": {
+      "cases": [
+        "F00-13"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-13"
+      ]
+    },
+    "EXACT_REVIEW_SET": {
+      "cases": [
+        "T00-01"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": []
+    },
+    "EXISTING_TARGET_PROTECTION": {
+      "cases": [
+        "T13-G"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-G"
+      ]
+    },
+    "FAILED_RUN_EVIDENCE": {
+      "cases": [
+        "T08-L"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-L"
+      ]
+    },
+    "GATE_ASSESSMENT_BOUNDARY": {
+      "cases": [
+        "T08-N"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-N"
+      ]
+    },
+    "GLOBAL_POLICY_DRIFT": {
+      "cases": [
+        "F00-15"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-15"
+      ]
+    },
+    "ISOLATION_DRIFT": {
+      "cases": [
+        "T09-E"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-E"
+      ]
+    },
+    "ISOLATION_MISSING": {
+      "cases": [
+        "T09-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-C"
+      ]
+    },
+    "JOURNAL_IO_FAILURE": {
+      "cases": [
+        "F00-16"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-16"
+      ]
+    },
+    "JOURNAL_WRITE_FAILURE": {
+      "cases": [
+        "T07-J"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-J"
+      ]
+    },
+    "MANDATORY_CAP": {
+      "cases": [
+        "T08-E"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-E"
+      ]
+    },
+    "MANDATORY_COLLECTOR_FAILURE": {
+      "cases": [
+        "T08-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-C"
+      ]
+    },
+    "MATCHING_PROFILE": {
+      "cases": [
+        "T00-02"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-02"
+      ]
+    },
+    "MATERIAL_DRIFT": {
+      "cases": [
+        "F00-08"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-08"
+      ]
+    },
+    "MISSED_EPOCH_WITNESS": {
+      "cases": [
+        "T05-E"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T05-E"
+      ]
+    },
+    "MULTI_FAILURE_PRIVACY": {
+      "cases": [
+        "T08-H"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-H"
+      ]
+    },
+    "NATIVE_TIMEOUT": {
+      "cases": [
+        "T07-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-F"
+      ]
+    },
+    "NESTED_SECRET_CANARY": {
+      "cases": [
+        "T08-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-F"
+      ]
+    },
+    "NETWORK_BOUNDARY_CHANGE": {
+      "cases": [
+        "T05-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T05-C"
+      ]
+    },
+    "NETWORK_CONTEXT_MATRIX": {
+      "cases": [
+        "T00-04"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T00-04"
+      ]
+    },
+    "NETWORK_FAILURE": {
+      "cases": [
+        "F00-06"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-06"
+      ]
+    },
+    "OPTIONAL_CAP": {
+      "cases": [
+        "T08-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-D"
+      ]
+    },
+    "OPTIONAL_COLLECTOR_FAILURE": {
+      "cases": [
+        "T08-B"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-B"
+      ]
+    },
+    "OUTPUT_PUBLISH_FAILURE": {
+      "cases": [
+        "T08-J"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-J"
+      ]
+    },
+    "OWNER_POSTCHECK_MISSING": {
+      "cases": [
+        "T13-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-F"
+      ]
+    },
+    "PASSIVE_UNKNOWN_GUEST": {
+      "cases": [
+        "F00-14"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "F00-14"
+      ]
+    },
+    "PATH_ESCAPE": {
+      "cases": [
+        "T08-M"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-M"
+      ]
+    },
+    "PLANNED_ENGINE_TRANSITION": {
+      "cases": [
+        "T05-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T05-D"
+      ]
+    },
+    "POST_REGISTRATION_CRASH": {
+      "cases": [
+        "T07-H"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-H"
+      ]
+    },
+    "PRECREATE_INVENTORY": {
+      "cases": [
+        "T08-K"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T08-K"
+      ]
+    },
+    "PROTECTION_MISSING": {
+      "cases": [
+        "T13-B"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-B"
+      ]
+    },
+    "QUALIFICATION_INVALID": {
+      "cases": [
+        "T14-B"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-B"
+      ]
+    },
+    "QUALIFICATION_MISMATCH": {
+      "cases": [
+        "T14-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-C"
+      ]
+    },
+    "QUALIFICATION_MISSING": {
+      "cases": [
+        "T14-A"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-A"
+      ]
+    },
+    "REBOOT_OOBE_WAIT": {
+      "cases": [
+        "F00-10"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-10"
+      ]
+    },
+    "RECOVERY_DEPENDS_ON_SOURCE": {
+      "cases": [
+        "T13-C"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T13-C"
+      ]
+    },
+    "REDACTION_RESIDUAL": {
+      "cases": [
+        "T08-G"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T08-G"
+      ]
+    },
+    "REGISTERED_DISPOSABLE_LAB": {
+      "cases": [
+        "T00-14",
+        "T14-E"
+      ],
+      "mode": "OBSERVE",
+      "native_case_ids": [
+        "T00-14",
+        "T14-E"
+      ]
+    },
+    "RESOURCE_BOUNDARY_MATRIX": {
+      "cases": [
+        "T00-03"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T00-03"
+      ]
+    },
+    "RESOURCE_FLOOR_FAILURE": {
+      "cases": [
+        "F00-05"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-05"
+      ]
+    },
+    "RESTORE_FAILURE": {
+      "cases": [
+        "F00-12"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-12"
+      ]
+    },
+    "RETAINED_CAPACITY_PRESSURE": {
+      "cases": [
+        "T09-I"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-I"
+      ]
+    },
+    "SAME_HOST_DIRTY": {
+      "cases": [
+        "T09-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-F"
+      ]
+    },
+    "SENSITIVE_SOURCE": {
+      "cases": [
+        "T09-G"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-G"
+      ]
+    },
+    "SHARED_VOLUME_PRESSURE": {
+      "cases": [
+        "T07-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-D"
+      ]
+    },
+    "SITE_FAKE_LAB": {
+      "cases": [
+        "T14-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-F"
+      ]
+    },
+    "SOURCE_DESTINATION_RESTORE": {
+      "cases": [
+        "T07-I"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T07-I"
+      ]
+    },
+    "STAGED_CONFIG_INACTIVE": {
+      "cases": [
+        "T05-B"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T05-B"
+      ]
+    },
+    "STALE_TERMINAL_CLOCK": {
+      "cases": [
+        "T05-F"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T05-F"
+      ]
+    },
+    "STANDARD_LIFECYCLE": {
+      "cases": [
+        "T00-05",
+        "T05-A"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T00-05",
+        "T05-A"
+      ]
+    },
+    "STOPPED_TARGET": {
+      "cases": [
+        "T00-06"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T00-06"
+      ]
+    },
+    "SYNTHETIC_ISOLATION_CANARY": {
+      "cases": [
+        "T09-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-D"
+      ]
+    },
+    "TRUST_FAILURE": {
+      "cases": [
+        "F00-07"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-07"
+      ]
+    },
+    "TRUST_FORGERY": {
+      "cases": [
+        "T14-D"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T14-D"
+      ]
+    },
+    "UNSUPPORTED_PROFILE": {
+      "cases": [
+        "F00-04"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-04"
+      ]
+    },
+    "VERIFY_MUTATION_REQUEST": {
+      "cases": [
+        "T09-J"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "T09-J"
+      ]
+    },
+    "VIRTUALIZATION_BLOCKED": {
+      "cases": [
+        "F00-01"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-01"
+      ]
+    },
+    "WRONG_ACTOR": {
+      "cases": [
+        "F00-02"
+      ],
+      "mode": "ARRANGE",
+      "native_case_ids": [
+        "F00-02"
+      ]
+    }
+  },
+  "routes": {
+    "ADOPT": {
+      "case_count": 2,
+      "cases": [
+        "T00-12",
+        "T00-14"
+      ]
+    },
+    "CREATE": {
+      "case_count": 17,
+      "cases": [
+        "T00-03",
+        "T00-07",
+        "T00-11",
+        "T00-14",
+        "F00-03",
+        "F00-05",
+        "F00-09",
+        "F00-10",
+        "F00-16",
+        "T05-D",
+        "T07-A",
+        "T07-C",
+        "T07-D",
+        "T07-E",
+        "T07-H",
+        "T07-J",
+        "T14-E"
+      ]
+    },
+    "DISCOVERY": {
+      "case_count": 3,
+      "cases": [
+        "T00-06",
+        "T00-14",
+        "T14-G"
+      ]
+    },
+    "ENGINE": {
+      "case_count": 15,
+      "cases": [
+        "T00-13",
+        "T00-14",
+        "F00-01",
+        "F00-10",
+        "F00-11",
+        "T05-D",
+        "T07-B",
+        "T13-A",
+        "T13-B",
+        "T13-C",
+        "T13-D",
+        "T13-E",
+        "T13-F",
+        "T14-H",
+        "T14-I"
+      ]
+    },
+    "ENTRY_ONLY": {
+      "case_count": 11,
+      "cases": [
+        "T00-01",
+        "T00-14",
+        "F00-02",
+        "F00-04",
+        "F00-07",
+        "F00-08",
+        "T14-A",
+        "T14-B",
+        "T14-C",
+        "T14-D",
+        "T14-F"
+      ]
+    },
+    "HOST_RESTART": {
+      "case_count": 8,
+      "cases": [
+        "T00-05",
+        "T00-10",
+        "F00-11",
+        "F00-15",
+        "T05-A",
+        "T05-B",
+        "T05-C",
+        "T13-G"
+      ]
+    },
+    "PASSIVE": {
+      "case_count": 2,
+      "cases": [
+        "T00-06",
+        "F00-14"
+      ]
+    },
+    "RECONCILIATION_ONLY": {
+      "case_count": 14,
+      "cases": [
+        "T00-07",
+        "T00-13",
+        "T00-14",
+        "F00-09",
+        "F00-10",
+        "F00-16",
+        "T07-F",
+        "T07-G",
+        "T07-H",
+        "T07-J",
+        "T08-J",
+        "T13-E",
+        "T13-F",
+        "T14-I"
+      ]
+    },
+    "RESTORE_EXPORT": {
+      "case_count": 5,
+      "cases": [
+        "T00-09",
+        "T07-C",
+        "T07-I",
+        "T09-A",
+        "T09-G"
+      ]
+    },
+    "RESTORE_IMPORT": {
+      "case_count": 16,
+      "cases": [
+        "T00-09",
+        "F00-12",
+        "F00-15",
+        "T07-B",
+        "T07-F",
+        "T07-I",
+        "T09-A",
+        "T09-B",
+        "T09-C",
+        "T09-D",
+        "T09-E",
+        "T09-F",
+        "T09-G",
+        "T09-H",
+        "T09-I",
+        "T09-J"
+      ]
+    },
+    "RESTORE_VERIFY": {
+      "case_count": 6,
+      "cases": [
+        "T00-09",
+        "F00-12",
+        "T09-A",
+        "T09-D",
+        "T09-H",
+        "T09-I"
+      ]
+    },
+    "SITE_VERIFY": {
+      "case_count": 13,
+      "cases": [
+        "T00-02",
+        "T00-04",
+        "T00-05",
+        "T00-10",
+        "T00-14",
+        "F00-06",
+        "F00-08",
+        "T05-A",
+        "T05-B",
+        "T05-C",
+        "T05-E",
+        "T05-F",
+        "T07-C"
+      ]
+    },
+    "SUPPORT_BUNDLE": {
+      "case_count": 19,
+      "cases": [
+        "T00-08",
+        "F00-13",
+        "F00-16",
+        "T05-F",
+        "T07-C",
+        "T08-A",
+        "T08-B",
+        "T08-C",
+        "T08-D",
+        "T08-E",
+        "T08-F",
+        "T08-G",
+        "T08-H",
+        "T08-I",
+        "T08-J",
+        "T08-K",
+        "T08-L",
+        "T08-M",
+        "T08-N"
+      ]
+    },
+    "TARGET_LIFECYCLE": {
+      "case_count": 3,
+      "cases": [
+        "T00-05",
+        "T05-A",
+        "T07-B"
+      ]
+    }
+  },
+  "schema_version": 1,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "source_of_test_authority": "reviewed aifilm_p00.native.harness_cases.PROCEDURES + approved Phase00 contracts",
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005"
+}

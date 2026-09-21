@@ -1,0 +1,5789 @@
+{
+  "catalog_version": "V1",
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "counts": {
+    "arrange_tokens": 65,
+    "document_only_cases": 1,
+    "document_only_preparation": "EXACT_REVIEW_SET",
+    "entry_only_native_requests": 10,
+    "native_cases": 85,
+    "native_preparation_tokens": 78,
+    "native_requests": 133,
+    "observe_tokens": 13
+  },
+  "coverage_evidence_sha256": "3aadec58f279005c4dbc29c11b55679f02d11593ad90d6fb6e4868f0749f4fc7",
+  "entry_probe_profiles": {
+    "LAB_POSITIVE_ENTRY_BASELINE": {
+      "active_entry_matrix": false,
+      "kind": "POSITIVE_LAB_ENTRY",
+      "primary_interface": "preflight",
+      "primary_purpose": "PASSIVE"
+    },
+    "MATERIAL_DRIFT_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "MATERIAL_DRIFT",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    },
+    "QUALIFICATION_INVALID_MATRIX": {
+      "active_entry_matrix": true,
+      "fault": "QUALIFICATION_INVALID",
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "required_entry_classes": [
+        "ACTIVE_PREFLIGHT",
+        "APPLY",
+        "ACTIVE_VERIFY",
+        "RECOVERY"
+      ]
+    },
+    "QUALIFICATION_MISMATCH_MATRIX": {
+      "active_entry_matrix": true,
+      "fault": "QUALIFICATION_MISMATCH",
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "required_entry_classes": [
+        "ACTIVE_PREFLIGHT",
+        "APPLY",
+        "ACTIVE_VERIFY",
+        "RECOVERY"
+      ]
+    },
+    "QUALIFICATION_MISSING_MATRIX": {
+      "active_entry_matrix": true,
+      "fault": "QUALIFICATION_MISSING",
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "required_entry_classes": [
+        "ACTIVE_PREFLIGHT",
+        "APPLY",
+        "ACTIVE_VERIFY",
+        "RECOVERY"
+      ]
+    },
+    "SITE_FAKE_LAB_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "SITE_FAKE_LAB",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    },
+    "TRUST_FAILURE_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "TRUST_FAILURE",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    },
+    "TRUST_FORGERY_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "TRUST_FORGERY",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    },
+    "UNSUPPORTED_PROFILE_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "UNSUPPORTED_PROFILE",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    },
+    "WRONG_ACTOR_ENTRY": {
+      "active_entry_matrix": false,
+      "fault": "WRONG_ACTOR",
+      "kind": "NEGATIVE_ENTRY_PROBE"
+    }
+  },
+  "expected_business_behavior_changed": false,
+  "global_rules": {
+    "arrange_requires_before_after_causality": true,
+    "business_authority": "PHASE00_CONTRACTS",
+    "observe_forbids_material_mutation": true,
+    "private_key_access_forbidden": true,
+    "runtime_inference_from_implementation_forbidden": true,
+    "test_authority": "REVIEWED_PROCEDURES_PLUS_REVIEWED_RECIPE_CATALOG",
+    "test_design_native_execution_forbidden": true
+  },
+  "kind": "P00_V03_AUTHORITY_BINDING_PRODUCER_RECIPE_CATALOG",
+  "oracle_changed": false,
+  "preparations": [
+    {
+      "authority_cases": [
+        "T07-G"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        20,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ABANDONED_GUARD"
+    },
+    {
+      "authority_cases": [
+        "T00-07",
+        "T07-A"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "NO_DUPLICATE_MUTATION",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ACTIVE_GUARD_HOLDER"
+    },
+    {
+      "authority_cases": [
+        "T00-12"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "ADOPT_ROUTE",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09"
+      ],
+      "route_scope": [
+        "ADOPT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ADOPT_ELIGIBLE"
+    },
+    {
+      "authority_cases": [
+        "T09-B"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        11
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ADOPT_RESTORE_SOURCE"
+    },
+    {
+      "authority_cases": [
+        "T14-I"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        12,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "APPROVAL_EXPIRES_ON_RESUME"
+    },
+    {
+      "authority_cases": [
+        "T00-08",
+        "T08-A"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS",
+        "OUTPUT_INTEGRITY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "BUNDLE_COMPLETE"
+    },
+    {
+      "authority_cases": [
+        "T08-I"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        15
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "OUTPUT_INTEGRITY"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "BUNDLE_HASH_TAMPER"
+    },
+    {
+      "authority_cases": [
+        "T13-E"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        17,
+        18,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "C3_CRASH"
+    },
+    {
+      "authority_cases": [
+        "F00-11"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE",
+        "HOST_RESTART"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "C3_PROTECTION_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T09-H"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        15,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CHECKPOINT_TAMPER"
+    },
+    {
+      "authority_cases": [
+        "T00-09",
+        "T09-A"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB",
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CLEAN_RESTORE_SOURCE"
+    },
+    {
+      "authority_cases": [
+        "T00-10"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "COEXISTENCE_HEALTH"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-14"
+      ],
+      "route_scope": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "COEXISTING_RESOURCE"
+    },
+    {
+      "authority_cases": [
+        "F00-03"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "PATH_COLLISION_FAULT",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "COLLISION_OR_PATH_ATTACK"
+    },
+    {
+      "authority_cases": [
+        "F00-09"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CONCURRENCY_OR_CRASH"
+    },
+    {
+      "authority_cases": [
+        "T13-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CONSISTENCY_BOUNDARY_DRIFT"
+    },
+    {
+      "authority_cases": [
+        "T00-11"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        16,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "CREATE_ROUTE",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CREATE_CLEAN_HOST"
+    },
+    {
+      "authority_cases": [
+        "T07-B",
+        "T07-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EVIDENCE_REQUIREDNESS",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE",
+        "ENGINE",
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT",
+        "SITE_VERIFY",
+        "SUPPORT_BUNDLE",
+        "TARGET_LIFECYCLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CROSS_SCOPE_HOLDER"
+    },
+    {
+      "authority_cases": [
+        "T07-E"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        12,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "CROSS_SID_HOLDER"
+    },
+    {
+      "authority_cases": [
+        "T14-G"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-13"
+      ],
+      "route_scope": [
+        "DISCOVERY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "DISCOVERY_UNKNOWN_GUEST"
+    },
+    {
+      "authority_cases": [
+        "T14-H"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ENTRY_GATE"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-02",
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ENGINE_ABSENT_PROFILE"
+    },
+    {
+      "authority_cases": [
+        "T00-13",
+        "T13-A"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ENGINE_CLEAN_HOST"
+    },
+    {
+      "authority_cases": [
+        "F00-13"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "EVIDENCE_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T13-G"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "LIFECYCLE_EPOCH"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "HOST_RESTART"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "EXISTING_TARGET_PROTECTION"
+    },
+    {
+      "authority_cases": [
+        "T08-L"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        2,
+        22
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "FAILED_RUN_EVIDENCE"
+    },
+    {
+      "authority_cases": [
+        "T08-N"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        18,
+        22
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_RECOVERY"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "GATE_ASSESSMENT_BOUNDARY"
+    },
+    {
+      "authority_cases": [
+        "F00-15"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        16,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "route_scope": [
+        "HOST_RESTART",
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "GLOBAL_POLICY_DRIFT"
+    },
+    {
+      "authority_cases": [
+        "T09-E"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "ISOLATION_BOUNDARY"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ISOLATION_DRIFT"
+    },
+    {
+      "authority_cases": [
+        "T09-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "ISOLATION_BOUNDARY"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "ISOLATION_MISSING"
+    },
+    {
+      "authority_cases": [
+        "F00-16"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route_scope": [
+        "CREATE",
+        "RECONCILIATION_ONLY",
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "JOURNAL_IO_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T07-J"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        18
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "JOURNAL_WRITE_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T08-E"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MANDATORY_CAP"
+    },
+    {
+      "authority_cases": [
+        "T08-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        22
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MANDATORY_COLLECTOR_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T00-02"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        19
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-04",
+        "E00-07",
+        "E00-14"
+      ],
+      "route_scope": [
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MATCHING_PROFILE"
+    },
+    {
+      "authority_cases": [
+        "F00-08"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        16,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-14"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY",
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MATERIAL_DRIFT"
+    },
+    {
+      "authority_cases": [
+        "T05-E"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-14"
+      ],
+      "route_scope": [
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MISSED_EPOCH_WITNESS"
+    },
+    {
+      "authority_cases": [
+        "T08-H"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        23
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EVIDENCE_REQUIREDNESS",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "MULTI_FAILURE_PRIVACY"
+    },
+    {
+      "authority_cases": [
+        "T07-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "UNCERTAIN_RETAINED"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route_scope": [
+        "RECONCILIATION_ONLY",
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "NATIVE_TIMEOUT"
+    },
+    {
+      "authority_cases": [
+        "T08-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "OUTPUT_INTEGRITY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "NESTED_SECRET_CANARY"
+    },
+    {
+      "authority_cases": [
+        "T05-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route_scope": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "NETWORK_BOUNDARY_CHANGE"
+    },
+    {
+      "authority_cases": [
+        "T00-04"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        14,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route_scope": [
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "NETWORK_CONTEXT_MATRIX"
+    },
+    {
+      "authority_cases": [
+        "F00-06"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route_scope": [
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "NETWORK_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T08-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        2
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "OPTIONAL_CAP"
+    },
+    {
+      "authority_cases": [
+        "T08-B"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        2
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "OPTIONAL_COLLECTOR_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T08-J"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        18
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "RECONCILIATION_ONLY",
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "OUTPUT_PUBLISH_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T13-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "OWNER_POSTCHECK_MISSING"
+    },
+    {
+      "authority_cases": [
+        "F00-14"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "EVIDENCE_REQUIREDNESS",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-10"
+      ],
+      "route_scope": [
+        "PASSIVE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "PASSIVE_UNKNOWN_GUEST"
+    },
+    {
+      "authority_cases": [
+        "T08-M"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "PATH_ESCAPE"
+    },
+    {
+      "authority_cases": [
+        "T05-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        16,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "CREATE_ROUTE",
+        "IDENTITY_PROFILE"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "route_scope": [
+        "CREATE",
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "PLANNED_ENGINE_TRANSITION"
+    },
+    {
+      "authority_cases": [
+        "T07-H"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        20,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "POST_REGISTRATION_CRASH"
+    },
+    {
+      "authority_cases": [
+        "T08-K"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "PRECREATE_INVENTORY"
+    },
+    {
+      "authority_cases": [
+        "T13-B"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "PROTECTION_MISSING"
+    },
+    {
+      "authority_cases": [
+        "T14-B"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "QUALIFICATION_INVALID"
+    },
+    {
+      "authority_cases": [
+        "T14-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "QUALIFICATION_MISMATCH"
+    },
+    {
+      "authority_cases": [
+        "T14-A"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "QUALIFICATION_MISSING"
+    },
+    {
+      "authority_cases": [
+        "F00-10"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route_scope": [
+        "CREATE",
+        "ENGINE",
+        "RECONCILIATION_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "REBOOT_OOBE_WAIT"
+    },
+    {
+      "authority_cases": [
+        "T13-C"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "C3_PROTECTION_FAULT",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route_scope": [
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "RECOVERY_DEPENDS_ON_SOURCE"
+    },
+    {
+      "authority_cases": [
+        "T08-G"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        23
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "recipe_family": "EVIDENCE_PRIVACY_FAULT",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route_scope": [
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "REDACTION_RESIDUAL"
+    },
+    {
+      "authority_cases": [
+        "T00-14",
+        "T14-E"
+      ],
+      "causality_rule": "OBSERVED_EXISTING_CONDITION",
+      "environment_scope": [
+        "LAB",
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "mode": "OBSERVE",
+      "oracle_set": [
+        "CREATE_ROUTE",
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "OBSERVE_BASELINE",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route_scope": [
+        "ADOPT",
+        "CREATE",
+        "DISCOVERY",
+        "ENGINE",
+        "ENTRY_ONLY",
+        "RECONCILIATION_ONLY",
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "REGISTERED_DISPOSABLE_LAB"
+    },
+    {
+      "authority_cases": [
+        "T00-03"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        13,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "RESOURCE_CAPACITY"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "RESOURCE_BOUNDARY_MATRIX"
+    },
+    {
+      "authority_cases": [
+        "F00-05"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "RESOURCE_CAPACITY"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "RESOURCE_FLOOR_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "F00-12"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "RESTORE_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T09-I"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        13,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "RETAINED_CAPACITY_PRESSURE"
+    },
+    {
+      "authority_cases": [
+        "T09-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "ISOLATION_BOUNDARY"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SAME_HOST_DIRTY"
+    },
+    {
+      "authority_cases": [
+        "T09-G"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SENSITIVE_SOURCE"
+    },
+    {
+      "authority_cases": [
+        "T07-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "RESOURCE_CAPACITY"
+      ],
+      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route_scope": [
+        "CREATE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SHARED_VOLUME_PRESSURE"
+    },
+    {
+      "authority_cases": [
+        "T14-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        12
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SITE_FAKE_LAB"
+    },
+    {
+      "authority_cases": [
+        "T07-I"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_EXPORT",
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SOURCE_DESTINATION_RESTORE"
+    },
+    {
+      "authority_cases": [
+        "T05-B"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "route_scope": [
+        "HOST_RESTART",
+        "SITE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "STAGED_CONFIG_INACTIVE"
+    },
+    {
+      "authority_cases": [
+        "T05-F"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        19,
+        22
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EVIDENCE_REQUIREDNESS",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-14",
+        "E00-17"
+      ],
+      "route_scope": [
+        "SITE_VERIFY",
+        "SUPPORT_BUNDLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "STALE_TERMINAL_CLOCK"
+    },
+    {
+      "authority_cases": [
+        "T00-05",
+        "T05-A"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB",
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route_scope": [
+        "HOST_RESTART",
+        "SITE_VERIFY",
+        "TARGET_LIFECYCLE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "STANDARD_LIFECYCLE"
+    },
+    {
+      "authority_cases": [
+        "T00-06"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB_SITE"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        20
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXACT_CONTENT_IDENTITY",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "route_scope": [
+        "DISCOVERY",
+        "PASSIVE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "STOPPED_TARGET"
+    },
+    {
+      "authority_cases": [
+        "T09-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        0,
+        19
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT",
+        "RESTORE_VERIFY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "SYNTHETIC_ISOLATION_CANARY"
+    },
+    {
+      "authority_cases": [
+        "F00-07"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        15
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "TRUST_FAILURE"
+    },
+    {
+      "authority_cases": [
+        "T14-D"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        12,
+        15
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "TRUST_FORGERY"
+    },
+    {
+      "authority_cases": [
+        "F00-04"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11,
+        16
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-13"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "UNSUPPORTED_PROFILE"
+    },
+    {
+      "authority_cases": [
+        "T09-J"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        10,
+        12
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "PURPOSE_SEPARATION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "RESTORE_ISOLATION_FAULT",
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route_scope": [
+        "RESTORE_IMPORT"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "VERIFY_MUTATION_REQUEST"
+    },
+    {
+      "authority_cases": [
+        "F00-01"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-02"
+      ],
+      "route_scope": [
+        "ENGINE"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "VIRTUALIZATION_BLOCKED"
+    },
+    {
+      "authority_cases": [
+        "F00-02"
+      ],
+      "causality_rule": "BEFORE_AFTER_EFFECT_REQUIRED",
+      "environment_scope": [
+        "LAB"
+      ],
+      "expected_exit_set": [
+        12
+      ],
+      "mode": "ARRANGE",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10"
+      ],
+      "route_scope": [
+        "ENTRY_ONLY"
+      ],
+      "runtime_inference_forbidden": true,
+      "token": "WRONG_ACTOR"
+    }
+  ],
+  "procedure_catalog_digest": "98b7c8c96c6236a4b2dc340a7991ef8c7656422709883e4456eab3a55dbcc0de",
+  "recipe_families": {
+    "C3_PROTECTION_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+      "reset": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY"
+    },
+    "CONCURRENCY_JOURNAL_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+      "reset": "CASE_RESET_OR_RECONCILE"
+    },
+    "ENTRY_AUTHORITY_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "POLICY_OR_IDENTITY_OVERLAY",
+      "reset": "RESTORE_PRIMARY_POLICY_EXACT"
+    },
+    "EVIDENCE_PRIVACY_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "SYNTHETIC_EVIDENCE_FIXTURE",
+      "reset": "CASE_RESET"
+    },
+    "LIFECYCLE_CONFIG_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+      "reset": "CASE_RESET"
+    },
+    "OBSERVE_BASELINE": {
+      "mode": "OBSERVE",
+      "mutation": "NONE",
+      "reset": "VERIFY_BASELINE_ONLY"
+    },
+    "PATH_COLLISION_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "DISPOSABLE_PATH_FIXTURE",
+      "reset": "CASE_RESET"
+    },
+    "RESOURCE_NETWORK_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "BOUNDED_RESOURCE_OR_NETWORK_FIXTURE",
+      "reset": "CASE_RESET"
+    },
+    "RESTORE_ISOLATION_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "DISPOSABLE_RESTORE_FIXTURE",
+      "reset": "PRISTINE_LAB_RESET"
+    }
+  },
+  "schema_version": 1,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "source_digest": "69fdc1840472a96bce8f8841e4d780543827e3cefdd3fe3bc8445f8a1fb4a0d6",
+  "stages": [
+    {
+      "case_id": "T00-02",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "MATCHING_PROFILE"
+      ],
+      "procedure_digest": "d28ce7ec2724bc0843ba3d9108bfb55b0831ab4630243b196a54ed4b5114d3f0",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-04",
+        "E00-07",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-03",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        13,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparations": [
+        "RESOURCE_BOUNDARY_MATRIX"
+      ],
+      "procedure_digest": "f0f62105e4605ec9fb0023430629043bc0f23b94857a4b07ad9afa9bde00e465",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-04",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparations": [
+        "NETWORK_CONTEXT_MATRIX"
+      ],
+      "procedure_digest": "29a2dc4ab644a2bf610d134e8d6ac163afc50c1cacd3d32caf611824ccd7dc0b",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-05",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "purpose": "TARGET_LIFECYCLE",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-05",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-05",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-06",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        20
+      ],
+      "interface": "preflight",
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "preparations": [
+        "STOPPED_TARGET"
+      ],
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "purpose": "PASSIVE",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "route": "PASSIVE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-06",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        20
+      ],
+      "interface": "preflight",
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "preparations": [
+        "STOPPED_TARGET"
+      ],
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "purpose": "DISCOVERY",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-07",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "ACTIVE_GUARD_HOLDER"
+      ],
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-07",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "ACTIVE_GUARD_HOLDER"
+      ],
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-08",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparations": [
+        "BUNDLE_COMPLETE"
+      ],
+      "procedure_digest": "31362a971a1a17eff9b5096b644dcc4d9d13ae82836dc9b8cfd7c785765b6a29",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-09",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "purpose": "RESTORE_EXPORT",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-09",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-09",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-10",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "COEXISTENCE_HEALTH",
+        "C3_PROTECTION"
+      ],
+      "preparations": [
+        "COEXISTING_RESOURCE"
+      ],
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-10",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "COEXISTENCE_HEALTH",
+        "C3_PROTECTION"
+      ],
+      "preparations": [
+        "COEXISTING_RESOURCE"
+      ],
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-11",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "CREATE_ROUTE",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "CREATE_CLEAN_HOST"
+      ],
+      "procedure_digest": "c3b7cf5e1725bf478c6e6c77155cb41d05d8b0f27a624d9820673619106eba41",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-12",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ADOPT_ROUTE",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "ADOPT_ELIGIBLE"
+      ],
+      "procedure_digest": "5b1e3b996c65077ac64e4400b2e232cd74bc0b56d5b9face4840e07e45c472ae",
+      "purpose": "ADOPT",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09"
+      ],
+      "route": "ADOPT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-13",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "ENGINE_CLEAN_HOST"
+      ],
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-13",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "ENGINE_CLEAN_HOST"
+      ],
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": "LAB_POSITIVE_ENTRY_BASELINE",
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "POSITIVE_LAB_ENTRY"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "preflight",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "DISCOVERY",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENGINE",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "CREATE",
+      "stage_index": 3,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "ADOPT",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ADOPT",
+      "stage_index": 4,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 5,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 6,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-01",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "VIRTUALIZATION_BLOCKED"
+      ],
+      "procedure_digest": "b98bac5b887b04a87e68f523efa411206f9740e3076b4e8647ddc100aa0dd541",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-02"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-02",
+      "entry_probe_profile": "WRONG_ACTOR_ENTRY",
+      "expected_exit_set": [
+        12
+      ],
+      "interface": null,
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "WRONG_ACTOR"
+      ],
+      "procedure_digest": "c4b76fe98dd0e9c692aadbe47f996c120bfeb3c7db94878757e5d961f1da4a94",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "F00-03",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "COLLISION_OR_PATH_ATTACK"
+      ],
+      "procedure_digest": "b4f1d972733a00b4639d08d07a913a7a9ab9832f805a72c5a00bcaf15f60e6e0",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-04",
+      "entry_probe_profile": "UNSUPPORTED_PROFILE_ENTRY",
+      "expected_exit_set": [
+        11,
+        16
+      ],
+      "interface": null,
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "UNSUPPORTED_PROFILE"
+      ],
+      "procedure_digest": "c7e4c4f83e09deb3d95eb2904ab9d83a517e3cd7a7f583b6179cbae9a1b1aa1c",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "F00-05",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "RESOURCE_FLOOR_FAILURE"
+      ],
+      "procedure_digest": "098d7194908d9eea7804b694455ca5fccf0046843fc5eccf688f698f6999c13b",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-06",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparations": [
+        "NETWORK_FAILURE"
+      ],
+      "procedure_digest": "a1242819dfc5f5c03d04f2cbde60a9bc8e3abc7b342b6a0a041c560390047972",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-07",
+      "entry_probe_profile": "TRUST_FAILURE_ENTRY",
+      "expected_exit_set": [
+        11,
+        15
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "TRUST_FAILURE"
+      ],
+      "procedure_digest": "4def1fd94f1dda8648e021b331436a514372a562fca0acb3a8d09c8c9a9925a4",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "F00-08",
+      "entry_probe_profile": "MATERIAL_DRIFT_ENTRY",
+      "expected_exit_set": [
+        11,
+        16,
+        19
+      ],
+      "interface": null,
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "MATERIAL_DRIFT"
+      ],
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-10",
+        "E00-14"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "F00-08",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        16,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "MATERIAL_DRIFT"
+      ],
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-10",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-09",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "CONCURRENCY_OR_CRASH"
+      ],
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-09",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "CONCURRENCY_OR_CRASH"
+      ],
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-10",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "REBOOT_OOBE_WAIT"
+      ],
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-10",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "REBOOT_OOBE_WAIT"
+      ],
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "CREATE",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-10",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "REBOOT_OOBE_WAIT"
+      ],
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-11",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "C3_PROTECTION_FAILURE"
+      ],
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-11",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "C3_PROTECTION_FAILURE"
+      ],
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-12",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "RESTORE_FAILURE"
+      ],
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-12",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "RESTORE_FAILURE"
+      ],
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-13",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_RECOVERY"
+      ],
+      "preparations": [
+        "EVIDENCE_FAILURE"
+      ],
+      "procedure_digest": "6594ff8fafef7b395b371c032bba6fa6498d191f5e076c3501198adebfd0fb25",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-14",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "interface": "preflight",
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "PASSIVE_UNKNOWN_GUEST"
+      ],
+      "procedure_digest": "65f29bc4e751ff81735f10d66f008df6ec9e6f0e281441f73e57e922c06f7878",
+      "purpose": "PASSIVE",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-10"
+      ],
+      "route": "PASSIVE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-15",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        16,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparations": [
+        "GLOBAL_POLICY_DRIFT"
+      ],
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-15",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "preparations": [
+        "GLOBAL_POLICY_DRIFT"
+      ],
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-16",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "JOURNAL_IO_FAILURE"
+      ],
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-16",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "JOURNAL_IO_FAILURE"
+      ],
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "F00-16",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "JOURNAL_IO_FAILURE"
+      ],
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "purpose": "TARGET_LIFECYCLE",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STANDARD_LIFECYCLE"
+      ],
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STAGED_CONFIG_INACTIVE"
+      ],
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "STAGED_CONFIG_INACTIVE"
+      ],
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "NETWORK_BOUNDARY_CHANGE"
+      ],
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "NETWORK_BOUNDARY_CHANGE"
+      ],
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "CREATE_ROUTE"
+      ],
+      "preparations": [
+        "PLANNED_ENGINE_TRANSITION"
+      ],
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        16,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "CREATE_ROUTE"
+      ],
+      "preparations": [
+        "PLANNED_ENGINE_TRANSITION"
+      ],
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "route": "CREATE",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "preparations": [
+        "MISSED_EPOCH_WITNESS"
+      ],
+      "procedure_digest": "199245d3248215879acd885bae5f3062273dd73b1cdbea333402ba0f5ef7792f",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        19,
+        22
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "TERMINAL_FRESHNESS",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "STALE_TERMINAL_CLOCK"
+      ],
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-14",
+        "E00-17"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T05-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        19,
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "TERMINAL_FRESHNESS",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "STALE_TERMINAL_CLOCK"
+      ],
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-14",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "ACTIVE_GUARD_HOLDER"
+      ],
+      "procedure_digest": "b6501d8c0d72b02a0c5c36efcebaaf8656411ed09008afa4fabd5037e1517443",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "purpose": "TARGET_LIFECYCLE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "purpose": "RESTORE_EXPORT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "purpose": "SITE_VERIFY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        21
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "CROSS_SCOPE_HOLDER"
+      ],
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 3,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "preparations": [
+        "SHARED_VOLUME_PRESSURE"
+      ],
+      "procedure_digest": "95ad07b2aad98a10648608fe1e421f33f6461d8163998c29829877b752e8cfde",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        12,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "CROSS_SID_HOLDER"
+      ],
+      "procedure_digest": "0ac5902157b694ab4de6759087e4e5221b36285f4feffe8063859fc1fb21fb72",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-01",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "NATIVE_TIMEOUT"
+      ],
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "NATIVE_TIMEOUT"
+      ],
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        20,
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "preparations": [
+        "ABANDONED_GUARD"
+      ],
+      "procedure_digest": "f2fbd7e1d09be132f5b3932ee90aa15bba39a2e949283f93c629dedff8cbbb39",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        20,
+        21
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "POST_REGISTRATION_CRASH"
+      ],
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        20,
+        21
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "POST_REGISTRATION_CRASH"
+      ],
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "SOURCE_DESTINATION_RESTORE"
+      ],
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "purpose": "RESTORE_EXPORT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "SOURCE_DESTINATION_RESTORE"
+      ],
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-11",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-J",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        18
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "JOURNAL_WRITE_FAILURE"
+      ],
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T07-J",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        18
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "JOURNAL_WRITE_FAILURE"
+      ],
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparations": [
+        "BUNDLE_COMPLETE"
+      ],
+      "procedure_digest": "f647219bf1353ddb20e5405a06a26e3e1b7aca783f784a8b0345938260117b91",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        2
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "OPTIONAL_COLLECTOR_FAILURE"
+      ],
+      "procedure_digest": "65f1cf8f350de5eccc78905c22e95ec494892aadc29ab3f60838459c6890830e",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "MANDATORY_COLLECTOR_FAILURE"
+      ],
+      "procedure_digest": "673b1c938cf9673506e08cc0076b06ca02c6c5c96bf74155c38c866d547011a1",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        2
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME"
+      ],
+      "preparations": [
+        "OPTIONAL_CAP"
+      ],
+      "procedure_digest": "a2ef8d14f1e55cd3ddb2a6c23787ae7bf6485f489a211d4882063ca67bff7a0c",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "MANDATORY_CAP"
+      ],
+      "procedure_digest": "86959d17437c65fdb6cf38dbbb0b3f26c4fc6e8f11eeac8e2c9b541ac4b6a43d",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparations": [
+        "NESTED_SECRET_CANARY"
+      ],
+      "procedure_digest": "747917c3203aad515d4a6fd55852323ebc1364228aa943cd7dc74b4bd0376294",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        23
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparations": [
+        "REDACTION_RESIDUAL"
+      ],
+      "procedure_digest": "c44f7730ec51b680b6af515b28295bfebbe701902bf261a2f00cf2f200b097a6",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        23
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "MULTI_FAILURE_PRIVACY"
+      ],
+      "procedure_digest": "adf3ae582a37068a815e422a66a833439d6365b826d09851a10408ba4cfb4ef8",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        15
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "OUTPUT_INTEGRITY"
+      ],
+      "preparations": [
+        "BUNDLE_HASH_TAMPER"
+      ],
+      "procedure_digest": "edfa3d95765beb93c8b221249cd76bbecce80d3811d098b4791f7d6d6c665216",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-J",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        18
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparations": [
+        "OUTPUT_PUBLISH_FAILURE"
+      ],
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-J",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        18
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparations": [
+        "OUTPUT_PUBLISH_FAILURE"
+      ],
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-K",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "PRECREATE_INVENTORY"
+      ],
+      "procedure_digest": "e22c2ea4a53daf043b2261fba0ab3ad2d2a5426036ecc061fa6d7de0fb5d5afd",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-L",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        2,
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "preparations": [
+        "FAILED_RUN_EVIDENCE"
+      ],
+      "procedure_digest": "fabd8e7395bccf3cd55e637cc86ad2a0a3bb622e5966f0962f855af5dac6a245",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-M",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "preparations": [
+        "PATH_ESCAPE"
+      ],
+      "procedure_digest": "394b984bd50ed8acf927493ebf1634b91ca1e8a3cba5cd6c934ab4a1cec46835",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T08-N",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        18,
+        22
+      ],
+      "interface": "support-bundle",
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_RECOVERY"
+      ],
+      "preparations": [
+        "GATE_ASSESSMENT_BOUNDARY"
+      ],
+      "procedure_digest": "d97c5235687b0a97adebf6dc8a28e8cc06e13c0a2d5a7fb349aa721a7dc0e236",
+      "purpose": "SUPPORT_BUNDLE",
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "purpose": "RESTORE_EXPORT",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "preparations": [
+        "CLEAN_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 2,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "ADOPT_RESTORE_SOURCE"
+      ],
+      "procedure_digest": "c7a8eedf1c78464981a36cd8f10f925ab4ee785ef0a9e8c1bc6060819c058457",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "ISOLATION_MISSING"
+      ],
+      "procedure_digest": "e532afc445c349d1bd6db757e0cbd3ff63098d4ec5febf78a4c33ecca628867c",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "SYNTHETIC_ISOLATION_CANARY"
+      ],
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "SYNTHETIC_ISOLATION_CANARY"
+      ],
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        16
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "ISOLATION_DRIFT"
+      ],
+      "procedure_digest": "2d4359dd365193a87b19db02619d2de36ae99ed8a9f38366ae341a7f97f88043",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "SAME_HOST_DIRTY"
+      ],
+      "procedure_digest": "b154b9ffa96eada347d7871f66ffc4135deb6988ceae74d1a79eae5290154ad3",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "SENSITIVE_SOURCE"
+      ],
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "purpose": "RESTORE_EXPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "SENSITIVE_SOURCE"
+      ],
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        15,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "CHECKPOINT_TAMPER"
+      ],
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        15,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "CHECKPOINT_TAMPER"
+      ],
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        13,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "RETAINED_CAPACITY_PRESSURE"
+      ],
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        13,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "preparations": [
+        "RETAINED_CAPACITY_PRESSURE"
+      ],
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "purpose": "RESTORE_VERIFY",
+      "required_evidence_set": [
+        "E00-06",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T09-J",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        10,
+        12
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "PURPOSE_SEPARATION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "VERIFY_MUTATION_REQUEST"
+      ],
+      "procedure_digest": "964ec7ccb124353e5b506786132e7f2f3ec84d385c30adf307408ff6bddfc69b",
+      "purpose": "RESTORE_IMPORT",
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-A",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "preparations": [
+        "ENGINE_CLEAN_HOST"
+      ],
+      "procedure_digest": "87af9ddfc3bcd7e3ccb943a50f3a28b2f0d97c8149f38375708671a8565447f6",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-B",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "PROTECTION_MISSING"
+      ],
+      "procedure_digest": "784ca80ab8d6442f3cbf1fca2070d8cc1546d7612b6cc3b3fdf1fabb10b80445",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-C",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "preparations": [
+        "RECOVERY_DEPENDS_ON_SOURCE"
+      ],
+      "procedure_digest": "48fa1b13cb6565b1decd06b5e92d878acfb4d4701e4669e88cc9342b24f43ef3",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-D",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        16
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "CONSISTENCY_BOUNDARY_DRIFT"
+      ],
+      "procedure_digest": "89449ce31c93fe5316ce9e647f3ca32e3475d48d7b168839b1e7233c1de7d11d",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        18,
+        19
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "C3_CRASH"
+      ],
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        17,
+        18,
+        19
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "preparations": [
+        "C3_CRASH"
+      ],
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "preparations": [
+        "OWNER_POSTCHECK_MISSING"
+      ],
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-F",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        11,
+        12,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "preparations": [
+        "OWNER_POSTCHECK_MISSING"
+      ],
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T13-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "C3_PROTECTION",
+        "LIFECYCLE_EPOCH"
+      ],
+      "preparations": [
+        "EXISTING_TARGET_PROTECTION"
+      ],
+      "procedure_digest": "6bb7048007b64bcc5025ddab7e762aade9442a2f3725fc76b6003abe2b06dc2e",
+      "purpose": "HOST_RESTART",
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T14-A",
+      "entry_probe_profile": "QUALIFICATION_MISSING_MATRIX",
+      "expected_exit_set": [
+        11
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "QUALIFICATION_MISSING"
+      ],
+      "procedure_digest": "694c6a0c9042a118cb1772eca21b078417eaa1a2a0fd41b8a61eee4b42c5d2d5",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "T14-B",
+      "entry_probe_profile": "QUALIFICATION_INVALID_MATRIX",
+      "expected_exit_set": [
+        11
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "QUALIFICATION_INVALID"
+      ],
+      "procedure_digest": "bf18eaf3e5d3899a02f229031f866fd52504bf908bf4ef480bd46f99f1028897",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "T14-C",
+      "entry_probe_profile": "QUALIFICATION_MISMATCH_MATRIX",
+      "expected_exit_set": [
+        16
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "preparations": [
+        "QUALIFICATION_MISMATCH"
+      ],
+      "procedure_digest": "2a3aeb5d52744808ead70b4220435a2d13f1ec7e4a634b94085d4fd131a136f1",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "T14-D",
+      "entry_probe_profile": "TRUST_FORGERY_ENTRY",
+      "expected_exit_set": [
+        12,
+        15
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "TRUST_FORGERY"
+      ],
+      "procedure_digest": "494c3960d445205cd51e20ebc59a9b58c28af157083af22bc2c86aabb10c2d7b",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "T14-E",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "CREATE_ROUTE"
+      ],
+      "preparations": [
+        "REGISTERED_DISPOSABLE_LAB"
+      ],
+      "procedure_digest": "a26603a2bcdfd39c20120c1c800a07e3a2027d924aa2b43e046ab849cc8965d9",
+      "purpose": "CREATE",
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "CREATE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T14-F",
+      "entry_probe_profile": "SITE_FAKE_LAB_ENTRY",
+      "expected_exit_set": [
+        12
+      ],
+      "interface": null,
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "preparations": [
+        "SITE_FAKE_LAB"
+      ],
+      "procedure_digest": "7012f1881893f7db1743c1b5cade7146d6032227e296e669393f5041948682ea",
+      "purpose": null,
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0,
+      "stage_mode": "NEGATIVE_ENTRY_PROBE"
+    },
+    {
+      "case_id": "T14-G",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        20
+      ],
+      "interface": "preflight",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "preparations": [
+        "DISCOVERY_UNKNOWN_GUEST"
+      ],
+      "procedure_digest": "5da8bf2a4b95baa60b660d80d97611d34e2fa70ec3324eded33bb7336c2d1936",
+      "purpose": "DISCOVERY",
+      "required_evidence_set": [
+        "E00-04",
+        "E00-13"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T14-H",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "ENTRY_GATE",
+        "C3_PROTECTION"
+      ],
+      "preparations": [
+        "ENGINE_ABSENT_PROFILE"
+      ],
+      "procedure_digest": "276f7f9b5c7e22d4b66354c0f4603762bd9c7569301110c992ce930b07c91231",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-02",
+        "E00-13"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T14-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        12,
+        20
+      ],
+      "interface": "apply",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "APPROVAL_EXPIRES_ON_RESUME"
+      ],
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "purpose": "ENGINE",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0,
+      "stage_mode": "EXECUTE_ROUTE"
+    },
+    {
+      "case_id": "T14-I",
+      "entry_probe_profile": null,
+      "expected_exit_set": [
+        12,
+        20
+      ],
+      "interface": "verify",
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "preparations": [
+        "APPROVAL_EXPIRES_ON_RESUME"
+      ],
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "purpose": "RECONCILIATION_ONLY",
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1,
+      "stage_mode": "EXECUTE_ROUTE"
+    }
+  ],
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005",
+  "test_digest": "47d4ae767b26b05ef16d6809ea9377ef4e1b21bfbc4c44093dbd1cc158b75698"
+}
