@@ -104,3 +104,17 @@ A run becomes `COMPLETE` only when its declared success output exists and requir
 ## Generic checker rule
 
 Continuity tools derive the active `RUN_ID`, `WORKFLOW_ID`, owning lane, run-record path, base identity and current step from canonical state. They must not hard-code the incident/run that introduced this policy. Checkers also reject more than one non-COMPLETE run for the same workflow/base on an owning lane.
+
+## Concurrent takeover and publication
+
+One logical run does not by itself prevent two sessions from writing it. Before a material write, record the current owning-lane head as `EXPECTED_HEAD` and a single `WRITER_SESSION_ID` in the live intent. Publish a commit whose parent is that expected head using a normal non-forced fast-forward. Competing updates must fail/reconcile; never force-push over another writer or reuse stale approval after a conflict.
+
+A takeover reuses the RUN_ID but records its new writer identity and preserved cursor. It does not use elapsed time as evidence that native side effects stopped. If an action cannot be fenced or proven complete, retain `UNCERTAIN` / `NEVER_REEXECUTE` until the owning recovery contract resolves it. Git serialization protects ledger publication, **not** mutually exclusive external side effects; the applicable runtime/native admission guard remains mandatory.
+
+## Control-plane check scope
+
+The current snapshot is selected by `PROJECT_STATE.md:STATE_VERSION`. A remote ledger check must resolve freshly fetched exact lane bytes; absent workspace is not reconciliation success. `--require-remote` is required for formal handoff and CI. Portable schema-only checks explicitly print `SCHEMA_ONLY` / `NOT_EVALUATED`. A COMPLETE step requires a non-empty verified output object.
+
+Explicit documentation excursions preserve the product RUN_ID, gate state and return point. Author, review and audit evidence use separate namespaces; an excursion's completion never unblocks native execution by itself.
+
+When a run binds a local worktree, formal local handoff also uses `--require-local`; remote-only CI may report `local=NOT_EVALUATED` and cannot close that local obligation. A local success checks HEAD identity only; dirty-tree/native status belongs to its applicable runtime/workspace guards.

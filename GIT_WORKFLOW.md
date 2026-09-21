@@ -138,9 +138,7 @@ Documentation must distinguish **project policy** from **platform enforcement**.
 
 ## Verdict-branch CI role
 
-DOC-DESIGN, DOC-REVIEW and DOC-AUDIT are different workflow roles. A checker intended for a promoted tree must not mechanically reject a legitimate intermediate review/audit tree merely because only one verdict artifact exists. Tooling must become branch-role aware or stage verdicts so each role has a coherent invariant set.
-
-Until that automation is implemented, a `partial-promotion-verdict-set` failure on a verdict-bearing review/audit commit is process-health evidence and must be disclosed; it may not be silently ignored or misrepresented as proof that the exact design target failed. Promotion still requires a green exact design target and a green post-promotion canonical tree.
+Checks distinguish DESIGN (no final verdict), REVIEW (review only), AUDIT and PROMOTED (both matching verdicts). Each stage must pass its actual invariant set. A red verdict-bearing CI result is not excused by a green design run. Never relabel a role or synthesize PASS records to bypass the failure. Record the exact stage/commit and repair the responsible design or checker through review.
 
 ## CI lifecycle-domain coverage
 
@@ -149,3 +147,9 @@ CI path filters are part of the control plane. `workflow-runs/**`, `test-governa
 ## Documentation promotion exact-tree rule
 
 A documentation-system candidate must already contain its intended post-promotion canonical state/checkpoint before final DOC-REVIEW/DOC-AUDIT. The state must predeclare the exact final review/audit IDs and immutable record paths. Review/audit records may be produced afterward because they are consumer verdict artifacts, but the final `main` promotion may only merge the exact reviewed/audited design tree plus those predeclared immutable verdict records. Any additional policy/state/checkpoint edit after audit reopens DOC-REVIEW and DOC-AUDIT.
+
+## Change size and publication transaction
+
+Classify before work: **EVIDENCE_UPDATE** follows an existing reviewed lifecycle transition and owning-lane evidence/review rules; **EDITORIAL** changes no meaning and requires scoped diff/link checks; **POLICY_CHANGE** changes authority, schema, routing, acceptance or checker semantics and requires DOC-DESIGN → DOC-REVIEW → DOC-AUDIT. Neither category can be chosen to hide a semantic change. Ordinary evidence updates do not automatically require a new DOCSYS release; changes to canonical gate authority still require their owning review and exact-tree transaction.
+
+Prefer one coherent candidate over a release for each corrected sentence. Freeze acceptance criteria before editing; after two ineffective attempts with the same premise, inspect the premise. Normal non-forced publication binds the expected parent. Before promotion re-fetch `main`; if the base advanced, reconcile the competing change and repeat affected review/audit instead of overwriting it. Post-promotion CI is mandatory and reported separately from author checks.

@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import hashlib,json,re,shutil,subprocess,sys,tempfile
+from check_state_contract import load_selected_state
 
 ROOT=Path(__file__).resolve().parents[1]
 
 def latest_state_path(root):
-    rows=[]
-    for p in root.glob('AI_FILM_PROJECT_STATE_V*.json'):
-        try: v=int(p.stem.rsplit('_V',1)[1])
-        except Exception: continue
-        rows.append((v,p))
-    return max(rows)[1]
+    return load_selected_state(root)[1]
 
 def event_hash(obj):
     payload={k:v for k,v in obj.items() if k not in {'event_identity_sha256','event_id'}}
@@ -127,4 +123,23 @@ def failed_event_preserved(dst):
     write_event(dst,e); set_measurement(dst,0,'PENDING_MEASUREMENT')
 require('failed_event_preserved_not_counted',run_case(failed_event_preserved),True,'qualifying=0')
 
-print('ADVERSARIAL_CONTINUITY_MEASUREMENT_TEST_PASS 12 cases')
+
+def bool_counter(dst):
+    e=make_event(1); e['duplicate_logical_runs']=False; e['event_identity_sha256']=event_hash(e)
+    write_event(dst,e); set_measurement(dst,1,'PENDING_MEASUREMENT')
+require('boolean_not_count',run_case(bool_counter),False,'continuity-event-duplicate-runs-schema')
+
+def bool_declared(dst):
+    set_measurement(dst,0,'PENDING_MEASUREMENT')
+    p=latest_state_path(dst); data=json.loads(p.read_text());data['learning_activation']['continuity_measurement']['qualifying_event_count']=False;p.write_text(json.dumps(data))
+require('boolean_not_declared_count',run_case(bool_declared),False,'continuity-declared-count-schema')
+
+def invalid_gate(dst):
+    p=dst/'learning/LEARNING_STATE.json';data=json.loads(p.read_text());data['records']['LEARNING-WORKFLOW-CONTINUITY-001']['measurement_gate']['value']=0;p.write_text(json.dumps(data))
+require('nonpositive_sample_requirement',run_case(invalid_gate),False,'continuity-learning-gate-invalid')
+
+def unearned_effective(dst):
+    p=dst/'learning/LEARNING_STATE.json';data=json.loads(p.read_text());data['records']['LEARNING-WORKFLOW-CONTINUITY-001']['effectiveness_status']='EFFECTIVE';p.write_text(json.dumps(data));set_measurement(dst,0,'COMPLETE')
+require('effective_requires_samples',run_case(unearned_effective),False,'continuity-effective-insufficient-events')
+
+print('ADVERSARIAL_CONTINUITY_MEASUREMENT_TEST_PASS 16 cases')

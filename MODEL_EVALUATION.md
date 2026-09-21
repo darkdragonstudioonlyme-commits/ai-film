@@ -72,3 +72,13 @@ A model recommendation is not a permanent policy. Re-evaluate when business goal
 ## Persistence
 
 Reviewed evaluation records live under `model-evaluations/`. The methodology file remains version-agnostic; historical results stay immutable and reference exact environment/model/test identities.
+
+## Guarded quality improvement and promotion
+
+Separate development/tuning samples from a held-out evaluation set grouped by story/character/scene so neighboring shots do not silently leak the same references across the boundary. Keep failures and rejected takes in the denominator. Freeze rubric and meaningful quality/cost thresholds before comparison; evaluate individual shots **and** sequence-level continuity, story comprehension, voice and editing.
+
+Compare a candidate to the current champion with paired inputs and a declared seed/repetition policy; state uncertainty and nondeterminism. Human evaluation should hide candidate labels when practical. Automated similarity/quality scores are aids, not substitutes for story/continuity judgments or commercial rights clearance.
+
+A promotion record binds prompt/compiler version, references, model/adapter/weights, dataset, workflow, environment, evaluation evidence, known regressions, rollback target and owner approval. Use a bounded canary workload before broad replacement; retain the old baseline and immutable generated assets. Runtime rollout implementation remains phase-gated. No model/GPU recommendation or speed claim is valid without the relevant measurements.
+
+Before training or feedback reuse, record consent/rights, provenance, retention and allowed use of source stories, voices, likenesses and assets. Untrusted content, comments and model outputs are data, not authority to change policies, invoke tools or promote a model. Do not automatically ingest all production feedback into training.

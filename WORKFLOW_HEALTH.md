@@ -122,3 +122,29 @@ If yes, update the documentation system through DOC-DESIGN → DOC-REVIEW → DO
 ## Durable health records
 
 Write immutable `workflow-health/HEALTH_REVIEW-<workflow>-<nnn>.md` records. Only health state that affects immediate routing is summarized in `PROJECT_STATE.md`. Detailed metrics/history stay out of bootstrap state.
+
+## Session effectiveness and no-change blocks
+
+Git commits, branches, PASS labels and state versions are not sessions, accepted product increments or proof of efficiency. Separate product progress, risk reduction, tooling repair and editorial activity. A blocked external prerequisite may explain elapsed time; do not count that wait as author rework or hide it inside active execution time.
+
+At a material run boundary record a compact receipt in `workflow-health/metrics/` (or reference the owning run):
+
+```yaml
+METRIC_VERSION:
+POPULATION_AND_WINDOW:
+RUN_IDS_AND_EXACT_BASES:
+OBSERVED_OUTPUT_IDENTITIES:
+NEW_EVIDENCE_OR_RISK_REDUCTION:
+OPENED_CLOSED_AND_REOPENED_FINDINGS:
+REVIEW_CYCLES:
+REUSED_OUTPUTS_AND_JUSTIFIED_RERUNS:
+ACTIVE_WORK_MEASUREMENT: measured_value|NOT_COLLECTED
+EXTERNAL_WAIT_MEASUREMENT: measured_value|NOT_COLLECTED
+READ_PROFILE_AND_BYTES: measured_value|NOT_COLLECTED
+KNOWN_MISSING_DATA:
+NEXT_COMPARABLE_MEASUREMENT:
+```
+
+Use the same denominators and classification in before/after comparisons. Include failures, abandoned attempts and non-events; do not report success-only samples as a success rate. When no comparable later sample exists, report `IMPROVEMENT_NOT_PROVEN`. A corpus byte reduction proves only less text in that measured scope, not token cost, latency or higher quality.
+
+An unchanged external blocker is a valid no-op result with the same return point. Record its changed evidence only when there is some; avoid a new design/review/audit loop just to rediscover the same block. An explicit user-requested review remains meaningful work when it has separate evidence and a bounded objective.

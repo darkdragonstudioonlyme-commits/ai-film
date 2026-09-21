@@ -1,19 +1,11 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import hashlib,json,re,sys
+from check_state_contract import StateContractError, load_selected_state
 
 ROOT=Path(__file__).resolve().parents[1]
 EVENT_DIR=ROOT/'workflow-runs'/'continuity-events'
 errors=[]
-
-def latest_state():
-    rows=[]
-    for p in ROOT.glob('AI_FILM_PROJECT_STATE_V*.json'):
-        m=re.fullmatch(r'AI_FILM_PROJECT_STATE_V(\d+)\.json',p.name)
-        if m: rows.append((int(m.group(1)),p))
-    if not rows:
-        raise ValueError('STATE_JSON_MISSING')
-    return max(rows)
 
 def canonical_event_hash(obj):
     payload={k:v for k,v in obj.items() if k not in {'event_id','event_identity_sha256'}}
@@ -28,17 +20,19 @@ def valid_evidence_list(value):
             return False
     return any(re.fullmatch(r'[0-9a-f]{40}',x) for x in value)
 
-version,state_path=latest_state()
-state=json.loads(state_path.read_text(encoding='utf-8'))
+try:
+    version,state_path,state=load_selected_state(ROOT)
+except StateContractError as exc:
+    print('CONTINUITY_MEASUREMENT_CHECK_FAIL',exc);raise SystemExit(1)
 learning=json.loads((ROOT/'learning/LEARNING_STATE.json').read_text(encoding='utf-8'))
 record=learning.get('records',{}).get('LEARNING-WORKFLOW-CONTINUITY-001')
 if not isinstance(record,dict):
     errors.append('continuity-learning-record-missing')
     record={}
 gate=record.get('measurement_gate') if isinstance(record.get('measurement_gate'),dict) else {}
-if gate.get('kind')!='EVENT_COUNT_AT_LEAST' or gate.get('event_kind')!='INTERRUPTED_RESUME' or not isinstance(gate.get('value'),int):
+if gate.get('kind')!='EVENT_COUNT_AT_LEAST' or gate.get('event_kind')!='INTERRUPTED_RESUME' or (type(gate.get('value')) is not int or gate.get('value',0)<=0):
     errors.append('continuity-learning-gate-invalid')
-required=gate.get('value') if isinstance(gate.get('value'),int) else None
+required=gate.get('value') if type(gate.get('value')) is int and gate['value']>0 else None
 
 measurement=state.get('learning_activation',{}).get('continuity_measurement')
 if not isinstance(measurement,dict):
@@ -100,7 +94,7 @@ for path in sorted(EVENT_DIR.glob('*.json')) if EVENT_DIR.is_dir() else []:
         errors.append('continuity-event-id-duplicate:'+eid)
     else:
         event_ids.add(eid)
-    if obj.get('schema_version')!=1: errors.append('continuity-event-schema-version:'+path.name)
+    if type(obj.get('schema_version')) is not int or obj.get('schema_version')!=1: errors.append('continuity-event-schema-version:'+path.name)
     if obj.get('event_kind')!='INTERRUPTED_RESUME': errors.append('continuity-event-kind:'+path.name)
     if not re.fullmatch(r'RUN-[A-Z0-9][A-Z0-9._-]{2,79}',str(obj.get('run_id',''))):
         errors.append('continuity-event-run-id:'+path.name)
@@ -118,10 +112,10 @@ for path in sorted(EVENT_DIR.glob('*.json')) if EVENT_DIR.is_dir() else []:
     if type(obj.get('identity_changed')) is not bool:
         errors.append('continuity-event-identity-changed:'+path.name)
     duplicate_runs=obj.get('duplicate_logical_runs')
-    if not isinstance(duplicate_runs,int) or duplicate_runs<0:
+    if type(duplicate_runs) is not int or duplicate_runs<0:
         errors.append('continuity-event-duplicate-runs-schema:'+path.name)
     repeated=obj.get('repeated_completed_expensive_steps')
-    if not isinstance(repeated,int) or repeated<0:
+    if type(repeated) is not int or repeated<0:
         errors.append('continuity-event-repeat-schema:'+path.name)
     if obj.get('resume_disposition') not in {'REUSE_VERIFIED_OUTPUT','RECONCILE_AND_CONTINUE','SAFE_REEXECUTE_AFFECTED_STEP'}:
         errors.append('continuity-event-resume-disposition:'+path.name)
@@ -149,17 +143,21 @@ for path in sorted(EVENT_DIR.glob('*.json')) if EVENT_DIR.is_dir() else []:
                 errors.append('continuity-event-same-run:'+path.name)
             if duplicate_runs!=0:
                 errors.append('continuity-event-duplicate-runs:'+path.name)
-            if isinstance(repeated,int) and repeated>0 and obj.get('identity_changed') is not True:
+            if type(repeated) is int and repeated>0 and obj.get('identity_changed') is not True:
                 errors.append('continuity-event-repeat-without-identity-change:'+path.name)
-            if obj.get('same_run_id') is True and duplicate_runs==0 and (not isinstance(repeated,int) or repeated==0 or obj.get('identity_changed') is True):
+            if obj.get('same_run_id') is True and duplicate_runs==0 and (type(repeated) is not int or repeated==0 or obj.get('identity_changed') is True):
                 qualifying+=1
 
 declared=measurement.get('qualifying_event_count')
+if type(declared) is not int or declared<0:
+    errors.append('continuity-declared-count-schema')
 if declared!=qualifying:
     errors.append(f'continuity-event-count-drift:{qualifying}!={declared}')
 if required is not None:
     expected_status='READY_FOR_EFFECTIVENESS_REVIEW' if qualifying>=required else 'PENDING_MEASUREMENT'
     if record.get('effectiveness_status')=='EFFECTIVE':
+        if qualifying<required:
+            errors.append('continuity-effective-insufficient-events')
         expected_status='COMPLETE'
     if measurement.get('status')!=expected_status:
         errors.append(f'continuity-measurement-status:{measurement.get("status")}!={expected_status}')
@@ -172,4 +170,5 @@ print('CONTINUITY_MEASUREMENT_CHECK_PASS',
       'state=V'+str(version),
       'qualifying='+str(qualifying),
       'required='+str(required),
-      'status='+str(measurement.get('status')))
+      'status='+str(measurement.get('status')),
+      'scope=STRUCTURAL_EVENT_COUNT','event_semantics=REVIEW_REQUIRED')

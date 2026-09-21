@@ -1,69 +1,46 @@
 # AI-FILM-SERVER — Project Roadmap
 
-## Governing chain
+## Authority
 
-The authoritative Blueprint mode chain remains:
+The Blueprint chain is `DESIGN → DESIGN_REVIEW → IMPLEMENTATION → CODE_REVIEW → VALIDATION → QUALITY/PRODUCTION readiness`. Current phase, completed milestones and open blockers are owned by `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`; this roadmap defines dependencies, not duplicate status.
 
-```text
-DESIGN → DESIGN_REVIEW → IMPLEMENTATION → CODE_REVIEW → VALIDATION → QUALITY/PRODUCTION readiness
-```
-
-This roadmap does not approve gates; it only orders known work.
-
-## Current phase: 00 — Host / WSL
-
-Target implementation work item: `IMPL-P00-001`. Target code gate: `CODE_REVIEW_PASS`. Phase gate: `HOST_READY` after later authorized validation/qualification requirements are satisfied.
-
-### Phase 00 work graph
+## Phase 00 dependency graph
 
 ```text
-Reviewed Design V2 PASS
-  ↓
-Lifecycle/trust/evidence/recovery source increments   [substantially authored]
-  ↓
-Causal 86-case harness + production-factory author integration [ACTIVE]
-  ↓
-Close remaining source/harness/docs/test scope (CR-P00-001)
-  ↓
-AUTHOR_COMPLETE + CODE_REVIEW_HANDOFF_READY
-  ↓
-Formal CODE_REVIEW exact final candidate
-  ↓ PASS
-Authorized VALIDATION / LAB-SITE evidence
-  ↓
-Qualification / phase-gate assessment
-  ↓
-HOST_READY only if evidence supports it
+Reviewed phase contracts
+→ complete source + causal harness + author regression
+→ exact durable handoff
+→ CODE_REVIEW_PASS
+→ authorized LAB validation
+→ qualification
+→ authorized SITE lifecycle/restore/terminal evidence
+→ HOST_READY assessment
 ```
 
-## Current near-term milestones
+| Milestone | Exit evidence |
+|---|---|
+| M-P00-AUTHOR-COMPLETE | reviewed scope implemented, no hidden stubs, exact candidate and author evidence |
+| M-P00-CODE-REVIEW | exact independent/role-separated review with assurance declared |
+| M-P00-VALIDATION | authorized mandatory LAB/native results and qualification, then applicable SITE evidence |
+| M-P00-HOST-READY | all applicable acceptance predicates; no gate-blocking finding; explicit as-of assessment |
 
-| Milestone | Exit evidence | Next |
-|---|---|---|
-| M-P00-HARNESS | causal harness source accepted by independent REVIEW | residual source completeness audit |
-| M-P00-AUTHOR-COMPLETE | no hidden reviewed-scope stubs; author tests/static clean; exact candidate durable | formal CODE_REVIEW |
-| M-P00-CODE-REVIEW | `CODE_REVIEW_PASS` against exact candidate | VALIDATION |
-| M-P00-VALIDATION | authorized native/LAB/SITE test evidence per approved contracts | qualification/gate assessment |
-| M-P00-HOST-READY | exact acceptance/gate conditions satisfied | next project phase chosen by MASTER/roadmap update |
+A historic author-completeness finding does not reopen an accepted candidate unless current evidence explicitly reopens it. `NOT_RUN` validation is not an author test failure, and a code-review PASS is not validation PASS.
 
-## Current known blocker hierarchy
+## Downstream phase dependencies
 
-- `CR-P00-001` — umbrella author-completeness blocker; closes only with full reviewed implementation scope.
-- Candidate-specific review findings are subordinate and must be independently closed by REVIEW.
-- Native test inventory remaining `NOT_RUN` is **not** an implementation defect by itself while authoring forbids native execution; source harness completeness and later validation execution are distinct.
+| Phases | Blueprint phase purpose (exact gate authority stays in its phase design) |
+|---|---|
+| 01–02 | Linux foundation and control plane: API, metadata, queue, assets |
+| 03–05 | Job engine, GPU abstraction and remote GPU integration |
+| 06 | Basic generation: a bounded vertical slice produces a traceable output |
+| 07–09 | Character continuity, shot engine and audio pipeline |
+| 10–12 | Episode assembly, novel adaptation and controlled quality improvement |
+| 13–14 | Local GPU and scale-out, justified by actual workloads |
 
-## Roadmap update rule
+`docs/FILM_PIPELINE_DESIGN_BACKLOG.md` records design questions and acceptance proposals for these phases. It is not implementation authorization and does not add prerequisites to HOST_READY. Validate a small end-to-end film workflow before expanding model fleets or distributed infrastructure; this is a planning preference, not a shortcut around phase gates.
 
-Update this file only when work order, milestone definitions, closure criteria or phase transition changes. Do not use it as a daily status log; that belongs in `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`.
+## Cross-cutting loops
 
-## Cross-cutting operating loops
+TEST-DESIGN / TEST-REVIEW governs oracle changes. DOC-DESIGN / DOC-REVIEW / DOC-AUDIT governs material control-plane changes. WORKFLOW_REVIEW addresses ineffective loops. MODEL-EVAL binds experiments to exact environments. SELF-LEARNING measures correction effectiveness rather than counting documents.
 
-These do not replace the project mode chain:
-
-- TEST-DESIGN → TEST-REVIEW whenever expected business behavior/oracles materially change.
-- DOC-DESIGN → DOC-REVIEW → DOC-AUDIT for material control-plane changes.
-- WORKFLOW_REVIEW when health triggers show repeated ineffective/deadlocked work.
-- MODEL-EVAL with exact environment identity when selecting/upgrading models.
-- SELF-LEARNING after meaningful failures/improvements; recurring lessons promote to policy/tooling and obsolete rules retire.
-
-The active roadmap stays concise; detailed historical completed increments belong in immutable records/Git history.
+Update this roadmap when dependency order or exit criteria change. Ordinary progress belongs in current state and owning run evidence.

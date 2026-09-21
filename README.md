@@ -1,33 +1,27 @@
-# AI Film Server — Persistent Project Control Plane
+# AI-FILM-SERVER
 
-This repository is the cross-chat control plane for **AI-FILM-SERVER**. A fresh chat must be able to resume without the previous transcript.
+Persistent control plane for the single-chat AI film project. Current truth is `PROJECT_STATE.md`, not the newest-looking checkpoint or a previous chat. Product source is addressed by the exact source identity declared there; this branch is not the product runtime.
 
 ## Cold-start order
 
-1. `PROJECT_STATE.md` — current global truth, accepted candidate, WIP, review target/findings.
-2. `NEXT_WORK_ITEM.md` — exact resumable task and success/block/failure routes.
-3. `WORKFLOW_ROUTER.md` — how to interpret “continue”, blockers, findings and gate transitions.
-4. `WORKFLOW_CONTINUITY.md` — active RUN_ID, step cursor, interruption/idempotent resume rules.
-5. `EXECUTION_LANES.md` — independent workflow trust boundaries and immutable handoffs.
-6. `DOCUMENTATION_MAP.md` — source-of-truth map, update triggers and freshness rules.
-7. Read the selected lane's remote `LANE_STATE.md` after a fresh fetch.
-8. Scan relevant `PROJECT_MEMORY.md` entries and `SELF_LEARNING.md` when work produced reusable lessons.
-9. `GIT_WORKFLOW.md` + `POLICY_REGISTRY.md` before persistent/policy changes.
-10. `TEST_STRATEGY.md` before changing test expectations or harness semantics.
-11. `WORKSPACE_WSL.md`; use `SERVER_ENVIRONMENT.md` / `MODEL_EVALUATION.md` for benchmark/model work.
-12. Use `WORKFLOW_HEALTH.md` / `RECOVERY_PLAYBOOK.md` when degraded, blocked or recovering.
-13. Read only task-specific contracts/source/evidence referenced by state/next-work.
+1. Fresh-fetch `main` and the relevant lane refs; preserve local WIP.
+2. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and `WORKFLOW_ROUTER.md`.
+3. Resolve the owning lane and existing run; reconcile before executing. Use the task-specific read profile in `DOCUMENTATION_MAP.md`.
 
-Never use an old checkpoint, cached remote-tracking ref, directory name, conversation summary, or root `pyproject.toml` package metadata as current project/candidate truth unless `PROJECT_STATE.md` explicitly delegates that authority.
+## Minimal requests
 
-## One-line routing
+```text
+Tiếp tục.
+```
 
-- “continue / tiếp tục” → follow `WORKFLOW_ROUTER.md` + active `WORKFLOW_CONTINUITY.md` run; do not ask what to do if state is sufficient.
-- source/finding fix → IMPLEMENT workflow.
-- immutable candidate review → REVIEW workflow.
-- documentation architecture change → DOC-DESIGN → DOC-REVIEW → DOC-AUDIT.
-- genuine reviewed-behavior conflict → DESIGN_GAP route; do not redesign in IMPLEMENTATION.
+```text
+Review thiết kế MD → chỉnh sửa cần thiết → review → audit toàn bộ.
+```
 
-## No-silent-knowledge rule
+The first resumes verified state. The second is an explicit documentation excursion; it must preserve any blocked product run and its return point. Neither request grants permission to skip gates, change frozen contracts, spend money or perform host-destructive actions.
 
-Reusable discoveries must be persisted before an increment is durable. Current state, next work, roadmap, workflow policy, workspace facts and reusable memory have different owners; see `DOCUMENTATION_MAP.md`.
+## Authority and evidence
+
+`DOC-DESIGN → DOC-REVIEW → DOC-AUDIT` governs material documentation changes. Exact commits, evidence and role-specific verdicts determine acceptance. Same-chat role separation is not external independent certification. See `EXECUTION_LANES.md` and `GIT_WORKFLOW.md`.
+
+`CHAT_HANDOFF.md` is the compact continuation entrypoint. `PROJECT_ROADMAP.md` orders gates; it does not own their current status. Historical checkpoints, designs and reviews preserve evidence, not a second mutable state.

@@ -4,29 +4,28 @@
 
 This file tells a fresh chat **what each document means, when to read it, when to update it, and what must never be duplicated as mutable truth**.
 
-## Canonical read path
+## Canonical read profiles
 
-```text
-PROJECT_STATE
-→ NEXT_WORK_ITEM
-→ WORKFLOW_ROUTER
-→ WORKFLOW_CONTINUITY
-→ EXECUTION_LANES
-→ DOCUMENTATION_MAP
-→ selected remote LANE_STATE
-→ relevant PROJECT_MEMORY / SELF_LEARNING / learning/LEARNING_STATE.json
-→ GIT_WORKFLOW / POLICY_REGISTRY / WORKSPACE_WSL
-→ TEST_STRATEGY when judging/changing tests
-→ SERVER_ENVIRONMENT / MODEL_EVALUATION for benchmark/model work
-→ RECOVERY_PLAYBOOK / WORKFLOW_HEALTH when degraded or recovering
-→ task-specific contracts/source/evidence
-```
+**CORE (every new session):** fresh canonical/lane refs; `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, `WORKFLOW_ROUTER.md`; the selected lane and existing run. Read the current policy profile below before the corresponding action. Compact prompts reduce user typing, not evidence obligations.
+
+| Profile | Additional required reads |
+|---|---|
+| Resume / write / handoff | `WORKFLOW_CONTINUITY.md`, `GIT_WORKFLOW.md`, `EXECUTION_LANES.md`; relevant workspace and contract identities |
+| Implement / code review / validation | exact accepted Blueprint + phase contracts/approved changes, `TEST_STRATEGY.md`, scoped source/evidence and applicable safety/recovery rules |
+| Documentation change | this map, affected policy owners, `POLICY_REGISTRY.md`, `SELF_LEARNING.md` when learning semantics change |
+| Full DOC-AUDIT | **all 20 active root control documents**, every changed artifact, referenced current governance/learning/test/measurement evidence and exact relevant product contracts; no summary-only audit |
+| Health / recovery | `WORKFLOW_HEALTH.md`, `RECOVERY_PLAYBOOK.md`, relevant immutable learning records and current lifecycle entries |
+| Model / film quality | `MODEL_EVALUATION.md`, `SERVER_ENVIRONMENT.md`, exact evaluation baseline and relevant film design contract |
+
+Machine lifecycle reconciliation still runs at bootstrap; selective prose loading does not skip it. Read active policy content before applying it. Within one session, unchanged blobs already read may be reused by exact identity; a new session must retrieve its required profile again. Record selected profile, actual file identities and omitted non-applicable scopes in the run/review. A digest or summary alone is not a substitute for first reading required semantics. Expand context when a reference is ambiguous; never truncate a safety contract to meet a token target.
+
+Product contracts live in the **exact source commit** selected by `SOURCE_VISIBILITY.EXACT_SOURCE_IDENTITY`, not necessarily on `main`. Resolve `contracts/AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md`, the phase approval's normative set, and approved candidate-specific changes there. Historical candidate wording in an immutable contract is interpreted with its external approval record, not rewritten in place.
 
 ## Source-of-truth matrix
 
 | Artifact | Owns | Must update when | Must NOT own |
 |---|---|---|---|
-| `PROJECT_STATE.md` | current global mode/phase/gates, durable candidate, active run, blockers, documentation release, **derived learning aggregates** | any global truth changes | detailed learning lifecycle/history |
+| `PROJECT_STATE.md` | current snapshot selector and current global mode/phase/gates, durable candidate, active run, blockers, documentation release, **derived learning aggregates** | any global truth changes | detailed learning lifecycle/history |
 | `NEXT_WORK_ITEM.md` | exact resumable action, input identity, success/fail/block routes | active work or routing changes | project history |
 | `PROJECT_ROADMAP.md` | ordered phase/work milestones and completion criteria | roadmap/order/closure criteria change | current low-level WIP details |
 | `WORKFLOW_ROUTER.md` | deterministic task routing, bootstrap reconciliation and return paths | routing/process policy changes | source implementation details |
@@ -55,7 +54,7 @@ PROJECT_STATE
 | `workflow-health/metrics/*` | immutable comparable workflow-health measurement snapshots/baselines | comparable metric population/window closes | mutable current routing state |
 | `reviews/*` | immutable review verdict/findings for exact target | review completes | mutable current state |
 | `deliveries/*` | immutable delivery identity | delivery closes | next work |
-| `AI_FILM_STATE_CHECKPOINT_Vn.*` | immutable milestone snapshot | milestone only | current truth |
+| `AI_FILM_STATE_CHECKPOINT_Vn.md` / `AI_FILM_PROJECT_STATE_Vn.json` | immutable milestone snapshot; only the explicitly selected JSON is the current machine projection | milestone only | independent current authority without the selector |
 
 ## Freshness rules
 
@@ -108,6 +107,7 @@ Mutable facts have one owner. Other docs link to it. Historical fields embedded 
 Portable documentation checks:
 
 ```bash
+python3 tools/check_state_contract.py
 python3 tools/check_project_docs.py
 python3 tools/check_documentation_governance.py
 python3 tools/check_learning_lifecycle.py
@@ -117,8 +117,16 @@ python3 tools/audit_documentation_v2.py
 Prepared WSL reconciliation additionally runs:
 
 ```bash
-python3 tools/check_workflow_continuity.py
+python3 tools/check_workflow_continuity.py --require-remote
 python3 tools/check_runtime_state.py
 ```
 
 These guardrails do not substitute for independent DOC-REVIEW or holistic DOC-AUDIT. A checker PASS proves only the invariants it actually evaluates; reviewers must not elevate structural existence checks into semantic effectiveness proof.
+
+## State projection and check scope
+
+A current-state transaction prepares the intended Markdown, selected JSON and checkpoint together. `STATE_VERSION` is the sole selector; unrelated higher-numbered snapshots cannot select a different run. Do not edit historical snapshots. The shared state-contract guard rejects missing/duplicate selectors, malformed JSON and mismatched versions. Field-specific guards still own their stated parity checks; this is not complete schema validation of every nested business field.
+
+`check_workflow_continuity.py` reports `SCHEMA_ONLY` when lane access is unavailable and no strict scope was requested. That result cannot close a handoff. CI and formal reconciliation use `--require-remote`; unavailable/failing lane retrieval then fails closed. Local worktree and live host checks remain distinct from remote ledger verification.
+
+When a run binds a local worktree, formal local handoff also uses `--require-local`; remote-only CI may report `local=NOT_EVALUATED` and cannot close that local obligation. A local success checks HEAD identity only; dirty-tree/native status belongs to its applicable runtime/workspace guards.

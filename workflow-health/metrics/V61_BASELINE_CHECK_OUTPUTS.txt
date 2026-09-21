@@ -1,0 +1,99 @@
+COMMAND: python3 tools/audit_documentation_v2.py
+OBSERVED_EXIT: 0
+DOC_AUDIT_PASS 20 active docs lifecycle-aware-checkers learning-lifecycle-enforced
+
+COMMAND: python3 tools/check_continuity_measurements.py
+OBSERVED_EXIT: 0
+CONTINUITY_MEASUREMENT_CHECK_PASS state=V60 qualifying=0 required=3 status=PENDING_MEASUREMENT
+
+COMMAND: python3 tools/check_documentation_governance.py
+OBSERVED_EXIT: 0
+PASS documentation governance release-selection/promotion/learning-lifecycle/source-visibility/test-provenance invariants
+
+COMMAND: python3 tools/check_learning_lifecycle.py
+OBSERVED_EXIT: 0
+LEARNING_LIFECYCLE_CHECK_PASS 18 records role=PROMOTED branch=main pending_activation=0 unresolved_ineffective=0 pending_measurement=2 overdue_measurement=0 promotion_evidence=resolved promotion_target=1a381281c43950cd45e515d291841e21c9ef7069
+
+COMMAND: python3 tools/check_project_docs.py
+OBSERVED_EXIT: 0
+DOCS_CHECK_PASS 20 active files state_version=60 state_kind=VALIDATION
+
+COMMAND: python3 tools/check_runtime_state.py
+OBSERVED_EXIT: 0
+RUNTIME_STATE_CHECK_PASS state_version=60 state_kind=VALIDATION implement=86bb64938a136e3f8d6cfd0266685a01cb832b77 review=86bb64938a136e3f8d6cfd0266685a01cb832b77 dirty=0
+
+COMMAND: python3 tools/check_workflow_continuity.py
+OBSERVED_EXIT: 0
+WORKFLOW_CONTINUITY_CHECK_PASS state=V60 run=RUN-P00-VALIDATION-002 workflow=WF-P00-VALIDATION-ENTRY step=V02_LOCAL_OPERATOR_LAB_AUTHORITY
+
+COMMAND: python3 tools/test_continuity_measurements.py
+OBSERVED_EXIT: 0
+PASS baseline_zero_events
+PASS count_drift
+PASS one_event_reconciled
+PASS semantic_duplicate
+PASS duplicate_logical_run
+PASS repeat_without_identity_change
+PASS repeat_with_identity_change
+PASS same_run_required
+PASS tamper_hash
+PASS three_events_require_ready_status
+PASS three_events_ready
+PASS failed_event_preserved_not_counted
+ADVERSARIAL_CONTINUITY_MEASUREMENT_TEST_PASS 12 cases
+
+COMMAND: python3 tools/test_learning_lifecycle_checker.py
+OBSERVED_EXIT: 0
+PASS stale_activation: stale-current-release-activation
+PASS ineffective_without_successor: ineffective-without-successor
+PASS aggregate_drift: learning-backlog-drift
+PASS effective_without_evidence: effective-without-evidence
+PASS effective_without_receipt: effective-without-receipt
+PASS success_metric_drift: success-metric-drift
+PASS receipt_metric_hash_mismatch: receipt-metric-hash
+PASS unrelated_effectiveness_evidence: receipt-evidence-binding
+PASS active_without_activation_evidence: active-without-activation-evidence
+PASS overdue_measurement_drift: learning-overdue-measurement-drift
+PASS release_drift: register-documentation-release-drift
+PASS partial_promotion_verdict: partial-promotion-verdict-set
+PASS mismatched_promotion_target: promotion-target-design-mismatch
+PASS design_stage_predeclared_verdicts: accepted role=DESIGN
+PASS review_stage_review_only: accepted role=REVIEW
+PASS audit_stage_full_verdict_set: accepted role=AUDIT
+ADVERSARIAL_LEARNING_LIFECYCLE_TEST_PASS 16 cases
+
+COMMAND: python3 tools/test_project_docs_checker.py
+OBSERVED_EXIT: 0
+PASS baseline
+PASS stale_live_authority
+PASS explicit_historical_authority
+PASS governance_parity_drift
+PASS promoted_candidate_state
+PASS promoted_current_pair_prospective
+PASS design_current_pair_prospective
+PASS promoted_current_pair_subject_to_review
+PASS design_current_pair_subject_to_review
+PASS mixed_line_historical_does_not_mask_live_stale
+PASS mixed_line_historical_does_not_mask_current_stage
+PASS source_visibility_parity_drift
+PASS recent_ci_meta_review_parity_drift
+PASS forensic_promotion_finalization_parity_drift
+PASS forensic_authority_reference_parity_drift
+PASS forensic_ci_credential_evidence_parity_drift
+PASS forensic_promotion_finalization_missing_target
+PASS governance_previous_active_release_drift
+PASS governance_recovery_evidence_drift
+PASS governance_forensic_evidence_drift
+PASS governance_promotion_evidence_drift
+PASS governance_authority_evidence_drift
+PASS governance_recovery_missing_target
+PASS full_git_tree_missing_ref
+ADVERSARIAL_PROJECT_DOCS_TEST_PASS 24 cases
+
+PROBE=workspace_absent
+EXIT=0
+WORKFLOW_CONTINUITY_CHECK_PASS state=V60 run=RUN-P00-VALIDATION-002 workflow=WF-P00-VALIDATION-ENTRY step=V02_LOCAL_OPERATOR_LAB_AUTHORITY
+
+PROBE=higher_snapshot_shadow
+EXIT=0
+WORKFLOW_CONTINUITY_CHECK_PASS no-active-run state=V999999

@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V60
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V61
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 60
+STATE_VERSION: 61
 CURRENT_MODE: VALIDATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: M-P00-VALIDATION-DEV22
@@ -15,23 +15,23 @@ DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
 DOCUMENTATION_GOVERNANCE:
   RELEASE_ID: DOCSYS-V2-R9
   PREVIOUS_ACTIVE_RELEASE: DOCSYS-V2-R9
-  PROMOTION_STATE: ACTIVE_ON_PROMOTION
-  REVISION: R33_V60_WSL_AUTHORITY_HOST_SUPPORT
-  DESIGN_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-design
-  REVIEW_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-review
-  AUDIT_BRANCH: lane/docs-v2-r9-v60-wsl-authority-host-support-audit
-  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V60_WSL_AUTHORITY_HOST_SUPPORT.md
-  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-034
-  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R34_PASS.md
-  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-034
-  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R34_PASS.md
-  ACTIVATION_CONDITION: "Exact V60 WSL-authority/host-support tree binds R34/A34 to one design SHA and preserves one semantic tree across DESIGN, REVIEW, AUDIT and PROMOTED roles."
-  PROMOTION_RULE: "R34/A34 are the final verdict identities for this exact tree. Verdict artifacts may be added after design freeze; no authority/host-support/native/learning semantic change is allowed after review."
+  PROMOTION_STATE: PROMOTED
+  REVISION: R34_V61_DESIGN_OPTIMIZATION
+  DESIGN_BRANCH: lane/docs-v2-r9-v61-design-optimization-design
+  REVIEW_BRANCH: lane/docs-v2-r9-v61-design-optimization-review
+  AUDIT_BRANCH: lane/docs-v2-r9-v61-design-optimization-audit
+  DESIGN_RECORD: docs/DOCUMENTATION_SYSTEM_R9_V61_DESIGN_OPTIMIZATION.md
+  FINAL_REVIEW_ID: DOC-V2-R9-REVIEW-035
+  FINAL_REVIEW_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_REVIEW_R35_PASS.md
+  FINAL_AUDIT_ID: DOC-V2-R9-AUDIT-035
+  FINAL_AUDIT_RECORD: reviews/DOCUMENTATION_SYSTEM_R9_AUDIT_R35_PASS.md
+  ACTIVATION_CONDITION: "Exact V61 control-plane tree binds R35/A35 to one design SHA across DESIGN, REVIEW, AUDIT and PROMOTED roles."
+  PROMOTION_RULE: "R35/A35 are final verdict identities. Only predeclared review/audit artifacts may be added after design freeze; semantic changes reopen design review."
   RECOVERY_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-RECOVERY-011.md
   FORENSIC_HARDENING_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V53-GOVERNANCE-EVIDENCE-PARITY-030.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V44-PAIR-LOCAL-EFFECTIVENESS-021.md
   AUTHORITY_REFERENCE_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-AUTHORITY-015.md
-  NOTE: "Historical/prior-tree R33/A33 completed V59. V60 reconciles WSL-local authority inbox deployment and the audited Windows host-support blocker without weakening V02/V03/native policy."
+  NOTE: "Historical/prior-tree R34/A34 completed V60. V61 optimizes control-plane rules and guards while preserving all product and validation facts."
 
 ACCEPTED_CODE_CANDIDATE:
   VERSION: 0.1.0.dev22
@@ -188,7 +188,7 @@ CONTINUITY_EFFECTIVENESS_MEASUREMENT:
   CONTINUITY_MEASUREMENT_STATUS: PENDING_MEASUREMENT
 
 FORENSIC_HARDENING:
-  STATUS: ACTIVE_ON_PROMOTION
+  STATUS: ACTIVE
   HEALTH_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V41-FORENSIC-012.md
   RECENT_CI_META_REVIEW: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V60-WSL-AUTH-HOST-SUPPORT-037.md
   PROMOTION_FINALIZATION_EVIDENCE: workflow-health/HEALTH_REVIEW-DOCSYS-R9-V49-VALIDATION-P7-026.md
@@ -224,4 +224,4 @@ CODE_REVIEW_PASS: true
 NEXT_ACTION: "Update Windows to 25H2 or later and reboot. Validation will then re-observe exact host facts and create/sign/verify the fresh V02 authority graph entirely inside WSL before any V03 native execution."
 ```
 
-Historical/prior-tree R33/A33 remain immutable V59 authority. V60 reconciles validation head `517783d...`: authority tooling, key and inbox are fully WSL-local/deployment-verified; exact dev22 prodlike/LAB substrates remain ready and all 86 cases remain NOT_RUN. The only current blocker is the audited Windows host-support update before ephemeral authority generation. R34/A34 bind this exact V60 semantic tree.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 bind the V61 control-plane optimization tree. Product source, accepted candidate, learning register, validation run, host-support blocker and native results are unchanged. This documentation transaction grants no native or HOST_READY authority. Review assurance is same-chat role separation, not external certification.

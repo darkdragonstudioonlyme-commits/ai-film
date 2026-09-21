@@ -90,3 +90,9 @@ Review findings bind exact target identity and close only on a later independent
 5. consumer rechecks critical invariants;
 6. producer cannot close its own findings;
 7. global gate transitions only on canonical `main`.
+
+## Assurance disclosure
+
+The Blueprint's same-chat review discipline remains applicable. When the same assistant performs sequential roles, every verdict declares `ASSURANCE_CLASS: SAME_CHAT_ROLE_SEPARATED`, its exact target, separate checkout/evidence, and the checks actually rerun. This provides procedural separation, not an independent human, external organization or context-isolated agent. Changing branch names cannot manufacture independence.
+
+A reviewer does not patch the consumed candidate. A finding returns to the producer and invalidates the old target for that correction; the next review binds a new immutable target. Higher-assurance reviews may be requested for material risks, but do not retroactively relabel same-chat records as externally independent.

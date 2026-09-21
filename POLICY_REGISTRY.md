@@ -94,3 +94,7 @@ Review a policy when assumptions change, it causes repeated exceptions/workaroun
 ## Historical-guidance placement
 
 Superseded system-design/how-to files move out of active discovery paths into `history/` or remain retrievable from Git. Immutable review/checkpoint records may stay in evidence locations, but active bootstrap files must not tell a new chat to follow retired instructions.
+
+## Optimization revision provenance
+
+The V61 design record `docs/DOCUMENTATION_SYSTEM_R9_V61_DESIGN_OPTIMIZATION.md` updates existing STATE, ROUTE, LANE, HEALTH, CONTINUITY, GIT and LEARN policy interpretations without introducing a parallel policy registry. It records evidence, changed owners, migration, enforcement limits and the declared role-separated review/audit artifacts. Native/phase acceptance and existing learning success metrics are unchanged. New film design proposals are non-active backlog until their own design review.

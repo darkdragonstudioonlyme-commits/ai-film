@@ -1,54 +1,38 @@
 # AI-FILM-SERVER — Workflow Router
 
-This is the deterministic routing policy for a fresh chat. It exists so a user can say **“continue”** without restating the entire project.
+This policy lets a user say **“continue”** without restating the project. Reconciliation identifies work; it does not authorize execution. An executable step has all applicable design, code-review, test-oracle, environment and authority prerequisites satisfied; an open design/test gap is not executable WIP.
 
 ## 1. Bootstrap before routing
 
-```text
-fetch origin/main + relevant lane refs
-→ read PROJECT_STATE + owning LANE_STATE
-→ if ACTIVE_RUN_ID exists, read its workflow-runs ledger first
-→ run workflow-continuity + runtime-state reconciliation
-→ run learning lifecycle reconciliation
-→ read NEXT_WORK_ITEM
-→ verify local selected worktree identity/status if used
-→ evaluate WORKFLOW_HEALTH triggers
-→ route
-```
+Fresh-fetch canonical and relevant lane refs. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, the owning `LANE_STATE.md` and existing run record. Select additional requirements through `DOCUMENTATION_MAP.md` before using the corresponding capability. Run applicable state, workflow-continuity and learning checks. Verify the selected worktree before writes; preserve WIP.
 
-Run `python3 tools/check_learning_lifecycle.py` during bootstrap. Lifecycle drift or unresolved learning debt is routing evidence; an old learning record or stale memory note cannot override the lifecycle register.
-
-Never route from cached `origin/lane/*` refs without a fresh fetch.
+`PROJECT_STATE.md:STATE_VERSION` selects exactly one JSON checkpoint. Never infer authority from the numerically largest snapshot. An unavailable remote/local check is `NOT_EVALUATED`, not proof of reconciliation. Formal handoff requires the applicable complete scope.
 
 ## 2. Workflow status vocabulary
 
 `READY | RUNNING | WIP | HANDED_OFF | WAITING_INPUT | BLOCKED | REVIEWING | FAILED | COMPLETE`
 
-A workflow output is trusted only through its declared immutable output contract, never because another lane says “PASS”.
+Labels require the immutable evidence contract. The same active run may remain blocked while a separately scoped documentation excursion is processed.
 
 ## 3. “Continue” algorithm
 
-Use the first matching rule:
+Use the first matching rule **for the requested scope** after read-only identity reconciliation:
 
-1. **Active RUN_ID is not COMPLETE** → resume/reconcile that same run via `WORKFLOW_CONTINUITY.md`; never create a duplicate run for the same workflow/base.
-2. **INTENT exists without COMPLETE or producer output is ahead of canonical state** → classify `CONTINUITY_RECOVERY`; verify/adopt exact output before rerunning any step.
-3. **STATE_DRIFT or recovery condition exists** → use `RECOVERY_PLAYBOOK.md` first; do not route normal work on untrusted state.
-4. **Learning lifecycle checker fails, unresolved ineffective learning exists, measurement debt is due, or health evidence reports `SEMANTIC_EVIDENCE_MISMATCH` / `METRIC_DEFINITION_DRIFT`** → route `WORKFLOW_REVIEW`/DOC-DESIGN before more affected work; preserve the current run return point. Structural checker PASS never clears semantic evidence debt by itself.
-5. **Workflow health is META_REVIEW_REQUIRED, including a self-declared PASS whose required verdict-bearing CI is red** → route `WORKFLOW_REVIEW` before more brute-force patches; bind the distinction between exact design-target evidence and verdict-branch process health.
-6. **Uncommitted WIP exists and state names it** → resume that WIP in its owning lane; do not reset to the last package.
-7. **A candidate is HANDED_OFF and REVIEW has not reviewed that exact identity** → REVIEW exact candidate.
-8. **Latest REVIEW is FAIL with open findings** → route findings to their producer workflow; IMPLEMENT fixes source findings, DESIGN handles genuine design gaps.
-9. **Latest delta REVIEW passes but umbrella completeness blocker remains** → continue next roadmap implementation node.
-10. **AUTHOR_COMPLETE=true and CODE_REVIEW_HANDOFF_READY=true** → formal CODE_REVIEW exact final candidate.
-11. **CODE_REVIEW_PASS=true** → follow `PROJECT_ROADMAP.md` to VALIDATION; do not stay in implementation by habit.
-12. **A workflow is BLOCKED** → follow its `RETURN_TO` / `USER_ACTION_REQUIRED` contract below.
-13. **Test oracle/business expectation is proposed to change** → route TEST-DESIGN/TEST-REVIEW using `TEST_STRATEGY.md`; implementation code is not test authority.
-14. **Model comparison/benchmark requested** → verify `SERVER_ENVIRONMENT.md`/`MODEL_EVALUATION.md`; block claims whose environment facts are unavailable.
-15. If none match, state is inconsistent → create a documentation/state blocker; do not guess.
+1. **Untrusted state, conflicting owner, unresolved mutation or STATE_DRIFT** → `RECOVERY_PLAYBOOK.md`; no affected normal execution. Reading and documenting the conflict remain allowed.
+2. **Failed lifecycle guard, overdue measurement, unresolved ineffective learning, semantic evidence mismatch, or mandatory workflow-health intervention** → `WORKFLOW_REVIEW`; preserve the original run/cursor. An active run cannot bypass this guard.
+3. **Explicit user request for another authorized scope** → select its workflow and record an excursion with `PARENT_RUN_ID`, immutable base, scope and `RETURN_TO`. A blocked product run is not replaced. Safety guards still apply to the requested scope; no implicit host changes or new spending.
+4. **Affected workflow is BLOCKED / WAITING_INPUT** → apply the block protocol. With no changed input, return the existing block; do not regenerate artifacts, poll repeatedly in one turn, or create a release just to restate it.
+5. **INTENT without COMPLETE, or output ahead of canonical state** → `CONTINUITY_RECOVERY`: inspect exact outputs and adopt/reuse before retry. Uncertain non-idempotent effects stay blocked.
+6. **Existing run or documented WIP is executable** → continue the same RUN_ID at its verified cursor. Re-evaluate guards before each material side effect and before advancing a completed step.
+7. **Unreviewed immutable handoff exists** → REVIEW that exact identity. A FAIL routes findings to the producer; design conflicts use DESIGN_GAP, not an acceptance rewrite.
+8. **Residual implementation scope exists** → the next reviewed roadmap increment. Formal CODE_REVIEW requires `AUTHOR_COMPLETE` and `CODE_REVIEW_HANDOFF_READY`.
+9. **CODE_REVIEW_PASS with no active/blocking validation cursor** → enter authorized VALIDATION via the roadmap. A code verdict never overrides native prerequisites or grants HOST_READY.
+10. **Test oracle/business behavior must change** → TEST-DESIGN / TEST-REVIEW. Model comparison → MODEL-EVAL with exact environment and evaluation identity.
+11. **No rule resolves the request** → explicit routing/state blocker; do not guess or silently restart.
+
+Read-profile selection, the precedence above and excursion handling are procedural policy. Structural CI checks do not prove that a conversational agent followed every routing decision.
 
 ## 4. Block protocol
-
-A block record must contain:
 
 ```yaml
 BLOCK_ID:
@@ -61,47 +45,29 @@ RETURN_TO:
 STATUS: OPEN|RESOLVED
 ```
 
-If `USER_ACTION_REQUIRED=false`, the assistant must attempt the safe in-scope resolution and continue. Do not ask the user to solve implementation work.
+If `USER_ACTION_REQUIRED=false`, attempt the safe in-scope resolution. If true, request only the external action unavailable to the assistant. Resolution requires new evidence for the blocked predicate, not a user message alone. Expiring authority is generated only after durable prerequisites are verified. Do not reinterpret an unchanged blocker as a new failure or silently lower its gate.
 
-If `USER_ACTION_REQUIRED=true`, request only the minimum external action that cannot be performed by available tools. Persist the block before ending the turn.
+## 5. Findings and design-gap routes
 
-## 5. Review finding/comment protocol
-
-Candidate-specific defects become immutable findings bound to target SHA/package identity. They route back to the producing lane as `FIX_PENDING_REVIEW` and close only when REVIEW verifies a new immutable candidate.
-
-Reusable observations go through `SELF_LEARNING.md`: immutable learning evidence plus lifecycle register update. A memory note alone does not close learning lifecycle.
-
-## 6. Design-gap route
-
-If correct implementation requires changing reviewed FD/D00/public behavior:
+Candidate defects become immutable findings bound to exact target identity. The producer marks a correction `FIX_PENDING_REVIEW`; a subsequent reviewer verifies closure. Reusable lessons use `SELF_LEARNING.md`, not memory-based contract overrides.
 
 ```text
-IMPLEMENT detects DESIGN_GAP
-→ persist exact evidence
-→ stop affected implementation scope
-→ DESIGN
-→ DESIGN_REVIEW
-→ only approved design returns to IMPLEMENT
+reviewed-contract conflict → preserve evidence → DESIGN_GAP
+→ DESIGN → DESIGN_REVIEW → approved return to IMPLEMENT
 ```
 
-Never “fix” a reviewed-contract conflict by silently changing code acceptance or documentation wording.
-
-## 7. Validation-failure route
+## 6. Validation-failure route
 
 ```text
-VALIDATION_FAILURE
-→ persist failure/evidence
-→ MASTER/routing decision
-→ IMPLEMENT or PATCH as directed
-→ CODE_REVIEW if code changed
-→ VALIDATION again
+VALIDATION_FAILURE → immutable evidence → MASTER routing
+→ IMPLEMENT/PATCH when approved → CODE_REVIEW → VALIDATION
 ```
 
-Review and validation do not patch production source in-place.
+Review/validation never patch production source in place.
 
-## 8. Workflow instance contract
+## 7. Workflow instance contract
 
-Every active work item should expose in `NEXT_WORK_ITEM.md`:
+`NEXT_WORK_ITEM.md` or the explicit excursion run binds:
 
 ```yaml
 RUN_ID:
@@ -119,27 +85,10 @@ ON_BLOCK:
 EXIT_CONDITION:
 ```
 
-This contract is what enables accurate cross-chat continuation.
+Excursions additionally bind `PARENT_RUN_ID`, `RETURN_TO`, and the preserved product gates. Completion returns to reconciliation, not automatic execution of a formerly blocked action.
 
-## 9. Workflow meta-review route
+## 8. Workflow meta-review and interruption
 
-When `WORKFLOW_HEALTH.md` triggers `META_REVIEW_REQUIRED`:
+Preserve WIP → identify repeated assumptions → smallest systemic correction → role-separated review → canonical activation → future effectiveness measurement → original return point. Use `WORKFLOW_HEALTH.md` to distinguish safety work from unmeasured process churn.
 
-```text
-preserve WIP/evidence
-→ stop affected loop
-→ create health review
-→ reconcile learning lifecycle state
-→ classify root cause
-→ update workflow/test/policy/docs/tooling if systemic
-→ independent review of correction
-→ canonical activation
-→ effectiveness measurement trigger
-→ RETURN_TO original workflow
-```
-
-Repeated failure is information about the workflow itself; do not merely increase patch count.
-
-## 10. Interruption invariant
-
-Chat timeout, model/tool disconnect or execution-window exhaustion never starts a replacement workflow. Persist/recover the same `RUN_ID`; see `WORKFLOW_CONTINUITY.md`.
+Timeout, model switch or chat boundary never creates a replacement logical run. `WORKFLOW_CONTINUITY.md` owns takeover, write-ahead journaling, conflict handling and output reuse.

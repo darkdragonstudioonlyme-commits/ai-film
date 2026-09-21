@@ -204,3 +204,13 @@ An active successor may close the **unresolved ineffective** count for an older 
 ## Anti-overfitting
 
 Do not create global policy from one accidental tool quirk unless the rule generalizes or materially improves safety. Repeated incidents sharing one root cause become one systemic learning, not many near-duplicate rules.
+
+## Scope and limits of self-learning
+
+Distinguish **process correction** (policies, routing, checkers and recovery) from **film-quality improvement** (prompts, references, models, training and editing). The process register does not prove that generated films are improving or that model weights learn automatically. Film experiments use `MODEL_EVALUATION.md`; only reviewed experiments may change a production baseline.
+
+`EFFECTIVE` is a claim about the declared metric, scope and observation window, not an eternal guarantee. A later recurrence reopens measurement/meta-review without erasing the earlier receipt. This session's policy activation cannot be counted as proof of its own future effectiveness.
+
+For event-based metrics, each qualifying opportunity must be logged, including unsuccessful resumes and explicit eligibility exclusions. Count the **next required events**, not any convenient later successes. A failure in that population cannot be hidden by selecting three later passes. Structural event-count checks only validate their schema/count predicates; an independent/role-separated metric review resolves event evidence to actual immutable records and verifies population completeness before EFFECTIVE.
+
+A zero persisted-event count means no qualifying receipts are recorded; it does not prove no real interruptions occurred. At a review boundary distinguish `NO_QUALIFYING_EVENT_OBSERVED`, `EVENT_NOT_INSTRUMENTED` and `UNKNOWN` with evidence. Missing instrumentation is measurement debt to assess, not automatically a failed product gate. Preserve the original success metric and event threshold.
