@@ -1,0 +1,203 @@
+{
+  "conclusion": "SITE_RECONCILIATION_BYPASSES_QUALIFICATION_GATE",
+  "expected_active_discovery": {
+    "T14-A": 11,
+    "T14-B": 11,
+    "T14-C": 16
+  },
+  "expected_recovery": {
+    "T14-A": 11,
+    "T14-B": 11,
+    "T14-C": 16
+  },
+  "fixture_class": "SYNTHETIC_WORKSPACE_ONLY",
+  "host_ready": "NOT_EVALUATED",
+  "kind": "P00_V03_QUALIFICATION_RECOVERY_COMPATIBILITY_DIAGNOSTIC",
+  "native_execution_started": false,
+  "qualification_issued": false,
+  "rows": [
+    {
+      "case": "T14-A",
+      "exit": 11,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_MISSING",
+      "variant": "QUALIFICATION_MISSING"
+    },
+    {
+      "case": "T14-A",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "QUALIFICATION_MISSING"
+    },
+    {
+      "case": "T14-B",
+      "exit": 11,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_FAILED_OR_WITHDRAWN",
+      "variant": "STATUS_FAIL"
+    },
+    {
+      "case": "T14-B",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "STATUS_FAIL"
+    },
+    {
+      "case": "T14-B",
+      "exit": 11,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_FAILED_OR_WITHDRAWN",
+      "variant": "WITHDRAWN"
+    },
+    {
+      "case": "T14-B",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "WITHDRAWN"
+    },
+    {
+      "case": "T14-B",
+      "exit": 11,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_FAILED_OR_WITHDRAWN",
+      "variant": "GATE_BLOCKER"
+    },
+    {
+      "case": "T14-B",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "GATE_BLOCKER"
+    },
+    {
+      "case": "T14-B",
+      "exit": 11,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_EXPIRED",
+      "variant": "EXPIRED_OVER_30_DAYS"
+    },
+    {
+      "case": "T14-B",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "EXPIRED_OVER_30_DAYS"
+    },
+    {
+      "case": "T14-C",
+      "exit": 16,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_CONTENT_MISMATCH",
+      "variant": "DESIGN_OR_CONTRACT_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "DESIGN_OR_CONTRACT_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 16,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_CONTENT_MISMATCH",
+      "variant": "BUILD_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "BUILD_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 16,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "QUALIFICATION_CONTENT_MISMATCH",
+      "variant": "TEST_SET_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "TEST_SET_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 16,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "PROFILE_NOT_QUALIFIED",
+      "variant": "PROFILE_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "PROFILE_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 16,
+      "interface": "preflight",
+      "outcome": "BLOCKED",
+      "purpose": "DISCOVERY",
+      "reason": "PROFILE_NOT_QUALIFIED",
+      "variant": "PAYLOAD_MISMATCH"
+    },
+    {
+      "case": "T14-C",
+      "exit": 0,
+      "interface": "verify",
+      "outcome": "AUTHORIZED",
+      "purpose": "RECONCILIATION_ONLY",
+      "reason": null,
+      "variant": "PAYLOAD_MISMATCH"
+    }
+  ],
+  "schema_version": 1,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005"
+}

@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_TEST_EXECUTION_BINDING_PRODUCER_MISSING
+STATUS: BLOCKED_PRODUCT_QUALIFICATION_RECOVERY_GATE_MISMATCH
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -174,8 +174,8 @@ PRODLIKE_DEV22_MIGRATION:
   NATIVE_EXECUTION_STARTED: false
 
 ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
-  REMAINING_REQUIREMENT: "Close TEST_GAP-P00-V03-AUTHORITY-BINDING-001 through WORKFLOW_REVIEW and TEST-DESIGN/TEST-REVIEW so the dev22 local-authority graph can be generated from approved oracles plus fresh observations without hand-authored native bindings."
+  BLOCK_ID: BLOCK-P00-VAL-V03-QUALIFICATION-RECOVERY-002
+  REMAINING_REQUIREMENT: "Reconcile accepted product SITE recovery qualification gating with approved T14-A/B/C recovery behavior through WORKFLOW_REVIEW, product TEST_CHANGE/TEST_REVIEW and code review; then resume the already-reviewed binding-producer implementation."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -191,3 +191,5 @@ Choice B remains explicit: local authority is intentionally same-trust-domain an
 Post-update evidence on 2026-09-21 supersedes only the old Windows-update blocker. Historical prodlike/rebuild verdicts are preserved, not rerun or promoted into new native proof. The new receipt verifies host support, key/source/tooling/seal parity and missing-envelope fail-closed behavior. Canonical main synchronization is pending; the original run and all native gates remain unchanged.
 
 V02B binding-gap evidence is test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md. No authority envelope was created or signed and no native case started.
+
+V03 qualification-recovery product gap is test-governance/TEST_GAP-P00-V03-QUALIFICATION-RECOVERY-002.md. Synthetic diagnostic: 10/10 active DISCOVERY variants block as approved while 10/10 SITE RECONCILIATION_ONLY variants authorize. No native case ran.
