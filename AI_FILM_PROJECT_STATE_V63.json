@@ -178,7 +178,9 @@
       "user_action_required": false,
       "route": "WORKFLOW_REVIEW_THEN_TEST_DESIGN",
       "return_to": "RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE"
-    }
+    },
+    "binding_gap_canonical_sync_review_record": "reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-REVIEW-001.md",
+    "binding_gap_canonical_sync_audit_record": "reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-AUDIT-001.md"
   },
   "production_like_readiness": {
     "status": "READY_NON_NATIVE_PRODLIKE_OPERATIONS",

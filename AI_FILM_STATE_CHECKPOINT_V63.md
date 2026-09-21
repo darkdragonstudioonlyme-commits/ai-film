@@ -19,3 +19,5 @@ WORKFLOW_REVIEW intervention WR-P00-V02B-BINDING-001 now owns the immediate next
 ## Governance boundary
 
 R35/A35 remain the active DOCSYS governance pair. V63 changes current evidence/routing only; it does not change workflow policy, product contracts, test oracles, source, learning lifecycle or native gate semantics.
+
+Canonical sync verdict paths are predeclared as reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-REVIEW-001.md and reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-AUDIT-001.md; no post-review state edit is permitted.
