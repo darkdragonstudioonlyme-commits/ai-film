@@ -91,7 +91,8 @@
     "private_key_access_forbidden": true,
     "runtime_inference_from_implementation_forbidden": true,
     "test_authority": "REVIEWED_PROCEDURES_PLUS_REVIEWED_RECIPE_CATALOG",
-    "test_design_native_execution_forbidden": true
+    "test_design_native_execution_forbidden": true,
+    "token_specific_recipe_contract_required": true
   },
   "kind": "P00_V03_AUTHORITY_BINDING_PRODUCER_RECIPE_CATALOG",
   "oracle_changed": false,
@@ -114,6 +115,19 @@
         "RECONCILIATION_ONLY",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Create an abandoned native host guard with an unresolved durable fence; only reviewed reconciliation may proceed and the lock is never stolen.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -146,6 +160,19 @@
         "NO_DUPLICATE_MUTATION",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Hold the authorized host guard on the first operation while a contender attempts an overlapping stage.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -175,6 +202,19 @@
         "ADOPT_ROUTE",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe an Ubuntu 24.04 WSL2 target meeting owner, user, startup, quiesce and nonsensitive adoption preconditions.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-03",
@@ -204,6 +244,19 @@
         "ISOLATION_BOUNDARY",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe an eligible ADOPT_NONSENSITIVE source together with its ISO-external restore prerequisites.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-15"
@@ -231,6 +284,19 @@
         "DURABLE_WAIT",
         "NO_DUPLICATE_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a valid approval that expires across the reviewed reboot or resume boundary without changing completed mutation state.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -266,6 +332,19 @@
         "OUTPUT_INTEGRITY",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe complete mandatory and optional evidence inputs for the selected bundle scope with clean redaction preconditions.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-16",
@@ -292,6 +371,19 @@
       "oracle_set": [
         "OUTPUT_INTEGRITY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Tamper one copied bundle manifest or member hash after safe bundle material exists; preserve original evidence separately.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -321,6 +413,19 @@
         "RECONCILIATION_ONLY",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a controlled C3 process or controller crash after pre-C3 protection is sealed, retaining unresolved fence and recovery material.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-11",
@@ -353,6 +458,19 @@
         "C3_PROTECTION",
         "EXPECTED_REJECTION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a C3 candidate whose pre-existing protection or postcheck prerequisites are incomplete or invalid so mutation cannot begin.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -382,6 +500,19 @@
         "CHECKPOINT_INTEGRITY",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Alter a disposable copy of trusted checkpoint bytes after reference sealing; never alter the backup of record.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -418,6 +549,19 @@
         "ISOLATION_BOUNDARY",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe a CLEAN_P00 source quiesced and stopped with bound critical manifest, provenance and checkpoint prerequisites.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-09",
@@ -449,6 +593,19 @@
         "C3_PROTECTION",
         "COEXISTENCE_HEALTH"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe target plus declared non-target resources and owner-safe health/content assertion references.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-12",
@@ -478,6 +635,19 @@
         "EXPECTED_REJECTION",
         "VERIFY_NO_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_PATH_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange an existing name/path collision or schema-safe malicious path input inside the disposable namespace; no path escape is performed.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "PATH_COLLISION_FAULT",
       "required_evidence_set": [
         "E00-03",
@@ -507,6 +677,19 @@
         "RECONCILIATION_ONLY",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange an overlapping request or crash boundary that retains guard/fence uncertainty for reconciliation.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -534,6 +717,19 @@
         "C3_PROTECTION",
         "EXPECTED_REJECTION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "After protection sealing, arrange a source write or material change that invalidates the bound source witness.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -563,6 +759,19 @@
         "CREATE_ROUTE",
         "NO_DUPLICATE_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe a supported host/runtime with the intended CREATE target name/path absent and the target parent eligible.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-03",
@@ -593,6 +802,19 @@
         "EVIDENCE_REQUIREDNESS",
         "JOURNAL_NO_OVERLAP"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Hold the host guard with a different approved route or target while a contender attempts a cross-scope operation.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -626,6 +848,19 @@
         "JOURNAL_NO_OVERLAP",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Hold the host guard under one legitimate owner SID while a contender uses another reviewed SID context.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-01",
@@ -656,6 +891,19 @@
         "ENTRY_GATE",
         "PASSIVE_NO_LAUNCH"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe SITE C0 facts for an explicit target while guest eligibility remains unknown and requires active discovery.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-04",
@@ -684,6 +932,19 @@
         "C3_PROTECTION",
         "ENTRY_GATE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe a supported preprofile where packaged WSL/runtime prerequisite is absent and the expected postprofile is pinned.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-02",
@@ -719,6 +980,19 @@
         "DURABLE_WAIT",
         "RECONCILIATION_ONLY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe clean-host ENGINE prerequisites including no pre-existing reboot and management-recovery readiness.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-11",
@@ -752,6 +1026,19 @@
         "OUTPUT_RECOVERY",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange one mandatory evidence or bundle failure while preserving bounded safe failure diagnostics.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16",
@@ -780,6 +1067,19 @@
         "C3_PROTECTION",
         "LIFECYCLE_EPOCH"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange an existing target that requires pre-C3 checkpoint/protection before host restart.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -808,6 +1108,19 @@
         "BUNDLE_OUTCOME",
         "EVIDENCE_REQUIREDNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a prior entry/runtime failure with safe blocker evidence but no apply-result, bound to FAILED_RUN scope.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -836,6 +1149,19 @@
         "BUNDLE_OUTCOME",
         "OUTPUT_RECOVERY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange the GATE_HANDOFF bundle/assessment boundary with E16/E17 separation and no self-hash prerequisite.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16",
@@ -866,6 +1192,19 @@
         "ISOLATION_BOUNDARY",
         "NO_POLICY_WEAKENING"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Change a declared shared/global policy fact after plan binding; never weaken the policy to make the test pass.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-07",
@@ -895,6 +1234,19 @@
         "EXPECTED_REJECTION",
         "ISOLATION_BOUNDARY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Change an isolated-restore NIC, share or device fact after attestation and before import.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -922,6 +1274,19 @@
         "EXPECTED_REJECTION",
         "ISOLATION_BOUNDARY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Omit one mandatory pre-boot isolation proof or mapping condition before restore import.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -950,6 +1315,19 @@
         "RECONCILIATION_ONLY",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Inject journal storage I/O failure at a reviewed persistence boundary while retaining the original fence.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11",
@@ -979,6 +1357,19 @@
         "RECONCILIATION_ONLY",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Fail the mutation-completion journal append after native completion, preserving uncertainty and blocking the next step.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -1007,6 +1398,19 @@
         "BUNDLE_OUTCOME",
         "EVIDENCE_REQUIREDNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Constrain mandatory evidence output or aggregate cap so a required semantic record cannot complete.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1033,6 +1437,19 @@
         "BUNDLE_OUTCOME",
         "EVIDENCE_REQUIREDNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Make one mandatory collector unavailable or timed out under a bounded fixture.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1062,6 +1479,19 @@
         "IDENTITY_PROFILE",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe the exact supported live host/runtime/config profile matching the plan and authenticated catalog key.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-01",
@@ -1094,7 +1524,20 @@
         "EXPECTED_REJECTION",
         "TERMINAL_FRESHNESS"
       ],
-      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Change one material host, target or config fact after plan binding and before entry or verification.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-10",
         "E00-14"
@@ -1122,6 +1565,19 @@
         "LIFECYCLE_EPOCH",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange lifecycle state where a required activation or restart epoch witness is absent or inconsistent.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-14"
@@ -1148,6 +1604,19 @@
         "EVIDENCE_REQUIREDNESS",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Combine optional and mandatory evidence failures with a residual synthetic secret so privacy precedence is exercised.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1175,6 +1644,19 @@
         "NO_DUPLICATE_MUTATION",
         "UNCERTAIN_RETAINED"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a controlled native-child timeout while process outcome remains uncertain and the durable fence is retained.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11"
@@ -1202,6 +1684,19 @@
         "OUTPUT_INTEGRITY",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Insert synthetic secrets into nested or encoded test-evidence fields for redaction validation.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1229,6 +1724,19 @@
         "NETWORK_MATRIX",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Change network boundary or context between plan/initial observation and terminal verification.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-08",
@@ -1259,7 +1767,20 @@
         "NETWORK_MATRIX",
         "NO_POLICY_WEAKENING"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange reviewed Windows and guest endpoint contexts to exercise DNS/TCP/TLS/HTTPS without security relaxation.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-08",
         "E00-14"
@@ -1287,7 +1808,20 @@
         "NETWORK_MATRIX",
         "NO_POLICY_WEAKENING"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Cause a bounded DNS, TCP, TLS or HTTPS failure in the test network context without disabling TLS or firewall policy.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-08",
         "E00-14"
@@ -1313,6 +1847,19 @@
       "oracle_set": [
         "BUNDLE_OUTCOME"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Constrain optional evidence output beyond its cap while mandatory evidence remains complete.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1339,6 +1886,19 @@
         "BUNDLE_OUTCOME",
         "EVIDENCE_REQUIREDNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Make one optional collector unavailable or timed out while mandatory inputs remain valid.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1365,6 +1925,19 @@
         "OUTPUT_RECOVERY",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Inject atomic output/publication failure after safe collection without printing raw fallback data.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1394,6 +1967,19 @@
         "C3_PROTECTION",
         "DURABLE_WAIT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Omit or deny one required affected-resource owner postcheck after C3.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -1422,6 +2008,19 @@
         "EVIDENCE_REQUIREDNESS",
         "PASSIVE_NO_LAUNCH"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe a stopped or unknown guest under passive C0 without launch and preserve REQUIRES_ACTIVE_PROBE.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-04",
@@ -1450,6 +2049,19 @@
         "EXPECTED_REJECTION",
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Submit a schema-valid path, symlink or escape request to the evidence path boundary and reject before secret reads.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1478,6 +2090,19 @@
         "CREATE_ROUTE",
         "IDENTITY_PROFILE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange an approved ENGINE transition followed by CREATE with exact pre- and post-profile expectations.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-02",
@@ -1508,6 +2133,19 @@
         "NO_DUPLICATE_MUTATION",
         "RECONCILIATION_ONLY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Crash after distro registration is observed but before ownership, user or workspace completion; retain identity and fence.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-03",
@@ -1537,6 +2175,19 @@
         "BUNDLE_OUTCOME",
         "EVIDENCE_REQUIREDNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe inventory scope before target creation with guest NOT_YET_CREATED and no gate promotion.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-04",
@@ -1564,6 +2215,19 @@
         "C3_PROTECTION",
         "VERIFY_NO_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Omit a mandatory target or affected-resource pre-C3 protection element so C3 blocks before mutation.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -1590,6 +2254,19 @@
         "ENTRY_GATE",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Provide a SITE qualification fixture with one reviewed invalid state: FAIL, withdrawn, gate blocker or expiry.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-13"
@@ -1616,6 +2293,19 @@
         "ENTRY_GATE",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Provide an otherwise valid SITE qualification with one exact design/build/test/profile/payload scope mismatch.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-13"
@@ -1642,6 +2332,19 @@
         "ENTRY_GATE",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Provide SITE active-entry probe overlays with no qualification receipt or qualification ref.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-13"
@@ -1669,6 +2372,19 @@
         "DURABLE_WAIT",
         "NO_DUPLICATE_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a route reaching the approved owner reboot or OOBE wait with durable checkpoint and fence.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-11",
@@ -1698,6 +2414,19 @@
         "C3_PROTECTION",
         "VERIFY_NO_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_C3_PROTECTION_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange protection or recovery proof located in or dependent on the WSL runtime being changed.",
+        "reset_contract": "PRISTINE_LAB_OR_MANAGEMENT_RECOVERY",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "C3_PROTECTION_FAULT",
       "required_evidence_set": [
         "E00-12"
@@ -1723,6 +2452,19 @@
       "oracle_set": [
         "PRIVACY_NO_OUTPUT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "SYNTHETIC_EVIDENCE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Leave one synthetic canary or unallowlisted raw field after sanitizer execution to require privacy blocking.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "EVIDENCE_PRIVACY_FAULT",
       "required_evidence_set": [
         "E00-16"
@@ -1759,6 +2501,19 @@
         "EXPECTED_REJECTION",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "NONE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Observe exact LAB registration/controller mode with disposable, no-real-credentials and no-production-mappings containment.",
+        "reset_contract": "VERIFY_BASELINE_ONLY",
+        "success_witness": "EXISTING_CONDITION_OBSERVED"
+      },
       "recipe_family": "OBSERVE_BASELINE",
       "required_evidence_set": [
         "E00-10",
@@ -1794,7 +2549,20 @@
         "JOURNAL_NO_OVERLAP",
         "RESOURCE_CAPACITY"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange boundary resource observations around approved minimum and capacity thresholds without exhausting the real host.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-06",
         "E00-11"
@@ -1822,7 +2590,20 @@
         "EXPECTED_REJECTION",
         "RESOURCE_CAPACITY"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange one approved resource floor below threshold in a disposable test context.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-06",
         "E00-11"
@@ -1853,6 +2634,19 @@
         "ISOLATION_BOUNDARY",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a bounded restore import or verify failure against a disposable checkpoint or clone while preserving the original.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -1881,7 +2675,20 @@
         "CAPACITY_REMEASURE",
         "RESTORE_CONTENT"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange retained clone bytes so measured free capacity falls below a later required reserve.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-06",
         "E00-15"
@@ -1909,6 +2716,19 @@
         "EXPECTED_REJECTION",
         "ISOLATION_BOUNDARY"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a same-host restore request whose source lacks clean provenance or startup guarantees.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -1936,6 +2756,19 @@
         "EXPECTED_REJECTION",
         "VERIFY_NO_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange source classification SENSITIVE, UNKNOWN or nonconsented so export/import rejects before data movement.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -1964,7 +2797,20 @@
         "JOURNAL_NO_OVERLAP",
         "RESOURCE_CAPACITY"
       ],
-      "recipe_family": "RESOURCE_NETWORK_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange multiple approved targets or allocations sharing one volume so retained bytes affect later admission.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-06",
         "E00-11"
@@ -1991,6 +2837,19 @@
         "ENTRY_GATE",
         "EXPECTED_REJECTION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Use SITE registration/context while attempting a LAB class or mode claim and require identity/class rejection.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-10"
@@ -2017,6 +2876,19 @@
         "CHECKPOINT_INTEGRITY",
         "JOURNAL_NO_OVERLAP"
       ],
+      "recipe_contract": {
+        "allowed_surface": "CONTROLLED_CONCURRENCY_OR_JOURNAL_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange source and destination restore sequence under one host guard with an immutable checkpoint link.",
+        "reset_contract": "CASE_RESET_OR_RECONCILE",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "CONCURRENCY_JOURNAL_FAULT",
       "required_evidence_set": [
         "E00-11",
@@ -2047,6 +2919,19 @@
         "NETWORK_MATRIX",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Stage a reviewed config change that remains inactive until lifecycle restart and prove the pre/post epochs.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-07",
@@ -2077,6 +2962,19 @@
         "EVIDENCE_REQUIREDNESS",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange terminal sweep or assessment timestamps beyond reviewed freshness while retaining the actual recorded time.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-14",
@@ -2110,6 +3008,19 @@
         "LIFECYCLE_EPOCH",
         "TERMINAL_FRESHNESS"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange normal target stop/start and planned host restart lifecycle with content and sentinel baseline.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-09",
@@ -2142,6 +3053,19 @@
         "EXACT_CONTENT_IDENTITY",
         "PASSIVE_NO_LAUNCH"
       ],
+      "recipe_contract": {
+        "allowed_surface": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange the explicit target stopped at start with startup behavior known; passive observation must not launch it.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "LIFECYCLE_CONFIG_FAULT",
       "required_evidence_set": [
         "E00-01",
@@ -2172,6 +3096,19 @@
         "ISOLATION_BOUNDARY",
         "RESTORE_CONTENT"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange a synthetic isolated restore source that attempts egress or out-of-surface write using no real endpoint or credential.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-15"
@@ -2200,6 +3137,19 @@
         "ENTRY_GATE",
         "EXPECTED_REJECTION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Arrange one invalid or missing trusted artifact, pin, signature or content condition at the entry boundary.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-10",
@@ -2228,6 +3178,19 @@
         "ENTRY_GATE",
         "EXPECTED_REJECTION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Provide a forged or unsupported qualification/trust artifact in an isolated entry probe without changing primary authority.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-10",
@@ -2256,6 +3219,19 @@
         "EXPECTED_REJECTION",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Provide an observed/profile-catalog combination outside the supported binding so entry blocks.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-01",
@@ -2285,6 +3261,19 @@
         "PURPOSE_SEPARATION",
         "VERIFY_NO_MUTATION"
       ],
+      "recipe_contract": {
+        "allowed_surface": "DISPOSABLE_RESTORE_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Submit a mutation-purpose request through a verify boundary and require purpose-separation rejection.",
+        "reset_contract": "PRISTINE_LAB_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "RESTORE_ISOLATION_FAULT",
       "required_evidence_set": [
         "E00-10"
@@ -2311,7 +3300,20 @@
         "EXPECTED_REJECTION",
         "VERIFY_NO_MUTATION"
       ],
-      "recipe_family": "ENTRY_AUTHORITY_FAULT",
+      "recipe_contract": {
+        "allowed_surface": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Use a disposable host/capability fixture where virtualization prerequisite is observed false or blocked; never change user BIOS or site firmware.",
+        "reset_contract": "CASE_RESET",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
+      "recipe_family": "HOST_RESOURCE_NETWORK_FAULT",
       "required_evidence_set": [
         "E00-02"
       ],
@@ -2337,6 +3339,19 @@
         "EXPECTED_REJECTION",
         "QUALIFICATION_SCOPE"
       ],
+      "recipe_contract": {
+        "allowed_surface": "POLICY_OR_IDENTITY_OVERLAY",
+        "forbidden": [
+          "PRODUCTION_MAPPING",
+          "REAL_CREDENTIAL",
+          "UNREVIEWED_EXPECTATION",
+          "TOKEN_NAME_INFERENCE",
+          "SILENT_CASE_SKIP"
+        ],
+        "objective": "Run the entry probe under a principal different from the plan and registration owner inside a controlled overlay.",
+        "reset_contract": "RESTORE_PRIMARY_POLICY_EXACT",
+        "success_witness": "BOUND_BEFORE_AFTER_CAUSAL_EFFECT"
+      },
       "recipe_family": "ENTRY_AUTHORITY_FAULT",
       "required_evidence_set": [
         "E00-01",
@@ -2371,6 +3386,11 @@
       "mutation": "SYNTHETIC_EVIDENCE_FIXTURE",
       "reset": "CASE_RESET"
     },
+    "HOST_RESOURCE_NETWORK_FAULT": {
+      "mode": "ARRANGE",
+      "mutation": "BOUNDED_HOST_RESOURCE_OR_NETWORK_FIXTURE",
+      "reset": "CASE_RESET"
+    },
     "LIFECYCLE_CONFIG_FAULT": {
       "mode": "ARRANGE",
       "mutation": "LAB_LIFECYCLE_OR_CONFIG_FIXTURE",
@@ -2384,11 +3404,6 @@
     "PATH_COLLISION_FAULT": {
       "mode": "ARRANGE",
       "mutation": "DISPOSABLE_PATH_FIXTURE",
-      "reset": "CASE_RESET"
-    },
-    "RESOURCE_NETWORK_FAULT": {
-      "mode": "ARRANGE",
-      "mutation": "BOUNDED_RESOURCE_OR_NETWORK_FIXTURE",
       "reset": "CASE_RESET"
     },
     "RESTORE_ISOLATION_FAULT": {
