@@ -16,71 +16,132 @@
     "LAB_POSITIVE_ENTRY_BASELINE": {
       "active_entry_matrix": false,
       "kind": "POSITIVE_LAB_ENTRY",
+      "minimum_probe_count": 1,
       "primary_interface": "preflight",
-      "primary_purpose": "PASSIVE"
+      "primary_purpose": "PASSIVE",
+      "probe_variants": [
+        "REGISTERED_CONTAINED_LAB"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "MATERIAL_DRIFT_ENTRY": {
       "active_entry_matrix": false,
       "fault": "MATERIAL_DRIFT",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 1,
+      "probe_variants": [
+        "PLAN_VS_LIVE_MATERIAL_DRIFT"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "QUALIFICATION_INVALID_MATRIX": {
       "active_entry_matrix": true,
       "fault": "QUALIFICATION_INVALID",
       "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 16,
+      "probe_variants": [
+        "STATUS_FAIL",
+        "WITHDRAWN",
+        "GATE_BLOCKER",
+        "EXPIRED_OVER_30_DAYS"
+      ],
       "required_entry_classes": [
         "ACTIVE_PREFLIGHT",
         "APPLY",
         "ACTIVE_VERIFY",
         "RECOVERY"
-      ]
+      ],
+      "variant_coverage_rule": "CARTESIAN_WITH_REQUIRED_ENTRY_CLASSES"
     },
     "QUALIFICATION_MISMATCH_MATRIX": {
       "active_entry_matrix": true,
       "fault": "QUALIFICATION_MISMATCH",
       "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 20,
+      "probe_variants": [
+        "DESIGN_OR_CONTRACT_MISMATCH",
+        "BUILD_MISMATCH",
+        "TEST_SET_MISMATCH",
+        "PROFILE_MISMATCH",
+        "PAYLOAD_MISMATCH"
+      ],
       "required_entry_classes": [
         "ACTIVE_PREFLIGHT",
         "APPLY",
         "ACTIVE_VERIFY",
         "RECOVERY"
-      ]
+      ],
+      "variant_coverage_rule": "CARTESIAN_WITH_REQUIRED_ENTRY_CLASSES"
     },
     "QUALIFICATION_MISSING_MATRIX": {
       "active_entry_matrix": true,
       "fault": "QUALIFICATION_MISSING",
       "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 4,
+      "probe_variants": [
+        "QUALIFICATION_MISSING"
+      ],
       "required_entry_classes": [
         "ACTIVE_PREFLIGHT",
         "APPLY",
         "ACTIVE_VERIFY",
         "RECOVERY"
-      ]
+      ],
+      "variant_coverage_rule": "CARTESIAN_WITH_REQUIRED_ENTRY_CLASSES"
     },
     "SITE_FAKE_LAB_ENTRY": {
       "active_entry_matrix": false,
       "fault": "SITE_FAKE_LAB",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 1,
+      "probe_variants": [
+        "SITE_CONTEXT_WITH_LAB_CLASS_CLAIM"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "TRUST_FAILURE_ENTRY": {
       "active_entry_matrix": false,
       "fault": "TRUST_FAILURE",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 4,
+      "probe_variants": [
+        "MISSING_REQUIRED_TRUST",
+        "CONTENT_HASH_MISMATCH",
+        "SIGNATURE_OR_ANCHOR_FAILURE",
+        "WITHDRAWN_TRUST"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "TRUST_FORGERY_ENTRY": {
       "active_entry_matrix": false,
       "fault": "TRUST_FORGERY",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 2,
+      "probe_variants": [
+        "FORGED_HASH_OR_TRUST_ARTIFACT",
+        "UNSUPPORTED_ACTOR"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "UNSUPPORTED_PROFILE_ENTRY": {
       "active_entry_matrix": false,
       "fault": "UNSUPPORTED_PROFILE",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 1,
+      "probe_variants": [
+        "UNBOUND_OR_UNSUPPORTED_PROFILE"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     },
     "WRONG_ACTOR_ENTRY": {
       "active_entry_matrix": false,
       "fault": "WRONG_ACTOR",
-      "kind": "NEGATIVE_ENTRY_PROBE"
+      "kind": "NEGATIVE_ENTRY_PROBE",
+      "minimum_probe_count": 1,
+      "probe_variants": [
+        "OWNER_PRINCIPAL_MISMATCH"
+      ],
+      "variant_coverage_rule": "EACH_VARIANT_ONCE"
     }
   },
   "expected_business_behavior_changed": false,

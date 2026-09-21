@@ -17,7 +17,7 @@ PRODUCT_SOURCE_CHANGE_AUTHORIZED: false
 NATIVE_EXECUTION_AUTHORIZED: false
 AUTHORITY_GRAPH_SIGNING_AUTHORIZED: false
 RECIPE_CATALOG: test-governance/P00_V03_AUTHORITY_BINDING_PRODUCER_RECIPE_CATALOG_V1.json
-RECIPE_CATALOG_SHA256: f1fc3f0601d6fbda2225c905b698e6e71f9cace4249d20867e407f01374bab8b
+RECIPE_CATALOG_SHA256: 5d321d4b6b8f8c47bbd257324a51af7d0bb564ec73d1e2532c2dba2b6645c2b5
 COVERAGE_EVIDENCE: test-governance/design-evidence/TEST-DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-005-COVERAGE.json
 COVERAGE_EVIDENCE_SHA256: 3aadec58f279005c4dbc29c11b55679f02d11593ad90d6fb6e4868f0749f4fc7
 TEST_REVIEW_STATUS: PENDING
@@ -74,7 +74,7 @@ The native inventory has ten ENTRY_ONLY stages. T00-14 uses the catalog profile 
 
 The remaining nine stages are `NEGATIVE_ENTRY_PROBE`. The signed execution-plan document acts as a carrier and binds a content-addressed `entry_probe_set_ref`. The referenced probe-set object contains the actual product entry plans, isolated policy/role overlay refs, expected exit/reason predicates and required evidence for that case. Probe-only registration/qualification/trust objects are not added to the primary LAB registration selection merely to make V02 pure authorization pass.
 
-T14-A, T14-B and T14-C each require an actual probe matrix covering all four contract classes: active preflight, apply, active verify, and recovery/reconciliation. A single shared `authorize()` unit call cannot satisfy that requirement.
+T14-A, T14-B and T14-C each require an actual probe matrix covering all four contract classes: active preflight, apply, active verify, and recovery/reconciliation. A single shared `authorize()` unit call cannot satisfy that requirement. The catalog also freezes fault variants: T14-B covers FAIL, withdrawn, gate-blocker and >30-day expiry; T14-C covers design/contract, build, test-set, profile and payload mismatch. For T14-A/B/C the reviewed contract is the Cartesian product of each fault variant with all four entry classes.
 
 ### 3.1 Pre-V02 handling
 
