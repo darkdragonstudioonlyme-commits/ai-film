@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V63
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V64
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 63
-CURRENT_MODE: WORKFLOW_REVIEW
+STATE_VERSION: 64
+CURRENT_MODE: TEST_DESIGN
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: WR-P00-V02B-AUTHORITY-BINDING-PRODUCER
+CURRENT_TASK: TEST-DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-001
 TARGET_GATE: M-P00-VALIDATION
 PHASE_GATE: HOST_READY
 DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 6409c02937bd1d51b5b8418a2367b036d55c0133
+  VALIDATION_EVIDENCE_HEAD: 932dd8e05dd96996433d83dd2171e3f176a1b000
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -117,6 +117,13 @@ VALIDATION_PREPARATION:
   TEST_EXECUTION_NATIVE_REQUEST_COUNT: 133
   TEST_EXECUTION_PREPARATION_TYPE_COUNT: 78
   TEST_EXECUTION_BINDING_ROUTE: WORKFLOW_REVIEW_THEN_TEST_DESIGN
+  WORKFLOW_REVIEW_RECORD: "lane/validation-p00:workflow-health/HEALTH_REVIEW-WF-P00-V02B-BINDING-PRODUCER-018.md"
+  WORKFLOW_REVIEW_VERDICT: "lane/validation-p00:reviews/WORKFLOW-REVIEW-P00-V02B-BINDING-PRODUCER-001.md"
+  WORKFLOW_REVIEW_RESULT: ROUTE_TO_TEST_DESIGN_INFRASTRUCTURE_ONLY
+  TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005
+  TEST_DESIGN_ORACLE_CHANGED: false
+  TEST_DESIGN_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02B-TEST-DESIGN-ROUTING-SYNC-REVIEW-001.md
+  TEST_DESIGN_SYNC_AUDIT_RECORD: reviews/VALIDATION-V02B-TEST-DESIGN-ROUTING-SYNC-AUDIT-001.md
   BINDING_GAP_CANONICAL_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-REVIEW-001.md
   BINDING_GAP_CANONICAL_SYNC_AUDIT_RECORD: reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-AUDIT-001.md
   CANONICAL_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02A-CANONICAL-SYNC-DEV22-REVIEW-001.md
@@ -237,13 +244,13 @@ VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
   REASON: "Reviewed V02B evidence proves the current consumer/validator stack has no reviewed producer for the 85-case native execution-plan/native-binding/preparation graph. A pure-authority plan can pass while actual native entry rejects NATIVE_BINDING_REQUIRED. Do not hand-author the graph; route through WORKFLOW_REVIEW then TEST-DESIGN/TEST-REVIEW."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/WORKFLOW_REVIEW_V02B_BINDING_PRODUCER
+  RETURN_TO: NEXT_WORK_ITEM/TEST_DESIGN_V02B_BINDING_PRODUCER
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Perform WR-P00-V02B-BINDING-001: classify the missing native binding producer, freeze the smallest safe producer contract without changing test oracles, then route to TEST-DESIGN/TEST-REVIEW. Preserve RUN-P00-VALIDATION-002 and return to V02B only after the reviewed capability exists."
+NEXT_ACTION: "Author TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005 as infrastructure-only TEST-DESIGN with ORACLE_CHANGED=false. Define the validation graph compiler, static native-resolvability verifier and V03 fixture-preparation controller contract, then hand the exact design to independent TEST_REVIEW before implementation."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V63 is an evidence/state routing synchronization, not a DOCSYS policy revision. Product source, accepted candidate, learning register, validation run and all native results remain unchanged. The reviewed/audited V02B TEST_GAP replaces the simplistic missing-envelope next action with a workflow/test-architecture intervention. V02 stays BLOCKED; no authority envelope was created or signed. This transaction grants no native, qualification, SITE or HOST_READY authority. Review assurance is same-chat role separation, not external certification.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V64 is an evidence/state mode-transition synchronization, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Reviewed WORKFLOW_REVIEW concluded that the smallest correction is validation-only TEST-DESIGN; no product-source, oracle or policy change is authorized. V02 stays BLOCKED and no authority envelope was created or signed. This transaction grants no native, qualification, SITE or HOST_READY authority.
