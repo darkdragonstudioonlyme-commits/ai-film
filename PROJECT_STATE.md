@@ -1,11 +1,11 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V65
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V66
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 65
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 66
+CURRENT_MODE: TEST_DESIGN
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-V03-AUTHORITY-BINDING-PRODUCER-001
 TARGET_GATE: M-P00-VALIDATION
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 5e6d2f41bd1513ae6e488add304fba4d00498e9b
+  VALIDATION_EVIDENCE_HEAD: 773e445d72c66e711d457b37b0d329ccb7c09d81
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -107,7 +107,7 @@ VALIDATION_PREPARATION:
   HOST_POST_UPDATE_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-REVIEW-001.md"
   HOST_POST_UPDATE_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-AUDIT-001.md"
   V02A_WINDOWS_UPDATE_AND_REBOOT: COMPLETE_OBSERVED_REVIEWED_AUDITED
-  V02B_LOCAL_AUTHORITY_PACKAGE: BLOCKED_TEST_EXECUTION_BINDING_PRODUCER_MISSING
+  V02B_LOCAL_AUTHORITY_PACKAGE: BLOCKED_TEST_DESIGN_LATE_BOUND_PROOF_MODEL_INCOMPLETE
   TEST_EXECUTION_BINDING_GAP: "lane/validation-p00:test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md"
   TEST_EXECUTION_BINDING_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-GAP-001.md"
   TEST_EXECUTION_BINDING_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02B-BINDING-GAP-AUDIT-001.md"
@@ -120,20 +120,31 @@ VALIDATION_PREPARATION:
   WORKFLOW_REVIEW_RECORD: "lane/validation-p00:workflow-health/HEALTH_REVIEW-WF-P00-V02B-BINDING-PRODUCER-018.md"
   WORKFLOW_REVIEW_VERDICT: "lane/validation-p00:reviews/WORKFLOW-REVIEW-P00-V02B-BINDING-PRODUCER-001.md"
   WORKFLOW_REVIEW_RESULT: ROUTE_TO_TEST_DESIGN_INFRASTRUCTURE_ONLY
-  TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005
-  TEST_DESIGN_STATUS: COMPLETE_REVIEWED
+  PREVIOUS_TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005
+  PREVIOUS_TEST_DESIGN_STATUS: COMPLETE_REVIEWED_IMPLEMENTATION_BLOCKED_BY_LATE_BOUND_PROOF_GAP
+  PREVIOUS_TEST_DESIGN_RECORD: "lane/validation-p00:test-governance/TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
+  PREVIOUS_TEST_DESIGN_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
+  PREVIOUS_TEST_DESIGN_ORACLE_CHANGED: false
+  LATE_BOUND_PROOF_GAP: "lane/validation-p00:test-governance/TEST_GAP-P00-V03-LATE-BOUND-PROOF-SLOTS-002.md"
+  LATE_BOUND_PROOF_TEST_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-LATE-BOUND-PROOF-SLOTS-002.md"
+  LATE_BOUND_PROOF_AUDIT: "lane/validation-p00:reviews/VALIDATION-V03-LATE-BOUND-PROOF-GAP-AUDIT-002.md"
+  LATE_BOUND_PROOF_HEALTH: "lane/validation-p00:workflow-health/HEALTH_REVIEW-WF-P00-V03-BINDING-PRODUCER-IMPLEMENTATION-019.md"
+  LATE_BOUND_PROOF_WORKFLOW_REVIEW: "lane/validation-p00:reviews/WORKFLOW-REVIEW-P00-V03-LATE-BOUND-PROOF-002.md"
+  LATE_BOUND_PROOF_EVIDENCE: "lane/validation-p00:validation/evidence/V03-LATE-BOUND-PROOF-GAP-20260922/analysis.json"
+  TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006
+  TEST_DESIGN_STATUS: READY_CORRECTION
   TEST_DESIGN_ORACLE_CHANGED: false
-  TEST_DESIGN_RECORD: "lane/validation-p00:test-governance/TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
-  TEST_DESIGN_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
-  TEST_DESIGN_RECIPE_CATALOG: "lane/validation-p00:test-governance/P00_V03_AUTHORITY_BINDING_PRODUCER_RECIPE_CATALOG_V1.json"
-  TEST_DESIGN_RECIPE_CATALOG_SHA256: 5d321d4b6b8f8c47bbd257324a51af7d0bb564ec73d1e2532c2dba2b6645c2b5
-  TEST_DESIGN_COVERAGE_EVIDENCE: "lane/validation-p00:test-governance/design-evidence/TEST-DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-005-COVERAGE.json"
-  TEST_DESIGN_COVERAGE_EVIDENCE_SHA256: 3aadec58f279005c4dbc29c11b55679f02d11593ad90d6fb6e4868f0749f4fc7
-  BINDING_PRODUCER_IMPLEMENTATION_STATUS: READY
+  TEST_DESIGN_RECORD: null
+  TEST_DESIGN_REVIEW: null
+  TEST_DESIGN_RECIPE_CATALOG: null
+  TEST_DESIGN_RECIPE_CATALOG_SHA256: null
+  BINDING_PRODUCER_IMPLEMENTATION_STATUS: BLOCKED_PENDING_TEST_DESIGN_CORRECTION
   BINDING_PRODUCER_IMPLEMENTATION_SCOPE: VALIDATION_TEST_TOOLING_ONLY
   PRODUCT_SOURCE_CHANGE_AUTHORIZED_FOR_BINDING_PRODUCER: false
   NATIVE_EXECUTION_AUTHORIZED_FOR_BINDING_PRODUCER: false
   AUTHORITY_GRAPH_SIGNING_AUTHORIZED_FOR_BINDING_PRODUCER: false
+  LATE_BOUND_PROOF_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-LATE-BOUND-PROOF-CANONICAL-SYNC-REVIEW-001.md
+  LATE_BOUND_PROOF_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-LATE-BOUND-PROOF-CANONICAL-SYNC-AUDIT-001.md
   PRODUCER_IMPLEMENTATION_ROUTING_SYNC_REVIEW: reviews/VALIDATION-V02B-PRODUCER-IMPLEMENTATION-ROUTING-SYNC-REVIEW-001.md
   PRODUCER_IMPLEMENTATION_ROUTING_SYNC_AUDIT: reviews/VALIDATION-V02B-PRODUCER-IMPLEMENTATION-ROUTING-SYNC-AUDIT-001.md
   TEST_DESIGN_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02B-TEST-DESIGN-ROUTING-SYNC-REVIEW-001.md
@@ -255,16 +266,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
-  REASON: "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005 and its independent TEST_REVIEW define the missing validation-only producer contract without changing oracles. V02 remains blocked until those reviewed compiler/verifier/controller components are implemented, independently reviewed and deployed before graph construction resumes."
+  BLOCK_ID: BLOCK-P00-VAL-V03-LATE-BOUND-PROOF-002
+  REASON: "Implementation review proved TEST_CHANGE 005 cannot truthfully require all future proof refs before signing: accepted native consumers bind several receipts to identities/epochs that exist only after mutation, reboot or recovery. A corrected infrastructure-only TEST-DESIGN must define late-bound proof slots and monotonic proof augmentation before implementation resumes."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/IMPLEMENT_V02B_BINDING_PRODUCER
+  RETURN_TO: NEXT_WORK_ITEM/AUTHOR_LATE_BOUND_PROOF_TEST_DESIGN
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Implement the independently reviewed V02B/V03 binding-producer contract as validation/test tooling only: graph compiler, static native-resolvability verifier and post-V02 fixture-preparation controller, with required no-execution/adversarial tests. Do not modify accepted dev22 product source, sign authority, deploy native policy or run LAB cases before independent implementation review."
+NEXT_ACTION: "Author TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006 as an infrastructure-only correction with ORACLE_CHANGED=false. Define immutable pre-V02 authority versus late-bound proof slots, slot-resolvability checks, monotonic proof-policy augmentation and exact consumer/freshness bindings; then hand the exact design to independent TEST_REVIEW before implementation resumes."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V65 is an evidence/state mode transition, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Exact TEST_CHANGE/TEST_REVIEW authorize validation/test-tooling implementation only with ORACLE_CHANGED=false; they do not authorize product-source changes, authority signing, native execution or policy deployment. V02 stays BLOCKED.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V66 is an evidence/state routing correction, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Historical reviewed TEST_CHANGE 005 is preserved but implementation is blocked by the reviewed late-bound proof-slot gap. The next authority is TEST-DESIGN revision 006 with ORACLE_CHANGED=false; no product-source change, signing, native execution or policy deployment is authorized. V02 stays BLOCKED.
