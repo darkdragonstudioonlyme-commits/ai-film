@@ -24,4 +24,3 @@ RUNTIME_STATE_CHECK_PASS state_version=61 state_kind=VALIDATION implement=86bb64
 
 ## check-state
 STATE_CONTRACT_CHECK_PASS state=V61 selected=AI_FILM_PROJECT_STATE_V61.json
-
