@@ -1,0 +1,3958 @@
+{
+  "authority_mode_counts": {
+    "CONCRETE_PRE_V03": 94,
+    "ENTRY_PROBE_AUTHORITY": 10,
+    "FENCE_BOUND_RECONCILIATION": 14,
+    "STAGE_DERIVED": 15
+  },
+  "authority_partitions": {
+    "derived_stage_authority": [
+      "lab_derived_stage_authority",
+      "native_binding",
+      "execution_plan",
+      "approval",
+      "checkpoint_payload"
+    ],
+    "fence_bound_reconciliation_authority": [
+      "recovery_request",
+      "original_plan",
+      "read_recovery_request"
+    ],
+    "immutable_pre_v03": [
+      "registration",
+      "design",
+      "code",
+      "lab_plan",
+      "lab_acceptance_suite",
+      "lab_stage_derivation_slot",
+      "lab_stage_plan_template",
+      "lab_native_binding_template",
+      "native_binding",
+      "profile_catalog",
+      "executable_policy",
+      "concrete_execution_plan",
+      "concrete_approval",
+      "static_payload_authority",
+      "entry_probe_set"
+    ],
+    "late_bound_proof_authority": [
+      "source_manifest",
+      "protection",
+      "restore_envelope",
+      "user_init_receipt",
+      "c3_postchecks",
+      "operation_postcheck",
+      "run_revocation",
+      "read_absence_observation",
+      "restore_result"
+    ],
+    "observed_result_evidence": [
+      "lab_case_preparation_action",
+      "lab_fixture_measurement",
+      "lab_case_fixture_result",
+      "lab_case_stage",
+      "lab_case_oracle",
+      "lab_case_evidence",
+      "lab_case_result_set"
+    ],
+    "stage_handoff_evidence": [
+      "lab_stage_state_handoff"
+    ]
+  },
+  "concrete_temporal_exceptions": [
+    {
+      "case_id": "F00-16",
+      "reason": "NO_POSITIVE_CONTINUATION_STALE_MATERIAL_MUST_FAIL_16_OR_OUTPUT_FAIL_18",
+      "stage_index": 1
+    },
+    {
+      "case_id": "T07-B",
+      "reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "stage_index": 1
+    },
+    {
+      "case_id": "T07-B",
+      "reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "stage_index": 2
+    },
+    {
+      "case_id": "T07-C",
+      "reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "stage_index": 2
+    },
+    {
+      "case_id": "T07-C",
+      "reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "stage_index": 3
+    }
+  ],
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "design_gap_id": "DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001",
+  "global_rules": {
+    "derived_native_binding_allowed_only_by_signed_slot": true,
+    "derived_objects_may_only_add_refs": true,
+    "derived_plan_may_have_multiple_earlier_producers": true,
+    "derived_stage_must_have_earlier_producer": true,
+    "entry_only_is_not_product_purpose": true,
+    "every_stage_has_explicit_temporal_authority_class": true,
+    "immutable_partition_byte_identical_across_generations": true,
+    "no_caller_selected_dynamic_plan": true,
+    "no_placeholder_checkpoint_digest": true,
+    "post_engine_plan_requires_fresh_material_profile_rebind": true,
+    "pre_v03_fixture_bytes_required_for_concrete_restore_without_prior_export": true,
+    "producer_stage_must_be_committed_native_evidence": true,
+    "reconciliation_binds_actual_fence_or_detached_read_state": true,
+    "stage_state_handoff_must_be_content_addressed": true,
+    "suite_execution_id_immutable": true
+  },
+  "kind": "P00_V03_STAGE_DERIVED_AUTHORITY_DEPENDENCY_CATALOG",
+  "late_bound_proof_slots": [
+    {
+      "boundary": "AFTER_TARGET_IDENTITY_OBSERVED",
+      "owner_assertion": true,
+      "role": "source_manifest",
+      "scope_fields": [
+        "host_id",
+        "target_registration",
+        "source_class"
+      ]
+    },
+    {
+      "boundary": "AFTER_CURRENT_PROTECTION_BOUNDARY_OBSERVED_BEFORE_C3",
+      "owner_assertion": true,
+      "role": "protection",
+      "scope_fields": [
+        "host_id",
+        "source_witness"
+      ]
+    },
+    {
+      "boundary": "AFTER_CHECKPOINT_IDENTITY_AND_DESTINATION_ISOLATION_OBSERVED",
+      "owner_assertion": false,
+      "role": "restore_envelope",
+      "scope_fields": [
+        "host_id",
+        "checkpoint_digest",
+        "envelope_digest"
+      ]
+    },
+    {
+      "boundary": "AFTER_OWNER_USER_INIT_OBSERVED",
+      "owner_assertion": false,
+      "role": "user_init_receipt",
+      "scope_fields": [
+        "host_id",
+        "plan_digest",
+        "target_registration",
+        "user"
+      ]
+    },
+    {
+      "boundary": "AFTER_REBOOT_CURRENT_HOST_BOOT_OBSERVED",
+      "owner_assertion": true,
+      "role": "c3_postchecks",
+      "scope_fields": [
+        "host_id",
+        "plan_digest",
+        "host_boot"
+      ]
+    },
+    {
+      "boundary": "AFTER_OPERATION_EPOCH_OBSERVED_FOR_RECONCILIATION",
+      "owner_assertion": false,
+      "role": "operation_postcheck",
+      "scope_fields": [
+        "host_id",
+        "plan_digest",
+        "step_id",
+        "target_registration",
+        "host_boot"
+      ]
+    },
+    {
+      "boundary": "AFTER_UNRESOLVED_FENCE_EXISTS",
+      "owner_assertion": true,
+      "role": "run_revocation",
+      "scope_fields": [
+        "host_id",
+        "original_plan_digest",
+        "original_fence_digest",
+        "recovery_request_digest",
+        "disposition"
+      ]
+    },
+    {
+      "boundary": "AFTER_INTERRUPTED_READ_STATE_EXISTS",
+      "owner_assertion": false,
+      "role": "read_absence_observation",
+      "scope_fields": [
+        "host_id",
+        "read_id"
+      ]
+    },
+    {
+      "boundary": "AFTER_DESTINATION_RESTORE_ACTUAL_COMPLETES",
+      "owner_assertion": false,
+      "role": "restore_result",
+      "scope_fields": [
+        "host_id",
+        "checkpoint_digest",
+        "source_target_registration"
+      ]
+    }
+  ],
+  "native_case_count": 85,
+  "native_stage_count": 133,
+  "oracle_changed": false,
+  "procedure_count": 86,
+  "review_challenges": [
+    {
+      "claim": "T05-D CREATE must rebind after ENGINE per acceptance contract",
+      "id": "TEMP-01",
+      "resolved_by": [
+        "T05-D:1"
+      ]
+    },
+    {
+      "claim": "RESTORE_VERIFY after import must bind actual destination material/registration",
+      "id": "TEMP-02",
+      "resolved_by": [
+        "T00-09:2",
+        "F00-12:1",
+        "T09-A:2",
+        "T09-D:1",
+        "T09-H:1",
+        "T09-I:1"
+      ]
+    },
+    {
+      "claim": "ENTRY_ONLY is harness authority, never silently mapped to a product purpose",
+      "id": "TEMP-03",
+      "resolved_by": "ENTRY_PROBE_AUTHORITY"
+    },
+    {
+      "claim": "RECONCILIATION_ONLY authority is fence/read-state bound",
+      "id": "TEMP-04",
+      "resolved_by": "FENCE_BOUND_RECONCILIATION"
+    },
+    {
+      "claim": "Derived stage may consume multiple earlier producer outputs only by signed selector allowlists",
+      "id": "TEMP-05",
+      "resolved_by": "producer_dependencies"
+    }
+  ],
+  "schema_version": 1,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "stage_dependencies": [
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-02",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "d28ce7ec2724bc0843ba3d9108bfb55b0831ab4630243b196a54ed4b5114d3f0",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-04",
+        "E00-07",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-03",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        13,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "f0f62105e4605ec9fb0023430629043bc0f23b94857a4b07ad9afa9bde00e465",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-04",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "29a2dc4ab644a2bf610d134e8d6ac163afc50c1cacd3d32caf611824ccd7dc0b",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-05",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-05",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-05",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "C3_PROTECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "b4ffe62d60cac3fef502ba3ca7824e011e269d19eca7706705e8029c5a049e4c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-06",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        10,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "route": "PASSIVE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-06",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        10,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EXACT_CONTENT_IDENTITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "965790c3e0fb456d1519a863d4a597a25de2a06ea4bfb2d8acea2fb85c1647bb",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10",
+        "E00-11"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-07",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T00-07",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        0,
+        17,
+        18,
+        20,
+        21
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "559f29e2c861785fc1e7ddca0c41c2531c3b97193c2cfdb7772d18f82b8606eb",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-08",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "31362a971a1a17eff9b5096b644dcc4d9d13ae82836dc9b8cfd7c785765b6a29",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-09",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T00-09",
+      "derived_object_roles": [
+        "checkpoint_payload",
+        "restore_envelope",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "late_fields": [
+        "semantic.expected_checkpoint",
+        "semantic.expected_envelope",
+        "semantic.refs.restore_envelope",
+        "semantic.refs.checkpoint_payload"
+      ],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXPORT_OUTPUT_DERIVATION",
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "checkpoint_sha256",
+            "checkpoint_path",
+            "checkpoint_bytes"
+          ],
+          "required_route": "RESTORE_EXPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T00-09",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        13,
+        15,
+        16,
+        19
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.expected_checkpoint",
+        "semantic.expected_envelope",
+        "semantic.refs.restore_envelope",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "ISOLATION_BOUNDARY",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "IMPORT_MATERIAL_PLUS_EXPORT_CHECKPOINT_DERIVATION",
+      "procedure_digest": "6dadba5a11bc12ee63dd7463c8b4166974ee50dfa073923968e667555af3ffa0",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "checkpoint_sha256"
+          ],
+          "required_route": "RESTORE_EXPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        },
+        {
+          "producer_stage_index": 1,
+          "provides": [
+            "material_after",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-10",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "COEXISTENCE_HEALTH",
+        "C3_PROTECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-10",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "COEXISTENCE_HEALTH",
+        "C3_PROTECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "400e5f233c78acc91be36fce32ccc93c831e92cf3bb69eb9758f86e8957b1333",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-11",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        10,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "CREATE_ROUTE",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c3b7cf5e1725bf478c6e6c77155cb41d05d8b0f27a624d9820673619106eba41",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-12",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11,
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ADOPT_ROUTE",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "5b1e3b996c65077ac64e4400b2e232cd74bc0b56d5b9face4840e07e45c472ae",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-03",
+        "E00-04",
+        "E00-09"
+      ],
+      "route": "ADOPT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-13",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T00-13",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        0,
+        11,
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "84d8da91d07c233218bf6c337c7a8e2580295256ac501d1237919860446e00ec",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T00-14",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-14",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T00-14",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENGINE",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T00-14",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "PARENT_GATE_CASE_STAGE_REBIND",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 2,
+          "provides": [
+            "material_after_or_current",
+            "matched_profile"
+          ],
+          "required_route": "ENGINE",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "CREATE",
+      "stage_index": 3
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T00-14",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "PARENT_GATE_CASE_STAGE_REBIND",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 3,
+          "provides": [
+            "material_after_or_current",
+            "matched_profile"
+          ],
+          "required_route": "CREATE",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ADOPT",
+      "stage_index": 4
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T00-14",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "PARENT_GATE_CASE_STAGE_REBIND",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 4,
+          "provides": [
+            "material_after_or_current",
+            "matched_profile"
+          ],
+          "required_route": "ADOPT",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 5
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T00-14",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        0,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "1a9506fd6bcb58ef8660cc0fc9ef1e9697ba0cf4a8746e31f7ef2e2d5c0ac2dd",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 6
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-01",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "b98bac5b887b04a87e68f523efa411206f9740e3076b4e8647ddc100aa0dd541",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-02"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "F00-02",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "c4b76fe98dd0e9c692aadbe47f996c120bfeb3c7db94878757e5d961f1da4a94",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-10"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-03",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "b4f1d972733a00b4639d08d07a913a7a9ab9832f805a72c5a00bcaf15f60e6e0",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "F00-04",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        11,
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "c7e4c4f83e09deb3d95eb2904ab9d83a517e3cd7a7f583b6179cbae9a1b1aa1c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-02",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-05",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "098d7194908d9eea7804b694455ca5fccf0046843fc5eccf688f698f6999c13b",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-06",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "NO_POLICY_WEAKENING"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "a1242819dfc5f5c03d04f2cbde60a9bc8e3abc7b342b6a0a041c560390047972",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "F00-07",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        11,
+        15
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "4def1fd94f1dda8648e021b331436a514372a562fca0acb3a8d09c8c9a9925a4",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "F00-08",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        11,
+        16,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-14"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-08",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        16,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "6baaa9abc67fc88dd4c396e3a26b7069ae25f80cb024956a75ed3d2eb410ecaa",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-09",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "F00-09",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "3f18a6f4e1b528af83355b07a2479fb739b97c844d49ad60e71d7780607d4b3e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-10",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "F00-10",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "POST_ENGINE_REBIND",
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after",
+            "matched_profile"
+          ],
+          "required_route": "ENGINE",
+          "required_state": "TERMINAL_OR_RESUMED_COMMITTED_STATE"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "CREATE",
+      "stage_index": 1
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0,
+        1
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "F00-10",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        17,
+        20
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "9998380b4187ce6b4aaacd887f53d901d39873e95439a85049c2b83bd8018577",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-12"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-11",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "F00-11",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "POST_ENGINE_REBIND",
+      "procedure_digest": "0434a70c98402cff5b3184872074034701ad5ec33ed5b3412c1f4e3dfd344423",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after",
+            "matched_profile"
+          ],
+          "required_route": "ENGINE",
+          "required_state": "TERMINAL_OR_RESUMED_COMMITTED_STATE"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-12",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "F00-12",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        15,
+        19
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "IMPORT_MATERIAL_DERIVATION",
+      "procedure_digest": "9f27de320f027882be84ea3d36d3cb2ae4430729b2fafd9de3779f64ba035557",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after_or_current",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-13",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        2,
+        15,
+        18,
+        22,
+        23
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_RECOVERY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "6594ff8fafef7b395b371c032bba6fa6498d191f5e076c3501198adebfd0fb25",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-14",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PASSIVE_NO_LAUNCH",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "65f29bc4e751ff81735f10d66f008df6ec9e6f0e281441f73e57e922c06f7878",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-04",
+        "E00-10"
+      ],
+      "route": "PASSIVE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-15",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-15",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "ISOLATION_BOUNDARY",
+        "NO_POLICY_WEAKENING"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "fc8de27142b012e3d5518dc4d53b309435f725b803709562d7297c105e153336",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-07",
+        "E00-12",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-16",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "F00-16",
+      "concrete_dependency_reason": "NO_POSITIVE_CONTINUATION_STALE_MATERIAL_MUST_FAIL_16_OR_OUTPUT_FAIL_18",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 1
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0,
+        1
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "F00-16",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        16,
+        18
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "OUTPUT_RECOVERY",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "4d9badb2ee6290b81167d43f2c94dec0fcc2fe073004e15035b84e37e84772af",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-16"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "3ae544a774a602537c2315309c3e405867f21ca0fb17c71829aac1e998783989",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "c9af90ce204f446bae72e1094444526bb4468f9b882e522c1d03c34c785dc552",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-07",
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        14,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "NETWORK_MATRIX",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "e9ccc97c78c8506360547b1e8ed0d98d3758c74436fa02a4b5bceafa43ff2b2e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-08",
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-D",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "CREATE_ROUTE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T05-D",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        16,
+        20
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.profile",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "IDENTITY_PROFILE",
+        "CREATE_ROUTE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "POST_ENGINE_REBIND",
+      "procedure_digest": "c369e5c55845cf76881408824b9dd5f387ed3d67a9ed372c5019e7e071bf8b77",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after",
+            "matched_profile"
+          ],
+          "required_route": "ENGINE",
+          "required_state": "TERMINAL_OR_RESUMED_COMMITTED_STATE"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-02",
+        "E00-03",
+        "E00-10"
+      ],
+      "route": "CREATE",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "LIFECYCLE_EPOCH",
+        "TERMINAL_FRESHNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "199245d3248215879acd885bae5f3062273dd73b1cdbea333402ba0f5ef7792f",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-14"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        19,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "TERMINAL_FRESHNESS",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-14",
+        "E00-17"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T05-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        19,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "TERMINAL_FRESHNESS",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "2bb497462a4a8f2d27a1114506ac7daa2f7b3e197c5b9389443735822a502ac4",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-14",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "b6501d8c0d72b02a0c5c36efcebaaf8656411ed09008afa4fabd5037e1517443",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-B",
+      "concrete_dependency_reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-B",
+      "concrete_dependency_reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "ef6b309b6c508f03f94fce53337a9fee6d84256745db437fd79d136b61e8d0b2",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "TARGET_LIFECYCLE",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-C",
+      "concrete_dependency_reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "SITE_VERIFY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-C",
+      "concrete_dependency_reason": "LOCK_CONTENTION_EXIT_21_PRECLUDES_PRIOR_MUTATION",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "40815c153d3bdc9c51b80a0cc0be79cc8402413ff5b6353b9aab0ec462d2cd27",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 3
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-D",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        13,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "RESOURCE_CAPACITY",
+        "JOURNAL_NO_OVERLAP"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "95ad07b2aad98a10648608fe1e421f33f6461d8163998c29829877b752e8cfde",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-06",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        12,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "0ac5902157b694ab4de6759087e4e5221b36285f4feffe8063859fc1fb21fb72",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-01",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T07-F",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        17,
+        21
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "e32a2c75e3b6982d05f3d8458e3859847ff7b29810b1c2d44cf48c56c2e93ae9",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "allowed_prior_stage_indices": [],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T07-G",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        0,
+        20,
+        21
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "RECONCILIATION_ONLY",
+        "UNCERTAIN_RETAINED"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "f2fbd7e1d09be132f5b3932ee90aa15bba39a2e949283f93c629dedff8cbbb39",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-H",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        20,
+        21
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T07-H",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        20,
+        21
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "NO_DUPLICATE_MUTATION",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "228e854a299b6858d479fc2be746552446a892a92c6156e487de512ad05dfb18",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-03",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-I",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T07-I",
+      "derived_object_roles": [
+        "checkpoint_payload",
+        "restore_envelope",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [
+        "semantic.expected_checkpoint",
+        "semantic.expected_envelope",
+        "semantic.refs.restore_envelope",
+        "semantic.refs.checkpoint_payload"
+      ],
+      "oracle_set": [
+        "JOURNAL_NO_OVERLAP",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXPORT_OUTPUT_DERIVATION",
+      "procedure_digest": "4322e9757aa31fc412579bc57f18e97acc3e0a0c39010cf2535809be4504302f",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "checkpoint_sha256",
+            "checkpoint_path",
+            "checkpoint_bytes"
+          ],
+          "required_route": "RESTORE_EXPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-11",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T07-J",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        18
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T07-J",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        18
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "75c42e2e6f2fe41f6c68c841d06b09dabe004d82ac90e18cb9dbca0b20c0fb17",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "f647219bf1353ddb20e5405a06a26e3e1b7aca783f784a8b0345938260117b91",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        2
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "65f1cf8f350de5eccc78905c22e95ec494892aadc29ab3f60838459c6890830e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "673b1c938cf9673506e08cc0076b06ca02c6c5c96bf74155c38c866d547011a1",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-D",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        2
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "a2ef8d14f1e55cd3ddb2a6c23787ae7bf6485f489a211d4882063ca67bff7a0c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "86959d17437c65fdb6cf38dbbb0b3f26c4fc6e8f11eeac8e2c9b541ac4b6a43d",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT",
+        "OUTPUT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "747917c3203aad515d4a6fd55852323ebc1364228aa943cd7dc74b4bd0376294",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-G",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        23
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c44f7730ec51b680b6af515b28295bfebbe701902bf261a2f00cf2f200b097a6",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-H",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        23
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PRIVACY_NO_OUTPUT",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "adf3ae582a37068a815e422a66a833439d6365b826d09851a10408ba4cfb4ef8",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-I",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        15
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "OUTPUT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "edfa3d95765beb93c8b221249cd76bbecce80d3811d098b4791f7d6d6c665216",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-J",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        18
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T08-J",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        18
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "OUTPUT_RECOVERY",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "d9dab562c1553d0cf8c4aca837f604462c0e47b558bf99f8293109a45cb7199f",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-K",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "e22c2ea4a53daf043b2261fba0ab3ad2d2a5426036ecc061fa6d7de0fb5d5afd",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-04",
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-L",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        2,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "EVIDENCE_REQUIREDNESS"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "fabd8e7395bccf3cd55e637cc86ad2a0a3bb622e5966f0962f855af5dac6a245",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-M",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        10,
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "PRIVACY_NO_OUTPUT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "394b984bd50ed8acf927493ebf1634b91ca1e8a3cba5cd6c934ab4a1cec46835",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T08-N",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        18,
+        22
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "BUNDLE_OUTCOME",
+        "OUTPUT_RECOVERY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "d97c5235687b0a97adebf6dc8a28e8cc06e13c0a2d5a7fb349aa721a7dc0e236",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-16",
+        "E00-17"
+      ],
+      "route": "SUPPORT_BUNDLE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T09-A",
+      "derived_object_roles": [
+        "checkpoint_payload",
+        "restore_envelope",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [
+        "semantic.expected_checkpoint",
+        "semantic.expected_envelope",
+        "semantic.refs.restore_envelope",
+        "semantic.refs.checkpoint_payload"
+      ],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXPORT_OUTPUT_DERIVATION",
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "checkpoint_sha256",
+            "checkpoint_path",
+            "checkpoint_bytes"
+          ],
+          "required_route": "RESTORE_EXPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T09-A",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.expected_checkpoint",
+        "semantic.expected_envelope",
+        "semantic.refs.restore_envelope",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "RESTORE_CONTENT",
+        "CHECKPOINT_INTEGRITY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "IMPORT_MATERIAL_PLUS_EXPORT_CHECKPOINT_DERIVATION",
+      "procedure_digest": "f330789fa71490c5bf9b01a2546bdbafb406593f0e62f6490ad5795213c7d8c6",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "checkpoint_sha256"
+          ],
+          "required_route": "RESTORE_EXPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        },
+        {
+          "producer_stage_index": 1,
+          "provides": [
+            "material_after",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "COMMITTED_TERMINAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-09",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 2
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c7a8eedf1c78464981a36cd8f10f925ab4ee785ef0a9e8c1bc6060819c058457",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "e532afc445c349d1bd6db757e0cbd3ff63098d4ec5febf78a4c33ecca628867c",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-D",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T09-D",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        0,
+        19
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "IMPORT_MATERIAL_DERIVATION",
+      "procedure_digest": "12a43fe655b7dbde83825fad496661dffe55c33bf89d248c0d7007c81127a237",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after_or_current",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "2d4359dd365193a87b19db02619d2de36ae99ed8a9f38366ae341a7f97f88043",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ISOLATION_BOUNDARY",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "b154b9ffa96eada347d7871f66ffc4135deb6988ceae74d1a79eae5290154ad3",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-G",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_EXPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-G",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "EXPECTED_REJECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "CONCRETE_ONLY_IF_REVIEWED_CASE_DOES_NOT_REQUIRE_LATE_EXECUTION_INPUT",
+      "procedure_digest": "251c04329c1142e4260f9072dc4c0e8a67bf80f69b66ebb708a2485fc9aee1dc",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-H",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        15,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T09-H",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        11,
+        15,
+        19
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "CHECKPOINT_INTEGRITY",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "IMPORT_MATERIAL_DERIVATION",
+      "procedure_digest": "dcfb7b2fc1956cfbce10a0c2cb07655e1cf6071a68afd9bbb08118e55e883d0f",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after_or_current",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-I",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        13,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-06",
+        "E00-15"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "STAGE_DERIVED",
+      "case_id": "T09-I",
+      "derived_object_roles": [
+        "native_binding",
+        "execution_plan",
+        "approval"
+      ],
+      "expected_exit_set": [
+        13,
+        19
+      ],
+      "late_fields": [
+        "semantic.before",
+        "semantic.expected_after",
+        "semantic.target.registration_id",
+        "semantic.refs.native_binding"
+      ],
+      "oracle_set": [
+        "CAPACITY_REMEASURE",
+        "RESTORE_CONTENT"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "IMPORT_MATERIAL_DERIVATION",
+      "procedure_digest": "ef4b035ae0f145aefa6cad1b745b349138eb9bd8fbf7c5b495b68d45765aa6ef",
+      "producer_dependencies": [
+        {
+          "producer_stage_index": 0,
+          "provides": [
+            "material_after_or_current",
+            "target_registration"
+          ],
+          "required_route": "RESTORE_IMPORT",
+          "required_state": "TERMINAL_OBSERVATION_WITH_CURRENT_MATERIAL"
+        }
+      ],
+      "required_evidence_set": [
+        "E00-06",
+        "E00-15"
+      ],
+      "route": "RESTORE_VERIFY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T09-J",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        10,
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "PURPOSE_SEPARATION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": true,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "964ec7ccb124353e5b506786132e7f2f3ec84d385c30adf307408ff6bddfc69b",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "RESTORE_IMPORT",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-A",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "87af9ddfc3bcd7e3ccb943a50f3a28b2f0d97c8149f38375708671a8565447f6",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-B",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "784ca80ab8d6442f3cbf1fca2070d8cc1546d7612b6cc3b3fdf1fabb10b80445",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-C",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "VERIFY_NO_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "48fa1b13cb6565b1decd06b5e92d878acfb4d4701e4669e88cc9342b24f43ef3",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-D",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "89449ce31c93fe5316ce9e647f3ca32e3475d48d7b168839b1e7233c1de7d11d",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        17,
+        18,
+        19
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T13-E",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        17,
+        18,
+        19
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "UNCERTAIN_RETAINED",
+        "RECONCILIATION_ONLY"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "ca12a13065cbe38f7d65942b37be2a31e8a5f2a481db88e25eeb4e1e796e0647",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12",
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-F",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        11,
+        12,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T13-F",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        11,
+        12,
+        20
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "DURABLE_WAIT"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "c362cb7c5981d726aa54085167e8e4c34262368d3ecfbe27c96b45998f54fed8",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T13-G",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "C3_PROTECTION",
+        "LIFECYCLE_EPOCH"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "6bb7048007b64bcc5025ddab7e762aade9442a2f3725fc76b6003abe2b06dc2e",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-12"
+      ],
+      "route": "HOST_RESTART",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T14-A",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "694c6a0c9042a118cb1772eca21b078417eaa1a2a0fd41b8a61eee4b42c5d2d5",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T14-B",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        11
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "bf18eaf3e5d3899a02f229031f866fd52504bf908bf4ef480bd46f99f1028897",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T14-C",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        16
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "QUALIFICATION_SCOPE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "2a3aeb5d52744808ead70b4220435a2d13f1ec7e4a634b94085d4fd131a136f1",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T14-D",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        12,
+        15
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "494c3960d445205cd51e20ebc59a9b58c28af157083af22bc2c86aabb10c2d7b",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10",
+        "E00-13"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T14-E",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "CREATE_ROUTE"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "a26603a2bcdfd39c20120c1c800a07e3a2027d924aa2b43e046ab849cc8965d9",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "CREATE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "ENTRY_PROBE_AUTHORITY",
+      "case_id": "T14-F",
+      "derived_object_roles": [
+        "entry_probe_set"
+      ],
+      "expected_exit_set": [
+        12
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "EXPECTED_REJECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "REVIEWED_ENTRY_PROBE_PROFILE",
+      "procedure_digest": "7012f1881893f7db1743c1b5cade7146d6032227e296e669393f5041948682ea",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-10"
+      ],
+      "route": "ENTRY_ONLY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T14-G",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        11,
+        16,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "PASSIVE_NO_LAUNCH"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "5da8bf2a4b95baa60b660d80d97611d34e2fa70ec3324eded33bb7336c2d1936",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-04",
+        "E00-13"
+      ],
+      "route": "DISCOVERY",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T14-H",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        0,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "ENTRY_GATE",
+        "C3_PROTECTION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "276f7f9b5c7e22d4b66354c0f4603762bd9c7569301110c992ce930b07c91231",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-02",
+        "E00-13"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "authority_mode": "CONCRETE_PRE_V03",
+      "case_id": "T14-I",
+      "derived_object_roles": [],
+      "expected_exit_set": [
+        12,
+        20
+      ],
+      "late_fields": [],
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "NO_STAGE_DERIVATION_REQUIRED",
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "ENGINE",
+      "stage_index": 0
+    },
+    {
+      "allowed_prior_stage_indices": [
+        0
+      ],
+      "authority_mode": "FENCE_BOUND_RECONCILIATION",
+      "case_id": "T14-I",
+      "derived_object_roles": [
+        "recovery_request"
+      ],
+      "expected_exit_set": [
+        12,
+        20
+      ],
+      "late_fields": [
+        "reconciliation.original_fence_digest",
+        "reconciliation.current_recovery_scope"
+      ],
+      "oracle_set": [
+        "DURABLE_WAIT",
+        "NO_DUPLICATE_MUTATION"
+      ],
+      "pre_v03_checkpoint_fixture_required": false,
+      "predecessor_state_rule": "EXACT_ORIGINAL_FENCE_OR_REVIEWED_DETACHED_READ_STATE",
+      "procedure_digest": "5f7d8e26e1f17295e7ac2627f2a178f757ac8ee67e508f0ae80450cdfa8df662",
+      "producer_dependencies": [],
+      "required_evidence_set": [
+        "E00-11"
+      ],
+      "route": "RECONCILIATION_ONLY",
+      "stage_index": 1
+    }
+  ],
+  "stage_derived_cases": [
+    "T00-09",
+    "T07-I",
+    "T09-A"
+  ],
+  "stage_derived_count": 5
+}
