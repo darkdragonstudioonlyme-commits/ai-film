@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V64
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V65
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 64
-CURRENT_MODE: TEST_DESIGN
+STATE_VERSION: 65
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: TEST-DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-001
+CURRENT_TASK: IMPL-P00-V03-AUTHORITY-BINDING-PRODUCER-001
 TARGET_GATE: M-P00-VALIDATION
 PHASE_GATE: HOST_READY
 DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 932dd8e05dd96996433d83dd2171e3f176a1b000
+  VALIDATION_EVIDENCE_HEAD: 5e6d2f41bd1513ae6e488add304fba4d00498e9b
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -121,7 +121,21 @@ VALIDATION_PREPARATION:
   WORKFLOW_REVIEW_VERDICT: "lane/validation-p00:reviews/WORKFLOW-REVIEW-P00-V02B-BINDING-PRODUCER-001.md"
   WORKFLOW_REVIEW_RESULT: ROUTE_TO_TEST_DESIGN_INFRASTRUCTURE_ONLY
   TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005
+  TEST_DESIGN_STATUS: COMPLETE_REVIEWED
   TEST_DESIGN_ORACLE_CHANGED: false
+  TEST_DESIGN_RECORD: "lane/validation-p00:test-governance/TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
+  TEST_DESIGN_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-005.md"
+  TEST_DESIGN_RECIPE_CATALOG: "lane/validation-p00:test-governance/P00_V03_AUTHORITY_BINDING_PRODUCER_RECIPE_CATALOG_V1.json"
+  TEST_DESIGN_RECIPE_CATALOG_SHA256: 5d321d4b6b8f8c47bbd257324a51af7d0bb564ec73d1e2532c2dba2b6645c2b5
+  TEST_DESIGN_COVERAGE_EVIDENCE: "lane/validation-p00:test-governance/design-evidence/TEST-DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-005-COVERAGE.json"
+  TEST_DESIGN_COVERAGE_EVIDENCE_SHA256: 3aadec58f279005c4dbc29c11b55679f02d11593ad90d6fb6e4868f0749f4fc7
+  BINDING_PRODUCER_IMPLEMENTATION_STATUS: READY
+  BINDING_PRODUCER_IMPLEMENTATION_SCOPE: VALIDATION_TEST_TOOLING_ONLY
+  PRODUCT_SOURCE_CHANGE_AUTHORIZED_FOR_BINDING_PRODUCER: false
+  NATIVE_EXECUTION_AUTHORIZED_FOR_BINDING_PRODUCER: false
+  AUTHORITY_GRAPH_SIGNING_AUTHORIZED_FOR_BINDING_PRODUCER: false
+  PRODUCER_IMPLEMENTATION_ROUTING_SYNC_REVIEW: reviews/VALIDATION-V02B-PRODUCER-IMPLEMENTATION-ROUTING-SYNC-REVIEW-001.md
+  PRODUCER_IMPLEMENTATION_ROUTING_SYNC_AUDIT: reviews/VALIDATION-V02B-PRODUCER-IMPLEMENTATION-ROUTING-SYNC-AUDIT-001.md
   TEST_DESIGN_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02B-TEST-DESIGN-ROUTING-SYNC-REVIEW-001.md
   TEST_DESIGN_SYNC_AUDIT_RECORD: reviews/VALIDATION-V02B-TEST-DESIGN-ROUTING-SYNC-AUDIT-001.md
   BINDING_GAP_CANONICAL_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02B-BINDING-GAP-CANONICAL-SYNC-REVIEW-001.md
@@ -242,15 +256,15 @@ VALIDATION_STATUS:
 
 VALIDATION_ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
-  REASON: "Reviewed V02B evidence proves the current consumer/validator stack has no reviewed producer for the 85-case native execution-plan/native-binding/preparation graph. A pure-authority plan can pass while actual native entry rejects NATIVE_BINDING_REQUIRED. Do not hand-author the graph; route through WORKFLOW_REVIEW then TEST-DESIGN/TEST-REVIEW."
+  REASON: "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005 and its independent TEST_REVIEW define the missing validation-only producer contract without changing oracles. V02 remains blocked until those reviewed compiler/verifier/controller components are implemented, independently reviewed and deployed before graph construction resumes."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/TEST_DESIGN_V02B_BINDING_PRODUCER
+  RETURN_TO: NEXT_WORK_ITEM/IMPLEMENT_V02B_BINDING_PRODUCER
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Author TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005 as infrastructure-only TEST-DESIGN with ORACLE_CHANGED=false. Define the validation graph compiler, static native-resolvability verifier and V03 fixture-preparation controller contract, then hand the exact design to independent TEST_REVIEW before implementation."
+NEXT_ACTION: "Implement the independently reviewed V02B/V03 binding-producer contract as validation/test tooling only: graph compiler, static native-resolvability verifier and post-V02 fixture-preparation controller, with required no-execution/adversarial tests. Do not modify accepted dev22 product source, sign authority, deploy native policy or run LAB cases before independent implementation review."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V64 is an evidence/state mode-transition synchronization, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Reviewed WORKFLOW_REVIEW concluded that the smallest correction is validation-only TEST-DESIGN; no product-source, oracle or policy change is authorized. V02 stays BLOCKED and no authority envelope was created or signed. This transaction grants no native, qualification, SITE or HOST_READY authority.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V65 is an evidence/state mode transition, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. Exact TEST_CHANGE/TEST_REVIEW authorize validation/test-tooling implementation only with ORACLE_CHANGED=false; they do not authorize product-source changes, authority signing, native execution or policy deployment. V02 stays BLOCKED.
