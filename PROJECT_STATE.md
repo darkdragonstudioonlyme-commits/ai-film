@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V62
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V63
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 62
-CURRENT_MODE: VALIDATION
+STATE_VERSION: 63
+CURRENT_MODE: WORKFLOW_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: M-P00-VALIDATION-DEV22
+CURRENT_TASK: WR-P00-V02B-AUTHORITY-BINDING-PRODUCER
 TARGET_GATE: M-P00-VALIDATION
 PHASE_GATE: HOST_READY
 DOCUMENTATION_SYSTEM: DOCSYS-V2-R9
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 43956bf0f125ee551c1c815220034a42b6a82b7e
+  VALIDATION_EVIDENCE_HEAD: 6409c02937bd1d51b5b8418a2367b036d55c0133
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -107,7 +107,16 @@ VALIDATION_PREPARATION:
   HOST_POST_UPDATE_REVIEW: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-REVIEW-001.md"
   HOST_POST_UPDATE_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02A-POST-UPDATE-DEV22-AUDIT-001.md"
   V02A_WINDOWS_UPDATE_AND_REBOOT: COMPLETE_OBSERVED_REVIEWED_AUDITED
-  V02B_LOCAL_AUTHORITY_PACKAGE: NOT_CREATED
+  V02B_LOCAL_AUTHORITY_PACKAGE: BLOCKED_TEST_EXECUTION_BINDING_PRODUCER_MISSING
+  TEST_EXECUTION_BINDING_GAP: "lane/validation-p00:test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md"
+  TEST_EXECUTION_BINDING_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-GAP-001.md"
+  TEST_EXECUTION_BINDING_AUDIT: "lane/validation-p00:reviews/VALIDATION-V02B-BINDING-GAP-AUDIT-001.md"
+  TEST_EXECUTION_BINDING_HEALTH: "lane/validation-p00:workflow-health/HEALTH_REVIEW-WF-P00-V02B-AUTHORITY-BINDING-017.md"
+  TEST_EXECUTION_BINDING_EVIDENCE: "lane/validation-p00:validation/evidence/V02B-EXECUTION-BINDING-GAP-20260921/analysis.json"
+  TEST_EXECUTION_NATIVE_CASE_COUNT: 85
+  TEST_EXECUTION_NATIVE_REQUEST_COUNT: 133
+  TEST_EXECUTION_PREPARATION_TYPE_COUNT: 78
+  TEST_EXECUTION_BINDING_ROUTE: WORKFLOW_REVIEW_THEN_TEST_DESIGN
   CANONICAL_SYNC_REVIEW_RECORD: reviews/VALIDATION-V02A-CANONICAL-SYNC-DEV22-REVIEW-001.md
   CANONICAL_SYNC_AUDIT_RECORD: reviews/VALIDATION-V02A-CANONICAL-SYNC-DEV22-AUDIT-001.md
   PRODLIKE_MIGRATION_RECORD: "lane/validation-p00:validation/PRODLIKE_DEV22_MIGRATION_DEPLOYMENT-P00.md"
@@ -223,16 +232,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REASON: "The Windows update/reboot prerequisite is reviewed and audited complete on Professional 25H2/build 26200.9457 with 385 conservative support days. V02 remains blocked only because the fresh <=24h signed WSL-local authority graph has not been created and passed current preflight/intake/pre-V03 verification."
+  BLOCK_ID: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
+  REASON: "Reviewed V02B evidence proves the current consumer/validator stack has no reviewed producer for the 85-case native execution-plan/native-binding/preparation graph. A pure-authority plan can pass while actual native entry rejects NATIVE_BINDING_REQUIRED. Do not hand-author the graph; route through WORKFLOW_REVIEW then TEST-DESIGN/TEST-REVIEW."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/V02B_LOCAL_AUTHORITY_PACKAGE
+  RETURN_TO: NEXT_WORK_ITEM/WORKFLOW_REVIEW_V02B_BINDING_PRODUCER
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Continue V02B entirely inside WSL: reobserve durable prerequisites, construct and independently review the exact current local-authority graph, sign the <=24h envelope with the existing durable key, then pass current preflight/intake/artifact-seal/pre-V03 gates before any native execution."
+NEXT_ACTION: "Perform WR-P00-V02B-BINDING-001: classify the missing native binding producer, freeze the smallest safe producer contract without changing test oracles, then route to TEST-DESIGN/TEST-REVIEW. Preserve RUN-P00-VALIDATION-002 and return to V02B only after the reviewed capability exists."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V62 is an evidence/state synchronization, not a DOCSYS policy revision. Product source, accepted candidate, learning register, validation run and native results are unchanged. The reviewed/audited V02A receipt supersedes only the old Windows-update blocker. V02 remains BLOCKED pending the fresh signed local-authority graph. This transaction grants no native, qualification, SITE or HOST_READY authority. Review assurance is same-chat role separation, not external certification.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V63 is an evidence/state routing synchronization, not a DOCSYS policy revision. Product source, accepted candidate, learning register, validation run and all native results remain unchanged. The reviewed/audited V02B TEST_GAP replaces the simplistic missing-envelope next action with a workflow/test-architecture intervention. V02 stays BLOCKED; no authority envelope was created or signed. This transaction grants no native, qualification, SITE or HOST_READY authority. Review assurance is same-chat role separation, not external certification.

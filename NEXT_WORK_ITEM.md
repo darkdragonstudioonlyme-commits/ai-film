@@ -1,52 +1,47 @@
-# NEXT WORK ITEM — complete V02 local authority package
+# NEXT WORK ITEM — workflow review for V02B native binding producer
 
-```yaml
+~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-LANE: VALIDATION
-STATUS: READY_TO_RESOLVE_V02_BLOCK
-MODE: VALIDATION
+INTERVENTION_ID: WR-P00-V02B-BINDING-001
+PARENT_MODE: VALIDATION
+MODE: WORKFLOW_REVIEW
+LANE: WORKFLOW_REVIEW
+STATUS: READY
 PHASE: "00 — Host / WSL"
-WORK_ITEM: M-P00-VALIDATION-DEV22
+WORK_ITEM: WR-P00-V02B-AUTHORITY-BINDING-PRODUCER
+PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  ACCEPTED_VERSION: 0.1.0.dev22
   SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
   PACKAGE_SHA256: c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae
-  VALIDATION_EVIDENCE_HEAD: 43956bf0f125ee551c1c815220034a42b6a82b7e
-  CANDIDATE_ID: 6f895394-e0b4-5434-bebc-79ee4e576282
-  AUTHORITY_MODEL: LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN
-  AUTHORITY_INBOX: /home/dragon/ai-film-dev/local-authority/dev22/inbox
-  KEY_ID: AI-FILM-P00-DEV22-LOCAL-001
-  WSL_INBOX_DEPLOYMENT_RECEIPT_SHA256: 8bb2f75cfe493d3e4d50f5a78e16f77d902870a7607928cb58fe2a69dbedc014
-  HOST_EDITION: Professional
-  HOST_DISPLAY_VERSION: 25H2
-  HOST_BUILD: 26200
-  HOST_UBR: 9457
-  HOST_POST_UPDATE_RECEIPT_SHA256: 2cd680bbd8a411584ba60f1455833dc357327a5ac9a28d194664fcd46968692c
-  HOST_SUPPORT_END_DATE: 2027-10-12
-  HOST_REMAINING_SUPPORT_FLOOR_DAYS: 385
-  SUPPORT_MARGIN_REQUIRED_DAYS: 90
-  PRODLIKE_RUNTIME_STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
-  LAB_TECHNICAL_STATUS: DEV22_REBUILT_SEALED_RESTORE_PROBED
-GOAL: "Construct, review, sign and verify the fresh dev22 WSL-local authority graph for the current host/profile without starting native execution before V02 closes."
+  VALIDATION_EVIDENCE_HEAD: 6409c02937bd1d51b5b8418a2367b036d55c0133
+  TEST_GAP: lane/validation-p00:test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md
+  TEST_REVIEW: lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-GAP-001.md
+  GAP_AUDIT: lane/validation-p00:reviews/VALIDATION-V02B-BINDING-GAP-AUDIT-001.md
+  WORKFLOW_HEALTH: lane/validation-p00:workflow-health/HEALTH_REVIEW-WF-P00-V02B-AUTHORITY-BINDING-017.md
+  GAP_EVIDENCE: lane/validation-p00:validation/evidence/V02B-EXECUTION-BINDING-GAP-20260921/analysis.json
+  NATIVE_CASE_COUNT: 85
+  NATIVE_REQUEST_COUNT: 133
+  PREPARATION_TYPE_COUNT: 78
+GOAL: "Determine the smallest reviewed producer contract that can turn approved Phase00 procedure authority plus fresh observations into exact native-executable V02/V03 bindings without deriving or weakening test oracles from implementation."
 STEPS:
-  - V00_VALIDATION_LANE_ACTIVATION: COMPLETE
-  - V01_CODE_REVIEW_GATE: COMPLETE
-  - V02A_WINDOWS_HOST_SUPPORT_UPDATE: COMPLETE_REVIEWED_AUDITED
-  - V02B_LOCAL_AUTHORITY_PACKAGE: READY
-  - V03_NATIVE_LAB_REGRESSION: NOT_STARTED
-  - V04_QUALIFICATION_RECEIPT: NOT_STARTED
-  - V05_SITE_VALIDATION: NOT_STARTED
-  - V06_GATE_ASSESSMENT: NOT_STARTED
+  - V02B_GAP_DISCOVERY: COMPLETE_REVIEWED_AUDITED
+  - WORKFLOW_ROOT_CAUSE_REVIEW: READY
+  - TEST_DESIGN_PRODUCER_CONTRACT: NOT_STARTED
+  - TEST_REVIEW_PRODUCER_CONTRACT: NOT_STARTED
+  - IMPLEMENTATION_TOOLING_IF_REQUIRED: NOT_STARTED
+  - INDEPENDENT_CODE_REVIEW_IF_REQUIRED: NOT_STARTED
+  - RETURN_TO_V02B: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-CURRENT_SUBSTEP: V02B_LOCAL_AUTHORITY_PACKAGE
-SUCCESS_OUTPUT: "Fresh <=24h WSL-local authority graph binds exact current host/profile/candidate/plans, verifies the existing durable local signature, and passes preflight/intake/artifact-seal/pre-V03 while all native cases remain NOT_RUN."
-ON_SUCCESS: RUN-P00-VALIDATION-002/V03_NATIVE_LAB_REGRESSION
-ON_FAIL: VALIDATION_FAILURE_ROUTE
-ON_BLOCK: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-EXIT_CONDITION: "The exact current local-authority graph is independently reviewed, signed with the existing WSL-local key and passes all current V02/pre-V03 verification before V03 starts."
-```
+CURRENT_INTERVENTION_STEP: WORKFLOW_ROOT_CAUSE_REVIEW
+SUCCESS_OUTPUT: "A bounded correction route with explicit producer inputs/outputs, authority ownership, observation-vs-arrangement semantics, fail-closed rules and review/test gates; no oracle or product requirement changes."
+ON_SUCCESS: TEST_DESIGN-P00-V03-AUTHORITY-BINDING-PRODUCER-001
+ON_FAIL: WORKFLOW_HEALTH_REVIEW
+ON_BLOCK: BLOCK-P00-VAL-V03-BINDING-PRODUCER-001
+RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
+EXIT_CONDITION: "The missing capability is classified and the smallest safe producer contract is frozen for independent TEST_REVIEW, without authorizing V02 signing or V03 execution."
+~~~
 
 ## Execution now
 
-No user action is required for this substep. Re-observe the durable host/key/source/tooling/LAB prerequisites immediately before creating the expiring authority graph. Keep the private key outside Git and outside the inbox. Do not start the LAB or any native case until V02 verification is complete.
+No user action is required. Do not create/sign an authority envelope or start the LAB while this intervention is open. Preserve the accepted dev22 source, durable local key, stopped LAB and all NOT_RUN statuses.
