@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_STAGE_DERIVED_AUTHORITY_006_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006",
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "design_author_commit": "3475c8de57e0cec3a2bb02f488c373366d9e7885",
+  "design_review_commit": "416f25d26fe47ddfd800bd94a620a11a28b5a99d",
+  "dependency_catalog_sha256": "fac26f07965257a75eee93c61f9861bf2a0e24f033008bd366cf5478849f54a0",
+  "oracle_changed": false,
+  "expected_business_behavior_changed": false,
+  "authority_mode_counts": {
+    "CONCRETE_PRE_V03": 94,
+    "STAGE_DERIVED": 15,
+    "ENTRY_PROBE_AUTHORITY": 10,
+    "FENCE_BOUND_RECONCILIATION": 14
+  },
+  "stage_derived": [
+    "T00-09:1",
+    "T00-09:2",
+    "T07-I:1",
+    "T09-A:1",
+    "T09-A:2",
+    "F00-12:1",
+    "T09-D:1",
+    "T09-H:1",
+    "T09-I:1",
+    "T05-D:1",
+    "F00-10:1",
+    "F00-11:1",
+    "T00-14:3",
+    "T00-14:4",
+    "T00-14:5"
+  ],
+  "concrete_temporal_exceptions": [
+    "T07-B:1",
+    "T07-B:2",
+    "T07-C:2",
+    "T07-C:3",
+    "F00-16:1"
+  ],
+  "late_bound_proof_roles": [
+    "source_manifest",
+    "protection",
+    "restore_envelope",
+    "user_init_receipt",
+    "c3_postchecks",
+    "operation_postcheck",
+    "run_revocation",
+    "read_absence_observation",
+    "restore_result"
+  ],
+  "authorized_product_changes": {
+    "add": [
+      "src/aifilm_p00/native/stage_authority.py"
+    ],
+    "modify": [
+      "src/aifilm_p00/native/harness_controller.py"
+    ],
+    "byte_identical_required": [
+      "src/aifilm_p00/authority.py",
+      "src/aifilm_p00/plans.py",
+      "src/aifilm_p00/native/harness_cases.py",
+      "src/aifilm_p00/native/request_entry.py",
+      "src/aifilm_p00/resume.py",
+      "src/aifilm_p00/recovery.py",
+      "config/required-native-test-inventory.json",
+      "contracts/PHASE00_INFRA_DESIGN_V2.md",
+      "contracts/PHASE00_ACCEPTANCE_MATRIX_V2.md",
+      "contracts/PHASE00_FAILURE_RECOVERY_PLAN_V2.md",
+      "contracts/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md"
+    ]
+  },
+  "authorized_product_tests": {
+    "add": [
+      "tests/test_dev23_stage_authority.py"
+    ],
+    "modify": [
+      "tests/test_dev15_harness.py"
+    ]
+  },
+  "authorized_validation_tooling": {
+    "add": [
+      "validation/tooling/v03_binding_producer_common.py",
+      "validation/tooling/v02b-authority-graph-compiler.py",
+      "validation/tooling/verify-v03-binding-producer.py",
+      "validation/tooling/v03-fixture-preparation-controller.py",
+      "validation/tooling/update-v03-native-policy.py",
+      "validation/tooling/materialize-v03-late-proof.py"
+    ],
+    "modify": [
+      "validation/tooling/v02-authority-intake.py",
+      "validation/tooling/pre-v03-authority-stage.sh",
+      "validation/tooling/V02_TOOLING_MANIFEST.json"
+    ]
+  },
+  "authorized_validation_tests": {
+    "add": [
+      "validation/tooling/tests/test_v03_binding_producer.py",
+      "validation/tooling/tests/test_v03_policy_generation.py",
+      "validation/tooling/tests/test_v03_fixture_preparation_controller.py",
+      "validation/tooling/tests/test_v03_late_proof_materializer.py"
+    ]
+  },
+  "required_tests": [
+    {
+      "id": "TD006-01",
+      "assertion": "Recompute 133 stages and exact 94/15/10/14 authority-mode counts from reviewed source/catalog."
+    },
+    {
+      "id": "TD006-02",
+      "assertion": "Reject derived authority on any unlisted stage or an unreviewed authority-mode substitution."
+    },
+    {
+      "id": "TD006-03",
+      "assertion": "Reject wrong/late/foreign producer lineage and process-exit-only evidence; support exact multi-producer restore lineage."
+    },
+    {
+      "id": "TD006-04",
+      "assertion": "T05-D/F00-10/F00-11 reject stale pre-ENGINE material/profile and require signed post-ENGINE rebind."
+    },
+    {
+      "id": "TD006-05",
+      "assertion": "All six verify-after-import stages bind actual destination material/registration; T00-09/T09-A also bind export checkpoint lineage."
+    },
+    {
+      "id": "TD006-06",
+      "assertion": "Derived native-binding template cannot alter executable policy, paths/volumes, timeout ceilings, payload authority or action set."
+    },
+    {
+      "id": "TD006-07",
+      "assertion": "ENTRY_ONLY remains exact reviewed entry-probe authority and cannot be mapped to a product purpose."
+    },
+    {
+      "id": "TD006-08",
+      "assertion": "FENCE_BOUND_RECONCILIATION rejects a foreign/missing fence or detached-read lineage and preserves original-plan identity."
+    },
+    {
+      "id": "TD006-09",
+      "assertion": "Five concrete temporal exceptions remain fail-closed exactly as reviewed."
+    },
+    {
+      "id": "TD006-10",
+      "assertion": "All nine late-bound proof roles reject materialization before scope facts exist and enforce role/scope/freshness."
+    },
+    {
+      "id": "TD006-11",
+      "assertion": "Policy generation increments exactly by one and rejects parent digest drift, rollback and signed-base-ref mutation."
+    },
+    {
+      "id": "TD006-12",
+      "assertion": "Derived refs under multi-valued roles require verified signed-slot lineage; registration/design/code remain single-selection."
+    },
+    {
+      "id": "TD006-13",
+      "assertion": "execute_stage and finalizer reject plan/stage evidence whose authority mode or lineage does not match signed suite authority."
+    },
+    {
+      "id": "TD006-14",
+      "assertion": "No public/caller-selected dynamic-plan or prepare_execution bypass can create accepted LAB stage evidence."
+    },
+    {
+      "id": "TD006-15",
+      "assertion": "V02 static verification distinguishes concrete, slot, entry-probe and reconciliation-slot resolvability without claiming future facts exist."
+    },
+    {
+      "id": "TD006-16",
+      "assertion": "Author tests/tooling never sign, read private signing-key material, write production mappings, run native LAB cases, issue qualification or set HOST_READY."
+    }
+  ]
+}
