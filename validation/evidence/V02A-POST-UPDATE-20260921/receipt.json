@@ -1,0 +1,115 @@
+{
+  "artifact_seal": {
+    "artifact_count": 8,
+    "candidate_id": "6f895394-e0b4-5434-bebc-79ee4e576282",
+    "kind": "P00_LAB_ARTIFACT_SEAL_VERIFY",
+    "native_execution_started": false,
+    "seal_sha256": "326718e74673d390750f691e9b319df344de58a2d8e8f296384caf716e2ce461",
+    "status": "PASS"
+  },
+  "assurance_class": "SAME_TRUST_DOMAIN_LOCAL_OPERATOR",
+  "bootstrap_checks": {
+    "audit": "DOC_AUDIT_PASS 20 active docs lifecycle-aware-checkers learning-lifecycle-enforced",
+    "continuity": "WORKFLOW_CONTINUITY_CHECK_PASS scope=REMOTE_LEDGER state=V61 run=RUN-P00-VALIDATION-002 workflow=WF-P00-VALIDATION-ENTRY step=V02_LOCAL_OPERATOR_LAB_AUTHORITY lane_head=180c87c041ce67c42fa4be49ee938c512c807da0 local=NOT_APPLICABLE_REMOTE_ONLY native=NOT_EVALUATED",
+    "docs": "DOCS_CHECK_PASS 20 active files state_version=61 state_kind=VALIDATION",
+    "governance": "PASS documentation governance release-selection/promotion/learning-lifecycle/source-visibility/test-provenance invariants",
+    "learning": "LEARNING_LIFECYCLE_CHECK_PASS 18 records role=PROMOTED branch=main pending_activation=0 unresolved_ineffective=0 pending_measurement=2 overdue_measurement=0 promotion_evidence=resolved promotion_target=a63e644e1bf5ba688588669c06e143fadea7ad88",
+    "runtime": "RUNTIME_STATE_CHECK_PASS state_version=61 state_kind=VALIDATION implement=86bb64938a136e3f8d6cfd0266685a01cb832b77 review=86bb64938a136e3f8d6cfd0266685a01cb832b77 dirty=0",
+    "state": "STATE_CONTRACT_CHECK_PASS state=V61 selected=AI_FILM_PROJECT_STATE_V61.json"
+  },
+  "canonical_main_at_start": "5466e99c7f80cb930ba2ca160475ab2f495c650a",
+  "deployed_tooling_differences": [],
+  "deployed_tooling_files_compared": 20,
+  "expected_lane_parent": "180c87c041ce67c42fa4be49ee938c512c807da0",
+  "full_product_regression_rerun": false,
+  "hklm_written": false,
+  "host": {
+    "CurrentBuild": "26200",
+    "DisplayVersion": "25H2",
+    "EditionID": "Professional",
+    "HypervisorPresent": true,
+    "LastBootUpTime": "2026-09-21T01:30:05.5000000Z",
+    "OSArchitecture": "64-bit",
+    "ObservedAtUtc": "2026-09-21T01:51:53.4052732Z",
+    "ProcessorArchitecture": "AMD64",
+    "UBR": 9457
+  },
+  "host_profile_negative_checks": [
+    {
+      "actual_reason": "SUPPORT_MARGIN",
+      "case": "below_90_days",
+      "expected_reason": "SUPPORT_MARGIN",
+      "status": "PASS"
+    },
+    {
+      "actual_reason": "SUPPORT_EVIDENCE_MISSING",
+      "case": "missing_support",
+      "expected_reason": "SUPPORT_EVIDENCE_MISSING",
+      "status": "PASS"
+    },
+    {
+      "actual_reason": "VIRTUALIZATION_PREREQUISITE",
+      "case": "no_virtualization",
+      "expected_reason": "VIRTUALIZATION_PREREQUISITE",
+      "status": "PASS"
+    }
+  ],
+  "host_profile_normalization": {
+    "architecture": "x64",
+    "channel": "stable",
+    "edition": "Pro",
+    "os": "Windows 11",
+    "support_end": "2027-10-12T00:00:00+00:00",
+    "virtualization": true
+  },
+  "host_profile_result": "PASS",
+  "host_ready": "NOT_EVALUATED",
+  "intake": {
+    "candidate_binding_sha256": "4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384",
+    "candidate_id": "6f895394-e0b4-5434-bebc-79ee4e576282",
+    "inbox": "/home/dragon/ai-film-dev/local-authority/dev22/inbox",
+    "kind": "V02_AUTHORITY_INTAKE",
+    "native_execution_started": false,
+    "ready_to_advance": false,
+    "reason": "APPROVAL_ENVELOPE_MISSING",
+    "status": "BLOCKED"
+  },
+  "key_parity": {
+    "assurance_class": "LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN",
+    "key_id": "AI-FILM-P00-DEV22-LOCAL-001",
+    "kind": "V02_LOCAL_KEY_PARITY",
+    "private_key_committed": false,
+    "private_key_mode": "0600",
+    "public_key_mode": "0600",
+    "public_key_sha256": "7f14c158dd09ec9e40572131538bab6818e768cc9f33cb1ec3708a09df9a8a69",
+    "status": "PASS"
+  },
+  "keys_regenerated": false,
+  "kind": "V02A_POST_UPDATE_REOBSERVATION",
+  "native_cases_executed": 0,
+  "preflight": {
+    "authorized_plan_count": null,
+    "candidate_id": "6f895394-e0b4-5434-bebc-79ee4e576282",
+    "case_count": null,
+    "kind": "V02_AUTHORITY_PREFLIGHT",
+    "native_execution_started": false,
+    "ready_for_intake": false,
+    "reason": "APPROVAL_ENVELOPE_MISSING",
+    "staging_unchanged": true,
+    "status": "MISSING",
+    "validator_returncode": 12
+  },
+  "qualification": "NOT_ISSUED",
+  "remaining_support_floor_days": 385,
+  "required_support_margin_days": 90,
+  "run_id": "RUN-P00-VALIDATION-002",
+  "schema_version": 1,
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "support_end_conservative_utc": "2027-10-12T00:00:00+00:00",
+  "support_source": "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information",
+  "v02_full_authority": "NOT_COMPLETE",
+  "v02a_windows_update_and_reboot": "COMPLETE_OBSERVED",
+  "v02b_next_action": "CREATE_REVIEW_SIGN_FRESH_WSL_LOCAL_AUTHORITY_GRAPH",
+  "validation_source_differences": [],
+  "validation_source_files_compared": 61
+}

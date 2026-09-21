@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_HOST_SUPPORT_UPDATE_BEFORE_AUTHORITY_PACKAGE
+STATUS: BLOCKED_LOCAL_AUTHORITY_PACKAGE_NOT_CREATED
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -75,13 +75,19 @@ LAB_PREPARATION:
   WSL_INBOX_KEY_PARITY_STATUS: PASS
   WSL_INBOX_PREFLIGHT_STATUS: MISSING_APPROVAL_ENVELOPE_EXPECTED
   WSL_INBOX_WATCHER_STATUS: ACTIVE_ENABLED_BLOCKED_EXPECTED
-  HOST_SUPPORT_STATUS: UPDATE_REQUIRED_BEFORE_EPHEMERAL_AUTHORITY_SUITE
+  HOST_SUPPORT_STATUS: POST_UPDATE_SUPPORT_MARGIN_VERIFIED
   HOST_OBSERVED_EDITION: Professional
-  HOST_OBSERVED_DISPLAY_VERSION: 23H2
-  HOST_OBSERVED_BUILD: 22631
-  HOST_OBSERVED_UBR: 3296
+  HOST_OBSERVED_DISPLAY_VERSION: 25H2
+  HOST_OBSERVED_BUILD: 26200
+  HOST_OBSERVED_UBR: 9457
   HOST_POLICY_MIN_SUPPORT_MARGIN_DAYS: 90
   HOST_MINIMUM_TARGET: 25H2_OR_LATER_WITH_90_DAY_MARGIN
+  HOST_POST_UPDATE_RECEIPT: validation/evidence/V02A-POST-UPDATE-20260921/receipt.json
+  HOST_POST_UPDATE_RECEIPT_SHA256: 2cd680bbd8a411584ba60f1455833dc357327a5ac9a28d194664fcd46968692c
+  HOST_SUPPORT_END_DATE: 2027-10-12
+  HOST_REMAINING_SUPPORT_FLOOR_DAYS: 385
+  V02A_WINDOWS_UPDATE_AND_REBOOT: COMPLETE_OBSERVED
+  V02B_LOCAL_AUTHORITY_PACKAGE: NOT_CREATED
   LOCAL_KEY_ACTIVATION_RECORD: validation/V02_LOCAL_KEY_ACTIVATION-P00-DEV22.md
   LOCAL_KEY_ACTIVATION_REVIEW: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-REVIEW-001_PASS.md
   LOCAL_KEY_ACTIVATION_AUDIT: reviews/VALIDATION-V02-LOCAL-KEY-ACTIVATION-DEV22-AUDIT-001_PASS.md
@@ -169,8 +175,8 @@ PRODLIKE_DEV22_MIGRATION:
 
 ENTRY_BLOCK:
   BLOCK_ID: BLOCK-P00-VAL-LOCAL-AUTH-DEV22-001
-  REMAINING_REQUIREMENT: "Update Windows 11 Pro host from unsupported 23H2/build 22631 to 25H2 or later with >=90-day support margin, reboot, then create/sign the fresh dev22 local authority graph inside the WSL-local inbox and pass current V02 verification."
-  USER_ACTION_REQUIRED: true
+  REMAINING_REQUIREMENT: "Windows update/reboot has been observed and its support prerequisite passes. Create/review/sign the fresh dev22 local authority graph inside WSL, bind the exact current host/profile and plans, then pass preflight/intake/pre-V03 before native execution."
+  USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
 NATIVE_WINDOWS_WSL: NOT_RUN
@@ -181,3 +187,5 @@ HOST_READY: NOT_EVALUATED
 ```
 
 Choice B remains explicit: local authority is intentionally same-trust-domain and lower assurance. The prior activation design `8760fd8...`, review `804df8a...`, audit/promotion `9673283...`, finalization history and promoted-lane CI `35315862290` remain immutable historical evidence, but V02-LOCAL-KEY-PARITY-001 supersedes that key identity because no durable private key derives its reviewed public fingerprint. This reactivation binds the already durable owner-only key through machine-verified private-derived-public parity, metadata and ACTIVE trust-anchor identity; exact audited bytes are now observed deployed with key-parity PASS, and the deployment evidence is independently review/audit-gated before canonical promotion. The non-native prodlike runtime/control plane is now exact dev22 with manifest-backed user-systemd parity and healthy rollback evidence. The stopped LAB is now exact dev22, candidate-bound, artifact-sealed and independently restore-probed. The reviewed authority tooling, durable signing key and canonical authority inbox are now all WSL-local and deployment-verified. Only the fresh signed local authority object graph/intake remains before V02 can close. All 86 native procedures remain NOT_RUN.
+
+Post-update evidence on 2026-09-21 supersedes only the old Windows-update blocker. Historical prodlike/rebuild verdicts are preserved, not rerun or promoted into new native proof. The new receipt verifies host support, key/source/tooling/seal parity and missing-envelope fail-closed behavior. Canonical main synchronization is pending; the original run and all native gates remain unchanged.

@@ -9,7 +9,8 @@ EXPECTED_HEAD: 517783d29aecb3d6ae1b0548109480733fa36fe6
 CANONICAL_MAIN_AT_START: 5466e99c7f80cb930ba2ca160475ab2f495c650a
 SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
 STEP_ID: V02A_POST_UPDATE_REOBSERVATION
-STATE: INTENT
+STATE: COMPLETE
+REVIEW_STATUS: PENDING
 CHANGE_CLASS: EVIDENCE_UPDATE
 REPLAY_POLICY: VERIFY_AND_REUSE
 RETURN_TO: RUN-P00-VALIDATION-002/V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -25,7 +26,9 @@ Only the Windows-update prerequisite may be completed by this evidence. V02 stil
 
 ## Output
 
-OUTPUT_IDENTITY: null
+OUTPUT_IDENTITY: {"receipt":"validation/evidence/V02A-POST-UPDATE-20260921/receipt.json","sha256":"2cd680bbd8a411584ba60f1455833dc357327a5ac9a28d194664fcd46968692c","v02a":"COMPLETE_OBSERVED","v02":"NOT_COMPLETE","native_cases_executed":0}
 DURABILITY_TIER: REMOTE_LEDGER
 
 The final receipt/review will be linked here before canonical state synchronization. Concurrent publication must use a new commit parented by the freshly verified expected lane head; never force-push.
+
+Author observation completed. Source/native bytes: 61/61; deployed tooling: 20/20; key parity PASS; eight-artifact seal PASS; seven bootstrap checks PASS; host_profile PASS with three expected negative rejections. Preflight/intake return 10/12 on APPROVAL_ENVELOPE_MISSING, with staging unchanged. Full 766-test product regression was not rerun. Receipt review and canonical synchronization remain separate obligations.
