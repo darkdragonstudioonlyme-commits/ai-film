@@ -1,11 +1,11 @@
-# AI-FILM-SERVER — CANONICAL PROJECT STATE V68
+# AI-FILM-SERVER — CANONICAL PROJECT STATE V69
 
 > Read first in every new chat. Current global truth. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 68
-CURRENT_MODE: TEST_DESIGN
+STATE_VERSION: 69
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: IMPL-P00-V03-AUTHORITY-BINDING-PRODUCER-001
 TARGET_GATE: M-P00-VALIDATION
@@ -75,7 +75,7 @@ ACTIVE_RUN:
 
 VALIDATION_PREPARATION:
   LANE: lane/validation-p00
-  VALIDATION_EVIDENCE_HEAD: 416f25d26fe47ddfd800bd94a620a11a28b5a99d
+  VALIDATION_EVIDENCE_HEAD: 1defbf3422903a694215df9e2c11374fc5b1b785
   EVIDENCE_CANDIDATE: "0.1.0.dev22 / 86bb64938a136e3f8d6cfd0266685a01cb832b77"
   RUN002_STATUS: BLOCKED
   RUN002_CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
@@ -158,13 +158,23 @@ VALIDATION_PREPARATION:
   STAGE_DERIVED_DESIGN_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-DESIGN-CANONICAL-SYNC-REVIEW-001.md
   STAGE_DERIVED_DESIGN_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-DESIGN-CANONICAL-SYNC-AUDIT-001.md
   TEST_DESIGN_TARGET_ID: TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006
-  TEST_DESIGN_STATUS: READY
+  TEST_DESIGN_STATUS: COMPLETE_REVIEWED
   TEST_DESIGN_ORACLE_CHANGED: false
-  TEST_DESIGN_RECORD: null
-  TEST_DESIGN_REVIEW: null
+  TEST_DESIGN_RECORD: "lane/validation-p00:test-governance/TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006.md"
+  TEST_DESIGN_REVIEW: "lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-006.md"
+  TEST_DESIGN_006_COVERAGE: "lane/validation-p00:test-governance/design-evidence/TEST-DESIGN-P00-V03-STAGE-DERIVED-AUTHORITY-006-COVERAGE.json"
+  TEST_DESIGN_006_AUTHOR_COMMIT: 88dd37ac1d19de300f33684f82fcc74cd8fbb60b
+  TEST_DESIGN_006_AUTHOR_TREE: 4f76394596791cc8bd3a93c7e196d935dcf5e494
+  TEST_DESIGN_006_REVIEW_COMMIT: 1defbf3422903a694215df9e2c11374fc5b1b785
+  TEST_DESIGN_006_REVIEW_TREE: c8f7cc92930152d88b6ae08152855e660f16ea52
+  TEST_DESIGN_006_ORACLE_CHANGED: false
+  PRODUCT_IMPLEMENTATION_AUTHORIZED_BY_TEST_REVIEW_006: true
+  PRODUCT_IMPLEMENTATION_TARGET_VERSION: 0.1.0.dev23
+  STAGE_DERIVED_IMPLEMENTATION_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-IMPLEMENTATION-ROUTING-SYNC-REVIEW-001.md
+  STAGE_DERIVED_IMPLEMENTATION_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-IMPLEMENTATION-ROUTING-SYNC-AUDIT-001.md
   TEST_DESIGN_RECIPE_CATALOG: null
   TEST_DESIGN_RECIPE_CATALOG_SHA256: null
-  BINDING_PRODUCER_IMPLEMENTATION_STATUS: BLOCKED_PENDING_TEST_REVIEW_006_AND_NEW_CANDIDATE
+  BINDING_PRODUCER_IMPLEMENTATION_STATUS: READY_PRODUCT_DEV23
   STAGE_DERIVED_AUTHORITY_SYNC_REVIEW_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-AUTHORITY-ROUTING-SYNC-REVIEW-001.md
   STAGE_DERIVED_AUTHORITY_SYNC_AUDIT_RECORD: reviews/VALIDATION-V03-STAGE-DERIVED-AUTHORITY-ROUTING-SYNC-AUDIT-001.md
   BINDING_PRODUCER_IMPLEMENTATION_SCOPE: VALIDATION_TEST_TOOLING_ONLY
@@ -294,16 +304,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-STAGE-DERIVED-TEST-DESIGN-005
-  REASON: "DESIGN_GAP-P00-V03-STAGE-DERIVED-AUTHORITY-001 now has independent DESIGN_REVIEW PASS. V02 remains blocked until TEST_CHANGE 006 and independent TEST_REVIEW bind the exact product/harness/validation delta before any dev23-or-later implementation."
+  BLOCK_ID: BLOCK-P00-VAL-V03-STAGE-DERIVED-IMPLEMENTATION-006
+  REASON: "TEST_CHANGE 006 and independent TEST_REVIEW now authorize a bounded dev23-or-later product implementation. V02 remains blocked until that product candidate passes tests and formal CODE_REVIEW, then candidate-specific validation/tooling/LAB authority is reconciled."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/AUTHOR_TEST_CHANGE_006
+  RETURN_TO: NEXT_WORK_ITEM/AUTHOR_DEV23_STAGE_DERIVED_AUTHORITY
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Author TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006 against the reviewed stage-derived authority design. Preserve ORACLE_CHANGED=false, bind the exact product/harness/reconciliation and validation-tooling delta plus adversarial coverage, then hand it to independent TEST_REVIEW before any dev23-or-later implementation."
+NEXT_ACTION: "Author a dev23-or-later product candidate within TEST_CHANGE 006 exact source scope: add native/stage_authority.py, modify native/harness_controller.py, preserve frozen source/contracts byte-identically, add reviewed tests, run full author regression/static/package checks, then hand the exact candidate to formal CODE_REVIEW before validation tooling deployment or V02 authority construction resumes."
 ```
 
-Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V68 is an evidence/state routing correction, not a DOCSYS policy revision. Product source, accepted candidate, validation run and all native results remain unchanged. The stage-derived authority DESIGN_GAP now has independent DESIGN_REVIEW PASS with ORACLE_CHANGED=false and authorizes TEST-DESIGN 006 only. Product source changes are required by the reviewed design but are not yet implementation-authorized; V02 stays BLOCKED.
+Historical/prior-tree R34/A34 remain immutable V60 evidence. R35/A35 remain the active V61 documentation-governance authority; V69 is an evidence/state routing correction, not a DOCSYS policy revision. Accepted dev22 remains the current reviewed product until a dev23-or-later candidate passes formal CODE_REVIEW. TEST_CHANGE/TEST_REVIEW 006 authorize only the exact bounded implementation scope with ORACLE_CHANGED=false; no authority signing or native execution is authorized. V02 stays BLOCKED.
