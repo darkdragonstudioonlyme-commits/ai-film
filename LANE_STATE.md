@@ -3,7 +3,7 @@
 ```yaml
 LANE_ID: VALIDATION-P00
 LANE_ROLE: VALIDATION
-STATUS: BLOCKED_LATE_BOUND_PROOF_MODEL_INCOMPLETE
+STATUS: BLOCKED_LATE_BOUND_EXECUTION_AUTHORITY_UNRESOLVED
 GLOBAL_MODE: VALIDATION
 GLOBAL_WORK_ITEM: M-P00-VALIDATION-DEV22
 REMOTE_BRANCH: lane/validation-p00
@@ -174,8 +174,8 @@ PRODLIKE_DEV22_MIGRATION:
   NATIVE_EXECUTION_STARTED: false
 
 ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-LATE-BOUND-PROOF-002
-  REMAINING_REQUIREMENT: "Correct TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005 so immutable pre-V02 authority is separated from reviewed late-bound proof slots and monotonic proof-policy augmentation. Then independently TEST_REVIEW the corrected infrastructure contract before implementation resumes."
+  BLOCK_ID: BLOCK-P00-VAL-V03-LATE-BOUND-EXECUTION-003
+  REMAINING_REQUIREMENT: "Resolve TEST_GAP-P00-V03-LATE-BOUND-EXECUTION-INPUTS-003 through WORKFLOW_REVIEW before authoring TEST_CHANGE 006. Determine how exact export-produced checkpoint identity can be consumed by later import authority without guessing, pre-V02 native execution or unreviewed post-sign plan mutation."
   USER_ACTION_REQUIRED: false
   STATUS: OPEN
 
@@ -190,4 +190,4 @@ Choice B remains explicit: local authority is intentionally same-trust-domain an
 
 Post-update evidence on 2026-09-21 supersedes only the old Windows-update blocker. Historical prodlike/rebuild verdicts are preserved, not rerun or promoted into new native proof. The new receipt verifies host support, key/source/tooling/seal parity and missing-envelope fail-closed behavior. Canonical main synchronization is pending; the original run and all native gates remain unchanged.
 
-V02B binding-gap evidence is test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md. The independently reviewed producer contract subsequently exposed a temporal proof-slot gap during implementation: test-governance/TEST_GAP-P00-V03-LATE-BOUND-PROOF-SLOTS-002.md. No authority envelope was created or signed, no implementation tooling was deployed, and no native case started.
+V02B binding-gap evidence is test-governance/TEST_GAP-P00-V03-AUTHORITY-BINDING-001.md. The independently reviewed producer contract subsequently exposed a temporal proof-slot gap during implementation: test-governance/TEST_GAP-P00-V03-LATE-BOUND-PROOF-SLOTS-002.md. Before correction 006, restore dependency review exposed a distinct late-bound execution-authority gap: test-governance/TEST_GAP-P00-V03-LATE-BOUND-EXECUTION-INPUTS-003.md. No authority envelope was created or signed, no implementation tooling was deployed, and no native case started.

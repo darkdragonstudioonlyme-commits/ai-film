@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "V03_LATE_BOUND_EXECUTION_INPUT_GAP",
+  "run_id": "RUN-P00-VALIDATION-002",
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "canonical_main": "5d2fa8f4896bf77a3700565a22db710993463a60",
+  "validation_head": "773e445d72c66e711d457b37b0d329ccb7c09d81",
+  "previous_test_change": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005",
+  "planned_correction": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006",
+  "native_execution_started": false,
+  "authority_graph_signed": false,
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED",
+  "finding": "LATE_BOUND_EXECUTION_PLAN_INPUT_NOT_REPRESENTABLE_BY_FIXED_PRE_V03_PLAN_REF",
+  "accepted_contract_facts": {
+    "restore_order": "source export seals before destination transfer/import",
+    "t09_requires_checkpoint_source_destination_link": true,
+    "post_apply_checkpoint_restore_required": true
+  },
+  "accepted_source_facts": {
+    "suite_request_plan_ref_is_concrete_hash": true,
+    "v02_intake_loads_each_execution_plan_before_v03": true,
+    "harness_execute_stage_uses_fixed_suite_plan_ref": true,
+    "restore_import_requires_checkpoint_payload_ref": true,
+    "checkpoint_payload_digest_must_equal_plan_expected_checkpoint": true,
+    "terminal_restore_history_requires_export_checkpoint_equals_expected_checkpoint": true
+  },
+  "affected_reviewed_procedures": {
+    "T00-09": ["RESTORE_EXPORT", "RESTORE_IMPORT", "RESTORE_VERIFY"],
+    "T07-I": ["RESTORE_EXPORT", "RESTORE_IMPORT"],
+    "T09-A": ["RESTORE_EXPORT", "RESTORE_IMPORT", "RESTORE_VERIFY"]
+  },
+  "temporal_dependency": {
+    "producer_stage": "RESTORE_EXPORT",
+    "produced_fact": "checkpoint_sha256",
+    "consumer_stage": "RESTORE_IMPORT",
+    "consumer_plan_field": "semantic.expected_checkpoint",
+    "consumer_authority_ref": "semantic.refs.checkpoint_payload",
+    "problem": "The exact checkpoint digest is observed only after the export stage, but the suite fixes the import execution_plan ref before V03."
+  },
+  "unsafe_or_semantically_invalid_workarounds": [
+    "guess a future checkpoint digest",
+    "use a placeholder hash and relabel the later bytes",
+    "replace the source-export checkpoint with an unrelated pre-existing checkpoint while claiming T09 source-to-destination linkage",
+    "perform the native export before V02 closes merely to learn the digest",
+    "rewrite the signed suite or execution-plan ref after export without a reviewed late-bound execution-authority model"
+  ],
+  "impact_on_test_change_006": "A proof-slot-only correction is insufficient. Workflow review must determine whether an explicitly reviewed late-bound execution-plan/checkpoint slot can be represented by validation tooling alone or whether accepted harness/product authority schema must change.",
+  "oracle_change_determined": false,
+  "product_source_change_requirement": "UNRESOLVED_REQUIRES_WORKFLOW_REVIEW",
+  "disposition": "ROUTE_TO_WORKFLOW_REVIEW_BEFORE_TEST_CHANGE_006"
+}
