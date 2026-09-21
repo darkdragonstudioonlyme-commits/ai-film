@@ -17,7 +17,7 @@ RETURN_TO: V02_LOCAL_OPERATOR_LAB_AUTHORITY
 ```yaml
 STEP_ID: V02_LOCAL_OPERATOR_LAB_AUTHORITY
 STATE: BLOCKED
-BLOCK_REASON_CLASS: TEST_EXECUTION_BINDING_PRODUCER_MISSING
+BLOCK_REASON_CLASS: TEST_DESIGN_LATE_BOUND_PROOF_MODEL_INCOMPLETE
 INPUT_IDENTITY: {"authority_model":"LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN","candidate_binding_sha256":"4aaf09ec2ef8618a5680e147cd2eeac695f940d45ae5cb0446c7b7e5c2483384","candidate_id":"6f895394-e0b4-5434-bebc-79ee4e576282","code_review_record":"reviews/CODE-REVIEW-P00-001_DEV22_LOCAL_AUTHORITY.md","contract_digest":"f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee","inventory_sha256":"2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6","package_sha256":"c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae","source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77"}
 IDEMPOTENCY_KEY: 048c70614f2779a0ec675aebdc2565dab0c19bb56eb57447717fe884c15f49e5
 DONE_WHEN: {"authority_model":"LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN","candidate_id":"6f895394-e0b4-5434-bebc-79ee4e576282","controller_external":false,"execution_class":"LAB","kind":"LAB_LOCAL_OPERATOR_AUTHORITY_VERIFIED","local_authority_signature_verified":true,"registration_disposable":true,"source_commit":"86bb64938a136e3f8d6cfd0266685a01cb832b77","suite_approved":true}
@@ -40,6 +40,7 @@ REPLAY_POLICY: SAFE_REEXECUTE
 - The 2026-09-18 Windows observation (23H2/build 22631.3296) is historical. Post-update evidence `validation/evidence/V02A-POST-UPDATE-20260921/receipt.json` now observes Professional 25H2/build 26200.9457, a completed reboot and 385 full days of support using a conservative 2027-10-12T00:00:00Z bound. Exact dev22 host_profile PASS; three negative checks reject invalid prerequisites. V02A is complete as an observation, but no signed graph exists and V02 remains BLOCKED at authority preparation.
 - All 86 native procedures remain NOT_RUN. No qualification, SITE activation or HOST_READY assessment exists.
 - V02B construction review found TEST_GAP-P00-V03-AUTHORITY-BINDING-001: current tooling consumes a fully bound graph but no reviewed producer exists for per-case native execution plans, native bindings and preparation artifacts. A pure-authorization diagnostic can pass while actual native entry rejects NATIVE_BINDING_REQUIRED. V02 remains blocked and routes to WORKFLOW_REVIEW / TEST-DESIGN rather than hand-authoring bindings.
+- Implementation of the reviewed producer contract then found TEST_GAP-P00-V03-LATE-BOUND-PROOF-SLOTS-002: accepted native code selects source/user-init/C3/reconciliation proofs against facts created after mutation or reboot, while the reviewed TEST_CHANGE requires proof refs pinned before signing and does not authorize these proof roles in post-V02 augmentation. No implementation candidate was committed or deployed; route back to WORKFLOW_REVIEW / corrected TEST-DESIGN with ORACLE_CHANGED=false.
 
 ## Validation steps
 

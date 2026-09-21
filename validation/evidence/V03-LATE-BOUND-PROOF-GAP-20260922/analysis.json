@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "kind": "V03_BINDING_PRODUCER_LATE_BOUND_PROOF_GAP",
+  "run_id": "RUN-P00-VALIDATION-002",
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "validation_head": "5e6d2f41bd1513ae6e488add304fba4d00498e9b",
+  "canonical_main": "a46a3e6970a3457e8c1362bd79e7af5098a78882",
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-005",
+  "test_review_id": "TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-005",
+  "oracle_changed": false,
+  "product_source_change_authorized": false,
+  "native_execution_started": false,
+  "authority_graph_signed": false,
+  "qualification_issued": false,
+  "host_ready": "NOT_EVALUATED",
+  "finding": "REVIEWED_TEST_DESIGN_LATE_BOUND_PROOF_MODEL_INCOMPLETE",
+  "pre_sign_requirement": "purpose-specific proof refs exist and are pinned",
+  "post_v02_augmentation_rule": "preparation/measurement/fixture/stage/result evidence roles only",
+  "dynamic_proof_slots": [
+    {
+      "role": "source_manifest",
+      "source": "src/aifilm_p00/native/session_driver.py",
+      "scope_keys": ["host_id", "target_registration", "source_class"],
+      "late_bound_fact": "target_registration",
+      "reason": "CREATE plans require target.registration_id=null before INSTALL_DISTRO; the source proof is selected later against the generated registration identity."
+    },
+    {
+      "role": "user_init_receipt",
+      "source": "src/aifilm_p00/native/session_driver.py",
+      "scope_keys": ["host_id", "plan_digest", "target_registration", "user"],
+      "late_bound_fact": "target_registration",
+      "reason": "The receipt is selected only after owner user initialization has produced an actual target registration/default UID."
+    },
+    {
+      "role": "c3_postchecks",
+      "source": "src/aifilm_p00/native/session_driver.py",
+      "scope_keys": ["host_id", "plan_digest", "host_boot"],
+      "late_bound_fact": "post-reboot host_boot",
+      "reason": "The selected postcheck must be issued no earlier than the freshly observed reboot boundary."
+    },
+    {
+      "role": "operation_postcheck",
+      "source": "src/aifilm_p00/native/session_driver.py",
+      "scope_keys": ["host_id", "plan_digest", "step_id", "target_registration", "host_boot"],
+      "late_bound_fact": "actual operation epoch",
+      "reason": "Reconciliation consumes an observation bound to the actual target registration and current host boot."
+    },
+    {
+      "role": "run_revocation",
+      "source": "src/aifilm_p00/native/recovery_driver.py",
+      "scope_keys": ["host_id", "original_plan_digest", "original_fence_digest", "recovery_request_digest", "disposition"],
+      "late_bound_fact": "original_fence_digest",
+      "reason": "Revocation is scoped to a durable fence that exists only after the original run has entered a recoverable state."
+    },
+    {
+      "role": "read_absence_observation",
+      "source": "src/aifilm_p00/native/read_request_recovery.py",
+      "late_bound_fact": "detached read recovery scope",
+      "reason": "The recovery proof is selected from observed interrupted-read state and cannot be frozen before that state exists."
+    }
+  ],
+  "conflict": {
+    "static_graph_cannot_truthfully_pin_all_future_proofs": true,
+    "current_augmentation_rule_cannot_add_required_dynamic_proof_roles": true,
+    "false_green_if_static_verifier_accepts_placeholder_or_future-proof_refs": true
+  },
+  "required_correction": "Define reviewed late-bound proof slots and monotonic proof-policy augmentation while preserving the immutable V02 authority partition.",
+  "disposition": "ROUTE_TO_WORKFLOW_REVIEW_THEN_TEST_DESIGN_CORRECTION"
+}
