@@ -1,40 +1,39 @@
-# NEXT WORK ITEM — prepare dev23 candidate binding and reconciliation inputs
+# NEXT WORK ITEM — review fresh dev23 candidate binding
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-CANDIDATE-BINDING-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: REVIEW-P00-DEV23-CANDIDATE-BINDING-001
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
   REVIEWED_CANDIDATE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  REVIEWED_CANDIDATE_TREE: 4bcd0cd81b9f90d6f48d811229a52bb152415ef0
   PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
-  WHEEL_SHA256: 55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df
-  SOURCE_CONTENT_DIGEST: d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d
-  TEST_CONTENT_DIGEST: c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864
-  CONTRACT_DIGEST: f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee
-  PACKAGE_REVIEW: reviews/CODE-REVIEW-P00-DEV23-PACKAGE-IDENTITY-001.md
-GOAL: "Derive a fresh dev23 candidate binding and candidate-specific V02/prodlike/LAB prerequisite plan/evidence without reusing dev22 package/binding identities as dev23 proof."
+  CANDIDATE_BINDING_PROPOSAL_COMMIT: bda075acb280ed13bed4e9e1dfc93b9bf00133b3
+  CANDIDATE_BINDING_PROPOSAL_TREE: a8230c7b4246fbd090ed956aa82f3c146528cb07
+  CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
+  CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
+GOAL: "Independently review the exact dev23 binding bytes and candidate-specific prerequisite reuse/rebuild/rebind plan before rebinding active V02 tooling."
 STEPS:
   - PACKAGE_IDENTITY_REVIEW: COMPLETE_PASS
-  - DEV23_CANDIDATE_BINDING_PREPARATION: READY
-  - CANDIDATE_BINDING_REVIEW: NOT_STARTED
-  - PRODLIKE_RECONCILE: NOT_STARTED
-  - LAB_REBUILD_OR_REBIND: NOT_STARTED
+  - DEV23_CANDIDATE_BINDING_PREPARATION: COMPLETE_FROZEN
+  - CANDIDATE_BINDING_REVIEW: READY
+  - V02_TOOLING_REBIND: BLOCKED
+  - PRODLIKE_RECONCILE: BLOCKED
+  - LAB_RESEED_OR_REBUILD: BLOCKED
   - AUTHORITY_GRAPH_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh dev23 candidate identity/binding plus explicit reusable-vs-rebuild prerequisite disposition; no signed authority or native execution proof."
-ON_SUCCESS: V02_DEV23_CANDIDATE_BINDING_REVIEW
-ON_FAIL: SAME_CAUSAL_FAMILY_RECONCILIATION_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-BINDING-012
+SUCCESS_OUTPUT: "Cross-model binding/reconciliation-plan verdict bound to exact proposal commit/tree."
+ON_SUCCESS: V02_DEV23_TOOLING_REBIND
+ON_FAIL: DEV23_CANDIDATE_BINDING_CORRECTION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-BINDING-REVIEW-013
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Candidate binding is deterministically derived from reviewed dev23 identities, dev22-only hashes are not reused as dev23 proof, and each V02/prodlike/LAB prerequisite has an exact reuse/rebuild/rebind disposition."
+EXIT_CONDITION: "Reviewer verifies fresh non-dev22 candidate identity, exact binding hash/source/package/test/contract/review provenance, complete prerequisite dispositions and no signing/native authority."
 ~~~
 
-Do not sign authority, deploy HKLM policy, start LAB/native cases, issue qualification, enter SITE or mark HOST_READY.
+TEXT_REVIEW only. Do not change canonical validation lane, sign authority, mutate HKLM, start LAB/native cases, issue qualification or mark HOST_READY during this review.

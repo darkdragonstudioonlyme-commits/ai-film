@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V86
+# AI-FILM-SERVER — intended canonical content V87
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 86
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 87
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-CANDIDATE-BINDING-001
+CURRENT_TASK: REVIEW-P00-DEV23-CANDIDATE-BINDING-001
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-BINDING-012
-  REASON: "Exact dev23 package/wheel identities passed cross-model review. Accepted dev22 remains canonical while a fresh dev23 candidate binding and candidate-specific V02/prodlike/LAB prerequisites are prepared and reviewed; signing/native remain blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-BINDING-REVIEW-013
+  REASON: "Fresh dev23 candidate binding and explicit reuse/rebuild/rebind dispositions are prepared on a non-canonical validation proposal branch. Cross-model review must PASS before V02 tooling or canonical validation state changes; signing/native remain blocked."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_CANDIDATE_BINDING
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_CANDIDATE_BINDING_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare exact dev23 candidate binding and candidate-specific V02/prodlike/LAB reconciliation evidence from reviewed package identities; keep signing/native gates closed."
+NEXT_ACTION: "Claude reviews exact dev23 candidate binding and prerequisite dispositions. PASS may route V02 tooling rebinding; keep canonical dev22 authority/signing/native gates closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
