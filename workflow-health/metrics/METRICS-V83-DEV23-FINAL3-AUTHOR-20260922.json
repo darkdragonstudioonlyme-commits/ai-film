@@ -1,0 +1,36 @@
+{
+  "active_control_documents_read": 0,
+  "author_candidate_tree": "4dbb7dda9f04c71466299a90b1fb938d35bddaae",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "fa74b000ac6eac92ea383138a2f9402e9ef4daa5",
+    "main": "df03ca95d1bc934f0afcc88434a28c6f606f48a6",
+    "prior_candidate": "cef5db6c1f8e2528d368d1e7a21fdf8477a36a9c",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "non_test_bytes_identical_to_cef": true,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Final3 dev23 test-only closure of remaining TD007 coverage findings; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "cf3384e7cf844497e15c7ef84d070f916aec2ed69a889106e6e1bc4a6bd6e78a",
+  "static_checks": 103,
+  "static_failures": 0,
+  "td007_closures": [
+    "INDEPENDENT_LITERAL_CATALOG_COUNTS",
+    "COPY_RECEIPT_BYTE_AND_MAX_SIZE",
+    "CHECKPOINT_PAYLOAD_REVOCATION"
+  ],
+  "test_content_digest": "66331286ee0b8d54690780083939472ff59a485aec335206c460f1bc6dda3b17",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 810
+}
