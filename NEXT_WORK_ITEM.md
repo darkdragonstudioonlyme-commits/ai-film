@@ -1,46 +1,47 @@
-# NEXT WORK ITEM — implement dev23 stage-derived LAB authority
+# NEXT WORK ITEM — code-review exact dev23 stage-derived authority candidate
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: IMPL-P00-V03-STAGE-DERIVED-AUTHORITY-DEV23
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
-TARGET_VERSION: 0.1.0.dev23
-PARENT_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
-  VALIDATION_EVIDENCE_HEAD: 1defbf3422903a694215df9e2c11374fc5b1b785
+  BASE_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
+  AUTHOR_CANDIDATE_COMMIT: df28ae42958d0741a4069fc51b4201cac341ba5e
+  AUTHOR_CANDIDATE_TREE: 2f5c23f1a08e6152baa9fa7d883685e27225a6d5
+  SOURCE_CONTENT_DIGEST: c6043609ad5232f3ff51a5b30a1dfdcfbf3535d6e217b559bdcbd68b52459d00
+  TEST_CONTENT_DIGEST: 29be8f5753f20e025d183293c21eb1770ef7afb06275fa8ff992deb0b675b2cd
   DESIGN_AUTHOR_COMMIT: c16745e994396f2c05e4408dbb909d0c94389e82
   DESIGN_REVIEW_COMMIT: 99730637759c8f2369fda01c8af676bbbf0f22b4
   TEST_REVIEW_007: test-governance/TEST_REVIEW-P00-V03-AUTHORITY-CONSTRUCTIBILITY-007.md
   TEST_REVIEW_008: test-governance/TEST_REVIEW-P00-DEV23-VERSION-IDENTITY-008.md
   ORACLE_CHANGED: false
-AUTHORIZED_PRODUCT_DELTA:
-  ADD: [src/aifilm_p00/native/stage_authority.py]
-  MODIFY: [src/aifilm_p00/native/harness_controller.py, pyproject.toml, src/aifilm_p00/__init__.py]
-  TEST_ADD: [tests/test_dev23_stage_authority.py]
-  TEST_MODIFY: [tests/test_dev15_harness.py]
-  VERSION_METADATA_RULE: "Only version/description/code-review-status in pyproject and __version__ in __init__; preserve contract/backend constants."
-GOAL: "Implement reviewed four-mode stage authority plus V3 publication/recovery/proof contract with truthful dev23 identity and unchanged Phase00 business oracle."
-REQUIRED_TESTS: [TD006_01_THROUGH_TD006_16, TD007_01_THROUGH_TD007_12, TV008_01_THROUGH_TV008_04, FULL_REGRESSION, STATIC_CHECKS, PACKAGE_VERSION_SMOKE]
+AUTHOR_EVIDENCE:
+  WORKSPACE_TESTS: 802_PASS_0_FAIL_0_ERROR_0_SKIP
+  STATIC_CHECKS: 103_PASS_0_FAIL
+  CATALOG_PARITY: 133_EXACT_94_15_10_14
+  DIFF_ALLOWLIST: PASS
+  BYTE_IDENTICAL_REQUIRED: PASS
+  PACKAGE_IDENTITY_SMOKE: PASS_STDLIB_WHEEL_FORMAT_NOT_BACKEND_BUILD_CERTIFICATION
+GOAL: "Independently review exact dev23 product/test bytes for design/test conformance, security/fail-closed behavior, meaningful TD006/TD007/TV008 coverage and no authority expansion."
 STEPS:
-  - DESIGN_REVIEW_V3: COMPLETE_PASS
-  - TEST_REVIEW_007: COMPLETE_PASS
-  - VERSION_SCOPE_TEST_REVIEW_008: COMPLETE_PASS
-  - AUTHOR_DEV23_PRODUCT: READY
-  - AUTHOR_REGRESSION_STATIC_PACKAGE: NOT_STARTED
-  - FORMAL_CODE_REVIEW: NOT_STARTED
+  - AUTHOR_DEV23_PRODUCT: COMPLETE_FROZEN
+  - AUTHOR_REGRESSION_STATIC_PACKAGE: COMPLETE_PASS
+  - CLAUDE_CODE_REVIEW: READY
   - CANDIDATE_VALIDATION_RECONCILIATION: BLOCKED
+  - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Exact dev23 source candidate within the combined reviewed file allowlist, TD006+TD007+TV008 and full author regression/static/package evidence, ready for non-author CODE_REVIEW."
-ON_SUCCESS: CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY
+SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact candidate; no native execution proof."
+ON_SUCCESS: CANDIDATE_VALIDATION_RECONCILIATION_DEV23
 ON_FAIL: SAME_CAUSAL_FAMILY_IMPLEMENTATION_CORRECTION_OR_DESIGN_GAP
-ON_BLOCK: BLOCK-P00-VAL-V03-STAGE-DERIVED-IMPLEMENTATION-008
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-CODE-REVIEW-009
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Exact dev23 candidate changes only combined reviewed files, passes required author evidence and is frozen for Claude CODE_REVIEW; no native execution."
+EXIT_CONDITION: "Claude non-author review covers core authority construction/publication/harness integration plus tests/version/scope; all high/blocking findings are closed on the exact final candidate."
 ~~~
+
+TEXT_REVIEW is static only. Author test evidence is host evidence, not Claude execution. Do not sign authority, mutate HKLM, start LAB/native cases, issue qualification or mark HOST_READY during code review.

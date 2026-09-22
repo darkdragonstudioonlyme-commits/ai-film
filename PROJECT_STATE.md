@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V78
+# AI-FILM-SERVER — intended canonical content V79
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 78
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 79
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: IMPL-P00-V03-STAGE-DERIVED-AUTHORITY-DEV23
+CURRENT_TASK: CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-STAGE-DERIVED-IMPLEMENTATION-008
-  REASON: "Design V3 and TEST_REVIEW 007 are PASS with ORACLE_CHANGED=false. The validation parent remains blocked while dev23 is authored, reviewed and reconciled; no native execution is authorized by implementation readiness."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-CODE-REVIEW-009
+  REASON: "Dev23 author candidate is frozen with author evidence but is not accepted until non-author Claude CODE_REVIEW passes exact candidate bytes. No native execution is authorized by author tests."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_STAGE_DERIVED_AUTHORITY
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_CODE_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Author dev23 within combined reviewed 006/007/008 source/test scope, run TD006+TD007+TV008 and full regression/package checks, then freeze for Claude CODE_REVIEW."
+NEXT_ACTION: "Claude reviews exact dev23 candidate df28ae4/tree 2f5c23f through bounded TEXT_REVIEW; findings return to author, PASS routes candidate-specific validation reconciliation. Native gates remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

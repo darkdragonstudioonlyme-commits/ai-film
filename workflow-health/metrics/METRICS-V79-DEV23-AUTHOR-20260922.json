@@ -1,0 +1,40 @@
+{
+  "active_control_documents_read": 0,
+  "author_candidate_tree": "2f5c23f1a08e6152baa9fa7d883685e27225a6d5",
+  "authority_mode_counts": {
+    "CONCRETE_PRE_V03": 94,
+    "ENTRY_PROBE_AUTHORITY": 10,
+    "FENCE_BOUND_RECONCILIATION": 14,
+    "STAGE_DERIVED": 15
+  },
+  "byte_identical_required_pass": true,
+  "catalog_parity": true,
+  "catalog_sha256": "fac26f07965257a75eee93c61f9861bf2a0e24f033008bd366cf5478849f54a0",
+  "diff_allowlist_pass": true,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "df28ae42958d0741a4069fc51b4201cac341ba5e",
+    "main": "08652b35217df9687d22aa89f62856f8f928a18d",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 0,
+  "native_executed": false,
+  "native_revalidated": false,
+  "package_identity_smoke": "PASS_STDLIB_WHEEL_FORMAT_NOT_BACKEND_BUILD_CERTIFICATION",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Exact dev23 author candidate and author evidence; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "c6043609ad5232f3ff51a5b30a1dfdcfbf3535d6e217b559bdcbd68b52459d00",
+  "static_checks": 103,
+  "static_failures": 0,
+  "test_content_digest": "29be8f5753f20e025d183293c21eb1770ef7afb06275fa8ff992deb0b675b2cd",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 802
+}
