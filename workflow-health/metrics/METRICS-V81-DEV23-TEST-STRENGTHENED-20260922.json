@@ -1,0 +1,37 @@
+{
+  "active_control_documents_read": 0,
+  "author_candidate_tree": "434f00bac1e1184847a068fa6b8e583c3708ff8a",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "67ee67ecfa03b9501045ae1688f1e8ba5e1d38ee",
+    "main": "312de245a06eacae63e4c0a63054e53ae49228cb",
+    "prior_candidate": "b6b3dfe37aae64513ff086b5af744e406ad7bfe3",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "product_bytes_identical_to_b6": true,
+  "schema_version": 1,
+  "scope": "Dev23 test-strengthened successor; product bytes unchanged from b6; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "cf3384e7cf844497e15c7ef84d070f916aec2ed69a889106e6e1bc4a6bd6e78a",
+  "static_checks": 103,
+  "static_failures": 0,
+  "td007_test_strengthening": [
+    "EXACT_9_ROLE_SCOPE_ORACLE",
+    "GUARD_RELEASE_BEFORE_REQUEST_ENTRY",
+    "NATIVESTORE_OUTER_SCHEMA",
+    "ACCEPTED_PRIMITIVE_SHA256"
+  ],
+  "test_content_digest": "b2cbfc99ff5bb78f85ff3a59b85caaf695cf1845e0f7d9dfd6d0798bab1b4666",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 808
+}
