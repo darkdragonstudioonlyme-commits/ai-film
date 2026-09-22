@@ -1,0 +1,36 @@
+{
+  "active_control_documents_read": 0,
+  "closed_findings": [
+    "V2-MATERIALIZER-SUBPROCESS-ENV-PASSTHROUGH",
+    "F1-MISSING-NEGATIVE-COVERAGE-COLLECTOR-RAW",
+    "F2-MISSING-NEGATIVE-COVERAGE-CLAIM-NOT-MEASURED"
+  ],
+  "historical_scripts": 11,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "18c02e0353cdcf0450f8215ab10e656f173952e1",
+    "prior_tooling_candidate": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+    "successor_tooling_candidate": "763fb0ca433e60395c7371b2a97bd925ac7d6981",
+    "successor_tree": "1640d0429ad109893f0403a8dc54b60a287a8b7d",
+    "validation": "43c9a687ad3a1f778328f5d1587d789fbb380fd8"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Route exact tooling successor closing A2/F review findings; no native/signing/deployment",
+  "session_denominator": null,
+  "signing_performed": false,
+  "successor_tests": 33,
+  "tooling_code_review_result": "PENDING_SUCCESSOR_REVIEW",
+  "unaffected_review_shards": [
+    "A1",
+    "C",
+    "D",
+    "E"
+  ]
+}
