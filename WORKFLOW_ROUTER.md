@@ -21,7 +21,7 @@ Use the first matching rule **for the requested scope** after read-only identity
 1. **Untrusted state, conflicting owner, unresolved mutation or STATE_DRIFT** → `RECOVERY_PLAYBOOK.md`; no affected normal execution. Reading and documenting the conflict remain allowed.
 2. **Failed lifecycle guard, overdue measurement, unresolved ineffective learning, semantic evidence mismatch, or mandatory workflow-health intervention** → `WORKFLOW_REVIEW`; preserve the original run/cursor. An active run cannot bypass this guard.
 3. **Explicit user request for another authorized scope** → select its workflow and record an excursion with `PARENT_RUN_ID`, immutable base, scope and `RETURN_TO`. A blocked product run is not replaced. Safety guards still apply to the requested scope; no implicit host changes or new spending.
-4. **Affected workflow is BLOCKED / WAITING_INPUT** → apply the block protocol. With no changed input, return the existing block; do not regenerate artifacts, poll repeatedly in one turn, or create a release just to restate it.
+4. **Affected workflow is BLOCKED / WAITING_INPUT** → apply the block protocol to that exact scope. An explicitly selected, authorized corrective work item may proceed while its parent product gate stays blocked. An unchanged external block has no new work: return it without regeneration, repeated polling or a release that only restates it.
 5. **INTENT without COMPLETE, or output ahead of canonical state** → `CONTINUITY_RECOVERY`: inspect exact outputs and adopt/reuse before retry. Uncertain non-idempotent effects stay blocked.
 6. **Existing run or documented WIP is executable** → continue the same RUN_ID at its verified cursor. Re-evaluate guards before each material side effect and before advancing a completed step.
 7. **Unreviewed immutable handoff exists** → REVIEW that exact identity. A FAIL routes findings to the producer; design conflicts use DESIGN_GAP, not an acceptance rewrite.
@@ -92,3 +92,31 @@ Excursions additionally bind `PARENT_RUN_ID`, `RETURN_TO`, and the preserved pro
 Preserve WIP → identify repeated assumptions → smallest systemic correction → role-separated review → canonical activation → future effectiveness measurement → original return point. Use `WORKFLOW_HEALTH.md` to distinguish safety work from unmeasured process churn.
 
 Timeout, model switch or chat boundary never creates a replacement logical run. `WORKFLOW_CONTINUITY.md` owns takeover, write-ahead journaling, conflict handling and output reuse.
+
+## Current work and accepted baseline
+
+`current_work` in the selected JSON owns the immediate work-item identity, mode, status, parent run and readiness. Its work item equals `PROJECT_STATE.md:CURRENT_TASK` and `NEXT_WORK_ITEM.md:WORK_ITEM`; its mode/status equal NEXT_WORK_ITEM. The parent's blocked V02 cursor is preserved and is not the corrective task's readiness. Root author/code-review flags describe only `READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE`; they never authorize a successor candidate. Superseded work items must not remain READY in another current-state object. `tools/check_current_work.py` enforces this routing projection, not the semantic validity of every product gate.
+
+## Actor routing and automatic delivery
+
+Assign a single task actor after resolving scope and gates. Default responsibilities
+are in `docs/DUAL_AI_COLLABORATION.md`; actual authorship determines the non-author
+reviewer. The task envelope does not override current_work or product authority.
+At handoff, use verified local dispatch capability when active; otherwise leave the
+exact task BLOCKED_CAPABILITY. No recursive model-to-model task generation, forced
+permission fallback or autonomous continuation outside the available runtime.
+Consume a matching pending result before creating another paid call or task revision.
+## Routing identity and capability are separate
+
+Resolve the selected current_work for both actors, including assignee/author/role,
+profile, blockers, context and return cursor. A capsule must match those fields before
+work; NEXT_WORK_ITEM is a checked projection, not an independent competing task.
+A tool-denied operation stays blocked; changing model does not change the permission.
+
+Connection history is not profile activation. Use the capability matrix in
+`docs/DUAL_AI_AUTOMATIC_HANDOFF.md`: a known installation is not reinstalled because
+an older snapshot says absent, and a successful setup smoke does not authorize
+implementation. Both actors use the deterministic decision model in
+`tools/check_shared_workflow.py`; it is a tested reference, not a deployed scheduler.
+The user need not specify actor/mode/next action. Tiếp tục starts a bounded turn;
+there is no automatic activity without an invocation or a separately deployed runtime.

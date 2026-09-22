@@ -9,7 +9,8 @@ A result is durable only after its owning workflow persists an immutable identit
 Before reading lane state or starting work:
 
 ```bash
-git -C /home/dragon/ai-film-dev/repo fetch origin main lane/implement-p00 lane/review-p00
+git -C /home/dragon/ai-film-dev/repo fetch origin main
+# Then fetch only relevant refs resolved from the current state/run.
 ```
 
 Fetch any additional active workflow branches declared by current canonical state. Do not treat stale `origin/*` cache as current state. In the prepared WSL workspace, run `python3 tools/check_runtime_state.py` before destructive checkout/reset or formal handoff decisions.
@@ -153,3 +154,19 @@ A documentation-system candidate must already contain its intended post-promotio
 Classify before work: **EVIDENCE_UPDATE** follows an existing reviewed lifecycle transition and owning-lane evidence/review rules; **EDITORIAL** changes no meaning and requires scoped diff/link checks; **POLICY_CHANGE** changes authority, schema, routing, acceptance or checker semantics and requires DOC-DESIGN → DOC-REVIEW → DOC-AUDIT. Neither category can be chosen to hide a semantic change. Ordinary evidence updates do not automatically require a new DOCSYS release; changes to canonical gate authority still require their owning review and exact-tree transaction.
 
 Prefer one coherent candidate over a release for each corrected sentence. Freeze acceptance criteria before editing; after two ineffective attempts with the same premise, inspect the premise. Normal non-forced publication binds the expected parent. Before promotion re-fetch `main`; if the base advanced, reconcile the competing change and repeat affected review/audit instead of overwriting it. Post-promotion CI is mandatory and reported separately from author checks.
+
+## Bounded publication and evidence scope
+
+Publish one coherent correction after exact review, not a new global snapshot for every inspection or sentence. An ordinary boundary receipt follows existing evidence governance and needs no new DOCSYS release. A material policy/checker change still requires the complete documentation review/audit. The final report distinguishes local committed, remotely verified, merged, CI-verified and deployed; none implies the next. Never report a tool call that was denied, interrupted or only started as successful.
+
+## Worker publication boundary
+
+Automatic handoff is not automatic main promotion. Workers return exact artifacts,
+commits or patches from their assigned worktree; they receive neither Git publish
+credentials nor the V02 private key. The integrator verifies non-author acceptance,
+expected parent, applicable checks and real remote durability before promotion.
+Tasks submitted from arbitrary branch pushes, issues or untrusted model output never
+become executable authority. No secret, private context bundle or raw provider log is
+published as part of a handoff. See `docs/DUAL_AI_AUTOMATIC_HANDOFF.md`.
+
+The intended PROMOTION_STATE inside a frozen candidate describes the desired canonical content, not whether publication occurred. Effective authority requires the trusted coordinator to resolve the actual canonical ref and required exact verdicts; a candidate file cannot self-promote by declaring PROMOTED. Candidate-review capsules identify that scope explicitly and grant no normal execution. PROJECTION_SEMANTICS makes this distinction machine-visible; release revision names need not share verdict ordinals, which are owned solely by FINAL_REVIEW_ID/FINAL_AUDIT_ID.

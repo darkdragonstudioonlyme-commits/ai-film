@@ -19,3 +19,17 @@ An unchanged external block is not a reason to repeat completed work or manufact
 ## Response contract
 
 Report the active mode/work item, verified result and exact output identity, open blockers or limitations, and the next valid action. Do not repeat the whole state or policy corpus. Persist progress before duplicate-prone operations, not only at chat end. Full audit uses the complete active control plane, not just this summary.
+
+## Shared-learning worker handoff
+
+Resolve the current actor/task and any exact pending result before starting new work.
+ChatGPT and Claude use the same policy and `learning/LEARNING_STATE.json`, with a
+scoped knowledge packet. After an authorized ChatGPT output, a verified local bridge
+may hand the next task to Claude without user copy/paste. If capability is missing,
+persist BLOCKED_CAPABILITY and the same return point, not a fictitious Claude run.
+`CLAUDE.md` is only the worker entrypoint; it does not duplicate current state.
+See `docs/DUAL_AI_AUTOMATIC_HANDOFF.md` for turn-boundary and activation limits.
+
+Use the current actor/return projection and the shared operative knowledge view.
+Historical/superseded records are warnings, not commands. Recheck relevant context
+at result consumption; no model may fill missing state from conversational memory.

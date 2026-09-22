@@ -13,7 +13,7 @@ This file tells a fresh chat **what each document means, when to read it, when t
 | Resume / write / handoff | `WORKFLOW_CONTINUITY.md`, `GIT_WORKFLOW.md`, `EXECUTION_LANES.md`; relevant workspace and contract identities |
 | Implement / code review / validation | exact accepted Blueprint + phase contracts/approved changes, `TEST_STRATEGY.md`, scoped source/evidence and applicable safety/recovery rules |
 | Documentation change | this map, affected policy owners, `POLICY_REGISTRY.md`, `SELF_LEARNING.md` when learning semantics change |
-| Full DOC-AUDIT | **all 20 active root control documents**, every changed artifact, referenced current governance/learning/test/measurement evidence and exact relevant product contracts; no summary-only audit |
+| Full DOC-AUDIT | **all 21 active root control documents including CLAUDE.md**, every changed artifact, referenced current governance/learning/test/measurement evidence and exact relevant product contracts; no summary-only audit |
 | Health / recovery | `WORKFLOW_HEALTH.md`, `RECOVERY_PLAYBOOK.md`, relevant immutable learning records and current lifecycle entries |
 | Model / film quality | `MODEL_EVALUATION.md`, `SERVER_ENVIRONMENT.md`, exact evaluation baseline and relevant film design contract |
 
@@ -130,3 +130,41 @@ A current-state transaction prepares the intended Markdown, selected JSON and ch
 `check_workflow_continuity.py` reports `SCHEMA_ONLY` when lane access is unavailable and no strict scope was requested. That result cannot close a handoff. CI and formal reconciliation use `--require-remote`; unavailable/failing lane retrieval then fails closed. Local worktree and live host checks remain distinct from remote ledger verification.
 
 When a run binds a local worktree, formal local handoff also uses `--require-local`; remote-only CI may report `local=NOT_EVALUATED` and cannot close that local obligation. A local success checks HEAD identity only; dirty-tree/native status belongs to its applicable runtime/workspace guards.
+
+## Current-work coherence and scoped audit output
+
+Current routing uses the selected JSON `current_work`; CURRENT_TASK and NEXT_WORK_ITEM are checked projections of it. Accepted candidate readiness is explicitly scoped and cannot be inherited by new work. Old work-item details belong to immutable snapshots or are marked SUPERSEDED, not left READY in parallel current objects. Run `python3 tools/check_current_work.py` with the portable guards.
+
+Every full audit declares separate populations: active control documents semantically read, current source/design/evidence examined, historical Markdown inventoried, and excluded/unavailable transcripts or artifacts. Count files per exact ref; do not add overlapping branch trees as unique documents. Report actual command coverage separately from semantic findings, native validation and future effectiveness. Unread or tool-denied evidence is NOT_EVALUATED; it is never covered by the word whole.
+
+The audit receipt pinned by `current_work.audit_receipt` is this transaction's immutable scope record, not a replacement for the generic learning metric lifecycle. Future measured improvements need their own reviewed population and receipt. Local target-alias checking covers canonical proposal/gap files; remote-only exact provenance must still be fetched and byte-verified separately before its handoff is accepted.
+
+## Dual-actor read profile
+
+Add `CLAUDE.md` to the original 20 active root control documents: full DOC-AUDIT now
+reads 21 roots plus current collaboration/transport design, changed tools and evidence.
+Both actors consume the same authoritative policy and learning lifecycle. For a worker
+task, pin the control-plane commit separately from source and supply exact applicable
+lesson bytes plus prior findings. Headless isolation may skip automatic instruction
+loading, so the bridge supplies the explicit context manifest and records its identity.
+
+`docs/DUAL_AI_COLLABORATION.md` owns actor/learning-transfer rules;
+`docs/DUAL_AI_AUTOMATIC_HANDOFF.md` owns delivery/activation semantics. Capability
+status belongs to the selected state or a verified local activation receipt, not
+CLAUDE.md. `tools/check_dual_ai_contract.py` validates the no-execution contract model;
+it does not prove real worker dispatch, secret isolation or non-author acceptance.
+## Small operative context, complete evidence on demand
+
+PROJECT_MEMORY is a compact index of owner links, not a list of independently active
+rules. The operative learning view is derived from the existing register; successor
+and ineffective records are warning/history, not positive instructions. Every task
+records selected current lessons, rejected/uncertain facts, exclusions and exact
+context digest. A stale or withdrawn context is revalidated at consumption too.
+
+`tools/check_shared_workflow.py` verifies actor/return projections, derived knowledge
+eligibility, capability declaration boundaries and synthetic continuation/report
+invariants. It does not verify external model comprehension, deploy the dispatcher
+or prove semantic truth of every lesson. Whole-system audit lists its read population,
+changed artifacts, historical-only references and unavailable runtime evidence.
+No file from unselected snapshots, local scratch or vendor auto-memory overrides the
+selected authority. Source/code and control commits are distinct in every handoff.

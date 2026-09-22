@@ -96,3 +96,40 @@ Review findings bind exact target identity and close only on a later independent
 The Blueprint's same-chat review discipline remains applicable. When the same assistant performs sequential roles, every verdict declares `ASSURANCE_CLASS: SAME_CHAT_ROLE_SEPARATED`, its exact target, separate checkout/evidence, and the checks actually rerun. This provides procedural separation, not an independent human, external organization or context-isolated agent. Changing branch names cannot manufacture independence.
 
 A reviewer does not patch the consumed candidate. A finding returns to the producer and invalidates the old target for that correction; the next review binds a new immutable target. Higher-assurance reviews may be requested for material risks, but do not retroactively relabel same-chat records as externally independent.
+
+## Review claim-to-evidence contract
+
+For every load-bearing PASS claim, persist the requirement, exact target, inspected evidence or executed command, actual result, counterexample and limitation. Check coverage totals against source, then challenge whether the objects and transitions are constructible under TEST_STRATEGY §12. A repeated later gap in a previously accepted design is an escaped review finding, not evidence that the earlier review was effective. Record a consolidated correction against that exact design; do not generate unrelated new approvals for each symptom. No reviewer may treat a green documentation audit script as the holistic semantic audit it is supposed to perform.
+
+## Cross-model acceptance
+
+For material dual-actor work, the actual candidate author and accepting reviewer must
+differ. Use CROSS_MODEL_PROCEDURAL_REVIEW only for an actually executed other-model
+review; independent contexts are not independent organizations or guaranteed accuracy.
+A same-model technical review/audit may report findings, but cannot replace a required
+Claude verdict when Claude is unavailable. One non-author actor may run REVIEW and
+AUDIT as separate passes with that limitation declared. No mixed-author candidate
+self-acceptance: partition responsibility or keep the affected acceptance blocked.
+Each actor follows shared learning/health gates. Worker output is RESULT_UNREVIEWED
+until its designated consumer verifies identity, scope and evidence.
+## Review result and evidence classes
+
+Separate AUTOMATED_CHECK, HOST_COMMAND, AUTHOR_REPORT, STATIC_MODEL_REVIEW,
+CROSS_MODEL_REVIEW and NATIVE_VALIDATION evidence. A reviewer may challenge another
+actor's result; it may not relabel host logs as its own rerun. CLAIMED_PASS,
+INPUT_COMPLETE, SCOPE_REVIEWED, CANDIDATE_ACCEPTED, DEPLOYED and EFFECTIVE are distinct.
+The reviewer lists acceptance IDs actually covered, omissions and findings. Required
+omissions or open blocking/high findings preclude PASS even if the process exits zero.
+
+The host computes the digest of exact report-body bytes after receipt. A tool-less
+model is not asked to compute the hash of its own future serialized answer. Metadata
+(task/context/actor/usage, report hash) is a separate collector envelope; it does not
+participate in the report-body hash. Preserve raw output locally and validate the
+normalized artifact before acceptance. A schema-valid result is still unreviewed.
+
+On disagreement, use one findings record per causal family: exact requirement and
+candidate, each position, falsifiable counterexample, evidence owner and disposition.
+FACT/CONTRACT conflicts hold the affected task immediately. PREFERENCE conflicts use
+the frozen criteria, not coordinator rank or majority vote. Fixes return to the actual
+author. Resolve mixed authorship by review scope; a same-author audit never replaces
+the required other-model verdict. No fabricated cross-model sign-off is allowed.

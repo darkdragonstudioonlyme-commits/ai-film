@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "boundary_id": "DOCSYS-EFFECTIVENESS-20260922",
+  "input_refs": {
+    "main": "37d8e5049982a743d77f8ecaba358f2fc5d91b44",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77"
+  },
+  "comparison_base": "5466e99c7f80cb930ba2ca160475ab2f495c650a",
+  "main_commits_in_window": 25,
+  "active_control_documents_read": 20,
+  "corpus_populations": {
+    "main": {
+      "tracked_files": 459,
+      "markdown_files": 385,
+      "markdown_bytes": 1006787,
+      "inventory_sha256": "21f1db77fde29469883ace099275e64b53de552281bc7c5af5aa8f115b093f14"
+    },
+    "validation": {
+      "tracked_files": 396,
+      "markdown_files": 255,
+      "markdown_bytes": 721715,
+      "inventory_sha256": "29ab86f48a3c1ab42f9291b3aa6f32e032215374fce10f9d82cd355e5d6bc2d7"
+    },
+    "source": {
+      "tracked_files": 284,
+      "markdown_files": 79,
+      "markdown_bytes": 395152,
+      "inventory_sha256": "6a8ccd2cc959e895717c65a6759245ebb1449ba6a3c51c8e0eb5075818b54d3d"
+    }
+  },
+  "session_denominator": null,
+  "historical_semantic_review_complete": false,
+  "native_revalidated": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "classification": "RISK_REDUCTION",
+  "accepted_source_unchanged": true,
+  "learning_register_unchanged": true,
+  "resume_events_recorded": 0,
+  "resume_events_required": 3,
+  "known_missing_data": [
+    "complete independent session transcripts",
+    "active-time and token-cost denominator",
+    "historical event instrumentation",
+    "tool-denied evidence read"
+  ],
+  "baseline_commands": [
+    {
+      "command": [
+        "python3",
+        "tools/check_state_contract.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.023,
+      "log": "baseline-00-check_state_contract.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_project_docs.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.03,
+      "log": "baseline-01-check_project_docs.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_documentation_governance.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.055,
+      "log": "baseline-02-check_documentation_governance.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_learning_lifecycle.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.033,
+      "log": "baseline-03-check_learning_lifecycle.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/audit_documentation_v2.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.061,
+      "log": "baseline-04-audit_documentation_v2.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_continuity_measurements.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.028,
+      "log": "baseline-05-check_continuity_measurements.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_state_contract.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.981,
+      "log": "baseline-06-test_state_contract.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_project_docs_checker.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1.418,
+      "log": "baseline-07-test_project_docs_checker.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_learning_lifecycle_checker.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1.104,
+      "log": "baseline-08-test_learning_lifecycle_checker.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_continuity_measurements.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1.063,
+      "log": "baseline-09-test_continuity_measurements.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_workflow_continuity.py",
+        "--require-remote"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1.038,
+      "log": "baseline-10-check_workflow_continuity.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_runtime_state.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.985,
+      "log": "baseline-11-check_runtime_state.txt"
+    }
+  ],
+  "current_check_scope": "routing projection, target field aliases and bounded audit declarations",
+  "next_comparable_measurement": "First three real post-activation corrective/resume boundaries; record failures and reuse outcomes without substituting synthetic tests."
+}

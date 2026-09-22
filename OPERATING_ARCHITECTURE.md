@@ -57,3 +57,12 @@ Lane run ledgers provide write-ahead operational continuity below global gate st
 Do not collapse these into one PASS flag: documentation release; logical work run/step; implementation candidate; environment activation epoch; native qualification; creative shot/take selection; model/quality baseline; commercial publication. Each has its own owner, immutable inputs and invalidation rules.
 
 Historical correctness evidence may remain valid for its exact target while current runtime observations expire. A docs promotion does not issue HOST_READY, a healthy host does not prove film quality, and a quality score does not clear rights/security review. Future film/job lifecycle detail is tracked in `docs/FILM_PIPELINE_DESIGN_BACKLOG.md`, not retroactively inserted into Phase00 contracts.
+
+## Two bounded actors
+
+One user-facing coordinator may delegate to a bounded Claude worker using a reviewed
+task capsule. Shared requirements/state/learning stay in Git; vendor sessions do not
+become additional sources of truth. One default writer runs at a time. This operating
+supplement replaces neither frozen product contracts nor human-reserved authority.
+Transport, policy acceptance, runtime deployment and learning effectiveness remain
+separate readiness axes. See `docs/DUAL_AI_COLLABORATION.md`.

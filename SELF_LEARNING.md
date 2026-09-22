@@ -214,3 +214,55 @@ Distinguish **process correction** (policies, routing, checkers and recovery) fr
 For event-based metrics, each qualifying opportunity must be logged, including unsuccessful resumes and explicit eligibility exclusions. Count the **next required events**, not any convenient later successes. A failure in that population cannot be hidden by selecting three later passes. Structural event-count checks only validate their schema/count predicates; an independent/role-separated metric review resolves event evidence to actual immutable records and verifies population completeness before EFFECTIVE.
 
 A zero persisted-event count means no qualifying receipts are recorded; it does not prove no real interruptions occurred. At a review boundary distinguish `NO_QUALIFYING_EVENT_OBSERVED`, `EVENT_NOT_INSTRUMENTED` and `UNKNOWN` with evidence. Missing instrumentation is measurement debt to assess, not automatically a failed product gate. Preserve the original success metric and event threshold.
+
+Boundary instrumentation is owned by WORKFLOW_HEALTH.md. The current-work audit receipt may document policy repair and missing historical measurements, but it is not a new EFFECTIVE learning or a qualifying interrupted-resume event. Preserve immutable success metrics and historical receipts. An escaped review finding must be linked to its earlier design/review and the corrective detector before it can count as reused knowledge.
+
+## Shared learning across ChatGPT and Claude
+
+Both actors use this process and the same `learning/LEARNING_STATE.json` register.
+Before every task, consume the scoped knowledge packet with exact policy/register
+identity, applicable active lessons, superseded warnings and prior reproducers.
+After each material boundary, report applied lesson IDs with evidence and one of
+NO_NEW_LEARNING, REUSE_EXISTING, PROPOSE_NEW or REOPEN. Check for existing root-cause
+and metric records before proposing a new lesson; a new actor is not a new learning ID.
+
+Either model can discover a correction. The other model reviews a material proposal;
+the integrator activates only an authorized transition. Model memory and auto-memory
+are scratch, not policy or shared state. Automatic delivery never grants permission
+to auto-activate a lesson, rewrite a metric or mark its author EFFECTIVE.
+Measure later cross-actor transfer and recurrence from real comparable tasks; a read-ID
+list is only a claim until evidence review. Preserve all historic metrics, failures and
+0/3 event debt. Work-item receipts carry actor/tool and knowledge identities without
+creating per-vendor learning registers. Details: `docs/DUAL_AI_COLLABORATION.md` §3–4.
+## Operational knowledge selection and invalidation
+
+The register records activation history and metric results; ACTIVE alone is not a
+retrieval permission. Derive the same working view for both actors with
+`tools/check_shared_workflow.py --knowledge`. A record with a successor is a
+HISTORICAL_WARNING, never a second current instruction. Follow the entire successor
+chain to an approved ACTIVE terminal record; missing/cyclic chains fail closed.
+INEFFECTIVE without a usable successor is REVALIDATION_REQUIRED. ACTIVE with a
+pending measurement may be applied, but is explicitly UNMEASURED, never EFFECTIVE.
+
+For each task choose relevant current candidates, state why they apply, and include
+negative/superseded warnings separately. Record exact policy/register/lesson bytes
+and excluded IDs with reasons. The derived view has no mutable lifecycle authority.
+Existing policy owners remain normative: a failed lesson metric does NOT authorize
+removing a safety rule. Relevance, factual validity and applicability still need
+semantic review; the filter does not prove that every eligible sentence is correct.
+
+New contradictory evidence immediately puts the affected assumption/task on an
+applicability hold and invalidates queued context/results for that scope. Preserve
+the original verdict as historical, record the counterexample, then review a successor
+or removal. Do not wait for a full release to stop relying on a disproven assumption;
+do not silently rewrite past results. Before dispatch AND result consumption, compare
+the current validated context/withdrawals with the task's frozen context. Stale output
+is preserved for reconciliation, not promoted and not automatically rerun.
+
+A learning transfer requires a later different-actor task, exact input record identity,
+a concrete application/reproducer, outcome and non-author verification. An ACK, smoke
+call, duplicated ID or synthetic test is not a transfer or improved effectiveness.
+Reuse existing lesson IDs for these corrections until a non-author review determines
+whether a genuinely new generalization is needed; no per-model register is introduced.
+
+Immutable lesson lifecycle labels are discovery-time snapshots, including records created after R9. They are never rewritten merely because a later register transition occurred. A supplied lesson must be framed with its current register-derived eligibility and exact record identity. Report only IDs whose actual record bytes were supplied as read; register summaries alone are not record reads. Historical warnings are not operative lessons, and terminal pending-measurement lessons are UNMEASURED, not historical merely because measurement is pending.

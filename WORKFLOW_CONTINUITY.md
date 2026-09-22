@@ -118,3 +118,39 @@ The current snapshot is selected by `PROJECT_STATE.md:STATE_VERSION`. A remote l
 Explicit documentation excursions preserve the product RUN_ID, gate state and return point. Author, review and audit evidence use separate namespaces; an excursion's completion never unblocks native execution by itself.
 
 When a run binds a local worktree, formal local handoff also uses `--require-local`; remote-only CI may report `local=NOT_EVALUATED` and cannot close that local obligation. A local success checks HEAD identity only; dirty-tree/native status belongs to its applicable runtime/workspace guards.
+
+## Resuming an existing workspace safely
+
+Inspect the exact branch, worktree registration, HEAD and dirty-path inventory before creating a workspace. An existing branch is a resume candidate, not a reason to delete a directory, delete the branch or recreate it. Reuse matching clean identity; preserve dirty or divergent outputs and record reconciliation. Never use recursive deletion or force branch removal as routine continuation setup. Tool-generated JavaScript/shell/parser errors are failed attempts, not work completion; after two attempts with unchanged evidence simplify the invocation rather than resubmit the same nested script. A safety-denied tool action stops that action; another transport is not a way around the denial.
+
+The immediate corrective work item needs its own step receipt even when the parent remains BLOCKED. Before material writing, bind expected main/lane head, writer session, selected worktree, input hashes and existing output identities. After the boundary, append outcome, changed evidence, omitted checks and return point. A retrospective receipt is explicitly RETROSPECTIVE and cannot invent earlier INTENT, durations, interruption outcomes or measurement events. See WORKFLOW_HEALTH.md for the one receipt schema.
+
+## Cross-actor continuity
+
+Changing actor preserves parent RUN_ID, work-item identity, exact inputs and return
+point. Task/attempt and transport states are subordinate delivery receipts, not
+replacement workflows. The knowledge packet is identity-bound just like source.
+A per-host writer lock protects task execution; normal expected-head publication
+protects the ledger. Neither a file queue nor Git proves external effects exactly once.
+A timed-out worker becomes RECONCILE_REQUIRED until process/output/WIP reconciliation;
+never infer safe replay from a missing response or elapsed TTL.
+## One resumable decision for both actors
+
+The current work item additionally binds assignee, actual author, role, profile,
+return_to and next_on_success. NEXT_WORK_ITEM mirrors the assignee, author and return
+cursor. Transport state has one owning receipt under that work item, not a second
+project-state database. A task-understanding ACK contains exact task/context/acceptance
+identities; a mismatch is a blocker, never a prompt to guess the coordinator's intent.
+
+Decision order: verify identities and applicable policy -> hold on design/knowledge
+invalidation or safety denial -> reconcile RUNNING/uncertain attempt -> consume an
+exact unreviewed result -> stop on unresolved prerequisites -> execute the assigned
+step only when its profile is qualified. A completed step with verified output selects
+next_on_success; missing output cannot count as completed. None of these pure decisions
+launches a process. Both actors must produce the same decision for the same inputs.
+
+Changing model, session or queue attempt preserves logical task identity and reserved
+budget. Candidate, policy, knowledge, scope or acceptance changes require a new revision
+and affected review. Reuse unaffected outputs only after an explicit impact check.
+A later user request of Tiếp tục activates reconciliation; no new explanatory prompt
+is needed. With no user/tool invocation or deployed service there is no running chat.

@@ -148,3 +148,43 @@ NEXT_COMPARABLE_MEASUREMENT:
 Use the same denominators and classification in before/after comparisons. Include failures, abandoned attempts and non-events; do not report success-only samples as a success rate. When no comparable later sample exists, report `IMPROVEMENT_NOT_PROVEN`. A corpus byte reduction proves only less text in that measured scope, not token cost, latency or higher quality.
 
 An unchanged external blocker is a valid no-op result with the same return point. Record its changed evidence only when there is some; avoid a new design/review/audit loop just to rediscover the same block. An explicit user-requested review remains meaningful work when it has separate evidence and a bounded objective.
+
+## Boundary receipts and repeated-gap intervention
+
+At each completed handoff, failed review, interruption takeover or blocked-to-corrective transition, persist one compact receipt under `workflow-health/metrics/` or the owning continuation. Bind a stable boundary ID, parent run, current work item, exact input/output commit or local-WIP digest, classification (`PRODUCT_PROGRESS`, `RISK_REDUCTION`, `TOOLING_REPAIR`, `EDITORIAL`, `BLOCKED_NO_CHANGE`), outcome, new/escaped findings, reuse/rerun decision, missing measurements and next comparable boundary. One boundary is not one chat/session. Reuse its ID when retrying publication; do not count review/audit commits as extra successful executions.
+
+After the second escaped finding in the same design/producer family, perform one consolidated end-to-end constructibility review before another implementation attempt. It covers all currently known dependency classes, including temporal identities, hash dependencies, permission/guard ordering and producer/consumer schema. Classify the result as risk reduction until later comparable runs prove lower recurrence. An additional PASS document alone is not the exit condition.
+
+Missing historical receipts remain `EVENT_NOT_INSTRUMENTED` or `UNKNOWN`, not synthetic successes. `tools/check_current_work.py` checks the current audit receipt's declared scope/denominator and current routing identity. It cannot establish unobserved session counts or future improvement. Unchanged 0/3 resume counters after observed continuation opportunities trigger an instrumentation assessment; they are not proof of no interruptions and do not silently change the immutable learning metric.
+
+## Cross-actor effectiveness and dispatch health
+
+Boundary receipts add task/attempt, actor/model/tool, supplied knowledge identity,
+lesson application evidence, delivery/retry outcomes, escaped findings and user
+context interventions. Provider-reported cost remains an estimate; unknown usage
+stays UNKNOWN. Neither a successful dispatch nor a second model's agreement is
+product progress, interrupted-resume success or improved learning effectiveness.
+
+Missing or stale context, duplicate workers, unsafe permission fallback, self-review,
+or repeated unchanged correction rounds require intervention. After two failed
+premises, consolidate the causal family rather than automate an infinite dialogue.
+Any future daemon/API controller must supply actual deployment evidence; this chat
+cannot promise continued work after its turn solely because a queue exists.
+## Measure useful learning without paperwork growth
+
+For both actors record only material boundaries and changed evidence. The same receipt
+can carry handoff, lesson application, escaped-findings and pruning information; do
+not add one state version, release or lesson per model reply. Track accepted scoped
+outputs and validated risk reduction separately from document/commit/test counts.
+
+Evaluate shared learning on the first eligible cross-actor opportunities with the
+same frozen metric, scope and denominator. Include blocked attempts, failures, missing
+usage/time and exclusions. Report recurrence, valid findings, attributable rework,
+reused outputs and user context interventions. Time saved, quality improved or one
+model being better requires a comparable baseline; delivery success is insufficient.
+
+A known-invalid lesson in operative context, actor disagreement over scope/oracle,
+reopened design after repeated PASS, stale capability state or active guidance growing
+without a new invariant is a health finding. Stop the affected path and consolidate
+its correction. Historical 0/3 continuity data stays unchanged until genuine qualified
+receipts exist. No effectiveness claim is added by this pre-Claude correction.

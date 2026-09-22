@@ -25,3 +25,11 @@ The first resumes verified state. The second is an explicit documentation excurs
 `DOC-DESIGN → DOC-REVIEW → DOC-AUDIT` governs material documentation changes. Exact commits, evidence and role-specific verdicts determine acceptance. Same-chat role separation is not external independent certification. See `EXECUTION_LANES.md` and `GIT_WORKFLOW.md`.
 
 `CHAT_HANDOFF.md` is the compact continuation entrypoint. `PROJECT_ROADMAP.md` orders gates; it does not own their current status. Historical checkpoints, designs and reviews preserve evidence, not a second mutable state.
+
+## Two actors, one project
+
+The minimal request remains `Tiếp tục`. The coordinator uses a task-bound handoff,
+not a user-written Claude prompt. See `docs/DUAL_AI_COLLABORATION.md` and
+`docs/DUAL_AI_AUTOMATIC_HANDOFF.md`. Both actors share `SELF_LEARNING.md` and the
+single lifecycle register. Live delegation depends on the verified capability state;
+a design, queued file or CLI example is not a running worker.

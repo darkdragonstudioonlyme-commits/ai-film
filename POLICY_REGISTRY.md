@@ -98,3 +98,42 @@ Superseded system-design/how-to files move out of active discovery paths into `h
 ## Optimization revision provenance
 
 The V61 design record `docs/DOCUMENTATION_SYSTEM_R9_V61_DESIGN_OPTIMIZATION.md` updates existing STATE, ROUTE, LANE, HEALTH, CONTINUITY, GIT and LEARN policy interpretations without introducing a parallel policy registry. It records evidence, changed owners, migration, enforcement limits and the declared role-separated review/audit artifacts. Native/phase acceptance and existing learning success metrics are unchanged. New film design proposals are non-active backlog until their own design review.
+
+## Effectiveness correction provenance
+
+The V70 correction in `docs/DOCUMENTATION_SYSTEM_R9_V70_EFFECTIVENESS_AUDIT.md` refines existing POL-STATE/ROUTE/CONTINUITY/HEALTH/TEST/GIT owners: one current-work projection, explicit accepted-readiness scope, constructive dependency review, safe WIP reuse and bounded measurement receipts. The declared documentation review/audit activate only this control-plane correction. The product feasibility supplement requires its own design/test review. No learning metric, native acceptance criterion or historical verdict is changed.
+
+## Dual-actor successor candidate
+
+`docs/DOCUMENTATION_SYSTEM_R9_V71_DUAL_AI.md` proposes bounded updates to existing
+POL-LANE/ROUTE/CONTINUITY/LEARN/HEALTH/TEST/GIT owners. It reuses the unpromoted V70
+correction and adds shared learning plus automatic handoff semantics. It creates no
+second register and changes no product oracle or existing success metric. Policy
+activation requires the declared non-author review and audit; runtime activation is
+separately gated. Missing Claude capability is not an exception to cross-model review.
+## Validity, compaction and retention across artifact types
+
+Lifecycle ownership is type-specific, not a universal mutable PASS flag:
+
+| Type | Current owner | Invalidation/exit |
+|---|---|---|
+| Policy | this registry + normative policy file | reviewed successor/removal; old prose becomes historical |
+| Learning | learning/LEARNING_STATE.json | scoped applicability hold, successor or retirement; metric history retained |
+| Design/test authority | current-work inputs + exact accepted review | counterexample -> APPLICABILITY_HOLD -> revised design/review |
+| Finding | its immutable finding/closure records | OPEN -> FIX_PENDING_REVIEW -> VERIFIED_CLOSED; later recurrence reopens |
+| Task/workflow | selected current_work + owning run | INTENT/output/review/consumption; superseded task is not READY |
+| Observation/report | exact receipt | valid only for stated identity, epoch and window; old result stays historical |
+
+At handoff prune only the changed active guidance and its direct dependents: remove
+superseded instructions from default retrieval, replace repeated explanations with
+owner links, and report active-byte change plus unresolved references. Full semantic
+audit still reads its required scope. No routine recursive archive scan is required.
+Age or non-use alone does not make a safety rule invalid. Unknown/factually disputed
+content is quarantined for the affected task until resolved, not silently obeyed.
+
+Compaction acceptance: every retained rule has one owner; every removed active rule
+has a successor or removal reason; cold-start and reference tests pass; original
+provenance remains recoverable from exact Git history. Never delete logs, failed
+experiments, artifact bytes or worktrees still referenced by recovery, review,
+measurement or retention holds. Physical garbage collection needs a separately
+reviewed reachability/retention plan and is not authorized by this policy change.

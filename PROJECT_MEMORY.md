@@ -1,60 +1,35 @@
-# AI-FILM-SERVER — Active Project Memory Index
+# AI-FILM — Shared operational knowledge index
 
-Reusable knowledge only. Learning process: `SELF_LEARNING.md`. Current learning lifecycle: `learning/LEARNING_STATE.json`. Active operating rules: `POLICY_REGISTRY.md`. Current project state is not stored here. Detailed historical reasoning remains in Git/review records.
+Current learning lifecycle: `learning/LEARNING_STATE.json`. Policy authority:
+`POLICY_REGISTRY.md`. Both ChatGPT and Claude use the same owners and task context.
+This index routes retrieval; it does not activate a rule or repeat mutable state.
 
-## Active reusable lessons
+## Retrieve by the current task
 
-| ID | Type | Active lesson | Promoted to |
-|---|---|---|---|
-| MEM-20260915-002 | TOOLING | Exact baselines require byte-preserving transfer + independent identity verification. | `GIT_WORKFLOW.md` |
-| MEM-20260915-003 | TESTING | Author/review tests are not native LAB/SITE proof. | `TEST_STRATEGY.md` |
-| MEM-20260915-015 | TESTING | Keep run evidence outside candidate source; restore generated tracked evidence. | workspace/test policy |
-| MEM-20260915-021 | SECURITY | Re-authorize before durable recovery-state mutation after observation. | implementation rule |
-| MEM-20260915-024 | PROCESS | Producer/reviewer require separate mutable/immutable workspaces. | `EXECUTION_LANES.md` |
-| MEM-20260915-025 | REVIEW | Review target identity must never float. | `EXECUTION_LANES.md` |
-| MEM-20260915-028 | TOOLING | Fresh-fetch refs before trusting remote lane state. | `GIT_WORKFLOW.md` |
-| MEM-20260915-029 | PROCESS | Durable candidate, WIP and review target are distinct state. | `DOCUMENTATION_MAP.md` |
-| MEM-20260915-033 | TOOLING | Preserve Git porcelain XY columns; whole-output strip can corrupt paths. | checker/tooling rule |
-| MEM-20260915-034 | PROCESS | State/lane/worktree mismatch is `STATE_DRIFT`, never a tie to guess. | router/recovery checker |
-| MEM-20260915-035 | TESTING | Reviewed business behavior owns test oracle; current code never does. | `TEST_STRATEGY.md` |
-| MEM-20260915-036 | PROCESS | Repeated ineffective patch loops are workflow-health evidence and trigger meta-review. | `WORKFLOW_HEALTH.md` |
-| MEM-20260915-037 | GOVERNANCE | Obsolete policy must be retired/superseded out of active guidance, not accumulated forever. | `POLICY_REGISTRY.md` |
-| MEM-20260915-038 | ENVIRONMENT | Model/performance claims bind an exact observed environment; NOT_VISIBLE is not absence. | `SERVER_ENVIRONMENT.md`, `MODEL_EVALUATION.md` |
-| MEM-20260915-039 | LEARNING | Learning is complete only when future behavior/detection improves and recurrence is measured. | `SELF_LEARNING.md` |
-| MEM-20260915-040 | RECOVERY | Preserve WIP/evidence before repair; recovery returns to a verified decision point. | `RECOVERY_PLAYBOOK.md` |
-| MEM-20260915-041 | TOOLING | Checkers must parse current identity from canonical state; hard-coded delivery versions become drift bugs. | checker policy |
-| MEM-20260915-042 | PROCESS | Workspace/tool docs must not duplicate mutable candidate/version/test state owned by PROJECT_STATE/NEXT_WORK_ITEM. | documentation audit/checker |
-| MEM-20260915-043 | ENVIRONMENT | Environment digest inputs must be explicit and exclude the digest itself; preserve the canonical payload. | environment record schema/checker |
-| MEM-20260915-044 | GOVERNANCE | Immutable environment/model results need separate record domains; methodology files must not become history logs. | `environments/`, `model-evaluations/` |
-| MEM-20260915-045 | LEARNING | Compact active memory requires durable standalone learning records when no review/health record already owns provenance. | `learning/` |
-| MEM-20260915-046 | PROCESS | Worktree existence must not be described as current workflow activity; mutable activity belongs to PROJECT_STATE/lane state. | workspace audit/checker |
-| MEM-20260915-047 | GOVERNANCE | Promotion state/checkpoint must be inside the exact reviewed/audited tree; post-audit policy/state edits reopen review. | documentation promotion policy/checker |
-| MEM-20260915-048 | REVIEW | Causal controller action→route binding belongs to the reviewed procedure authority/digest; post-run evidence may prove the mapping but must never choose it. | native harness procedure/review rule |
-| MEM-20260915-049 | TESTING | Security/authority test fixtures must mirror the production authority producer/schema; never invent fields solely to satisfy current implementation. | `TEST_STRATEGY.md` / workflow-health review |
-| MEM-20260915-050 | RECOVERY | Chat/tool timeout resumes the same RUN_ID via write-ahead step reconciliation; timeout never creates a replacement workflow. | `WORKFLOW_CONTINUITY.md` |
-| MEM-20260915-051 | PROCESS | Exact producer progress ahead of main is a distinct continuity state when a run ledger binds its base/output; do not erase it as generic drift. | continuity/runtime checker |
-| MEM-20260915-052 | GOVERNANCE | Workflow-instance schema in NEXT_WORK_ITEM must be machine-enforced, not prose-only. | docs checker / router |
-| MEM-20260915-053 | TOOLING | A generic continuity checker must derive run/workflow identity from state; incident-specific hard-coding defeats self-learning. | continuity checker/audit |
-| MEM-20260915-054 | RECOVERY | A continuity field in prose is not protection until the live current-step record and checker enforce its idempotency/done-when/output contract. | continuity ledger/checker |
-| MEM-20260915-055 | TOOLING | Run identity can be generic while worktree reconciliation is still lane-specific; generic continuity derives a safe relative worktree from state or supports remote-only runs. | continuity checker/state schema |
-| MEM-20260916-001 | LEARNING | A reviewed reusable lesson is not operational until its policy/tool/checker change is canonically activated; track learned-but-not-active backlog and activation lag. | `SELF_LEARNING.md`, `WORKFLOW_HEALTH.md` |
-| MEM-20260916-002 | PERSISTENCE | Exact local source + verified package can preserve identity while still creating reviewer/operator friction when source is not remotely browseable; partial snapshots must be labeled and full-mirror state explicit. | `GIT_WORKFLOW.md`, handoff/state schema |
-| MEM-20260916-003 | GOVERNANCE | Standing documentation policy must derive release-scoped branch/worktree identity from canonical governance state, never pin one revision's names. | `EXECUTION_LANES.md`, `GIT_WORKFLOW.md`, governance checker |
-| MEM-20260916-004 | LEARNING | Immutable learning evidence must not also own mutable lifecycle state; one machine-readable register owns review/activation/effectiveness and project aggregates are derived from it. | `learning/LEARNING_STATE.json`, `SELF_LEARNING.md`, lifecycle checker |
-| MEM-20260916-005 | TOOLING | Adversarial tests must establish their own fixture preconditions; they must not depend on ambient pre-/post-promotion repository state. | `tools/test_learning_lifecycle_checker.py` |
-| MEM-20260917-001 | GOVERNANCE | Live review/audit authority in prose must derive from canonical final verdict IDs; older verdict pairs are valid only when explicitly historical/superseded context is stated. | `tools/check_project_docs.py`, `tools/test_project_docs_checker.py` |
-| MEM-20260918-001 | GOVERNANCE | READY-derived authority artifacts are valid only for the current successful evaluation; failed reevaluation invalidates them, unchanged-tree claims bind bytes/link identity, and CI must respect exact source addressability. | Learning 009, activated by R13/A13 |
+| Need | Canonical owner / evidence domain |
+|---|---|
+| What to do, actor and gate | `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, `WORKFLOW_ROUTER.md` |
+| Resume without duplicate work | `WORKFLOW_CONTINUITY.md`, owning `workflow-runs/` |
+| Source/artifact identity and secret discipline | `GIT_WORKFLOW.md`, exact handoff/manifest |
+| Oracle, causal tests and design gaps | `TEST_STRATEGY.md`, `test-governance/`, exact phase contracts |
+| Review independence and claims | `EXECUTION_LANES.md`, exact `reviews/` |
+| Learning selection, invalidation and measurement | `SELF_LEARNING.md`, `learning/LEARNING_STATE.json` |
+| Ineffective loops and comparable outcomes | `WORKFLOW_HEALTH.md`, `workflow-health/metrics/` |
+| Workspace, recovery and environment scope | `WORKSPACE_WSL.md`, `RECOVERY_PLAYBOOK.md`, `SERVER_ENVIRONMENT.md` |
+| Two-model context and delivery | `docs/DUAL_AI_COLLABORATION.md`, `docs/DUAL_AI_AUTOMATIC_HANDOFF.md` |
 
-| MEM-20260918-002 | GOVERNANCE | Historical/current review-audit authority context is verdict-pair-local; a historical marker for one pair never masks another pair elsewhere on the same line. | pair-local authority checker / learning 012 |
+## Working view
 
-| MEM-20260918-003 | SECURITY | CI checkout credentials must be non-persistent and explicitly absent from local Git config before repository-controlled code runs; keep workflow token permissions least-privilege. | learning 013 / CI workflows |
+Run `python3 tools/check_shared_workflow.py --knowledge` after lifecycle reconciliation.
+Select relevant terminal lessons; attach exact bytes and successor warnings. An old
+ACTIVE flag, a remembered rule or an index row never defeats current policy. A pending
+measurement is disclosed; an ineffective/superseded record is not positive guidance.
+Do not infer factual validity or complete relevance from structural filtering.
 
-| MEM-20260918-004 | GOVERNANCE | Promoted current-pair stage checks must recognize semantic review-gating patterns (for example `subject to` / conditional review), not only a fixed prospective/pending keyword list. | promoted semantic checker / V50 health review |
+## Preserved provenance
 
-| MEM-20260918-005 | GOVERNANCE | Evidence pointers duplicated between canonical Markdown and machine state require explicit parity plus target-existence checks; green aggregate checks alone do not prove pointer consistency. | active-doc checker / V51 health review |
-
-## Compaction rule
-
-This file stays an active index. When entries are superseded or detailed prose becomes redundant, remove obsolete instructions from the active file after recording successor/provenance in Git or an immutable review/health record. Do not preserve stale guidance just to keep the file large.
-
-New learning uses immutable evidence plus the machine-owned lifecycle process in `SELF_LEARNING.md`.
+The detailed MEM index remains byte-retrievable at exact Git commit
+`5dbcaa5efbd27ee7ea4169328a38ef23fbb67b66:PROJECT_MEMORY.md`.
+All original learning records and success metrics remain unchanged. This compaction
+removes repeated rule summaries from default context, not safety rules or evidence.
+New information uses existing finding/learning lifecycle; do not duplicate it by model.

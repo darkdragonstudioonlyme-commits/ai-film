@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — implement dev23 stage-derived LAB authority
+# NEXT WORK ITEM — implement and qualify the foreground text-review bridge
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,67 +6,34 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: IMPLEMENTATION
 LANE: IMPLEMENT
 STATUS: READY
-PHASE: "00 — Host / WSL"
-WORK_ITEM: IMPL-P00-V03-STAGE-DERIVED-AUTHORITY-DEV23
-TARGET_VERSION: 0.1.0.dev23
-PARENT_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
+WORK_ITEM: IMPL-DUAL-AI-TEXT-BRIDGE-001
+ASSIGNEE: CHATGPT
+AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_EVIDENCE_HEAD: 1defbf3422903a694215df9e2c11374fc5b1b785
-  DESIGN_RECORD: lane/validation-p00:docs/PHASE00_STAGE_DERIVED_LAB_AUTHORITY_CHANGE.md
-  DESIGN_REVIEW: lane/validation-p00:reviews/DESIGN-REVIEW-P00-V03-STAGE-DERIVED-AUTHORITY-001.md
-  TEST_CHANGE: lane/validation-p00:test-governance/TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006.md
-  TEST_REVIEW: lane/validation-p00:test-governance/TEST_REVIEW-P00-V03-AUTHORITY-BINDING-PRODUCER-006.md
-  COVERAGE: lane/validation-p00:test-governance/design-evidence/TEST-DESIGN-P00-V03-STAGE-DERIVED-AUTHORITY-006-COVERAGE.json
-  ORACLE_CHANGED: false
-AUTHORIZED_PRODUCT_DELTA:
-  ADD:
-    - src/aifilm_p00/native/stage_authority.py
-  MODIFY:
-    - src/aifilm_p00/native/harness_controller.py
-  TEST_ADD:
-    - tests/test_dev23_stage_authority.py
-  TEST_MODIFY:
-    - tests/test_dev15_harness.py
-  BYTE_IDENTICAL_REQUIRED:
-    - src/aifilm_p00/authority.py
-    - src/aifilm_p00/plans.py
-    - src/aifilm_p00/native/harness_cases.py
-    - src/aifilm_p00/native/request_entry.py
-    - src/aifilm_p00/resume.py
-    - src/aifilm_p00/recovery.py
-    - config/required-native-test-inventory.json
-    - contracts/PHASE00_INFRA_DESIGN_V2.md
-    - contracts/PHASE00_ACCEPTANCE_MATRIX_V2.md
-    - contracts/PHASE00_FAILURE_RECOVERY_PLAN_V2.md
-    - contracts/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md
-GOAL: "Implement the reviewed four-mode temporal LAB authority model without changing Phase00 business/test oracles or public dynamic-plan authority."
-REQUIRED_IMPLEMENTATION:
-  - SIGNED_STAGE_DERIVATION_SLOT_RESOLVER
-  - CONTENT_ADDRESSED_STAGE_STATE_HANDOFF
-  - MULTI_PRODUCER_LINEAGE
-  - DERIVED_NATIVE_BINDING_AND_PLAN
-  - ENTRY_PROBE_AUTHORITY_RESOLUTION
-  - FENCE_BOUND_RECONCILIATION_RESOLUTION
-  - MONOTONIC_SIGNED_BASE_REF_PARTITION_CHECK
-  - HARNESS_EXECUTE_AND_FINALIZER_LINEAGE
-  - TD006_01_THROUGH_TD006_16
+  SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
+  DESIGN: docs/DUAL_AI_AUTOMATIC_HANDOFF.md
+  REQUIRED_POLICY_VERDICTS: R38_REVIEW_AND_AUDIT_AT_EXACT_TARGET
+GOAL: "Implement a single-task foreground tool-less bridge, review its exact code with Claude, and qualify context, permission, duplicate and timeout handling without enabling implementation/native permissions."
 STEPS:
-  - DESIGN_AND_TEST_REVIEW: COMPLETE_REVIEWED
-  - AUTHOR_DEV23_PRODUCT: READY
-  - AUTHOR_REGRESSION_AND_STATIC: NOT_STARTED
-  - PACKAGE_EXACT_SOURCE: NOT_STARTED
-  - FORMAL_CODE_REVIEW: NOT_STARTED
-  - VALIDATION_TOOLING_IMPLEMENTATION: BLOCKED_UNTIL_CANDIDATE_IDENTITY
-  - CANDIDATE_VALIDATION_RECONCILIATION: BLOCKED
-  - RETURN_TO_V02B: BLOCKED
+  - POLICY_ACCEPTANCE: VERIFY_CANONICAL_R38_RECORDS_BEFORE_AUTHORING
+  - TEXT_BRIDGE_AUTHOR_REVIEW_TEST: READY_AFTER_POLICY_ACCEPTANCE
+  - TEXT_PROFILE_QUALIFICATION: NOT_STARTED
+  - PRODUCT_FEASIBILITY_REVIEW: PRESERVED_FOLLOW_ON
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-CURRENT_IMPLEMENTATION_STEP: AUTHOR_DEV23_STAGE_DERIVED_AUTHORITY
-SUCCESS_OUTPUT: "Exact dev23-or-later source candidate within the reviewed file allowlist, with TD006 coverage and full author regression/static/package evidence, ready for independent formal CODE_REVIEW."
-ON_SUCCESS: CODE_REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY
-ON_FAIL: WORKFLOW_REVIEW
-ON_BLOCK: BLOCK-P00-VAL-V03-STAGE-DERIVED-IMPLEMENTATION-006
-EXIT_CONDITION: "Dev23 candidate changes only the authorized product/test files, passes the full author regression/static/package checks with TD006 coverage, and is frozen for independent formal CODE_REVIEW."
+SUCCESS_OUTPUT: "Reviewed exact bridge plus real text-profile qualification receipt; shared learning effectiveness remains separately measured."
+ON_SUCCESS: TEXT_PROFILE_QUALIFICATION_THEN_PRODUCT_FEASIBILITY_REVIEW
+ON_FAIL: SAME_CAUSAL_FAMILY_AUTHOR_CORRECTION
+ON_BLOCK: BLOCK-DUAL-AI-TEXT-BRIDGE-QUALIFICATION
+RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
+EXIT_CONDITION: "Exact code is non-author reviewed, guards are exercised in integration, no duplicate worker/replay occurs, real constrained invocation succeeds, and setup/usage scope is verified."
 ~~~
 
-Do not modify validation-ops, sign V02 authority, install native policy, start the LAB or run native cases during product authoring.
+This is the intended post-promotion cursor. While this candidate is under review,
+its current author/reviewer work is owned by the explicit excursion receipt, not by
+executing this future step. Installation/login are already evidenced; do not repeat.
+No WSL_IMPLEMENT, product source patch, V02 signing, native policy or LAB action is
+included. Product feasibility and affected test review still precede dev23.
+
+## DESIGN_REVIEW_FEASIBILITY_CORRECTION
+Preserved product follow-on: `docs/PHASE00_STAGE_AUTHORITY_FEASIBILITY_CORRECTION_V2.md`.

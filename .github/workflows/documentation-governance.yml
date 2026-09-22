@@ -57,6 +57,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Current work and audit declaration scope
+        run: python3 tools/check_current_work.py
+      - name: Adversarial current-work regression
+        run: python3 tools/test_current_work.py
+      - name: No-execution authority construction model
+        run: python3 tools/test_authority_hash_model.py
       - name: Canonical state selector
         run: python3 tools/check_state_contract.py
       - name: Adversarial state and continuity scope
@@ -77,5 +83,13 @@ jobs:
         run: python3 tools/check_continuity_measurements.py
       - name: Adversarial continuity measurement regression
         run: python3 tools/test_continuity_measurements.py
+      - name: Dual-actor design declarations
+        run: python3 tools/check_dual_ai_contract.py
+      - name: Adversarial dual-actor contract model
+        run: python3 tools/test_dual_ai_contract.py
+      - name: Shared workflow and operative knowledge
+        run: python3 tools/check_shared_workflow.py
+      - name: Adversarial shared workflow regression
+        run: python3 tools/test_shared_workflow.py
       - name: Holistic documentation audit
         run: python3 tools/audit_documentation_v2.py

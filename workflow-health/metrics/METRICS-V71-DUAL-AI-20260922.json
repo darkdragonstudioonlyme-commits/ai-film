@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "input_refs": {
+    "main": "37d8e5049982a743d77f8ecaba358f2fc5d91b44",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "reused_candidate": "41cbe36586c6c5dadad8b8a2b6aee0e53ba26d8d"
+  },
+  "main_commits_in_window": 25,
+  "active_control_documents_read": 21,
+  "session_denominator": null,
+  "historical_semantic_review_complete": false,
+  "native_revalidated": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "cross_model_review": "NOT_RUN",
+  "live_dispatch": "NOT_RUN",
+  "claude_lookup": "NOT_FOUND_IN_PATH_OR_FOUR_USUAL_LINUX_LOCATIONS",
+  "connector_lookup": "NO_MATCH",
+  "credential_files_read": false,
+  "learning_register_changed": false,
+  "real_transfer_samples": 0,
+  "scope": "Complete active control-plane design plus shared-learning/transport; historical source/native experiments not rerun",
+  "known_missing": [
+    "Claude installed version",
+    "account authentication",
+    "approved usage budget",
+    "sandbox proof",
+    "real non-author review",
+    "future comparable efficiency samples"
+  ]
+}

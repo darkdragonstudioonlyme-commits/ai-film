@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "scope": "SETUP_AND_BOUNDED_TEXT_CALLS_ONLY",
+  "cli_version": "2.1.267",
+  "cli_path": "/home/dragon/.local/bin/claude",
+  "connectivity": "PASS_REAL_INVOCATION",
+  "remote_authentication": "FUNCTIONAL_REAL_REQUEST",
+  "account_billing": "NOT_INDEPENDENTLY_VERIFIED",
+  "stdin_fix": "PASS_EXPLICIT_CLOSED_OR_SUPPLIED_STDIN",
+  "doctor": "NO_INSTALLATION_ISSUES_REPORTED",
+  "calls": 3,
+  "reported_models": [
+    "claude-haiku-4-5-20251001",
+    "claude-sonnet-5"
+  ],
+  "estimated_usage_usd": 0.04379480000000001,
+  "cost_basis": "PROVIDER_LIST_PRICE_ESTIMATE_NOT_INVOICE",
+  "host_guard_commands_passed": 17,
+  "pure_regression_cases_passed": 181,
+  "candidate_commit": "5dbcaa5efbd27ee7ea4169328a38ef23fbb67b66",
+  "review_assessment": "SCOPED_ACCEPTABLE_STATIC_REVIEW_OF_SUPPLIED_SETUP_OBSERVATIONS",
+  "no_tools_profile": "TESTED_VENDOR_FLAGS_NOT_OS_SANDBOX_CERTIFICATION",
+  "permission_escape_test": "NOT_EXECUTED_TOOL_BLOCKED",
+  "full_v71_review_packet": "NOT_PREPARED_TOOL_BLOCKED",
+  "full_v71_acceptance": "NOT_RUN",
+  "shared_learning_transfer": "NOT_VERIFIED",
+  "automatic_dispatcher": "NOT_IMPLEMENTED",
+  "implementation_profile": "NOT_QUALIFIED",
+  "native_execution": false,
+  "learning_effectiveness": "NOT_PROVEN",
+  "candidate_modified": false,
+  "main_merged": false
+}

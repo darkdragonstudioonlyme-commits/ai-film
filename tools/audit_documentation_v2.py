@@ -4,7 +4,7 @@ import re,sys,hashlib,json,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 active=['README.md','PROJECT_STATE.md','NEXT_WORK_ITEM.md','PROJECT_ROADMAP.md','WORKFLOW_ROUTER.md','EXECUTION_LANES.md',
 'DOCUMENTATION_MAP.md','PROJECT_MEMORY.md','SELF_LEARNING.md','TEST_STRATEGY.md','WORKFLOW_HEALTH.md','POLICY_REGISTRY.md',
-'SERVER_ENVIRONMENT.md','MODEL_EVALUATION.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md','CHAT_HANDOFF.md','WORKFLOW_CONTINUITY.md']
+'SERVER_ENVIRONMENT.md','MODEL_EVALUATION.md','RECOVERY_PLAYBOOK.md','OPERATING_ARCHITECTURE.md','GIT_WORKFLOW.md','WORKSPACE_WSL.md','CHAT_HANDOFF.md','WORKFLOW_CONTINUITY.md','CLAUDE.md']
 errors=[]; texts={p:(ROOT/p).read_text(encoding='utf-8') for p in active if (ROOT/p).is_file()}
 
 # No mutable delivery versions in standing policy/bootstrap docs.
@@ -91,4 +91,4 @@ else:
 
 if errors:
     print('DOC_AUDIT_FAIL'); print('\n'.join(errors)); sys.exit(1)
-print('DOC_AUDIT_PASS',len(texts),'active docs','lifecycle-aware-checkers','learning-lifecycle-enforced')
+print('DOC_AUDIT_PASS scope=STRUCTURAL_ONLY semantic=NOT_EVALUATED native=NOT_EVALUATED',len(texts),'active docs','lifecycle-aware-checkers','learning-lifecycle-enforced')
