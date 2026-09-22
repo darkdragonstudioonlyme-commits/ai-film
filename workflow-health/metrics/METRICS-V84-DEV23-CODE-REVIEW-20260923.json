@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "code_review_result": "PASS",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "main": "eff16392fa70b657f68bb4362b379c5a3c4bd383",
+    "prior_candidate": "fa74b000ac6eac92ea383138a2f9402e9ef4daa5",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Final dev23 code review successor and host regression; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d",
+  "static_checks": 103,
+  "static_failures": 0,
+  "test_content_digest": "c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 811
+}
