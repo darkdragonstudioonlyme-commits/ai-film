@@ -1,39 +1,39 @@
-# NEXT WORK ITEM — review fresh dev23 candidate binding
+# NEXT WORK ITEM — review dev23 V02/V03 tooling rebind tests
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: TEST_REVIEW
+LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: REVIEW-P00-DEV23-CANDIDATE-BINDING-001
+WORK_ITEM: TEST-REVIEW-P00-DEV23-TOOLING-REBIND-009
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  REVIEWED_CANDIDATE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
-  CANDIDATE_BINDING_PROPOSAL_COMMIT: bda075acb280ed13bed4e9e1dfc93b9bf00133b3
-  CANDIDATE_BINDING_PROPOSAL_TREE: a8230c7b4246fbd090ed956aa82f3c146528cb07
+  VALIDATION_BASE: 2230531593b44e1960317c88f91fcbcde633a3c5
+  TEST_CHANGE_PROPOSAL_COMMIT: e5e5d950965530b40ac7bee85a56b23372f4301b
+  TEST_CHANGE_PROPOSAL_TREE: 555354038498b8ebca7194afc4e5786dd7ba7669
   CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-GOAL: "Independently review the exact dev23 binding bytes and candidate-specific prerequisite reuse/rebuild/rebind plan before rebinding active V02 tooling."
+  ORACLE_CHANGED: false
+GOAL: "Independently review TEST_CHANGE 009 candidate-config-driven V02/V03 successor tooling, historical dev22 byte preservation and TV009-01..16 fail-closed coverage."
 STEPS:
-  - PACKAGE_IDENTITY_REVIEW: COMPLETE_PASS
-  - DEV23_CANDIDATE_BINDING_PREPARATION: COMPLETE_FROZEN
-  - CANDIDATE_BINDING_REVIEW: READY
-  - V02_TOOLING_REBIND: BLOCKED
+  - DEV23_BINDING_REVIEW: COMPLETE_PASS
+  - AUTHOR_TEST_CHANGE_009: COMPLETE_FROZEN
+  - TEST_REVIEW_009: READY
+  - V02_V03_TOOLING_IMPLEMENTATION: BLOCKED
   - PRODLIKE_RECONCILE: BLOCKED
   - LAB_RESEED_OR_REBUILD: BLOCKED
-  - AUTHORITY_GRAPH_SIGNING: BLOCKED
+  - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Cross-model binding/reconciliation-plan verdict bound to exact proposal commit/tree."
-ON_SUCCESS: V02_DEV23_TOOLING_REBIND
-ON_FAIL: DEV23_CANDIDATE_BINDING_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-BINDING-REVIEW-013
+SUCCESS_OUTPUT: "TEST_REVIEW PASS/FAIL bound to exact TEST_CHANGE 009; no runtime/native proof."
+ON_SUCCESS: IMPL-P00-DEV23-V02-V03-TOOLING-REBIND-001
+ON_FAIL: TEST_DESIGN_CORRECTION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-TOOLING-TEST-REVIEW-014
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer verifies fresh non-dev22 candidate identity, exact binding hash/source/package/test/contract/review provenance, complete prerequisite dispositions and no signing/native authority."
+EXIT_CONDITION: "Reviewer confirms ORACLE_CHANGED=false, exact successor/historical file scope, TV009-01..16 meaningful coverage, private-key/native boundaries and separate prodlike/LAB deployment lifecycle."
 ~~~
 
-TEXT_REVIEW only. Do not change canonical validation lane, sign authority, mutate HKLM, start LAB/native cases, issue qualification or mark HOST_READY during this review.
+TEXT_REVIEW only. Do not implement tooling, touch private key/canonical inbox/HKLM, start LAB/native cases, deploy prodlike, issue qualification or mark HOST_READY during review.

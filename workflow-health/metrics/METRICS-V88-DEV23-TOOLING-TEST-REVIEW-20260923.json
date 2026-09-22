@@ -1,0 +1,22 @@
+{
+  "active_control_documents_read": 0,
+  "binding_review_result": "PASS",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "6bdf3cb96f92556f9ad989d87734d2c19cc83d0a",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "test_change_proposal": "e5e5d950965530b40ac7bee85a56b23372f4301b",
+    "validation": "2230531593b44e1960317c88f91fcbcde633a3c5"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Route reviewed dev23 binding to validation-tooling TEST_REVIEW 009; no implementation/native/signing",
+  "session_denominator": null,
+  "tooling_test_review_result": "PENDING"
+}
