@@ -1,0 +1,21 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "25b38af7eb7ae75fec2a2144fda9e71ae4b8020a",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "43c9a687ad3a1f778328f5d1587d789fbb380fd8"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Authorize non-native authoring of exact TEST_REVIEW 009 V02/V03 successor tooling only",
+  "session_denominator": null,
+  "tooling_implementation_status": "READY",
+  "tooling_test_review_result": "PASS"
+}

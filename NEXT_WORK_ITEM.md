@@ -1,39 +1,40 @@
-# NEXT WORK ITEM — review dev23 V02/V03 tooling rebind tests
+# NEXT WORK ITEM — implement reviewed dev23 V02/V03 successor tooling
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-TOOLING-REBIND-009
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: IMPL-P00-DEV23-V02-V03-TOOLING-REBIND-001
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_BASE: 2230531593b44e1960317c88f91fcbcde633a3c5
-  TEST_CHANGE_PROPOSAL_COMMIT: e5e5d950965530b40ac7bee85a56b23372f4301b
-  TEST_CHANGE_PROPOSAL_TREE: 555354038498b8ebca7194afc4e5786dd7ba7669
+  VALIDATION_BASE: 43c9a687ad3a1f778328f5d1587d789fbb380fd8
   CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
+  TEST_CHANGE: lane/validation-p00:test-governance/TEST_CHANGE-P00-DEV23-TOOLING-REBIND-009.md
+  TEST_REVIEW: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-TOOLING-REBIND-009.md
   ORACLE_CHANGED: false
-GOAL: "Independently review TEST_CHANGE 009 candidate-config-driven V02/V03 successor tooling, historical dev22 byte preservation and TV009-01..16 fail-closed coverage."
+GOAL: "Implement the candidate-config-driven V02 successor plus reviewed V03 compiler/verifier/fixture/policy/proof tooling and TV009 tests, preserving historical dev22 tooling bytes."
 STEPS:
-  - DEV23_BINDING_REVIEW: COMPLETE_PASS
-  - AUTHOR_TEST_CHANGE_009: COMPLETE_FROZEN
-  - TEST_REVIEW_009: READY
-  - V02_V03_TOOLING_IMPLEMENTATION: BLOCKED
+  - TOOLING_TEST_REVIEW_009: COMPLETE_PASS
+  - AUTHOR_SUCCESSOR_TOOLING: READY
+  - AUTHOR_TV009_REGRESSION: NOT_STARTED
+  - HISTORICAL_DEV22_REGRESSION: NOT_STARTED
+  - CLAUDE_CODE_REVIEW: BLOCKED
   - PRODLIKE_RECONCILE: BLOCKED
   - LAB_RESEED_OR_REBUILD: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "TEST_REVIEW PASS/FAIL bound to exact TEST_CHANGE 009; no runtime/native proof."
-ON_SUCCESS: IMPL-P00-DEV23-V02-V03-TOOLING-REBIND-001
-ON_FAIL: TEST_DESIGN_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-TOOLING-TEST-REVIEW-014
+SUCCESS_OUTPUT: "Frozen successor tooling/test candidate with TV009/TD006/TD007 author evidence and exact historical byte-preservation proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-V02-V03-TOOLING-REBIND-001
+ON_FAIL: SAME_TOOLING_CAUSAL_FAMILY_CORRECTION_OR_TEST_DESIGN_GAP
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-TOOLING-IMPLEMENTATION-015
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms ORACLE_CHANGED=false, exact successor/historical file scope, TV009-01..16 meaningful coverage, private-key/native boundaries and separate prodlike/LAB deployment lifecycle."
+EXIT_CONDITION: "TV009-01..16 pass, reviewed V03 tests pass, historical dev22 11-script regression passes, diff is exact allowlist, and no private-key/inbox/HKLM/native/prodlike/LAB side effect occurred."
 ~~~
 
-TEXT_REVIEW only. Do not implement tooling, touch private key/canonical inbox/HKLM, start LAB/native cases, deploy prodlike, issue qualification or mark HOST_READY during review.
+Authoring only. Use fixtures/temp directories. Do not sign authority, touch canonical inbox/private key/HKLM, deploy prodlike, start LAB/native cases, issue qualification or set HOST_READY.
