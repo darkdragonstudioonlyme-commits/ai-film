@@ -37,4 +37,13 @@ class LateProofTests(unittest.TestCase):
  def test_owner_assertion_disallowed_role_rejected(self):
   p=self.request('restore_result',SCOPES['restore_result'],owner_assertion=True)
   with self.assertRaises(Exception):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
+ def test_unreviewed_collector_and_raw_mismatch_rejected(self):
+  role='restore_result';scope=SCOPES[role];p=self.request(role,scope);q=json.loads(p.read_text());mref=q['measurement_refs'][0];m=read_object(self.obj,mref,'measurement')
+  badc=write_object(self.obj,{'role':'collector_release','withdrawn':False,'review_verdict':'FAIL','build_digest':'9'*64});m['collector_ref']=badc;self.obj.joinpath(mref+'.json').unlink();mref2=write_object(self.obj,m);q['measurement_refs']=[mref2];q['claim_map']['ok']['measurement_ref']=mref2;p.write_text(json.dumps(q))
+  with self.assertRaisesRegex(Exception,'PROOF_COLLECTOR_UNREVIEWED'):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
+  p=self.request(role,scope);q=json.loads(p.read_text());mref=q['measurement_refs'][0];m=read_object(self.obj,mref,'measurement');raw=read_object(self.obj,m['raw_artifact_ref'],'measurement_artifact');raw['measurement_actual_digest']='0'*64;badraw=write_object(self.obj,raw);m['raw_artifact_ref']=badraw;self.obj.joinpath(mref+'.json').unlink();mref2=write_object(self.obj,m);q['measurement_refs']=[mref2];q['claim_map']['ok']['measurement_ref']=mref2;p.write_text(json.dumps(q))
+  with self.assertRaisesRegex(Exception,'PROOF_RAW_BINDING'):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
+ def test_unmeasured_claim_rejected(self):
+  role='restore_result';p=self.request(role,SCOPES[role]);q=json.loads(p.read_text());q['claim']={'ok':False};p.write_text(json.dumps(q))
+  with self.assertRaisesRegex(Exception,'PROOF_CLAIM_NOT_MEASURED'):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
 if __name__=='__main__':unittest.main()

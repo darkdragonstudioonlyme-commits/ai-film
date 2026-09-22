@@ -24,10 +24,12 @@ def read_object(objects,ref):
     return raw,v
 
 def validate_intake(binding,binding_sha256,inbox):
+    env={'HOME':os.environ.get('HOME','/home/dragon'),'USER':os.environ.get('USER','dragon'),
+         'LOGNAME':os.environ.get('LOGNAME','dragon'),'LANG':'C.UTF-8','LC_ALL':'C.UTF-8',
+         'PATH':'/usr/bin:/bin','PYTHONNOUSERSITE':'1','PYTHONDONTWRITEBYTECODE':'1'}
     p=subprocess.run(['/usr/bin/python3',str(VALIDATOR),'--binding',str(binding),
                       '--binding-sha256',binding_sha256,'--inbox',str(inbox)],
-                     text=True,capture_output=True,
-                     env={**os.environ,'PYTHONNOUSERSITE':'1','PYTHONDONTWRITEBYTECODE':'1'})
+                     text=True,capture_output=True,env=env)
     try:v=json.loads((p.stdout.strip().splitlines() or ['{}'])[-1])
     except Exception as e: raise MaterializeError('VALIDATOR_OUTPUT_INVALID') from e
     require(p.returncode==0 and v.get('ready_to_advance') is True,'AUTHORITY_INTAKE_NOT_READY')
