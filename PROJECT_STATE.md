@@ -1,10 +1,10 @@
-# AI-FILM-SERVER — intended canonical content V79
+# AI-FILM-SERVER — intended canonical content V80
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 79
+STATE_VERSION: 80
 CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
 CURRENT_TASK: CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY
@@ -173,7 +173,7 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews exact dev23 candidate df28ae4/tree 2f5c23f through bounded TEXT_REVIEW; findings return to author, PASS routes candidate-specific validation reconciliation. Native gates remain closed."
+NEXT_ACTION: "Claude reviews exact successor dev23 candidate b6b3dfe/tree 7ed3846 through bounded TEXT_REVIEW; prior late-proof findings are correction evidence, not acceptance of changed bytes. Native gates remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

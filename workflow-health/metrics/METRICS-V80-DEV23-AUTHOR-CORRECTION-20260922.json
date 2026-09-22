@@ -1,0 +1,39 @@
+{
+  "active_control_documents_read": 0,
+  "author_candidate_tree": "7ed384675b1124cb8ac04c2e56f4df6d6bfb186a",
+  "byte_identical_required_pass": true,
+  "catalog_parity": true,
+  "catalog_sha256": "fac26f07965257a75eee93c61f9861bf2a0e24f033008bd366cf5478849f54a0",
+  "diff_allowlist_pass": true,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "b6b3dfe37aae64513ff086b5af744e406ad7bfe3",
+    "main": "e9a7e0ce0cfa5df9c6ae175e968a27ec44e93486",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "superseded_candidate": "df28ae42958d0741a4069fc51b4201cac341ba5e",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "review_findings_addressed": [
+    "DEV23-REV-004",
+    "DEV23-REV-005",
+    "DEV23-REV-006"
+  ],
+  "schema_version": 1,
+  "scope": "Dev23 successor author correction for cross-model late-proof findings; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "cf3384e7cf844497e15c7ef84d070f916aec2ed69a889106e6e1bc4a6bd6e78a",
+  "static_checks": 103,
+  "static_failures": 0,
+  "test_content_digest": "13f4c760f009a244c64441e8f9c4f381f21286fdc5a9f9bc52aa6b4df5f5979d",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 805
+}
