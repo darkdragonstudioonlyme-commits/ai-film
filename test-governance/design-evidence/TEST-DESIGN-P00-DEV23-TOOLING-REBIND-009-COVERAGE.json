@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-TOOLING-REBIND-009",
+  "base_validation_commit": "2230531593b44e1960317c88f91fcbcde633a3c5",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "oracle_changed": false,
+  "native_execution_authorized": false,
+  "authority_signing_authorized": false,
+  "authority_mode_counts": {"CONCRETE_PRE_V03":94,"STAGE_DERIVED":15,"ENTRY_PROBE_AUTHORITY":10,"FENCE_BOUND_RECONCILIATION":14},
+  "required_test_ids": ["TV009-01","TV009-02","TV009-03","TV009-04","TV009-05","TV009-06","TV009-07","TV009-08","TV009-09","TV009-10","TV009-11","TV009-12","TV009-13","TV009-14","TV009-15","TV009-16"],
+  "historical_dev22_tooling_must_remain_byte_identical": true,
+  "prodlike_and_lab_deployment_in_scope": false
+}
