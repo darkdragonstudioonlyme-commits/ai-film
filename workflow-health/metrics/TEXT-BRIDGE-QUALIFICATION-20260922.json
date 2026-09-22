@@ -1,0 +1,77 @@
+{
+  "allowed_observed_auxiliary_models": [
+    "claude-haiku-4-5"
+  ],
+  "cli_version": "2.1.267",
+  "code_review": "reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md",
+  "code_review_sha256": "02a2dbafabfc8f3a40ac171e16a7f198bc573e3d21e17b4229ad60ba928e9d6e",
+  "context_digest": "2618adfe07cdf29440890fe416009dbfdc97f51a1614fc9a9be82d8c9aa886c7",
+  "context_loading": "PASS",
+  "cost_basis": "PROVIDER_ESTIMATE_NOT_INVOICE",
+  "cross_model_acceptance": "PASS",
+  "data_budget_authorization": "PASS",
+  "deployment_verified": false,
+  "dispatcher_qualification": "PASS",
+  "executed_commands": [],
+  "final_bridge_commit": "c2648a71f80ecf1733593627fd7aeac16a6c7b79",
+  "final_bridge_tree": "357c3a6d5960636115dbd4290b52caf6a92af63a",
+  "idempotent_reuse_verified": true,
+  "learning_effectiveness": "NOT_PROVEN",
+  "mcp_servers_init_observed": [],
+  "native_executed": false,
+  "per_task_estimate_cap_usd": 0.25,
+  "permission_denials": [],
+  "permission_tests": "PASS",
+  "primary_model": "claude-sonnet-5",
+  "prior_failed_attempts": [
+    {
+      "result": "RECONCILE_REQUIRED_TIMEOUT_NO_REPLAY",
+      "task_id": "QUALIFY-TEXT-BRIDGE-001"
+    },
+    {
+      "result": "FAILED_PROVIDER_BUDGET_CAP_0_20",
+      "task_id": "QUALIFY-TEXT-BRIDGE-002"
+    },
+    {
+      "result": "FAILED_COLLECTOR_COVERAGE_PARTITION",
+      "task_id": "QUALIFY-TEXT-BRIDGE-003"
+    }
+  ],
+  "product_source_changed": false,
+  "provider_execution_commit": "88451a226a79755a9451e307bbb1f7f55ffed09e",
+  "provider_session_id": "21b0a5ca-42e4-4435-8cc1-7395f3dce8aa",
+  "qualification_artifact_sha256": {
+    "provider.json": "f1c0dd938214a1cb70edfdceadf5af5378bcd71aac77ab70efc82eed0e894a78",
+    "receipt.json": "66347d22cc7a01a72894a84a5f22dc40cda61885bc443079635a683ea32ac815",
+    "report-envelope.json": "b8ae5935c49dcb9252bd0a7f837494b7a2358f6b46c8534a9b27bc516da33785",
+    "result.json": "dd1283c343ae71cbb183b8aaaf04a6b5492ee4a45450c545573974c70c1bf7cd",
+    "review.json": "c2e6808f429e9093c02e3439206bd844ea480aa952e0337d14398fc4c50cb483"
+  },
+  "qualification_id": "DUAL-AI-TEXT-BRIDGE-QUALIFICATION-001",
+  "recovery_tests": "PASS",
+  "reported_cost_usd": 0.218216,
+  "required_learning_ids": [
+    "LEARNING-WORKFLOW-CONTINUITY-001"
+  ],
+  "result": "PASS",
+  "result_assessment": "PASS",
+  "result_transport_status": "RESULT_UNREVIEWED",
+  "reused_provider_bytes_unchanged": true,
+  "reused_provider_session_unchanged": true,
+  "review_response_sha256": {
+    "closure-result.json": "e11169b160354c22015dd7d4681f55e4be66e4b61233237b8f41714fbfc4a466",
+    "compact-review-result.json": "7223704ecbea9c7bf2a1ef810fa327491700d5ba113a91fb0cba2b6fd86822be",
+    "f8-closure-result.json": "085a859f61894bd61562fda534fc92119cfe9fe50075b293692435933ccab825",
+    "final-code-review-result.json": "998c54d1cc7d90c2a90f582e707c8d6f1209ca05f4f8eb82083f9fe8f4e5b1d3",
+    "structured-closure-result.json": "4e2949025949718a08fa56532fb5159a2a599ee14865b081cc56a528854a96dc"
+  },
+  "runtime_enabled_by_this_receipt": false,
+  "schema_version": 1,
+  "scope": "FOREGROUND_TEXT_REVIEW_ONLY",
+  "server_web_fetch_requests": 0,
+  "server_web_search_requests": 0,
+  "subagents_spawned": 0,
+  "task_digest": "1e40af70c1893e547da83bc4a601d9b6f20e7dbd66b6cdbfd1079e8ba870d459",
+  "task_id": "QUALIFY-TEXT-BRIDGE-004",
+  "tools_init_observed": []
+}

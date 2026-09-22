@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — intended canonical content V72
+# AI-FILM-SERVER — intended canonical content V73
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 72
+STATE_VERSION: 73
 CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: IMPL-DUAL-AI-TEXT-BRIDGE-001
+CURRENT_TASK: DEPLOY-DUAL-AI-TEXT-BRIDGE-001
 CURRENT_WORK_STATUS: READY
 CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
@@ -173,24 +173,28 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "After canonical policy acceptance, implement and qualify only the foreground text-review bridge; keep product feasibility, implementation sandbox and native gates closed."
+NEXT_ACTION: "Publish the exact qualified text bridge plus review/qualification evidence; after successful canonical CI, activate bounded TEXT_REVIEW and route to the preserved product feasibility review."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
 
 ## Dual-actor capability and readiness
 
-COLLABORATION_STATUS: DESIGN_CANDIDATE
+COLLABORATION_STATUS: TEXT_BRIDGE_QUALIFIED_PENDING_DEPLOYMENT
 COORDINATOR: CHATGPT
 WORKER: CLAUDE_CODE
 SHARED_LEARNING_REGISTER: learning/LEARNING_STATE.json
-AUTOMATIC_HANDOFF: DESIGNED_NOT_IMPLEMENTED
-CLAUDE_CAPABILITY_STATUS: BASIC_TEXT_CALL_VERIFIED_NOT_ACTIVATED
-CROSS_MODEL_ACCEPTANCE: NOT_RUN
+AUTOMATIC_HANDOFF: TEXT_REVIEW_QUALIFIED_PENDING_DEPLOYMENT
+CLAUDE_CAPABILITY_STATUS: QUALIFIED_PENDING_DEPLOYMENT
+CROSS_MODEL_ACCEPTANCE: PASS
 CROSS_MODEL_ACCEPTANCE_SCOPE: EXECUTOR_RUNTIME_PROFILE
 COLLABORATION_RUNTIME_ENABLED: false
 
-The root PROMOTED field is the intended exact-tree projection, not a claim that this
-local candidate has replaced main. No current cross-model acceptance is present until its actual
-non-author review and audit exist. Same-chat technical audit cannot supply Claude's
-verdict. Historical V70 is an unpromoted predecessor and its facts/metrics are retained.
+V72 policy is canonically promoted. The foreground TEXT_REVIEW bridge is now code-reviewed and
+qualified on exact evidence, but runtime remains disabled until this bridge commit and evidence are
+published to canonical main and post-deployment CI succeeds. WSL_IMPLEMENT, native, signing and
+worker publication authority remain disabled; learning effectiveness remains NOT_PROVEN.
+
+BRIDGE_CODE_REVIEW: reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md
+BRIDGE_QUALIFICATION: workflow-health/metrics/TEXT-BRIDGE-QUALIFICATION-20260922.json
+BRIDGE_DEPLOYMENT_VERIFIED: false

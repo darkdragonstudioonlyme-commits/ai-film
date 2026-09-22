@@ -91,5 +91,7 @@ jobs:
         run: python3 tools/check_shared_workflow.py
       - name: Adversarial shared workflow regression
         run: python3 tools/test_shared_workflow.py
+      - name: Foreground dual-AI text bridge regression
+        run: python3 tools/test_dual_ai_text_bridge.py
       - name: Holistic documentation audit
         run: python3 tools/audit_documentation_v2.py

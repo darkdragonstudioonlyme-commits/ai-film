@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — implement and qualify the foreground text-review bridge
+# NEXT WORK ITEM — deploy qualified foreground text-review bridge
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,34 +6,33 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: IMPLEMENTATION
 LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: IMPL-DUAL-AI-TEXT-BRIDGE-001
+WORK_ITEM: DEPLOY-DUAL-AI-TEXT-BRIDGE-001
 ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
   SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
-  DESIGN: docs/DUAL_AI_AUTOMATIC_HANDOFF.md
-  REQUIRED_POLICY_VERDICTS: R38_REVIEW_AND_AUDIT_AT_EXACT_TARGET
-GOAL: "Implement a single-task foreground tool-less bridge, review its exact code with Claude, and qualify context, permission, duplicate and timeout handling without enabling implementation/native permissions."
+  BRIDGE_COMMIT: c2648a71f80ecf1733593627fd7aeac16a6c7b79
+  BRIDGE_TREE: 357c3a6d5960636115dbd4290b52caf6a92af63a
+  CODE_REVIEW: reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md
+  QUALIFICATION: workflow-health/metrics/TEXT-BRIDGE-QUALIFICATION-20260922.json
+GOAL: "Publish the exact reviewed/qualified foreground TEXT_REVIEW bridge, verify canonical CI, then activate only that bounded profile."
 STEPS:
-  - POLICY_ACCEPTANCE: VERIFY_CANONICAL_R38_RECORDS_BEFORE_AUTHORING
-  - TEXT_BRIDGE_AUTHOR_REVIEW_TEST: READY_AFTER_POLICY_ACCEPTANCE
-  - TEXT_PROFILE_QUALIFICATION: NOT_STARTED
-  - PRODUCT_FEASIBILITY_REVIEW: PRESERVED_FOLLOW_ON
+  - BRIDGE_AUTHOR_AND_FULL_REGRESSION: COMPLETE
+  - CROSS_MODEL_CODE_REVIEW: PASS
+  - TEXT_PROFILE_QUALIFICATION: PASS
+  - CANONICAL_DEPLOYMENT: READY
+  - POST_DEPLOYMENT_CI: NOT_STARTED
+  - TEXT_RUNTIME_ACTIVATION: BLOCKED_UNTIL_DEPLOYMENT_VERIFIED
+  - WSL_IMPLEMENT_QUALIFICATION: NOT_STARTED_SEPARATE_SCOPE
+  - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Reviewed exact bridge plus real text-profile qualification receipt; shared learning effectiveness remains separately measured."
-ON_SUCCESS: TEXT_PROFILE_QUALIFICATION_THEN_PRODUCT_FEASIBILITY_REVIEW
-ON_FAIL: SAME_CAUSAL_FAMILY_AUTHOR_CORRECTION
-ON_BLOCK: BLOCK-DUAL-AI-TEXT-BRIDGE-QUALIFICATION
+SUCCESS_OUTPUT: "Exact bridge/evidence visible on canonical main with CI success, ready for evidence-only TEXT_REVIEW activation."
+ON_SUCCESS: ACTIVATE-DUAL-AI-TEXT-BRIDGE-001
+ON_FAIL: RECONCILE_DEPLOYMENT_WITHOUT_REPLAYING_PROVIDER
+ON_BLOCK: BLOCK-DUAL-AI-TEXT-BRIDGE-DEPLOYMENT
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Exact code is non-author reviewed, guards are exercised in integration, no duplicate worker/replay occurs, real constrained invocation succeeds, and setup/usage scope is verified."
+EXIT_CONDITION: "Canonical main contains exact bridge bytes and immutable review/qualification evidence; required CI and post-promotion guards pass."
 ~~~
 
-This is the intended post-promotion cursor. While this candidate is under review,
-its current author/reviewer work is owned by the explicit excursion receipt, not by
-executing this future step. Installation/login are already evidenced; do not repeat.
-No WSL_IMPLEMENT, product source patch, V02 signing, native policy or LAB action is
-included. Product feasibility and affected test review still precede dev23.
-
-## DESIGN_REVIEW_FEASIBILITY_CORRECTION
-Preserved product follow-on: `docs/PHASE00_STAGE_AUTHORITY_FEASIBILITY_CORRECTION_V2.md`.
+Do not rerun qualification provider calls merely to publish. Runtime remains disabled until canonical deployment is verified. WSL_IMPLEMENT, product source, signing, native policy and LAB are outside this step.

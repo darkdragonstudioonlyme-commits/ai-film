@@ -1,0 +1,23 @@
+{
+  "active_control_documents_read": 0,
+  "bridge_author_commands_passed": 20,
+  "bridge_test_cases_passed": 41,
+  "deployment_verified": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "bridge_candidate": "c2648a71f80ecf1733593627fd7aeac16a6c7b79",
+    "main": "fa0891fd2d6e4af3cd9c98e9155a24f7caf494c7",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 0,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_qualification": "PASS",
+  "schema_version": 1,
+  "scope": "Bridge implementation/review/qualification; no historical semantic or native revalidation",
+  "session_denominator": null
+}
