@@ -1,0 +1,27 @@
+{
+  "active_control_documents_read": 0,
+  "author_historical_scripts": 11,
+  "author_successor_tests": 31,
+  "diff_allowlist_pass": true,
+  "historical_dev22_bytes_modified": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "b11e6c55f21590f8deaf79dde0ac936a47e4b13f",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "tooling_candidate": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+    "tooling_tree": "f55e05f49ca6718bbbed2ad074eb1c474ae9c0de",
+    "validation": "43c9a687ad3a1f778328f5d1587d789fbb380fd8"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Route exact dev23 validation tooling author candidate to bounded cross-model CODE_REVIEW; no native/signing/deployment",
+  "session_denominator": null,
+  "signing_performed": false,
+  "tooling_code_review_result": "PENDING"
+}
