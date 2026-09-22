@@ -1,0 +1,32 @@
+{
+  "active_control_documents_read": 0,
+  "author_candidate_tree": "d711667ed3a53fc5e41b2b07d467ef51bcc94fa0",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "candidate": "cef5db6c1f8e2528d368d1e7a21fdf8477a36a9c",
+    "main": "845d961652c64343bad34c88296430c0653e030e",
+    "prior_candidate": "67ee67ecfa03b9501045ae1688f1e8ba5e1d38ee",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "non_test_bytes_identical_to_67ee": true,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Final dev23 author candidate after behavioral publisher-guard test strengthening; no native execution",
+  "session_denominator": null,
+  "source_content_digest": "cf3384e7cf844497e15c7ef84d070f916aec2ed69a889106e6e1bc4a6bd6e78a",
+  "static_checks": 103,
+  "static_failures": 0,
+  "td007_guard_behavioral_test": "PASS",
+  "test_content_digest": "ed34735760d4bd988b050a9cf207e649583bb292fc88c69c5dfa09d92d029141",
+  "workspace_errors": 0,
+  "workspace_failures": 0,
+  "workspace_skipped": 0,
+  "workspace_tests_run": 809
+}
