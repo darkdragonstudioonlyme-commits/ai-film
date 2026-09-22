@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "37abf6b5aa1dfa906fe1f1b1df82382272712364",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "package_identity_sha256": "c779deee9b941453efeb004ac3d438bbd6ef6e54311e5324e9c7ed467098d2a9",
+  "package_manifest_sha256": "08d8a01c492a1e4ca814503ccb191e3e57160035cc0bcfadd197aeea8c0c826d",
+  "package_review": "PENDING",
+  "package_sha256": "d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "dev23 exact package/wheel identity construction and review routing; no native execution",
+  "session_denominator": null,
+  "wheel_sha256": "55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df"
+}

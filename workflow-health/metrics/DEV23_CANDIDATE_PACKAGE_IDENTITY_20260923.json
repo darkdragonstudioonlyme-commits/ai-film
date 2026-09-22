@@ -1,0 +1,39 @@
+{
+  "candidate_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "candidate_tree": "4bcd0cd81b9f90d6f48d811229a52bb152415ef0",
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "import_smoke": {
+    "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+    "module_version": "0.1.0.dev23",
+    "native_backend_available": false,
+    "pass": true,
+    "source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f"
+  },
+  "native_executed": false,
+  "package": {
+    "bytes": 1202628,
+    "kind": "EXACT_GIT_TREE_PLUS_MANIFEST_PACKAGE",
+    "manifest_sha256": "08d8a01c492a1e4ca814503ccb191e3e57160035cc0bcfadd197aeea8c0c826d",
+    "native_execution": false,
+    "package": "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V23.zip",
+    "sha256": "d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf",
+    "source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "source_tree": "4bcd0cd81b9f90d6f48d811229a52bb152415ef0",
+    "tracked_files": 286,
+    "zip_members": 287
+  },
+  "schema_version": 1,
+  "source_content_digest": "d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d",
+  "test_content_digest": "c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864",
+  "wheel": {
+    "bytes": 188909,
+    "kind": "PURE_PYTHON_WHEEL_FORMAT_IDENTITY_SMOKE",
+    "not_backend_build_certification": true,
+    "project_version": "0.1.0.dev23",
+    "python_files": 59,
+    "sha256": "55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df",
+    "source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "source_tree": "4bcd0cd81b9f90d6f48d811229a52bb152415ef0",
+    "wheel": "aifilm_p00_contracts-0.1.0.dev23-py3-none-any.whl"
+  }
+}

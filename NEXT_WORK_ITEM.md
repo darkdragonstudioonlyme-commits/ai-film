@@ -1,40 +1,38 @@
-# NEXT WORK ITEM — reconcile reviewed dev23 candidate prerequisites
+# NEXT WORK ITEM — review exact dev23 package identity
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: RECONCILE-P00-V03-DEV23-CANDIDATE-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: REVIEW-P00-DEV23-PACKAGE-IDENTITY-001
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  BASE_SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
   REVIEWED_CANDIDATE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
   REVIEWED_CANDIDATE_TREE: 4bcd0cd81b9f90d6f48d811229a52bb152415ef0
-  SOURCE_CONTENT_DIGEST: d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d
-  TEST_CONTENT_DIGEST: c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864
-  CODE_REVIEW: reviews/CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY.md
-  ORACLE_CHANGED: false
-GOAL: "Build exact dev23 package/wheel identity and reconcile candidate-specific validation/prodlike/LAB prerequisites without native V03 execution or signing until fresh reviewed authority inputs exist."
+  PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
+  WHEEL_SHA256: 55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df
+  PACKAGE_IDENTITY: workflow-health/metrics/DEV23_CANDIDATE_PACKAGE_IDENTITY_20260923.json
+  PACKAGE_MANIFEST: workflow-health/metrics/DEV23_CANDIDATE_PACKAGE_MANIFEST_20260923.json
+GOAL: "Independently review that package/wheel evidence binds exact reviewed successor bytes and truthful dev23 identity without native/authority overclaim."
 STEPS:
   - DEV23_CODE_REVIEW: COMPLETE_PASS
-  - PACKAGE_WHEEL_REBUILD: READY
-  - PACKAGE_IDENTITY_VERIFY: NOT_STARTED
-  - V02_CANDIDATE_BINDING_RECONCILE: NOT_STARTED
-  - PRODLIKE_RECONCILE: NOT_STARTED
-  - LAB_REBUILD_OR_REBIND: NOT_STARTED
-  - AUTHORITY_GRAPH_SIGNING: BLOCKED
+  - PACKAGE_WHEEL_REBUILD: COMPLETE
+  - PACKAGE_IDENTITY_REVIEW: READY
+  - CANDIDATE_BINDING_PREPARATION: BLOCKED
+  - V02_PRODLIKE_LAB_RECONCILIATION: BLOCKED
+  - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Reviewed dev23 package/source/test identities and reconciled candidate-specific prerequisites; no native execution proof."
-ON_SUCCESS: V02B_LOCAL_AUTHORITY_PACKAGE_DEV23_RECONCILED
-ON_FAIL: SAME_CAUSAL_FAMILY_RECONCILIATION_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-CANDIDATE-RECONCILIATION-010
+SUCCESS_OUTPUT: "Cross-model package identity verdict bound to exact manifest/package/wheel identities."
+ON_SUCCESS: DEV23_CANDIDATE_BINDING_PREPARATION
+ON_FAIL: PACKAGE_IDENTITY_CORRECTION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PACKAGE-REVIEW-011
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Package/wheel/source/test identities are exact and all candidate-specific V02/prodlike/LAB prerequisites are rebuilt/rebound with reviewable evidence; native/signing gates remain explicit."
+EXIT_CONDITION: "Reviewer accepts exact tracked-tree manifest relation, version/contract/backend wheel identity, and no native/authority claim."
 ~~~
 
-Accepted dev22 is not replaced merely by CODE_REVIEW PASS. Do not reuse dev22 package hashes, authority envelope or LAB bindings as dev23 proof. No native case, signing, qualification, SITE action or HOST_READY assessment occurs in this reconciliation step.
+No native execution, signing, LAB start, qualification, SITE or HOST_READY action occurs during this review.
