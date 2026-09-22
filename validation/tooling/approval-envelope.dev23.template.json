@@ -1,0 +1,21 @@
+{
+  "approved_by_local_operator": false,
+  "authority_model": "LOCAL_OPERATOR_SAME_WSL_TRUST_DOMAIN",
+  "build_digest": "d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "decision": "PENDING",
+  "fixture_set_ref": null,
+  "kind": "P00_LAB_LOCAL_OPERATOR_AUTHORITY_INTAKE",
+  "lab_acceptance_suite_ref": null,
+  "lab_registration_ref": null,
+  "lab_test_plan_approval_ref": null,
+  "local_operator_attestation_ref": null,
+  "management_isolation_recovery_ref": null,
+  "owner_attestation_ref": null,
+  "role_pins": {},
+  "schema_version": 1,
+  "source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "test_set_digest": "c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864"
+}
