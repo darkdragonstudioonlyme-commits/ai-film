@@ -1,0 +1,22 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "c00156340e47f5f90aaafe0f25792cde67704740",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "package_review_result": "PASS",
+  "package_sha256": "d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Dev23 package identity cross-model review and routing; no native execution",
+  "session_denominator": null,
+  "wheel_sha256": "55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df"
+}
