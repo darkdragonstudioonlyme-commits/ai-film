@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "design_review_result": "PASS",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "design_author": "c16745e994396f2c05e4408dbb909d0c94389e82",
+    "design_review": "99730637759c8f2369fda01c8af676bbbf0f22b4",
+    "main": "239ecce8dccb7d68a496ceb0af9daef0b1c4413b",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "test_change_author": "0f1ec6b0bb5b5ec488e48ff30e0d44165933f606",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 3,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "V3 feasibility design review closure and affected TEST_CHANGE 007 routing; no native execution",
+  "session_denominator": null,
+  "test_review_result": "PENDING"
+}

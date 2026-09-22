@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-V03-AUTHORITY-CONSTRUCTIBILITY-007",
+  "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "design_author_commit": "c16745e994396f2c05e4408dbb909d0c94389e82",
+  "design_review_commit": "99730637759c8f2369fda01c8af676bbbf0f22b4",
+  "predecessor_test_change": "TEST_CHANGE-P00-V03-AUTHORITY-BINDING-PRODUCER-006",
+  "dependency_catalog_sha256": "fac26f07965257a75eee93c61f9861bf2a0e24f033008bd366cf5478849f54a0",
+  "oracle_changed": false,
+  "expected_business_behavior_changed": false,
+  "authority_mode_counts": {"CONCRETE_PRE_V03":94,"STAGE_DERIVED":15,"ENTRY_PROBE_AUTHORITY":10,"FENCE_BOUND_RECONCILIATION":14},
+  "authorized_product_changes": {"add":["src/aifilm_p00/native/stage_authority.py"],"modify":["src/aifilm_p00/native/harness_controller.py"]},
+  "authorized_product_tests": {"add":["tests/test_dev23_stage_authority.py"],"modify":["tests/test_dev15_harness.py"]},
+  "byte_identical_required": ["src/aifilm_p00/authority.py","src/aifilm_p00/plans.py","src/aifilm_p00/native/harness_cases.py","src/aifilm_p00/native/request_entry.py","src/aifilm_p00/resume.py","src/aifilm_p00/recovery.py","config/required-native-test-inventory.json","contracts/PHASE00_INFRA_DESIGN_V2.md","contracts/PHASE00_ACCEPTANCE_MATRIX_V2.md","contracts/PHASE00_FAILURE_RECOVERY_PLAN_V2.md","contracts/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md"],
+  "required_test_ids": ["TD007-01","TD007-02","TD007-03","TD007-04","TD007-05","TD007-06","TD007-07","TD007-08","TD007-09","TD007-10","TD007-11","TD007-12"],
+  "native_execution_authorized": false
+}

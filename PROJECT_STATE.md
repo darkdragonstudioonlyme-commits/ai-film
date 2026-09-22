@@ -1,13 +1,13 @@
-# AI-FILM-SERVER — intended canonical content V74
+# AI-FILM-SERVER — intended canonical content V75
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 74
-CURRENT_MODE: DESIGN_REVIEW
+STATE_VERSION: 75
+CURRENT_MODE: TEST_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: DESIGN-REVIEW-P00-V03-AUTHORITY-FEASIBILITY-002
+CURRENT_TASK: TEST-REVIEW-P00-V03-AUTHORITY-CONSTRUCTIBILITY-007
 CURRENT_WORK_STATUS: READY
 CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-AUTHORITY-FEASIBILITY-007
-  REASON: "The holistic audit identified an unspecified cyclic digest construction and missing external-destination path binding in the reviewed stage-authority design. Review the bounded feasibility correction and guard/publication sequence before reauthorizing the affected test/implementation scope. Native gates remain blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-AUTHORITY-CONSTRUCTIBILITY-007
+  REASON: "V3 constructibility design review is PASS. Dev23 remains blocked until independent TEST_REVIEW 007 accepts the new publication/recovery/proof-scope test obligations with ORACLE_CHANGED=false."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DESIGN_REVIEW_FEASIBILITY_CORRECTION
+  RETURN_TO: NEXT_WORK_ITEM/TEST_REVIEW_AUTHORITY_CONSTRUCTIBILITY_007
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Use the active bounded TEXT_REVIEW bridge for the exact stage-authority feasibility review; keep WSL_IMPLEMENT and native gates closed."
+NEXT_ACTION: "Use the active bounded TEXT_REVIEW bridge to review TEST_CHANGE 007; only PASS may reauthorize dev23 implementation. Keep WSL_IMPLEMENT and native gates closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
