@@ -1,0 +1,22 @@
+{
+  "activation_result": "PASS",
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "bridge_candidate": "c2648a71f80ecf1733593627fd7aeac16a6c7b79",
+    "main": "45008b1db77cead32c6fdf47a98d4d12b07f685b",
+    "source": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+    "validation": "1defbf3422903a694215df9e2c11374fc5b1b785"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "runtime_profile": "TEXT_REVIEW",
+  "schema_version": 1,
+  "scope": "Canonical TEXT_REVIEW bridge deployment/activation only; no product/native revalidation",
+  "session_denominator": null
+}

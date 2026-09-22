@@ -1,38 +1,35 @@
-# NEXT WORK ITEM — deploy qualified foreground text-review bridge
+# NEXT WORK ITEM — review stage-authority constructibility correction
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: DESIGN_REVIEW
+LANE: DESIGN_REVIEW
 STATUS: READY
-WORK_ITEM: DEPLOY-DUAL-AI-TEXT-BRIDGE-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: DESIGN-REVIEW-P00-V03-AUTHORITY-FEASIBILITY-002
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
   SOURCE_COMMIT: 86bb64938a136e3f8d6cfd0266685a01cb832b77
-  BRIDGE_COMMIT: c2648a71f80ecf1733593627fd7aeac16a6c7b79
-  BRIDGE_TREE: 357c3a6d5960636115dbd4290b52caf6a92af63a
-  CODE_REVIEW: reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md
-  QUALIFICATION: workflow-health/metrics/TEXT-BRIDGE-QUALIFICATION-20260922.json
-GOAL: "Publish the exact reviewed/qualified foreground TEXT_REVIEW bridge, verify canonical CI, then activate only that bounded profile."
+  VALIDATION_EVIDENCE_HEAD: 1defbf3422903a694215df9e2c11374fc5b1b785
+  PRIOR_DESIGN_COMMIT: 3475c8de57e0cec3a2bb02f488c373366d9e7885
+  PROPOSED_CORRECTION: docs/PHASE00_STAGE_AUTHORITY_FEASIBILITY_CORRECTION_V2.md
+  PRIOR_DESIGN_REVIEW: lane/validation-p00:reviews/DESIGN-REVIEW-P00-V03-STAGE-DERIVED-AUTHORITY-001.md
+GOAL: "Close the consolidated constructibility review: acyclic authority identity, source/destination checkpoint linkage, and exact guard/publication sequence before affected implementation resumes."
 STEPS:
-  - BRIDGE_AUTHOR_AND_FULL_REGRESSION: COMPLETE
-  - CROSS_MODEL_CODE_REVIEW: PASS
-  - TEXT_PROFILE_QUALIFICATION: PASS
-  - CANONICAL_DEPLOYMENT: READY
-  - POST_DEPLOYMENT_CI: NOT_STARTED
-  - TEXT_RUNTIME_ACTIVATION: BLOCKED_UNTIL_DEPLOYMENT_VERIFIED
-  - WSL_IMPLEMENT_QUALIFICATION: NOT_STARTED_SEPARATE_SCOPE
+  - TEXT_REVIEW_BRIDGE_DEPLOYMENT: COMPLETE_ACTIVATED
+  - DESIGN_REVIEW_FEASIBILITY_CORRECTION: READY
+  - AFFECTED_TEST_CHANGE_REVIEW: NOT_STARTED
+  - DEV23_IMPLEMENTATION: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Exact bridge/evidence visible on canonical main with CI success, ready for evidence-only TEXT_REVIEW activation."
-ON_SUCCESS: ACTIVATE-DUAL-AI-TEXT-BRIDGE-001
-ON_FAIL: RECONCILE_DEPLOYMENT_WITHOUT_REPLAYING_PROVIDER
-ON_BLOCK: BLOCK-DUAL-AI-TEXT-BRIDGE-DEPLOYMENT
+SUCCESS_OUTPUT: "Exact reviewed constructibility contract and affected test-scope disposition; no native execution proof."
+ON_SUCCESS: AFFECTED_TEST_CHANGE_REVIEW_THEN_DEV23_IMPLEMENTATION
+ON_FAIL: SAME_DESIGN_CORRECTION_WITH_CONSOLIDATED_FINDINGS
+ON_BLOCK: BLOCK-P00-VAL-V03-AUTHORITY-FEASIBILITY-007
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Canonical main contains exact bridge bytes and immutable review/qualification evidence; required CI and post-promotion guards pass."
+EXIT_CONDITION: "Reviewer verifies exact acyclic object construction, both same-host and external checkpoint locators, and a no-deadlock interruption-safe policy/admission witness; unresolved protocol assumptions remain blocked."
 ~~~
 
-Do not rerun qualification provider calls merely to publish. Runtime remains disabled until canonical deployment is verified. WSL_IMPLEMENT, product source, signing, native policy and LAB are outside this step.
+Use the active bounded TEXT_REVIEW bridge for this non-author review. Preserve all earlier source, design, test and review artifacts. Do not implement, deploy native policy, sign authority, start LAB or count static review as native evidence.

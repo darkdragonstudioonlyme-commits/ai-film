@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V73
+# AI-FILM-SERVER — intended canonical content V74
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 73
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 74
+CURRENT_MODE: DESIGN_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: DEPLOY-DUAL-AI-TEXT-BRIDGE-001
+CURRENT_TASK: DESIGN-REVIEW-P00-V03-AUTHORITY-FEASIBILITY-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -173,28 +173,30 @@ VALIDATION_ENTRY_BLOCK:
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Publish the exact qualified text bridge plus review/qualification evidence; after successful canonical CI, activate bounded TEXT_REVIEW and route to the preserved product feasibility review."
+NEXT_ACTION: "Use the active bounded TEXT_REVIEW bridge for the exact stage-authority feasibility review; keep WSL_IMPLEMENT and native gates closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
 
 ## Dual-actor capability and readiness
 
-COLLABORATION_STATUS: TEXT_BRIDGE_QUALIFIED_PENDING_DEPLOYMENT
+COLLABORATION_STATUS: TEXT_REVIEW_ACTIVE
 COORDINATOR: CHATGPT
 WORKER: CLAUDE_CODE
 SHARED_LEARNING_REGISTER: learning/LEARNING_STATE.json
-AUTOMATIC_HANDOFF: TEXT_REVIEW_QUALIFIED_PENDING_DEPLOYMENT
-CLAUDE_CAPABILITY_STATUS: QUALIFIED_PENDING_DEPLOYMENT
+AUTOMATIC_HANDOFF: TEXT_REVIEW_ACTIVE
+CLAUDE_CAPABILITY_STATUS: READY
 CROSS_MODEL_ACCEPTANCE: PASS
 CROSS_MODEL_ACCEPTANCE_SCOPE: EXECUTOR_RUNTIME_PROFILE
-COLLABORATION_RUNTIME_ENABLED: false
+COLLABORATION_RUNTIME_ENABLED: true
 
-V72 policy is canonically promoted. The foreground TEXT_REVIEW bridge is now code-reviewed and
-qualified on exact evidence, but runtime remains disabled until this bridge commit and evidence are
-published to canonical main and post-deployment CI succeeds. WSL_IMPLEMENT, native, signing and
-worker publication authority remain disabled; learning effectiveness remains NOT_PROVEN.
+V72 policy is canonically promoted. The reviewed foreground TEXT_REVIEW bridge is now deployed and
+activated from verified canonical evidence. This enables only bounded tool-less static review through
+the local bridge. WSL_IMPLEMENT, native, signing and worker publication authority remain disabled;
+learning effectiveness remains NOT_PROVEN.
 
 BRIDGE_CODE_REVIEW: reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md
 BRIDGE_QUALIFICATION: workflow-health/metrics/TEXT-BRIDGE-QUALIFICATION-20260922.json
-BRIDGE_DEPLOYMENT_VERIFIED: false
+BRIDGE_ACTIVATION: workflow-health/metrics/TEXT-BRIDGE-ACTIVATION-20260922.json
+BRIDGE_ACTIVATION_SHA256: c5a79595d64c49c12ed1abfb9931fb0c08807c22c456907bdcafa20865313a32
+BRIDGE_DEPLOYMENT_VERIFIED: true

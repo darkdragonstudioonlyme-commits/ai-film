@@ -1,0 +1,43 @@
+{
+  "activation_id": "DUAL-AI-TEXT-BRIDGE-ACTIVATION-001",
+  "bridge_review_target": "c2648a71f80ecf1733593627fd7aeac16a6c7b79",
+  "bridge_review_tree": "357c3a6d5960636115dbd4290b52caf6a92af63a",
+  "cli_version": "2.1.267",
+  "code_review": {
+    "path": "reviews/CODE-REVIEW-DUAL-AI-TEXT-BRIDGE-001.md",
+    "sha256": "02a2dbafabfc8f3a40ac171e16a7f198bc573e3d21e17b4229ad60ba928e9d6e"
+  },
+  "data_scope": "REPOSITORY_CONTROL_PLANE_ONLY",
+  "deployment_commit": "45008b1db77cead32c6fdf47a98d4d12b07f685b",
+  "deployment_tree": "2d6710e106f9d822316a2a1a54184a17d39f0f25",
+  "learning_effectiveness": "IMPROVEMENT_NOT_PROVEN",
+  "main_ci_result": "SUCCESS",
+  "main_ci_run": 35713497047,
+  "native_authority": false,
+  "operational_gates": {
+    "context_loading": "PASS",
+    "cross_model_acceptance": "PASS",
+    "data_budget_authorization": "PASS",
+    "dispatcher_qualification": "PASS",
+    "permission_tests": "PASS",
+    "recovery_tests": "PASS"
+  },
+  "per_task_estimate_cap_usd": 0.25,
+  "post_deployment_guards_passed": 20,
+  "post_deployment_guards_total": 20,
+  "primary_model": "claude-sonnet-5",
+  "qualification": {
+    "path": "workflow-health/metrics/TEXT-BRIDGE-QUALIFICATION-20260922.json",
+    "sha256": "ce30b09d331ed5cbdb959fb160257918f32960a1f8a5f312810d8bd7fcd53817"
+  },
+  "qualified_branch_ci_result": "SUCCESS",
+  "qualified_branch_ci_run": 35713485776,
+  "result": "PASS",
+  "runtime_enabled_by_receipt": true,
+  "runtime_profile": "TEXT_REVIEW",
+  "schema_version": 1,
+  "scope": "FOREGROUND_TEXT_REVIEW_ONLY",
+  "signing_authority": false,
+  "worker_publish_authority": false,
+  "wsl_implement_authority": false
+}
