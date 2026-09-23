@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "c68307f820b17aecbe19da7cbc0e49be5d32e853",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "test_change_010": "d17b254e3c307d79c0cbc39a5ac70c6139c177f3",
+    "validation": "77cb3860eba2554c02f26fa93ab79dcd2d25f7d9"
+  },
+  "lab_mutation_authorized": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_deployment_authorized": false,
+  "schema_version": 1,
+  "scope": "Route dev23 prodlike/LAB reconciliation TEST_CHANGE 010 to bounded independent review; no deployment/LAB mutation/native/signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "test_review_result": "PENDING"
+}

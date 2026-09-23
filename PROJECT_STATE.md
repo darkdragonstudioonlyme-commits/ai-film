@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V92
+# AI-FILM-SERVER — intended canonical content V93
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 92
-CURRENT_MODE: TEST_DESIGN
+STATE_VERSION: 93
+CURRENT_MODE: TEST_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+CURRENT_TASK: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-RECONCILIATION-018
-  REASON: "Dev23 candidate-bound validation tooling is reviewed and promoted. Current prodlike runtime and sealed LAB remain dev22-bound; TEST_CHANGE 009 forbids repurposing historical dev22 tooling and explicitly defers dev23 prodlike release/control-bundle plus LAB reseed/rebuild to fresh reconciliation evidence."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-TEST-REVIEW-019
+  REASON: "TEST_CHANGE 010 defines the candidate-generic dev23 prodlike/LAB reconciliation successor. Implementation/deployment remain blocked until independent TEST_REVIEW confirms ORACLE_CHANGED=false, historical dev22 immutability and no native/signing/deployment authority."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_LAB_RECONCILIATION_TEST_DESIGN
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_LAB_TEST_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Define/review candidate-generic dev23 prodlike release/control-bundle and LAB reseed/rebuild reconciliation evidence without repurposing dev22 historical tooling; signing/native remain closed."
+NEXT_ACTION: "Claude reviews TEST_CHANGE 010 in bounded TEXT_REVIEW; PASS authorizes successor tooling implementation only. Prodlike deployment, LAB mutation, signing/native remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

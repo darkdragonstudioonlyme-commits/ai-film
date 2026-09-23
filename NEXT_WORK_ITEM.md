@@ -1,42 +1,43 @@
-# NEXT WORK ITEM — define dev23 prodlike/LAB reconciliation successor
+# NEXT WORK ITEM — review dev23 prodlike/LAB reconciliation successor
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_DESIGN
-LANE: TEST_DESIGN
+MODE: TEST_REVIEW
+LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
-ASSIGNEE: CHATGPT
+WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
+  MAIN_BASE: c68307f820b17aecbe19da7cbc0e49be5d32e853
   VALIDATION_HEAD: 77cb3860eba2554c02f26fa93ab79dcd2d25f7d9
+  TEST_CHANGE_COMMIT: d17b254e3c307d79c0cbc39a5ac70c6139c177f3
+  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010.md
+  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010-COVERAGE.json
   PRODUCT_SOURCE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
-  WHEEL_SHA256: 55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  TOOLING_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-V02-V03-TOOLING-REBIND-001.md
-  CURRENT_PRODLIKE_VERSION: 0.1.0.dev22
-  CURRENT_LAB_STATE: STOPPED_DEV22_SEALED_PENDING_AUTHORITY
-GOAL: "Define the smallest reviewed candidate-generic successor needed to rebuild dev23 prodlike release/control evidence and dev23 LAB payload/seal/reseed evidence without modifying historical dev22 tooling or starting native execution."
+  ORACLE_CHANGED: false
+GOAL: "Independently verify candidate-generic prodlike/LAB successor scope, TV010-01..14, historical dev22 immutability and strict no-deployment/no-native/no-signing boundary."
 STEPS:
-  - DEV23_TOOLING_PROMOTION: COMPLETE_PASS
-  - CURRENT_DEV22_PRODLIKE_LAB_CLASSIFICATION: COMPLETE_MISMATCH
-  - PRODLIKE_DEV23_SUCCESSOR_TEST_CHANGE: READY
-  - LAB_DEV23_RESEED_REBUILD_TEST_CHANGE: READY
-  - TEST_REVIEW_010: NOT_STARTED
-  - RECONCILIATION_IMPLEMENTATION: BLOCKED
+  - TOOLING_PROMOTION_POSTCHECK: COMPLETE_PASS
+  - TEST_CHANGE_010_AUTHOR: COMPLETE_FROZEN
+  - PRODLIKE_SCOPE_REVIEW: READY
+  - LAB_SCOPE_REVIEW: READY
+  - TEST_REVIEW_010_RECORD: BLOCKED
+  - SUCCESSOR_IMPLEMENTATION: BLOCKED
+  - PRODLIKE_DEPLOYMENT: BLOCKED
+  - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
-  - LAB_START_NATIVE: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Reviewed test contract identifying exact reusable facts, exact candidate-generic successor files/tests and fresh dev23 prodlike/LAB evidence requirements; no deployment/native proof."
-ON_SUCCESS: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
-ON_FAIL: SAME_RECONCILIATION_TEST_DESIGN_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-RECONCILIATION-018
+SUCCESS_OUTPUT: "Exact TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 010; no deployment/native execution proof."
+ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+ON_FAIL: TEST_DESIGN_CORRECTION_010
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-TEST-REVIEW-019
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Historical dev22 tooling/evidence stays immutable; dev23 release/control/payload/seal/rebuild identities are explicit; tests prove no native/signing/HKLM/LAB-start side effects and stale dev22 identity cannot satisfy dev23 gates."
+EXIT_CONDITION: "ORACLE_CHANGED=false; exact reuse/add/historical scopes are coherent; TV010-01..14 cover candidate/release/control/LAB evidence and fail-closed stale/mixed identities; no deployment/native/signing authority is granted."
 ~~~
 
-Do not reuse historical `*_dev22_*` tooling as dev23 authority. Do not sign, write HKLM, start LAB, run native cases, issue qualification or mark HOST_READY.
+Use active bounded TEXT_REVIEW only. Do not implement tooling, switch prodlike runtime, modify user-systemd, mutate/import/export/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
