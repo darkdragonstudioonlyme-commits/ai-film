@@ -1,0 +1,70 @@
+{
+  "base_validation_commit": "2230531593b44e1960317c88f91fcbcde633a3c5",
+  "historical_all_pass": true,
+  "historical_log_sha256": "1b5b5e826e690a7335956f79de1e9fd6d0c78d19648fccbf587b9033ca9571d8",
+  "historical_scripts_total": 11,
+  "hklm_touched": false,
+  "kind": "DEV23_TOOLING_FINAL2_HOST_EVIDENCE",
+  "lab_started": false,
+  "manifest_file_count": 29,
+  "manifest_hash_mismatches": [],
+  "manifest_self_check_pass": true,
+  "native_executed": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "successor_all_pass": true,
+  "successor_suite_counts": [
+    5,
+    5,
+    4,
+    6,
+    5,
+    3,
+    6
+  ],
+  "successor_tests_total": 34,
+  "suite_logs": [
+    {
+      "exit": 0,
+      "sha256": "3d2e194d1d01bdf3339184225bec0f46de11792aee80148ed41a1bd75bf0a46f",
+      "suite": "test_v02_candidate_profile.py",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "sha256": "596303b8bc8ac53fc24067572756925db2d83d53df03fc6f9157ad1f2edd0bad",
+      "suite": "test_v02_dev23_generic_tooling.py",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "sha256": "a6a6135a7357f8801711591ad4ed4e10808a04cd36d1e6c6d928d5f277ceda2a",
+      "suite": "test_v02_dev23_candidate_hardcuts.py",
+      "tests": 4
+    },
+    {
+      "exit": 0,
+      "sha256": "3fe13ce380f769ac31b9506faa95d022ecdd9777f8c2fc9dcf016313f1e3427a",
+      "suite": "test_v03_binding_producer.py",
+      "tests": 6
+    },
+    {
+      "exit": 0,
+      "sha256": "e536639bbca90899cda56db2fe34ddc330df8184e62c1b3c29d02f443e4736c7",
+      "suite": "test_v03_policy_generation.py",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "sha256": "f7b2b882e8d40373ca18dc75630e3074555b15b627b69f52f48cdf39ad03e82d",
+      "suite": "test_v03_fixture_preparation_controller.py",
+      "tests": 3
+    },
+    {
+      "exit": 0,
+      "sha256": "c7550236cc0b89a22a19bda1e6b4844391650e4a3179f8bd0d97cc68c78db280",
+      "suite": "test_v03_late_proof_materializer.py",
+      "tests": 6
+    }
+  ]
+}

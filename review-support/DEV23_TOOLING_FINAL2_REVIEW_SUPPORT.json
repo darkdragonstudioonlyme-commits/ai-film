@@ -1,0 +1,20 @@
+{
+  "candidate_commit_local": "5cd0721414ccf85dbfbc66e13784e6e2317cb190",
+  "candidate_tree": "ee57d28a4703cb97d49424babf3e16e770d4772c",
+  "files": {
+    "DEV23_TOOLING_FINAL2_HISTORICAL_11.log": {
+      "bytes": 3208,
+      "sha256": "1b5b5e826e690a7335956f79de1e9fd6d0c78d19648fccbf587b9033ca9571d8"
+    },
+    "DEV23_TOOLING_FINAL2_HOST_EVIDENCE.json": {
+      "bytes": 1960,
+      "sha256": "da46ecb884cbb948288e5d53132b39b372d7bfbd109e05b25457aaea1e363394"
+    },
+    "DEV23_TOOLING_FINAL2_SUCCESSOR_TESTS.log": {
+      "bytes": 5345,
+      "sha256": "391b78729255d39f518fb9da06954ddbdabbd7cbb1c48d89eaea40c2cf208628"
+    }
+  },
+  "kind": "DEV23_TOOLING_FINAL2_REVIEW_SUPPORT",
+  "schema_version": 1
+}

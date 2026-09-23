@@ -1,0 +1,96 @@
+=== test_lab_dev22_payload_builder.py ===
+LAB_DEV22_PAYLOAD_BUILDER_TEST_PASS
+
+=== test_prodlike_dev22_control_bundle.py ===
+PASS valid_source_bundle
+PASS SOURCE_BYTE_DRIFT
+PASS SOURCE_MEMBER_SET
+PASS FORBIDDEN_STALE_IDENTITY
+PASS valid_deployed_bytes_and_modes
+PASS deployed_mode_drift
+PRODLIKE_DEV22_CONTROL_BUNDLE_TEST_PASS 6 cases
+
+=== test_prodlike_dev22_release_builder.py ===
+PASS synthetic_release_build
+PASS generated_verify_runtime
+PASS rebuild_set_build
+PASS package_identity_failclosed
+PRODLIKE_DEV22_RELEASE_BUILDER_TEST_PASS 4 cases
+
+=== test_prodlike_user_systemd_verifier.py ===
+PASS valid
+PASS missing
+PASS content-drift
+PASS dropin-missing
+PASS archive-drift
+PRODLIKE_USER_SYSTEMD_VERIFIER_TEST_PASS 5 cases
+
+=== test_v02_hardened_validator.py ===
+PASS missing APPROVAL_ENVELOPE_MISSING
+PASS pending LOCAL_DECISION_NOT_APPROVE
+PASS old-external-hard-cutover ENVELOPE_SCHEMA
+PASS flags-only LOCAL_AUTHORITY_SIGNATURE_MISSING
+PASS valid-signature-fake-refs OBJECT_MISSING
+PASS payload-digest-mismatch LOCAL_AUTHORITY_PAYLOAD_DIGEST_MISMATCH
+PASS local-identity-context-drift LOCAL_IDENTITY_CONTEXT_DRIFT
+V02_HARDENED_VALIDATOR_TEST_PASS 7 cases
+
+=== test_v02_local_authority_signature.py ===
+PASS LOCAL_AUTHORITY_ANCHOR_PENDING
+PASS valid_local_signature
+PASS LOCAL_AUTHORITY_PAYLOAD_DIGEST_MISMATCH
+PASS LOCAL_AUTHORITY_KEY_ID_MISMATCH
+PASS LOCAL_AUTHORITY_ANCHOR_DRIFT
+PASS LOCAL_AUTHORITY_PROVENANCE_SCHEMA
+PASS LOCAL_AUTHORITY_SIGNATURE_INVALID
+V02_LOCAL_AUTHORITY_SIGNATURE_TEST_PASS 7 cases
+
+=== test_v02_local_key_parity.py ===
+PASS valid_parity
+PASS PRIVATE_KEY_MODE
+PASS PUBLIC_KEY_MODE
+PASS PUBLIC_KEY_PARITY_MISMATCH
+PASS KEY_METADATA_PUBLIC_MISMATCH
+PASS TRUST_ANCHOR_KEY_PARITY
+V02_LOCAL_KEY_PARITY_TEST_PASS 6 cases
+
+=== test_v02_pre_v03_failclosed.py ===
+PASS blocked_authority_removes_stale_policy
+PASS seal_failure_removes_stale_policy
+PASS materializer_failure_removes_partial_policy
+PASS lab_running_removes_policy
+PASS success_preserves_current_policy
+V02_PRE_V03_FAILCLOSED_TEST_PASS 5 cases
+
+=== test_v02_preflight_content_integrity.py ===
+PASS same_size_same_mtime_content_mutation_detected
+V02_PREFLIGHT_CONTENT_INTEGRITY_TEST_PASS 1 case
+
+=== test_v02_tooling_manifest.py ===
+PASS AUTHORITY_INBOX_README.txt
+PASS approval-envelope.template.json
+PASS dev22-candidate-binding.json
+PASS local-operator-trust-anchor.json
+PASS materialize-v02-native-policy.py
+PASS pre-v03-authority-stage.sh
+PASS tests/test_v02_hardened_validator.py
+PASS tests/test_v02_local_authority_signature.py
+PASS tests/test_v02_local_key_parity.py
+PASS tests/test_v02_pre_v03_failclosed.py
+PASS tests/test_v02_preflight_content_integrity.py
+PASS tests/test_v02_tooling_manifest.py
+PASS tests/test_v02_watcher_failclosed.py
+PASS v02-authority-intake.py
+PASS v02-authority-preflight.py
+PASS v02_local_authority_signature.py
+PASS v02_local_identity.py
+PASS verify-lab-artifact-seal.py
+PASS verify_local_authority_key_parity.py
+PASS watch-v02-authority.sh
+V02_TOOLING_MANIFEST_TEST_PASS 20 files
+
+=== test_v02_watcher_failclosed.py ===
+PASS crash_or_nonjson_removes_stale_ready
+PASS blocked_removes_stale_ready
+PASS ready_recreates_current_evidence_bound_flag
+V02_WATCHER_FAILCLOSED_TEST_PASS 3 cases

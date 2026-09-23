@@ -1,0 +1,76 @@
+===== suite-01.log =====
+test_bool_schema_rejected (test_v02_candidate_profile.ProfileTests.test_bool_schema_rejected) ... ok
+test_exact_canonical_binding (test_v02_candidate_profile.ProfileTests.test_exact_canonical_binding) ... ok
+test_noncanonical_rejected (test_v02_candidate_profile.ProfileTests.test_noncanonical_rejected) ... ok
+test_wrong_candidate_fields_rejected (test_v02_candidate_profile.ProfileTests.test_wrong_candidate_fields_rejected) ... ok
+test_wrong_hash_rejected (test_v02_candidate_profile.ProfileTests.test_wrong_hash_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.005s
+
+OK
+===== suite-02.log =====
+test_generic_lab_payload_binds_candidate_and_excludes_host_venv (test_v02_dev23_generic_tooling.GenericTests.test_generic_lab_payload_binds_candidate_and_excludes_host_venv) ... ok
+test_materializer_builds_generation_one_without_hklm (test_v02_dev23_generic_tooling.GenericTests.test_materializer_builds_generation_one_without_hklm) ... ok
+test_preflight_detects_mutation (test_v02_dev23_generic_tooling.GenericTests.test_preflight_detects_mutation) ... ok
+test_seal_binds_profile_and_readonly_artifacts (test_v02_dev23_generic_tooling.GenericTests.test_seal_binds_profile_and_readonly_artifacts) ... ok
+test_watcher_and_stage_remove_stale_ready (test_v02_dev23_generic_tooling.GenericTests.test_watcher_and_stage_remove_stale_ready) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.126s
+
+OK
+===== suite-03.log =====
+test_dev23_tooling_manifest_binds_all_dependencies (test_v02_dev23_candidate_hardcuts.Hardcuts.test_dev23_tooling_manifest_binds_all_dependencies) ... ok
+test_historical_dev22_files_unmodified_from_validation_base (test_v02_dev23_candidate_hardcuts.Hardcuts.test_historical_dev22_files_unmodified_from_validation_base) ... ok
+test_no_dev22_candidate_defaults_or_native_mutation (test_v02_dev23_candidate_hardcuts.Hardcuts.test_no_dev22_candidate_defaults_or_native_mutation) ... ok
+test_shell_successors_explicit_and_non_native (test_v02_dev23_candidate_hardcuts.Hardcuts.test_shell_successors_explicit_and_non_native) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.020s
+
+OK
+===== suite-04.log =====
+test_forward_reference_rejected (test_v03_binding_producer.ProducerTests.test_forward_reference_rejected) ... ok
+test_full_133_compile_and_verify (test_v03_binding_producer.ProducerTests.test_full_133_compile_and_verify) ... ok
+test_copy_hash_and_size_drift_rejected (test_v03_binding_producer.RuntimeVerifierTests.test_copy_hash_and_size_drift_rejected) ... ok
+test_exact_producer_lineage_passes (test_v03_binding_producer.RuntimeVerifierTests.test_exact_producer_lineage_passes) ... ok
+test_foreign_or_stale_lineage_rejected (test_v03_binding_producer.RuntimeVerifierTests.test_foreign_or_stale_lineage_rejected) ... ok
+test_mode_substitution_and_bad_proof_scope_rejected (test_v03_binding_producer.RuntimeVerifierTests.test_mode_substitution_and_bad_proof_scope_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.036s
+
+OK
+===== suite-05.log =====
+test_after_write_fault_does_not_rewrite (test_v03_policy_generation.PolicyTests.test_after_write_fault_does_not_rewrite) ... ok
+test_all_publication_fault_boundaries_reconcile (test_v03_policy_generation.PolicyTests.test_all_publication_fault_boundaries_reconcile) ... ok
+test_publish_and_idempotent_recovery (test_v03_policy_generation.PolicyTests.test_publish_and_idempotent_recovery) ... ok
+test_same_key_conflict_blocks (test_v03_policy_generation.PolicyTests.test_same_key_conflict_blocks) ... ok
+test_unknown_current_blocks (test_v03_policy_generation.PolicyTests.test_unknown_current_blocks) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.038s
+
+OK
+===== suite-06.log =====
+test_arrange_without_effect_rejected (test_v03_fixture_preparation_controller.FixtureTests.test_arrange_without_effect_rejected) ... ok
+test_records_are_observation_only (test_v03_fixture_preparation_controller.FixtureTests.test_records_are_observation_only) ... ok
+test_reviewed_population (test_v03_fixture_preparation_controller.FixtureTests.test_reviewed_population) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
+===== suite-07.log =====
+test_all_nine_roles_materialize (test_v03_late_proof_materializer.LateProofTests.test_all_nine_roles_materialize) ... ok
+test_owner_assertion_disallowed_role_rejected (test_v03_late_proof_materializer.LateProofTests.test_owner_assertion_disallowed_role_rejected) ... ok
+test_read_absence_before_intent_rejected (test_v03_late_proof_materializer.LateProofTests.test_read_absence_before_intent_rejected) ... ok
+test_unmeasured_claim_rejected (test_v03_late_proof_materializer.LateProofTests.test_unmeasured_claim_rejected) ... ok
+test_unreviewed_collector_and_raw_mismatch_rejected (test_v03_late_proof_materializer.LateProofTests.test_unreviewed_collector_and_raw_mismatch_rejected) ... ok
+test_workspace_measurement_rejected (test_v03_late_proof_materializer.LateProofTests.test_workspace_measurement_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.016s
+
+OK
