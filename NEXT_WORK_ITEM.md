@@ -1,40 +1,49 @@
-# NEXT WORK ITEM — review prodlike user-bus/timer correction tests
+# NEXT WORK ITEM — review exact prodlike user-bus/timer correction
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-USER-BUS-012
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-USER-BUS-012
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: efc99106344a205e789f1c498b12c4814b340d52
-  VALIDATION_HEAD: 7c222883d21206320f7c1ebce40f31fa51fcc5e7
-  RECEIPT_REVIEW_COMMIT: ae167ce4af9180fd7e239b4b83cfddc9ade061b5
-  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-USER-BUS-012.md
-  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-USER-BUS-012-COVERAGE.json
-  ORACLE_CHANGED: false
-GOAL: "Independently verify TV012-01..10, exact three-file scope, fail-before-mutation user-bus semantics and no-replay requirements before correction authoring."
+  VALIDATION_BASE: e91f027759d27dcdc8b6ecf83b3f290057759ac4
+  EXECUTOR_BASE: 7bb931254d61823af616ac52ba624cbede25312a
+  AUTHOR_CANDIDATE_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
+  AUTHOR_CANDIDATE_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
+  TEST_REVIEW_012: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-USER-BUS-012.md
+  ATTEMPT1_RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-001.md
+AUTHOR_EVIDENCE:
+  PRODLIKE_TRANSACTION_TESTS: 22_PASS
+  LAB_TRANSACTION_TESTS: 11_PASS
+  TV010: 18_PASS
+  TV009: 34_PASS
+  HISTORICAL_DEV22: 11_OF_11_PASS
+  ATTEMPT1_REPLAYED: false
+  REAL_MUTATION: false
+GOAL: "Independently review the exact three-file fail-closed user-bus/timer correction before any new authorization or prodlike attempt."
 STEPS:
-  - RECEIPT_REVIEW: COMPLETE_FINDINGS
-  - TEST_CHANGE_012_AUTHOR: COMPLETE
-  - CLAUDE_TEST_REVIEW_012: READY
-  - IMPLEMENT_CORRECTION: BLOCKED
-  - NEW_AUTHORIZATION: BLOCKED
+  - TEST_REVIEW_012: COMPLETE_PASS
+  - AUTHOR_CORRECTION: COMPLETE_FROZEN
+  - AUTHOR_REGRESSION: COMPLETE_PASS
+  - CLAUDE_CODE_REVIEW: READY
+  - VALIDATION_LANE_PROMOTION: BLOCKED
+  - NEW_PRODLIKE_AUTHORIZATION: BLOCKED
   - PRODLIKE_ATTEMPT2: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 012; no implementation or execution proof."
-ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-USER-BUS-012
-ON_FAIL: TEST_DESIGN_CORRECTION_SAME_CAUSAL_FAMILY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-USER-BUS-TEST-REVIEW-032
+SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact candidate tree; no execution proof."
+ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-002
+ON_FAIL: SAME_USER_BUS_TIMER_CAUSAL_FAMILY_CORRECTION_OR_TEST_DESIGN_GAP
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-USER-BUS-CODE-REVIEW-033
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms exact three-file scope, all TV012 obligations, ORACLE_CHANGED=false, prior TV011 retention and no cleanup/retry/native/signing authority."
+EXIT_CONDITION: "Reviewer confirms TV012-01..10, exact three-file scope, semantic timer-state validity, fail-closed user-bus validation, attempt1 no-replay, predecessor TV011/TV010/TV009 retention and no cleanup/native/signing authority."
 ~~~
 
-Review only. Do not modify executor code, remove staged dev23, replay attempt 1, issue a new authorization, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not remove staged dev23, replay attempt 1, issue a new authorization, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
