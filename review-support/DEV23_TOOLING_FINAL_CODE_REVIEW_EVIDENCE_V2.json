@@ -1,0 +1,403 @@
+{
+  "budget_exhausted_attempts_are_non_verdicts": true,
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "canonical_control_state": {
+    "commit": "360737a8eac4b6731c743451ac8ae7cd80f6ace4",
+    "meaning": "Main V91 control-plane state authorizing the bounded review.",
+    "tree": "c9c3a40a7466544dae39fedef47116ce171ee167"
+  },
+  "declared_historical_base": {
+    "commit": "2230531593b44e1960317c88f91fcbcde633a3c5",
+    "meaning": "BASE_VALIDATION_COMMIT declared by TEST_CHANGE 009 and used by historical-byte hardcut regression.",
+    "tree": "dbf51428c79754076e6e6b0a32219924349b8bcd"
+  },
+  "final_target": {
+    "commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+    "meaning": "Exact final validation-tooling code-review target. This is the candidate to promote to lane/validation-p00 after PASS.",
+    "tree": "ee57d28a4703cb97d49424babf3e16e770d4772c"
+  },
+  "host_evidence": {
+    "historical_all_pass": true,
+    "historical_scripts_total": 11,
+    "hklm_touched": false,
+    "lab_started": false,
+    "manifest_self_check_pass": true,
+    "native_executed": false,
+    "signing_performed": false,
+    "successor_all_pass": true,
+    "successor_tests_total": 34
+  },
+  "host_evidence_sha256": "da46ecb884cbb948288e5d53132b39b372d7bfbd109e05b25457aaea1e363394",
+  "identity_reconciliation_path": "review-support/DEV23_TOOLING_COMMIT_ROLE_RECONCILIATION.json",
+  "identity_reconciliation_sha256": "976cbdad1d568b7df2f561e150ba0c242bc232b63bdec70c343b3558b58a78ac",
+  "kind": "DEV23_TOOLING_FINAL_CODE_REVIEW_EVIDENCE",
+  "native_execution_authorized": false,
+  "open_blocker_high_medium_findings": [],
+  "pass_shard_count": 22,
+  "pass_shards": [
+    {
+      "covered": [
+        "TV009_01_03_CANDIDATE_INTAKE_PREFLIGHT",
+        "EXPLICIT_CANDIDATE_NO_DEV22_DEFAULT",
+        "READONLY_PREFLIGHT_FAIL_CLOSED"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "ad98b99a062a8f8bf6ad22066718d19d401106dd25cb7e3a5c5d864498aa88c9",
+      "result_sha256": "5c95ea8e8e44053dc01b25ddf2d2264448ececa46a1dfd0336477b019d6bfd53",
+      "task_digest": "5fa53f84521d8ba0614cba860bd8457439f7f4a3027cce8332beb9307ea36438",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-A1-V02-INTAKE"
+    },
+    {
+      "covered": [
+        "TV009_04_07_V02_ARTIFACT_CONFORMANCE",
+        "STALE_READY_AND_STOPPED_LAB_GATE",
+        "SEAL_AND_PAYLOAD_CANDIDATE_BINDING",
+        "NO_HKLM_NATIVE_SIGNING",
+        "ENV_ISOLATION_FINDING_CLOSED"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "763fb0ca433e60395c7371b2a97bd925ac7d6981",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "c66055764ae7a92a01771bc2921f8024ec9813d424d1466e002682ff7919ce5f",
+      "result_sha256": "2d4ae3ffac7823ed5e31447c63edeaf41bb3f39afe205cc5e637103612882f58",
+      "task_digest": "aa05c1a1d61b9b32ac527d8852a954df3858bce51a09f069f5add34d585cd21a",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-S-A2"
+    },
+    {
+      "covered": [
+        "TV009_08_09_MANIFEST_TRUST_BOUNDARY",
+        "HISTORICAL_DEV22_PRESERVATION",
+        "PRIVATE_KEY_EXCLUDED",
+        "EXACT_BINDING_AND_TRUST_IDENTITIES",
+        "DECLARED_BASE_BINDING"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "c23d756b9327f534e9af2980ae01a6a7dd8ee54e6713ace4a738b4acfbd3b7f1",
+      "result_sha256": "2e0be9a94ee01e95dfd7bc346196fcc74cca9b581cacd8cf9323384126a54541",
+      "task_digest": "2e96c411337bad1d81cdec95ae06976e76625764e19747464ffb3418db7b6533",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-B"
+    },
+    {
+      "covered": [
+        "TV009_10_11_GRAPH_RUNTIME_CONFORMANCE",
+        "ACYCLIC_BASE_MANIFEST",
+        "EXACT_133_MODE_PARTITION_ENFORCEMENT",
+        "FOREIGN_STALE_LINEAGE_AND_COPY_PROOF_REJECTION"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "773bf94b9b325ec4730803682a7bf5cff432167c255488edb4ed572682d26626",
+      "result_sha256": "fefeca159ea963be83e632981c4834e64210875807b4d582c9c66925718d2f4c",
+      "task_digest": "ed82380ae2dd01da9d0c5b8bd419e570b946717cfb3517af2e6b2c7c954e4444",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-C-GRAPH"
+    },
+    {
+      "covered": [
+        "TV009_13_FIXTURE_CONTROLLER",
+        "85_CASE_133_REQUEST_78_PREPARATION_CONTRACT",
+        "NO_NATIVE_ACTION"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "30cdb126b13e62587958be64e28f8d044ef7bc4d97c47657bc7d8c3f144bde06",
+      "result_sha256": "b82799e1a442b4da8a792316a747b100a8248526d1e2093eb6d96e6749bcfd61",
+      "task_digest": "c35393123cc83a5245ee942deea1623d52c757616a3f7228c662a6897af7c947",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-D-FIXTURE"
+    },
+    {
+      "covered": [
+        "TV009_12_POLICY_P0_P8_MODEL",
+        "PARENT_GUARD_READBACK_IDEMPOTENCY",
+        "INTERRUPTION_NONREPLAY",
+        "BASE_REF_AND_ROLE_HARDCUTS",
+        "NO_HKLM_SIGNING"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "144fda8207e74c6f44ab9e9301fc3a5d895a6fd443c948c2563e1ed6755a8162",
+      "result_sha256": "13574f2d617c1db394c099c3c24ddc7c0870fe6360ce49ff06ace55d0d3d1333",
+      "task_digest": "244e5603f41f7af58da43d06e6544d2e03edc044072b2ad7ebf8ef93e8eb35bd",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-E-POLICY"
+    },
+    {
+      "covered": [
+        "TV009_14_LATE_PROOF_CONFORMANCE",
+        "NINE_ROLE_SCOPE_TIMING_SOURCE",
+        "MEASUREMENT_COLLECTOR_RAW_BINDING",
+        "NO_MANUFACTURED_OBSERVATION",
+        "COLLECTOR_RAW_NEGATIVE_COVERAGE",
+        "CLAIM_NOT_MEASURED_NEGATIVE_COVERAGE",
+        "WORKSPACE_SOURCE_REJECTION_NEGATIVE_COVERAGE"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "1c510b5ecb80ac8a000f3c16db0dc47fa7144027",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "23f74dac70f7f7426a5b19c7ce575ab8ec55fbfd67a4ec17e002c6f07d98c220",
+      "result_sha256": "bb1dfed771f8cf114dc2f2c1ca0d6fdc63e2222a53155c19ecca3d11cb7044c6",
+      "task_digest": "bb7a538d48bc5fe8be95abd7503943187f957a22697094fc348e8e73076aa1f4",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL-F"
+    },
+    {
+      "covered": [
+        "V02_SUCCESSOR_TEST_MEANINGFULNESS",
+        "HISTORICAL_BYTE_HARDCUT_REGRESSION",
+        "DECLARED_BASE_BINDING",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "2fa0868c58c3d041636aa9373739e00a8ae1a201934b76fee39873e9d3a2d807",
+      "result_sha256": "371f28e46327348934378f531f7ea6bc7eebe7c78910e9913dc76b92f3050cf7",
+      "task_digest": "511197d8f1993b3e4f3f4196a1c87f7ce4553de9328101a6fcff2c24390b5cbb",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G1"
+    },
+    {
+      "covered": [
+        "V03_SUCCESSOR_TEST_MEANINGFULNESS",
+        "TV009_10_15_RETENTION",
+        "HOST_EXECUTION_EVIDENCE_SEPARATED",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "f833fd6c97c80857563a27dc408ffb146c4eb1951cf8686eaf62580cfca4bb3f",
+      "result_sha256": "b7d684d10cc9ca1f831d90ef802bd96431740feaf4724ce026d75b35563da1d5",
+      "task_digest": "25356c73f7cfab5cba43a34185e8d47649c0bdbdc5a4ebc643bf662af8280d43",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A2"
+    },
+    {
+      "covered": [
+        "TV009_16_HISTORICAL_REGRESSION_EVIDENCE",
+        "HOST_EVIDENCE_SEPARATED_FROM_CLAUDE",
+        "SUCCESSOR_34_AND_HISTORICAL_11_EVIDENCE_TRACEABLE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "5c58b9757196ae6a0f84528aaef445b2a7ddd08aa64ef3c97e497547d12e825d",
+      "result_sha256": "8597bcc1904de6342c4cbcc36b47ac952bda05eb8573451704972533da47ce13",
+      "task_digest": "56646a83196fb6a4b33193b9c2b0cf26540ea62245db55142f92ed046c627c5d",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2B2"
+    },
+    {
+      "covered": [
+        "PRODUCT_REVIEW_EVIDENCE_TRACEABLE",
+        "PRODUCT_IDENTITY_EXACT",
+        "NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "1f357c8855db1f1f4143a0be89ab99d94b5b984b3a14f129a22b8cc058fd1dc1",
+      "result_sha256": "b81ce50e8602917b7411b6d192f7fdfd12fb1fd627c342e6dd476a9b65dac726",
+      "task_digest": "d0ecdba0e4f5f96b26da26d8b7e5ad0f092cf6265ba89254ae77ed6e86561758",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A1A1"
+    },
+    {
+      "covered": [
+        "TD007_PUBLICATION_NEGATIVE_COVERAGE",
+        "PRODUCT_TEST_GUARDS_PRESERVED",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "cd8daf70188a00a0e7c5de7be8267264d85ae0a2ef213be977a8084d8350fa77",
+      "result_sha256": "73b67aafdc0b120f900bf5b76ce198e3c3004fe798dd7ec88f093f6c589354bc",
+      "task_digest": "269e95a40da7fbb8fa0a33ec92bba5979353e819de3121d8a064ca5479657c9b",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A1B1"
+    },
+    {
+      "covered": [
+        "PRODUCT_CORE_AUTHORITY_GUARDS_PRESERVED",
+        "NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "1095a007e888b8db86fb14df5c72cae8e3acfc55458c25a3fa8ad7c56bb21eed",
+      "result_sha256": "9546742986b9d31fbda5281e66387f69f183c7aa3e71137fd9517671bf72089e",
+      "task_digest": "fb54332a6bc5fb66927a0c484331e2e02007200f239c469e878ca9195ce4069b",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A2A-CORE"
+    },
+    {
+      "covered": [
+        "REQUEST_MODE_AND_FENCE_GUARDS_PRESERVED",
+        "NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "6df53346e96b9b80fdfbec3697a62fbe4a219a8a89e3aa5b02f71dcb2bd28d39",
+      "result_sha256": "30d99b589f353bf1cd4f7ec419211d841f6b399f02e5dcc767f570a10602b833",
+      "task_digest": "129258cdbd48453f0e4058adedb0a083a8e3d9742e0cd86c9219b7ae990ac325",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A2B-REQUEST"
+    },
+    {
+      "covered": [
+        "MATERIALIZATION_LINEAGE_GUARDS_PRESERVED",
+        "NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "b78d0c9062e657af978992a3abd7f96e733d4faf37985b865e323e8102cd7029",
+      "result_sha256": "5fc622dc0890d68ad9c1da9111a676a7fde14782e9e35a7fdbe219fd611fbdec",
+      "task_digest": "04340516e8d486c9c36b00c337c0e0f4db2c596bdff1d36c252cc6a726ce306d",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2A2C-LINEAGE"
+    },
+    {
+      "covered": [
+        "DEV15_INTEGRATION_GUARDS_PRESERVED",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "bda7be2423f92a5fb2c11346f598d32380ebcc48e46ab7deb3aee922c824ad6b",
+      "result_sha256": "374e96baa37b46d523207d14fcd58960215965a0809f8655215bdf647a482037",
+      "task_digest": "59eaa0c9b7362726b27b5de5ff489cb23e5e1ad74ef551fb51eac0e970daa120",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2B2B-DEV15"
+    },
+    {
+      "covered": [
+        "TD007_RESTORE_MATERIALIZATION_NEGATIVE_COVERAGE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "57995359d98cbead36ee6643d8d49e0207c3e36b56b5ecb11b218c85fe05bcf6",
+      "result_sha256": "56787074b4f8efe75d4af925f72edec58ef51caed6dac8c0c019db081bc1548e",
+      "task_digest": "ee62122277d688faa9a008fc02f9084f77e1c71c001d86ade68ab9893f013af5",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-RESTORE-TEST"
+    },
+    {
+      "covered": [
+        "HISTORICAL_SET_A_BYTES_PRESERVED",
+        "HISTORICAL_BYTE_HARDCUT_DECLARED_BASE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "07962594c235ade8238d50d10c883ec8e8e8dbd0e9cbad2ab1aa05057681771a",
+      "result_sha256": "1a813e0a42005a8bc1522f6a0d95599034531fff4e87d481f50aa5f3a9e926f0",
+      "task_digest": "5d9a801a55e7d1f7d6bafcb18ca1a337168ccf2667199093ed44b8f595cca285",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2B1A"
+    },
+    {
+      "covered": [
+        "HISTORICAL_SET_B_BYTES_PRESERVED",
+        "HISTORICAL_BYTE_HARDCUT_DECLARED_BASE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "a7946aedf561c906644531e64600104ac0975e0949f7fd9c241d99d041ecbad7",
+      "result_sha256": "e6763bc247da1e58226ded026fc306a3bd3847ef67b0e1fe70ad30c7e74e1ef3",
+      "task_digest": "b288fe67be4676f8d00d09ae8faf664cf6ff2cd603805880bfa5b077e1262309",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-G2B1B"
+    },
+    {
+      "covered": [
+        "FULL_TEST_PART_A_VISIBILITY",
+        "SCHEMA_LOCATOR_REQUEST_GENERATION_TESTS_VISIBLE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "71eb9207ce0c477382f04185bb933273492c5094",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "701b1c0e8c81bf72e6f9b3668fa519da0df14b54d318311314e27056d99dfe65",
+      "result_sha256": "8da5f7a4eab304cf6d0915152d3f4c9a6a0d5a857ba1e431e8ebfdd9c6db127b",
+      "task_digest": "e193bd0283f246c6d13564f5a967dfa1bed0923d0c4fb45fff80b74b518ecb51",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-TESTPART-A"
+    },
+    {
+      "covered": [
+        "FULL_TEST_PART_B_VISIBILITY",
+        "ENTRY_FENCE_FULL_CLASS_VISIBLE",
+        "RESTORE_MATERIALIZATION_TESTS_VISIBLE",
+        "FRAGMENT_VISIBILITY_FINDING_CLOSED",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "71eb9207ce0c477382f04185bb933273492c5094",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "134ef42e0bea768779c9a156cb184a97bc913d98400c0cf6dc9df2e61ce7a22c",
+      "result_sha256": "b2ae8f7182140717cbbd3755b2ba83be99ff1452178274c773f8acb0fe50558c",
+      "task_digest": "88952e18a6b4b49507a30e7f122b8b809425e9fe4ef610e13572ff7930d78142",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-TESTPART-B"
+    },
+    {
+      "covered": [
+        "FULL_TEST_PART_C_VISIBILITY",
+        "PUBLICATION_SOURCE_BOUNDARY_VERSION_TESTS_VISIBLE",
+        "TESTS_NO_NATIVE_AUTHORITY"
+      ],
+      "executed_commands": [],
+      "execution_scope": "STATIC_ONLY",
+      "packet_source_commit": "71eb9207ce0c477382f04185bb933273492c5094",
+      "packet_source_role": "review_input_or_review_support_base",
+      "report_sha256": "d62274ec0539cae666410ffc8722580cf71321e26e633815bc9c0b8fd4ff76d9",
+      "result_sha256": "1cb0bab31e7fbb9b88df2859f71b91be2a2e0d88b837b12953d646e424c80c21",
+      "task_digest": "b9857b1a9cf0553f9018739916861a3ea60ac9a07d2742abc1844d60ba3b17c0",
+      "task_id": "CODE-REVIEW-P00-DEV23-TOOLING-FINAL2-TESTPART-C"
+    }
+  ],
+  "product_source": {
+    "commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "meaning": "Reviewed dev23 product/source candidate. validation/tooling/dev23-candidate-binding.json source_commit intentionally refers to this identity.",
+    "tree": "4bcd0cd81b9f90d6f48d811229a52bb152415ef0"
+  },
+  "promotion_authorized_by_this_summary": false,
+  "schema_version": 2,
+  "signing_authorized": false,
+  "superseded_or_closed_findings": [
+    "V2-MATERIALIZER-SUBPROCESS-ENV-PASSTHROUGH",
+    "F1-MISSING-NEGATIVE-COVERAGE-COLLECTOR-RAW",
+    "F2-MISSING-NEGATIVE-COVERAGE-CLAIM-NOT-MEASURED",
+    "F1-WORKSPACE-SOURCE-REJECTION-UNTESTED",
+    "BASE-COMMIT-MISMATCH-001",
+    "TV009-15-16-EVIDENCE-GAP",
+    "FRAGMENT-VISIBILITY-001",
+    "CANDIDATE-COMMIT-IDENTITY-AMBIGUITY-001"
+  ],
+  "tooling_validation_base": {
+    "commit": "43c9a687ad3a1f778328f5d1587d789fbb380fd8",
+    "meaning": "Owning validation lane head before successor tooling promotion.",
+    "tree": "f3194bdb628b45aa402e9395f6f08bd83013ca28"
+  }
+}

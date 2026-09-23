@@ -1,0 +1,95 @@
+{
+  "binding_source_commit_semantics": "validation/tooling/dev23-candidate-binding.json source_commit binds the reviewed product/source candidate, not the validation-tooling implementation commit.",
+  "bridge_source_commit_semantics": "The bridge task source_commit identifies the Git base from which task input files were loaded. It is packet provenance and is NOT universally the final candidate target. Final tooling target identity is commit_roles.tooling_final_target. Candidate binding source_commit is commit_roles.product_source by design.",
+  "commit_roles": {
+    "canonical_control_state": {
+      "commit": "360737a8eac4b6731c743451ac8ae7cd80f6ace4",
+      "meaning": "Main V91 control-plane state authorizing the bounded review.",
+      "tree": "c9c3a40a7466544dae39fedef47116ce171ee167"
+    },
+    "declared_historical_base": {
+      "commit": "2230531593b44e1960317c88f91fcbcde633a3c5",
+      "meaning": "BASE_VALIDATION_COMMIT declared by TEST_CHANGE 009 and used by historical-byte hardcut regression.",
+      "tree": "dbf51428c79754076e6e6b0a32219924349b8bcd"
+    },
+    "product_source": {
+      "commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+      "meaning": "Reviewed dev23 product/source candidate. validation/tooling/dev23-candidate-binding.json source_commit intentionally refers to this identity.",
+      "tree": "4bcd0cd81b9f90d6f48d811229a52bb152415ef0"
+    },
+    "tooling_final_target": {
+      "commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+      "meaning": "Exact final validation-tooling code-review target. This is the candidate to promote to lane/validation-p00 after PASS.",
+      "tree": "ee57d28a4703cb97d49424babf3e16e770d4772c"
+    },
+    "tooling_validation_base": {
+      "commit": "43c9a687ad3a1f778328f5d1587d789fbb380fd8",
+      "meaning": "Owning validation lane head before successor tooling promotion.",
+      "tree": "f3194bdb628b45aa402e9395f6f08bd83013ca28"
+    }
+  },
+  "diff_from_owning_validation_lane": {
+    "additions_only": true,
+    "base": "43c9a687ad3a1f778328f5d1587d789fbb380fd8",
+    "file_count": 24,
+    "head": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+    "non_add_count": 0
+  },
+  "finding_closed": "CANDIDATE-COMMIT-IDENTITY-AMBIGUITY-001",
+  "hklm_authorized": false,
+  "kind": "DEV23_TOOLING_COMMIT_ROLE_RECONCILIATION",
+  "lab_start_authorized": false,
+  "native_execution_authorized": false,
+  "promotion_semantics": "Only commit_roles.tooling_final_target is eligible for promotion to lane/validation-p00 after final CODE_REVIEW PASS. Review-support commits are never promotion targets.",
+  "review_support_commits": [
+    {
+      "commit": "71eb9207ce0c477382f04185bb933273492c5094",
+      "role": "review_support_evidence_base",
+      "tree": "c7e9473b57355a7e44777805c074a9d9e7b0fa7c"
+    },
+    {
+      "commit": "1bc68a828912431f0401bde45d21e192697481a5",
+      "role": "review_support_evidence_base",
+      "tree": "04264c70e3f2a4e1074b65d36e11ee271a04f4c6"
+    },
+    {
+      "commit": "8c2e8f1feffcb0dc00bf5a2734b08be4eb677299",
+      "role": "review_support_evidence_base",
+      "tree": "42db60050a08017fe03b8978b0c8e290ca41f085"
+    },
+    {
+      "commit": "1214c9c1d0f77f31106576676eb91a83d0043fc5",
+      "role": "review_support_evidence_base",
+      "tree": "bda21d495196d43c997fe24374fa0a9c277b56f8"
+    },
+    {
+      "commit": "02b79bae8b4e5d47f3b72b46f9aa619455d48b83",
+      "role": "review_support_evidence_base",
+      "tree": "a7a3c34eb3464fa7ae02ff741cb11bc346e99f34"
+    }
+  ],
+  "schema_version": 1,
+  "signing_authorized": false,
+  "tooling_author_lineage": [
+    {
+      "commit": "e3f6aec619a75ac65d1fa3bed8324ee3d5866355",
+      "role": "tooling_author_initial",
+      "tree": "f55e05f49ca6718bbbed2ad074eb1c474ae9c0de"
+    },
+    {
+      "commit": "763fb0ca433e60395c7371b2a97bd925ac7d6981",
+      "role": "tooling_author_finding_correction",
+      "tree": "1640d0429ad109893f0403a8dc54b60a287a8b7d"
+    },
+    {
+      "commit": "1c510b5ecb80ac8a000f3c16db0dc47fa7144027",
+      "role": "tooling_author_workspace_negative_test",
+      "tree": "13e9195936b80367756cf9da0f17378273bac5a7"
+    },
+    {
+      "commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+      "role": "tooling_final_target",
+      "tree": "ee57d28a4703cb97d49424babf3e16e770d4772c"
+    }
+  ]
+}
