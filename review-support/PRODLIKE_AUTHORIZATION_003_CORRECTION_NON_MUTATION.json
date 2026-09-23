@@ -1,0 +1,69 @@
+{
+  "after": {
+    "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+    "authorization2_root_exists": false,
+    "authorization2_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+    "authorization3_corrected_root_exists": false,
+    "authorization3_old_root_exists": false,
+    "authorization3_old_sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84",
+    "bin_tree": {
+      "entries": 20,
+      "sha256": "04772dfc76bada9d431072c1bbf17baf0994ce07ea94d58858b11634a4416cd4"
+    },
+    "config_sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803",
+    "current_target": "/home/dragon/ai-film-runtime/dev22",
+    "dev22_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "dev23_tree": {
+      "entries": 328,
+      "sha256": "b5a0de617af00b1f923ac657121e0a87e5b9849ff03a67a4fab968942198fc9c"
+    },
+    "unit_tree": {
+      "entries": 70,
+      "sha256": "803f26113aaf186c62b8eca89eea9f982740c36b31276363055eb15b3a3315cf"
+    },
+    "user_bus": {
+      "bus": "/run/user/1000/bus",
+      "bus_is_socket": true,
+      "bus_uid": 1000,
+      "runtime": "/run/user/1000",
+      "runtime_mode": "700",
+      "runtime_uid": 1000
+    }
+  },
+  "before": {
+    "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+    "authorization2_root_exists": false,
+    "authorization2_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+    "authorization3_corrected_root_exists": false,
+    "authorization3_old_root_exists": false,
+    "authorization3_old_sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84",
+    "bin_tree": {
+      "entries": 20,
+      "sha256": "04772dfc76bada9d431072c1bbf17baf0994ce07ea94d58858b11634a4416cd4"
+    },
+    "config_sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803",
+    "current_target": "/home/dragon/ai-film-runtime/dev22",
+    "dev22_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "dev23_tree": {
+      "entries": 328,
+      "sha256": "b5a0de617af00b1f923ac657121e0a87e5b9849ff03a67a4fab968942198fc9c"
+    },
+    "unit_tree": {
+      "entries": 70,
+      "sha256": "803f26113aaf186c62b8eca89eea9f982740c36b31276363055eb15b3a3315cf"
+    },
+    "user_bus": {
+      "bus": "/run/user/1000/bus",
+      "bus_is_socket": true,
+      "bus_uid": 1000,
+      "runtime": "/run/user/1000",
+      "runtime_mode": "700",
+      "runtime_uid": 1000
+    }
+  },
+  "corrected_auth3_root_absent": true,
+  "identical": true,
+  "kind": "AUTHORIZATION3_CORRECTION_NON_MUTATION_PROOF",
+  "old_auth3_root_absent": true,
+  "schema_version": 1
+}

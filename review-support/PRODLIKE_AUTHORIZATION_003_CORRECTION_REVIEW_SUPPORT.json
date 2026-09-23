@@ -1,0 +1,51 @@
+{
+  "authorization_sha256": "1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c",
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "files": {
+    "PRODLIKE_ATTEMPT1_RECEIPT.json": {
+      "bytes": 1218,
+      "sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd"
+    },
+    "PRODLIKE_AUTHORIZATION_002_EXPIRED.json": {
+      "bytes": 12044,
+      "sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTED.json": {
+      "bytes": 12044,
+      "sha256": "1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTED_PLAN.json": {
+      "bytes": 1713,
+      "sha256": "e2b416e29a7d51649296e1664fad74e2e94b260120f4cd660220f74c23f60da6"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTED_REVIEW_TIME_WITNESS.json": {
+      "bytes": 972,
+      "sha256": "a2192b3564595accf7a1878e7a8618b6334320dda7289e32692d2bdf8aef5f00"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTION_NON_MUTATION.json": {
+      "bytes": 2774,
+      "sha256": "24700f1cd1178477ba7aeb00ee7aac668af6fee8a72413ef51bd729df78ecfdb"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTION_PREP_RECEIPT.json": {
+      "bytes": 1811,
+      "sha256": "0f31937360bf154b52dcc82620766fd6685426d17ffaaf377127a47787b232d0"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTION_SNAPSHOT_AFTER.json": {
+      "bytes": 1226,
+      "sha256": "44e1d46c5ed6127daa3065f3f71b0b142036bbb4116c4e62a7dfff8de7aae3af"
+    },
+    "PRODLIKE_AUTHORIZATION_003_CORRECTION_SNAPSHOT_BEFORE.json": {
+      "bytes": 1226,
+      "sha256": "44e1d46c5ed6127daa3065f3f71b0b142036bbb4116c4e62a7dfff8de7aae3af"
+    },
+    "PRODLIKE_AUTHORIZATION_003_REJECTED.json": {
+      "bytes": 12050,
+      "sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84"
+    }
+  },
+  "kind": "PRODLIKE_AUTHORIZATION_003_CORRECTION_REVIEW_SUPPORT",
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-D6657E9-003",
+  "validation_base": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+}

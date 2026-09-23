@@ -1,0 +1,34 @@
+{
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "events": [
+    {
+      "control_entries": 64,
+      "event": "ROLLBACK_CAPTURED",
+      "old_current_target": "/home/dragon/ai-film-runtime/dev22",
+      "timer_count": 11
+    },
+    {
+      "event": "RELEASE_STAGED",
+      "target": "/home/dragon/ai-film-runtime/dev23"
+    }
+  ],
+  "failure": "UnknownCommandCompletion:COMMAND_NONZERO_OR_UNKNOWN:[\"/usr/bin/systemctl\", \"--user\", \"stop\", \"aifilm-p00-control-backup.timer\"]:1",
+  "hklm_touched": false,
+  "host_ready": false,
+  "kind": "AIFILM_P00_TRANSACTION_RECEIPT_V1",
+  "mutation_started": true,
+  "native_execution_started": false,
+  "phase": "UNKNOWN_COMPLETION",
+  "qualification_issued": false,
+  "rollback_attempted": false,
+  "rollback_verified": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "site_entered": false,
+  "state": "RECONCILE_REQUIRED",
+  "transaction_id": "PRODLIKE-DEV23-E317DCF-001",
+  "transaction_kind": "PRODLIKE_DEPLOYMENT_V2",
+  "unknown_completion": true
+}

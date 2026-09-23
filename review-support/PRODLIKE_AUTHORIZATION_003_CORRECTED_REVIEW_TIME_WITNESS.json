@@ -1,0 +1,21 @@
+{
+  "auth2_root_exists": false,
+  "authorization_main_snapshot": "d6657e9c5692b5e6d8c5891f33aaefe0bb06df1d",
+  "authorization_sha256": "1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c",
+  "authorization_validation_snapshot": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a",
+  "corrected_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt3-20260924",
+  "corrected_root_exists": false,
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "expired": false,
+  "expires_at": 1790228534,
+  "kind": "PRODLIKE_AUTHORIZATION_003_CORRECTED_REVIEW_TIME_WITNESS",
+  "observed_at_unix": 1790206968,
+  "rejected_root_exists": false,
+  "schema_version": 1,
+  "seconds_remaining": 21566,
+  "transaction_id": "PRODLIKE-DEV23-D6657E9-003",
+  "user_bus_runtime": "/run/user/1000",
+  "user_bus_socket": "/run/user/1000/bus"
+}
