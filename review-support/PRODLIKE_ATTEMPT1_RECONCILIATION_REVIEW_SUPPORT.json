@@ -1,0 +1,45 @@
+{
+  "files": {
+    "PRODLIKE_ATTEMPT1_RECEIPT.json": {
+      "bytes": 1218,
+      "sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd"
+    },
+    "PRODLIKE_ATTEMPT1_RECONCILIATION_OBSERVATION.json": {
+      "bytes": 31691,
+      "sha256": "be2244b88a8a5f20d609a5fea1834ee9940d0e51b3426821a933cce41510ba73"
+    },
+    "PRODLIKE_ATTEMPT1_RECONCILIATION_PROPOSAL.json": {
+      "bytes": 1656,
+      "sha256": "04f0f5821a9247ea4ad8358b1658ef687736fce8803bf1873be3f56c15b5433e"
+    },
+    "PRODLIKE_ATTEMPT1_ROLLBACK_CONTROL_META.json": {
+      "bytes": 21886,
+      "sha256": "c8a33dd662378bc53df15a2e58f131c15c63a618febd5e456d61c4680e0600d9"
+    },
+    "PRODLIKE_ATTEMPT1_ROLLBACK_PLAN.json": {
+      "bytes": 1640,
+      "sha256": "97e973cedbed75fe942bf6f2921c27f474420c9a24af4327bd8f2d5f9484d543"
+    },
+    "PRODLIKE_ATTEMPT1_ROLLBACK_TIMER_STATE_INVALID.json": {
+      "bytes": 1451,
+      "sha256": "3518d264801aa67919daf2a36b114f5f39c2a0a930d3a8737e31b7d95b3a2dcb"
+    },
+    "PRODLIKE_DEV22_ACCEPTED_DEPLOYMENT_RECEIPT.json": {
+      "bytes": 1918,
+      "sha256": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a"
+    },
+    "PRODLIKE_DEV22_ACCEPTED_FINAL_STATUS.json": {
+      "bytes": 2009,
+      "sha256": "6db96e16310fe4e26926d7f0c77e3cf354b2b045daabf74145715a58cbf56e0a"
+    },
+    "PRODLIKE_DEV22_ACCEPTED_USER_SYSTEMD.json": {
+      "bytes": 297,
+      "sha256": "02e95231c5dc513166ebcb18b4bf88b6993f42dd81bd163a36b00c24cf0c4228"
+    }
+  },
+  "kind": "PRODLIKE_ATTEMPT1_RECONCILIATION_REVIEW_SUPPORT",
+  "observation_sha256": "be2244b88a8a5f20d609a5fea1834ee9940d0e51b3426821a933cce41510ba73",
+  "proposal_sha256": "04f0f5821a9247ea4ad8358b1658ef687736fce8803bf1873be3f56c15b5433e",
+  "schema_version": 1,
+  "validation_base": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+}

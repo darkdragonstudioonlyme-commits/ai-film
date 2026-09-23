@@ -1,0 +1,450 @@
+[
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/000.bin",
+    "mode": "600",
+    "path": "/home/dragon/ai-film-runtime/config/release-control.json",
+    "present": true,
+    "sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/001.bin",
+    "mode": "750",
+    "path": "/home/dragon/ai-film-runtime/bin/activate-release",
+    "present": true,
+    "sha256": "b175d934787eec0fe919de96b2ebcdd1f5abe9c5249b9b62d8e88bd53a7531cf"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/002.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/aifilm-prodlike-status.py",
+    "present": true,
+    "sha256": "ea1e77c89e7d314c55c00abd235bbe6e7f7104277ff433249752bd3866c2d147"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/003.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/archive-operational-evidence.py",
+    "present": true,
+    "sha256": "b444f5c912f3585d9dd63a35f863cd9e90edb5ed3f8b73ecf8422e1f9601f938"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/004.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/backup-control-state.py",
+    "present": true,
+    "sha256": "a257ddc534b7b3a820441e102e1f46fbfa1bc95af108efb82f66c48a695204aa"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/005.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/build-offhost-export.py",
+    "present": true,
+    "sha256": "9b1dbf870b019ffc578093218cfcfa1222bbd81c66d787c2923101b3e7c769cc"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/006.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/control_common.py",
+    "present": true,
+    "sha256": "edb692e833c084ea3b5dc9b0a812e518f5057deb5b9db349347a9932ad61feff"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/007.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/mirror-control-backup.py",
+    "present": true,
+    "sha256": "2b8e27ed2c71dabf4dc12ce91e2c1882d723fa2cebf1950a5de6afd1e0ef0f34"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/008.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/run-dr-recovery-rehearsal.py",
+    "present": true,
+    "sha256": "ae3b3a618732583c03620de869b07f14403372c5b96178ef5bcc0983cfa5c21b"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/009.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/run-failclosed-campaign.py",
+    "present": true,
+    "sha256": "bde90067d515b788991adc4badc9651fc0449f2bdc40d488093a6468cb485601"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/010.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/runtime-health.py",
+    "present": true,
+    "sha256": "e043511477e4c646e16ddc725454d559515f20046687bb8c95524eb85aa126ab"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/011.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-control-backup.py",
+    "present": true,
+    "sha256": "9aef87cc5af76de165145461e42d7534c8d8a61b95d6200e20d2b50f99151881"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/012.bin",
+    "mode": "750",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-current",
+    "present": true,
+    "sha256": "93e6d32a0b6c7a8a980ed3c80a654e6256fa9f000cc0746a3dbb9b030819032f"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/013.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-host-mirror.py",
+    "present": true,
+    "sha256": "af50ef9cfb97ddb6c4111c2b3aadfa24dd231cc878a6362086578f574b8f1a0b"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/014.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-offhost-export.py",
+    "present": true,
+    "sha256": "3af2fefaef82bd9e59a29720d3b24ce4623b0547d7d1058d797ae9b7d046d1ee"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/015.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-operational-evidence.py",
+    "present": true,
+    "sha256": "fb6198d92188f147c9b5a7212a996b89a57e101c36014346295fdd1a3085c257"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/016.bin",
+    "mode": "700",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-rebuild-set.py",
+    "present": true,
+    "sha256": "820a5c39fda3cf03bceeb7d1550bd67a1ec2753ebe11385b9b2258171e88ef0f"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/017.bin",
+    "mode": "750",
+    "path": "/home/dragon/ai-film-runtime/bin/verify-recovery-state",
+    "present": true,
+    "sha256": "2f051a43b1285ed3e1ca72345c7eb1dd2a4ab2a6cdfd23735c740ab013205be2"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/018.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-control-backup.service",
+    "present": true,
+    "sha256": "3b676b732d073c9bdee366cdc842120dbaad43acb185fc2a000358713b7cf252"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/019.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-control-backup.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/020.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-control-backup.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/021.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-control-backup.timer",
+    "present": true,
+    "sha256": "9aad58f9c2eb94e8aeeefba036a256349d682d13790b1d7f3b09c36ff6ad667d"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/022.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-current-verify.service",
+    "present": true,
+    "sha256": "ddacc5c299b51196e998376fc4c35830c7572da102752df4d266153c09709c9b"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/023.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-current-verify.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/024.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-current-verify.service.d/timeout.conf",
+    "present": true,
+    "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/025.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-current-verify.timer",
+    "present": true,
+    "sha256": "a6341b2f48da35a21ced2cf723a6f45b244afab811500e15c4fa666b8b0176e2"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/026.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-dr-rehearsal.service",
+    "present": true,
+    "sha256": "a2d77f3a9beb871e2a1d9a558d8ce3357254f26fa39c55011c47afc2fd86b359"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/027.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-dr-rehearsal.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/028.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-dr-rehearsal.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/029.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-dr-rehearsal.timer",
+    "present": true,
+    "sha256": "cf1854b78388932da0ea5e6fa7fcbc53746f7b1c0d6990d69d59082d5a298232"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/030.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-evidence-ledger.service",
+    "present": true,
+    "sha256": "02d135cd3139873b67f76d8040711858afede82f43d4886f0e970b38b0745278"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/031.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-evidence-ledger.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/032.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-evidence-ledger.service.d/timeout.conf",
+    "present": true,
+    "sha256": "8eb4f434128696bbed55d83fbaac4bc995446af73f4dac7bf522babe71ab7a85"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/033.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-evidence-ledger.timer",
+    "present": true,
+    "sha256": "7b9d1091096d50bcb81cf9047703c2373dae2c6e10037d9b6dfd5161890059ef"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/034.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-failclosed-campaign.service",
+    "present": true,
+    "sha256": "a06bab5e29cc74a7e377922b54156db960b1de992d88e1ec936c2becd973641d"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/035.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-failclosed-campaign.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/036.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-failclosed-campaign.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/037.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-failclosed-campaign.timer",
+    "present": true,
+    "sha256": "b58d0ee541a6541a58530b4fbc132a24ce39cdd99456b71296fbdfb3f7f50310"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/038.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-host-mirror.service",
+    "present": true,
+    "sha256": "1e33d8063e707a6ac2d25a5af38ae6756df4afacefe403dbfc4fabca8b43590c"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/039.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-host-mirror.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/040.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-host-mirror.service.d/timeout.conf",
+    "present": true,
+    "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/041.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-host-mirror.timer",
+    "present": true,
+    "sha256": "024fc001ccb5749791c55b11fab94430c5d907f4437036b50ce7aab973923186"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/042.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-offhost-export.service",
+    "present": true,
+    "sha256": "7f84a1ecfc263682e573805bdc4caf93b75f34143bd3f1c66861116cc0419290"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/043.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-offhost-export.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/044.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-offhost-export.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/045.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-offhost-export.timer",
+    "present": true,
+    "sha256": "f2836daa142ce82538dcab31b079d4f7ec28ef12207d8e767459db0e35e7174d"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/046.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-rebuild-verify.service",
+    "present": true,
+    "sha256": "4ebf1e718924c91d7ba00c2ae639a21152bdb310b5eacbf79b1fd6c95838365a"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/047.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-rebuild-verify.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/048.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-rebuild-verify.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/049.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-rebuild-verify.timer",
+    "present": true,
+    "sha256": "7ff35cdf7105520c124db6cd60e362f6086520b0413235a3ceae290f34bf29e3"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/050.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-recovery-verify.service",
+    "present": true,
+    "sha256": "1b78a95fbe25ab6d8a35315772af065cd75aa2d1db8bae9fa0317e4e0f3b97cc"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/051.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-recovery-verify.service.d/ordering.conf",
+    "present": true,
+    "sha256": "27f37f107ffaf556a5a36fe15c71c6009d955134f174c8457a740e2e995524dc"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/052.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-recovery-verify.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/053.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-recovery-verify.service.d/timeout.conf",
+    "present": true,
+    "sha256": "f6ddc0822cc97e489773b9bbbdefb3ab47d6eff9770def066ff79602f9ff57ed"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/054.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-recovery-verify.timer",
+    "present": true,
+    "sha256": "8609834b5903565266155d9547f9a9268d7f9537e446aa84812b6e0aba43f56d"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/055.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-runtime-health.service",
+    "present": true,
+    "sha256": "2e2220272a95fcb93d3ea916c46bb0ae3e9528da1d806d3ff19ca1c8958d8abe"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/056.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-runtime-health.service.d/ordering.conf",
+    "present": true,
+    "sha256": "27f37f107ffaf556a5a36fe15c71c6009d955134f174c8457a740e2e995524dc"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/057.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-runtime-health.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/058.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-runtime-health.service.d/timeout.conf",
+    "present": true,
+    "sha256": "b29cfb8eb000cdee0704b5f92a66df30106f9fd09677311468346363fdca61f5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/059.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-runtime-health.timer",
+    "present": true,
+    "sha256": "d99307b488f902f9a7879bcad00e689150497ebb609a7263e1aecccc65e53a12"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/060.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-v02-authority-watch.service",
+    "present": true,
+    "sha256": "38a0764ac26d304c453ea8c693619ea91f8579dcb26e9df5bafde6abfc1a1394"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/061.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-v02-authority-watch.service.d/resources.conf",
+    "present": true,
+    "sha256": "7c31406842400e132b2686fbe05d910ae8b4928cfa41c7e471ea8bc4a7c281e5"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/062.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-v02-authority-watch.service.d/timeout.conf",
+    "present": true,
+    "sha256": "8eb4f434128696bbed55d83fbaac4bc995446af73f4dac7bf522babe71ab7a85"
+  },
+  {
+    "backup": "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923/rollback/control/063.bin",
+    "mode": "644",
+    "path": "/home/dragon/.config/systemd/user/aifilm-p00-v02-authority-watch.timer",
+    "present": true,
+    "sha256": "14524c2606790fd828f725cce6295a4f75341a71234e88a3ac531a45e2fe936d"
+  }
+]

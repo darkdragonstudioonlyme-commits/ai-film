@@ -1,0 +1,133 @@
+{
+  "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "attempt1_receipt_state": "RECONCILE_REQUIRED",
+  "attempt1_receipt_unknown_completion": true,
+  "attempt1_replay_authorized": false,
+  "control_all_exact": true,
+  "control_exact_match_count": 64,
+  "control_row_count": 64,
+  "current_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "kind": "PRODLIKE_ATTEMPT1_RECONCILIATION_REVIEW_TIME_WITNESS",
+  "mutation_performed_by_witness": false,
+  "observation_sha256": "be2244b88a8a5f20d609a5fea1834ee9940d0e51b3426821a933cce41510ba73",
+  "observed_at_unix": 1790207603,
+  "proposal_sha256": "04f0f5821a9247ea4ad8358b1658ef687736fce8803bf1873be3f56c15b5433e",
+  "schema_version": 1,
+  "staged_dev23_exists": true,
+  "timer_count": 11,
+  "timer_exact_accepted_count": 11,
+  "timer_rows": [
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-control-backup.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-current-verify.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-dr-rehearsal.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-evidence-ledger.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-failclosed-campaign.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-host-mirror.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-offhost-export.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-rebuild-verify.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-recovery-verify.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-runtime-health.timer"
+    },
+    {
+      "active_raw": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled_raw": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "matches_accepted_dev22": true,
+      "timer": "aifilm-p00-v02-authority-watch.timer"
+    }
+  ],
+  "timers_all_match_accepted_dev22": true
+}

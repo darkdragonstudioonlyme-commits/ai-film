@@ -1,0 +1,38 @@
+{
+  "accepted_dev22_baseline": {
+    "current_release": "/home/dragon/ai-film-runtime/dev22",
+    "deployment_receipt_sha256": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a",
+    "runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "timer_count": 11,
+    "timer_state_checked": true
+  },
+  "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "attempt1_replay_authorized": false,
+  "attempt1_transaction_id": "PRODLIKE-DEV23-E317DCF-001",
+  "current_observation": {
+    "control_all_exact": true,
+    "control_exact_match_count": 64,
+    "control_row_count": 64,
+    "current_target": "/home/dragon/ai-film-runtime/dev22",
+    "effects_beyond_staging_observed": false,
+    "runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "timer_count": 11,
+    "timer_exact_accepted_count": 11,
+    "timers_all_match_accepted_dev22": true
+  },
+  "hklm_touched": false,
+  "kind": "PRODLIKE_ATTEMPT1_RECONCILIATION_PROPOSAL",
+  "mutation_performed_by_reconciliation": false,
+  "native_executed": false,
+  "new_prodlike_execution_authorized": false,
+  "original_receipt_mutated": false,
+  "original_receipt_state": "RECONCILE_REQUIRED",
+  "original_receipt_unknown_completion": true,
+  "proposed_disposition": "RECONCILED_TO_ACCEPTED_DEV22_CURRENT_BASELINE_WITH_STAGED_DEV23_NONACTIVE",
+  "rollback_timer_capture_semantically_invalid": true,
+  "schema_version": 1,
+  "signing_performed": false,
+  "staged_dev23_cleanup_required": false,
+  "staged_dev23_execution_authorized": false,
+  "status": "REVIEW_REQUIRED"
+}
