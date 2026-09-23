@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V107
+# AI-FILM-SERVER — intended canonical content V108
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 107
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 108
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-USER-BUS-012
+CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-USER-BUS-CODE-REVIEW-033
-  REASON: "TEST_REVIEW 012 is PASS and the exact three-file correction is author-tested/frozen. A new authorization, cleanup and any real mutation remain blocked until cross-model CODE_REVIEW closes the correction."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION2-PREP-034
+  REASON: "User-bus/timer correction 012 is cross-model reviewed and promoted. Attempt 1 remains non-replayable. Prepare only a new immutable authorization/plan/non-mutation evidence with a new transaction id and receipt root; execution remains blocked pending review."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_USER_BUS_CODE_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION2_PREP
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews exact user-bus/timer correction tree 0f56ea3 against TV012 and predecessor hardcuts. PASS may route to preparation of a new immutable prodlike authorization; attempt 1 remains non-replayable and real mutation remains closed."
+NEXT_ACTION: "Prepare authorization 002 plan-only from corrected executor and current dev22/exact-staged-dev23 state, prove no mutation, then route exact new authorization hash to Claude. Do not execute attempt 2 yet."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
