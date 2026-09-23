@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "65b276a293bc14a5633fab551b65a99b2d30eea9",
+    "test_change_author": "5fa7a474239a6ed0bc2d9d6f8c9dad5becf94592",
+    "test_change_tree": "0d32bf22e8a06d1bbee45f103129cf48e6ca0230",
+    "validation": "d1e436a5c526de95b81eeae1007808c8fd1a9dd9"
+  },
+  "lab_mutation_authorized": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_deployment_authorized": false,
+  "schema_version": 1,
+  "scope": "Route TEST_CHANGE 011 to independent cross-model review; no deployment/LAB/native/signing mutation",
+  "session_denominator": null,
+  "signing_performed": false,
+  "test_review_result": "PENDING"
+}

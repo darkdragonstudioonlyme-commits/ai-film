@@ -1,43 +1,42 @@
-# NEXT WORK ITEM — define dev23 prodlike/LAB deployment transactions
+# NEXT WORK ITEM — review dev23 prodlike/LAB deployment transaction contract
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_DESIGN
-LANE: TEST_DESIGN
+MODE: TEST_REVIEW
+LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
-ASSIGNEE: CHATGPT
+WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_HEAD: d1e436a5c526de95b81eeae1007808c8fd1a9dd9
+  VALIDATION_BASE: d1e436a5c526de95b81eeae1007808c8fd1a9dd9
+  TEST_CHANGE_AUTHOR_COMMIT: 5fa7a474239a6ed0bc2d9d6f8c9dad5becf94592
+  TEST_CHANGE_AUTHOR_TREE: 0d32bf22e8a06d1bbee45f103129cf48e6ca0230
   PRODUCT_SOURCE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  PRODLIKE_LAB_TOOLING_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010.md
   CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  CURRENT_PRODLIKE_VERSION: 0.1.0.dev22
-  TARGET_PRODLIKE_VERSION: 0.1.0.dev23
-  CURRENT_LAB_STATE: STOPPED_DEV22_SEALED_PENDING_AUTHORITY
-GOAL: "Define exact reviewed/audited execution transactions for candidate-bound prodlike deployment/switch and stopped-LAB dev23 rebuild/reseed, with rollback, failure recovery and before/after evidence, without granting native/signing/HKLM authority."
+  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
+  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011-COVERAGE.json
+GOAL: "Independently verify TV011-01..21, exact ADD-only executor/test boundary, deterministic rollback/reconcile semantics, separate prodlike/LAB receipts, historical immutability and explicit no-native/no-signing/no-HKLM boundary."
 STEPS:
-  - PRODLIKE_LAB_TOOLING_REVIEW: COMPLETE_PASS
-  - POST_PROMOTION_REGRESSION: COMPLETE_PASS
-  - PRODLIKE_DEPLOYMENT_TRANSACTION_TEST_CHANGE: READY
-  - LAB_REBUILD_RESEED_TRANSACTION_TEST_CHANGE: READY
-  - TEST_REVIEW_011: NOT_STARTED
-  - DEPLOYMENT_IMPLEMENTATION_OR_RUNBOOK: BLOCKED
-  - PRODLIKE_DEPLOYMENT: BLOCKED
-  - LAB_REBUILD_RESEED: BLOCKED
+  - TEST_CHANGE_011_AUTHORING: COMPLETE_FROZEN
+  - PRODLIKE_TRANSACTION_REVIEW: READY
+  - LAB_TRANSACTION_REVIEW: READY
+  - COMMON_HARDCUT_REVIEW: READY
+  - IMPLEMENTATION: BLOCKED
+  - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
+  - REAL_LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Reviewed transaction contract for dev23 prodlike deployment and stopped-LAB rebuild/reseed, including exact mutation scope, rollback and evidence; no execution proof."
-ON_SUCCESS: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
-ON_FAIL: SAME_DEPLOYMENT_TEST_DESIGN_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-DESIGN-022
+SUCCESS_OUTPUT: "Formal TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 011; no deployment/native proof."
+ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
+ON_FAIL: TEST_DESIGN_CORRECTION_011
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-TEST-REVIEW-023
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Transaction design names exact dev23 input identities, preconditions, reversible mutations, rollback boundaries, success/failure receipts, stale-dev22 rejection and explicit no-native/no-signing/no-HKLM boundary; independent TEST_REVIEW passes."
+EXIT_CONDITION: "Reviewer confirms TV011-01..21, five-file ADD-only implementation boundary, independent transaction receipts, rollback/reconcile fail-closed semantics, immutable dev22 baseline and no real execution authorization."
 ~~~
 
-Do not switch prodlike current, mutate live user-systemd, export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during test design/review.
+TEXT_REVIEW only. Do not implement executors, switch prodlike current, mutate live user-systemd, export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during TEST_REVIEW.
