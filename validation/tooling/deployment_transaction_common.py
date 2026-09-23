@@ -144,8 +144,10 @@ def load_authorization(path: str | Path, expected_sha256: str, transaction_kind:
     resolved_roots = [Path(x).resolve(strict=False) for x in roots]
     req(all(str(x) not in ('/', '/home', '/home/dragon') for x in resolved_roots),
         "AUTHORIZATION_ROOT_TOO_BROAD")
-    sensitive = [Path('/home/dragon/.ssh'), Path('/home/dragon/.gnupg'), Path('/home/dragon/.config'),
+    sensitive = [Path('/home/dragon/.ssh'), Path('/home/dragon/.gnupg'),
                  Path('/home/dragon/ai-film-dev/local-authority'), Path('/home/dragon/ai-film-dev/root-ops')]
+    config_root = Path('/home/dragon/.config')
+    reviewed_user_systemd = Path('/home/dragon/.config/systemd/user')
     def overlaps(a: Path, b: Path) -> bool:
         try:
             a.relative_to(b); return True
@@ -154,8 +156,17 @@ def load_authorization(path: str | Path, expected_sha256: str, transaction_kind:
                 b.relative_to(a); return True
             except ValueError:
                 return False
+    def under(path: Path, root: Path) -> bool:
+        try:
+            path.relative_to(root); return True
+        except ValueError:
+            return False
     req(all(not any(overlaps(root, secret) for secret in sensitive) for root in resolved_roots),
         "AUTHORIZATION_ROOT_SENSITIVE")
+    # The reviewed prodlike contract explicitly permits the dragon user-systemd tree.
+    # Keep the rest of ~/.config sensitive and reject any ancestor broad enough to cover it.
+    req(all(not overlaps(root, config_root) or under(root, reviewed_user_systemd)
+            for root in resolved_roots), "AUTHORIZATION_ROOT_CONFIG_SCOPE")
     prefixes = value["allowed_command_prefixes"]
     req(type(prefixes) is list and prefixes and all(type(x) is list and x and all(isinstance(y, str) and y for y in x)
                                       for x in prefixes), "AUTHORIZATION_COMMANDS")

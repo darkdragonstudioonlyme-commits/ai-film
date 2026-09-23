@@ -348,6 +348,18 @@ class ProdlikeTxnTests(unittest.TestCase):
         auth_sha = self.write_auth(mutation_roots=["/home/dragon/.ssh"])
         with self.assertRaisesRegex(Exception, "AUTHORIZATION_ROOT_SENSITIVE"):
             deploy.execute_transaction(**self.kwargs(runner, auth_sha))
+        auth_sha = self.write_auth(mutation_roots=["/home/dragon/.config"])
+        with self.assertRaisesRegex(Exception, "AUTHORIZATION_ROOT_CONFIG_SCOPE"):
+            deploy.execute_transaction(**self.kwargs(runner, auth_sha))
+
+    def test_authorization_allows_exact_reviewed_user_systemd_root(self):
+        auth_sha = self.write_auth(mutation_roots=[str(self.r), "/home/dragon/.config/systemd/user"])
+        value, actual = deploy.load_authorization(self.auth, auth_sha, "PRODLIKE_DEPLOYMENT_V2",
+            candidate_id=self.profile["candidate_id"], binding_sha256=self.bsha,
+            main_commit=self.MAIN, validation_commit=self.VALIDATION,
+            executor_commit=self.EXECUTOR, executor_tree=self.TREE)
+        self.assertEqual(actual, auth_sha)
+        self.assertIn("/home/dragon/.config/systemd/user", value["mutation_roots"])
 
     def test_plan_validates_release_source_not_self_compare(self):
         runtime_path = self.release_source / "runtime-manifest.json"
