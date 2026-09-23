@@ -1,42 +1,46 @@
-# NEXT WORK ITEM — review dev23 prodlike/LAB deployment transaction contract
+# NEXT WORK ITEM — implement reviewed dev23 prodlike/LAB transaction executors
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: IMPL-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_BASE: d1e436a5c526de95b81eeae1007808c8fd1a9dd9
-  TEST_CHANGE_AUTHOR_COMMIT: 5fa7a474239a6ed0bc2d9d6f8c9dad5becf94592
-  TEST_CHANGE_AUTHOR_TREE: 0d32bf22e8a06d1bbee45f103129cf48e6ca0230
-  PRODUCT_SOURCE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
+  VALIDATION_HEAD: 2e813e04acc948158c170f111f5a3933b8a49435
+  TEST_CHANGE_011: lane/validation-p00:test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
+  TEST_REVIEW_011: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
   CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
-  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011-COVERAGE.json
-GOAL: "Independently verify TV011-01..21, exact ADD-only executor/test boundary, deterministic rollback/reconcile semantics, separate prodlike/LAB receipts, historical immutability and explicit no-native/no-signing/no-HKLM boundary."
+FILES_ALLOWED_ADD:
+  - validation/tooling/deployment_transaction_common.py
+  - validation/tooling/deploy_prodlike_candidate-v2.py
+  - validation/tooling/rebuild_lab_candidate-v2.py
+  - validation/tooling/tests/test_prodlike_deployment_transaction_v2.py
+  - validation/tooling/tests/test_lab_rebuild_transaction_v2.py
+GOAL: "Implement fail-closed, review-gated transaction executors with injected command runners and full fault-injection tests; do not execute real prodlike/LAB mutation."
 STEPS:
-  - TEST_CHANGE_011_AUTHORING: COMPLETE_FROZEN
-  - PRODLIKE_TRANSACTION_REVIEW: READY
-  - LAB_TRANSACTION_REVIEW: READY
-  - COMMON_HARDCUT_REVIEW: READY
-  - IMPLEMENTATION: BLOCKED
+  - COMMON_TRANSACTION_HARDCUTS: READY
+  - PRODLIKE_EXECUTOR: READY
+  - LAB_EXECUTOR: READY
+  - TV011_FAULT_INJECTION_TESTS: READY
+  - HISTORICAL_AND_PRIOR_REGRESSION: REQUIRED
+  - CLAUDE_CODE_REVIEW: BLOCKED
   - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
   - REAL_LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 011; no deployment/native proof."
-ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
-ON_FAIL: TEST_DESIGN_CORRECTION_011
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-TEST-REVIEW-023
+SUCCESS_OUTPUT: "Frozen exact five-file candidate plus host test evidence for TV011-01..21; no real deployment/native proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
+ON_FAIL: SAME_IMPLEMENTATION_CAUSAL_FAMILY_OR_TEST_DESIGN_GAP
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-IMPLEMENTATION-024
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms TV011-01..21, five-file ADD-only implementation boundary, independent transaction receipts, rollback/reconcile fail-closed semantics, immutable dev22 baseline and no real execution authorization."
+EXIT_CONDITION: "Only five ADD files changed; TV011-01..21 tests pass including fault injection/unknown completion; prior 18+34+11 regressions remain green; no real mutation occurred."
 ~~~
 
-TEXT_REVIEW only. Do not implement executors, switch prodlike current, mutate live user-systemd, export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during TEST_REVIEW.
+Use fake/injected command runners for author tests. Do not switch prodlike current, invoke live systemctl, export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

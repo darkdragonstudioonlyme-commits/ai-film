@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "implementation_result": "NOT_STARTED",
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "4c02882fea6f1bac9d2b22bd03af4ed286320003",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "test_review": "2e813e04acc948158c170f111f5a3933b8a49435",
+    "validation": "2e813e04acc948158c170f111f5a3933b8a49435"
+  },
+  "lab_mutation_authorized": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_deployment_authorized": false,
+  "schema_version": 1,
+  "scope": "Authorize exact five-file transaction executor/test implementation only; real deployment/LAB/native/signing blocked",
+  "session_denominator": null,
+  "signing_performed": false
+}
