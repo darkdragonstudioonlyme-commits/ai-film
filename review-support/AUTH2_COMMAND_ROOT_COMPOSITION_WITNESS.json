@@ -1,0 +1,51 @@
+{
+  "authorization_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+  "command_prefix_count": 91,
+  "command_prefixes_sha256": "0baed76ed2a994cd90c6e436e1a0873a62fc776808597574fb761d71e5759409",
+  "excerpt_sha256": "8cc7adb20b280b71b831dceab9ceb459abbe2873abced52648fa8bc9d3e1ffb3",
+  "execution_performed": false,
+  "executor_common_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+  "executor_prodlike_sha256": "3d60e86b76d097ee3c13b9259be1577b70b6100085f5760a1f9bb0aaed1236d5",
+  "forbidden_bits": {
+    "hklm_authorized": false,
+    "host_ready_authorized": false,
+    "native_execution_authorized": false,
+    "qualification_authorized": false,
+    "signing_authorized": false,
+    "site_authorized": false
+  },
+  "host_projection_only": true,
+  "kind": "AUTH2_COMMAND_ROOT_COMPOSITION_WITNESS",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt2-20260923"
+  ],
+  "operation_counts": {
+    "/home/dragon/ai-film-runtime/bin/runtime-health.py": 1,
+    "/home/dragon/ai-film-runtime/bin/verify-current": 1,
+    "daemon-reload": 1,
+    "disable": 11,
+    "enable": 11,
+    "enable --now": 11,
+    "is-active": 11,
+    "is-enabled": 11,
+    "start": 11,
+    "stop": 22
+  },
+  "schema_version": 1,
+  "timer_count": 11,
+  "timer_names": [
+    "aifilm-p00-control-backup.timer",
+    "aifilm-p00-current-verify.timer",
+    "aifilm-p00-dr-rehearsal.timer",
+    "aifilm-p00-evidence-ledger.timer",
+    "aifilm-p00-failclosed-campaign.timer",
+    "aifilm-p00-host-mirror.timer",
+    "aifilm-p00-offhost-export.timer",
+    "aifilm-p00-rebuild-verify.timer",
+    "aifilm-p00-recovery-verify.timer",
+    "aifilm-p00-runtime-health.timer",
+    "aifilm-p00-v02-authority-watch.timer"
+  ]
+}
