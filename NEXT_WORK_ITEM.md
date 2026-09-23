@@ -1,43 +1,56 @@
-# NEXT WORK ITEM — review dev23 prodlike/LAB reconciliation successor
+# NEXT WORK ITEM — implement dev23 prodlike/LAB reconciliation successor
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: IMPL-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_BASE: c68307f820b17aecbe19da7cbc0e49be5d32e853
-  VALIDATION_HEAD: 77cb3860eba2554c02f26fa93ab79dcd2d25f7d9
-  TEST_CHANGE_COMMIT: d17b254e3c307d79c0cbc39a5ac70c6139c177f3
-  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010.md
-  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010-COVERAGE.json
+  VALIDATION_HEAD: 112cee0506c250ea34bd5487baf3281f98dfb189
+  TEST_REVIEW_010: test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010.md
   PRODUCT_SOURCE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  ORACLE_CHANGED: false
-GOAL: "Independently verify candidate-generic prodlike/LAB successor scope, TV010-01..14, historical dev22 immutability and strict no-deployment/no-native/no-signing boundary."
+AUTHORIZED_ADD:
+  - validation/tooling/build_prodlike_release-v2.py
+  - validation/tooling/build_prodlike_rebuild_set-v2.py
+  - validation/tooling/build_prodlike_control_bundle-v2.py
+  - validation/tooling/verify_prodlike_control_bundle-v2.py
+  - validation/tooling/verify_prodlike_user_systemd-v2.py
+  - validation/tooling/prodlike_control_templates_v2.json
+  - validation/tooling/plan_lab_candidate_rebuild-v2.py
+  - validation/tooling/verify_lab_candidate_rebuild_receipt-v2.py
+  - validation/tooling/tests/test_prodlike_release_v2.py
+  - validation/tooling/tests/test_prodlike_control_bundle_v2.py
+  - validation/tooling/tests/test_prodlike_user_systemd_v2.py
+  - validation/tooling/tests/test_lab_candidate_rebuild_v2.py
+REUSE_BYTE_IDENTICAL:
+  - validation/tooling/v02_candidate_profile.py
+  - validation/tooling/build_lab_payload-v2.py
+  - validation/tooling/verify-lab-artifact-seal-v2.py
+  - validation/tooling/dev23-candidate-binding.json
+GOAL: "Implement and author-test exact candidate-generic prodlike/LAB reconciliation tooling without deployment or native side effects."
 STEPS:
-  - TOOLING_PROMOTION_POSTCHECK: COMPLETE_PASS
-  - TEST_CHANGE_010_AUTHOR: COMPLETE_FROZEN
-  - PRODLIKE_SCOPE_REVIEW: READY
-  - LAB_SCOPE_REVIEW: READY
-  - TEST_REVIEW_010_RECORD: BLOCKED
-  - SUCCESSOR_IMPLEMENTATION: BLOCKED
+  - TEST_REVIEW_010: COMPLETE_PASS
+  - AUTHOR_SUCCESSOR_TOOLING: READY
+  - AUTHOR_TV010_REGRESSION: NOT_STARTED
+  - HISTORICAL_DEV22_REGRESSION: NOT_STARTED
+  - CLAUDE_CODE_REVIEW: BLOCKED
   - PRODLIKE_DEPLOYMENT: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Exact TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 010; no deployment/native execution proof."
-ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
-ON_FAIL: TEST_DESIGN_CORRECTION_010
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-TEST-REVIEW-019
+SUCCESS_OUTPUT: "Frozen 12-file ADD-only successor candidate plus author tests/evidence; no deployment/native proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+ON_FAIL: SAME_RECONCILIATION_IMPLEMENTATION_CAUSAL_FAMILY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-IMPLEMENTATION-020
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "ORACLE_CHANGED=false; exact reuse/add/historical scopes are coherent; TV010-01..14 cover candidate/release/control/LAB evidence and fail-closed stale/mixed identities; no deployment/native/signing authority is granted."
+EXIT_CONDITION: "TV010-01..14 author tests pass; historical dev22 and reusable 009 bytes are unchanged; candidate contains exactly authorized ADD files; no deployment/LAB/native/signing side effects occur."
 ~~~
 
-Use active bounded TEXT_REVIEW only. Do not implement tooling, switch prodlike runtime, modify user-systemd, mutate/import/export/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Do not switch prodlike current runtime, modify live user-systemd, mutate/export/import/start LAB, replace LAB facts/seal, sign authority, touch HKLM/canonical inbox, run native cases, issue qualification or mark HOST_READY.
