@@ -1,0 +1,44 @@
+{
+  "authorization_sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84",
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "files": {
+    "PRODLIKE_ATTEMPT1_RECEIPT.json": {
+      "bytes": 1218,
+      "sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd"
+    },
+    "PRODLIKE_AUTHORIZATION_002_EXPIRED.json": {
+      "bytes": 12044,
+      "sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5"
+    },
+    "PRODLIKE_AUTHORIZATION_003.json": {
+      "bytes": 12050,
+      "sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84"
+    },
+    "PRODLIKE_AUTHORIZATION_003_NON_MUTATION.json": {
+      "bytes": 2404,
+      "sha256": "e959e58b79f8a85c3e947bdc7a8a8f3e23b3fe0d6b89a7b96649a3d56bba0d7d"
+    },
+    "PRODLIKE_AUTHORIZATION_003_PLAN.json": {
+      "bytes": 1719,
+      "sha256": "5ab40a68572798c0dfc27ed52915c77e6108aed287dd361c6393e7d2ba74f8fc"
+    },
+    "PRODLIKE_AUTHORIZATION_003_PREP_RECEIPT.json": {
+      "bytes": 1905,
+      "sha256": "bd5c914cb43ddc81f00ccf9a1daa7b57a17b7df2bcf0ba1567c08570c64014de"
+    },
+    "PRODLIKE_AUTHORIZATION_003_SNAPSHOT_AFTER.json": {
+      "bytes": 1074,
+      "sha256": "dcd0b2104dc47ab70c750e29289b0aadb7a023eca6e526d56edc67e565f89e48"
+    },
+    "PRODLIKE_AUTHORIZATION_003_SNAPSHOT_BEFORE.json": {
+      "bytes": 1074,
+      "sha256": "dcd0b2104dc47ab70c750e29289b0aadb7a023eca6e526d56edc67e565f89e48"
+    }
+  },
+  "kind": "PRODLIKE_AUTHORIZATION_003_REVIEW_SUPPORT",
+  "main_snapshot": "cf998f9508884d872510acf9edae193185831829",
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CF998F9-003",
+  "validation_base": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+}
