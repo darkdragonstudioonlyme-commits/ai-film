@@ -1,52 +1,40 @@
-# NEXT WORK ITEM — review attempt-1 prodlike receipt and reconciliation evidence
+# NEXT WORK ITEM — review prodlike user-bus/timer correction tests
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: TEST_REVIEW
+LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-001
+WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-USER-BUS-012
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: 5b944fda2af4f61dfb5bf4c16344d92744cc3bf6
-  VALIDATION_HEAD: c233e2fd205cf34a9563b1f892465995ef0d76c8
-  EXECUTOR_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
-  REVIEW_SUPPORT_COMMIT: 2fc7196962632351ac6c85278f28d5f47bee056d
-  AUTHORIZATION_SHA256: 9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322
-  TRANSACTION_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
-  USER_SYSTEMD_RECONCILIATION_SHA256: 15641a64d46a8842c31e0dbc21731ce4334311f0af515a0d4c13c81989efe68a
-OBSERVED:
-  RECEIPT_STATE: RECONCILE_REQUIRED
-  PHASE: UNKNOWN_COMPLETION
-  FAILURE: systemctl_user_stop_rc1_no_bus
-  CURRENT_TARGET: dev22
-  CONTROL_BYTES: EXACT_ROLLBACK_MATCH
-  STAGED_DEV23_RELEASE: EXACT_SOURCE_MATCH
-  ALL_11_TIMERS_WITH_EXPLICIT_USER_BUS: ENABLED_ACTIVE
-  DEPLOYMENT_RECEIPT: ABSENT
-  NATIVE_EXECUTION: false
-  SIGNING: false
-GOAL: "Independently classify attempt-1 receipt/reconciliation, verify no-replay disposition, and identify the minimal test/design correction for user-systemd environment/state capture before any new authorization."
+  MAIN_COMMIT: efc99106344a205e789f1c498b12c4814b340d52
+  VALIDATION_HEAD: 7c222883d21206320f7c1ebce40f31fa51fcc5e7
+  RECEIPT_REVIEW_COMMIT: ae167ce4af9180fd7e239b4b83cfddc9ade061b5
+  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-USER-BUS-012.md
+  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-USER-BUS-012-COVERAGE.json
+  ORACLE_CHANGED: false
+GOAL: "Independently verify TV012-01..10, exact three-file scope, fail-before-mutation user-bus semantics and no-replay requirements before correction authoring."
 STEPS:
-  - ATTEMPT1_RECEIPT: COMPLETE_RECONCILE_REQUIRED
-  - READ_ONLY_RECONCILIATION: COMPLETE
-  - CLAUDE_RECEIPT_REVIEW: READY
-  - USER_BUS_TEST_DESIGN_CORRECTION: BLOCKED
-  - CLEANUP_OR_NEW_AUTHORIZATION: BLOCKED
-  - REAL_PRODLIKE_RETRY: FORBIDDEN
+  - RECEIPT_REVIEW: COMPLETE_FINDINGS
+  - TEST_CHANGE_012_AUTHOR: COMPLETE
+  - CLAUDE_TEST_REVIEW_012: READY
+  - IMPLEMENT_CORRECTION: BLOCKED
+  - NEW_AUTHORIZATION: BLOCKED
+  - PRODLIKE_ATTEMPT2: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal receipt disposition and bounded test/design gap; no retry/cleanup/native proof."
-ON_SUCCESS: TEST-DESIGN-P00-DEV23-PRODLIKE-USER-BUS-012
-ON_FAIL: SAME_RECEIPT_RECONCILIATION_CAUSAL_FAMILY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RECEIPT-REVIEW-031
+SUCCESS_OUTPUT: "Formal TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 012; no implementation or execution proof."
+ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-USER-BUS-012
+ON_FAIL: TEST_DESIGN_CORRECTION_SAME_CAUSAL_FAMILY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-USER-BUS-TEST-REVIEW-032
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Review establishes the durable receipt disposition, whether any non-staging mutation occurred, the user-bus/capture semantic gap, and explicit no-replay/no-cleanup boundary."
+EXIT_CONDITION: "Reviewer confirms exact three-file scope, all TV012 obligations, ORACLE_CHANGED=false, prior TV011 retention and no cleanup/retry/native/signing authority."
 ~~~
 
-Review only. Do not rerun the consumed authorization, delete staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not modify executor code, remove staged dev23, replay attempt 1, issue a new authorization, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

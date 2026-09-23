@@ -1,0 +1,25 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "efc99106344a205e789f1c498b12c4814b340d52",
+    "receipt_review": "ae167ce4af9180fd7e239b4b83cfddc9ade061b5",
+    "receipt_support": "2fc7196962632351ac6c85278f28d5f47bee056d",
+    "validation": "7c222883d21206320f7c1ebce40f31fa51fcc5e7"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "oracle_changed": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated_after_attempt1": false,
+  "schema_version": 1,
+  "scope": "Independent TEST_REVIEW of user-bus/timer-state correction 012; no implementation, cleanup, retry, native or signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-USER-BUS-012",
+  "test_review_result": "PENDING"
+}
