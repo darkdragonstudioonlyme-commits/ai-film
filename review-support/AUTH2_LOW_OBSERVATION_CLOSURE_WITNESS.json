@@ -1,0 +1,31 @@
+{
+  "a1_receipt": {
+    "bytes": 1375,
+    "sha256": "177d027e6ca5f5c3f7c27cf3c7278a37d0e1741ac132a232088ca6a40df18467"
+  },
+  "a1_result_sha256": "83ac799af6535bbe836338f7a44a92168e9e41e916e3e1b5cd3710d1810827d1",
+  "a2_receipt": {
+    "bytes": 1382,
+    "sha256": "c4bc4905db296dd8f6a91fd7c328647fb2242a914658499945e0cb382d302196"
+  },
+  "a2_result_sha256": "c4229f881f0dbe670bbcb790741c5e1a0269eaf2ff8a2da07fed3e50231f6d38",
+  "a2_review_created_unix": 1790182606,
+  "a2_review_finished_unix": 1790182628,
+  "a2_seconds_before_expiry_at_finish": 20837,
+  "authorization_expires_at": 1790203465,
+  "authorization_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+  "b1_receipt": {
+    "bytes": 1366,
+    "sha256": "782c7e84c1c378cbf69c0f4d775c98314d98a807cb9151089ea322b7b920ac75"
+  },
+  "b1_result_sha256": "dc8bae773a915fe8fd83903d6bdffe0b0c7ebb5886f212aee9a2559972466378",
+  "execution_performed": false,
+  "expiry_confirmed_unexpired_at_review": true,
+  "host_evidence_only": true,
+  "kind": "AUTH2_LOW_OBSERVATION_CLOSURE_WITNESS",
+  "schema_version": 1,
+  "snapshot_after_sha256": "812211b6313cac39959287c674473b8a05b8e8581042672b9cb8539e8a29d230",
+  "snapshot_before_after_identical": true,
+  "snapshot_before_sha256": "812211b6313cac39959287c674473b8a05b8e8581042672b9cb8539e8a29d230",
+  "txroot_absent": true
+}
