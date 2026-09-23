@@ -1,0 +1,29 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "360737a8eac4b6731c743451ac8ae7cd80f6ace4",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "tooling_candidate": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+    "validation": "77cb3860eba2554c02f26fa93ab79dcd2d25f7d9"
+  },
+  "lab_dev23_artifact_seal": "MISSING_REQUIRES_RESEED_OR_REBUILD",
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_current_candidate": "dev22",
+  "prodlike_dev23_release_evidence": "MISSING_REQUIRES_SUCCESSOR_TOOLING",
+  "prodlike_target_candidate": "dev23",
+  "schema_version": 1,
+  "scope": "Dev23 tooling promotion closure and prodlike/LAB reconciliation routing; no prodlike/LAB mutation, signing or native execution",
+  "session_denominator": null,
+  "signing_performed": false,
+  "tooling_manifest_self_check": "PASS",
+  "tooling_post_promotion_historical_scripts": 11,
+  "tooling_post_promotion_successor_tests": 34,
+  "tooling_review_record": "lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-V02-V03-TOOLING-REBIND-001.md"
+}

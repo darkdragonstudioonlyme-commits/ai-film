@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V91
+# AI-FILM-SERVER — intended canonical content V92
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 91
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 92
+CURRENT_MODE: TEST_DESIGN
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-V02-V03-TOOLING-REBIND-001-SUCCESSOR
+CURRENT_TASK: TEST-DESIGN-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -99,10 +99,10 @@ VALIDATION_PREPARATION:
   NOTE: "Detailed validation identities, receipts and former work targets remain in the selected machine snapshot and exact history. This summary grants no native authority. Read relevant details for the task, not every historical pointer at cold start."
 
 PRODUCTION_LIKE_READINESS:
-  STATUS: READY_NON_NATIVE_PRODLIKE_OPERATIONS
-  CANDIDATE_MATCH: true
+  STATUS: DEV22_DEPLOYED_DEV23_RECONCILIATION_REQUIRED
+  CANDIDATE_MATCH: false
   CURRENT_RUNTIME_VERSION: 0.1.0.dev22
-  TARGET_CANDIDATE_VERSION: 0.1.0.dev22
+  TARGET_CANDIDATE_VERSION: 0.1.0.dev23
   RUNTIME_MANIFEST_SHA256: ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a
   APP_MANIFEST_SHA256: 8f31bb6359387257f00388e12f05e2cb6014867ebb90295d1684d3b6fab00471
   REBUILD_INDEX_SHA256: 24338195fe4bb7adda35b4d4484728a0c30f235c4b88b11a9c2fc4171de1ddef
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-TOOLING-SUCCESSOR-REVIEW-017
-  REASON: "Initial tooling review passed A1/B/C/D/E but found one LOW environment-isolation issue and two MEDIUM missing late-proof negative tests; successor closes only that causal family and needs exact re-review before validation-lane promotion."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-RECONCILIATION-018
+  REASON: "Dev23 candidate-bound validation tooling is reviewed and promoted. Current prodlike runtime and sealed LAB remain dev22-bound; TEST_CHANGE 009 forbids repurposing historical dev22 tooling and explicitly defers dev23 prodlike release/control-bundle plus LAB reseed/rebuild to fresh reconciliation evidence."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_TOOLING_SUCCESSOR_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_LAB_RECONCILIATION_TEST_DESIGN
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude re-reviews only successor-affected A2/B/F/G scopes on exact tree 1640d04; prior A1/C/D/E results remain byte-applicable. PASS permits validation-lane promotion. Signing/native remain closed."
+NEXT_ACTION: "Define/review candidate-generic dev23 prodlike release/control-bundle and LAB reseed/rebuild reconciliation evidence without repurposing dev22 historical tooling; signing/native remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
