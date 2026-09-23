@@ -1,0 +1,62 @@
+{
+  "candidate_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "candidate_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "kind": "USER_BUS_012_REVIEW_SUPPORT",
+  "schema_version": 1,
+  "source_files": {
+    "validation/tooling/deploy_prodlike_candidate-v2.py": {
+      "bytes": 27514,
+      "sha256": "3d60e86b76d097ee3c13b9259be1577b70b6100085f5760a1f9bb0aaed1236d5"
+    },
+    "validation/tooling/deployment_transaction_common.py": {
+      "bytes": 16706,
+      "sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e"
+    },
+    "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py": {
+      "bytes": 29067,
+      "sha256": "8261313e7215a01a9cb097af5c443486d415c5112490beed9c132d8e59e4771e"
+    }
+  },
+  "support_files": {
+    "USER_BUS_012_AUTHOR_EVIDENCE.json": {
+      "bytes": 3181,
+      "sha256": "d68bdc45c7413d74388ff913786d3c89dcd7bffa54c5b52aed901b6c27782002"
+    },
+    "USER_BUS_012_COMMON.txt": {
+      "bytes": 1658,
+      "sha256": "02ab66dcd735e4346df544334f4085b995eec1cf39d3e7e9d770578f29ea3101"
+    },
+    "USER_BUS_012_EXECUTE.txt": {
+      "bytes": 11292,
+      "sha256": "47020b1bf44f954b1a0d87673ffdb062c47def44a6109bd308f72e78456a1173"
+    },
+    "USER_BUS_012_MAIN.txt": {
+      "bytes": 3610,
+      "sha256": "97f25f904a6a21ae93787d83a745122e502afcf97e41f09a2b5db58d371bdace"
+    },
+    "USER_BUS_012_REPLAY.txt": {
+      "bytes": 1965,
+      "sha256": "17399f848f44cb4a4f9711c18de74f9b1c0ecdf860ee8e53c4dffb36d93de207"
+    },
+    "USER_BUS_012_RUNNER.txt": {
+      "bytes": 1401,
+      "sha256": "a1696e9407eb294ffba16d69bb96cb99771c7997278e6a38c2ba6fd1babb8ac4"
+    },
+    "USER_BUS_012_TESTS_A.txt": {
+      "bytes": 4503,
+      "sha256": "d89694b61d73ac732f888c526bd9a8ec2cc4ac7e80522b0f104b16553799901c"
+    },
+    "USER_BUS_012_TESTS_B.txt": {
+      "bytes": 2153,
+      "sha256": "4cca778fd4ab86bd2ef71afb638224b0297a03475ea7c2fada14e801b9b5714d"
+    },
+    "USER_BUS_012_TESTS_C.txt": {
+      "bytes": 1477,
+      "sha256": "6a9a396d65256e79e7255e6e779e716faee56388a437917885f84430abfb4025"
+    },
+    "USER_BUS_012_TIMER.txt": {
+      "bytes": 3146,
+      "sha256": "55dee2863247b2807824e64c92b4229aa3e0ae310aed8640a501c29086ddb4fb"
+    }
+  }
+}

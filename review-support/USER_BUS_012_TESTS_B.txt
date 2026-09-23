@@ -1,0 +1,18 @@
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_timer_semantic_states_and_invalid_observations lines 449-459
+    def test_timer_semantic_states_and_invalid_observations(self):
+        enabled, raw = deploy._enabled_state(subprocess.CompletedProcess([],0,b"enabled\n",b"")); self.assertTrue(enabled); self.assertEqual(raw,"enabled")
+        enabled, raw = deploy._enabled_state(subprocess.CompletedProcess([],1,b"disabled\n",b"")); self.assertFalse(enabled); self.assertEqual(raw,"disabled")
+        active, raw = deploy._active_state(subprocess.CompletedProcess([],0,b"active\n",b"")); self.assertTrue(active); self.assertEqual(raw,"active")
+        active, raw = deploy._active_state(subprocess.CompletedProcess([],3,b"inactive\n",b"")); self.assertFalse(active); self.assertEqual(raw,"inactive")
+        for cp, reason, fn in [
+            (subprocess.CompletedProcess([],1,b"",b""),"TIMER_ENABLED_STATE_INVALID",deploy._enabled_state),
+            (subprocess.CompletedProcess([],1,b"unknown\n",b""),"TIMER_ENABLED_STATE_INVALID",deploy._enabled_state),
+            (subprocess.CompletedProcess([],1,b"disabled\n",b"Failed to connect to bus"),"TIMER_ENABLED_STDERR",deploy._enabled_state),
+            (subprocess.CompletedProcess([],3,b"activating\n",b""),"TIMER_ACTIVE_STATE_INVALID",deploy._active_state)]:
+            with self.assertRaisesRegex(Exception, reason): fn(cp)
+
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_invalid_timer_observation_is_durable_premutation_failure lines 461-464
+    def test_invalid_timer_observation_is_durable_premutation_failure(self):
+        runner=InvalidTimerRunner(); out=deploy.execute_transaction(**self.kwargs(runner))
+        self.assertEqual(out["state"],"FAILED_PREMUTATION"); self.assertFalse(out["mutation_started"])
+        self.assertEqual(os.readlink(self.current),str(self.old)); self.assertFalse(self.release_target.exists()); self.assertFalse(self.deploy_receipt.exists())

@@ -1,0 +1,39 @@
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/deployment_transaction_common.py::begin_transaction lines 266-303
+def begin_transaction(receipt_path: str | Path, *, transaction_id: str,
+                      transaction_kind: str, authorization_sha256: str,
+                      candidate_id: str, candidate_binding_sha256: str) -> tuple[dict, bool]:
+    path = Path(receipt_path)
+    lock_path = path.with_name(path.name + ".lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(lock_path, "a+b") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        if path.exists():
+            existing = load_json(path)
+            req(existing.get("transaction_id") == transaction_id, "TRANSACTION_RECEIPT_IDENTITY")
+            # One authorization = one attempt. Existing receipt is never re-executed implicitly.
+            req(existing.get("authorization_sha256") == authorization_sha256, "TRANSACTION_AUTHORIZATION_IDENTITY")
+            return existing, False
+        receipt = {
+            "schema_version": 1,
+            "kind": "AIFILM_P00_TRANSACTION_RECEIPT_V1",
+            "transaction_id": transaction_id,
+            "transaction_kind": transaction_kind,
+            "authorization_sha256": authorization_sha256,
+            "candidate_id": candidate_id,
+            "candidate_binding_sha256": candidate_binding_sha256,
+            "state": "PREPARED",
+            "phase": "PREMUTATION",
+            "mutation_started": False,
+            "rollback_attempted": False,
+            "rollback_verified": False,
+            "unknown_completion": False,
+            "events": [],
+            "native_execution_started": False,
+            "signing_performed": False,
+            "hklm_touched": False,
+            "site_entered": False,
+            "qualification_issued": False,
+            "host_ready": False,
+        }
+        atomic_json(path, receipt)
+        return receipt, True

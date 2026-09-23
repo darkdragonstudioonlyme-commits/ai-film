@@ -1,0 +1,11 @@
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_reconcile_receipt_is_never_replayed lines 466-469
+    def test_reconcile_receipt_is_never_replayed(self):
+        runner=FakeRunner(); auth_sha=self.write_auth()
+        self.txn_receipt.write_text(json.dumps({"transaction_id":"PRODLIKE-TXN-001","authorization_sha256":auth_sha,"state":"RECONCILE_REQUIRED","mutation_started":True}))
+        out=deploy.execute_transaction(**self.kwargs(runner,auth_sha)); self.assertEqual(out["state"],"RECONCILE_REQUIRED"); self.assertEqual(runner.calls,[])
+
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_exact_staged_dev23_reused_and_drift_fails_closed lines 471-474
+    def test_exact_staged_dev23_reused_and_drift_fails_closed(self):
+        shutil.copytree(self.release_source,self.release_target); runner=FakeRunner(); out=deploy.execute_transaction(**self.kwargs(runner)); self.assertEqual(out["state"],"PASS")
+        self.tearDown(); self.setUp(); shutil.copytree(self.release_source,self.release_target); (self.release_target/"runtime-manifest.json").write_text("{}")
+        runner=FakeRunner(); out=deploy.execute_transaction(**self.kwargs(runner)); self.assertEqual(out["state"],"FAILED_ROLLED_BACK"); self.assertEqual(os.readlink(self.current),str(self.old))

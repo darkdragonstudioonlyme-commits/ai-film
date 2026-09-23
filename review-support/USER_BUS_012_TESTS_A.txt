@@ -1,0 +1,51 @@
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_user_bus_env_validated_and_default_runner_remains_minimal lines 410-416
+    def test_user_bus_env_validated_and_default_runner_remains_minimal(self):
+        base, runtime, bus = self._make_bus()
+        env = validated_user_bus_env(runtime_base=base)
+        self.assertEqual(env, {"XDG_RUNTIME_DIR": str(runtime), "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(bus)})
+        default = SubprocessRunner().env
+        self.assertNotIn("XDG_RUNTIME_DIR", default); self.assertNotIn("DBUS_SESSION_BUS_ADDRESS", default)
+        self.assertNotIn("validated_user_bus_env", (TOOL / "rebuild_lab_candidate-v2.py").read_text())
+
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_user_bus_failclosed_matrix lines 418-447
+    def test_user_bus_failclosed_matrix(self):
+        uid=os.getuid(); base=self.r / "missing-base"; base.mkdir()
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_MISSING_OR_UNSAFE"):
+            validated_user_bus_env(runtime_base=base)
+        base=self.r / "file-base"; base.mkdir(); (base/str(uid)).write_text("x")
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_NOT_DIRECTORY"):
+            validated_user_bus_env(runtime_base=base)
+        base,runtime,bus=self._make_bus(mode=0o777)
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_WRITABLE"):
+            validated_user_bus_env(runtime_base=base)
+        base=self.r/"owner-base"; runtime=base/str(uid+1); runtime.mkdir(parents=True); runtime.chmod(0o700)
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_OWNER"):
+            validated_user_bus_env(uid=uid+1,runtime_base=base)
+        base=self.r/"no-bus"; runtime=base/str(uid); runtime.mkdir(parents=True); runtime.chmod(0o700)
+        with self.assertRaisesRegex(Exception, "USER_BUS_SOCKET_MISSING_OR_UNSAFE"):
+            validated_user_bus_env(runtime_base=base)
+        (runtime/"bus").write_text("not socket")
+        with self.assertRaisesRegex(Exception, "USER_BUS_NOT_SOCKET"):
+            validated_user_bus_env(runtime_base=base)
+        (runtime/"bus").unlink(); sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM); sock.bind(str(runtime/"bus")); self.addCleanup(sock.close)
+        original = Path.lstat
+        def wrong_owner(path_obj):
+            st=original(path_obj)
+            if path_obj == runtime/"bus":
+                class S: pass
+                fake=S(); fake.st_mode=st.st_mode; fake.st_uid=uid+1; return fake
+            return st
+        with mock.patch.object(Path, "lstat", new=wrong_owner):
+            with self.assertRaisesRegex(Exception, "USER_BUS_SOCKET_OWNER"):
+                validated_user_bus_env(runtime_base=base)
+
+### /home/dragon/ai-film-dev/worktrees/user-bus-012-review-support/validation/tooling/tests/test_prodlike_deployment_transaction_v2.py::ProdlikeTxnTests.test_prodlike_main_explicitly_opts_into_only_validated_bus_env lines 476-484
+    def test_prodlike_main_explicitly_opts_into_only_validated_bus_env(self):
+        captured={}
+        def fake_execute(**kwargs): captured.update(kwargs["runner"].env); return {"state":"PASS"}
+        argv=["tool","--binding","b","--binding-sha256","h","--release-source","r","--control-bundle","c","--current-link","l","--current-deployment-receipt","dr","--current-runtime-manifest","rm","--release-target","rt","--bin-root","br","--unit-root","ur","--config-path","cp","--rollback-root","rr","--authorization","a","--authorization-sha256","ah","--main-commit","m","--validation-commit","v","--executor-commit","e","--executor-tree","t","--receipt","rec","--deployment-receipt","dep","--execute"]
+        with mock.patch.object(sys,"argv",argv), mock.patch.object(deploy,"validated_user_bus_env",return_value={"XDG_RUNTIME_DIR":"/run/user/1","DBUS_SESSION_BUS_ADDRESS":"unix:path=/run/user/1/bus"}), mock.patch.object(deploy,"execute_transaction",side_effect=fake_execute):
+            os.environ["SECRET_SHOULD_NOT_LEAK"]="x"
+            try:self.assertEqual(deploy.main(),0)
+            finally:os.environ.pop("SECRET_SHOULD_NOT_LEAK",None)
+        self.assertEqual(captured["XDG_RUNTIME_DIR"],"/run/user/1");self.assertEqual(captured["DBUS_SESSION_BUS_ADDRESS"],"unix:path=/run/user/1/bus");self.assertNotIn("SECRET_SHOULD_NOT_LEAK",captured)

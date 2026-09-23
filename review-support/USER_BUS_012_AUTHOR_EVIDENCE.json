@@ -1,0 +1,107 @@
+{
+  "all_pass": true,
+  "attempt1_replayed": false,
+  "base_validation_commit": "e91f027759d27dcdc8b6ecf83b3f290057759ac4",
+  "expected": {
+    "historical": 11,
+    "tv009": 34,
+    "tv010": 18,
+    "tv011": 11,
+    "tv012_tv011": 22
+  },
+  "groups": {
+    "tv009": 34,
+    "tv010": 18,
+    "tv011": 11,
+    "tv012_tv011": 22
+  },
+  "historical_log_sha256": "1b5b5e826e690a7335956f79de1e9fd6d0c78d19648fccbf587b9033ca9571d8",
+  "historical_scripts": 11,
+  "hklm_touched": false,
+  "kind": "DEV23_PRODLIKE_USER_BUS_012_AUTHOR_EVIDENCE",
+  "lab_mutated": false,
+  "native_executed": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "suite_logs": [
+    {
+      "group": "tv012_tv011",
+      "sha256": "ffaed848fb82481e3f0a69c270a6ae23fde0e2d60db74b821162327ee7fe7d2c",
+      "suite": "test_prodlike_deployment_transaction_v2.py",
+      "tests": 22
+    },
+    {
+      "group": "tv011",
+      "sha256": "6fe3af2693810df103327556953fd1f5e8a2d089ccaa48595e83bbb8b7a8ab31",
+      "suite": "test_lab_rebuild_transaction_v2.py",
+      "tests": 11
+    },
+    {
+      "group": "tv010",
+      "sha256": "cbec24e715c81e2a1d2bd030ee6e0a2b5868ed2b51d27b598bbbe0f35d7c6cbf",
+      "suite": "test_prodlike_release_v2.py",
+      "tests": 3
+    },
+    {
+      "group": "tv010",
+      "sha256": "f2ac55f6b12036035b502f0160602bbac7892ca06879b9f4f4b3e9c09534b740",
+      "suite": "test_prodlike_control_bundle_v2.py",
+      "tests": 5
+    },
+    {
+      "group": "tv010",
+      "sha256": "5f5e13846b74733f9fc2fda983191dc636da37f3d10cadd8413f55a506bb5069",
+      "suite": "test_prodlike_user_systemd_v2.py",
+      "tests": 3
+    },
+    {
+      "group": "tv010",
+      "sha256": "4980bc80b5083b394ed709a3a1e39c0f2d1f7be6254c00d8709f5c3c227a8543",
+      "suite": "test_lab_candidate_rebuild_v2.py",
+      "tests": 7
+    },
+    {
+      "group": "tv009",
+      "sha256": "3d2e194d1d01bdf3339184225bec0f46de11792aee80148ed41a1bd75bf0a46f",
+      "suite": "test_v02_candidate_profile.py",
+      "tests": 5
+    },
+    {
+      "group": "tv009",
+      "sha256": "74af679777e2a18479f621a30d7b7f3e362a489a25bcbe83df6068a1bb5eba7b",
+      "suite": "test_v02_dev23_generic_tooling.py",
+      "tests": 5
+    },
+    {
+      "group": "tv009",
+      "sha256": "fa2ec8d6dace6182527503dd37d8d7b44085ccabd8107ce1b203452daffd120e",
+      "suite": "test_v02_dev23_candidate_hardcuts.py",
+      "tests": 4
+    },
+    {
+      "group": "tv009",
+      "sha256": "a9d0d58ab58e10b54f0c853b3c18fd465e889716a07c4b6d96af3a736e8d1361",
+      "suite": "test_v03_binding_producer.py",
+      "tests": 6
+    },
+    {
+      "group": "tv009",
+      "sha256": "bb91ea73fe1e372303eca8bd3a99edeaa8c63b6c7f31597f570f50fe2d2b2617",
+      "suite": "test_v03_policy_generation.py",
+      "tests": 5
+    },
+    {
+      "group": "tv009",
+      "sha256": "f7b2b882e8d40373ca18dc75630e3074555b15b627b69f52f48cdf39ad03e82d",
+      "suite": "test_v03_fixture_preparation_controller.py",
+      "tests": 3
+    },
+    {
+      "group": "tv009",
+      "sha256": "a3e72b0c596901cc26ab181d5283cf762bee05273d2ba17b93ce8e89999f19a0",
+      "suite": "test_v03_late_proof_materializer.py",
+      "tests": 6
+    }
+  ]
+}
