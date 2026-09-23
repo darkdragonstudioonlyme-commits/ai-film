@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V109
+# AI-FILM-SERVER — intended canonical content V110
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 109
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 110
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-002
+CURRENT_TASK: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION2-REVIEW-035
-  REASON: "Fresh authorization 002 is plan-only prepared with a new transaction id/hash/receipt root and unchanged preparation snapshot. Attempt 1 remains non-replayable and prodlike attempt 2 remains blocked until cross-model review PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-EXECUTION2-036
+  REASON: "Authorization 002 passed cross-model review. Exactly one foreground prodlike attempt 2 may run only after unexpired/exact pre-execution revalidation; attempt 1 remains non-replayable and LAB/native/signing remain blocked."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION2_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_EXECUTION2
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews exact authorization 002 hash, corrected executor binding, bounded expiry, input hashes, minimal roots/commands and non-mutation evidence. Do not execute attempt 2 until PASS."
+NEXT_ACTION: "Revalidate authorization 002 expiry, exact dev22/current and staged dev23/input hashes, corrected executor and receipt absence. If all exact, run one foreground attempt 2 and stop immediately on its durable receipt."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

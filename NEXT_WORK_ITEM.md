@@ -1,47 +1,44 @@
-# NEXT WORK ITEM — review immutable dev23 prodlike authorization 002
+# NEXT WORK ITEM — execute one reviewed dev23 prodlike deployment attempt 2
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-002
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-002
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: 0d47b4fec5cd7c40bd359db6b59396f42387c4e1
-  VALIDATION_HEAD: 97b248548a1291adc243f5ec95f6028c7ade6bd7
-  REVIEW_SUPPORT_COMMIT: 6f0fed5bb1792b81ed862e1af5c79d82d3d19c24
+  VALIDATION_REVIEW_HEAD: df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a
+  AUTHORIZATION_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-002.md
+  AUTHORIZATION_MAIN_SNAPSHOT: 0d47b4fec5cd7c40bd359db6b59396f42387c4e1
+  AUTHORIZATION_VALIDATION_SNAPSHOT: 97b248548a1291adc243f5ec95f6028c7ade6bd7
   EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
   EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
   AUTHORIZATION_SHA256: 208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5
   TRANSACTION_ID: PRODLIKE-DEV23-0D47B4F-002
-  CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
-  CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  ATTEMPT1_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
+  ATTEMPT: 1
   ATTEMPT1_REPLAY_AUTHORIZED: false
-GOAL: "Independently verify one fresh immutable attempt=1 PRODLIKE_DEPLOYMENT_V2 capsule for transaction 002 against corrected executor semantics and plan-only/non-mutation evidence before any second execution attempt."
+GOAL: "Run exactly one reviewed foreground prodlike deployment transaction attempt 2; durable receipt owns replay/reconcile; do not begin LAB/native/signing."
 STEPS:
-  - USER_BUS_CORRECTION_REVIEW_PROMOTION: COMPLETE_PASS
+  - AUTHORIZATION2_REVIEW: COMPLETE_PASS
   - ATTEMPT1_NON_REPLAY: COMPLETE_LOCKED
-  - PLAN_ONLY_BASELINE_VALIDATION: COMPLETE_PASS
-  - NON_MUTATION_PROOF: COMPLETE_PASS
-  - AUTHORIZATION2_AUTHOR: COMPLETE_FROZEN
-  - CLAUDE_IDENTITY_EXPIRY_REVIEW: READY
-  - CLAUDE_COMMAND_ROOT_INPUT_REVIEW: READY
-  - PRODLIKE_ATTEMPT2: BLOCKED
+  - PRE_EXECUTION_EXACT_REVALIDATION: READY
+  - SINGLE_FOREGROUND_TRANSACTION_ATTEMPT2: BLOCKED_UNTIL_REVALIDATION
+  - TRANSACTION2_RECEIPT_CAPTURE: NOT_STARTED
+  - RECEIPT2_CROSS_MODEL_REVIEW: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal authorization-002 review PASS/FINDINGS bound to exact capsule hash; no execution proof."
-ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-002
-ON_FAIL: REVOKE_EXPIRED_OR_CORRECT_AUTHORIZATION2_AND_REVIEW_NEW_HASH
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION2-REVIEW-035
+SUCCESS_OUTPUT: "Durable attempt-2 transaction receipt and before/after evidence; no LAB/native/signing proof."
+ON_SUCCESS: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-002
+ON_FAIL: RECONCILE_OR_REVIEW_TRANSACTION2_RECEIPT_NO_IMPLICIT_RETRY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-EXECUTION2-036
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Capsule exactly binds V108 main/validation/corrected executor/candidate/input identities; transaction/hash/root are distinct from attempt1; expiry bounded; roots/commands minimal; forbidden authority bits false; plan/non-mutation proof exact; no blocking/high/medium findings remain."
+EXIT_CONDITION: "One attempt returns durable PASS/FAILED_ROLLED_BACK/FAILED_PREMUTATION/RECONCILE_REQUIRED; never start a second attempt implicitly and never replay attempt 1."
 ~~~
 
-Review only. Do not replay attempt 1, remove staged dev23, execute attempt 2, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Before execution require unexpired capsule, current still exact dev22, exact input hashes, exact staged dev23 bytes, corrected executor identity and no existing transaction-002 receipt. After any receipt is written, stop and route it to review. LAB/native/signing/HKLM/SITE/qualification/HOST_READY remain forbidden.
