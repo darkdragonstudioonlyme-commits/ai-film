@@ -3,6 +3,8 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import shutil
+import socket
 import subprocess
 import sys
 import tempfile
@@ -11,7 +13,8 @@ from unittest import mock
 
 TOOL = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(TOOL))
-from deployment_transaction_common import UnknownCommandCompletion, canonical, path_within, sha_file
+from deployment_transaction_common import (SubprocessRunner, UnknownCommandCompletion, canonical,
+    minimal_subprocess_env, path_within, sha_file, validated_user_bus_env)
 
 def load(name, filename):
     spec = importlib.util.spec_from_file_location(name, TOOL / filename)
@@ -62,6 +65,16 @@ class FakeRunner:
             if op == "daemon-reload":
                 return subprocess.CompletedProcess(argv, 0, b"", b"")
         return subprocess.CompletedProcess(argv, 0, b"PASS\n", b"")
+
+
+class InvalidTimerRunner(FakeRunner):
+    def __init__(self, *, stdout=b"", stderr=b"Failed to connect to bus: No medium found\n"):
+        super().__init__(); self.invalid_stdout=stdout; self.invalid_stderr=stderr
+    def run(self, argv, *, input_bytes=None, input_path=None):
+        argv=list(argv); self.calls.append(argv)
+        if argv[:3] == [deploy.SYSTEMCTL, "--user", "is-enabled"]:
+            return subprocess.CompletedProcess(argv, 1, self.invalid_stdout, self.invalid_stderr)
+        return super().run(argv, input_bytes=input_bytes, input_path=input_path)
 
 class ProdlikeTxnTests(unittest.TestCase):
     MAIN = "1" * 40
@@ -388,6 +401,87 @@ class ProdlikeTxnTests(unittest.TestCase):
         link = self.r / "escape"
         link.symlink_to(outside, target_is_directory=True)
         self.assertFalse(path_within(link / "x", self.r))
+
+    def _make_bus(self, *, mode=0o700):
+        base = self.r / "run-user"; runtime = base / str(os.getuid()); runtime.mkdir(parents=True); runtime.chmod(mode)
+        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM); sock.bind(str(runtime / "bus"))
+        self.addCleanup(sock.close); return base, runtime, runtime / "bus"
+
+    def test_user_bus_env_validated_and_default_runner_remains_minimal(self):
+        base, runtime, bus = self._make_bus()
+        env = validated_user_bus_env(runtime_base=base)
+        self.assertEqual(env, {"XDG_RUNTIME_DIR": str(runtime), "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(bus)})
+        default = SubprocessRunner().env
+        self.assertNotIn("XDG_RUNTIME_DIR", default); self.assertNotIn("DBUS_SESSION_BUS_ADDRESS", default)
+        self.assertNotIn("validated_user_bus_env", (TOOL / "rebuild_lab_candidate-v2.py").read_text())
+
+    def test_user_bus_failclosed_matrix(self):
+        uid=os.getuid(); base=self.r / "missing-base"; base.mkdir()
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_MISSING_OR_UNSAFE"):
+            validated_user_bus_env(runtime_base=base)
+        base=self.r / "file-base"; base.mkdir(); (base/str(uid)).write_text("x")
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_NOT_DIRECTORY"):
+            validated_user_bus_env(runtime_base=base)
+        base,runtime,bus=self._make_bus(mode=0o777)
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_WRITABLE"):
+            validated_user_bus_env(runtime_base=base)
+        base=self.r/"owner-base"; runtime=base/str(uid+1); runtime.mkdir(parents=True); runtime.chmod(0o700)
+        with self.assertRaisesRegex(Exception, "USER_BUS_RUNTIME_OWNER"):
+            validated_user_bus_env(uid=uid+1,runtime_base=base)
+        base=self.r/"no-bus"; runtime=base/str(uid); runtime.mkdir(parents=True); runtime.chmod(0o700)
+        with self.assertRaisesRegex(Exception, "USER_BUS_SOCKET_MISSING_OR_UNSAFE"):
+            validated_user_bus_env(runtime_base=base)
+        (runtime/"bus").write_text("not socket")
+        with self.assertRaisesRegex(Exception, "USER_BUS_NOT_SOCKET"):
+            validated_user_bus_env(runtime_base=base)
+        (runtime/"bus").unlink(); sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM); sock.bind(str(runtime/"bus")); self.addCleanup(sock.close)
+        original = Path.lstat
+        def wrong_owner(path_obj):
+            st=original(path_obj)
+            if path_obj == runtime/"bus":
+                class S: pass
+                fake=S(); fake.st_mode=st.st_mode; fake.st_uid=uid+1; return fake
+            return st
+        with mock.patch.object(Path, "lstat", new=wrong_owner):
+            with self.assertRaisesRegex(Exception, "USER_BUS_SOCKET_OWNER"):
+                validated_user_bus_env(runtime_base=base)
+
+    def test_timer_semantic_states_and_invalid_observations(self):
+        enabled, raw = deploy._enabled_state(subprocess.CompletedProcess([],0,b"enabled\n",b"")); self.assertTrue(enabled); self.assertEqual(raw,"enabled")
+        enabled, raw = deploy._enabled_state(subprocess.CompletedProcess([],1,b"disabled\n",b"")); self.assertFalse(enabled); self.assertEqual(raw,"disabled")
+        active, raw = deploy._active_state(subprocess.CompletedProcess([],0,b"active\n",b"")); self.assertTrue(active); self.assertEqual(raw,"active")
+        active, raw = deploy._active_state(subprocess.CompletedProcess([],3,b"inactive\n",b"")); self.assertFalse(active); self.assertEqual(raw,"inactive")
+        for cp, reason, fn in [
+            (subprocess.CompletedProcess([],1,b"",b""),"TIMER_ENABLED_STATE_INVALID",deploy._enabled_state),
+            (subprocess.CompletedProcess([],1,b"unknown\n",b""),"TIMER_ENABLED_STATE_INVALID",deploy._enabled_state),
+            (subprocess.CompletedProcess([],1,b"disabled\n",b"Failed to connect to bus"),"TIMER_ENABLED_STDERR",deploy._enabled_state),
+            (subprocess.CompletedProcess([],3,b"activating\n",b""),"TIMER_ACTIVE_STATE_INVALID",deploy._active_state)]:
+            with self.assertRaisesRegex(Exception, reason): fn(cp)
+
+    def test_invalid_timer_observation_is_durable_premutation_failure(self):
+        runner=InvalidTimerRunner(); out=deploy.execute_transaction(**self.kwargs(runner))
+        self.assertEqual(out["state"],"FAILED_PREMUTATION"); self.assertFalse(out["mutation_started"])
+        self.assertEqual(os.readlink(self.current),str(self.old)); self.assertFalse(self.release_target.exists()); self.assertFalse(self.deploy_receipt.exists())
+
+    def test_reconcile_receipt_is_never_replayed(self):
+        runner=FakeRunner(); auth_sha=self.write_auth()
+        self.txn_receipt.write_text(json.dumps({"transaction_id":"PRODLIKE-TXN-001","authorization_sha256":auth_sha,"state":"RECONCILE_REQUIRED","mutation_started":True}))
+        out=deploy.execute_transaction(**self.kwargs(runner,auth_sha)); self.assertEqual(out["state"],"RECONCILE_REQUIRED"); self.assertEqual(runner.calls,[])
+
+    def test_exact_staged_dev23_reused_and_drift_fails_closed(self):
+        shutil.copytree(self.release_source,self.release_target); runner=FakeRunner(); out=deploy.execute_transaction(**self.kwargs(runner)); self.assertEqual(out["state"],"PASS")
+        self.tearDown(); self.setUp(); shutil.copytree(self.release_source,self.release_target); (self.release_target/"runtime-manifest.json").write_text("{}")
+        runner=FakeRunner(); out=deploy.execute_transaction(**self.kwargs(runner)); self.assertEqual(out["state"],"FAILED_ROLLED_BACK"); self.assertEqual(os.readlink(self.current),str(self.old))
+
+    def test_prodlike_main_explicitly_opts_into_only_validated_bus_env(self):
+        captured={}
+        def fake_execute(**kwargs): captured.update(kwargs["runner"].env); return {"state":"PASS"}
+        argv=["tool","--binding","b","--binding-sha256","h","--release-source","r","--control-bundle","c","--current-link","l","--current-deployment-receipt","dr","--current-runtime-manifest","rm","--release-target","rt","--bin-root","br","--unit-root","ur","--config-path","cp","--rollback-root","rr","--authorization","a","--authorization-sha256","ah","--main-commit","m","--validation-commit","v","--executor-commit","e","--executor-tree","t","--receipt","rec","--deployment-receipt","dep","--execute"]
+        with mock.patch.object(sys,"argv",argv), mock.patch.object(deploy,"validated_user_bus_env",return_value={"XDG_RUNTIME_DIR":"/run/user/1","DBUS_SESSION_BUS_ADDRESS":"unix:path=/run/user/1/bus"}), mock.patch.object(deploy,"execute_transaction",side_effect=fake_execute):
+            os.environ["SECRET_SHOULD_NOT_LEAK"]="x"
+            try:self.assertEqual(deploy.main(),0)
+            finally:os.environ.pop("SECRET_SHOULD_NOT_LEAK",None)
+        self.assertEqual(captured["XDG_RUNTIME_DIR"],"/run/user/1");self.assertEqual(captured["DBUS_SESSION_BUS_ADDRESS"],"unix:path=/run/user/1/bus");self.assertNotIn("SECRET_SHOULD_NOT_LEAK",captured)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

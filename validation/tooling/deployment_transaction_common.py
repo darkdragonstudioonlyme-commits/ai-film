@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import stat
 import subprocess
 import time
 from typing import Any, Iterable, Sequence
@@ -189,19 +190,42 @@ class Runner:
             input_path: str | Path | None = None) -> subprocess.CompletedProcess:
         raise NotImplementedError
 
+def minimal_subprocess_env() -> dict[str, str]:
+    return {
+        "HOME": os.environ.get("HOME", "/home/dragon"),
+        "USER": os.environ.get("USER", "dragon"),
+        "LOGNAME": os.environ.get("LOGNAME", "dragon"),
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/usr/bin:/bin:/mnt/c/Windows/System32",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+    }
+
+def validated_user_bus_env(*, uid: int | None = None, runtime_base: str | Path = "/run/user") -> dict[str, str]:
+    if uid is None:
+        uid = os.getuid()
+    req(type(uid) is int and uid >= 0, "USER_BUS_UID")
+    runtime = Path(runtime_base) / str(uid)
+    req(runtime.exists() and not runtime.is_symlink(), "USER_BUS_RUNTIME_MISSING_OR_UNSAFE")
+    rst = runtime.lstat()
+    req(stat.S_ISDIR(rst.st_mode), "USER_BUS_RUNTIME_NOT_DIRECTORY")
+    req(rst.st_uid == uid, "USER_BUS_RUNTIME_OWNER")
+    req((rst.st_mode & 0o022) == 0, "USER_BUS_RUNTIME_WRITABLE")
+    bus = runtime / "bus"
+    req(bus.exists() and not bus.is_symlink(), "USER_BUS_SOCKET_MISSING_OR_UNSAFE")
+    bst = bus.lstat()
+    req(stat.S_ISSOCK(bst.st_mode), "USER_BUS_NOT_SOCKET")
+    req(bst.st_uid == uid, "USER_BUS_SOCKET_OWNER")
+    return {
+        "XDG_RUNTIME_DIR": str(runtime),
+        "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(bus),
+    }
+
 class SubprocessRunner(Runner):
-    """Production runner. Callers must validate argv against internal + authorized allowlists first."""
+    """Production runner. Default environment is minimal and intentionally has no user-bus capability."""
     def __init__(self, env: dict[str, str] | None = None):
-        self.env = env or {
-            "HOME": os.environ.get("HOME", "/home/dragon"),
-            "USER": os.environ.get("USER", "dragon"),
-            "LOGNAME": os.environ.get("LOGNAME", "dragon"),
-            "LANG": "C.UTF-8",
-            "LC_ALL": "C.UTF-8",
-            "PATH": "/usr/bin:/bin:/mnt/c/Windows/System32",
-            "PYTHONNOUSERSITE": "1",
-            "PYTHONDONTWRITEBYTECODE": "1",
-        }
+        self.env = dict(env) if env is not None else minimal_subprocess_env()
 
     def run(self, argv: Sequence[str], *, input_bytes: bytes | None = None,
             input_path: str | Path | None = None) -> subprocess.CompletedProcess:

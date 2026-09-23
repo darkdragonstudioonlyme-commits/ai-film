@@ -14,8 +14,8 @@ from typing import Any
 from deployment_transaction_common import (
     Runner, SubprocessRunner, TxnError, UnknownCommandCompletion, append_event,
     assert_input_hashes, atomic_json, atomic_symlink, begin_transaction,
-    copy_file_exact, load_authorization, load_json, req, require_within,
-    run_checked, set_receipt, sha_file,
+    copy_file_exact, load_authorization, load_json, minimal_subprocess_env, req, require_within,
+    run_checked, set_receipt, sha_file, validated_user_bus_env,
 )
 from v02_candidate_profile import ProfileError, load_profile
 
@@ -92,6 +92,32 @@ def _decode(cp: subprocess.CompletedProcess) -> str:
     raw = cp.stdout if isinstance(cp.stdout, (bytes, bytearray)) else str(cp.stdout).encode()
     return raw.decode("utf-8", errors="replace").strip()
 
+def _decode_stderr(cp: subprocess.CompletedProcess) -> str:
+    raw = cp.stderr if isinstance(cp.stderr, (bytes, bytearray)) else str(cp.stderr).encode()
+    return raw.decode("utf-8", errors="replace").strip()
+
+def _enabled_state(cp: subprocess.CompletedProcess) -> tuple[bool, str]:
+    raw = _decode(cp); err = _decode_stderr(cp)
+    req(not err, "TIMER_ENABLED_STDERR:" + err)
+    true_states = {"enabled", "enabled-runtime", "linked", "linked-runtime", "alias"}
+    false_states = {"disabled", "static", "indirect", "generated", "transient", "masked", "masked-runtime"}
+    req(raw in true_states | false_states, "TIMER_ENABLED_STATE_INVALID:" + raw)
+    if raw in true_states:
+        req(cp.returncode == 0, "TIMER_ENABLED_RC_STATE_MISMATCH")
+        return True, raw
+    req(cp.returncode in (1, 3, 4), "TIMER_DISABLED_RC_STATE_MISMATCH")
+    return False, raw
+
+def _active_state(cp: subprocess.CompletedProcess) -> tuple[bool, str]:
+    raw = _decode(cp); err = _decode_stderr(cp)
+    req(not err, "TIMER_ACTIVE_STDERR:" + err)
+    req(raw in {"active", "inactive", "failed"}, "TIMER_ACTIVE_STATE_INVALID:" + raw)
+    if raw == "active":
+        req(cp.returncode == 0, "TIMER_ACTIVE_RC_STATE_MISMATCH")
+        return True, raw
+    req(cp.returncode in (1, 3, 4), "TIMER_INACTIVE_RC_STATE_MISMATCH")
+    return False, raw
+
 def capture_timer_state(runner: Runner, timers: list[str], authorized: list[list[str]]) -> dict:
     internal = [[SYSTEMCTL, "--user"]]
     out = {}
@@ -102,10 +128,11 @@ def capture_timer_state(runner: Runner, timers: list[str], authorized: list[list
         ac = run_checked(runner, [SYSTEMCTL, "--user", "is-active", timer],
                          internal_prefixes=internal, authorized_prefixes=authorized,
                          allowed_returncodes=(0, 1, 3, 4))
+        enabled, enabled_raw = _enabled_state(en)
+        active, active_raw = _active_state(ac)
         out[timer] = {
-            "enabled": en.returncode == 0 and _decode(en) == "enabled",
-            "active": ac.returncode == 0 and _decode(ac) == "active",
-            "enabled_raw": _decode(en), "active_raw": _decode(ac),
+            "enabled": enabled, "active": active,
+            "enabled_raw": enabled_raw, "active_raw": active_raw,
         }
     return out
 
@@ -460,7 +487,8 @@ def main() -> int:
             authorization=a.authorization, authorization_sha256=a.authorization_sha256,
             main_commit=a.main_commit, validation_commit=a.validation_commit,
             executor_commit=a.executor_commit, executor_tree=a.executor_tree, receipt_path=a.receipt,
-            deployment_receipt=a.deployment_receipt, runner=SubprocessRunner(),
+            deployment_receipt=a.deployment_receipt,
+            runner=SubprocessRunner(env={**minimal_subprocess_env(), **validated_user_bus_env()}),
         )
         print(json.dumps(out, sort_keys=True, separators=(",", ":")))
         return 0 if out["state"] == "PASS" else 3
