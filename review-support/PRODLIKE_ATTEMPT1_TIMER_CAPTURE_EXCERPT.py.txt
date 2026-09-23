@@ -1,0 +1,37 @@
+                   if x.startswith("systemd/") and x.endswith(".timer"))
+    req(len(names) == 11 and len(set(names)) == 11, "TIMER_POPULATION")
+    return names
+
+def service_for_timer(timer: str) -> str:
+    req(timer.endswith(".timer"), "TIMER_NAME")
+    return timer[:-6] + ".service"
+
+def _decode(cp: subprocess.CompletedProcess) -> str:
+    raw = cp.stdout if isinstance(cp.stdout, (bytes, bytearray)) else str(cp.stdout).encode()
+    return raw.decode("utf-8", errors="replace").strip()
+
+def capture_timer_state(runner: Runner, timers: list[str], authorized: list[list[str]]) -> dict:
+    internal = [[SYSTEMCTL, "--user"]]
+    out = {}
+    for timer in timers:
+        en = run_checked(runner, [SYSTEMCTL, "--user", "is-enabled", timer],
+                         internal_prefixes=internal, authorized_prefixes=authorized,
+                         allowed_returncodes=(0, 1, 3, 4))
+        ac = run_checked(runner, [SYSTEMCTL, "--user", "is-active", timer],
+                         internal_prefixes=internal, authorized_prefixes=authorized,
+                         allowed_returncodes=(0, 1, 3, 4))
+        out[timer] = {
+            "enabled": en.returncode == 0 and _decode(en) == "enabled",
+            "active": ac.returncode == 0 and _decode(ac) == "active",
+            "enabled_raw": _decode(en), "active_raw": _decode(ac),
+        }
+    return out
+
+def quiesce(runner: Runner, timers: list[str], authorized: list[list[str]]) -> None:
+    internal = [[SYSTEMCTL, "--user"]]
+    for timer in timers:
+        run_checked(runner, [SYSTEMCTL, "--user", "stop", timer],
+                    internal_prefixes=internal, authorized_prefixes=authorized)
+        run_checked(runner, [SYSTEMCTL, "--user", "stop", service_for_timer(timer)],
+                    internal_prefixes=internal, authorized_prefixes=authorized,
+                    allowed_returncodes=(0, 5))

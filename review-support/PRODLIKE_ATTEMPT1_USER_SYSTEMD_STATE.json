@@ -1,0 +1,134 @@
+{
+  "aifilm-p00-control-backup.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-current-verify.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-dr-rehearsal.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-evidence-ledger.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-failclosed-campaign.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-host-mirror.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-offhost-export.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-rebuild-verify.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-recovery-verify.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-runtime-health.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  },
+  "aifilm-p00-v02-authority-watch.timer": {
+    "is-active": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "active"
+    },
+    "is-enabled": {
+      "rc": 0,
+      "stderr": "",
+      "stdout": "enabled"
+    }
+  }
+}

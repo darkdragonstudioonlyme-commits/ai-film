@@ -1,0 +1,55 @@
+            return False
+    req(all(not any(overlaps(root, secret) for secret in sensitive) for root in resolved_roots),
+        "AUTHORIZATION_ROOT_SENSITIVE")
+    # The reviewed prodlike contract explicitly permits the dragon user-systemd tree.
+    # Keep the rest of ~/.config sensitive and reject any ancestor broad enough to cover it.
+    req(all(not overlaps(root, config_root) or under(root, reviewed_user_systemd)
+            for root in resolved_roots), "AUTHORIZATION_ROOT_CONFIG_SCOPE")
+    prefixes = value["allowed_command_prefixes"]
+    req(type(prefixes) is list and prefixes and all(type(x) is list and x and all(isinstance(y, str) and y for y in x)
+                                      for x in prefixes), "AUTHORIZATION_COMMANDS")
+    forbidden = {'sudo','su','bash','sh','dash','zsh','cmd.exe','powershell.exe','pwsh','curl','wget','pip','pip3','apt','apt-get','claude'}
+    for prefix in prefixes:
+        req(Path(prefix[0]).is_absolute(), "AUTHORIZATION_COMMAND_NOT_ABSOLUTE:" + prefix[0])
+        req(Path(prefix[0]).name.lower() not in forbidden, "AUTHORIZATION_COMMAND_FORBIDDEN:" + prefix[0])
+    for field in ("native_execution_authorized", "signing_authorized", "hklm_authorized",
+                  "site_authorized", "qualification_authorized", "host_ready_authorized"):
+        req(value[field] is False, "AUTHORIZATION_FORBIDDEN_CAPABILITY:" + field)
+    expires = value["expires_at"]
+    req(type(expires) is int and expires > 0, "AUTHORIZATION_EXPIRY")
+    if now_unix is None:
+        now_unix = int(time.time())
+    req(now_unix <= expires, "AUTHORIZATION_EXPIRED")
+    return value, actual
+
+class Runner:
+    def run(self, argv: Sequence[str], *, input_bytes: bytes | None = None,
+            input_path: str | Path | None = None) -> subprocess.CompletedProcess:
+        raise NotImplementedError
+
+class SubprocessRunner(Runner):
+    """Production runner. Callers must validate argv against internal + authorized allowlists first."""
+    def __init__(self, env: dict[str, str] | None = None):
+        self.env = env or {
+            "HOME": os.environ.get("HOME", "/home/dragon"),
+            "USER": os.environ.get("USER", "dragon"),
+            "LOGNAME": os.environ.get("LOGNAME", "dragon"),
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "PATH": "/usr/bin:/bin:/mnt/c/Windows/System32",
+            "PYTHONNOUSERSITE": "1",
+            "PYTHONDONTWRITEBYTECODE": "1",
+        }
+
+    def run(self, argv: Sequence[str], *, input_bytes: bytes | None = None,
+            input_path: str | Path | None = None) -> subprocess.CompletedProcess:
+        req(not (input_bytes is not None and input_path is not None), "COMMAND_STDIN_AMBIGUOUS")
+        try:
+            if input_path is not None:
+                p = Path(input_path)
+                req(p.is_file() and not p.is_symlink(), "COMMAND_STDIN_FILE_UNSAFE")
+                with p.open("rb") as fh:
+                    return subprocess.run(list(argv), stdin=fh, stdout=subprocess.PIPE,
+                                          stderr=subprocess.PIPE, env=self.env, check=False)
+            return subprocess.run(list(argv), input=input_bytes, stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE, env=self.env, check=False)
