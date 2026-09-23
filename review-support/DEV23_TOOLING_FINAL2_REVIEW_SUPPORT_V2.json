@@ -1,0 +1,78 @@
+{
+  "candidate_remote_commit": "1be6ce38fcccb444a5d4c62614b7c0befccc156f",
+  "candidate_tree": "ee57d28a4703cb97d49424babf3e16e770d4772c",
+  "files": {
+    "CODE-REVIEW-P00-001_DEV23_STAGE_DERIVED_AUTHORITY.md": {
+      "bytes": 4074,
+      "sha256": "c8c29f5979a9b0eb8a83e602baecfcbbe923055bb379ca017c23ad92f7f7936d"
+    },
+    "DEV23_TOOLING_FINAL2_HISTORICAL_11.log": {
+      "bytes": 3208,
+      "sha256": "1b5b5e826e690a7335956f79de1e9fd6d0c78d19648fccbf587b9033ca9571d8"
+    },
+    "DEV23_TOOLING_FINAL2_HOST_EVIDENCE.json": {
+      "bytes": 1960,
+      "sha256": "da46ecb884cbb948288e5d53132b39b372d7bfbd109e05b25457aaea1e363394"
+    },
+    "DEV23_TOOLING_FINAL2_REVIEW_SUPPORT.json": {
+      "bytes": 708,
+      "sha256": "2e8e508d42cbdfdd2a497fb028e89c5f6444fdc9354b5e345821e26318db3b0a"
+    },
+    "DEV23_TOOLING_FINAL2_SUCCESSOR_TESTS.log": {
+      "bytes": 5345,
+      "sha256": "391b78729255d39f518fb9da06954ddbdabbd7cbb1c48d89eaea40c2cf208628"
+    },
+    "TEST_CHANGE-P00-V03-AUTHORITY-CONSTRUCTIBILITY-007.md": {
+      "bytes": 5635,
+      "sha256": "7afed37ac5961840120a6cdd9c9030dd64d281dc9bf861eaa45daad4e4bac934"
+    },
+    "TEST_REVIEW-P00-V03-AUTHORITY-CONSTRUCTIBILITY-007.md": {
+      "bytes": 3315,
+      "sha256": "342aa192ef7ced6159efb9c364c8ef05e68f3cc815d4191fd9ac38b2a8474b13"
+    },
+    "product/DEV23_CORE_AUTHORITY_LOGIC.py.txt": {
+      "bytes": 39621,
+      "sha256": "96684f0d9eb028af860e15e1c71635e63920f4a1d6f6fc352e8e7562e0040f18"
+    },
+    "product/DEV23_FINAL_IDENTITY_WITNESS.json": {
+      "bytes": 4059,
+      "sha256": "958b0af2c66e9d3e38c5e5f2d41ccd7c23f6b1492c6e74ed7c6e0549d90a425b"
+    },
+    "product/DEV23_LINEAGE_RECON.py.txt": {
+      "bytes": 6130,
+      "sha256": "73862ed63012141d46077e12ef8882b528608713c30dabd3819c8cc1fd3fb544"
+    },
+    "product/DEV23_MATERIALIZATION.py.txt": {
+      "bytes": 13516,
+      "sha256": "39fd04a1af3f9e0d49f2bc3b3718a89752891f9f1ce3a9b61bc3558c5577bbdd"
+    },
+    "product/DEV23_REQUEST_VALIDATION.py.txt": {
+      "bytes": 2215,
+      "sha256": "906c2eb0621c8fee7f336669300bc9e1f849a07d37557b326cddb87f1bc795e3"
+    },
+    "product/DEV23_RESOLVE_FENCE_ONLY.py.txt": {
+      "bytes": 1330,
+      "sha256": "ee81b76f9365681e4682ebee8687d0402d098b049b77bbaa7940941c6c41612d"
+    },
+    "product/DEV23_TEST_CLASS_EntryFenceTests.py.txt": {
+      "bytes": 9289,
+      "sha256": "d52f3d3605671aecc9473f251ee3a24bd0ea866cdd72b1b7e0ae910b717227b0"
+    },
+    "product/DEV23_TEST_CLASS_PublicationTests.py.txt": {
+      "bytes": 6951,
+      "sha256": "81b2271c51a52b3f6c908861ea3016cfa10507fcf50b4d4040f677f626053f28"
+    },
+    "product/DEV23_TEST_CLASS_RestoreMaterializationTests.py.txt": {
+      "bytes": 12773,
+      "sha256": "94fc4971daa95b68b2bd63ee786c7252ea96597cbb00af0ec9910d2afb5858e1"
+    },
+    "product/DEV23_TEST_DEV15_DIFF.patch": {
+      "bytes": 8299,
+      "sha256": "712aa433ab41e85ad1b40ef1a70389c1b10fbb016475d2b45936a798b059ac6f"
+    }
+  },
+  "kind": "DEV23_TOOLING_FINAL2_REVIEW_SUPPORT_V2",
+  "product_candidate_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "product_review_support_source": "71eb9207ce0c477382f04185bb933273492c5094",
+  "schema_version": 1
+}

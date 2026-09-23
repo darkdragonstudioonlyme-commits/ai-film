@@ -1,0 +1,115 @@
+import ast
+import hashlib
+import inspect
+import json
+from pathlib import Path
+import tomllib
+import unittest
+from unittest import mock
+from helpers import binding
+
+from aifilm_p00 import CONTRACT_DIGEST, NATIVE_BACKEND_AVAILABLE, __version__
+from aifilm_p00.codec import canonical, digest, sha256
+from aifilm_p00.errors import P00Error
+from aifilm_p00.native.harness_cases import procedure
+from aifilm_p00.native.stage_authority import (
+    EXPECTED_MODE_COUNTS, LATE_PROOF_SLOTS, MODE_COUNTS, RULES,
+    authority_rule, build_next_policy, classify_publication, generation_record,
+    manifest_for_suite, object_ref, select_destination_locator,
+    validate_base_manifest, validate_catalog_invariants, validate_copy_receipt,
+    validate_destination_allowlist, validate_late_proof_scope, validate_request_row,
+    materialize_stage_objects, validate_lineage, lineage_revocation_refs, publish_candidate,
+    prepare_lineage_revocation, resolve_reconciliation_plan,
+)
+
+H='a'*64
+
+EXPECTED_LATE_PROOF_CONTRACT = {
+    'source_manifest': {'scope_fields':['host_id','target_registration','source_class'],'owner_assertion':True},
+    'protection': {'scope_fields':['host_id','source_witness'],'owner_assertion':True},
+    'restore_envelope': {'scope_fields':['host_id','checkpoint_digest','envelope_digest'],'owner_assertion':False},
+    'user_init_receipt': {'scope_fields':['host_id','plan_digest','target_registration','user'],'owner_assertion':False},
+    'c3_postchecks': {'scope_fields':['host_id','plan_digest','host_boot'],'owner_assertion':True},
+    'operation_postcheck': {'scope_variants':[
+        ['host_id','plan_digest','step_id','target_registration','host_boot'],
+        ['host_id','plan_digest','execution_phase','baseline_digest','host_boot','target_registration']], 'owner_assertion':False},
+    'run_revocation': {'scope_fields':['host_id','original_plan_digest','recovery_request_digest','disposition'],'owner_assertion':True},
+    'read_absence_observation': {'scope_fields':['host_id','original_plan_digest','read_id','intent_digest','command_digest'],'owner_assertion':False},
+    'restore_result': {'scope_fields':['host_id','checkpoint_digest','source_target_registration'],'owner_assertion':False},
+}
+
+ACCEPTED_PRIMITIVE_SHA256 = {
+    'src/aifilm_p00/native/request_entry.py':'9f94cb7bfdbf5217ff330c5b3bcf74c1ad951a54d2ae9a2ef28520564bd036e3',
+    'src/aifilm_p00/native/trust.py':'fa14b8d76d9967cb9f66600ec186ec8b2601ea6a2fc377f8a4cdc3bcd7d09e08',
+    'src/aifilm_p00/session.py':'184c20ea26c3b082a17c6de99b7c3f1137c2e55d203b1c8f3975ef6a54eefdab',
+    'src/aifilm_p00/native/proofs.py':'bb1977bb25b7f2612822f8a16fc5ee9d1d944de31da817b4c9d364920c13be9f',
+    'src/aifilm_p00/admission.py':'619726fd419846da5cd5dbd07b9584a84ee2cf5e082254a9d136c89c17e59533',
+    'src/aifilm_p00/native/coordination.py':'d40024d253dda9d5a3639d202dad6ff3bcdd8118b746be836ec824fe268714cc',
+}
+
+class Store:
+    def __init__(self, objects):
+        self.objects=objects
+        self.pins={}
+        for (role,ref),value in objects.items(): self.pins.setdefault(role,set()).add(ref)
+        self.pins={k:frozenset(v) for k,v in self.pins.items()}
+        self.withdrawn=frozenset()
+        self.generation=1
+        self.policy_digest='e'*64
+    def get(self,role,ref):
+        if (role,ref) not in self.objects: raise P00Error(15,'UNTRUSTED_DOCUMENT')
+        return self.objects[(role,ref)]
+
+def add(objects,role,value):
+    value={'role':role,**value}
+    ref=object_ref(value);objects[(role,ref)]=value;return ref
+
+def suite(case_id='T00-09'):
+    return {'role':'lab_acceptance_suite','schema_version':1,'withdrawn':False,'approved':True,'source_kind':'LAB',
+            'host_id':'lab-host','owner_sid':'S-1-5-21-1','build_digest':'b'*64,'test_set_digest':'c'*64,
+            'contract_digest':CONTRACT_DIGEST,'execution_id':'exec-1','issued_at':'2026-09-22T00:00:00Z',
+            'expires_at':'2026-09-22T23:00:00Z','cases':{case_id:{}}}
+
+def descriptor(s):
+    return {'schema_version':1,'withdrawn':False,'source_kind':'LAB','host_id':s['host_id'],'owner_sid':s['owner_sid'],
+            'build_digest':s['build_digest'],'test_set_digest':s['test_set_digest'],'contract_digest':CONTRACT_DIGEST,
+            'execution_id':s['execution_id'],'host_roles':{'source':'lab-host','destination':'lab-host'},
+            'issued_at':s['issued_at'],'expires_at':s['expires_at']}
+
+def manifest(objects,suite_ref,descriptor_ref,extra):
+    entries=[{'role':'lab_acceptance_suite','ref':suite_ref},{'role':'lab_campaign_descriptor','ref':descriptor_ref},*extra]
+    entries=sorted(entries,key=lambda x:(x['role'],x['ref']))
+    return add(objects,'lab_base_manifest',{'schema_version':1,'withdrawn':False,'source_kind':'LAB',
+        'descriptor_ref':descriptor_ref,'entries':entries})
+
+
+def policy_bytes(objects,generation=1,withdrawn=()):
+    pins={};blobs={}
+    for (role,ref),value in objects.items():
+        pins.setdefault(role,[]).append(ref);blobs[ref]=canonical(value).decode('utf-8')
+    return canonical({'schema_version':1,'host_id':'lab-host','operator_sids':['S-1-5-21-1'],
+        'role_pins':{k:sorted(v) for k,v in pins.items()},'blobs':blobs,'withdrawn_refs':sorted(withdrawn),'generation':generation})
+
+
+class PublicationTests(unittest.TestCase):
+    def event(self): return {'kind':'AUTHORITY_GENERATION_PUBLISHED','publication_key':'1'*64}
+    def test_parent_writes_once_and_commits_event(self):
+        p=FakePort(b'parent');out=publish_candidate(p,b'parent',b'candidate',self.event())
+        self.assertEqual(out['state'],'COMPLETE');self.assertEqual((p.writes,p.appends),(1,1));self.assertEqual(p.current,b'candidate')
+    def test_written_candidate_appends_missing_event_without_rewrite(self):
+        p=FakePort(b'candidate');publish_candidate(p,b'parent',b'candidate',self.event());self.assertEqual((p.writes,p.appends),(0,1))
+    def test_exact_event_is_idempotent(self):
+        e=self.event();p=FakePort(b'candidate',e);publish_candidate(p,b'parent',b'candidate',e);self.assertEqual((p.writes,p.appends),(0,0))
+    def test_unknown_parent_blocks_without_write(self):
+        p=FakePort(b'newer')
+        with self.assertRaises(P00Error): publish_candidate(p,b'parent',b'candidate',self.event())
+        self.assertEqual((p.writes,p.appends),(0,0))
+    def test_conflicting_publication_event_blocks(self):
+        p=FakePort(b'candidate',{'kind':'AUTHORITY_GENERATION_PUBLISHED','publication_key':'2'*64})
+        with self.assertRaises(P00Error): publish_candidate(p,b'parent',b'candidate',self.event())
+    def test_write_then_event_failure_recovers_without_rewrite(self):
+        e=self.event();p=FakePort(b'parent',fail_append_once=True)
+        with self.assertRaises(OSError): publish_candidate(p,b'parent',b'candidate',e)
+        self.assertEqual(p.current,b'candidate');self.assertEqual(p.writes,1)
+        publish_candidate(p,b'parent',b'candidate',e);self.assertEqual(p.writes,1);self.assertEqual(p.event,e)
+

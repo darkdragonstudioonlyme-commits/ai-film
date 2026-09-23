@@ -1,0 +1,18 @@
+def resolve_fence_stage(root,initial_store,suite_ref,suite,case_id,index,proc,slot_ref):
+    import os
+    require(os.name=='nt',11,'WINDOWS_X64_REQUIRED')
+    from pathlib import Path
+    from .coordination import NativeGuard,NativeJournal
+    from .entry import _entry
+    from .filesystem import WindowsPaths
+    from .trust import NativeStore
+    api,entry_store,_,_,_=_entry(Path(root));require(entry_store.policy_digest==initial_store.policy_digest and entry_store.generation==initial_store.generation,16,'AUTHORITY_PARENT_DRIFT')
+    guard=NativeGuard(api,entry_store.operators);require(guard.acquire(),21,'LOCK_BUSY')
+    try:
+        paths=WindowsPaths(api,entry_store.operators);journal=NativeJournal(paths,guard,entry_store.host_id);fence=journal.load_fence()
+        require(fence is not None,11,'FENCE_BOUND_STATE_REQUIRED')
+        port=JournalPolicyPort(api,journal,Path(root)/'contracts');current=NativeStore(port.read_policy(),Path(root)/'contracts')
+        require(current.policy_digest==entry_store.policy_digest and current.generation==entry_store.generation,16,'AUTHORITY_PARENT_DRIFT')
+        require(current.get('lab_acceptance_suite',suite_ref)==suite,16,'LAB_SUITE_SCOPE')
+        return resolve_reconciliation_plan(current,suite_ref,suite,case_id,index,proc,slot_ref,fence)
+    finally:guard.release()

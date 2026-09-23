@@ -1,0 +1,107 @@
+diff --git a/tests/test_dev15_harness.py b/tests/test_dev15_harness.py
+index a643ab5..ceeee9d 100644
+--- a/tests/test_dev15_harness.py
++++ b/tests/test_dev15_harness.py
+@@ -1,5 +1,6 @@
+ """Author tests for the native acceptance controller; never native validation."""
+ import inspect,json,subprocess,sys,unittest
++from copy import deepcopy
+ from pathlib import Path
+ from unittest.mock import patch
+ 
+@@ -13,6 +14,8 @@ from aifilm_p00.native.harness_controller import (validate_stage,validate_fixtur
+     _validate_preparation_action,_validate_preparation_witness,_validate_evidence,_validate_controller_step,
+     _validate_controller_windows,_collector)
+ from aifilm_p00.native.request_entry import prepare_execution
++from aifilm_p00.plans import make_plan
++from helpers import binding
+ 
+ ROOT=Path(__file__).resolve().parents[1]
+ H='a'*64
+@@ -20,7 +23,10 @@ BUILD='b'*64
+ 
+ 
+ class Store:
+-    def __init__(self,items):self.items=items
++    def __init__(self,items):
++        self.items=items;self.withdrawn=frozenset();pins={}
++        for role,ref in items:pins.setdefault(role,set()).add(ref)
++        self.pins={k:frozenset(v) for k,v in pins.items()}
+     def get(self,role,ref):
+         value=self.items[(role,ref)]
+         self.last=(role,ref)
+@@ -123,18 +129,29 @@ class StageOracleTests(unittest.TestCase):
+         stage_ref='3'*64;oracle_ref='4'*64;raw_ref='5'*64;collector_ref='6'*64
+         witness_ref='7'*64;wraw='8'*64;action_ref='9'*64
+         actual={'epoch_changed':True};run_id='run-1'
++        b=binding(proc.routes[0],'LAB');b['host_id']='lab-host';b['owner_sid']=self.owner;b['build_digest']=BUILD
++        plan=make_plan(b,'2026-09-15T00:30:00Z');plan_digest=plan['plan_digest']
++        plan_doc={'role':'execution_plan','schema_version':1,'withdrawn':False,'plan':plan};plan_ref=sha256(json.dumps(plan_doc,sort_keys=True,separators=(',',':')).encode())
++        request={'route':proc.routes[0],'interface':'verify','plan_ref':plan_ref}
++        manifest_doc={'role':'lab_base_manifest','schema_version':1,'withdrawn':False,'source_kind':'LAB','descriptor_ref':'d'*64,
++            'entries':sorted([{'role':'execution_plan','ref':plan_ref},{'role':'lab_acceptance_suite','ref':self.suite_ref},
++                              {'role':'lab_campaign_descriptor','ref':'d'*64}],key=lambda x:(x['role'],x['ref']))}
++        manifest_ref=sha256(json.dumps(manifest_doc,sort_keys=True,separators=(',',':')).encode())
++        suite=deepcopy(self.suite);suite['cases']={proc.case_id:{'requests':[request]}}
+         subject=digest({'execution_id':'exec-1','suite_ref':self.suite_ref,'case_id':proc.case_id,
+             'procedure_digest':proc.procedure_digest,'fixture_result_ref':self.fixture_result_ref,
+-            'stage_index':0,'plan_digest':H,'run_id':run_id,'oracle':'LIFECYCLE_EPOCH','host_id':'lab-host'})
++            'stage_index':0,'plan_digest':plan_digest,'run_id':run_id,'oracle':'LIFECYCLE_EPOCH','host_id':'lab-host'})
+         oracle={'role':'lab_case_oracle','schema_version':1,'withdrawn':False,'source_kind':'LAB',
+             'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,
+             'execution_id':'exec-1','suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,
+-            'stage_index':0,'plan_digest':H,'run_id':run_id,'oracle':'LIFECYCLE_EPOCH','status':'OBSERVED',
++            'stage_index':0,'plan_digest':plan_digest,'run_id':run_id,'oracle':'LIFECYCLE_EPOCH','status':'OBSERVED',
+             'actual':actual,'raw_artifact_ref':raw_ref,'collector_ref':collector_ref,'timestamp_utc':'2026-09-15T01:00:00Z'}
+         stage={'role':'lab_case_stage','schema_version':1,'withdrawn':False,'source_kind':'LAB','host_id':'lab-host',
+             'owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,'execution_id':'exec-1',
+             'suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,'stage_index':0,'route':proc.routes[0],
+-            'plan_digest':H,'run_id':run_id,'normalized_exit':0,'state':'COMPLETE','journal_ref':None,'fence_digest':None,
++            'plan_digest':plan_digest,'run_id':run_id,'authority_mode':'CONCRETE_PRE_V03','authority_ref':plan_ref,
++            'authority_lineage_ref':None,'base_manifest_ref':manifest_ref,
++            'normalized_exit':0,'state':'COMPLETE','journal_ref':None,'fence_digest':None,
+             'oracle_refs':[oracle_ref],'evidence_refs':[],'preparation_witness_refs':[witness_ref],
+             'started_at':'2026-09-15T01:30:00Z','ended_at':'2026-09-15T02:00:00Z',
+             'native_execution_observed':True,'parent_case_executed':False}
+@@ -143,31 +160,31 @@ class StageOracleTests(unittest.TestCase):
+         wsubject=digest({'execution_id':'exec-1','suite_ref':self.suite_ref,'case_id':proc.case_id,
+             'procedure_digest':proc.procedure_digest,'fixture_result_ref':self.fixture_result_ref,
+             'preparation_action_ref':action_ref,'preparation_index':0,'preparation':proc.preparations[0],
+-            'stage_index':0,'plan_digest':H,'run_id':run_id,'host_id':'lab-host'})
++            'stage_index':0,'plan_digest':plan_digest,'run_id':run_id,'host_id':'lab-host'})
+         witness={'role':'lab_case_preparation_witness','schema_version':1,'withdrawn':False,'source_kind':'LAB',
+             'host_id':'lab-host','owner_sid':self.owner,'case_id':proc.case_id,'procedure_digest':proc.procedure_digest,
+             'execution_id':'exec-1','suite_ref':self.suite_ref,'fixture_result_ref':self.fixture_result_ref,
+             'preparation_action_ref':action_ref,'preparation_index':0,'preparation':proc.preparations[0],
+-            'mode':'ARRANGE','stage_index':0,'plan_digest':H,'run_id':run_id,'status':'OBSERVED','actual':wactual,
++            'mode':'ARRANGE','stage_index':0,'plan_digest':plan_digest,'run_id':run_id,'status':'OBSERVED','actual':wactual,
+             'raw_artifact_ref':wraw,'collector_ref':collector_ref,'observed_at':'2026-09-15T01:20:00Z',
+             'valid_through':'2026-09-15T02:10:00Z'}
+         wrawdoc={'schema_version':1,'withdrawn':False,'actual_digest':digest(wactual),'subject_digest':wsubject}
+         store=Store({('lab_case_stage',stage_ref):stage,('lab_case_oracle',oracle_ref):oracle,
+-                     ('lab_case_preparation_witness',witness_ref):witness,
+-                     ('collector_release',collector_ref):collector(),('lab_case_artifact',raw_ref):raw,
+-                     ('lab_case_artifact',wraw):wrawdoc})
+-        return store,stage_ref,action_ref
++                     ('lab_case_preparation_witness',witness_ref):witness,('collector_release',collector_ref):collector(),
++                     ('lab_case_artifact',raw_ref):raw,('lab_case_artifact',wraw):wrawdoc,
++                     ('execution_plan',plan_ref):plan_doc,('lab_base_manifest',manifest_ref):manifest_doc})
++        return store,stage_ref,action_ref,suite
+ 
+     def test_native_stage_process_exit_without_journal_or_entry_oracle_is_rejected(self):
+-        proc=procedure('T05-A');store,stage_ref,action_ref=self.oracle_store(proc)
++        proc=procedure('T05-A');store,stage_ref,action_ref,suite=self.oracle_store(proc)
+         with self.assertRaises(P00Error) as caught:
+-            validate_stage(store,stage_ref,proc,0,'lab-host',self.owner,self.suite_ref,self.suite,self.fixture_result_ref,[action_ref])
++            validate_stage(store,stage_ref,proc,0,'lab-host',self.owner,self.suite_ref,suite,self.fixture_result_ref,[action_ref])
+         self.assertEqual(caught.exception.reason,'LAB_STAGE_PROCESS_EXIT_ONLY')
+ 
+     def test_stage_cannot_replay_under_another_suite(self):
+-        proc=procedure('T05-A');store,stage_ref,action_ref=self.oracle_store(proc)
++        proc=procedure('T05-A');store,stage_ref,action_ref,suite=self.oracle_store(proc)
+         with self.assertRaises(P00Error) as caught:
+-            validate_stage(store,stage_ref,proc,0,'lab-host',self.owner,'f'*64,self.suite,self.fixture_result_ref,[action_ref])
++            validate_stage(store,stage_ref,proc,0,'lab-host',self.owner,'f'*64,suite,self.fixture_result_ref,[action_ref])
+         self.assertEqual(caught.exception.reason,'LAB_STAGE_SCHEMA')
+ 
+     def test_stale_fixture_result_is_rejected(self):

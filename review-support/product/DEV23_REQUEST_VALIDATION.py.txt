@@ -1,0 +1,17 @@
+# exact request-row normalization
+def validate_request_row(store,suite_ref,suite,case_id,proc,index,request):
+    rule=authority_rule(case_id,index,proc.routes[index],proc.procedure_digest);require(type(request) is dict,10,'LAB_STAGE_REQUEST')
+    manifest_ref,manifest=manifest_for_suite(store,suite_ref);legacy=(set(request)=={'route','interface','plan_ref'})
+    if legacy:
+        require(rule['authority_mode']=='CONCRETE_PRE_V03' and request['route']==rule['route'],10,'LAB_STAGE_REQUEST_MODE');hash_value(request['plan_ref']);require(manifest_contains(manifest,'execution_plan',request['plan_ref']),15,'CONCRETE_PLAN_MANIFEST')
+        return {**request,'authority_mode':'CONCRETE_PRE_V03','base_manifest_ref':manifest_ref,'authority_ref':request['plan_ref'],'authority_lineage_ref':None}
+    mode=request.get('authority_mode');require(mode==rule['authority_mode'] and request.get('route')==rule['route'] and type(request.get('interface')) is str,10,'LAB_STAGE_REQUEST_MODE')
+    if mode=='CONCRETE_PRE_V03':
+        require(set(request)=={'route','interface','authority_mode','plan_ref'},10,'LAB_STAGE_REQUEST');hash_value(request['plan_ref']);require(manifest_contains(manifest,'execution_plan',request['plan_ref']),15,'CONCRETE_PLAN_MANIFEST');ref=request['plan_ref']
+    elif mode=='STAGE_DERIVED':
+        require(set(request)=={'route','interface','authority_mode','derivation_slot_ref'},10,'LAB_STAGE_REQUEST');validate_slot(store,request['derivation_slot_ref'],suite,case_id,index,proc,rule,manifest);ref=request['derivation_slot_ref']
+    elif mode=='ENTRY_PROBE_AUTHORITY':
+        require(set(request)=={'route','interface','authority_mode','entry_probe_ref'},10,'LAB_STAGE_REQUEST');validate_entry_probe(store,request['entry_probe_ref'],suite,case_id,index,proc,rule,manifest);ref=request['entry_probe_ref']
+    else:
+        require(mode=='FENCE_BOUND_RECONCILIATION' and set(request)=={'route','interface','authority_mode','reconciliation_slot_ref'},10,'LAB_STAGE_REQUEST');validate_slot(store,request['reconciliation_slot_ref'],suite,case_id,index,proc,rule,manifest);ref=request['reconciliation_slot_ref']
+    return {**deepcopy(request),'base_manifest_ref':manifest_ref,'authority_ref':ref}

@@ -1,0 +1,59 @@
+# lineage/fence reconciliation logic; exact definitions from candidate b6b3dfe37aae64513ff086b5af744e406ad7bfe3
+def validate_stage_authority_record(store,suite_ref,suite,case_id,index,proc,request,stage):
+    checked=validate_request_row(store,suite_ref,suite,case_id,proc,index,request);mode=checked['authority_mode']
+    require(stage.get('authority_mode')==mode and stage.get('base_manifest_ref')==checked['base_manifest_ref'],16,'LAB_STAGE_AUTHORITY_MODE')
+    require(stage.get('authority_ref')==checked.get('authority_ref',checked.get('derivation_slot_ref',checked.get('reconciliation_slot_ref'))),16,'LAB_STAGE_AUTHORITY_REF')
+    if mode=='CONCRETE_PRE_V03':
+        require(stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE')
+        plan=store.get('execution_plan',checked['plan_ref']).get('plan');require(check_plan(plan)['purpose']==checked['route'] and plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    elif mode=='ENTRY_PROBE_AUTHORITY':
+        require(stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE');probe=store.get('entry_probe_set',checked['entry_probe_ref']);plan=store.get('execution_plan',probe['plan_ref']).get('plan')
+        require(plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    elif mode=='STAGE_DERIVED':
+        ref=stage.get('authority_lineage_ref');hash_value(ref);lineage=validate_lineage(store,ref,suite_ref,case_id,index,checked['derivation_slot_ref'])
+        require(lineage['execution_plan_ref'] in _pins(store,'execution_plan'),16,'LAB_STAGE_AUTHORITY_PLAN');plan=store.get('execution_plan',lineage['execution_plan_ref']).get('plan');require(plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    else:
+        require(mode=='FENCE_BOUND_RECONCILIATION' and stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE')
+        _,manifest=manifest_for_suite(store,suite_ref);slot=validate_slot(store,checked['reconciliation_slot_ref'],suite,case_id,index,proc,authority_rule(case_id,index,checked['route'],proc.procedure_digest),manifest)
+        matches=[r for r in slot['reconciliation_plan_refs'] if store.get('execution_plan',r).get('plan',{}).get('plan_digest')==stage['plan_digest']]
+        require(len(matches)==1,16,'LAB_STAGE_AUTHORITY_PLAN')
+    return True
+
+def validate_handoff(store,ref,suite_ref,suite,case_id,proc,dep):
+    hash_value(ref);h=store.get('lab_stage_state_handoff',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','execution_id','suite_ref','case_id','procedure_digest','stage_index','route','plan_digest','stage_ref','state','evidence_digest','actual','timestamp_utc'}
+    require(set(h)==req and h['schema_version']==1 and h['withdrawn'] is False and h['source_kind']=='LAB',15,'STAGE_HANDOFF_SCHEMA')
+    require(h['host_id']==suite['host_id'] and h['owner_sid']==suite['owner_sid'] and h['execution_id']==suite['execution_id'] and h['suite_ref']==suite_ref and h['case_id']==case_id and h['procedure_digest']==proc.procedure_digest,16,'STAGE_HANDOFF_SCOPE')
+    require(h['stage_index']==dep['producer_stage_index'] and h['route']==dep['required_route'] and h['state']==dep['required_state'],16,'STAGE_HANDOFF_DEPENDENCY')
+    hash_value(h['plan_digest']);hash_value(h['stage_ref']);hash_value(h['evidence_digest']);instant(h['timestamp_utc']);require(type(h['actual']) is dict,15,'STAGE_HANDOFF_ACTUAL')
+    for name in dep['provides']: require(name in h['actual'],16,'STAGE_HANDOFF_SELECTOR')
+    return h
+
+def resolve_reconciliation_plan(store,suite_ref,suite,case_id,index,proc,slot_ref,fence):
+    manifest_ref,manifest=manifest_for_suite(store,suite_ref);rule=authority_rule(case_id,index,proc.routes[index],proc.procedure_digest)
+    slot=validate_slot(store,slot_ref,suite,case_id,index,proc,rule,manifest);require(rule['authority_mode']=='FENCE_BOUND_RECONCILIATION',10,'RECONCILIATION_SLOT_MODE')
+    require(type(fence) is dict and bool(fence),11,'FENCE_BOUND_STATE_REQUIRED');matches=[]
+    for ref in slot['reconciliation_plan_refs']:
+        doc=store.get('execution_plan',ref);plan=doc.get('plan');s=check_plan(plan)
+        if s['purpose']!='RECONCILIATION_ONLY' or s['host_id']!=suite['host_id'] or s['owner_sid']!=suite['owner_sid']:continue
+        original_ref=s['refs'].get('original_plan')
+        if original_ref is None:continue
+        original=store.get('original_plan',original_ref).get('plan');old=check_plan(original)
+        if fence.get('plan_digest')==original['plan_digest'] and all(fence.get(k)==old[k] for k in ('run_id','host_id','owner_sid')):matches.append((ref,plan))
+    require(len(matches)==1,15,'RECONCILIATION_PLAN_SELECTION');return {'plan_ref':matches[0][0],'plan':matches[0][1],'slot_ref':slot_ref,'base_manifest_ref':manifest_ref}
+
+def generation_for_lineage(store,lineage_ref):
+    rows=[]
+    for ref in sorted(_pins(store,'lab_authority_generation')):
+        g=store.get('lab_authority_generation',ref);added=g.get('added_refs',{})
+        if lineage_ref in added.get('lab_derived_stage_authority',[]):rows.append((ref,g))
+    require(len(rows)==1,15,'DERIVED_GENERATION_SELECTION');return rows[0]
+
+def publication_event(parent_digest,new_digest,lineage_ref,lineage,generation_ref,generation):
+    for h in (parent_digest,new_digest,lineage_ref,generation_ref):hash_value(h)
+    key=digest({'new_policy_digest':new_digest,'suite_ref':lineage['suite_ref'],'case_id':lineage['case_id'],'stage_index':lineage['stage_index'],'slot_ref':lineage['slot_ref']})
+    return {'kind':'AUTHORITY_GENERATION_PUBLISHED','publication_key':key,'parent_policy_digest':parent_digest,'new_policy_digest':new_digest,
+            'parent_generation':generation['parent_generation'],'new_generation':generation['new_generation'],
+            'immutable_partition_digest':lineage['immutable_partition_digest'],'suite_ref':lineage['suite_ref'],'case_id':lineage['case_id'],
+            'stage_index':lineage['stage_index'],'slot_ref':lineage['slot_ref'],'lineage_ref':lineage_ref,
+            'execution_plan_ref':lineage['execution_plan_ref'],'generation_ref':generation_ref}

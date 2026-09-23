@@ -1,0 +1,406 @@
+"""Reviewed V03 temporal stage authority resolver and monotonic policy construction.
+
+This module is internal to the LAB harness. It embeds the closed 133-stage temporal
+authority map reviewed by TEST_CHANGE 006/007 and exposes fail-closed pure primitives
+before any Windows-native publication path is entered.
+"""
+from __future__ import annotations
+
+from copy import deepcopy
+from datetime import datetime,timezone,timedelta
+import json
+
+from .. import CONTRACT_DIGEST
+from ..codec import canonical,digest,hash_value,instant,integer,loads,sha256,token,windows_path
+from ..errors import require
+from ..plans import check_plan,make_plan
+
+AUTHORITY_MODES=frozenset({'CONCRETE_PRE_V03','STAGE_DERIVED','ENTRY_PROBE_AUTHORITY','FENCE_BOUND_RECONCILIATION'})
+# OMITTED_STATIC_RULE_ROWS: full hash bound by DEV23_REVIEW_MANIFEST.json
+RULES={(r['case_id'],r['stage_index']):r for r in _RULE_ROWS}
+MODE_COUNTS={m:sum(1 for r in _RULE_ROWS if r['authority_mode']==m) for m in AUTHORITY_MODES}
+EXPECTED_MODE_COUNTS={'CONCRETE_PRE_V03':94,'STAGE_DERIVED':15,'ENTRY_PROBE_AUTHORITY':10,'FENCE_BOUND_RECONCILIATION':14}
+LATE_PROOF_SLOTS=json.loads('{"c3_postchecks":{"boundary":"AFTER_REBOOT_CURRENT_HOST_BOOT_OBSERVED","owner_assertion":true,"scope_fields":["host_id","plan_digest","host_boot"]},"operation_postcheck":{"boundary":"AFTER_OPERATION_EPOCH_OBSERVED_FOR_RECONCILIATION","owner_assertion":false,"scope_fields":["host_id","plan_digest","step_id","target_registration","host_boot"]},"protection":{"boundary":"AFTER_CURRENT_PROTECTION_BOUNDARY_OBSERVED_BEFORE_C3","owner_assertion":true,"scope_fields":["host_id","source_witness"]},"read_absence_observation":{"boundary":"AFTER_INTERRUPTED_READ_STATE_EXISTS","owner_assertion":false,"scope_fields":["host_id","read_id"]},"restore_envelope":{"boundary":"AFTER_CHECKPOINT_IDENTITY_AND_DESTINATION_ISOLATION_OBSERVED","owner_assertion":false,"scope_fields":["host_id","checkpoint_digest","envelope_digest"]},"restore_result":{"boundary":"AFTER_DESTINATION_RESTORE_ACTUAL_COMPLETES","owner_assertion":false,"scope_fields":["host_id","checkpoint_digest","source_target_registration"]},"run_revocation":{"boundary":"AFTER_UNRESOLVED_FENCE_EXISTS","owner_assertion":true,"scope_fields":["host_id","original_plan_digest","original_fence_digest","recovery_request_digest","disposition"]},"source_manifest":{"boundary":"AFTER_TARGET_IDENTITY_OBSERVED","owner_assertion":true,"scope_fields":["host_id","target_registration","source_class"]},"user_init_receipt":{"boundary":"AFTER_OWNER_USER_INIT_OBSERVED","owner_assertion":false,"scope_fields":["host_id","plan_digest","target_registration","user"]}}')
+
+DESTINATION_FIELDS={'host_id','volume_id','canonical_path','purpose','max_bytes','offline_copy_required'}
+POLICY_FIELDS={'schema_version','host_id','operator_sids','role_pins','blobs','withdrawn_refs','generation'}
+
+def authority_rule(case_id,index,route=None,procedure_digest=None):
+    require(type(case_id) is str and type(index) is int and (case_id,index) in RULES,10,'TEMPORAL_AUTHORITY_STAGE')
+    rule=RULES[(case_id,index)]
+    if route is not None: require(rule['route']==route,16,'TEMPORAL_AUTHORITY_ROUTE')
+    if procedure_digest is not None: require(rule['procedure_digest']==procedure_digest,16,'TEMPORAL_AUTHORITY_PROCEDURE')
+    return deepcopy(rule)
+
+def validate_catalog_invariants():
+    require(len(RULES)==133 and MODE_COUNTS==EXPECTED_MODE_COUNTS,15,'TEMPORAL_AUTHORITY_CATALOG')
+    require(len(LATE_PROOF_SLOTS)==9,15,'LATE_PROOF_CATALOG')
+    return True
+
+def object_ref(obj): return sha256(canonical(obj))
+
+def _pins(store,role):
+    pins=getattr(store,'pins',None)
+    require(type(pins) is dict,15,'AUTHORITY_PIN_SET_REQUIRED')
+    return pins.get(role,frozenset())-getattr(store,'withdrawn',frozenset())
+
+def validate_descriptor(store,ref,suite):
+    hash_value(ref);d=store.get('lab_campaign_descriptor',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id','host_roles','issued_at','expires_at'}
+    require(set(d)==req and d['schema_version']==1 and d['withdrawn'] is False and d['source_kind']=='LAB',15,'CAMPAIGN_DESCRIPTOR_SCHEMA')
+    for k in ('host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id'): require(d[k]==suite[k],16,'CAMPAIGN_DESCRIPTOR_SCOPE')
+    require(d['contract_digest']==CONTRACT_DIGEST and type(d['host_roles']) is dict and bool(d['host_roles']),16,'CAMPAIGN_DESCRIPTOR_SCOPE')
+    require(instant(d['issued_at'])==instant(suite['issued_at']) and instant(d['expires_at'])==instant(suite['expires_at']),16,'CAMPAIGN_DESCRIPTOR_TIME')
+    return d
+
+def validate_base_manifest(store,ref,suite_ref=None):
+    hash_value(ref);m=store.get('lab_base_manifest',ref)
+    req={'role','schema_version','withdrawn','source_kind','descriptor_ref','entries'}
+    require(set(m)==req and m['schema_version']==1 and m['withdrawn'] is False and m['source_kind']=='LAB',15,'BASE_MANIFEST_SCHEMA')
+    hash_value(m['descriptor_ref']);entries=m['entries'];require(type(entries) is list and bool(entries),15,'BASE_MANIFEST_ENTRIES')
+    normalized=[];seen=set()
+    for row in entries:
+        require(type(row) is dict and set(row)=={'role','ref'} and type(row['role']) is str and bool(row['role']),15,'BASE_MANIFEST_ENTRY')
+        hash_value(row['ref']);key=(row['role'],row['ref']);require(key not in seen,15,'BASE_MANIFEST_DUPLICATE');seen.add(key);normalized.append(key)
+    require(normalized==sorted(normalized) and ('lab_campaign_descriptor',m['descriptor_ref']) in seen,15,'BASE_MANIFEST_ORDER')
+    if suite_ref is not None: require(('lab_acceptance_suite',suite_ref) in seen,15,'BASE_MANIFEST_SUITE')
+    require(('lab_base_manifest',ref) not in seen,15,'BASE_MANIFEST_SELF_REFERENCE')
+    return m
+
+def manifest_for_suite(store,suite_ref):
+    rows=[]
+    for ref in sorted(_pins(store,'lab_base_manifest')):
+        m=validate_base_manifest(store,ref)
+        if any(x=={'role':'lab_acceptance_suite','ref':suite_ref} for x in m['entries']): rows.append((ref,m))
+    require(len(rows)==1,15,'BASE_MANIFEST_SELECTION')
+    return rows[0]
+
+def manifest_contains(manifest,role,ref): return {'role':role,'ref':ref} in manifest['entries']
+
+def validate_destination_locator(value):
+    require(type(value) is dict and set(value)==DESTINATION_FIELDS,10,'DESTINATION_LOCATOR_SCHEMA')
+    token(value['host_id']);require(type(value['volume_id']) is str and 0<len(value['volume_id'])<=240 and all(ord(c)>=32 and ord(c)!=127 for c in value['volume_id']),10,'DESTINATION_VOLUME_ID');windows_path(value['canonical_path'])
+    require(value['purpose']=='STAGING_IMPORT' and type(value['offline_copy_required']) is bool,10,'DESTINATION_LOCATOR_SCOPE')
+    integer(value['max_bytes'],1,2**63-1);return deepcopy(value)
+
+def validate_destination_allowlist(rows):
+    require(type(rows) is list,10,'DESTINATION_ALLOWLIST_SCHEMA');checked=[validate_destination_locator(x) for x in rows]
+    keys=[(x['host_id'],x['volume_id'],x['canonical_path']) for x in checked]
+    require(len(keys)==len(set(keys)) and keys==sorted(keys),15,'DESTINATION_ALLOWLIST_ORDER');return checked
+
+def select_destination_locator(rows,host_id,*,require_offline):
+    checked=validate_destination_allowlist(rows);matches=[x for x in checked if x['host_id']==host_id and x['offline_copy_required'] is require_offline]
+    require(len(matches)==1,12,'DESTINATION_LOCATOR_SELECTION');return matches[0]
+
+def validate_copy_receipt(value,source,locator):
+    req={'role','schema_version','withdrawn','source_kind','source_export_ref','source_host_id','source_volume_id','source_canonical_path','source_checkpoint_sha256','source_checkpoint_bytes','destination','destination_sha256','destination_bytes','collector_ref','raw_artifact_ref','timestamp_utc'}
+    require(type(value) is dict and set(value)==req and value['role']=='checkpoint_copy_receipt' and value['schema_version']==1 and value['withdrawn'] is False and value['source_kind']=='LAB',15,'CHECKPOINT_COPY_SCHEMA')
+    for k in ('source_export_ref','source_checkpoint_sha256','collector_ref','raw_artifact_ref'): hash_value(value[k])
+    require(value['source_export_ref']==source.get('source_export_ref'),16,'CHECKPOINT_COPY_SOURCE')
+    require(value['source_host_id']==source['source_host_id'] and value['source_volume_id']==source['source_volume_id'] and value['source_canonical_path']==source['source_canonical_path'],16,'CHECKPOINT_COPY_SOURCE')
+    require(value['source_checkpoint_sha256']==source['checkpoint_sha256'] and value['source_checkpoint_bytes']==source['checkpoint_bytes'],16,'CHECKPOINT_COPY_SOURCE')
+    require(value['destination']==locator and value['destination_sha256']==source['checkpoint_sha256'] and value['destination_bytes']==source['checkpoint_bytes'],15,'CHECKPOINT_COPY_INTEGRITY')
+    require(value['destination_bytes']<=locator['max_bytes'],13,'CHECKPOINT_COPY_SIZE');instant(value['timestamp_utc']);return value
+
+def validate_late_proof_scope(role,scope,*,owner_assertion=None):
+    require(role in LATE_PROOF_SLOTS and type(scope) is dict,10,'LATE_PROOF_ROLE');spec=LATE_PROOF_SLOTS[role]
+    require(set(scope)==set(spec['scope_fields']) and all(v is not None for v in scope.values()),16,'LATE_PROOF_SCOPE')
+    if owner_assertion is not None: require(owner_assertion is spec['owner_assertion'],12,'LATE_PROOF_SOURCE_CLASS')
+    return deepcopy(spec)
+
+def _same_dependencies(a,b): return canonical(a)==canonical(b)
+
+def validate_slot(store,ref,suite,case_id,index,proc,rule,manifest):
+    hash_value(ref);s=store.get('lab_stage_derivation_slot',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id','case_id','procedure_digest','stage_index','route','interface','authority_mode','campaign_descriptor_ref','plan_template_ref','native_binding_template_ref','producer_dependencies','late_fields','derived_object_roles','maximum_approval_seconds','destination_locator_allowlist','reconciliation_plan_refs','semantic_selectors'}
+    require(set(s)==req and s['schema_version']==1 and s['withdrawn'] is False and s['source_kind']=='LAB',15,'DERIVATION_SLOT_SCHEMA')
+    for k in ('host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id'): require(s[k]==suite[k],16,'DERIVATION_SLOT_SCOPE')
+    require((s['case_id'],s['procedure_digest'],s['stage_index'],s['route'])==(case_id,proc.procedure_digest,index,rule['route']),16,'DERIVATION_SLOT_SCOPE')
+    require(s['authority_mode']==rule['authority_mode'] and _same_dependencies(s['producer_dependencies'],rule.get('producer_dependencies',[])),16,'DERIVATION_SLOT_DEPENDENCY')
+    require(s['late_fields']==rule.get('late_fields',[]) and s['derived_object_roles']==rule.get('derived_object_roles',[]),16,'DERIVATION_SLOT_LATE_SCOPE')
+    hash_value(s['campaign_descriptor_ref']);validate_descriptor(store,s['campaign_descriptor_ref'],suite)
+    require(manifest_contains(manifest,'lab_stage_derivation_slot',ref) and manifest_contains(manifest,'lab_campaign_descriptor',s['campaign_descriptor_ref']),15,'DERIVATION_SLOT_MANIFEST')
+    integer(s['maximum_approval_seconds'],1,86400);validate_destination_allowlist(s['destination_locator_allowlist'])
+    if rule['authority_mode']=='STAGE_DERIVED':
+        hash_value(s['plan_template_ref']);require(manifest_contains(manifest,'lab_stage_plan_template',s['plan_template_ref']),15,'DERIVATION_TEMPLATE_MANIFEST')
+        if s['native_binding_template_ref'] is not None: hash_value(s['native_binding_template_ref']);require(manifest_contains(manifest,'lab_native_binding_template',s['native_binding_template_ref']),15,'DERIVATION_TEMPLATE_MANIFEST')
+        require(s['reconciliation_plan_refs']==[],15,'DERIVATION_SLOT_RECONCILIATION_SCOPE')
+    elif rule['authority_mode']=='FENCE_BOUND_RECONCILIATION':
+        require(s['plan_template_ref'] is None and s['native_binding_template_ref'] is None and s['destination_locator_allowlist']==[],15,'RECONCILIATION_SLOT_SCHEMA')
+        require(type(s['reconciliation_plan_refs']) is list and bool(s['reconciliation_plan_refs']) and len(s['reconciliation_plan_refs'])==len(set(s['reconciliation_plan_refs'])),15,'RECONCILIATION_PLAN_SET')
+        for plan_ref in s['reconciliation_plan_refs']: hash_value(plan_ref);require(manifest_contains(manifest,'execution_plan',plan_ref),15,'RECONCILIATION_PLAN_MANIFEST')
+    else: require(False,10,'DERIVATION_SLOT_MODE')
+    return s
+
+def validate_entry_probe(store,ref,suite,case_id,index,proc,rule,manifest):
+    hash_value(ref);p=store.get('entry_probe_set',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id','case_id','procedure_digest','stage_index','route','interface','plan_ref'}
+    require(set(p)==req and p['schema_version']==1 and p['withdrawn'] is False and p['source_kind']=='LAB',15,'ENTRY_PROBE_SCHEMA')
+    for k in ('host_id','owner_sid','build_digest','test_set_digest','contract_digest','execution_id'): require(p[k]==suite[k],16,'ENTRY_PROBE_SCOPE')
+    require((p['case_id'],p['procedure_digest'],p['stage_index'],p['route'])==(case_id,proc.procedure_digest,index,rule['route']),16,'ENTRY_PROBE_SCOPE')
+    hash_value(p['plan_ref']);require(manifest_contains(manifest,'entry_probe_set',ref) and manifest_contains(manifest,'execution_plan',p['plan_ref']),15,'ENTRY_PROBE_MANIFEST');return p
+
+def validate_request_row(store,suite_ref,suite,case_id,proc,index,request):
+    rule=authority_rule(case_id,index,proc.routes[index],proc.procedure_digest);require(type(request) is dict,10,'LAB_STAGE_REQUEST')
+    manifest_ref,manifest=manifest_for_suite(store,suite_ref);legacy=(set(request)=={'route','interface','plan_ref'})
+    if legacy:
+        require(rule['authority_mode']=='CONCRETE_PRE_V03' and request['route']==rule['route'],10,'LAB_STAGE_REQUEST_MODE');hash_value(request['plan_ref']);require(manifest_contains(manifest,'execution_plan',request['plan_ref']),15,'CONCRETE_PLAN_MANIFEST')
+        return {**request,'authority_mode':'CONCRETE_PRE_V03','base_manifest_ref':manifest_ref,'authority_ref':request['plan_ref'],'authority_lineage_ref':None}
+    mode=request.get('authority_mode');require(mode==rule['authority_mode'] and request.get('route')==rule['route'] and type(request.get('interface')) is str,10,'LAB_STAGE_REQUEST_MODE')
+    if mode=='CONCRETE_PRE_V03':
+        require(set(request)=={'route','interface','authority_mode','plan_ref'},10,'LAB_STAGE_REQUEST');hash_value(request['plan_ref']);require(manifest_contains(manifest,'execution_plan',request['plan_ref']),15,'CONCRETE_PLAN_MANIFEST');ref=request['plan_ref']
+    elif mode=='STAGE_DERIVED':
+        require(set(request)=={'route','interface','authority_mode','derivation_slot_ref'},10,'LAB_STAGE_REQUEST');validate_slot(store,request['derivation_slot_ref'],suite,case_id,index,proc,rule,manifest);ref=request['derivation_slot_ref']
+    elif mode=='ENTRY_PROBE_AUTHORITY':
+        require(set(request)=={'route','interface','authority_mode','entry_probe_ref'},10,'LAB_STAGE_REQUEST');validate_entry_probe(store,request['entry_probe_ref'],suite,case_id,index,proc,rule,manifest);ref=request['entry_probe_ref']
+    else:
+        require(mode=='FENCE_BOUND_RECONCILIATION' and set(request)=={'route','interface','authority_mode','reconciliation_slot_ref'},10,'LAB_STAGE_REQUEST');validate_slot(store,request['reconciliation_slot_ref'],suite,case_id,index,proc,rule,manifest);ref=request['reconciliation_slot_ref']
+    return {**deepcopy(request),'base_manifest_ref':manifest_ref,'authority_ref':ref}
+
+
+def _path_parts(path,prefix):
+    require(type(path) is str and path.startswith(prefix+'.'),10,'LATE_PATH')
+    parts=path[len(prefix)+1:].split('.');require(all(parts),10,'LATE_PATH');return parts
+
+def _get_path(value,parts):
+    cur=value
+    for part in parts:
+        require(type(cur) is dict and part in cur,10,'TEMPLATE_PATH');cur=cur[part]
+    return cur
+
+def _set_late(value,path,prefix,replacement):
+    parts=_path_parts(path,prefix);cur=value
+    for part in parts[:-1]: require(type(cur) is dict and part in cur,10,'TEMPLATE_PATH');cur=cur[part]
+    leaf=parts[-1];require(cur.get(leaf)=={'$late':path},15,'TEMPLATE_LATE_MARKER');cur[leaf]=deepcopy(replacement)
+
+def _selector(selector, handoffs):
+    require(type(selector) is dict and set(selector)=={'producer_stage_index','actual_path'},10,'SELECTOR_SCHEMA')
+    idx=selector['producer_stage_index'];path=selector['actual_path']
+    require(type(idx) is int and idx in handoffs and type(path) is list and path and all(type(x) is str and x for x in path),10,'SELECTOR_SCHEMA')
+    return deepcopy(_get_path(handoffs[idx]['actual'],path))
+
+def validate_selector_map(selectors,late_fields,dependencies):
+    require(type(selectors) is dict,10,'SELECTOR_SCHEMA')
+    producers={x['producer_stage_index'] for x in dependencies}
+    auto={'semantic.expected_after','semantic.expected_envelope','semantic.refs.restore_envelope','semantic.refs.native_binding','semantic.refs.checkpoint_payload'}
+    required=set(late_fields)-auto
+    require(set(selectors)==required,15,'SELECTOR_COVERAGE')
+    for path,sel in selectors.items():
+        _path_parts(path,'semantic');require(type(sel) is dict and sel.get('producer_stage_index') in producers,15,'SELECTOR_PRODUCER')
+        require(set(sel)=={'producer_stage_index','actual_path'} and type(sel['actual_path']) is list and bool(sel['actual_path']),10,'SELECTOR_SCHEMA')
+    return True
+
+def validate_plan_template(store,ref,slot,manifest):
+    hash_value(ref);v=store.get('lab_stage_plan_template',ref)
+    req={'role','schema_version','withdrawn','source_kind','campaign_descriptor_ref','case_id','procedure_digest','stage_index','route','interface','semantic_template','created_at'}
+    require(set(v)==req and v['schema_version']==1 and v['withdrawn'] is False and v['source_kind']=='LAB',15,'PLAN_TEMPLATE_SCHEMA')
+    require(v['campaign_descriptor_ref']==slot['campaign_descriptor_ref'] and (v['case_id'],v['procedure_digest'],v['stage_index'],v['route'],v['interface'])==(slot['case_id'],slot['procedure_digest'],slot['stage_index'],slot['route'],slot['interface']),16,'PLAN_TEMPLATE_SCOPE')
+    require(manifest_contains(manifest,'lab_stage_plan_template',ref) and type(v['semantic_template']) is dict,15,'PLAN_TEMPLATE_MANIFEST')
+    instant(v['created_at'])
+    for path in slot['late_fields']: require(_get_path(v['semantic_template'],_path_parts(path,'semantic'))=={'$late':path},15,'PLAN_TEMPLATE_LATE_MARKER')
+    validate_selector_map(slot['semantic_selectors'],slot['late_fields'],slot['producer_dependencies'])
+    return v
+
+def validate_binding_template(store,ref,slot,manifest):
+    hash_value(ref);v=store.get('lab_native_binding_template',ref)
+    req={'role','schema_version','withdrawn','source_kind','campaign_descriptor_ref','case_id','procedure_digest','stage_index','route','binding_template','selectors'}
+    require(set(v)==req and v['schema_version']==1 and v['withdrawn'] is False and v['source_kind']=='LAB',15,'BINDING_TEMPLATE_SCHEMA')
+    require(v['campaign_descriptor_ref']==slot['campaign_descriptor_ref'] and (v['case_id'],v['procedure_digest'],v['stage_index'],v['route'])==(slot['case_id'],slot['procedure_digest'],slot['stage_index'],slot['route']),16,'BINDING_TEMPLATE_SCOPE')
+    require(manifest_contains(manifest,'lab_native_binding_template',ref) and type(v['binding_template']) is dict and type(v['selectors']) is dict,15,'BINDING_TEMPLATE_MANIFEST')
+    producers={x['producer_stage_index'] for x in slot['producer_dependencies']}
+    for path,sel in v['selectors'].items():
+        parts=_path_parts(path,'binding');require(len(parts)>=4 and parts[0]=='after_by_action' and parts[2]=='material',12,'BINDING_SELECTOR_AUTHORITY')
+        require(_get_path(v['binding_template'],parts)=={'$late':path},15,'BINDING_TEMPLATE_LATE_MARKER')
+        require(type(sel) is dict and set(sel)=={'producer_stage_index','actual_path'} and sel['producer_stage_index'] in producers and type(sel['actual_path']) is list and bool(sel['actual_path']),15,'BINDING_SELECTOR')
+    return v
+
+def select_handoffs(store,suite_ref,suite,case_id,proc,slot):
+    result={}
+    for dep in slot['producer_dependencies']:
+        matches=[]
+        for ref in sorted(_pins(store,'lab_stage_state_handoff')):
+            item=store.get('lab_stage_state_handoff',ref)
+            if item.get('suite_ref')==suite_ref and item.get('case_id')==case_id and item.get('stage_index')==dep['producer_stage_index']:
+                validate_handoff(store,ref,suite_ref,suite,case_id,proc,dep);matches.append((ref,item))
+        require(len(matches)==1,15,'STAGE_HANDOFF_SELECTION');ref,item=matches[0];result[dep['producer_stage_index']]={'ref':ref,**deepcopy(item)}
+    return result
+
+def select_late_proof(store,role,scope_prefix,owner_sid,now):
+    require(role in LATE_PROOF_SLOTS and type(scope_prefix) is dict,10,'LATE_PROOF_ROLE');spec=LATE_PROOF_SLOTS[role];matches=[]
+    for ref in sorted(_pins(store,role)):
+        item=store.get(role,ref);scope=item.get('scope')
+        if type(scope) is dict and set(scope)==set(spec['scope_fields']) and all(scope.get(k)==v for k,v in scope_prefix.items()): matches.append((ref,scope))
+    require(len(matches)==1,15,'LATE_PROOF_SELECTION');ref,scope=matches[0];validate_late_proof_scope(role,scope,owner_assertion=spec['owner_assertion'])
+    from .proofs import ProofReader
+    receipt=ProofReader(store,scope.get('host_id'),owner_sid,now).receipt(role,ref,scope,owner_assertion=spec['owner_assertion'])
+    return ref,receipt
+
+def _source_checkpoint(handoffs):
+    rows=[h for h in handoffs.values() if 'checkpoint_sha256' in h['actual']]
+    require(len(rows)==1,15,'CHECKPOINT_PRODUCER_SELECTION');a=rows[0]['actual'];hash_value(a['checkpoint_sha256']);integer(a['checkpoint_bytes'],1,2**63-1)
+    path=a.get('source_canonical_path',a.get('checkpoint_path'));windows_path(path)
+    source={'source_host_id':a.get('source_host_id',rows[0]['host_id']),'source_volume_id':a.get('source_volume_id'),'source_canonical_path':path,'checkpoint_sha256':a['checkpoint_sha256'],'checkpoint_bytes':a['checkpoint_bytes'],'source_export_ref':rows[0]['ref']}
+    require(type(source['source_volume_id']) is str and bool(source['source_volume_id']),15,'CHECKPOINT_SOURCE_LOCATOR');return source
+
+def _copy_receipt(store,source,locator):
+    matches=[]
+    for ref in sorted(_pins(store,'checkpoint_copy_receipt')):
+        item=store.get('checkpoint_copy_receipt',ref)
+        try: validate_copy_receipt(item,source,locator)
+        except Exception: continue
+        matches.append((ref,item))
+    require(len(matches)==1,15,'CHECKPOINT_COPY_SELECTION');return matches[0]
+
+def materialize_binding(store,slot,manifest,handoffs):
+    require(slot['native_binding_template_ref'] is not None,15,'BINDING_TEMPLATE_REQUIRED')
+    t=validate_binding_template(store,slot['native_binding_template_ref'],slot,manifest);binding=deepcopy(t['binding_template'])
+    for path,sel in t['selectors'].items(): _set_late(binding,path,'binding',_selector(sel,handoffs))
+    binding['role']='native_binding';binding['schema_version']=1;binding['withdrawn']=False;return binding
+
+def materialize_stage_objects(store,suite_ref,suite,case_id,index,proc,slot_ref,now):
+    manifest_ref,manifest=manifest_for_suite(store,suite_ref);rule=authority_rule(case_id,index,proc.routes[index],proc.procedure_digest)
+    slot=validate_slot(store,slot_ref,suite,case_id,index,proc,rule,manifest);require(rule['authority_mode']=='STAGE_DERIVED',10,'MATERIALIZE_STAGE_MODE')
+    template=validate_plan_template(store,slot['plan_template_ref'],slot,manifest);handoffs=select_handoffs(store,suite_ref,suite,case_id,proc,slot)
+    semantic=deepcopy(template['semantic_template']);values={}
+    for path,sel in slot['semantic_selectors'].items(): values[path]=_selector(sel,handoffs);_set_late(semantic,path,'semantic',values[path])
+    checkpoint_ref=None;envelope_ref=None;binding_ref=None;binding=None
+    need_source=('semantic.expected_checkpoint' in slot['late_fields'] or 'semantic.refs.checkpoint_payload' in slot['late_fields'])
+    source=_source_checkpoint(handoffs) if need_source else None
+    if 'semantic.expected_checkpoint' in slot['late_fields']:
+        require(source is not None and semantic.get('expected_checkpoint')==source['checkpoint_sha256'],16,'CHECKPOINT_SELECTOR_DRIFT')
+    if 'semantic.refs.checkpoint_payload' in slot['late_fields']:
+        require(source is not None,15,'CHECKPOINT_SOURCE_REQUIRED')
+        offline=source['source_host_id']!=suite['host_id'];locator=select_destination_locator(slot['destination_locator_allowlist'],suite['host_id'],require_offline=offline)
+        if offline: copy_ref,copy=_copy_receipt(store,source,locator);path=copy['destination']['canonical_path']
+        else:
+            require(locator['canonical_path']==source['source_canonical_path'],16,'SAME_HOST_CHECKPOINT_LOCATOR');path=source['source_canonical_path']
+        payload={'role':'checkpoint_payload','schema_version':1,'withdrawn':False,'path':path,'payload_digest':source['checkpoint_sha256'],'bytes':source['checkpoint_bytes']}
+        checkpoint_ref=object_ref(payload);values['semantic.refs.checkpoint_payload']=checkpoint_ref;_set_late(semantic,'semantic.refs.checkpoint_payload','semantic',checkpoint_ref)
+    else: payload=None
+    if 'semantic.expected_envelope' in slot['late_fields'] or 'semantic.refs.restore_envelope' in slot['late_fields']:
+        checkpoint=semantic.get('expected_checkpoint');hash_value(checkpoint)
+        envelope_ref,envelope=select_late_proof(store,'restore_envelope',{'host_id':suite['host_id'],'checkpoint_digest':checkpoint},suite['owner_sid'],now)
+        expected=envelope['scope']['envelope_digest']
+        if 'semantic.expected_envelope' in slot['late_fields']: values['semantic.expected_envelope']=expected;_set_late(semantic,'semantic.expected_envelope','semantic',expected)
+        if 'semantic.refs.restore_envelope' in slot['late_fields']: values['semantic.refs.restore_envelope']=envelope_ref;_set_late(semantic,'semantic.refs.restore_envelope','semantic',envelope_ref)
+    if 'semantic.refs.native_binding' in slot['late_fields']:
+        binding=materialize_binding(store,slot,manifest,handoffs);binding_ref=object_ref(binding);values['semantic.refs.native_binding']=binding_ref;_set_late(semantic,'semantic.refs.native_binding','semantic',binding_ref)
+    if 'semantic.expected_after' in slot['late_fields']:
+        require(binding is not None,15,'DERIVED_AFTER_BINDING_REQUIRED');from .bindings import validate_binding
+        # make_plan supplies operations; derive expected_after from the signed concrete transition material.
+        purpose=semantic['purpose'];from ..plans import OPERATIONS
+        last_action=OPERATIONS[purpose][-1][0];row=binding.get('after_by_action',{}).get(last_action)
+        require(type(row) is dict and type(row.get('material')) is dict,15,'DERIVED_AFTER_TEMPLATE');values['semantic.expected_after']=deepcopy(row['material']);_set_late(semantic,'semantic.expected_after','semantic',row['material'])
+    plan=make_plan(semantic,template['created_at']);from .bindings import validate_binding
+    if binding is not None: validate_binding(binding,plan['semantic'])
+    issued=max([instant(h['timestamp_utc']) for h in handoffs.values()]);expires=min(issued+timedelta(seconds=slot['maximum_approval_seconds']),instant(suite['expires_at']))
+    require(instant(suite['issued_at'])<=issued<=now<=expires,12,'DERIVED_APPROVAL_WINDOW')
+    approval={'role':'approval','plan_digest':plan['plan_digest'],'owner_sid':suite['owner_sid'],'interface':slot['interface'],'purpose':plan['semantic']['purpose'],'classes':sorted({x['class'] for x in plan['semantic']['operations']}),'issued_at':issued.isoformat(),'expires_at':expires.isoformat(),'maintenance_start':issued.isoformat(),'maintenance_end':expires.isoformat(),'withdrawn':False}
+    approval_ref=object_ref(approval);plan['approval_ref']=approval_ref;execution={'role':'execution_plan','schema_version':1,'withdrawn':False,'plan':plan};execution_ref=object_ref(execution)
+    additions={};
+    if binding is not None:additions.setdefault('native_binding',[]).append(binding)
+    if payload is not None:additions.setdefault('checkpoint_payload',[]).append(payload)
+    additions.setdefault('approval',[]).append(approval);additions.setdefault('execution_plan',[]).append(execution)
+    producer_refs=[handoffs[k]['ref'] for k in sorted(handoffs)];evidence=[handoffs[k]['evidence_digest'] for k in sorted(handoffs)]
+    lineage={'role':'lab_derived_stage_authority','schema_version':1,'withdrawn':False,'source_kind':'LAB','base_manifest_ref':manifest_ref,'slot_ref':slot_ref,'suite_ref':suite_ref,'execution_id':suite['execution_id'],'case_id':case_id,'procedure_digest':proc.procedure_digest,'stage_index':index,'route':rule['route'],'producer_handoff_refs':producer_refs,'producer_evidence_digests':evidence,'materialized_values_digest':digest(values),'plan_template_ref':slot['plan_template_ref'],'native_binding_template_ref':slot['native_binding_template_ref'],'native_binding_ref':binding_ref,'execution_plan_ref':execution_ref,'approval_ref':approval_ref,'checkpoint_payload_ref':checkpoint_ref,'restore_envelope_ref':envelope_ref,'immutable_partition_digest':manifest_ref,'parent_policy_digest':store.policy_digest,'parent_generation':store.generation,'new_generation':store.generation+1,'created_at':issued.isoformat(),'expires_at':expires.isoformat()}
+    lineage_ref=object_ref(lineage);additions.setdefault('lab_derived_stage_authority',[]).append(lineage)
+    return {'manifest_ref':manifest_ref,'slot':slot,'handoffs':handoffs,'values':values,'additions':additions,'lineage_ref':lineage_ref,'lineage':lineage,'execution_plan_ref':execution_ref,'plan':plan}
+
+def validate_lineage(store,ref,suite_ref,case_id,index,slot_ref):
+    hash_value(ref);v=store.get('lab_derived_stage_authority',ref)
+    req={'role','schema_version','withdrawn','source_kind','base_manifest_ref','slot_ref','suite_ref','execution_id','case_id','procedure_digest','stage_index','route','producer_handoff_refs','producer_evidence_digests','materialized_values_digest','plan_template_ref','native_binding_template_ref','native_binding_ref','execution_plan_ref','approval_ref','checkpoint_payload_ref','restore_envelope_ref','immutable_partition_digest','parent_policy_digest','parent_generation','new_generation','created_at','expires_at'}
+    require(set(v)==req and v['schema_version']==1 and v['withdrawn'] is False and v['source_kind']=='LAB',15,'DERIVED_LINEAGE_SCHEMA')
+    require(v['suite_ref']==suite_ref and v['case_id']==case_id and v['stage_index']==index and v['slot_ref']==slot_ref and v['base_manifest_ref']==v['immutable_partition_digest'],16,'DERIVED_LINEAGE_SCOPE')
+    for key in ('base_manifest_ref','slot_ref','materialized_values_digest','plan_template_ref','execution_plan_ref','approval_ref','immutable_partition_digest','parent_policy_digest'):hash_value(v[key])
+    for key in ('native_binding_template_ref','native_binding_ref','checkpoint_payload_ref','restore_envelope_ref'):
+        if v[key] is not None:hash_value(v[key])
+    require(type(v['parent_generation']) is int and v['new_generation']==v['parent_generation']+1 and v['new_generation']<=store.generation,16,'DERIVED_LINEAGE_GENERATION')
+    plan_doc=store.get('execution_plan',v['execution_plan_ref']);plan=plan_doc.get('plan');s=check_plan(plan);require(plan.get('approval_ref')==v['approval_ref'] and s['purpose']==v['route'],16,'DERIVED_LINEAGE_PLAN')
+    store.get('approval',v['approval_ref'])
+    if v['native_binding_ref'] is not None:store.get('native_binding',v['native_binding_ref'])
+    if v['checkpoint_payload_ref'] is not None:store.get('checkpoint_payload',v['checkpoint_payload_ref'])
+    return v
+
+def resolve_current_lineage(store,suite_ref,case_id,index,slot_ref):
+    matches=[]
+    for ref in sorted(_pins(store,'lab_derived_stage_authority')):
+        item=store.get('lab_derived_stage_authority',ref)
+        if item.get('suite_ref')==suite_ref and item.get('case_id')==case_id and item.get('stage_index')==index and item.get('slot_ref')==slot_ref:
+            validate_lineage(store,ref,suite_ref,case_id,index,slot_ref);matches.append((ref,item))
+    require(len(matches)<=1,15,'DERIVED_LINEAGE_AMBIGUOUS');return matches[0] if matches else None
+
+def lineage_revocation_refs(store,lineage_ref):
+    v=store.get('lab_derived_stage_authority',lineage_ref);refs={lineage_ref,v['execution_plan_ref'],v['approval_ref']}
+    for k in ('native_binding_ref','checkpoint_payload_ref'):
+        if v.get(k) is not None:refs.add(v[k])
+    return frozenset(refs)
+
+
+def prepare_lineage_revocation(parent_policy_bytes,store,lineage_ref,event_identity):
+    lineage=store.get('lab_derived_stage_authority',lineage_ref);manifest=store.get('lab_base_manifest',lineage['base_manifest_ref'])
+    immutable={row['ref'] for row in manifest['entries']};withdrawals=sorted(lineage_revocation_refs(store,lineage_ref))
+    require(not (immutable & set(withdrawals)),12,'IMMUTABLE_BASE_WITHDRAWAL')
+    gref,g=generation_record(parent_policy_bytes,lineage['immutable_partition_digest'],{},event_identity,withdrawals)
+    raw,refs,actual=build_next_policy(parent_policy_bytes,{},g,withdrawals,immutable)
+    require(refs=={} and actual==gref,15,'REVOCATION_GENERATION_DRIFT');return {'candidate_policy_bytes':raw,'generation_ref':gref,'generation':g,'withdrawn_refs':withdrawals}
+
+
+def validate_stage_authority_record(store,suite_ref,suite,case_id,index,proc,request,stage):
+    checked=validate_request_row(store,suite_ref,suite,case_id,proc,index,request);mode=checked['authority_mode']
+    require(stage.get('authority_mode')==mode and stage.get('base_manifest_ref')==checked['base_manifest_ref'],16,'LAB_STAGE_AUTHORITY_MODE')
+    require(stage.get('authority_ref')==checked.get('authority_ref',checked.get('derivation_slot_ref',checked.get('reconciliation_slot_ref'))),16,'LAB_STAGE_AUTHORITY_REF')
+    if mode=='CONCRETE_PRE_V03':
+        require(stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE')
+        plan=store.get('execution_plan',checked['plan_ref']).get('plan');require(check_plan(plan)['purpose']==checked['route'] and plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    elif mode=='ENTRY_PROBE_AUTHORITY':
+        require(stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE');probe=store.get('entry_probe_set',checked['entry_probe_ref']);plan=store.get('execution_plan',probe['plan_ref']).get('plan')
+        require(plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    elif mode=='STAGE_DERIVED':
+        ref=stage.get('authority_lineage_ref');hash_value(ref);lineage=validate_lineage(store,ref,suite_ref,case_id,index,checked['derivation_slot_ref'])
+        require(lineage['execution_plan_ref'] in _pins(store,'execution_plan'),16,'LAB_STAGE_AUTHORITY_PLAN');plan=store.get('execution_plan',lineage['execution_plan_ref']).get('plan');require(plan['plan_digest']==stage['plan_digest'],16,'LAB_STAGE_AUTHORITY_PLAN')
+    else:
+        require(mode=='FENCE_BOUND_RECONCILIATION' and stage.get('authority_lineage_ref') is None,16,'LAB_STAGE_LINEAGE')
+        _,manifest=manifest_for_suite(store,suite_ref);slot=validate_slot(store,checked['reconciliation_slot_ref'],suite,case_id,index,proc,authority_rule(case_id,index,checked['route'],proc.procedure_digest),manifest)
+        matches=[r for r in slot['reconciliation_plan_refs'] if store.get('execution_plan',r).get('plan',{}).get('plan_digest')==stage['plan_digest']]
+        require(len(matches)==1,16,'LAB_STAGE_AUTHORITY_PLAN')
+    return True
+
+def validate_handoff(store,ref,suite_ref,suite,case_id,proc,dep):
+    hash_value(ref);h=store.get('lab_stage_state_handoff',ref)
+    req={'role','schema_version','withdrawn','source_kind','host_id','owner_sid','execution_id','suite_ref','case_id','procedure_digest','stage_index','route','plan_digest','stage_ref','state','evidence_digest','actual','timestamp_utc'}
+    require(set(h)==req and h['schema_version']==1 and h['withdrawn'] is False and h['source_kind']=='LAB',15,'STAGE_HANDOFF_SCHEMA')
+    require(h['host_id']==suite['host_id'] and h['owner_sid']==suite['owner_sid'] and h['execution_id']==suite['execution_id'] and h['suite_ref']==suite_ref and h['case_id']==case_id and h['procedure_digest']==proc.procedure_digest,16,'STAGE_HANDOFF_SCOPE')
+    require(h['stage_index']==dep['producer_stage_index'] and h['route']==dep['required_route'] and h['state']==dep['required_state'],16,'STAGE_HANDOFF_DEPENDENCY')
+    hash_value(h['plan_digest']);hash_value(h['stage_ref']);hash_value(h['evidence_digest']);instant(h['timestamp_utc']);require(type(h['actual']) is dict,15,'STAGE_HANDOFF_ACTUAL')
+    for name in dep['provides']: require(name in h['actual'],16,'STAGE_HANDOFF_SELECTOR')
+    return h
+
+
+def resolve_reconciliation_plan(store,suite_ref,suite,case_id,index,proc,slot_ref,fence):
+    manifest_ref,manifest=manifest_for_suite(store,suite_ref);rule=authority_rule(case_id,index,proc.routes[index],proc.procedure_digest)
+    slot=validate_slot(store,slot_ref,suite,case_id,index,proc,rule,manifest);require(rule['authority_mode']=='FENCE_BOUND_RECONCILIATION',10,'RECONCILIATION_SLOT_MODE')
+    require(type(fence) is dict and bool(fence),11,'FENCE_BOUND_STATE_REQUIRED');matches=[]
+    for ref in slot['reconciliation_plan_refs']:
+        doc=store.get('execution_plan',ref);plan=doc.get('plan');s=check_plan(plan)
+        if s['purpose']!='RECONCILIATION_ONLY' or s['host_id']!=suite['host_id'] or s['owner_sid']!=suite['owner_sid']:continue
+        original_ref=s['refs'].get('original_plan')
+        if original_ref is None:continue
+        original=store.get('original_plan',original_ref).get('plan');old=check_plan(original)
+        if fence.get('plan_digest')==original['plan_digest'] and all(fence.get(k)==old[k] for k in ('run_id','host_id','owner_sid')):matches.append((ref,plan))
+    require(len(matches)==1,15,'RECONCILIATION_PLAN_SELECTION');return {'plan_ref':matches[0][0],'plan':matches[0][1],'slot_ref':slot_ref,'base_manifest_ref':manifest_ref}
+
+def generation_for_lineage(store,lineage_ref):
+    rows=[]
+    for ref in sorted(_pins(store,'lab_authority_generation')):
+        g=store.get('lab_authority_generation',ref);added=g.get('added_refs',{})
+        if lineage_ref in added.get('lab_derived_stage_authority',[]):rows.append((ref,g))
+    require(len(rows)==1,15,'DERIVED_GENERATION_SELECTION');return rows[0]
+
+def publication_event(parent_digest,new_digest,lineage_ref,lineage,generation_ref,generation):
+    for h in (parent_digest,new_digest,lineage_ref,generation_ref):hash_value(h)
+    key=digest({'new_policy_digest':new_digest,'suite_ref':lineage['suite_ref'],'case_id':lineage['case_id'],'stage_index':lineage['stage_index'],'slot_ref':lineage['slot_ref']})
+    return {'kind':'AUTHORITY_GENERATION_PUBLISHED','publication_key':key,'parent_policy_digest':parent_digest,'new_policy_digest':new_digest,
+            'parent_generation':generation['parent_generation'],'new_generation':generation['new_generation'],
+            'immutable_partition_digest':lineage['immutable_partition_digest'],'suite_ref':lineage['suite_ref'],'case_id':lineage['case_id'],
+            'stage_index':lineage['stage_index'],'slot_ref':lineage['slot_ref'],'lineage_ref':lineage_ref,
+            'execution_plan_ref':lineage['execution_plan_ref'],'generation_ref':generation_ref}

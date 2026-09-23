@@ -1,0 +1,89 @@
+{
+  "base_source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+  "byte_identical_required": {
+    "config/required-native-test-inventory.json": {
+      "actual_sha256": "2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6",
+      "expected_sha256": "2ab5944390d33e1f26476d68c2c742247eaf313fa4f9351650308f5127dbf4a6",
+      "identical": true
+    },
+    "contracts/PHASE00_ACCEPTANCE_MATRIX_V2.md": {
+      "actual_sha256": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407",
+      "expected_sha256": "4d97676ea8eb29d943548e64d2b4cdfc080e20a17591037fb78ef5c555130407",
+      "identical": true
+    },
+    "contracts/PHASE00_EVIDENCE_AND_RESEARCH_REGISTER_V2.md": {
+      "actual_sha256": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc",
+      "expected_sha256": "cac32026a775defb953551917a9bc4bdce212bf9492a8ccc6573ebf5897d00bc",
+      "identical": true
+    },
+    "contracts/PHASE00_FAILURE_RECOVERY_PLAN_V2.md": {
+      "actual_sha256": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060",
+      "expected_sha256": "f6df6ed070797197fcfc1853092c15b4d6ddc6d366bd4c4f885aae3017c9c060",
+      "identical": true
+    },
+    "contracts/PHASE00_INFRA_DESIGN_V2.md": {
+      "actual_sha256": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d",
+      "expected_sha256": "0e1259eb1123fb7f3afe2e7a9c5018eb5c18c08093f81da364ef3ce80112bb9d",
+      "identical": true
+    },
+    "src/aifilm_p00/authority.py": {
+      "actual_sha256": "b83101e8b5d04e873826f568498e4df750d0c4220e5cfb169b59942867ddfa4a",
+      "expected_sha256": "b83101e8b5d04e873826f568498e4df750d0c4220e5cfb169b59942867ddfa4a",
+      "identical": true
+    },
+    "src/aifilm_p00/native/harness_cases.py": {
+      "actual_sha256": "9dde10beca5bc5c75afe1c6139c92e70d862df824930ac273f45611254a6af26",
+      "expected_sha256": "9dde10beca5bc5c75afe1c6139c92e70d862df824930ac273f45611254a6af26",
+      "identical": true
+    },
+    "src/aifilm_p00/native/request_entry.py": {
+      "actual_sha256": "9f94cb7bfdbf5217ff330c5b3bcf74c1ad951a54d2ae9a2ef28520564bd036e3",
+      "expected_sha256": "9f94cb7bfdbf5217ff330c5b3bcf74c1ad951a54d2ae9a2ef28520564bd036e3",
+      "identical": true
+    },
+    "src/aifilm_p00/plans.py": {
+      "actual_sha256": "d3698a8adce6c468e3c5876f41bcd689a5803eeb6ac32a7408842babea61e13b",
+      "expected_sha256": "d3698a8adce6c468e3c5876f41bcd689a5803eeb6ac32a7408842babea61e13b",
+      "identical": true
+    },
+    "src/aifilm_p00/recovery.py": {
+      "actual_sha256": "74234cc62bdecbae63b5ece6574e67ff20f9bbe8bb22b977268115e6a1141a5a",
+      "expected_sha256": "74234cc62bdecbae63b5ece6574e67ff20f9bbe8bb22b977268115e6a1141a5a",
+      "identical": true
+    },
+    "src/aifilm_p00/resume.py": {
+      "actual_sha256": "ba145bb9d4f4672f9713fc809abef7b71b069c1298694ecdb23f58c1d167fea2",
+      "expected_sha256": "ba145bb9d4f4672f9713fc809abef7b71b069c1298694ecdb23f58c1d167fea2",
+      "identical": true
+    }
+  },
+  "byte_identical_required_pass": true,
+  "candidate_commit": "fa74b000ac6eac92ea383138a2f9402e9ef4daa5",
+  "candidate_tree": "4dbb7dda9f04c71466299a90b1fb938d35bddaae",
+  "changed_paths": [
+    "pyproject.toml",
+    "src/aifilm_p00/__init__.py",
+    "src/aifilm_p00/native/harness_controller.py",
+    "src/aifilm_p00/native/stage_authority.py",
+    "tests/test_dev15_harness.py",
+    "tests/test_dev23_stage_authority.py"
+  ],
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "contract_digest_pass": true,
+  "diff_scope_exact": true,
+  "expected_changed_paths": [
+    "pyproject.toml",
+    "src/aifilm_p00/__init__.py",
+    "src/aifilm_p00/native/harness_controller.py",
+    "src/aifilm_p00/native/stage_authority.py",
+    "tests/test_dev15_harness.py",
+    "tests/test_dev23_stage_authority.py"
+  ],
+  "module_version": "0.1.0.dev23",
+  "native_backend_available": false,
+  "native_backend_pass": true,
+  "non_test_bytes_identical_to_cef": true,
+  "pyproject_version": "0.1.0.dev23",
+  "schema_version": 1,
+  "version_identity_pass": true
+}
