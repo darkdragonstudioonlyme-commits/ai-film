@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — review exact prodlike/LAB executor successor
+# NEXT WORK ITEM — review prodlike authorization-root correction
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,18 +6,22 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: CODE_REVIEW
 LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011-SUCCESSOR
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-011
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_BASE: 2e813e04acc948158c170f111f5a3933b8a49435
-  PRIOR_AUTHOR_CANDIDATE: d71940c27f88348d8b532e7f5df07ce9939c0605
-  SUCCESSOR_CANDIDATE_COMMIT: afc887e402dd3a19f43ee6ee6de066c230f26bbd
-  SUCCESSOR_CANDIDATE_TREE: 51bf31400e1abe8148b411ddba4605f7a6710bb4
+  VALIDATION_HEAD: 7aa8bcdfb73f97c68b7c04abbb4c66a888ea814e
+  REVIEWED_EXECUTOR_COMMIT: afc887e402dd3a19f43ee6ee6de066c230f26bbd
+  CORRECTION_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
+  CORRECTION_TREE: c400202e07d724a6965c70eb6b5216d1f4496f80
   TEST_REVIEW_011: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
+CAUSE:
+  REVIEWED_USER_SYSTEMD_ROOT: /home/dragon/.config/systemd/user
+  PRIOR_HARDCUT: ALL_DESCENDANTS_OF_/home/dragon/.config_DENIED
+  MUTATION_OCCURRED: false
 AUTHOR_EVIDENCE:
-  TV011_TRANSACTION_TESTS: 25_PASS
+  TV011_TRANSACTION_TESTS: 26_PASS
   PRIOR_TV010_TESTS: 18_PASS
   PRIOR_TV009_TESTS: 34_PASS
   HISTORICAL_DEV22_SCRIPTS: 11_OF_11_PASS
@@ -25,36 +29,25 @@ AUTHOR_EVIDENCE:
   REAL_LAB_MUTATED: false
   NATIVE_EXECUTION: false
   SIGNING: false
-REVIEW_REUSE:
-  INITIAL_D_TEST_CLOSURE: PASS
-  INITIAL_C2_LAB_CODE: PASS_UNCHANGED_LAB_BYTES
-REVIEW_REQUIRED:
-  A_COMMON_HARDCUTS: SUCCESSOR_CHANGED
-  B_PRODLIKE_CODE_AND_HELPERS: SUCCESSOR_CHANGED
-  C_COMMON_LAB_INTEGRATION: COMMON_CHANGED
-  D_PRODLIKE_TEST_DELTA: TEST_CHANGED
-GOAL: "Close all initial review findings and issue final CODE_REVIEW disposition for exact successor without authorizing execution."
+GOAL: "Verify that the correction admits only the reviewed user-systemd subtree, still rejects broad ~/.config and protected roots, preserves one-attempt/command hardcuts, and introduces no authority expansion."
 STEPS:
-  - SUCCESSOR_AUTHOR: COMPLETE_FROZEN
-  - SUCCESSOR_REGRESSION: COMPLETE_PASS
-  - A_COMMON_REVIEW: READY
-  - B_PRODLIKE_REVIEW: READY
-  - C_LAB_INTEGRATION_REVIEW: READY
-  - D_TEST_DELTA_REVIEW: READY
-  - FORMAL_CODE_REVIEW: BLOCKED
+  - EXECUTION_PREFLIGHT_CONFLICT: COMPLETE_FAIL_CLOSED
+  - CORRECTION_AUTHOR: COMPLETE_FROZEN
+  - FULL_REGRESSION: COMPLETE_PASS
+  - CLAUDE_CODE_REVIEW: READY
   - VALIDATION_LANE_PROMOTION: BLOCKED
-  - PRODLIKE_EXECUTION_AUTHORIZATION: BLOCKED
+  - PRODLIKE_AUTHORIZATION_PREPARATION: BLOCKED
   - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
   - REAL_LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact successor tree; no real deployment/native proof."
+SUCCESS_OUTPUT: "Formal correction CODE_REVIEW PASS/FINDINGS bound to exact two-file tree; no execution authorization or mutation proof."
 ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
-ON_FAIL: SAME_EXECUTOR_CAUSAL_FAMILY_OR_TEST_DESIGN_GAP
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-SUCCESSOR-REVIEW-026
+ON_FAIL: SAME_AUTHORIZATION_HARDCUT_CAUSAL_FAMILY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-027
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "A/B/C/D successor scopes PASS with no blocking/high/medium findings; prior unchanged-byte review remains valid; no real mutation/signing/native authority is granted."
+EXIT_CONDITION: "Exact reviewed user-systemd subtree is permitted; broad ~/.config and sensitive paths remain denied; regression remains green; no blocking/high/medium findings remain."
 ~~~
 
-TEXT_REVIEW only. Do not promote owning validation lane, switch prodlike current, invoke live user-systemd mutation, mutate/export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+This is review of a fail-closed correction discovered before mutation. Do not create/execute a prodlike authorization, switch current, call live systemd, mutate LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during this review.

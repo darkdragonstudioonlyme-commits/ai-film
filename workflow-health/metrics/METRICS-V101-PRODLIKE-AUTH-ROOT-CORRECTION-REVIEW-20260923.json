@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "cause": "AUTHORIZATION_HARDCUT_OVERCONSTRAINED_REVIEWED_USER_SYSTEMD_ROOT",
+  "code_review_result": "PENDING",
+  "historical_scripts": 11,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "correction_candidate": "7bb931254d61823af616ac52ba624cbede25312a",
+    "correction_tree": "c400202e07d724a6965c70eb6b5216d1f4496f80",
+    "main": "b84325f72f3b568e377279db4f098aa977b3c72e",
+    "reviewed_executor": "afc887e402dd3a19f43ee6ee6de066c230f26bbd",
+    "validation": "7aa8bcdfb73f97c68b7c04abbb4c66a888ea814e"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Execution-preflight discovered reviewed user-systemd target blocked by over-broad ~/.config hardcut; route two-file correction to cross-model review before authorization preparation",
+  "session_denominator": null,
+  "signing_performed": false,
+  "tv009_tests": 34,
+  "tv010_tests": 18,
+  "tv011_tests": 26
+}
