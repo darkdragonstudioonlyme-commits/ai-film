@@ -18,7 +18,7 @@
     "tests/test_v02_dev23_generic_tooling.py": "b235854408fdbe81cf314115ff28036edaf464e38991c54fd31988ad96e93ae9",
     "tests/test_v03_binding_producer.py": "24f7972e785957c5e4ed0ef6650804b5a995bd998adcb6f3f8ad25731f3b720f",
     "tests/test_v03_fixture_preparation_controller.py": "3b1f758b0d11c11f784ff484ff748bd37b3d9354aa1334658f972fe4c290f6a1",
-    "tests/test_v03_late_proof_materializer.py": "91fcd4a41e82cc06af204787f05d9186ba0914e59961d09d8931b9ee1941a19d",
+    "tests/test_v03_late_proof_materializer.py": "361013436c79a9df200b138cad862aa7b076436896eb6cb07fa027312787de76",
     "tests/test_v03_policy_generation.py": "1b7ae920eb2e796f2a1e607c31f0166ccb7f83339d8dd59a5b1962261ab33cd3",
     "update-v03-native-policy.py": "a09e8f109889c9c8120b769bd2d4fed29237196d7eed8aaaf4e6e8734e9e8e10",
     "v02-authority-intake-v2.py": "5cf7a502b6184f0f85ff5a55fc7e1d0f1c7e505b7d31a1939e203fd3dc24e366",

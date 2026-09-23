@@ -46,4 +46,7 @@ class LateProofTests(unittest.TestCase):
  def test_unmeasured_claim_rejected(self):
   role='restore_result';p=self.request(role,SCOPES[role]);q=json.loads(p.read_text());q['claim']={'ok':False};p.write_text(json.dumps(q))
   with self.assertRaisesRegex(Exception,'PROOF_CLAIM_NOT_MEASURED'):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
+ def test_workspace_measurement_rejected(self):
+  role='restore_result';scope=SCOPES[role];p=self.request(role,scope);q=json.loads(p.read_text());mref=q['measurement_refs'][0];m=read_object(self.obj,mref,'measurement');m['source_kind']='WORKSPACE';self.obj.joinpath(mref+'.json').unlink();mref2=write_object(self.obj,m);q['measurement_refs']=[mref2];q['claim_map']['ok']['measurement_ref']=mref2;p.write_text(json.dumps(q))
+  with self.assertRaisesRegex(Exception,'WORKSPACE_PROOF_FORBIDDEN'):lp.materialize(BIND,self.bsha,self.obj,p,self.out)
 if __name__=='__main__':unittest.main()
