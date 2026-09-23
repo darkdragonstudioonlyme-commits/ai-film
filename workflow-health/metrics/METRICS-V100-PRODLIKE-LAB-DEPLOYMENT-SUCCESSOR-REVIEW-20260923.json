@@ -1,0 +1,36 @@
+{
+  "active_control_documents_read": 0,
+  "closed_findings_intended": [
+    "F1-MUTATION-ROOT-SUBPATH",
+    "F2-COMMAND-PREFIX-NOT-REQUIRED-ABSOLUTE",
+    "F-REDUNDANT-SELFCOMPARE"
+  ],
+  "code_review_result": "PENDING_SUCCESSOR_REVIEW",
+  "historical_scripts": 11,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "a49b7d9369080e9b5459c352425a001a2cb347b4",
+    "prior_executor_candidate": "d71940c27f88348d8b532e7f5df07ce9939c0605",
+    "successor_executor_candidate": "afc887e402dd3a19f43ee6ee6de066c230f26bbd",
+    "successor_tree": "51bf31400e1abe8148b411ddba4605f7a6710bb4",
+    "validation": "2e813e04acc948158c170f111f5a3933b8a49435"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prior_review_reuse": [
+    "C2-LAB-CODE",
+    "D-TESTCLOSURE for unchanged LAB test bytes only"
+  ],
+  "prior_tv009_tests": 34,
+  "prior_tv010_tests": 18,
+  "schema_version": 1,
+  "scope": "Route exact three-file executor successor closing A/B findings; no real deployment/native/signing/HKLM",
+  "session_denominator": null,
+  "signing_performed": false,
+  "successor_tv011_tests": 25
+}

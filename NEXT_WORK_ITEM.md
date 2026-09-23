@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — review exact dev23 prodlike/LAB transaction executors
+# NEXT WORK ITEM — review exact prodlike/LAB executor successor
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,40 +6,42 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: CODE_REVIEW
 LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011-SUCCESSOR
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
   VALIDATION_BASE: 2e813e04acc948158c170f111f5a3933b8a49435
-  AUTHOR_CANDIDATE_COMMIT: d71940c27f88348d8b532e7f5df07ce9939c0605
-  AUTHOR_CANDIDATE_TREE: 45f010fea5407d0c055e32b18beb7a63e5f90e21
+  PRIOR_AUTHOR_CANDIDATE: d71940c27f88348d8b532e7f5df07ce9939c0605
+  SUCCESSOR_CANDIDATE_COMMIT: afc887e402dd3a19f43ee6ee6de066c230f26bbd
+  SUCCESSOR_CANDIDATE_TREE: 51bf31400e1abe8148b411ddba4605f7a6710bb4
   TEST_REVIEW_011: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
-  CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
-  CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-FILES_ALLOWED_ADD:
-  - validation/tooling/deployment_transaction_common.py
-  - validation/tooling/deploy_prodlike_candidate-v2.py
-  - validation/tooling/rebuild_lab_candidate-v2.py
-  - validation/tooling/tests/test_prodlike_deployment_transaction_v2.py
-  - validation/tooling/tests/test_lab_rebuild_transaction_v2.py
 AUTHOR_EVIDENCE:
-  TV011_TRANSACTION_TESTS: 24_PASS
+  TV011_TRANSACTION_TESTS: 25_PASS
   PRIOR_TV010_TESTS: 18_PASS
   PRIOR_TV009_TESTS: 34_PASS
   HISTORICAL_DEV22_SCRIPTS: 11_OF_11_PASS
-  DIFF_ALLOWLIST: 5_ADD_ONLY_PASS
-  REAL_PRODLIKE_CURRENT: dev22
-  REAL_LAB_STATE: STOPPED
+  REAL_PRODLIKE_MUTATED: false
+  REAL_LAB_MUTATED: false
   NATIVE_EXECUTION: false
   SIGNING: false
-GOAL: "Independently review exact executor/recovery/authorization semantics for TV011-01..21, including fault injection, no-replay, exact command/candidate binding and no authority expansion."
+REVIEW_REUSE:
+  INITIAL_D_TEST_CLOSURE: PASS
+  INITIAL_C2_LAB_CODE: PASS_UNCHANGED_LAB_BYTES
+REVIEW_REQUIRED:
+  A_COMMON_HARDCUTS: SUCCESSOR_CHANGED
+  B_PRODLIKE_CODE_AND_HELPERS: SUCCESSOR_CHANGED
+  C_COMMON_LAB_INTEGRATION: COMMON_CHANGED
+  D_PRODLIKE_TEST_DELTA: TEST_CHANGED
+GOAL: "Close all initial review findings and issue final CODE_REVIEW disposition for exact successor without authorizing execution."
 STEPS:
-  - AUTHOR_EXECUTORS: COMPLETE_FROZEN
-  - AUTHOR_TV011_FAULT_INJECTION: COMPLETE_PASS
-  - PRIOR_TV010_TV009_REGRESSION: COMPLETE_PASS
-  - HISTORICAL_DEV22_REGRESSION: COMPLETE_PASS
-  - CLAUDE_CODE_REVIEW: READY
+  - SUCCESSOR_AUTHOR: COMPLETE_FROZEN
+  - SUCCESSOR_REGRESSION: COMPLETE_PASS
+  - A_COMMON_REVIEW: READY
+  - B_PRODLIKE_REVIEW: READY
+  - C_LAB_INTEGRATION_REVIEW: READY
+  - D_TEST_DELTA_REVIEW: READY
+  - FORMAL_CODE_REVIEW: BLOCKED
   - VALIDATION_LANE_PROMOTION: BLOCKED
   - PRODLIKE_EXECUTION_AUTHORIZATION: BLOCKED
   - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
@@ -47,12 +49,12 @@ STEPS:
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact five-file tree; no real deployment/native proof."
+SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact successor tree; no real deployment/native proof."
 ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
 ON_FAIL: SAME_EXECUTOR_CAUSAL_FAMILY_OR_TEST_DESIGN_GAP
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-CODE-REVIEW-025
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-DEPLOYMENT-SUCCESSOR-REVIEW-026
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "TV011-01..21 implementation is fail-closed and reviewable; no blocking/high/medium findings remain; no real mutation/signing/native authority is granted."
+EXIT_CONDITION: "A/B/C/D successor scopes PASS with no blocking/high/medium findings; prior unchanged-byte review remains valid; no real mutation/signing/native authority is granted."
 ~~~
 
-TEXT_REVIEW only. Author tests are host evidence, not Claude execution. Do not promote validation lane, switch prodlike current, call live user-systemd mutation, mutate/export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during review.
+TEXT_REVIEW only. Do not promote owning validation lane, switch prodlike current, invoke live user-systemd mutation, mutate/export/import/unregister/start LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
