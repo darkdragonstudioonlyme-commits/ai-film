@@ -1,0 +1,29 @@
+{
+  "active_control_documents_read": 0,
+  "historical_scripts": 11,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "cec3dbbbf57e66d8b372d650a4713da428659e20",
+    "prodlike_lab_tooling_review": "d1e436a5c526de95b81eeae1007808c8fd1a9dd9",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "d1e436a5c526de95b81eeae1007808c8fd1a9dd9"
+  },
+  "lab_current_state": "STOPPED_DEV22_SEALED_PENDING_AUTHORITY",
+  "lab_mutation_authorized": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prior_successor_tests": 34,
+  "prodlike_current_candidate": "dev22",
+  "prodlike_deployment_authorized": false,
+  "prodlike_target_candidate": "dev23",
+  "schema_version": 1,
+  "scope": "Route reviewed dev23 prodlike/LAB successor to deployment/rebuild transaction test design; no deployment/LAB/native/signing action",
+  "session_denominator": null,
+  "signing_performed": false,
+  "tv010_post_promotion_tests": 18
+}
