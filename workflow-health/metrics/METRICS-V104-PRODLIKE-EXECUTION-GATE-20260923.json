@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "authorization_expires_at": 1790194862,
+  "authorization_review_result": "PASS",
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "execution_result": "NOT_STARTED",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "authorization_main_snapshot": "e317dcfcfb534517cb659f843d4f000c7a94e668",
+    "authorization_validation_snapshot": "7da5684fd21d64a7fc85e72f4ccc8293b7c812fe",
+    "executor": "7bb931254d61823af616ac52ba624cbede25312a",
+    "executor_tree": "c400202e07d724a6965c70eb6b5216d1f4496f80",
+    "main": "52183d7207fdace20dcc0a8e2629d07fe6ce4640",
+    "validation_review_head": "c233e2fd205cf34a9563b1f892465995ef0d76c8"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Route exactly one reviewed foreground prodlike transaction attempt; LAB/native/signing remain blocked",
+  "session_denominator": null,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-E317DCF-001"
+}
