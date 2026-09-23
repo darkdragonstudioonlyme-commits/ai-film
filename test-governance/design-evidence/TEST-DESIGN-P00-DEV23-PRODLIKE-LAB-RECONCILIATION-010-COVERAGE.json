@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010",
+  "base_validation_commit": "77cb3860eba2554c02f26fa93ab79dcd2d25f7d9",
+  "product_source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "oracle_changed": false,
+  "expected_business_behavior_changed": false,
+  "reuse_byte_identical": [
+    "validation/tooling/v02_candidate_profile.py",
+    "validation/tooling/build_lab_payload-v2.py",
+    "validation/tooling/verify-lab-artifact-seal-v2.py",
+    "validation/tooling/dev23-candidate-binding.json"
+  ],
+  "authorized_add": [
+    "validation/tooling/build_prodlike_release-v2.py",
+    "validation/tooling/build_prodlike_rebuild_set-v2.py",
+    "validation/tooling/build_prodlike_control_bundle-v2.py",
+    "validation/tooling/verify_prodlike_control_bundle-v2.py",
+    "validation/tooling/verify_prodlike_user_systemd-v2.py",
+    "validation/tooling/prodlike_control_templates_v2.json",
+    "validation/tooling/plan_lab_candidate_rebuild-v2.py",
+    "validation/tooling/verify_lab_candidate_rebuild_receipt-v2.py",
+    "validation/tooling/tests/test_prodlike_release_v2.py",
+    "validation/tooling/tests/test_prodlike_control_bundle_v2.py",
+    "validation/tooling/tests/test_prodlike_user_systemd_v2.py",
+    "validation/tooling/tests/test_lab_candidate_rebuild_v2.py"
+  ],
+  "required_test_ids": ["TV010-01","TV010-02","TV010-03","TV010-04","TV010-05","TV010-06","TV010-07","TV010-08","TV010-09","TV010-10","TV010-11","TV010-12","TV010-13","TV010-14"],
+  "prodlike_deployment_authorized": false,
+  "lab_mutation_authorized": false,
+  "native_execution_authorized": false,
+  "signing_authorized": false
+}
