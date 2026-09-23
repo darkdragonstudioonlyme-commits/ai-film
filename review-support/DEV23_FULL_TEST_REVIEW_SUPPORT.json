@@ -1,0 +1,9 @@
+{
+  "bytes": 48959,
+  "copied_path": "review-support/product/DEV23_TEST_DEV23_FULL.py",
+  "kind": "DEV23_FULL_TEST_REVIEW_SUPPORT",
+  "path": "tests/test_dev23_stage_authority.py",
+  "product_candidate_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "schema_version": 1,
+  "sha256": "51aeeb518fc30ad9b37e14830b2fa53586a439857d5a29c4d989f61a4ee0f01c"
+}
