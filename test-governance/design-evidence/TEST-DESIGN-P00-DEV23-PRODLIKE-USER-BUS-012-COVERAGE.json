@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-USER-BUS-012",
+  "base_validation_commit": "ae167ce4af9180fd7e239b4b83cfddc9ade061b5",
+  "target_executor_base": "7bb931254d61823af616ac52ba624cbede25312a",
+  "target_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "oracle_changed": false,
+  "expected_business_behavior_changed": false,
+  "authorized_modify": [
+    "validation/tooling/deployment_transaction_common.py",
+    "validation/tooling/deploy_prodlike_candidate-v2.py",
+    "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py"
+  ],
+  "required_test_ids": ["TV012-01","TV012-02","TV012-03","TV012-04","TV012-05","TV012-06","TV012-07","TV012-08","TV012-09","TV012-10"],
+  "real_execution_authorized": false,
+  "native_execution_authorized": false,
+  "signing_authorized": false,
+  "hklm_mutation_authorized": false
+}
