@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_replay_authorized": false,
+  "authorization_review_result": "PENDING",
+  "authorization_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "0d47b4fec5cd7c40bd359db6b59396f42387c4e1",
+    "review_support": "6f0fed5bb1792b81ed862e1af5c79d82d3d19c24",
+    "validation": "97b248548a1291adc243f5ec95f6028c7ade6bd7"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "plan_only_pass": true,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_attempt2_status": "BLOCKED",
+  "schema_version": 1,
+  "scope": "Review fresh prodlike authorization 002 after user-bus correction; no execution",
+  "session_denominator": null,
+  "signing_performed": false,
+  "snapshot_unchanged": true,
+  "transaction_id": "PRODLIKE-DEV23-0D47B4F-002"
+}
