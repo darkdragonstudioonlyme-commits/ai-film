@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — review immutable prodlike authorization 003
+# NEXT WORK ITEM — review corrected immutable prodlike authorization 003
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,43 +6,43 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: CODE_REVIEW
 LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-003
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-003-CORRECTED
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_SNAPSHOT: cf998f9508884d872510acf9edae193185831829
+  MAIN_SNAPSHOT: d6657e9c5692b5e6d8c5891f33aaefe0bb06df1d
   VALIDATION_SNAPSHOT: df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a
-  REVIEW_SUPPORT_COMMIT: a0eedfec07bf2193bfefbb995ebd04ac6464ca1b
+  REVIEW_SUPPORT_COMMIT: 40b0e67060a2384552e0213a3a1e25ce6a8c3cec
   EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
   EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
-  AUTHORIZATION_SHA256: 8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84
-  PLAN_SHA256: 5ab40a68572798c0dfc27ed52915c77e6108aed287dd361c6393e7d2ba74f8fc
-  TRANSACTION_ID: PRODLIKE-DEV23-CF998F9-003
-  AUTHORIZATION2_SHA256: 208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5
+  REJECTED_AUTHORIZATION_SHA256: 8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84
+  CORRECTED_AUTHORIZATION_SHA256: 1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c
+  CORRECTED_PLAN_SHA256: e2b416e29a7d51649296e1664fad74e2e94b260120f4cd660220f74c23f60da6
+  CORRECTED_TRANSACTION_ID: PRODLIKE-DEV23-D6657E9-003
+  CORRECTED_RECEIPT_ROOT: /home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt3-20260924
   AUTHORIZATION2_STATUS: EXPIRED_UNUSED
-  ATTEMPT1_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
   ATTEMPT1_REPLAY_AUTHORIZED: false
-GOAL: "Independently verify one fresh immutable PRODLIKE_DEPLOYMENT_V2 authorization 003 against V111/validation/current baseline, corrected executor semantics, auth2 expiration/no-execution and exact plan/non-mutation evidence before any execution."
+GOAL: "Verify the corrected authorization-003 hash after closing the receipt-root provenance finding. Confirm identity/expiry, exact current-state inputs, matching transaction/root provenance, minimal roots/commands, predecessor non-replay and non-mutation evidence before any execution."
 STEPS:
-  - AUTHORIZATION2_EXPIRED_UNUSED: COMPLETE_LOCKED
-  - ATTEMPT1_NON_REPLAY: COMPLETE_LOCKED
-  - PLAN_ONLY_BASELINE_VALIDATION: COMPLETE_PASS
-  - NON_MUTATION_PROOF: COMPLETE_PASS
-  - AUTHORIZATION3_AUTHOR: COMPLETE_FROZEN
-  - CLAUDE_IDENTITY_EXPIRY_REVIEW: READY
-  - CLAUDE_COMMAND_ROOT_INPUT_REVIEW: READY
+  - INITIAL_AUTH3_REVIEW: FINDINGS_HIGH_ROOT_PROVENANCE
+  - INITIAL_AUTH3_EXECUTION: NEVER_STARTED
+  - CORRECTED_AUTH3_PLAN_ONLY: COMPLETE_PASS
+  - CORRECTED_AUTH3_NON_MUTATION: COMPLETE_PASS
+  - PRIOR_HIGH_FINDING_CLOSURE: READY
+  - CORRECTED_AUTH3_IDENTITY_EXPIRY_REVIEW: READY
+  - CORRECTED_AUTH3_ROOT_COMMAND_REVIEW: READY
   - NEXT_PRODLIKE_TRANSACTION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal authorization-003 review PASS/FINDINGS bound to exact capsule hash; no execution proof."
+SUCCESS_OUTPUT: "Formal corrected authorization-003 review PASS/FINDINGS bound to exact new capsule hash; no execution proof."
 ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-003
-ON_FAIL: REVOKE_EXPIRED_OR_CORRECT_AUTHORIZATION3_AND_REVIEW_NEW_HASH
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-REVIEW-038
+ON_FAIL: REVOKE_OR_CORRECT_AUTHORIZATION3_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-CORRECTION-REVIEW-039
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Capsule exactly binds V111 main/validation/corrected executor/candidate/input identities; transaction/hash/root are unique; auth2 is expired-unused; expiry bounded; roots/commands minimal; forbidden authority bits false; plan/non-mutation proof exact; no blocking/high/medium findings remain."
+EXIT_CONDITION: "Prior root finding is VERIFIED_CLOSED; corrected capsule binds V112 main/validation/executor/candidate/current inputs; transaction/root are aligned and unique; old root absent; expiry bounded; roots/commands minimal; forbidden bits false; no blocking/high/medium findings remain."
 ~~~
 
-Review only. Do not execute authorization 002 or 003, replay attempt 1, remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute rejected or corrected authorization 003, authorization 002, or attempt 1; do not remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
