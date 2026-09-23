@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_replay_authorized": false,
+  "authorization2_expired": true,
+  "authorization2_expired_unused": true,
+  "authorization2_receipt_root_absent": true,
+  "authorization2_sha256": "208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5",
+  "authorization2_transaction_id": "PRODLIKE-DEV23-0D47B4F-002",
+  "authorization3_status": "NOT_CREATED",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "b5a5ad4dff048af67d7eea24ceff807336bec551",
+    "validation": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Authorization 002 expired unused; prepare a new immutable authorization 003 only; no execution",
+  "session_denominator": null,
+  "signing_performed": false
+}
