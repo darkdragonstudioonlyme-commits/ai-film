@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "kind": "TEST_DESIGN_COVERAGE",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011",
+  "base_validation_commit": "d1e436a5c526de95b81eeae1007808c8fd1a9dd9",
+  "product_source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "oracle_changed": false,
+  "authorized_add_files": [
+    "validation/tooling/deploy_prodlike_candidate-v2.py",
+    "validation/tooling/rebuild_lab_candidate-v2.py",
+    "validation/tooling/deployment_transaction_common.py",
+    "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+    "validation/tooling/tests/test_lab_rebuild_transaction_v2.py"
+  ],
+  "required_test_ids": ["TV011-01","TV011-02","TV011-03","TV011-04","TV011-05","TV011-06","TV011-07","TV011-08","TV011-09","TV011-10","TV011-11","TV011-12","TV011-13","TV011-14","TV011-15","TV011-16","TV011-17","TV011-18","TV011-19","TV011-20","TV011-21"],
+  "prodlike_transaction_independent": true,
+  "lab_transaction_independent": true,
+  "real_execution_authorized": false,
+  "native_execution_authorized": false,
+  "authority_signing_authorized": false,
+  "hklm_mutation_authorized": false
+}
