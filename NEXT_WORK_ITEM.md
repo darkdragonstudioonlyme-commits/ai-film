@@ -1,43 +1,43 @@
-# NEXT WORK ITEM — prepare immutable dev23 prodlike deployment authorization
+# NEXT WORK ITEM — review immutable dev23 prodlike deployment authorization
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
+  MAIN_COMMIT: e317dcfcfb534517cb659f843d4f000c7a94e668
   VALIDATION_HEAD: 7da5684fd21d64a7fc85e72f4ccc8293b7c812fe
-  REVIEWED_EXECUTOR_CORRECTION_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
-  REVIEWED_EXECUTOR_CORRECTION_TREE: c400202e07d724a6965c70eb6b5216d1f4496f80
-  REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-011.md
+  REVIEW_SUPPORT_COMMIT: 8eada9355c503a948d929d27c826667e27f8227f
+  EXECUTOR_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
+  EXECUTOR_TREE: c400202e07d724a6965c70eb6b5216d1f4496f80
+  AUTHORIZATION_SHA256: 9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322
+  PLAN_SHA256: 910b133397662256a887adb49f1ff0e4323d03c27eb008cfe18fa440a6eb1204
   CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
   CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
-  PRODLIKE_BASELINE: /home/dragon/ai-film-runtime/current -> /home/dragon/ai-film-runtime/dev22
-GOAL: "Prepare, but do not execute, one immutable PRODLIKE_DEPLOYMENT_V2 authorization capsule and plan-only receipt bound to exact reviewed bytes and mutation/command allowlists."
+GOAL: "Independently verify one immutable attempt=1 PRODLIKE_DEPLOYMENT_V2 capsule against reviewed executor semantics and plan-only/non-mutation evidence before any execution."
 STEPS:
-  - DEV23_RELEASE_BUILD: COMPLETE_NON_MUTATING
-  - DEV23_CONTROL_BUNDLE_BUILD: COMPLETE_NON_MUTATING
-  - DEV23_REBUILD_SET_BUILD: COMPLETE_NON_MUTATING
-  - DEV23_LAB_PAYLOAD_BUILD: COMPLETE_NON_MUTATING
-  - PRODLIKE_PLAN_ONLY: READY
-  - AUTHORIZATION_CAPSULE_AUTHOR: READY
-  - AUTHORIZATION_CAPSULE_CLAUDE_REVIEW: BLOCKED
+  - PLAN_ONLY_BASELINE_VALIDATION: COMPLETE_PASS
+  - NON_MUTATION_PROOF: COMPLETE_PASS
+  - CAPSULE_AUTHOR: COMPLETE_FROZEN
+  - CLAUDE_IDENTITY_SCHEMA_REVIEW: READY
+  - CLAUDE_COMMAND_ROOT_COMPOSITION_REVIEW: READY
   - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
   - REAL_LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Exact plan-only receipt plus immutable authorization capsule/hash and host preflight evidence; no mutation proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
-ON_FAIL: SAME_AUTHORIZATION_PREPARATION_CAUSAL_FAMILY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-028
+SUCCESS_OUTPUT: "Formal authorization review PASS/FINDINGS bound to exact capsule hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-001
+ON_FAIL: REVOKE_EXPIRED_OR_CORRECT_AUTHORIZATION_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-REVIEW-029
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Capsule binds canonical main, validation head, reviewed executor commit/tree, candidate/input hashes, exact mutation roots and command prefixes, attempt=1, expiry, and all forbidden authority bits false; plan-only executor validates baseline without mutation."
+EXIT_CONDITION: "Capsule exactly binds canonical main/validation/executor/candidate/input identities; mutation roots and command prefixes are minimal/reviewed; attempt=1 and expiry are bounded; native/signing/HKLM/SITE/qualification/HOST_READY bits are false; no blocking/high/medium findings remain."
 ~~~
 
-Do not execute the capsule, switch current, call live user-systemd mutation, mutate LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during preparation.
+Review only. Do not execute the capsule, switch current, call live user-systemd mutation, mutate LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

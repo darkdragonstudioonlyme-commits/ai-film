@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V102
+# AI-FILM-SERVER — intended canonical content V103
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 102
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 103
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-028
-  REASON: "Authorization-root correction is reviewed/promoted and post-promotion regression is green. Prepare an immutable prodlike execution-authorization capsule bound to exact canonical/validation/executor/input identities; no mutation is permitted until separate cross-model authorization review PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-REVIEW-029
+  REASON: "One immutable prodlike authorization capsule is prepared and validated plan-only with no mutation. Execution remains blocked until cross-model review verifies exact identities, command/mutation allowlists, one-attempt semantics, bounded expiry and all forbidden authority bits false."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION_PREP
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare plan-only dev23 prodlike deployment inputs and an immutable attempt=1 authorization capsule bound to exact V102 main, validation 7da5684, reviewed executor c400202 and input hashes; hand capsule to Claude review before any mutation."
+NEXT_ACTION: "Claude reviews authorization SHA256 9d456af4 and its plan/non-mutation evidence; PASS may route to one foreground prodlike transaction attempt. LAB/native/signing remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

@@ -1,0 +1,28 @@
+{
+  "active_control_documents_read": 0,
+  "authorization_review_result": "PENDING",
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "execution_started": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor_correction": "7bb931254d61823af616ac52ba624cbede25312a",
+    "main": "e317dcfcfb534517cb659f843d4f000c7a94e668",
+    "review_support": "8eada9355c503a948d929d27c826667e27f8227f",
+    "validation": "7da5684fd21d64a7fc85e72f4ccc8293b7c812fe"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "non_mutation_proof_sha256": "84041996e3b2a3ca8e02640094e369e292b41c1fa93e04da75b963e046947592",
+  "plan_sha256": "910b133397662256a887adb49f1ff0e4323d03c27eb008cfe18fa440a6eb1204",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Cross-model review of one immutable prodlike deployment authorization capsule; no execution",
+  "session_denominator": null,
+  "signing_performed": false
+}
