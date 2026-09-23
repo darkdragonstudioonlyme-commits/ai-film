@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "code_review_result": "PENDING",
+  "diff_allowlist_pass": true,
+  "historical_scripts": 11,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor_candidate": "d71940c27f88348d8b532e7f5df07ce9939c0605",
+    "executor_tree": "45f010fea5407d0c055e32b18beb7a63e5f90e21",
+    "main": "2cdb3a97b908764dc121896de014573376059a62",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "2e813e04acc948158c170f111f5a3933b8a49435"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prior_tv009_tests": 34,
+  "prior_tv010_tests": 18,
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Route exact five-file prodlike/LAB executor candidate to bounded cross-model CODE_REVIEW; no real mutation/native/signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "tv011_tests": 24
+}
