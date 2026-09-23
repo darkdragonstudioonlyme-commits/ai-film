@@ -1,0 +1,10 @@
+{
+  "after_sha256": "4757fa2fdff9c24a5277e022700281f1ecf190a8b3dcfe1d131cca6c2066e0f1",
+  "before_sha256": "4757fa2fdff9c24a5277e022700281f1ecf190a8b3dcfe1d131cca6c2066e0f1",
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "dev23_target_exists": false,
+  "execution_started": false,
+  "kind": "PRODLIKE_AUTHORIZATION_PREPARATION_NON_MUTATION_PROOF",
+  "same": true,
+  "schema_version": 1
+}

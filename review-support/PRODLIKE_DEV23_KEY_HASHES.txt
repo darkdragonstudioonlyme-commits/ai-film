@@ -1,0 +1,6 @@
+2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/release-dev23/runtime-manifest.json
+e0e6ab2ddf5f4c982ef07696336935d24e2082327ed4f1ecd90ec91e0ab13d6b  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/release-dev23/app-manifest.sha256
+f2bd7fb36facb511fe2192750239bf9169c6ab8dcd7dc61db369407a5210b2e5  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/control-bundle-dev23/CONTROL_BUNDLE_MANIFEST.json
+94b72e78a291265aad54e8da1bde0ae88b05e365b538b3fe951ee13dcebd852c  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/control-bundle-dev23/release-control.json
+18cfe177815bdd8063cd17d1e2b91391b79735887ac9ec86c0e7e2f63ee0c745  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/rebuild-dev23/rebuild-index.json
+08c3cfb62beb122320d22a3819df0f623828e467fba746d89a60ba5ee6c1895b  /home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/lab-payload-dev23/LAB_CANDIDATE_PAYLOAD_MANIFEST.json

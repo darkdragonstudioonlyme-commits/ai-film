@@ -1,0 +1,40 @@
+{
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "execution_started": false,
+  "executor_commit": "7bb931254d61823af616ac52ba624cbede25312a",
+  "executor_tree": "c400202e07d724a6965c70eb6b5216d1f4496f80",
+  "files": {
+    "PRODLIKE_DEV23_AUTHORIZATION.json": {
+      "bytes": 8424,
+      "sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322"
+    },
+    "PRODLIKE_DEV23_AUTHORIZATION_PREP_RECEIPT.json": {
+      "bytes": 1655,
+      "sha256": "3cad8a66884d670337502234503a63573bb4d0da6eab9c2e1f084a28f9224ced"
+    },
+    "PRODLIKE_DEV23_BUILD_CONTROL.json": {
+      "bytes": 395,
+      "sha256": "b57a0e8f8f7316dbdf6f884767ff6fb1c7ab95dd8a5aab419c81154e026f4594"
+    },
+    "PRODLIKE_DEV23_BUILD_RELEASE.json": {
+      "bytes": 544,
+      "sha256": "bf0daaa73cddc2b31c727de45676551d164205c1cbe133ddb980f4f1014d1c46"
+    },
+    "PRODLIKE_DEV23_KEY_HASHES.txt": {
+      "bytes": 1125,
+      "sha256": "a41a3078df94d9d6aed5a0e2217256c80781ff761c17f5a368e1379567603a0c"
+    },
+    "PRODLIKE_DEV23_NON_MUTATION_PROOF.json": {
+      "bytes": 402,
+      "sha256": "84041996e3b2a3ca8e02640094e369e292b41c1fa93e04da75b963e046947592"
+    },
+    "PRODLIKE_DEV23_PLAN_ONLY.json": {
+      "bytes": 1501,
+      "sha256": "910b133397662256a887adb49f1ff0e4323d03c27eb008cfe18fa440a6eb1204"
+    }
+  },
+  "kind": "PRODLIKE_DEV23_AUTHORIZATION_REVIEW_SUPPORT",
+  "main_commit": "e317dcfcfb534517cb659f843d4f000c7a94e668",
+  "schema_version": 1,
+  "validation_commit": "7da5684fd21d64a7fc85e72f4ccc8293b7c812fe"
+}

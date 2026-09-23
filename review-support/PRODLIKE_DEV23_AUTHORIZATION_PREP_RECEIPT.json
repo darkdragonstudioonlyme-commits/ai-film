@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "authorization_path": "/home/dragon/ai-film-dev/run-evidence/v102-prodlike-authorization-prep-20260923/prodlike-authorization.json",
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "command_count": 91,
+  "execution_started": false,
+  "executor_commit": "7bb931254d61823af616ac52ba624cbede25312a",
+  "executor_tree": "c400202e07d724a6965c70eb6b5216d1f4496f80",
+  "expires_at": 1790194862,
+  "forbidden_authority_bits_all_false": true,
+  "input_sha256": {
+    "binding": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+    "control_bundle_manifest": "f2bd7fb36facb511fe2192750239bf9169c6ab8dcd7dc61db369407a5210b2e5",
+    "current_deployment_receipt": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a",
+    "current_runtime_manifest": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "release_runtime_manifest": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45"
+  },
+  "kind": "PRODLIKE_AUTHORIZATION_PREP_RECEIPT",
+  "main_commit": "e317dcfcfb534517cb659f843d4f000c7a94e668",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/v103-prodlike-deployment-transaction-20260923"
+  ],
+  "schema_version": 1,
+  "status": "READY_FOR_CROSS_MODEL_REVIEW",
+  "transaction_id": "PRODLIKE-DEV23-E317DCF-001",
+  "validation_commit": "7da5684fd21d64a7fc85e72f4ccc8293b7c812fe"
+}
