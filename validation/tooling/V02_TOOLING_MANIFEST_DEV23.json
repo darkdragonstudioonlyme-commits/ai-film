@@ -14,7 +14,7 @@
     "materialize-v03-late-proof.py": "28528414941015f40ce911e74cfb8a1efc01a5cc26abaa1fa8e8ee4178683961",
     "pre-v03-authority-stage-v2.sh": "88a51565ed51a8ae7767f68ca0022513b10766d03e4a20a62b0bac65dc10074b",
     "tests/test_v02_candidate_profile.py": "edb577287adddb7d9bea692ea6843ba91d462353a4b4a610f1ba23c2fa7b0949",
-    "tests/test_v02_dev23_candidate_hardcuts.py": "0c62f7f35472df103c01046a77e2c9fb97cb9dec326c328188938779ef1548a0",
+    "tests/test_v02_dev23_candidate_hardcuts.py": "e0119b53fa0065f5a1bf8255ed61c4682e932de1f8b989e1b48c3881ab57f3c1",
     "tests/test_v02_dev23_generic_tooling.py": "b235854408fdbe81cf314115ff28036edaf464e38991c54fd31988ad96e93ae9",
     "tests/test_v03_binding_producer.py": "24f7972e785957c5e4ed0ef6650804b5a995bd998adcb6f3f8ad25731f3b720f",
     "tests/test_v03_fixture_preparation_controller.py": "3b1f758b0d11c11f784ff484ff748bd37b3d9354aa1334658f972fe4c290f6a1",

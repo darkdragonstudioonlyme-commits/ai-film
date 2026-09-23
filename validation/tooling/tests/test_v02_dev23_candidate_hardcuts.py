@@ -1,4 +1,4 @@
-import hashlib,json,subprocess,unittest
+import hashlib,json,re,subprocess,unittest
 from pathlib import Path
 TOOL=Path(__file__).resolve().parents[1]
 SUCCESSORS=['v02_candidate_profile.py','v02-authority-intake-v2.py','v02-authority-preflight-v2.py','materialize-v02-native-policy-v2.py','pre-v03-authority-stage-v2.sh','watch-v02-authority-v2.sh','verify-lab-artifact-seal-v2.py','build_lab_payload-v2.py','v03_binding_producer_common.py','v02b-authority-graph-compiler.py','verify-v03-binding-producer.py','v03-fixture-preparation-controller.py','update-v03-native-policy.py','materialize-v03-late-proof.py']
@@ -10,7 +10,7 @@ class Hardcuts(unittest.TestCase):
    text=(TOOL/f).read_text()
    for b in banned:self.assertNotIn(b,text,f'{f}:{b}')
  def test_historical_dev22_files_unmodified_from_validation_base(self):
-  root=TOOL.parents[1];base='43c9a687ad3a1f778328f5d1587d789fbb380fd8'
+  root=TOOL.parents[1];change=(root/'test-governance/TEST_CHANGE-P00-DEV23-TOOLING-REBIND-009.md').read_text();m=re.search(r'^BASE_VALIDATION_COMMIT: ([0-9a-f]{40})$',change,re.M);self.assertIsNotNone(m);base=m.group(1)
   for f in HIST:self.assertEqual(subprocess.run(['git','-C',str(root),'diff','--quiet',base,'--','validation/tooling/'+f]).returncode,0,f)
  def test_shell_successors_explicit_and_non_native(self):
   for f in ['pre-v03-authority-stage-v2.sh','watch-v02-authority-v2.sh']:
