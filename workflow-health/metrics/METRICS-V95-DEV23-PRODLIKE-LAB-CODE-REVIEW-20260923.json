@@ -1,0 +1,28 @@
+{
+  "active_control_documents_read": 0,
+  "author_historical_scripts": 11,
+  "author_prior_successor_tests": 34,
+  "author_tv010_tests": 18,
+  "code_review_result": "PENDING",
+  "diff_allowlist_pass": true,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "082956862df9aa733be20fe14c7c8d7e67c88dd8",
+    "successor_candidate": "75e57f1754b5e192fb56912cfb1b6399fbc17eb3",
+    "successor_tree": "1f8794ebbf0d64b05dd38e38a9168179dbb5024d",
+    "validation": "112cee0506c250ea34bd5487baf3281f98dfb189"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_deployed": false,
+  "schema_version": 1,
+  "scope": "Route exact TEST_REVIEW-010 successor tooling to bounded Claude CODE_REVIEW; no deployment/LAB mutation/native/signing",
+  "session_denominator": null,
+  "signing_performed": false
+}

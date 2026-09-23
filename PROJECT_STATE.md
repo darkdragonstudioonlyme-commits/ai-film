@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V94
+# AI-FILM-SERVER — intended canonical content V95
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 94
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 95
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: IMPL-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-LAB-RECONCILIATION-010
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-IMPLEMENTATION-020
-  REASON: "TEST_REVIEW 010 is PASS. Only the exact ADD-only candidate-generic prodlike/LAB successor tooling/tests may now be authored; deployment, user-systemd mutation, LAB mutation, signing, HKLM and native execution remain blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-LAB-CODE-REVIEW-021
+  REASON: "Exact 12-file dev23 prodlike/LAB successor candidate is frozen and author-tested. Deployment, user-systemd mutation, LAB mutation, signing, HKLM and native execution remain blocked until cross-model CODE_REVIEW PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_LAB_IMPLEMENTATION
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_LAB_CODE_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Author and test only TEST_REVIEW-010 successor tooling; then hand exact candidate to Claude CODE_REVIEW. Do not deploy prodlike, mutate LAB, sign authority or run native cases."
+NEXT_ACTION: "Claude reviews exact 12-file successor tree 1f8794e; PASS permits promotion to validation lane and later separately reviewed prodlike/LAB deployment design. Deployment/native/signing remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
