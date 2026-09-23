@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V104
+# AI-FILM-SERVER — intended canonical content V105
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 104
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 105
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-001
+CURRENT_TASK: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-001
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-EXECUTION-030
-  REASON: "The immutable prodlike authorization capsule passed cross-model review. Exactly one foreground attempt may run while unexpired and exact preconditions hold; receipt/reconcile state owns replay. LAB/native/signing/HKLM/SITE/qualification/HOST_READY remain blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RECEIPT-REVIEW-031
+  REASON: "Attempt 1 is durably RECONCILE_REQUIRED after a user-systemd command could not connect to the bus. Read-only reconciliation shows current remains dev22, control bytes unchanged, staged dev23 exact, and timers active/enabled with explicit user-bus environment. Retry/cleanup remain blocked pending receipt review and test-design correction."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_EXECUTION
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_RECEIPT_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Revalidate capsule expiry/current dev22/input hashes and run exactly one foreground PRODLIKE_DEPLOYMENT_V2 attempt using the reviewed executor; then stop for receipt review. Do not begin LAB/native/signing."
+NEXT_ACTION: "Claude reviews the durable RECONCILE_REQUIRED receipt and read-only reconciliation/root-cause evidence. No retry, cleanup, LAB/native/signing or new authorization is allowed until the receipt disposition and user-bus test gap are reviewed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

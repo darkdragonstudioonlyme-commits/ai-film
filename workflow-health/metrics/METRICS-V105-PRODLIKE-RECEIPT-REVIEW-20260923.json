@@ -1,0 +1,33 @@
+{
+  "active_control_documents_read": 0,
+  "all_11_timers_enabled_active_with_explicit_user_bus": true,
+  "authorization_sha256": "9d456af49e4ccfd2886a82624448c0e29658c4c89b0f4cb00f2d0aa5ce285322",
+  "control_bytes_exact": true,
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "default_executor_user_bus_available": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "7bb931254d61823af616ac52ba624cbede25312a",
+    "main": "5b944fda2af4f61dfb5bf4c16344d92744cc3bf6",
+    "review_support": "2fc7196962632351ac6c85278f28d5f47bee056d",
+    "validation": "c233e2fd205cf34a9563b1f892465995ef0d76c8"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "reconciliation_user_systemd_sha256": "15641a64d46a8842c31e0dbc21731ce4334311f0af515a0d4c13c81989efe68a",
+  "schema_version": 1,
+  "scope": "Review one RECONCILE_REQUIRED prodlike receipt and read-only reconciliation evidence; no retry/cleanup/LAB/native/signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "staged_release_exact": true,
+  "transaction_phase": "UNKNOWN_COMPLETION",
+  "transaction_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "transaction_state": "RECONCILE_REQUIRED"
+}
