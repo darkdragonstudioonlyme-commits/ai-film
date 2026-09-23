@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V101
+# AI-FILM-SERVER — intended canonical content V102
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 101
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 102
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-011
+CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-027
-  REASON: "Authorization preparation found the reviewed user-systemd target under ~/.config was blocked by an over-broad hardcut. No mutation occurred. A two-file correction permits only the exact reviewed user-systemd subtree while preserving sensitive-root denial and requires cross-model re-review before authorization can be prepared."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-028
+  REASON: "Authorization-root correction is reviewed/promoted and post-promotion regression is green. Prepare an immutable prodlike execution-authorization capsule bound to exact canonical/validation/executor/input identities; no mutation is permitted until separate cross-model authorization review PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTH_ROOT_CORRECTION_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION_PREP
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews exact two-file authorization-root correction tree c400202; PASS permits validation-lane promotion and resumption of prodlike authorization preparation. Real mutation/native/signing remain closed."
+NEXT_ACTION: "Prepare plan-only dev23 prodlike deployment inputs and an immutable attempt=1 authorization capsule bound to exact V102 main, validation 7da5684, reviewed executor c400202 and input hashes; hand capsule to Claude review before any mutation."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

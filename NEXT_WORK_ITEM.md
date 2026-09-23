@@ -1,53 +1,43 @@
-# NEXT WORK ITEM — review prodlike authorization-root correction
+# NEXT WORK ITEM — prepare immutable dev23 prodlike deployment authorization
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-011
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_HEAD: 7aa8bcdfb73f97c68b7c04abbb4c66a888ea814e
-  REVIEWED_EXECUTOR_COMMIT: afc887e402dd3a19f43ee6ee6de066c230f26bbd
-  CORRECTION_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
-  CORRECTION_TREE: c400202e07d724a6965c70eb6b5216d1f4496f80
-  TEST_REVIEW_011: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-LAB-DEPLOYMENT-011.md
-CAUSE:
-  REVIEWED_USER_SYSTEMD_ROOT: /home/dragon/.config/systemd/user
-  PRIOR_HARDCUT: ALL_DESCENDANTS_OF_/home/dragon/.config_DENIED
-  MUTATION_OCCURRED: false
-AUTHOR_EVIDENCE:
-  TV011_TRANSACTION_TESTS: 26_PASS
-  PRIOR_TV010_TESTS: 18_PASS
-  PRIOR_TV009_TESTS: 34_PASS
-  HISTORICAL_DEV22_SCRIPTS: 11_OF_11_PASS
-  REAL_PRODLIKE_MUTATED: false
-  REAL_LAB_MUTATED: false
-  NATIVE_EXECUTION: false
-  SIGNING: false
-GOAL: "Verify that the correction admits only the reviewed user-systemd subtree, still rejects broad ~/.config and protected roots, preserves one-attempt/command hardcuts, and introduces no authority expansion."
+  VALIDATION_HEAD: 7da5684fd21d64a7fc85e72f4ccc8293b7c812fe
+  REVIEWED_EXECUTOR_CORRECTION_COMMIT: 7bb931254d61823af616ac52ba624cbede25312a
+  REVIEWED_EXECUTOR_CORRECTION_TREE: c400202e07d724a6965c70eb6b5216d1f4496f80
+  REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-011.md
+  CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
+  CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
+  PRODLIKE_BASELINE: /home/dragon/ai-film-runtime/current -> /home/dragon/ai-film-runtime/dev22
+GOAL: "Prepare, but do not execute, one immutable PRODLIKE_DEPLOYMENT_V2 authorization capsule and plan-only receipt bound to exact reviewed bytes and mutation/command allowlists."
 STEPS:
-  - EXECUTION_PREFLIGHT_CONFLICT: COMPLETE_FAIL_CLOSED
-  - CORRECTION_AUTHOR: COMPLETE_FROZEN
-  - FULL_REGRESSION: COMPLETE_PASS
-  - CLAUDE_CODE_REVIEW: READY
-  - VALIDATION_LANE_PROMOTION: BLOCKED
-  - PRODLIKE_AUTHORIZATION_PREPARATION: BLOCKED
+  - DEV23_RELEASE_BUILD: COMPLETE_NON_MUTATING
+  - DEV23_CONTROL_BUNDLE_BUILD: COMPLETE_NON_MUTATING
+  - DEV23_REBUILD_SET_BUILD: COMPLETE_NON_MUTATING
+  - DEV23_LAB_PAYLOAD_BUILD: COMPLETE_NON_MUTATING
+  - PRODLIKE_PLAN_ONLY: READY
+  - AUTHORIZATION_CAPSULE_AUTHOR: READY
+  - AUTHORIZATION_CAPSULE_CLAUDE_REVIEW: BLOCKED
   - REAL_PRODLIKE_DEPLOYMENT: BLOCKED
   - REAL_LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal correction CODE_REVIEW PASS/FINDINGS bound to exact two-file tree; no execution authorization or mutation proof."
-ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
-ON_FAIL: SAME_AUTHORIZATION_HARDCUT_CAUSAL_FAMILY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTH-ROOT-CORRECTION-027
+SUCCESS_OUTPUT: "Exact plan-only receipt plus immutable authorization capsule/hash and host preflight evidence; no mutation proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-001
+ON_FAIL: SAME_AUTHORIZATION_PREPARATION_CAUSAL_FAMILY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION-028
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Exact reviewed user-systemd subtree is permitted; broad ~/.config and sensitive paths remain denied; regression remains green; no blocking/high/medium findings remain."
+EXIT_CONDITION: "Capsule binds canonical main, validation head, reviewed executor commit/tree, candidate/input hashes, exact mutation roots and command prefixes, attempt=1, expiry, and all forbidden authority bits false; plan-only executor validates baseline without mutation."
 ~~~
 
-This is review of a fail-closed correction discovered before mutation. Do not create/execute a prodlike authorization, switch current, call live systemd, mutate LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during this review.
+Do not execute the capsule, switch current, call live user-systemd mutation, mutate LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY during preparation.

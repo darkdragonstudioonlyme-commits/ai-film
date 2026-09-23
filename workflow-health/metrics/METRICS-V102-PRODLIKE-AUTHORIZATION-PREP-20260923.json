@@ -1,0 +1,35 @@
+{
+  "active_control_documents_read": 0,
+  "artifact_identities": {
+    "control_bundle_manifest_sha256": "f2bd7fb36facb511fe2192750239bf9169c6ab8dcd7dc61db369407a5210b2e5",
+    "current_dev22_deployment_receipt_sha256": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a",
+    "current_dev22_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "lab_payload_manifest_sha256": "08c3cfb62beb122320d22a3819df0f623828e467fba746d89a60ba5ee6c1895b",
+    "rebuild_index_sha256": "18cfe177815bdd8063cd17d1e2b91391b79735887ac9ec86c0e7e2f63ee0c745",
+    "release_app_manifest_sha256": "e0e6ab2ddf5f4c982ef07696336935d24e2082327ed4f1ecd90ec91e0ab13d6b",
+    "release_control_sha256": "94b72e78a291265aad54e8da1bde0ae88b05e365b538b3fe951ee13dcebd852c",
+    "release_runtime_manifest_sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45"
+  },
+  "authorization_created": false,
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor_correction": "7bb931254d61823af616ac52ba624cbede25312a",
+    "executor_tree": "c400202e07d724a6965c70eb6b5216d1f4496f80",
+    "main": "bfafd3398e49b4f57e44e9cdd6bfa49cd52a97de",
+    "validation": "7da5684fd21d64a7fc85e72f4ccc8293b7c812fe"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Route immutable prodlike authorization preparation after correction review; no mutation/native/signing",
+  "session_denominator": null,
+  "signing_performed": false
+}
