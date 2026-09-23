@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V111
+# AI-FILM-SERVER — intended canonical content V112
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 111
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 112
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-003
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-003
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-PREP-037
-  REASON: "Authorization 002 was cross-model reviewed but expired before any transaction-002 receipt/root existed. It is non-executable and is not renewed in place. Prepare a new immutable authorization 003 with new hash/transaction/expiry/root; all real mutation remains blocked pending review."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-REVIEW-038
+  REASON: "Fresh authorization 003 is plan-only prepared with a unique transaction/hash/root and byte-identical before/after snapshot. Authorization 002 remains expired-unused and attempt 1 non-replayable. Real mutation stays blocked until cross-model review PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION3_PREP
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION3_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare a fresh authorization 003 from current exact dev22/current and staged dev23 state, with new transaction id/hash/expiry/receipt root. Authorization 002 is expired-unused and must never execute."
+NEXT_ACTION: "Claude reviews exact authorization 003 identity, expiry, corrected executor binding, input hashes, minimal roots/commands, auth2 expired-unused proof and plan/non-mutation evidence. Do not execute until PASS."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

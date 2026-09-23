@@ -1,46 +1,48 @@
-# NEXT WORK ITEM — prepare fresh prodlike authorization 003
+# NEXT WORK ITEM — review immutable prodlike authorization 003
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-003
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-003
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: b5a5ad4dff048af67d7eea24ceff807336bec551
-  CURRENT_VALIDATION: df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a
-  CORRECTED_EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
-  CORRECTED_EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
+  MAIN_SNAPSHOT: cf998f9508884d872510acf9edae193185831829
+  VALIDATION_SNAPSHOT: df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a
+  REVIEW_SUPPORT_COMMIT: a0eedfec07bf2193bfefbb995ebd04ac6464ca1b
+  EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
+  EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
+  AUTHORIZATION_SHA256: 8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84
+  PLAN_SHA256: 5ab40a68572798c0dfc27ed52915c77e6108aed287dd361c6393e7d2ba74f8fc
+  TRANSACTION_ID: PRODLIKE-DEV23-CF998F9-003
   AUTHORIZATION2_SHA256: 208d817a520c8b15c4ed5dd1d8a637eeeb21d06362b517b9a47b3297bd894db5
-  AUTHORIZATION2_TRANSACTION_ID: PRODLIKE-DEV23-0D47B4F-002
   AUTHORIZATION2_STATUS: EXPIRED_UNUSED
   ATTEMPT1_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
   ATTEMPT1_REPLAY_AUTHORIZED: false
-GOAL: "Prepare one new immutable PRODLIKE_DEPLOYMENT_V2 authorization 003 from the current exact baseline. It must use a new transaction id/hash/expiry/receipt root and prove no mutation. Authorization 002 remains expired-unused."
+GOAL: "Independently verify one fresh immutable PRODLIKE_DEPLOYMENT_V2 authorization 003 against V111/validation/current baseline, corrected executor semantics, auth2 expiration/no-execution and exact plan/non-mutation evidence before any execution."
 STEPS:
-  - AUTHORIZATION2_REVIEW: COMPLETE_PASS_EXPIRED_UNUSED
-  - AUTHORIZATION2_EXECUTION: FORBIDDEN_EXPIRED
+  - AUTHORIZATION2_EXPIRED_UNUSED: COMPLETE_LOCKED
   - ATTEMPT1_NON_REPLAY: COMPLETE_LOCKED
-  - CURRENT_BASELINE_REVALIDATION: READY
-  - PLAN_ONLY_CORRECTED_EXECUTOR: NOT_STARTED
-  - AUTHORIZATION3_AUTHOR: NOT_STARTED
-  - NON_MUTATION_PROOF: NOT_STARTED
-  - AUTHORIZATION3_CROSS_MODEL_REVIEW: BLOCKED
+  - PLAN_ONLY_BASELINE_VALIDATION: COMPLETE_PASS
+  - NON_MUTATION_PROOF: COMPLETE_PASS
+  - AUTHORIZATION3_AUTHOR: COMPLETE_FROZEN
+  - CLAUDE_IDENTITY_EXPIRY_REVIEW: READY
+  - CLAUDE_COMMAND_ROOT_INPUT_REVIEW: READY
   - NEXT_PRODLIKE_TRANSACTION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh authorization-003 hash plus exact plan/non-mutation evidence; no execution proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-003
-ON_FAIL: CORRECT_OR_REVOKE_AUTHORIZATION3_BEFORE_REVIEW
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-PREP-037
+SUCCESS_OUTPUT: "Formal authorization-003 review PASS/FINDINGS bound to exact capsule hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-003
+ON_FAIL: REVOKE_EXPIRED_OR_CORRECT_AUTHORIZATION3_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION3-REVIEW-038
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Authorization 003 has a unique transaction id/hash/receipt root, current remains exact dev22, staged dev23 exact, all input/executor hashes match, expiry bounded, forbidden authority bits false and before/after preparation snapshots identical."
+EXIT_CONDITION: "Capsule exactly binds V111 main/validation/corrected executor/candidate/input identities; transaction/hash/root are unique; auth2 is expired-unused; expiry bounded; roots/commands minimal; forbidden authority bits false; plan/non-mutation proof exact; no blocking/high/medium findings remain."
 ~~~
 
-Preparation only. Do not execute authorization 002 or 003, replay attempt 1, remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute authorization 002 or 003, replay attempt 1, remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

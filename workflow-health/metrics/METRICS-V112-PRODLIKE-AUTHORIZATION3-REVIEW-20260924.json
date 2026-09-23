@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_replay_authorized": false,
+  "authorization2_status": "EXPIRED_UNUSED",
+  "authorization3_review_result": "PENDING",
+  "authorization3_sha256": "8fbd1b60c6ea77e8ef0b1293af951124ddd09607e619431ba5562d26c7ae7a84",
+  "authorization3_transaction_id": "PRODLIKE-DEV23-CF998F9-003",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "cf998f9508884d872510acf9edae193185831829",
+    "review_support": "a0eedfec07bf2193bfefbb995ebd04ac6464ca1b",
+    "validation": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Cross-model review of fresh prodlike authorization 003 only; no execution",
+  "session_denominator": null,
+  "signing_performed": false
+}
