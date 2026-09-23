@@ -51,6 +51,18 @@ def tree_snapshot(root: str | Path) -> dict[str, dict[str, Any]]:
         }
     return rows
 
+def verify_release_source(source: Path) -> dict:
+    tree = tree_snapshot(source)
+    runtime = load_json(source / "runtime-manifest.json")
+    req(runtime.get("native_execution_started") is False and
+        runtime.get("native_lab_authority") is False, "RUNTIME_NATIVE_BOUNDARY")
+    inv = load_json(source / "evidence/native-inventory.json")
+    req(inv.get("case_count") == 86 and inv.get("actual_status") == "NOT_RUN" and
+        inv.get("parent_cases_executed") == 0 and
+        inv.get("qualification_issued") is False and
+        inv.get("host_ready") is False, "RUNTIME_INVENTORY_BOUNDARY")
+    return {"tree": tree, "runtime": runtime, "inventory": inv}
+
 def verify_release_copy(source: Path, target: Path) -> dict:
     before = tree_snapshot(source)
     after = tree_snapshot(target)
@@ -171,7 +183,7 @@ def build_plan(*, binding, binding_sha256, release_source, control_bundle,
                release_target, bin_root, unit_root, config_path, rollback_root) -> dict:
     profile, profile_sha = load_profile(binding, binding_sha256)
     release_source = Path(release_source); bundle = Path(control_bundle)
-    release = verify_release_copy(release_source, release_source)
+    release = verify_release_source(release_source)
     req(release["runtime"].get("candidate_id") == profile["candidate_id"] and
         release["runtime"].get("candidate_binding_sha256") == profile_sha and
         release["runtime"].get("source_commit") == profile["source_commit"],

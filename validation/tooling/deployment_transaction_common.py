@@ -144,11 +144,24 @@ def load_authorization(path: str | Path, expected_sha256: str, transaction_kind:
     resolved_roots = [Path(x).resolve(strict=False) for x in roots]
     req(all(str(x) not in ('/', '/home', '/home/dragon') for x in resolved_roots),
         "AUTHORIZATION_ROOT_TOO_BROAD")
+    sensitive = [Path('/home/dragon/.ssh'), Path('/home/dragon/.gnupg'), Path('/home/dragon/.config'),
+                 Path('/home/dragon/ai-film-dev/local-authority'), Path('/home/dragon/ai-film-dev/root-ops')]
+    def overlaps(a: Path, b: Path) -> bool:
+        try:
+            a.relative_to(b); return True
+        except ValueError:
+            try:
+                b.relative_to(a); return True
+            except ValueError:
+                return False
+    req(all(not any(overlaps(root, secret) for secret in sensitive) for root in resolved_roots),
+        "AUTHORIZATION_ROOT_SENSITIVE")
     prefixes = value["allowed_command_prefixes"]
     req(type(prefixes) is list and prefixes and all(type(x) is list and x and all(isinstance(y, str) and y for y in x)
                                       for x in prefixes), "AUTHORIZATION_COMMANDS")
     forbidden = {'sudo','su','bash','sh','dash','zsh','cmd.exe','powershell.exe','pwsh','curl','wget','pip','pip3','apt','apt-get','claude'}
     for prefix in prefixes:
+        req(Path(prefix[0]).is_absolute(), "AUTHORIZATION_COMMAND_NOT_ABSOLUTE:" + prefix[0])
         req(Path(prefix[0]).name.lower() not in forbidden, "AUTHORIZATION_COMMAND_FORBIDDEN:" + prefix[0])
     for field in ("native_execution_authorized", "signing_authorized", "hklm_authorized",
                   "site_authorized", "qualification_authorized", "host_ready_authorized"):

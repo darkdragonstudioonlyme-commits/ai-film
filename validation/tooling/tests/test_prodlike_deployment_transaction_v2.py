@@ -339,9 +339,23 @@ class ProdlikeTxnTests(unittest.TestCase):
         auth_sha = self.write_auth(allowed_command_prefixes=[["/bin/bash", "-c", "x"]])
         with self.assertRaisesRegex(Exception, "AUTHORIZATION_COMMAND_FORBIDDEN"):
             deploy.execute_transaction(**self.kwargs(runner, auth_sha))
+        auth_sha = self.write_auth(allowed_command_prefixes=[["systemctl", "--user"]])
+        with self.assertRaisesRegex(Exception, "AUTHORIZATION_COMMAND_NOT_ABSOLUTE"):
+            deploy.execute_transaction(**self.kwargs(runner, auth_sha))
         auth_sha = self.write_auth(mutation_roots=["/"])
         with self.assertRaisesRegex(Exception, "AUTHORIZATION_ROOT_TOO_BROAD"):
             deploy.execute_transaction(**self.kwargs(runner, auth_sha))
+        auth_sha = self.write_auth(mutation_roots=["/home/dragon/.ssh"])
+        with self.assertRaisesRegex(Exception, "AUTHORIZATION_ROOT_SENSITIVE"):
+            deploy.execute_transaction(**self.kwargs(runner, auth_sha))
+
+    def test_plan_validates_release_source_not_self_compare(self):
+        runtime_path = self.release_source / "runtime-manifest.json"
+        runtime = json.loads(runtime_path.read_text())
+        runtime["native_execution_started"] = True
+        runtime_path.write_text(json.dumps(runtime, sort_keys=True))
+        with self.assertRaisesRegex(Exception, "RUNTIME_NATIVE_BOUNDARY"):
+            deploy.build_plan(binding=self.binding, binding_sha256=self.bsha, release_source=self.release_source, control_bundle=self.bundle, current_link=self.current, current_deployment_receipt=self.old_receipt, current_runtime_manifest=self.old / "runtime-manifest.json", release_target=self.release_target, bin_root=self.bin_root, unit_root=self.unit_root, config_path=self.config, rollback_root=self.rollback)
 
     def test_release_symlink_member_rejected(self):
         target = self.r / "outside-file"; target.write_text("x")
