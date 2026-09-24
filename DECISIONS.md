@@ -14,3 +14,6 @@ Generation models should be locally runnable/open-weight candidates with commerc
 
 ## D-005 — Safety/authority
 Preserve P00 history and WIP. No destructive cleanup, publication, or unbounded paid resource use is implied by Continue v2.
+
+## D-006 — Freeze legacy P00 background timers (2026-09-24)
+After PRODUCT_V2 activation, re-audit found 11 legacy aifilm-p00 user timers still enabled and active. They were disabled and stopped with systemctl --user disable --now. Unit files/evidence were preserved; this is reversible and prevents the frozen P00 control plane from generating new background state/evidence.
