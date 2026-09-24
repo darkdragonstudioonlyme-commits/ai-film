@@ -1,0 +1,191 @@
+def execute_transaction(*, binding, binding_sha256, release_source, control_bundle,
+                        current_link, current_deployment_receipt, current_runtime_manifest,
+                        release_target, bin_root, unit_root, config_path, rollback_root,
+                        authorization, authorization_sha256, main_commit, validation_commit,
+                        executor_commit, executor_tree, receipt_path, deployment_receipt,
+                        runner: Runner) -> dict:
+    profile, profile_sha = load_profile(binding, binding_sha256)
+    auth, auth_sha = load_authorization(
+        authorization, authorization_sha256, "PRODLIKE_DEPLOYMENT_V2",
+        candidate_id=profile["candidate_id"], binding_sha256=profile_sha,
+        main_commit=main_commit, validation_commit=validation_commit,
+        executor_commit=executor_commit, executor_tree=executor_tree,
+    )
+    roots = auth["mutation_roots"]
+    for p in (release_target, Path(current_link).parent, bin_root, unit_root,
+              Path(config_path).parent, rollback_root, Path(receipt_path).parent):
+        require_within(p, roots)
+    assert_input_hashes(auth, {
+        "binding": binding,
+        "current_deployment_receipt": current_deployment_receipt,
+        "current_runtime_manifest": current_runtime_manifest,
+        "release_runtime_manifest": Path(release_source) / "runtime-manifest.json",
+        "control_bundle_manifest": Path(control_bundle) / "CONTROL_BUNDLE_MANIFEST.json",
+    })
+    receipt, fresh = begin_transaction(
+        receipt_path, transaction_id=auth["transaction_id"],
+        transaction_kind="PRODLIKE_DEPLOYMENT_V2",
+        authorization_sha256=auth_sha, candidate_id=profile["candidate_id"],
+        candidate_binding_sha256=profile_sha,
+    )
+    if not fresh:
+        return receipt
+    plan = build_plan(binding=binding, binding_sha256=binding_sha256,
+                      release_source=release_source, control_bundle=control_bundle,
+                      current_link=current_link, current_deployment_receipt=current_deployment_receipt,
+                      current_runtime_manifest=current_runtime_manifest, release_target=release_target,
+                      bin_root=bin_root, unit_root=unit_root,
+                      config_path=config_path, rollback_root=rollback_root)
+    authorized = auth["allowed_command_prefixes"]
+    bundle = Path(control_bundle); release_source = Path(release_source)
+    release_target = Path(release_target); current_link = Path(current_link)
+    bin_root = Path(bin_root); unit_root = Path(unit_root); config_path = Path(config_path)
+    rollback_root = Path(rollback_root)
+    rows = _deploy_targets(bundle, bin_root, unit_root, config_path)
+    old_target = plan["old_current_target"]
+    timers = plan["timers"]
+    timer_state = None
+    backup_meta = None
+    release_created = False
+    mutation_started = False
+    evidence_commit_started = False
+    try:
+        rollback_root.mkdir(parents=True, exist_ok=False)
+        atomic_json(rollback_root / "plan.json", plan)
+        timer_state = capture_timer_state(runner, timers, authorized)
+        atomic_json(rollback_root / "timer-state.json", timer_state)
+        backup_meta = capture_control_backup(rows, rollback_root)
+        append_event(receipt_path, "ROLLBACK_CAPTURED",
+                     old_current_target=old_target,
+                     timer_count=len(timers),
+                     control_entries=len(backup_meta))
+        set_receipt(receipt_path, state="RUNNING", phase="ROLLBACK_CAPTURED")
+        mutation_started = True
+        set_receipt(receipt_path, mutation_started=True, phase="STAGE_RELEASE")
+        if release_target.exists():
+            req(release_target.is_dir() and not release_target.is_symlink(), "RELEASE_TARGET_UNSAFE")
+            req(tree_snapshot(release_target) == tree_snapshot(release_source),
+                "EXISTING_RELEASE_TARGET_DRIFT")
+        else:
+            shutil.copytree(release_source, release_target, copy_function=shutil.copy2)
+            release_created = True
+        verify_release_copy(release_source, release_target)
+        append_event(receipt_path, "RELEASE_STAGED", target=str(release_target))
+
+        set_receipt(receipt_path, phase="QUIESCE_USER_SYSTEMD")
+        quiesce(runner, timers, authorized)
+        append_event(receipt_path, "USER_SYSTEMD_QUIESCED", timer_count=len(timers))
+
+        set_receipt(receipt_path, phase="DEPLOY_CONTROL")
+        for src, dst, mode in rows:
+            copy_file_exact(src, dst, mode)
+        run_checked(runner, [SYSTEMCTL, "--user", "daemon-reload"],
+                    internal_prefixes=[[SYSTEMCTL, "--user"]],
+                    authorized_prefixes=authorized)
+        _verify_deployed(bundle, binding, binding_sha256, release_target,
+                         bin_root, unit_root, config_path)
+        append_event(receipt_path, "CONTROL_DEPLOYED_VERIFIED")
+
+        set_receipt(receipt_path, phase="SWITCH_CURRENT")
+        atomic_symlink(str(release_target), current_link)
+        req(os.readlink(current_link) == str(release_target), "CURRENT_SWITCH_READBACK")
+        append_event(receipt_path, "CURRENT_SWITCHED", target=str(release_target))
+
+        set_receipt(receipt_path, phase="START_TIMERS")
+        for timer in timers:
+            run_checked(runner, [SYSTEMCTL, "--user", "enable", "--now", timer],
+                        internal_prefixes=[[SYSTEMCTL, "--user"]],
+                        authorized_prefixes=authorized)
+        live = capture_timer_state(runner, timers, authorized)
+        req(all(v["enabled"] and v["active"] for v in live.values()), "LIVE_TIMER_STATE")
+
+        verify_current = str(bin_root / "verify-current")
+        runtime_health = str(bin_root / "runtime-health.py")
+        run_checked(runner, [verify_current],
+                    internal_prefixes=[[verify_current]],
+                    authorized_prefixes=authorized)
+        # Runtime health is intentionally last and cannot self-certify earlier gates.
+        run_checked(runner, [runtime_health],
+                    internal_prefixes=[[runtime_health]],
+                    authorized_prefixes=authorized)
+        deployed = _verify_deployed(bundle, binding, binding_sha256,
+                                    release_target, bin_root, unit_root, config_path)
+        evidence_commit_started = True
+        set_receipt(receipt_path, phase="FINAL_EVIDENCE_COMMIT")
+        final = {
+            "schema_version": 1, "kind": "P00_PRODLIKE_CANDIDATE_DEPLOYMENT_V2", "status": "PASS",
+            "candidate_id": profile["candidate_id"], "candidate_binding_sha256": profile_sha,
+            "source_commit": profile["source_commit"], "implementation_version": profile["implementation_version"],
+            "package_sha256": profile["package_sha256"], "wheel_sha256": profile["wheel_sha256"],
+            "prior_current_target": old_target, "current_release": str(release_target),
+            "prior_deployment_receipt_sha256": sha_file(current_deployment_receipt),
+            "prior_runtime_manifest_sha256": sha_file(current_runtime_manifest),
+            "runtime_manifest_sha256": sha_file(release_target / "runtime-manifest.json"),
+            "control_bundle_manifest_sha256": sha_file(bundle / "CONTROL_BUNDLE_MANIFEST.json"),
+            "timer_count": 11, "user_timer_state_checked": True,
+            "rollback_evidence_path": str(rollback_root),
+            "rollback_plan_sha256": sha_file(rollback_root / "plan.json"),
+            "rollback_timer_state_sha256": sha_file(rollback_root / "timer-state.json"),
+            "rollback_control_meta_sha256": sha_file(rollback_root / "control-meta.json"),
+            "native_execution_started": False, "signing_performed": False,
+            "hklm_touched": False, "site_entered": False,
+            "qualification_issued": False, "host_ready": False,
+        }
+        atomic_json(deployment_receipt, final, 0o400)
+        receipt = set_receipt(
+            receipt_path, state="PASS", phase="COMMITTED",
+            current_target=str(release_target),
+            prior_current_target=old_target,
+            deployed_verify=deployed,
+            timer_state_after=live, deployment_receipt_sha256=sha_file(deployment_receipt),
+            rollback_attempted=False, rollback_verified=False,
+            native_execution_started=False, signing_performed=False,
+            hklm_touched=False, site_entered=False,
+            qualification_issued=False, host_ready=False,
+        )
+        append_event(receipt_path, "TRANSACTION_COMMITTED")
+        return load_json(receipt_path)
+    except Exception as exc:
+        unknown = isinstance(exc, UnknownCommandCompletion)
+        set_receipt(receipt_path, unknown_completion=unknown, failure=type(exc).__name__ + ":" + str(exc))
+        if not mutation_started:
+            return set_receipt(receipt_path, state="FAILED_PREMUTATION", phase="FAILED")
+        if unknown:
+            return set_receipt(receipt_path, state="RECONCILE_REQUIRED",
+                               phase="UNKNOWN_COMPLETION", rollback_verified=False)
+        if evidence_commit_started:
+            return set_receipt(receipt_path, state="RECONCILE_REQUIRED",
+                               phase="EVIDENCE_COMMIT_UNCERTAIN", rollback_verified=False)
+        try:
+            set_receipt(receipt_path, rollback_attempted=True, phase="ROLLBACK")
+            # Quiesce best-effort through the same fail-closed runner.
+            quiesce(runner, timers, authorized)
+            if backup_meta is not None:
+                restore_control_backup(backup_meta)
+            atomic_symlink(old_target, current_link)
+            run_checked(runner, [SYSTEMCTL, "--user", "daemon-reload"],
+                        internal_prefixes=[[SYSTEMCTL, "--user"]],
+                        authorized_prefixes=authorized)
+            if timer_state is not None:
+                restore_timer_state(runner, timer_state, authorized)
+            if release_created and release_target.exists():
+                shutil.rmtree(release_target)
+            req(current_link.is_symlink() and os.readlink(current_link) == old_target,
+                "ROLLBACK_CURRENT_VERIFY")
+            if backup_meta is not None:
+                for row in backup_meta:
+                    dst = Path(row["path"])
+                    if row["present"]:
+                        req(dst.is_file() and sha_file(dst) == row["sha256"] and
+                            format(dst.stat().st_mode & 0o777, "o") == row["mode"],
+                            "ROLLBACK_CONTROL_VERIFY:" + str(dst))
+                    else:
+                        req(not dst.exists(), "ROLLBACK_ABSENT_VERIFY:" + str(dst))
+            return set_receipt(receipt_path, state="FAILED_ROLLED_BACK",
+                               phase="ROLLED_BACK", rollback_verified=True)
+        except Exception as rollback_exc:
+            return set_receipt(
+                receipt_path, state="RECONCILE_REQUIRED", phase="ROLLBACK_UNCERTAIN",
+                rollback_verified=False,
+                rollback_failure=type(rollback_exc).__name__ + ":" + str(rollback_exc),
+            )

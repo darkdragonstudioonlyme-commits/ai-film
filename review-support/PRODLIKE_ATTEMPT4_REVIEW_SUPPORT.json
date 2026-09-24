@@ -1,0 +1,49 @@
+{
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "files": {
+    "PRODLIKE_ATTEMPT4_DEV22_RUNTIME_MANIFEST.json": {
+      "bytes": 1369,
+      "sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a"
+    },
+    "PRODLIKE_ATTEMPT4_EXECUTOR_TRANSACTION_EXCERPT.py.txt": {
+      "bytes": 11139,
+      "sha256": "26e6acb41377d87309806c12216a9ad182e49c9877747514ccaaf993674acdf4"
+    },
+    "PRODLIKE_ATTEMPT4_HOST_WITNESS.json": {
+      "bytes": 7151,
+      "sha256": "fa417445ccc0fdb49d130d85d3a18da3530d2c03e7309a5f089226e9d6e5ebfe"
+    },
+    "PRODLIKE_ATTEMPT4_RELEASE_RUNTIME_MANIFEST.json": {
+      "bytes": 1453,
+      "sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45"
+    },
+    "PRODLIKE_ATTEMPT4_ROLLBACK_CONTROL_META.json": {
+      "bytes": 21054,
+      "sha256": "0fc5c747a2c45df3f6bf3b54f293467c99f0082a9f7dc6222355066b506a19dc"
+    },
+    "PRODLIKE_ATTEMPT4_ROLLBACK_PLAN.json": {
+      "bytes": 1627,
+      "sha256": "f33af28c89347f8bfaee1745d551b2e514322c5130ce2fd3909dac6e944bfc81"
+    },
+    "PRODLIKE_ATTEMPT4_ROLLBACK_TIMER_STATE.json": {
+      "bytes": 1572,
+      "sha256": "91d83fb5fbe0f41f01af2008ef679bd5322313a713cfbdc01cb59145f9c1a6ed"
+    },
+    "PRODLIKE_ATTEMPT4_TRANSACTION_RECEIPT.json": {
+      "bytes": 1424,
+      "sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce"
+    },
+    "PRODLIKE_ATTEMPT4_VERIFY_CURRENT.txt": {
+      "bytes": 293,
+      "sha256": "93e6d32a0b6c7a8a980ed3c80a654e6256fa9f000cc0746a3dbb9b030819032f"
+    }
+  },
+  "hklm_touched": false,
+  "kind": "PRODLIKE_ATTEMPT4_RECEIPT_REVIEW_SUPPORT",
+  "native_executed": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "target_transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+  "transaction_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce"
+}
