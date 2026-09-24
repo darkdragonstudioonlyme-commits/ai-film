@@ -1,0 +1,17 @@
+{
+  "authorization1_receipt_root_exists": false,
+  "authorization1_sha256": "a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4",
+  "authorization1_status": "SUPERSEDED_UNUSED_REVIEW_FINDINGS",
+  "authorization1_transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-001",
+  "authorization1_transaction_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation1-20260924",
+  "authorization2_receipt_root_exists": false,
+  "authorization2_sha256": "f4aac9d60ecaf5267bd0086145820e5437652405992c8c26c65e57f5ab05e871",
+  "authorization2_transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002",
+  "authorization2_transaction_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924",
+  "hash_changed": true,
+  "kind": "ATTEMPT5_RECONCILIATION_AUTH_SUPERSESSION",
+  "neither_executed": true,
+  "schema_version": 1,
+  "transaction_id_changed": true,
+  "transaction_root_changed": true
+}

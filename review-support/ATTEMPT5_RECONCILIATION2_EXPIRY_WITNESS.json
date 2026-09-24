@@ -1,0 +1,14 @@
+{
+  "authorization_sha256": "f4aac9d60ecaf5267bd0086145820e5437652405992c8c26c65e57f5ab05e871",
+  "bounded_under_24h": true,
+  "execution_started": false,
+  "expired": false,
+  "expires_at_unix": 1790262405,
+  "expires_at_utc": "2026-09-24T15:06:45+00:00",
+  "kind": "ATTEMPT5_RECONCILIATION2_EXPIRY_WITNESS",
+  "observed_at_unix": 1790240851,
+  "observed_at_utc": "2026-09-24T09:07:31+00:00",
+  "remaining_seconds": 21554,
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002"
+}
