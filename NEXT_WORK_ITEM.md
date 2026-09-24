@@ -1,46 +1,45 @@
-# NEXT WORK ITEM — rebuild corrected dev23 prodlike release 013
+# NEXT WORK ITEM — review corrected dev23 prodlike release 013
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: REBUILD-P00-DEV23-PRODLIKE-RELEASE-013
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: fe3550fae7305bd8327f5326e5ed2752ce549909
+  CURRENT_MAIN: cfba9f6a76118c8bb712d2818f5f3bb1ca36fe16
   CURRENT_VALIDATION: abac81bd8b9e5e2df206b554950919ae3d754e37
-  VERIFY_RUNTIME_AUTHOR_COMMIT: 0a05cd4b0ef49565f77eb503d918828a539b6237
-  VERIFY_RUNTIME_AUTHOR_TREE: ca0be120320a8d6aa7af201a9d58523de8a087ff
-  VERIFY_RUNTIME_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
+  REVIEW_SUPPORT_COMMIT: 57c41dd888f3948dc0af1671a326a8b6a219660f
   PRODUCT_CANDIDATE: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
   PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
   WHEEL_SHA256: 55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df
-GOAL: "Rebuild corrected dev23 release and rebuild-set under a new evidence root using reviewed package/wheel plus promoted builder, prove verify-runtime/runtime-manifest identity and host non-mutation, then hand exact artifact identities to independent review."
+  RUNTIME_MANIFEST_SHA256: d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d
+  VERIFY_RUNTIME_SHA256: e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae
+  RELEASE_TREE_SHA256: 645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380
+  REBUILD_INDEX_SHA256: 4086b8c83501880ea14b1bec3b652b2256ca19c09cbcc9a062e5607b967fae69
+GOAL: "Independently verify corrected release/rebuild-set identities, verify-runtime/runtime-manifest binding and execution, reviewed package/wheel/binding provenance, and exact host non-mutation before any deployment authorization."
 STEPS:
-  - VERIFY_RUNTIME_CODE_REVIEW: COMPLETE_PASS
-  - VALIDATION_LANE_PROMOTION: COMPLETE
-  - REVIEWED_PACKAGE_WHEEL_LOCATE: READY
-  - STAGED_BROKEN_DEV23_BEFORE_SNAPSHOT: NOT_STARTED
-  - CORRECTED_RELEASE_BUILD: NOT_STARTED
-  - VERIFY_RUNTIME_EXECUTION: NOT_STARTED
-  - REBUILD_SET_BUILD: NOT_STARTED
-  - CORRECTED_ARTIFACT_IDENTITY_RECEIPT: NOT_STARTED
-  - HOST_AFTER_SNAPSHOT: NOT_STARTED
-  - RELEASE_IDENTITY_CODE_REVIEW: BLOCKED
-  - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
+  - CORRECTED_RELEASE_BUILD: COMPLETE_PASS
+  - VERIFY_RUNTIME_EXECUTION: COMPLETE_PASS
+  - REBUILD_SET_BUILD: COMPLETE_PASS
+  - ARTIFACT_IDENTITY_RECEIPT: COMPLETE_FROZEN
+  - HOST_NON_MUTATION: COMPLETE_PASS
+  - CLAUDE_ARTIFACT_IDENTITY_REVIEW: READY
+  - FRESH_DEPLOYMENT_AUTHORIZATION: BLOCKED
+  - PRODLIKE_DEPLOYMENT: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Corrected release/rebuild-set artifact identities plus verifier PASS and exact non-mutation proof; no deployment proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013
-ON_FAIL: CORRECT_RELEASE_REBUILD_INPUT_OR_IMPLEMENTATION_WITHOUT_DEPLOYMENT
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-REBUILD-013
+SUCCESS_OUTPUT: "Formal PASS/FINDINGS bound to corrected release/rebuild-set exact identities; no deployment proof."
+ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-CORRECTED-013
+ON_FAIL: CORRECT_RELEASE_ARTIFACT_OR_REBUILD_EVIDENCE_WITHOUT_DEPLOYMENT
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-CORRECTED-RELEASE-REVIEW-013
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Corrected evidence-only release contains regular 0750 bin/verify-runtime bound by final runtime manifest and passes execution; rebuild-set builds; package/wheel/input identities exact; broken staged dev23/current/user-systemd unchanged; no deployment/LAB/native/signing/HKLM action."
+EXIT_CONDITION: "Package/wheel/binding/builder/runtime-manifest/verifier/rebuild-set identities all exact; verifier mode/hash/runtime PASS exact; host non-mutation exact; no blocking/high/medium finding remains."
 ~~~
 
-Evidence build/review only. Do not switch prodlike current, repair/delete staged broken dev23, mutate user-systemd, create deployment authorization, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.
+Review only. Do not deploy corrected release, switch prodlike current, repair/delete broken staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.

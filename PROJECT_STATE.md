@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V129
+# AI-FILM-SERVER — intended canonical content V130
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 129
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 130
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: REBUILD-P00-DEV23-PRODLIKE-RELEASE-013
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-REBUILD-013
-  REASON: "Verify-runtime implementation 013 is cross-model reviewed and promoted. Rebuild a corrected dev23 release under evidence-only storage and independently review its identity before any new deployment authorization; preserve broken staged dev23 evidence byte-identically."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-CORRECTED-RELEASE-REVIEW-013
+  REASON: "Corrected evidence-only dev23 release/rebuild set is built and verifier PASS. Cross-model artifact identity review must bind package/wheel/binding/manifest/verifier/rebuild-set/non-mutation identities before any new deployment authorization."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_RELEASE_REBUILD_013
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_CORRECTED_RELEASE_REVIEW_013
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Build corrected dev23 release and rebuild-set artifacts from reviewed package/wheel using the promoted verify-runtime builder under a new evidence root, prove generated verifier/runtime-manifest composition and host non-mutation, then hand exact artifact identities to Claude review."
+NEXT_ACTION: "Claude reviews corrected release/rebuild-set exact identities, verify-runtime binding/execution and host non-mutation evidence. PASS may route to a fresh deployment authorization; no deployment/LAB/native/signing action during review."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

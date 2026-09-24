@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "deployment_started": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "host_non_mutation": true,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "builder": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+    "main": "cfba9f6a76118c8bb712d2818f5f3bb1ca36fe16",
+    "product_candidate": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "support": "57c41dd888f3948dc0af1671a326a8b6a219660f",
+    "validation": "abac81bd8b9e5e2df206b554950919ae3d754e37"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "rebuild_index_sha256": "4086b8c83501880ea14b1bec3b652b2256ca19c09cbcc9a062e5607b967fae69",
+  "release_tree_sha256": "645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380",
+  "review_result": "PENDING",
+  "runtime_manifest_sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d",
+  "schema_version": 1,
+  "scope": "Review corrected dev23 evidence-only release/rebuild-set identity; no deployment/LAB/native/signing/HKLM",
+  "session_denominator": null,
+  "signing_performed": false,
+  "verify_runtime_sha256": "e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae"
+}
