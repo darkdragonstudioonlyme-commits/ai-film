@@ -1,50 +1,48 @@
-# NEXT WORK ITEM — execute one reviewed attempt4 reconciliation2 transaction
+# NEXT WORK ITEM — review reconciliation2 receipt and independent dev22 verification
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002
-ASSIGNEE: CHATGPT
+WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  REVIEW_CONTROL_COMMIT: 2340d77e96a11d6b4a303116817f3b0d14b5383f
-  REVIEW_VALIDATION_COMMIT: 94940cc1dbdaa2e85c23e6a166760d735566ffbe
-  AUTHORIZATION_SHA256: 22fd6119d0d5005c9dfeb126477b07ac781e1eb7ff2d6249bada5443c565a494
+  EXECUTION_GATE_MAIN: 65114f42c7b50e062f78c277ce662295bd92964d
+  FORMAL_AUTHORIZATION_REVIEW: 94940cc1dbdaa2e85c23e6a166760d735566ffbe
+  REVIEW_SUPPORT_COMMIT: fa06d1dbb99e9fb69c39b70c42e10fab72222335
   TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004-RECON-002
-  EXECUTOR_COMMIT: d7232c06cf256fe1483c4f921fe4e2a7c8ac1916
-  EXECUTOR_TREE: 99ef0a383ed26a6eec668deec795f6d80a39cd67
-  PLAN_SHA256: bbb627a8048df00d903d0f5cd5769de610fa2804cf0c42918c59096237c27018
-  FORMAL_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002.md
-  SOURCE_TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004
-  SOURCE_TRANSACTION_REPLAY_AUTHORIZED: false
-  RECEIPT_ROOT: /home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt4-reconciliation2-20260924
-GOAL: "Run exactly one reviewed reconciliation transaction that restores dev22 current/control/11 timers, verifies dev22 internally, preserves staged broken dev23 byte-identically, and emits a durable receipt. Do not repair dev23 in this transaction."
+  TRANSACTION_RECEIPT_SHA256: d225adbd11221cb593a5f1b285b3d27c788f4e14ad4d840fcc5f7778b3b55d05
+  RECEIPT_STATE: RECONCILED_PENDING_INDEPENDENT_VERIFY
+  INDEPENDENT_DEV22_VERIFY_SHA256: 1d67c6197e13c3af5e69a906cc6c70f0c17f78e034bcd0f3efd7e9a5fb383021
+  SOURCE_DEBT: DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME
+  REPLAY_AUTHORIZED: false
+GOAL: "Independently verify the one immutable reconciliation2 receipt and separate live dev22 verification: exact dev22 current/control/timers restored, staged broken dev23 unchanged, no forbidden authority boundary crossed, and source debt is ready to route to TEST_CHANGE 013 only after PASS."
 STEPS:
-  - RECONCILIATION2_FORMAL_REVIEW: COMPLETE_PASS
-  - PREEXEC_AUTHORIZATION_EXPIRY: READY
-  - PREEXEC_CURRENT_DEV23_STATE: READY
-  - PREEXEC_INPUT_HASHES: READY
-  - PREEXEC_USER_BUS: READY
-  - PREEXEC_RECEIPT_ROOT_ABSENCE: READY
-  - ONE_FOREGROUND_RECONCILIATION_ATTEMPT: READY
-  - RECEIPT_REVIEW: BLOCKED
-  - INDEPENDENT_DEV22_LIVE_VERIFICATION: BLOCKED
-  - RELEASE_VERIFY_RUNTIME_TEST_CHANGE_013: BLOCKED
+  - ONE_RECONCILIATION2_ATTEMPT: COMPLETE_NO_REPLAY
+  - TRANSACTION_RECEIPT_IMMUTABILITY: READY
+  - DEV22_CURRENT_IDENTITY: READY
+  - DEV22_VERIFY_CURRENT: READY
+  - CONTROL_64_EXACT: READY
+  - TIMER_11_LIVE: READY
+  - STAGED_DEV23_PRESERVATION: READY
+  - INDEPENDENT_VERIFY_SEPARATION: READY
+  - NATIVE_SIGNING_HKLM_BOUNDARIES: READY
+  - TEST_CHANGE_013: BLOCKED_PENDING_REVIEW_PASS
   - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Immutable reconciliation2 transaction receipt; success may be only RECONCILED_PENDING_INDEPENDENT_VERIFY. No native execution proof."
-ON_SUCCESS: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002
-ON_FAIL: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-ATTEMPT4-RECONCILIATION2-EXECUTION-048
+SUCCESS_OUTPUT: "Formal receipt-review PASS/FINDINGS bound to receipt d225adbd and independent verification 1d67c619; no new execution proof."
+ON_SUCCESS: TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ON_FAIL: RECONCILE_RECEIPT002_FINDINGS_WITHOUT_REPLAY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-RECONCILIATION2-RECEIPT-REVIEW-049
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "One durable receipt exists. Do not replay regardless of PASS/FAIL/UNKNOWN. If success, current is exact dev22, 11 timers enabled/active, staged dev23 pre/post tree exact and receipt state is RECONCILED_PENDING_INDEPENDENT_VERIFY; otherwise route receipt to review/reconciliation."
+EXIT_CONDITION: "Receipt is immutable/non-replay; current exact dev22; verify-current PASS; 64 controls exact; 11 timers enabled/active; staged dev23 snapshot exact; no deployment receipt for dev23; independent verification evidence is consistent and no blocking/high/medium finding remains."
 ~~~
 
-Do not replay transaction004 or reconciliation2, do not fix/delete staged dev23, do not create a new deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not replay transaction004/reconciliation2, fix or delete staged dev23, create deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
