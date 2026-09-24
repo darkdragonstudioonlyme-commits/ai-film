@@ -12,14 +12,15 @@
 > Cập nhật lượt 8 (ChatGPT, 24/09/2026): chủ dự án gỡ freeze và cho phép triển khai nếu review đúng. Product-v2 vertical slice đã được test/review, GitHub Actions PASS và merge vào `main` tại `1c3e0b65ad728095e6200ee8c4250bbaedd49a29`; P00 baseline được giữ ở ref `archive/p00-governance-2026-09-24` = `15f27a0`.
 > Cập nhật lượt 9 (ChatGPT, 24/09/2026): tái audit toàn bộ handoff bằng archive Git, runtime queue, local WSL/Windows, rerun P00 tests/static và upstream model/license. Sửa các số sai/stale; xác nhận §3.3; phát hiện 11 P00 user timers vẫn chạy và đã freeze reversible (`disable --now`), receipt local `/home/dragon/ai-film-dev/run-evidence/P00_TIMER_FREEZE_20260924.json`.
 > Cập nhật lượt 10 (ChatGPT, 24/09/2026): timer-freeze decision + compact evidence được CI PASS và merge vào canonical `main`; current main = `29abfa0f1c7f38c1ecaeb516615bc90d7017f727`, evidence `run-evidence/P00_TIMER_FREEZE_20260924_SUMMARY.json`.
+> Cập nhật lượt 11 (ChatGPT, 24/09/2026): Product V2 batch 002 được local test/review + GitHub Actions PASS và merge vào `main` tại `94c710e41b4e73c25b68eeb8f27ad557a218c372`. T-008/T-009 DONE: execution-gated MODEL-EVAL harness, 75s EN/ZH/VI timing/subtitles, 9:16+16:9 animatic smoke PASS; 22/22 tests PASS. Cursor mới: T-010..T-012.
 
 ## Trạng thái hiện tại và thẩm quyền của handoff
 
 **REVIEW_FREEZE: CLOSED. PRODUCT_V2: ACTIVE.** Freeze trước đây đã được chủ dự án gỡ. Pivot đã được triển khai và merge sau test/review.
 
-- Canonical `main`: `29abfa0f1c7f38c1ecaeb516615bc90d7017f727` (PRODUCT_V2 + durable timer-freeze record).
+- Canonical `main`: `94c710e41b4e73c25b68eeb8f27ad557a218c372` (PRODUCT_V2 batch 002 merged).
 - Active state: `PRODUCT_V2_001`, phase `Vertical Slice 01`, mode `PRODUCT_BUILD`.
-- Active work: `T-008..T-009` — GPU benchmark harness/scoring + ffmpeg/animatic preparation.
+- Active work: `T-010..T-012` — exact model/license pinning + CPU TTS feasibility + bounded GPU-rental proposal.
 - P00 historical baseline: ref `archive/p00-governance-2026-09-24` = `15f27a0`.
 - P00 legacy worktrees/evidence remain intact; normal `Tiếp tục.` no longer routes to P00.
 - 11 scheduled `aifilm-p00-*.timer` found during this re-audit were disabled and stopped; no scheduled P00 automation should continue producing evidence/state in the background.
@@ -43,7 +44,7 @@ Các hành động chi tiền, publish, xóa dữ liệu hoặc quyền nhạy c
 - **Historical “no film output”: vẫn đúng.** Hiện nay đã có screenplay/casting/continuity/film core/8 benchmark shots, nhưng vẫn chưa có ảnh/video/voice render thực tế.
 - **Pivot: IMPLEMENTED.** Main đã chuyển sang PRODUCT_V2; M0/M1 hoàn thành; v2 active control set ~4,1 KB (core) / ~5,9 KB nếu tính state+next, thay vì legacy minimum ~155,7 KiB trước lane/contract-specific context.
 - **P00 background automation gap: FOUND + FIXED.** 11 P00 timers còn hoạt động sau pivot; đã disable+stop reversible trong re-audit.
-- **Current blocker:** máy không có discrete NVIDIA GPU; ffmpeg/Docker/PyTorch chưa cài. Việc tiếp theo là T-008/T-009, chưa phải quay lại dev23/prodlike.
+- **Current blocker:** máy không có discrete NVIDIA GPU; system ffmpeg/Docker/PyTorch chưa cài, nhưng user-local ffmpeg smoke path đã PASS. Việc tiếp theo là T-010/T-012, chưa phải quay lại dev23/prodlike.
 - **GPU strategy:** thuê/benchmark trước mua vẫn hợp lý; “32 GB là minimum tuyệt đối” không được coi là fact. 32 GB và 96 GB là benchmark tiers; fit thật phụ thuộc model/precision/offload/workflow.
 - **Progress ≈2% / P00≈65%** trong bản review gốc là **reviewer estimate**, không phải metric tái chứng minh. PRODUCT_V2 dùng milestone/product metrics thay cho phần trăm đó.
 
@@ -51,7 +52,7 @@ Các hành động chi tiền, publish, xóa dữ liệu hoặc quyền nhạy c
 
 | Hạng mục | Tái audit | Trạng thái |
 |---|---|---|
-| Canonical current | `origin/main = 29abfa0f...` | PRODUCT_V2 active; P00 timer-freeze evidence durable |
+| Canonical current | `origin/main = 94c710e4...` | PRODUCT_V2 batch 002 active; P00 timer-freeze evidence durable |
 | Frozen P00 | `archive/p00-governance-2026-09-24 = 15f27a0...` | historical evidence |
 | Local clone | `/home/dragon/ai-film-dev/repo` | đã fast-forward và đồng bộ main sau merge |
 | Blueprint | `origin/source/p00-dev22-local-authority-exact:contracts/AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md` | 2.371 dòng, CONFIRMED |
@@ -61,7 +62,7 @@ Các hành động chi tiền, publish, xóa dữ liệu hoặc quyền nhạy c
 | Legacy state | archive `PROJECT_STATE.md` V144 | P00 TEST_DESIGN / BLOCK 057, SUPERSEDED |
 | Current state | main `PROJECT_STATE.md` | PRODUCT_V2_001 / Vertical Slice 01 / T-008..T-009 |
 | Historical film design | archive `docs/FILM_PIPELINE_DESIGN_BACKLOG.md` | F01–F07 only; no film code |
-| Current film implementation | main `film/`, `projects/slice01/`, `tests/film/` | film core + 7 design contracts + screenplay/casting/continuity + 8 benchmark shots; no rendered media yet |
+| Current film implementation | main `film/`, `projects/slice01/`, `model-evaluations/slice01/`, `tests/film/` | film core + 7 design contracts + screenplay/casting/continuity + 8 benchmark shots + execution-gated benchmark harness + 75s multilingual timing/animatic path; no generated model media yet |
 | Legacy dual-AI | archive docs + `tools/dual_ai_text_bridge.py`; runtime queue 322 tasks | TEXT_REVIEW-only behavior CONFIRMED |
 | Current Claude role intent | main `CLAUDE.md` | implement/debug/test role declared, but implementation-capable headless runtime **chưa được xây/qualified** |
 | Legacy learning | archive `learning/LEARNING_STATE.json` | 18 records, process-oriented |
@@ -200,8 +201,8 @@ Do đó hướng product-first pivot vẫn được giữ. Không cần coi th�
 | Continue v2 L1 | **ACTIVE** |
 | L2 background runner | **NOT ENABLED** |
 | Measured film learning | **NOT YET:** FILM_LEARNINGS empty of experiments |
-| GPU rental benchmark | **NOT YET:** T-008 prepares harness |
-| ffmpeg/animatic | **NOT YET:** T-009 |
+| GPU rental benchmark | **HARNESS READY / EXECUTION NOT STARTED:** T-008 DONE; exact model pins + budget gate pending |
+| ffmpeg/animatic | **PREPARED:** T-009 DONE; 75s placeholder 9:16+16:9 smoke PASS with external EN/ZH/VI SRT |
 | First film | **NOT YET** |
 
 ### P0 — Dừng chảy máu (historical recommendation)
@@ -291,10 +292,10 @@ Budget Claude theo quy mô task (vd 1–5 USD, 20–50 lượt) thay vì 0,25 US
 Freeze đã đóng và pivot đã merge. Không chạy lại các bước archive/scaffold đã hoàn tất.
 
 Canonical next batch trên `main`:
-1. **T-008:** xây rental-GPU benchmark harness + model matrix + blind scoring rubric; chưa launch paid GPU nếu chưa có bounded budget.
-2. **T-009:** cài/chuẩn bị ffmpeg + animatic path + EN/ZH/VI timing assets trên CPU.
-3. Sau đó mới chạy MODEL-EVAL trên GPU thuê, chọn stack theo chất lượng/VRAM/throughput/license.
-4. Tiếp M2 casting refs → M3 keyframes → M4 motion → M5 voice/lip-sync → M6 first film → M7 measured quality loop.
+1. **T-010:** pin exact checkpoint/version/license/runtime requirements; giữ `execution_ready=false` tới khi gate đủ.
+2. **T-011:** CPU dialogue/TTS feasibility, không voice-clone người thật khi chưa có rights.
+3. **T-012:** chuẩn bị cấu hình/provider/bounded budget proposal cho GPU rental; chưa launch resource.
+4. Sau đó mới chạy MODEL-EVAL trên GPU thuê, chọn stack theo chất lượng/VRAM/throughput/license → M2 casting refs → M3 keyframes → M4 motion → M5 voice/lip-sync → M6 first film → M7 measured quality loop.
 
 Cold start đúng hiện tại: `RESUME.md` → `BACKLOG.yaml` → `MILESTONES.md` → `CONTINUE_PROTOCOL.md` → `PROJECT_STATE.md` / `NEXT_WORK_ITEM.md`. Handoff này chỉ dùng để hiểu lịch sử và các finding đã dẫn tới pivot.
 
