@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V121
+# AI-FILM-SERVER — intended canonical content V122
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 121
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 122
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002
+CURRENT_TASK: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION2-REVIEW-047
-  REASON: "Reconciliation auth1 is superseded unused after review found missing staged-dev23 postcheck. Corrected auth2 binds executor V2 with dev23 pre/post tree equality and explicit pending-independent-verify labeling. Host mutation remains blocked until exact auth2 cross-model PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-ATTEMPT4-RECONCILIATION2-EXECUTION-048
+  REASON: "Corrected reconciliation auth2 received cross-model PASS and formal validation review. Exactly one foreground reconciliation attempt may run after fresh expiry/current/input/user-bus/root checks. Any durable receipt owns subsequent replay/reconciliation; new deployment/LAB/native/signing remain blocked."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_ATTEMPT4_RECONCILIATION2_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_ATTEMPT4_RECONCILIATION2_EXECUTION
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews corrected reconciliation authorization SHA 22fd6119, executor V2 tree, exact 68-command/input set, staged-dev23 postcheck, phase semantics and non-mutation evidence. Do not execute until PASS."
+NEXT_ACTION: "Revalidate authorization 22fd6119 expiry, current dev23 source-debt state, exact inputs, user-bus and absent reconciliation2 receipt root; if exact, run one foreground reconciliation attempt and stop on its durable receipt."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
