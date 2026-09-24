@@ -1,46 +1,45 @@
-# NEXT WORK ITEM — prepare fresh prodlike authorization 004
+# NEXT WORK ITEM — review fresh prodlike authorization 004
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-004
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-004
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 45f248dfa21f96a6098c6a982d4c4db3c7867bac
-  CURRENT_VALIDATION: c5c5e0d66f7624ac768ddfe9630359fd20116e93
+  MAIN_SNAPSHOT: 1ce088a5eb13d3eca5067155eda926d83b0aa5a6
+  VALIDATION_SNAPSHOT: c5c5e0d66f7624ac768ddfe9630359fd20116e93
+  REVIEW_SUPPORT_COMMIT: 0cf193166ae9cbdb8baa439f773a50ab5744bcca
   EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
   EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
-  ATTEMPT1_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
+  AUTHORIZATION_SHA256: 7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837
+  PLAN_SHA256: f33af28c89347f8bfaee1745d551b2e514322c5130ce2fd3909dac6e944bfc81
+  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004
   ATTEMPT1_REPLAY_AUTHORIZED: false
   ATTEMPT1_RECONCILIATION_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT1-RECONCILIATION-001.md
-  AUTHORIZATION2_STATUS: EXPIRED_UNUSED
-  AUTHORIZATION3_STATUS: REJECTED_OR_STALE_UNEXECUTED
-GOAL: "Prepare one new immutable PRODLIKE_DEPLOYMENT_V2 authorization 004 from the current exact accepted-dev22 baseline and exact staged dev23 bytes. Use a new transaction id/hash/expiry/receipt root and prove preparation is non-mutating."
+GOAL: "Independently verify fresh immutable authorization 004 and plan/non-mutation evidence before any new prodlike transaction."
 STEPS:
   - ATTEMPT1_RECONCILIATION: COMPLETE_PASS
-  - ATTEMPT1_REPLAY: FORBIDDEN
-  - OLD_AUTHORIZATION2_3: NON_EXECUTABLE
-  - CURRENT_BASELINE_REVALIDATION: READY
-  - PLAN_ONLY_EXECUTOR: NOT_STARTED
-  - AUTHORIZATION4_AUTHOR: NOT_STARTED
-  - NON_MUTATION_PROOF: NOT_STARTED
-  - AUTHORIZATION4_CROSS_MODEL_REVIEW: BLOCKED
-  - NEXT_PRODLIKE_TRANSACTION: BLOCKED
+  - AUTHORIZATION4_AUTHOR: COMPLETE_FROZEN
+  - PLAN_ONLY_BASELINE_VALIDATION: COMPLETE_PASS
+  - NON_MUTATION_PROOF: COMPLETE_PASS
+  - CLAUDE_IDENTITY_EXPIRY_REVIEW: READY
+  - CLAUDE_INPUT_ROOT_COMMAND_REVIEW: READY
+  - PRODLIKE_TRANSACTION4: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh authorization-004 hash plus exact plan/non-mutation evidence; no execution proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-004
-ON_FAIL: CORRECT_OR_REVOKE_AUTHORIZATION4_BEFORE_REVIEW
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-PREP-041
+SUCCESS_OUTPUT: "Formal authorization-004 review PASS/FINDINGS bound to exact capsule hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-004
+ON_FAIL: REVOKE_EXPIRED_OR_CORRECT_AUTHORIZATION4_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-REVIEW-042
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Authorization 004 has a unique transaction id/hash/receipt root, current remains exact dev22, staged dev23 exact, all input/executor hashes match, expiry bounded, forbidden authority bits false and before/after preparation snapshots identical."
+EXIT_CONDITION: "Capsule exactly binds V115/validation/corrected executor/candidate/input identities; transaction/hash/root are unique; expiry bounded; roots/commands minimal; forbidden authority bits false; reconciliation PASS inherited; plan/non-mutation evidence exact; no blocking/high/medium findings remain."
 ~~~
 
-Preparation only. Do not execute attempt1/auth2/auth3/auth4, remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute authorization 004, replay attempt1, remove staged dev23, mutate systemd/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

@@ -1,0 +1,32 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_reconciliation_review": "PASS",
+  "attempt1_replay_authorized": false,
+  "authorization_review_result": "PENDING",
+  "authorization_sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "1ce088a5eb13d3eca5067155eda926d83b0aa5a6",
+    "review_support": "0cf193166ae9cbdb8baa439f773a50ab5744bcca",
+    "validation": "c5c5e0d66f7624ac768ddfe9630359fd20116e93"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "new_prodlike_execution_authorized": false,
+  "plan_sha256": "f33af28c89347f8bfaee1745d551b2e514322c5130ce2fd3909dac6e944bfc81",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Cross-model review of fresh prodlike authorization 004; no execution",
+  "session_denominator": null,
+  "signing_performed": false,
+  "snapshot_unchanged": true,
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+  "txroot_absent": true
+}

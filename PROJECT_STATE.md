@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V115
+# AI-FILM-SERVER — intended canonical content V116
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 115
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 116
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-004
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-004
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-PREP-041
-  REASON: "Attempt1 reconciliation is independently reviewed PASS: actual host is exact accepted dev22 with staged dev23 nonactive; original receipt remains immutable/non-replayable. Old auth2/auth3 capsules are not executable. Prepare a fresh authorization 004 bound to current state; no mutation until new review PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-REVIEW-042
+  REASON: "Fresh authorization 004 is plan-only prepared with new transaction/hash/root and unchanged before/after snapshot. Execution remains blocked until cross-model review verifies exact identities, expiry, inputs, roots/commands, reconciliation inheritance and non-mutation evidence."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION4_PREP
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION4_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare a fresh immutable authorization 004 with new transaction id/hash/expiry/receipt root from current exact dev22 baseline and staged dev23 bytes. Do not execute until cross-model review PASS."
+NEXT_ACTION: "Claude reviews authorization 004 SHA 7cdcd51b against V115 main/c5c5 validation, corrected executor, exact inputs, bounded expiry, minimal roots/commands, reconciliation PASS and non-mutation proof. Do not execute until PASS."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
