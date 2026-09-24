@@ -1,47 +1,47 @@
-# NEXT WORK ITEM — prepare corrected dev23 deployment authorization 005
+# NEXT WORK ITEM — review corrected dev23 deployment authorization 005
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: f02f5598262200ed5b909d99267f876c86934c36
+  CURRENT_MAIN: 96f4ea3b8e313a07ff986326dcbe2b86be15dd99
   CURRENT_VALIDATION: a5dac299d54f5f6e482f6cdbb1879532b1f2a068
-  RELEASE_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013.md
-  CORRECTED_RELEASE_TREE_SHA256: 645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380
-  CORRECTED_RUNTIME_MANIFEST_SHA256: d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d
-  VERIFY_RUNTIME_SHA256: e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae
+  REVIEW_SUPPORT_COMMIT: e1176fb96ab3b571f8844a4093e5ef9c7048882f
+  AUTHORIZATION_SHA256: 293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83
+  TRANSACTION_ID: PRODLIKE-DEV23-CORRECTED-96F4EA3-005
   EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
   EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
-  CURRENT_EXPECTED_TARGET: /home/dragon/ai-film-runtime/dev22
+  CORRECTED_RELEASE_TREE_SHA256: 645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380
+  CORRECTED_RUNTIME_MANIFEST_SHA256: d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d
+  PLAN_SHA256: 8701536186e59f75504bc03068e0ce67deaa572fbd439856583fb641998344dc
+  NON_MUTATION_SHA256: 4e67ad3e77dee078143df2dd82b90ecc9467949354375f4dfcba9138071bb0ab
+  RELEASE_TARGET: /home/dragon/ai-film-runtime/dev23-corrected
   FAILED_EVIDENCE_TARGET: /home/dragon/ai-film-runtime/dev23
-  NEW_RELEASE_TARGET: /home/dragon/ai-film-runtime/dev23-corrected
-GOAL: "Prepare one immutable deployment authorization 005 for the reviewed corrected release using a new side-by-side target, with unique transaction id/hash/expiry/receipt root and exact pre/post non-mutation proof."
+GOAL: "Independently verify exact authorization 005 for corrected release side-by-side deployment before any host mutation."
 STEPS:
-  - CORRECTED_RELEASE_REVIEW: COMPLETE_PASS
-  - CURRENT_DEV22_REVALIDATION: READY
-  - BROKEN_DEV23_PRESERVATION_REVALIDATION: READY
-  - NEW_TARGET_ABSENCE_REVALIDATION: READY
-  - PLAN_ONLY_CORRECTED_RELEASE: NOT_STARTED
-  - AUTHORIZATION005_AUTHOR: NOT_STARTED
-  - PREPARATION_NON_MUTATION: NOT_STARTED
-  - AUTHORIZATION005_CROSS_MODEL_REVIEW: BLOCKED
+  - AUTHORIZATION005_AUTHOR: COMPLETE_FROZEN
+  - PLAN_ONLY: COMPLETE_PASS
+  - PREPARATION_NON_MUTATION: COMPLETE_PASS
+  - IDENTITY_INPUT_EXPIRY_REVIEW: READY
+  - COMMAND_ROOT_EXECUTOR_REVIEW: READY
+  - TARGET_PRESERVATION_REVIEW: READY
   - DEPLOYMENT005_EXECUTION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh authorization-005 hash plus exact plan/non-mutation evidence; no deployment proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005
-ON_FAIL: CORRECT_OR_REVOKE_AUTHORIZATION005_BEFORE_REVIEW
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION5-PREP-013
+SUCCESS_OUTPUT: "Formal authorization-005 PASS/FINDINGS bound to exact hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-005
+ON_FAIL: CORRECT_AUTHORIZATION005_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION5-REVIEW-013
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Authorization 005 uniquely binds current main/validation/executor/corrected release/control/binding, new dev23-corrected target and bounded commands/roots; current dev22, broken dev23 evidence and user-systemd unchanged; no execution root created."
+EXIT_CONDITION: "Exact main/validation/executor/candidate/binding/corrected release/control/current hashes pass; expiry bounded; 91 command set/executor composition exact; roots minimal; current dev22/broken dev23 preserved; new target absent; no blocking/high/medium finding remains."
 ~~~
 
-Preparation only. Do not deploy, switch current, repair/delete broken staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.
+Review only. Do not execute authorization 005, create attempt5 receipt root, switch current, modify broken dev23 evidence, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.

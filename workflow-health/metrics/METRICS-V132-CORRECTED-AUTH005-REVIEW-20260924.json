@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "authorization_review_result": "PENDING",
+  "authorization_sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "command_count": 91,
+  "deployment_started": false,
+  "failed_evidence_target": "/home/dragon/ai-film-runtime/dev23",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "96f4ea3b8e313a07ff986326dcbe2b86be15dd99",
+    "support": "e1176fb96ab3b571f8844a4093e5ef9c7048882f",
+    "validation": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "release_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "schema_version": 1,
+  "scope": "Review corrected release deployment authorization 005 only; no execution",
+  "session_denominator": null,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005"
+}
