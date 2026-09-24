@@ -73,6 +73,40 @@ The final runtime manifest must bind `verify_runtime_sha256` to the generated ve
 - `TV013-11` preserved broken dev23 staging evidence remains byte-identical during author/tests; tests operate only on temporary synthetic release roots.
 - `TV013-12` no author/test path switches prodlike `current`, changes user-systemd, creates deployment authorization, mutates LAB, signs authority, writes HKLM, executes native routes, enters SITE, issues qualification or marks HOST_READY.
 
+## TEST_REVIEW semantics and constructibility witness
+
+TEST_REVIEW 013 is a review of the **test/design contract before implementation**. The current pre-fix `build_prodlike_release-v2.py` and `test_prodlike_release_v2.py` are expected not to satisfy TV013 yet; that absence is the source debt this change exists to authorize fixing. A TEST_REVIEW finding is blocking only when the required behavior is incoherent, changes the oracle, needs files outside the declared two-file implementation allowlist, or cannot be tested with the planned evidence below.
+
+The two-file implementation is constructible in this order without a hash/self-reference cycle:
+
+1. In `build_prodlike_release-v2.py`, add a candidate-generic renderer/writer for `bin/verify-runtime`; verifier source contains no manifest hash, release version, candidate ID/hash, dev21/dev22 identity, host venv path or authority identity.
+2. Write the verifier as a regular non-symlink file and set mode `0750`.
+3. Compute `verify_runtime_sha256` from those final verifier bytes.
+4. Write the final `runtime-manifest.json` containing that verifier hash plus existing candidate/package/wheel/app/inventory identities. The verifier may hash its own bytes and compare them to the already-written manifest; the verifier does not embed the manifest digest, so the dependency order is acyclic.
+5. Run the generated verifier only after the final manifest exists. It uses the V2 clean environment/system-Python + `PYTHONPATH=<release>/app/src` model already used by the builder; it does not create or consume a release-local venv.
+6. Return PASS only when that verifier succeeds, and bind verifier hash/status in the build receipt.
+
+No change to rebuild-set/control/executor files is needed: rebuild-set stores the reviewed package/wheel/manifests and the corrected builder deterministically regenerates `bin/verify-runtime`; the already-reviewed control consumers all point to the same release-local path.
+
+### Planned test/evidence mapping
+
+All executable unit tests below are added inside `test_prodlike_release_v2.py`; names are stable design targets, not claims that they already exist in the pre-fix file.
+
+| TV | Planned evidence after implementation | Evidence kind |
+|---|---|---|
+| TV013-01/02/03 | `test_verify_runtime_generated_bound_and_runs_clean_env` | unit/integration on temporary release root |
+| TV013-04 | `test_verify_runtime_rejects_manifest_app_wheel_inventory_and_version_drift` | negative fault matrix on temporary roots |
+| TV013-05 | `test_verify_runtime_rejects_self_hash_drift` | negative verifier-byte drift |
+| TV013-06 | `test_verify_runtime_is_candidate_generic_and_secret_free` | generated-byte/source scan |
+| TV013-07 | `test_verify_runtime_composes_with_reviewed_control_consumers` | read-only composition against `prodlike_control_templates_v2.json` |
+| TV013-08 | `test_verify_runtime_path_type_mode_and_exec_failclosed` | missing/symlink/mode/executable negative matrix |
+| TV013-09 | existing release/rebuild-set test plus byte-identical dependency guard | regression + source diff guard |
+| TV013-10 | full existing TV010/TV011/TV012/TV009 + 11 historical scripts | host regression evidence, not a single unit method |
+| TV013-11 | before/after SHA/tree snapshot of the real preserved staged dev23 during author test run | host non-mutation evidence; tests themselves use temp roots only |
+| TV013-12 | source/command hardcut plus author evidence showing no deployment/LAB/native/signing/HKLM | static + host non-mutation evidence |
+
+TEST_REVIEW must judge whether this planned evidence is meaningful and sufficient. It must not require the pre-fix code to already contain the implementation or test methods before authoring is authorized.
+
 ## Oracle and design discipline
 
 `ORACLE_CHANGED=false`: this correction supplies an artifact already required by reviewed activation/control behavior. It does not change Phase00 business/native expectations. If implementation needs any file beyond the two-file MODIFY allowlist, or requires a release-local venv/new deployment behavior/new native evidence, return to TEST_DESIGN/TEST_REVIEW instead of widening scope.

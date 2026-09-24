@@ -1,18 +1,9 @@
 {
-  "schema_version": 1,
-  "kind": "TEST_DESIGN_COVERAGE",
-  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013",
-  "base_validation_commit": "35605267fea7cac1fa332a3fd7c90da5dd0726f8",
-  "product_source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
-  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
-  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
-  "source_debt": "DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME",
-  "oracle_changed": false,
-  "expected_business_behavior_changed": false,
   "authorized_modify": [
     "validation/tooling/build_prodlike_release-v2.py",
     "validation/tooling/tests/test_prodlike_release_v2.py"
   ],
+  "base_validation_commit": "35605267fea7cac1fa332a3fd7c90da5dd0726f8",
   "byte_identical_dependencies": [
     "validation/tooling/build_prodlike_rebuild_set-v2.py",
     "validation/tooling/build_prodlike_control_bundle-v2.py",
@@ -23,12 +14,108 @@
     "validation/tooling/deploy_prodlike_candidate-v2.py",
     "validation/tooling/rebuild_lab_candidate-v2.py"
   ],
-  "required_test_ids": [
-    "TV013-01", "TV013-02", "TV013-03", "TV013-04", "TV013-05", "TV013-06",
-    "TV013-07", "TV013-08", "TV013-09", "TV013-10", "TV013-11", "TV013-12"
-  ],
-  "native_execution_authorized": false,
-  "prodlike_deployment_authorized": false,
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "constructibility": {
+    "control_or_rebuild_source_change_required": false,
+    "hash_order": [
+      "WRITE_VERIFIER_FINAL_BYTES",
+      "HASH_VERIFIER_BYTES",
+      "WRITE_FINAL_RUNTIME_MANIFEST_WITH_VERIFY_RUNTIME_SHA256",
+      "RUN_VERIFIER_AGAINST_FINAL_MANIFEST",
+      "RETURN_BUILD_RECEIPT_WITH_VERIFIER_IDENTITY"
+    ],
+    "implementation_files": [
+      "validation/tooling/build_prodlike_release-v2.py",
+      "validation/tooling/tests/test_prodlike_release_v2.py"
+    ],
+    "manifest_digest_embedded_in_verifier": false,
+    "release_local_venv_required": false
+  },
+  "evidence_split": {
+    "host_non_mutation": [
+      "TV013-11",
+      "TV013-12"
+    ],
+    "host_regression": [
+      "TV013-10"
+    ],
+    "unit_temp_roots": [
+      "TV013-01",
+      "TV013-02",
+      "TV013-03",
+      "TV013-04",
+      "TV013-05",
+      "TV013-06",
+      "TV013-07",
+      "TV013-08",
+      "TV013-09"
+    ]
+  },
+  "expected_business_behavior_changed": false,
+  "kind": "TEST_DESIGN_COVERAGE",
   "lab_mutation_authorized": false,
-  "signing_authorized": false
+  "native_execution_authorized": false,
+  "oracle_changed": false,
+  "planned_test_mapping": {
+    "TV013-01": [
+      "test_verify_runtime_generated_bound_and_runs_clean_env"
+    ],
+    "TV013-02": [
+      "test_verify_runtime_generated_bound_and_runs_clean_env"
+    ],
+    "TV013-03": [
+      "test_verify_runtime_generated_bound_and_runs_clean_env"
+    ],
+    "TV013-04": [
+      "test_verify_runtime_rejects_manifest_app_wheel_inventory_and_version_drift"
+    ],
+    "TV013-05": [
+      "test_verify_runtime_rejects_self_hash_drift"
+    ],
+    "TV013-06": [
+      "test_verify_runtime_is_candidate_generic_and_secret_free"
+    ],
+    "TV013-07": [
+      "test_verify_runtime_composes_with_reviewed_control_consumers"
+    ],
+    "TV013-08": [
+      "test_verify_runtime_path_type_mode_and_exec_failclosed"
+    ],
+    "TV013-09": [
+      "existing_release_and_rebuild_set_regression",
+      "byte_identical_dependency_guard"
+    ],
+    "TV013-10": [
+      "host_predecessor_regression_matrix"
+    ],
+    "TV013-11": [
+      "host_staged_dev23_before_after_snapshot"
+    ],
+    "TV013-12": [
+      "static_forbidden_capability_scan",
+      "host_non_mutation_evidence"
+    ]
+  },
+  "prodlike_deployment_authorized": false,
+  "product_source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "required_test_ids": [
+    "TV013-01",
+    "TV013-02",
+    "TV013-03",
+    "TV013-04",
+    "TV013-05",
+    "TV013-06",
+    "TV013-07",
+    "TV013-08",
+    "TV013-09",
+    "TV013-10",
+    "TV013-11",
+    "TV013-12"
+  ],
+  "review_semantics": "PRE_IMPLEMENTATION_TEST_DESIGN_REVIEW_CURRENT_SOURCE_DEBT_EXPECTED_NOT_IMPLEMENTED",
+  "schema_version": 1,
+  "signing_authorized": false,
+  "source_debt": "DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013"
 }
