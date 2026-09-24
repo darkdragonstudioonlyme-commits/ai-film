@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V123
+# AI-FILM-SERVER — intended canonical content V124
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 123
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 124
+CURRENT_MODE: TEST_DESIGN
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002
+CURRENT_TASK: TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -99,7 +99,7 @@ VALIDATION_PREPARATION:
   NOTE: "Detailed validation identities, receipts and former work targets remain in the selected machine snapshot and exact history. This summary grants no native authority. Read relevant details for the task, not every historical pointer at cold start."
 
 PRODUCTION_LIKE_READINESS:
-  STATUS: DEV22_DEPLOYED_DEV23_RECONCILIATION_REQUIRED
+  STATUS: DEV22_RESTORED_DEV23_SOURCE_DEBT_TEST_DESIGN_REQUIRED
   CANDIDATE_MATCH: false
   CURRENT_RUNTIME_VERSION: 0.1.0.dev22
   TARGET_CANDIDATE_VERSION: 0.1.0.dev23
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-RECONCILIATION2-RECEIPT-REVIEW-049
-  REASON: "Reconciliation2 executed once and emitted immutable receipt d225adbd in RECONCILED_PENDING_INDEPENDENT_VERIFY. Independent read-only dev22 verification passed 64 control entries and 11 timers while preserving staged broken dev23. Claude must review receipt and independent evidence before TEST_CHANGE 013 or any new deployment."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+  REASON: "Reconciliation2 receipt review is PASS and exact dev22 prodlike baseline is restored. The staged dev23 release remains preserved source debt because release bytes lack bin/verify-runtime while reviewed control requires it. TEST_CHANGE 013 design/review is required before any implementation or new deployment authorization."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_RECONCILIATION2_RECEIPT_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_VERIFY_RUNTIME_TEST_DESIGN_013
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews immutable reconciliation2 receipt SHA d225adbd plus independent dev22 live-verification SHA 1d67c619. Do not replay reconciliation or mutate prodlike during review."
+NEXT_ACTION: "Author TEST_CHANGE 013 for the dev23 prodlike release bin/verify-runtime contract gap, then obtain independent TEST_REVIEW before implementation. Keep deployment/LAB/native/signing gates closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

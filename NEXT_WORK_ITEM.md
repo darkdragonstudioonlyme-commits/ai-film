@@ -1,48 +1,44 @@
-# NEXT WORK ITEM — review reconciliation2 receipt and independent dev22 verification
+# NEXT WORK ITEM — design tests for dev23 prodlike verify-runtime release contract
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: TEST_DESIGN
+LANE: TEST_DESIGN
 STATUS: READY
-WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  EXECUTION_GATE_MAIN: 65114f42c7b50e062f78c277ce662295bd92964d
-  FORMAL_AUTHORIZATION_REVIEW: 94940cc1dbdaa2e85c23e6a166760d735566ffbe
-  REVIEW_SUPPORT_COMMIT: fa06d1dbb99e9fb69c39b70c42e10fab72222335
-  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004-RECON-002
+  CURRENT_MAIN: 1fe0096a13822f95bd90eb7df571afb1d8f4cab6
+  CURRENT_VALIDATION: 35605267fea7cac1fa332a3fd7c90da5dd0726f8
+  FORMAL_RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-RECEIPT-002.md
   TRANSACTION_RECEIPT_SHA256: d225adbd11221cb593a5f1b285b3d27c788f4e14ad4d840fcc5f7778b3b55d05
-  RECEIPT_STATE: RECONCILED_PENDING_INDEPENDENT_VERIFY
   INDEPENDENT_DEV22_VERIFY_SHA256: 1d67c6197e13c3af5e69a906cc6c70f0c17f78e034bcd0f3efd7e9a5fb383021
+  DEV23_CANDIDATE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
   SOURCE_DEBT: DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME
-  REPLAY_AUTHORIZED: false
-GOAL: "Independently verify the one immutable reconciliation2 receipt and separate live dev22 verification: exact dev22 current/control/timers restored, staged broken dev23 unchanged, no forbidden authority boundary crossed, and source debt is ready to route to TEST_CHANGE 013 only after PASS."
+  CURRENT_PRODLIKE: EXACT_DEV22
+  BROKEN_STAGED_DEV23: PRESERVED_EVIDENCE_NOT_DEPLOYED
+  ORACLE_CHANGED: false
+GOAL: "Define TEST_CHANGE 013 so every candidate-generic prodlike release that is eligible for deployment contains the exact reviewed verify-runtime executable at bin/verify-runtime, binds it into release identity, and fails tests before deployment if missing/drifted/non-executable. Preserve existing business/native oracles."
 STEPS:
-  - ONE_RECONCILIATION2_ATTEMPT: COMPLETE_NO_REPLAY
-  - TRANSACTION_RECEIPT_IMMUTABILITY: READY
-  - DEV22_CURRENT_IDENTITY: READY
-  - DEV22_VERIFY_CURRENT: READY
-  - CONTROL_64_EXACT: READY
-  - TIMER_11_LIVE: READY
-  - STAGED_DEV23_PRESERVATION: READY
-  - INDEPENDENT_VERIFY_SEPARATION: READY
-  - NATIVE_SIGNING_HKLM_BOUNDARIES: READY
-  - TEST_CHANGE_013: BLOCKED_PENDING_REVIEW_PASS
+  - RECONCILIATION2_RECEIPT_REVIEW: COMPLETE_PASS
+  - ROOT_CAUSE: COMPLETE_MISSING_RELEASE_VERIFY_RUNTIME
+  - TEST_CHANGE_013_AUTHOR: READY
+  - TEST_REVIEW_013: BLOCKED
+  - RELEASE_BUILDER_IMPLEMENTATION: BLOCKED
   - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal receipt-review PASS/FINDINGS bound to receipt d225adbd and independent verification 1d67c619; no new execution proof."
-ON_SUCCESS: TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
-ON_FAIL: RECONCILE_RECEIPT002_FINDINGS_WITHOUT_REPLAY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-RECONCILIATION2-RECEIPT-REVIEW-049
+SUCCESS_OUTPUT: "TEST_CHANGE 013 plus coverage mapping for release verify-runtime presence/hash/mode/composition and regression retention; no implementation proof."
+ON_SUCCESS: TEST-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ON_FAIL: TEST_DESIGN_CORRECTION_013
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Receipt is immutable/non-replay; current exact dev22; verify-current PASS; 64 controls exact; 11 timers enabled/active; staged dev23 snapshot exact; no deployment receipt for dev23; independent verification evidence is consistent and no blocking/high/medium finding remains."
+EXIT_CONDITION: "Independent TEST_REVIEW confirms exact affected source/test allowlist, verify-runtime release semantics, negative missing/hash/mode/composition cases, predecessor TV010/TV011/TV012 retention, ORACLE_CHANGED=false and no deployment/native/signing authority."
 ~~~
 
-Review only. Do not replay transaction004/reconciliation2, fix or delete staged dev23, create deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Test design only. Do not patch release tooling before TEST_REVIEW, create new deployment authorization, modify or delete staged dev23 evidence, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

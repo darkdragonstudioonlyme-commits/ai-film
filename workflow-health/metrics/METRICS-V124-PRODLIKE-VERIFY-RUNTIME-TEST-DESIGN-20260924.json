@@ -1,0 +1,27 @@
+{
+  "active_control_documents_read": 0,
+  "current_prodlike_baseline": "EXACT_DEV22",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "dev23_candidate": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "main": "1fe0096a13822f95bd90eb7df571afb1d8f4cab6",
+    "receipt_review": "35605267fea7cac1fa332a3fd7c90da5dd0726f8",
+    "validation": "35605267fea7cac1fa332a3fd7c90da5dd0726f8"
+  },
+  "lab_rebuild_authorized": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "new_deployment_authorized": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "reconciliation2_receipt_review": "PASS",
+  "schema_version": 1,
+  "scope": "Route accepted reconciliation2 receipt to TEST_DESIGN 013 for missing dev23 release bin/verify-runtime contract; no deployment/native/signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "staged_dev23_source_debt": "MISSING_BIN_VERIFY_RUNTIME",
+  "test_change_013_status": "NOT_AUTHORED"
+}
