@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V126
+# AI-FILM-SERVER — intended canonical content V127
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 126
-CURRENT_MODE: TEST_REVIEW
+STATE_VERSION: 127
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: TEST-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2
+CURRENT_TASK: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2-TEST-REVIEW
-  REASON: "TEST_CHANGE 013 R2 keeps the same two-file scope/oracle and clarifies pre-implementation review semantics, acyclic verifier/manifest build order and TV013 evidence mapping. Independent R2 TEST_REVIEW must assess constructibility, not require the known pre-fix source debt to already be implemented."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-IMPLEMENTATION
+  REASON: "TEST_REVIEW 013 is PASS. Only the reviewed two-file release-builder/test implementation is allowed; deployment/LAB/native/signing remain blocked until author tests and independent CODE_REVIEW PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_VERIFY_RUNTIME_TEST_REVIEW_013_R2
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_VERIFY_RUNTIME_IMPLEMENTATION_013
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude re-reviews TEST_CHANGE 013 R2 as a pre-implementation constructibility contract. Only PASS may authorize the two-file release-builder/test implementation; deployment/LAB/native/signing remain closed."
+NEXT_ACTION: "Implement TEST_CHANGE 013 in exactly build_prodlike_release-v2.py and test_prodlike_release_v2.py, run TV013 plus predecessor regressions and host non-mutation snapshot, then freeze exact candidate for Claude CODE_REVIEW."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

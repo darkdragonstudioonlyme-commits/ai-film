@@ -1,42 +1,44 @@
-# NEXT WORK ITEM — re-review verify-runtime test design 013 R2
+# NEXT WORK ITEM — implement verify-runtime release contract 013
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 43352f68c88b9fd9ac4af61be33180daabe22572
-  TEST_CHANGE_R2_COMMIT: 364e28eda4c12e154b3b792d960eb9a573d8aace
+  CURRENT_MAIN: 30040e36f356a742a9054a0debe42e0016ab050f
+  TEST_REVIEW_COMMIT: f4c68b47f154c3f4ff38acf64127d4adc1e02c28
   TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
-  COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013-COVERAGE.json
+  TEST_REVIEW: test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
   PRODUCT_SOURCE: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  SOURCE_DEBT: DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME
-  ORACLE_CHANGED: false
-REVIEW_SEMANTICS: PRE_IMPLEMENTATION_CONSTRUCTIBILITY_NOT_CURRENT_IMPLEMENTATION_CONFORMANCE
-GOAL: "Independently verify that R2 is coherent and implementable within exactly two modified files, with acyclic verifier hash/manifest ordering, meaningful TV013 mapping, exact control composition, regression/non-mutation evidence split, ORACLE_CHANGED=false and no execution authority."
+AUTHORIZED_MODIFY:
+  - validation/tooling/build_prodlike_release-v2.py
+  - validation/tooling/tests/test_prodlike_release_v2.py
+GOAL: "Implement candidate-generic bin/verify-runtime generation, runtime-manifest verifier hash binding, final verifier self-check, and TV013-01..12 tests within exactly the reviewed two-file scope."
 STEPS:
-  - INITIAL_SCOPE_REVIEW: COMPLETE_PASS
-  - R2_PREIMPLEMENTATION_SEMANTICS: READY
-  - TWO_FILE_CONSTRUCTIBILITY: READY
-  - HASH_ORDER_REVIEW: READY
-  - TEST_EVIDENCE_MAPPING_REVIEW: READY
-  - CONTROL_COMPOSITION_REVIEW: READY
-  - PREDECESSOR_RETENTION_REVIEW: READY
-  - IMPLEMENTATION: BLOCKED
-  - DEPLOYMENT_LAB_NATIVE_SIGNING: BLOCKED
+  - TEST_REVIEW_013: COMPLETE_PASS
+  - IMPLEMENT_VERIFY_RUNTIME: READY
+  - TV013_TARGETED_TESTS: NOT_STARTED
+  - TV010_TV011_TV012_TV009_REGRESSION: NOT_STARTED
+  - HISTORICAL_11_REGRESSION: NOT_STARTED
+  - STAGED_DEV23_NON_MUTATION_SNAPSHOT: NOT_STARTED
+  - AUTHOR_FREEZE: BLOCKED
+  - CLAUDE_CODE_REVIEW: BLOCKED
+  - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
+  - LAB_REBUILD_RESEED: BLOCKED
+  - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal R2 TEST_REVIEW PASS/FINDINGS bound to corrected test-design bytes; no implementation proof."
-ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
-ON_FAIL: TEST_DESIGN_CORRECTION_013_R3
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2-TEST-REVIEW
+SUCCESS_OUTPUT: "Exact two-file candidate commit/tree plus TV013/predecessor/non-mutation evidence; no deployment proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ON_FAIL: SAME_CAUSAL_FAMILY_IMPLEMENTATION_CORRECTION_OR_REOPEN_TEST_DESIGN
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-IMPLEMENTATION
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms test design is constructible within two files; current pre-fix gaps are expected debt, not review blockers; TV013 mapping/control composition/regression evidence are meaningful; no blocking/high/medium test-design finding remains."
+EXIT_CONDITION: "Only two authorized files changed; generated verifier 0750/self-bound/clean-env passes; all TV013 negative cases and predecessor regressions pass; staged broken dev23 before/after snapshot exact; no deployment/LAB/native/signing/HKLM action."
 ~~~
 
-Review only. Do not implement TV013, deploy prodlike, repair/delete staged dev23, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Authoring/tests only. Do not create deployment authorization, switch prodlike current, repair/delete staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.

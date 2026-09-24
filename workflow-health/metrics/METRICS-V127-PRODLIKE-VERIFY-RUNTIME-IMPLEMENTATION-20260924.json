@@ -1,0 +1,24 @@
+{
+  "active_control_documents_read": 0,
+  "authorized_modify_count": 2,
+  "deployment_authorized": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "implementation_status": "READY",
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "30040e36f356a742a9054a0debe42e0016ab050f",
+    "product_source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "test_review": "f4c68b47f154c3f4ff38acf64127d4adc1e02c28",
+    "validation": "f4c68b47f154c3f4ff38acf64127d4adc1e02c28"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Implement reviewed TEST_CHANGE 013 in exactly build_prodlike_release-v2.py and test_prodlike_release_v2.py; no deployment/native/signing",
+  "session_denominator": null,
+  "test_review_result": "PASS"
+}
