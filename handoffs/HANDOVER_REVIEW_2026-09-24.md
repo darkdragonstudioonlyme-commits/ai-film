@@ -11,12 +11,13 @@
 > Cập nhật lượt 7 (ChatGPT, 24/09/2026): đối chiếu GitHub xác nhận `main` vẫn ở `15f27a0`; nhánh handoff tách từ đúng commit đó và so với `main` chỉ thay đổi đường dẫn `handoffs/HANDOVER_REVIEW_2026-09-24.md` (các commit tiếp theo trên nhánh này chỉ hiệu đính chính handoff); `NEXT_WORK_ITEM.md` trên `main` vẫn trỏ TEST_DESIGN R2 / BLOCK 057. Bổ sung freeze + phân loại thẩm quyền để tránh agent sau tự biến khuyến nghị review thành lệnh thực thi.
 > Cập nhật lượt 8 (ChatGPT, 24/09/2026): chủ dự án gỡ freeze và cho phép triển khai nếu review đúng. Product-v2 vertical slice đã được test/review, GitHub Actions PASS và merge vào `main` tại `1c3e0b65ad728095e6200ee8c4250bbaedd49a29`; P00 baseline được giữ ở ref `archive/p00-governance-2026-09-24` = `15f27a0`.
 > Cập nhật lượt 9 (ChatGPT, 24/09/2026): tái audit toàn bộ handoff bằng archive Git, runtime queue, local WSL/Windows, rerun P00 tests/static và upstream model/license. Sửa các số sai/stale; xác nhận §3.3; phát hiện 11 P00 user timers vẫn chạy và đã freeze reversible (`disable --now`), receipt local `/home/dragon/ai-film-dev/run-evidence/P00_TIMER_FREEZE_20260924.json`.
+> Cập nhật lượt 10 (ChatGPT, 24/09/2026): timer-freeze decision + compact evidence được CI PASS và merge vào canonical `main`; current main = `29abfa0f1c7f38c1ecaeb516615bc90d7017f727`, evidence `run-evidence/P00_TIMER_FREEZE_20260924_SUMMARY.json`.
 
 ## Trạng thái hiện tại và thẩm quyền của handoff
 
 **REVIEW_FREEZE: CLOSED. PRODUCT_V2: ACTIVE.** Freeze trước đây đã được chủ dự án gỡ. Pivot đã được triển khai và merge sau test/review.
 
-- Canonical `main`: `1c3e0b65ad728095e6200ee8c4250bbaedd49a29`.
+- Canonical `main`: `29abfa0f1c7f38c1ecaeb516615bc90d7017f727` (PRODUCT_V2 + durable timer-freeze record).
 - Active state: `PRODUCT_V2_001`, phase `Vertical Slice 01`, mode `PRODUCT_BUILD`.
 - Active work: `T-008..T-009` — GPU benchmark harness/scoring + ffmpeg/animatic preparation.
 - P00 historical baseline: ref `archive/p00-governance-2026-09-24` = `15f27a0`.
@@ -50,7 +51,7 @@ Các hành động chi tiền, publish, xóa dữ liệu hoặc quyền nhạy c
 
 | Hạng mục | Tái audit | Trạng thái |
 |---|---|---|
-| Canonical current | `origin/main = 1c3e0b65...` | PRODUCT_V2 active |
+| Canonical current | `origin/main = 29abfa0f...` | PRODUCT_V2 active; P00 timer-freeze evidence durable |
 | Frozen P00 | `archive/p00-governance-2026-09-24 = 15f27a0...` | historical evidence |
 | Local clone | `/home/dragon/ai-film-dev/repo` | đã fast-forward và đồng bộ main sau merge |
 | Blueprint | `origin/source/p00-dev22-local-authority-exact:contracts/AI_VIDEO_SERVER_SINGLE_CHAT_WORKFLOW_BLUEPRINT_V2.md` | 2.371 dòng, CONFIRMED |
@@ -87,7 +88,7 @@ Các hành động chi tiền, publish, xóa dữ liệu hoặc quyền nhạy c
 | Current film code/data | 29 files under `film/`, `projects/`, `tests/film/` sau pivot; 7/7 film tests PASS; 8 benchmark shots compile |
 | Hardware current | Windows: Ryzen 9 9950X 16C/32T, ~61,6 GiB RAM, chỉ AMD Radeon iGPU. WSL: CPU capped 24 logical, ~47 GiB RAM, root 1007G còn ~925G |
 | Tools current | Python 3.12.3; `nvidia-smi`, ffmpeg, Docker absent; PyTorch not installed |
-| P00 timers | 11 scheduled P00 timers found after pivot; re-audit disabled+stopped all 11. Stale dev21 timer entry is not found/inactive |
+| P00 timers | 11 scheduled P00 timers found after pivot; re-audit disabled+stopped all 11; compact receipt now durable on main. Stale dev21 timer entry is not found/inactive |
 
 ## 3. Đánh giá chi tiết
 
