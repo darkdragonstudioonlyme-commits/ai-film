@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — review bounded prodlike attempt4 reconciliation
+# NEXT WORK ITEM — review corrected prodlike attempt4 reconciliation
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,29 +6,33 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: CODE_REVIEW
 LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_SNAPSHOT: 2bcd627bbcfe2ecf5927a366b4e0fdb253782bef
+  MAIN_SNAPSHOT: c07adbfdb47a26929e275bc52a9e0cce1b585973
   VALIDATION_SNAPSHOT: 5005c1547865e68956c90f23edd8c22266f8967a
-  REVIEW_SUPPORT_COMMIT: d87b175a5ebf259818bf1fb5b384c94149c242fd
-  EXECUTOR_COMMIT: b7ccdbbf73e25f8bfd1db6bb884326ec52d862ae
-  EXECUTOR_TREE: 3fbbc260a00dec489bbbfbedc32fed042da9247b
-  AUTHORIZATION_SHA256: 113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d
-  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004-RECON-001
-  PLAN_SHA256: 18f563faa2e9e4e2101dbddf2aed0ffe91b68ce2eb9d63804d9121190a7b9183
+  REVIEW_SUPPORT_COMMIT: 4ed7e42674b8fc4f10f9290b8e7054f8b5575560
+  EXECUTOR_COMMIT: d7232c06cf256fe1483c4f921fe4e2a7c8ac1916
+  EXECUTOR_TREE: 99ef0a383ed26a6eec668deec795f6d80a39cd67
+  AUTHORIZATION_SHA256: 22fd6119d0d5005c9dfeb126477b07ac781e1eb7ff2d6249bada5443c565a494
+  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004-RECON-002
+  PLAN_SHA256: bbb627a8048df00d903d0f5cd5769de610fa2804cf0c42918c59096237c27018
+  SUPERSEDES_AUTHORIZATION_SHA256: 113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d
   SOURCE_TRANSACTION_RECEIPT_SHA256: 1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce
   SOURCE_TRANSACTION004_REPLAY_AUTHORIZED: false
-GOAL: "Independently verify the one-attempt reconciliation capsule restores only exact dev22 current/control/11-timer state, preserves broken dev23 as evidence, and requires independent live verification before acceptance."
+GOAL: "Independently verify corrected one-attempt reconciliation restores exact dev22 current/control/11 timers, preserves staged broken dev23 byte-identically, labels internal verification separately from required independent live verification, and cannot replay receipt004."
 STEPS:
   - RECEIPT004_REVIEW: COMPLETE_RECONCILE_REQUIRED
-  - RECONCILIATION_PLAN_AUTHOR: COMPLETE_FROZEN
+  - RECONCILIATION_AUTH1: SUPERSEDED_UNUSED
+  - EXECUTOR_V2_POSTCHECK: COMPLETE_FROZEN
+  - AUTHORIZATION2_PLAN_AUTHOR: COMPLETE_FROZEN
   - PREPARATION_NON_MUTATION: COMPLETE_PASS
   - IDENTITY_INPUT_EXPIRY_REVIEW: READY
   - EXECUTOR_COMMAND_ROOT_REVIEW: READY
-  - ROLLBACK_ASSET_COMPOSITION_REVIEW: READY
+  - STAGED_DEV23_POSTCHECK_REVIEW: READY
+  - PHASE_SEMANTICS_REVIEW: READY
   - HOST_RECONCILIATION_MUTATION: BLOCKED
   - INDEPENDENT_DEV22_LIVE_VERIFICATION: BLOCKED
   - RELEASE_VERIFY_RUNTIME_TEST_CHANGE_013: BLOCKED_UNTIL_RECONCILIATION_PASS
@@ -37,12 +41,12 @@ STEPS:
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal reconciliation-plan PASS/FINDINGS bound to exact authorization hash; no execution proof."
-ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
-ON_FAIL: CORRECT_RECONCILIATION_PLAN_AND_REVIEW_NEW_HASH
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-REVIEW-046
+SUCCESS_OUTPUT: "Formal corrected reconciliation PASS/FINDINGS bound to exact authorization 002 hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-002
+ON_FAIL: CORRECT_RECONCILIATION2_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION2-REVIEW-047
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Exact identities/expiry/inputs pass; transaction/root unique and absent; 68 command prefixes compose with frozen executor; mutation limited to runtime/current + captured control entries + reviewed user-systemd; transaction004 non-replay preserved; broken dev23 untouched; no blocking/high/medium finding remains."
+EXIT_CONDITION: "Exact identities/expiry/inputs pass; 68 command set exact; existing receipt cannot replay; staged dev23 pre/post tree equality is enforced; restore/current/timer/internal verify flow is bounded; independent verification remains explicitly pending post-execution; no blocking/high/medium finding remains."
 ~~~
 
-Review only. Do not execute reconciliation, replay transaction004, delete/repair dev23, issue a deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute reconciliation, replay transaction004, delete/repair dev23, issue deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
