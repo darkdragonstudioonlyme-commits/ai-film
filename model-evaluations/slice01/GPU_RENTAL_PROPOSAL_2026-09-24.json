@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "PROPOSAL_ONLY_NOT_AUTHORIZED_TO_LAUNCH",
+  "prepared_at": "2026-09-24",
+  "provider_baseline": {
+    "provider": "RunPod",
+    "tier": "Secure Cloud",
+    "pricing_source": "https://www.runpod.io/articles/guides/ai-server-cost",
+    "pricing_verified_by_source": "2026-08-10",
+    "billing": "per-second according to source",
+    "rates_usd_per_hour": {
+      "RTX_5090_32GB": 0.99,
+      "RTX_PRO_6000_96GB": 2.09
+    }
+  },
+  "calendar_window_days": {
+    "min": 3,
+    "max": 5
+  },
+  "stages": [
+    {
+      "id": "A",
+      "gpu": "RTX 5090",
+      "vram_gb": 32,
+      "max_gpu_hours": 24,
+      "rate_usd_per_hour": 0.99,
+      "compute_ceiling_usd": 23.76,
+      "purpose": "setup + image candidates + low-VRAM video viability + initial throughput"
+    },
+    {
+      "id": "B",
+      "gpu": "RTX Pro 6000",
+      "vram_gb": 96,
+      "max_gpu_hours": 12,
+      "rate_usd_per_hour": 2.09,
+      "compute_ceiling_usd": 25.08,
+      "purpose": "measure reduced-offload benefit, high-VRAM video candidates and model-switch overhead"
+    },
+    {
+      "id": "C",
+      "gpu": "finalist tier, worst-case costed as RTX Pro 6000",
+      "vram_gb": 96,
+      "max_gpu_hours": 24,
+      "rate_usd_per_hour": 2.09,
+      "compute_ceiling_usd": 50.16,
+      "purpose": "repeat fixed finalist population and stability profile before purchase decision"
+    }
+  ],
+  "compute_ceiling_usd": 99.0,
+  "reserve_usd": 51.0,
+  "reserve_covers": [
+    "temporary storage",
+    "egress",
+    "price drift",
+    "setup inefficiency",
+    "applicable provider charges"
+  ],
+  "hard_all_in_authorization_cap_usd": 150.0,
+  "launch_authorized": false,
+  "spend_authorized": false,
+  "prelaunch_gates": [
+    "recheck live GPU rate and availability",
+    "all selected models have exact source revision and acceptable evaluation license",
+    "runtime image/dependency lock is recorded",
+    "benchmark run is dry-run clean and reference requirements are satisfied",
+    "provider all-in projected charge including taxes/fees if shown does not exceed USD 150",
+    "explicit bounded spend approval is present"
+  ],
+  "stop_conditions": [
+    "projected all-in provider charge would exceed USD 150",
+    "model license/commercial terms become unclear",
+    "runtime cannot reproduce smoke population after 2 setup attempts",
+    "OOM/failure prevents meaningful measurement for the tier",
+    "artifact/evidence download cannot be verified before instance termination"
+  ],
+  "data_policy": {
+    "upload": "slice01 benchmark-only, no secrets, no unlicensed source material",
+    "secrets": "ephemeral dedicated credentials only if required; never repo secrets",
+    "download_before_stop": [
+      "outputs",
+      "run manifests",
+      "runner logs",
+      "blind review bundle",
+      "VRAM/timing metrics"
+    ],
+    "cleanup": "terminate rented compute and remove temporary provider storage after verified download"
+  }
+}

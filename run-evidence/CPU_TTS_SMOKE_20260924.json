@@ -1,0 +1,100 @@
+{
+  "backend": "onnx_cpu",
+  "cache_materialization": [],
+  "codec": {
+    "repo": "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX",
+    "revision": "ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae"
+  },
+  "engine": "VieNeu-TTS-v3-Turbo",
+  "initial_blocker": "ONNX_EXTERNAL_DATA_HF_SYMLINK_PATH_VALIDATION",
+  "initial_blocker_resolution": "MATERIALIZE_EXACT_HF_SNAPSHOT_SYMLINK_TARGETS_AS_REGULAR_FILES",
+  "language_not_tested": {
+    "zh-CN": "ROUTE_TO_VOXCPM2_MODEL_EVAL"
+  },
+  "languages_tested": [
+    "en",
+    "vi"
+  ],
+  "materialization_receipt_external": "/home/dragon/ai-film-dev/run-evidence/VIE-CPU-HF-SNAPSHOT-MATERIALIZE-20260924.json",
+  "model": {
+    "repo": "pnnbao-ump/VieNeu-TTS-v3-Turbo",
+    "revision": "61b85e3d937fbbacb387714180e8182823512523"
+  },
+  "onnxruntime_version": "1.30.0",
+  "package_version": "3.8.3",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "purpose": "CPU_TIMING_AND_PREVIS_FEASIBILITY_NOT_FINAL_VOICE_CASTING",
+  "python": "3.12.3",
+  "rtf_mean": 0.636636,
+  "samples": [
+    {
+      "audio_duration_sec": 2.56,
+      "bytes": 245804,
+      "cue_budget_sec": 3.5,
+      "dialogue_id": "dlg_001",
+      "elapsed_sec": 1.80578,
+      "external_path": "/home/dragon/ai-film-dev/artifacts/tts-cpu-repro/dlg_001_vi.wav",
+      "fits_cue_budget": true,
+      "language": "vi",
+      "rtf": 0.705383,
+      "sample_id": "dlg_001_vi",
+      "sample_rate": 48000,
+      "sha256": "d0fda1fa8730dca329d1b82d02e41586fda6c05cb98395e6846c3bd3a3974a6c",
+      "text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+      "voice": "Phạm Tuyên"
+    },
+    {
+      "audio_duration_sec": 2.08,
+      "bytes": 199724,
+      "cue_budget_sec": 3.3,
+      "dialogue_id": "dlg_002",
+      "elapsed_sec": 1.244107,
+      "external_path": "/home/dragon/ai-film-dev/artifacts/tts-cpu-repro/dlg_002_vi.wav",
+      "fits_cue_budget": true,
+      "language": "vi",
+      "rtf": 0.598129,
+      "sample_id": "dlg_002_vi",
+      "sample_rate": 48000,
+      "sha256": "2a3a5d3c8dee091d37b47d10e55fbad9a0790365218216fb6e6b3efe8f2972cc",
+      "text": "Chỉ khi mình khôi phục được tín hiệu.",
+      "voice": "Mai Anh"
+    },
+    {
+      "audio_duration_sec": 2.48,
+      "bytes": 238124,
+      "cue_budget_sec": 3.5,
+      "dialogue_id": "dlg_001",
+      "elapsed_sec": 1.578096,
+      "external_path": "/home/dragon/ai-film-dev/artifacts/tts-cpu-repro/dlg_001_en.wav",
+      "fits_cue_budget": true,
+      "language": "en",
+      "rtf": 0.636329,
+      "sample_id": "dlg_001_en",
+      "sample_rate": 48000,
+      "sha256": "cefb10e32baebee24196a55cb5f18b2a6cc73aee73cdfc387c914e1e01c9c4fc",
+      "text": "Does the 11:40 still stop here?",
+      "voice": "Phạm Tuyên"
+    },
+    {
+      "audio_duration_sec": 2.16,
+      "bytes": 207404,
+      "cue_budget_sec": 3.3,
+      "dialogue_id": "dlg_002",
+      "elapsed_sec": 1.310476,
+      "external_path": "/home/dragon/ai-film-dev/artifacts/tts-cpu-repro/dlg_002_en.wav",
+      "fits_cue_budget": true,
+      "language": "en",
+      "rtf": 0.606702,
+      "sample_id": "dlg_002_en",
+      "sample_rate": 48000,
+      "sha256": "a8ffb5d6d8b5a7351572e64c20ba27ecb3836bb0f583e0f55e21bb9e1415494c",
+      "text": "Only if we bring the signal back.",
+      "voice": "Mai Anh"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "tool": "tools/run_cpu_tts_smoke.py",
+  "tool_reproduction_pass": true,
+  "voice_source": "built_in_presets_no_cloning"
+}

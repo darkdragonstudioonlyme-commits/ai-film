@@ -26,6 +26,7 @@ on:
       - 'tools/build_animatic.py'
       - 'tools/build_subtitles.py'
       - 'tools/run_model_benchmark.py'
+      - 'tools/run_cpu_tts_smoke.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -54,6 +55,7 @@ on:
       - 'tools/build_animatic.py'
       - 'tools/build_subtitles.py'
       - 'tools/run_model_benchmark.py'
+      - 'tools/run_cpu_tts_smoke.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -91,7 +93,7 @@ jobs:
       - name: Product v2 syntax and tests
         if: steps.mode.outputs.product_v2 == 'true'
         run: |
-          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/build_subtitles.py tools/build_animatic.py tests/film/*.py
+          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/run_cpu_tts_smoke.py tools/build_subtitles.py tools/build_animatic.py tests/film/*.py
           bash -n tools/host_ready_practical.sh tools/turn_start.sh tools/turn_end.sh
           PYTHONPATH=. python3 -m unittest discover -s tests/film -v
           PYTHONPATH=. python3 tools/compile_slice01.py

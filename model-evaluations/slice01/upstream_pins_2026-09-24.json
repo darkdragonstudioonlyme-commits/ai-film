@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-09-24",
+  "policy": {
+    "exact_revision_required": true,
+    "production_requires_commercial_rights": true,
+    "execution_ready_default": false,
+    "note": "Pinning is identity/evaluation readiness, not production approval."
+  },
+  "models": [
+    {
+      "model_id": "qwen-image-2.1",
+      "stage": "image",
+      "source_repo": "Qwen/Qwen-Image-2.1",
+      "source_revision": "790c92633540aa0cb11d9abf19eb46d861714758",
+      "source_url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+      "last_modified": "2026-09-21T04:50:49Z",
+      "license_id": "qwen-research",
+      "license_url": "https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE",
+      "license_status": "EVALUATION_ONLY_WITHOUT_SEPARATE_COMMERCIAL_LICENSE",
+      "commercial_production_allowed": false,
+      "runner": "diffusers:QwenImage21Pipeline",
+      "runtime_requirements": [
+        "torch>=2.4",
+        "transformers>=5.17",
+        "diffusers supporting QwenImage21Pipeline",
+        "accelerate",
+        "CUDA GPU"
+      ],
+      "evaluation_enabled": false,
+      "execution_ready": false,
+      "blockers": [
+        "COMMERCIAL_LICENSE_REQUIRED",
+        "RUNTIME_IMAGE_NOT_BUILT"
+      ],
+      "production_gate": "BLOCKED_SEPARATE_COMMERCIAL_LICENSE_REQUIRED"
+    },
+    {
+      "model_id": "z-image",
+      "stage": "image",
+      "source_repo": "Tongyi-MAI/Z-Image",
+      "source_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "source_url": "https://huggingface.co/Tongyi-MAI/Z-Image",
+      "last_modified": "2026-01-28T14:26:13Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/Tongyi-MAI/Z-Image",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "diffusers:ZImagePipeline",
+      "runtime_requirements": [
+        "diffusers supporting ZImagePipeline",
+        "torch",
+        "accelerate",
+        "CUDA GPU"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "DEPENDENCY_LICENSE_REVIEW",
+        "RUNTIME_IMAGE_NOT_BUILT",
+        "PAID_GPU_NOT_AUTHORIZED"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "flux2-klein-4b",
+      "stage": "image",
+      "source_repo": "black-forest-labs/FLUX.2-klein-4B",
+      "source_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "source_url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B",
+      "last_modified": "2026-02-24T00:18:56Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "diffusers:Flux2KleinPipeline",
+      "runtime_requirements": [
+        "diffusers supporting Flux2KleinPipeline",
+        "torch",
+        "accelerate",
+        "CUDA GPU"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "DEPENDENCY_LICENSE_REVIEW",
+        "RUNTIME_IMAGE_NOT_BUILT",
+        "PAID_GPU_NOT_AUTHORIZED"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "wan22-ti2v-5b",
+      "stage": "video",
+      "source_repo": "Wan-AI/Wan2.2-TI2V-5B",
+      "source_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "source_url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
+      "last_modified": "2025-08-07T10:22:24Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "wan2.2 official inference or validated adapter",
+      "runtime_requirements": [
+        "reference image for I2V/TI2V path",
+        "CUDA GPU",
+        "exact upstream/adapter environment frozen before run"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "REFERENCE_IMAGE_NOT_GENERATED",
+        "RUNTIME_IMAGE_NOT_BUILT",
+        "PAID_GPU_NOT_AUTHORIZED"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "wan22-i2v-14b",
+      "stage": "video",
+      "source_repo": "Wan-AI/Wan2.2-I2V-A14B",
+      "source_revision": "206a9ee1b7bfaaf8f7e4d81335650533490646a3",
+      "source_url": "https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B",
+      "last_modified": "2025-08-07T09:42:48Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "wan2.2 official inference or validated adapter",
+      "runtime_requirements": [
+        "reference image",
+        "CUDA GPU",
+        "exact upstream/adapter environment frozen before run"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "REFERENCE_IMAGE_NOT_GENERATED",
+        "RUNTIME_IMAGE_NOT_BUILT",
+        "PAID_GPU_NOT_AUTHORIZED"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "ltx-2.5",
+      "stage": "video",
+      "source_repo": "Lightricks/LTX-2.5",
+      "source_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5",
+      "last_modified": "2026-09-01T06:29:03Z",
+      "license_id": "ltx-2.x-community",
+      "license_url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x",
+      "license_status": "CONDITIONAL_COMMERCIAL_REVENUE_THRESHOLD",
+      "commercial_production_allowed": "CONDITIONAL_ON_ENTITY_REVENUE_AND_TERMS",
+      "runner": "official LTX-2.x runtime or validated adapter",
+      "runtime_requirements": [
+        "CUDA GPU",
+        "exact LTX runtime frozen before run"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "COMMERCIAL_STATUS_CONFIRMATION_AT_PUBLICATION",
+        "RUNTIME_IMAGE_NOT_BUILT",
+        "PAID_GPU_NOT_AUTHORIZED"
+      ],
+      "production_gate": "PENDING_ENTITY_STATUS_DEPENDENCIES_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "voxcpm2",
+      "stage": "voice",
+      "source_repo": "openbmb/VoxCPM2",
+      "source_revision": "32279effe8c19989596f05d353d1447f51d9e915",
+      "source_url": "https://huggingface.co/openbmb/VoxCPM2",
+      "last_modified": "2026-08-18T07:37:17Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/openbmb/VoxCPM2",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "voxcpm:VoxCPM",
+      "runtime_requirements": [
+        "voxcpm package",
+        "torch",
+        "GPU recommended for MODEL-EVAL",
+        "no cloning without voice rights"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "blockers": [
+        "DEPENDENCY_LICENSE_REVIEW",
+        "GPU_RUNTIME_NOT_BUILT",
+        "VOICE_IDENTITY_NOT_SELECTED"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    },
+    {
+      "model_id": "vieneu-v3-turbo",
+      "stage": "voice",
+      "source_repo": "pnnbao-ump/VieNeu-TTS-v3-Turbo",
+      "source_revision": "61b85e3d937fbbacb387714180e8182823512523",
+      "source_url": "https://huggingface.co/pnnbao-ump/VieNeu-TTS-v3-Turbo",
+      "last_modified": "2026-09-23T03:54:31Z",
+      "license_id": "apache-2.0",
+      "license_url": "https://huggingface.co/pnnbao-ump/VieNeu-TTS-v3-Turbo",
+      "license_status": "UPSTREAM_APACHE_2_0_PINNED",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runner": "vieneu==3.8.3 ONNX CPU",
+      "runtime_requirements": [
+        "Python 3.12",
+        "vieneu==3.8.3",
+        "onnxruntime CPU",
+        "EN/VI only for this route",
+        "built-in preset voices unless rights gate permits cloning"
+      ],
+      "evaluation_enabled": true,
+      "execution_ready": false,
+      "cpu_smoke_ready": true,
+      "blockers": [
+        "DEPENDENCY_LICENSE_REVIEW",
+        "HUMAN_VOICE_QUALITY_REVIEW",
+        "ZH_ROUTE_REQUIRES_VOXCPM2"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+    }
+  ],
+  "deferred": [
+    {
+      "model_id": "wan-animate-2",
+      "reason": "not required before keyframe/video core evaluation; exact upstream pin deferred"
+    },
+    {
+      "model_id": "latent-sync",
+      "reason": "lip-sync evaluation starts after voice/video assets exist"
+    },
+    {
+      "model_id": "musetalk",
+      "reason": "lip-sync evaluation starts after voice/video assets exist"
+    },
+    {
+      "model_id": "ace-step-1.5",
+      "reason": "music evaluation starts after timing/visual direction stabilizes"
+    }
+  ]
+}
