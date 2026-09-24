@@ -8,6 +8,20 @@
 > Cập nhật lượt 4: ghi quyết định chủ dự án (24/09), phát hiện máy không có GPU rời, shortlist model mở kèm license (mục 12).
 > Cập nhật lượt 5: chủ dự án chọn thuê GPU vài ngày để benchmark rồi mới mua — kế hoạch ở mục 12.10.
 > Cập nhật lượt 6: đẩy lên GitHub — branch `handover/review-2026-09-24`, file `handoffs/HANDOVER_REVIEW_2026-09-24.md` (không đụng `main`).
+> Cập nhật lượt 7 (ChatGPT, 24/09/2026): đối chiếu GitHub xác nhận `main` vẫn ở `15f27a0`, nhánh handoff ahead `main` đúng 1 commit và chỉ thêm file này; `NEXT_WORK_ITEM.md` trên `main` vẫn trỏ TEST_DESIGN R2 / BLOCK 057. Bổ sung freeze + phân loại thẩm quyền để tránh agent sau tự biến khuyến nghị review thành lệnh thực thi.
+
+## Trạng thái freeze và thẩm quyền của handoff
+
+**REVIEW_FREEZE: ACTIVE.** Ở lượt này chỉ đọc, đối chiếu và chỉnh file handoff trên nhánh riêng. Không sửa `main`, `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md`, source, validation lane, queue/runtime hay máy local.
+
+File này là **snapshot review + bàn giao**, không phải execution authority. Khi đọc, phân loại mọi nội dung theo ba mức:
+- **VERIFIED_GITHUB_SNAPSHOT:** sự kiện/trạng thái đã đối chiếu trực tiếp trên GitHub tại mốc 24/09/2026; có thể dùng làm mốc lịch sử nhưng phải `git fetch` và kiểm lại trước khi resume.
+- **REVIEWER_OBSERVED:** số đo/quan sát trên máy hoặc runtime do reviewer trước ghi nhận; ChatGPT hiện tại chưa tái đo local thì không được tự nâng thành fact mới.
+- **ESTIMATE / RECOMMENDATION / PROPOSED DESIGN:** phần trăm tiến độ, nguyên nhân gốc, pivot, kiến trúc v2, shortlist/hardware và các bước ở mục 5–6/11–12 là đề xuất để chủ dự án quyết, không tự động được thi hành.
+
+Trong lúc freeze, **không chạy lệnh `Tiếp tục.` để thực thi workflow**. Với `main` hiện hành, lệnh đó vẫn sẽ route tới `REVISE-TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014-R2`; handoff này chưa thay router hay state. Chỉ resume sau khi chủ dự án nói rõ hướng cần tiếp tục.
+
+Các quyết định đã ghi ở mục 12.1 vẫn là ràng buộc thiết kế đã được chủ dự án nêu, nhưng **không tự cấp quyền chi tiền, merge, publish, xóa dữ liệu, bật runner nền hay thay `main`**. Mọi hành động loại đó cần lệnh/phê duyệt cụ thể tại thời điểm thực hiện.
 
 ## 0. Tóm tắt 60 giây
 
@@ -17,8 +31,8 @@
 - Thực tế máy đã đủ dùng: WSL có systemd user (46 unit, 11 timer đang chạy), Python 3.12 venv, git ↔ GitHub, Claude CLI đã chạy 322 task, đã qua Windows update + reboot.
 - Code P00 đúng như công bố: chạy lại độc lập 766 test, 0 fail/error/skip, digest khớp. Vấn đề nằm ở mục tiêu và phạm vi, không phải tay nghề.
 - Tiến độ ước tính: làm phim 0% · toàn dự án ≈ 2% · Phase 00 ≈ 65% (theo gate của nó).
-- Khuyến nghị: freeze Phase 00 → vertical slice phim 60–90s trong 2 tuần → quy trình nhẹ → Claude Code implement có tool.
-- CẢNH BÁO: lệnh "Tiếp tục." sẽ route tới `REVISE-TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014-R2` (tiếp vòng Phase 00). Chỉ dùng nếu chủ dự án KHÔNG đồng ý pivot.
+- Đề xuất của reviewer (chưa phải lệnh thực thi): freeze Phase 00 → vertical slice phim 60–90s trong 2 tuần → quy trình nhẹ → Claude Code implement có tool.
+- TRẠNG THÁI MAIN: nếu dùng "Tiếp tục." với state hiện hành, router vẫn trỏ tới `REVISE-TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014-R2` (tiếp vòng Phase 00). Trong REVIEW_FREEZE không dùng lệnh này.
 - "Tiếp tục" hiện chỉ chạy 1 bước quy trình mỗi lượt và không đo năng suất; thiết kế v2 (mục 11) chuyển sang lượt theo lô có backlog sản phẩm, KPI mỗi lượt và Claude Code headless làm động cơ chạy dài.
 - Chủ dự án đã chốt (24/09): 9:16 trước (dễ ra 16:9), ≤ 3 phút, tả thực + 3D, 3 ngôn ngữ EN/ZH/VI (doanh thu chủ yếu EN/ZH), tự viết + chuyển thể, model cục bộ, ngân sách tạm không giới hạn — xem mục 12.
 - Máy hiện tại KHÔNG có GPU rời (chỉ iGPU AMD). Đã chốt: thuê GPU 3–5 ngày để benchmark model mở rồi mới mua cấu hình phù hợp (mục 12.10); trong lúc chuẩn bị vẫn làm được kịch bản, ledger, dựng, TTS tiếng Việt trên CPU (mục 12.9).
@@ -151,7 +165,7 @@ Tiến độ (trọng số là ước lượng của reviewer):
 5. "Không nới strictness" + "mọi đổi phạm vi phải qua TEST_DESIGN" → mỗi bước nhỏ sinh một vòng.
 6. Claude bị khóa tool → vai implementer bỏ trống, ChatGPT gánh hết.
 
-## 5. Khuyến nghị (theo ưu tiên)
+## 5. Khuyến nghị của reviewer (theo ưu tiên — chưa phải execution authority)
 
 ### P0 — Dừng chảy máu (1 ngày)
 - Tag hiện trạng `archive/p00-governance-2026-09-24`. Không xóa gì.
@@ -235,7 +249,10 @@ Budget Claude theo quy mô task (vd 1–5 USD, 20–50 lượt) thay vì 0,25 US
 - Tranh luận 2 vòng cùng premise → chủ dự án quyết, không mở thêm review.
 - Bài học phải có số liệu trước/sau; không đổi được hành vi trong 2 tuần → xóa.
 
-## 6. Việc chat tiếp theo nên làm (theo thứ tự)
+## 6. Việc chat tiếp theo nên làm sau khi chủ dự án gỡ freeze / chọn hướng
+
+**Trong REVIEW_FREEZE hiện tại: không thực hiện các bước dưới đây.** Đây là resume plan đề xuất, không phải continuation tự động.
+
 1. `git -C /home/dragon/ai-film-dev/repo fetch`; đọc file này + PROJECT_STATE.md trên origin/main. Không `git pull` đè WIP; kiểm `git status` các worktree trước.
 2. Đọc quyết định đã chốt (mục 12.1); xác nhận 3 điểm còn mở (mục 8).
 3. Tạo tag archive (xin xác nhận trước khi push).
@@ -245,12 +262,14 @@ Budget Claude theo quy mô task (vd 1–5 USD, 20–50 lượt) thay vì 0,25 US
 7. Viết 7 tài liệu thiết kế phim ngắn → build: script → ledger → casting → keyframe → video → voice → edit → QC.
 8. Ra phim đầu tiên; chấm điểm; ghi FILM_LEARNINGS đầu tiên có số liệu.
 
-Làm mục 11.4 (chuyển sang "Tiếp tục v2") cùng lúc với bước 3–4 để mọi lượt sau đều có KPI.
+Chỉ nếu chủ dự án phê duyệt pivot + giao thức v2: làm mục 11.4 cùng lúc với bước 3–4 để mọi lượt sau đều có KPI. Nếu chưa có phê duyệt đó, giữ nguyên router/state hiện hành.
 
 Nếu chủ dự án muốn file này nằm trên GitHub: commit vào branch riêng (vd `handover/review-2026-09-24`), không commit thẳng main.
 
+**Resume prompt mẫu — chỉ dùng sau khi chủ dự án phê duyệt pivot:**
+
 ```text
-Đọc /home/dragon/ai-film-dev/handoffs/HANDOVER_REVIEW_2026-09-24.md (hoặc GitHub branch handover/review-2026-09-24, file handoffs/HANDOVER_REVIEW_2026-09-24.md; ưu tiên mục 0, 11, 12). Không tiếp tục vòng P00 dev23/prodlike.
+Đọc /home/dragon/ai-film-dev/handoffs/HANDOVER_REVIEW_2026-09-24.md (hoặc GitHub branch handover/review-2026-09-24, file handoffs/HANDOVER_REVIEW_2026-09-24.md; ưu tiên phần freeze, mục 0, 11, 12). Không tiếp tục vòng P00 dev23/prodlike.
 Mục tiêu: phim ngắn ≤ 3 phút, master 9:16, EN/ZH/VI, model cục bộ. Bắt đầu: xác nhận 3 điểm mở (mục 8), làm 11.4 và 12.9, chuẩn bị benchmark GPU thuê (mục 12.10).
 ```
 
@@ -376,9 +395,9 @@ MILESTONES.md: M0 host thực dụng · M1 kịch bản + shot list · M2 castin
 - Dùng lại khung `tools/dual_ai_text_bridge.py` (receipt, idempotency, trần budget), thêm profile IMPLEMENT: bật tool đọc/sửa/chạy lệnh trong worktree riêng, effort cao hơn, 30–60 lượt, budget theo task (vd 1–5 USD).
 - Guardrail: chỉ ghi trong worktree `film/wip-*`; không push main; không đọc secrets; mọi API trả phí đi qua một wrapper có trần chi phí và ghi log; file `AUTOPILOT_STOP` là công tắc dừng.
 
-Hai mức tự động:
-- **L1 (mặc định):** mỗi "Tiếp tục" chạy một lô rồi báo cáo.
-- **L2 (chủ dự án bật):** runner nền bằng systemd user timer (máy đã chạy 11 timer) xử lý backlog theo lịch, trần USD/ngày; "Tiếp tục" chỉ để review, duyệt merge và gỡ chặn.
+Hai mức tự động (đề xuất, chưa bật):
+- **L1 (mặc định sau khi v2 được phê duyệt):** mỗi "Tiếp tục" chạy một lô rồi báo cáo.
+- **L2 (chỉ khi chủ dự án bật rõ ràng):** runner nền bằng systemd user timer (máy đã chạy 11 timer) xử lý backlog theo lịch, trần USD/ngày; "Tiếp tục" chỉ để review, duyệt merge và gỡ chặn.
 
 Tự cải thiện có đo (thay self-learning quy trình hiện tại):
 - Mỗi 10 lượt: retro tự tính KPI (task/lượt, lượt không delta, USD/task, top lý do chặn) → đề xuất tối đa 3 thay đổi, mỗi thay đổi có KPI mục tiêu; 10 lượt sau không cải thiện → hoàn tác.
@@ -390,7 +409,7 @@ Mục tiêu năng suất:
 - ≥ 3 task hoàn thành mỗi lượt; không quá 1 lượt liên tiếp không có delta sản phẩm; mỗi 3–5 lượt qua một milestone.
 - Cold-start ≤ 10 KB và ≤ 3 lệnh công cụ trước khi bắt đầu làm việc.
 
-### 11.4 Chuyển đổi (một lượt)
+### 11.4 Đề xuất chuyển đổi (chưa thực hiện; cần chủ dự án phê duyệt)
 1. Tag archive; chuyển tài liệu quy trình cũ vào `archive/` (vẫn trong git).
 2. Tạo RESUME.md, BACKLOG.yaml, MILESTONES.md, PROGRESS_LOG.jsonl, CONTINUE_PROTOCOL.md (≤ 3 KB, chứa thuật toán 11.3), `tools/turn_start.sh`, `tools/turn_end.sh`.
 3. Sửa README.md và CLAUDE.md trỏ sang giao thức v2; từ đây "Tiếp tục." chạy thuật toán 11.3.
@@ -402,7 +421,7 @@ Mục tiêu năng suất:
 
 | Hạng mục | Quyết định | Hệ quả chính |
 |---|---|---|
-| Ngân sách API/GPU | Tạm thời không giới hạn | Được mua phần cứng mạnh; vẫn ghi chi phí (điện, khấu hao, giờ GPU, token chat) để tính giá/phút phim |
+| Ngân sách API/GPU | Tạm thời không đặt trần chiến lược cho bài toán lựa chọn cấu hình | **Không phải quyền tự chi tiền.** Mọi thuê GPU, mua phần cứng hoặc API trả phí vẫn cần trần chi phí/phê duyệt cụ thể trước khi chạy; vẫn ghi điện, khấu hao, giờ GPU, token để tính giá/phút phim |
 | Định dạng | 9:16 trước; làm hoặc chuyển sang 16:9 dễ dàng | Tỉ lệ khung là tham số render, không nằm trong kịch bản; timeline trung lập tỉ lệ (12.6) |
 | Phong cách | Tả thực và 3D | Hai preset trong art bible; MODEL-EVAL thử cả hai |
 | Ngôn ngữ | Đa ngôn ngữ; 3 ngôn ngữ đầu EN/ZH/VI; doanh thu kỳ vọng chủ yếu từ EN/ZH | Kịch bản master + bản địa hóa thoại; giọng nhân vật nhất quán xuyên ngôn ngữ; lip-sync theo từng ngôn ngữ (12.5) |
@@ -431,7 +450,7 @@ Mục tiêu năng suất:
 - Nếu gắn GPU thẳng vào PC hiện tại: kiểm PSU/case/khe PCIe cho GPU lớp ~600 W, nâng RAM, dùng CUDA trên WSL.
 - Chọn NVIDIA (CUDA) vì hệ sinh thái model/ComfyUI ưu tiên CUDA. Chọn mẫu cụ thể lúc mua; thêm GPU thứ 2 chỉ sau khi đo throughput slice01.
 
-### 12.4 Shortlist model mở cho MODEL-EVAL (license theo tra cứu 24/09/2026 — đọc lại license gốc trước khi dùng)
+### 12.4 Shortlist model mở cho MODEL-EVAL (ứng viên benchmark, không phải model đã duyệt; license theo tra cứu 24/09/2026 — đọc lại license gốc trước khi dùng)
 
 | Nhóm | Ứng viên | License | Ghi chú |
 |---|---|---|---|
