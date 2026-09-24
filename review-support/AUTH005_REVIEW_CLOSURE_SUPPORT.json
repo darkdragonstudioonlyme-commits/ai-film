@@ -1,5 +1,13 @@
 {
   "files": {
+    "AUTH005_AUTH4_BASELINE_AUTHORIZATION.json": {
+      "bytes": 12044,
+      "sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837"
+    },
+    "AUTH005_AUTH4_COMMAND_SET_WITNESS.json": {
+      "bytes": 10869,
+      "sha256": "361b6e703d4d9d1ecac9f47d0daace008574e9d6ab7fa3d7b9638b75d7acfd41"
+    },
     "AUTH005_AUTH4_COMPOSITION_WITNESS.json": {
       "bytes": 1645,
       "sha256": "271eede92d14b3d6db8556cbb371825eec71d64b22a51469365e1422a17dc019"
