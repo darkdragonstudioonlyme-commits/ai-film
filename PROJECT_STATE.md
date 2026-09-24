@@ -5,11 +5,14 @@ STATE_VERSION: PRODUCT_V2_001
 STATUS: ACTIVE
 CURRENT_PHASE: "Vertical Slice 01"
 CURRENT_MODE: PRODUCT_BUILD
-CURRENT_TASK: "T-008..T-009 — model-eval harness + animatic preparation"
+CURRENT_TASK: "T-010..T-012 — model pinning + CPU TTS + rental proposal"
 CURRENT_WORK_STATUS: READY
 HOST_READY_PRACTICAL: PASS
-FILM_CORE_TESTS: "7 PASS / 0 fail"
+FILM_CORE_TESTS: "22 PASS / 0 fail"
 BENCHMARK_SHOTS_COMPILED: 8
+MODEL_EVAL_HARNESS: "DRY_RUN_PASS_EXECUTION_GATED"
+SLICE01_TIMING: "75.0s_EN_ZH_VI_PASS"
+ANIMATIC_SMOKE: "PASS_9X16_16X9_AUDIO"
 ACTIVE_ROUTER: CONTINUE_PROTOCOL.md
 ACTIVE_BACKLOG: BACKLOG.yaml
 ACTIVE_RESUME: RESUME.md
@@ -28,4 +31,4 @@ HISTORICAL_P00:
 - old JSON/checkpoint/review files are historical evidence, not active routing state
 - no P00 dev23/prodlike continuation unless explicitly reopened
 
-BLOCKERS: no discrete NVIDIA GPU; image/video generation awaits rental benchmark.
+BLOCKERS: no discrete NVIDIA GPU; model execution remains gated until exact checkpoint/license/runtime review and bounded rental budget.

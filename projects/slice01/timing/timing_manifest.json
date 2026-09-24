@@ -1,0 +1,25 @@
+{
+  "dialogue_cue_count": 4,
+  "fps": 24,
+  "schema_version": 1,
+  "shot_count": 8,
+  "subtitles": {
+    "en": {
+      "bytes": 244,
+      "path": "projects/slice01/timing/subtitles/en.srt",
+      "sha256": "a2dc58bdc23043078c9aaa5a5f2aaaeb1cd6471af0d4755c626be0afbf747b8f"
+    },
+    "vi": {
+      "bytes": 314,
+      "path": "projects/slice01/timing/subtitles/vi.srt",
+      "sha256": "4440f0363269f8fc95cb14f5a0e183a6deb6d68f0d136b6585286e71e5ed3f55"
+    },
+    "zh-CN": {
+      "bytes": 261,
+      "path": "projects/slice01/timing/subtitles/zh-CN.srt",
+      "sha256": "e3a2cb68810ddc8450de98cfc4591b43a13848ae99cf800aff8890df366ea0a7"
+    }
+  },
+  "timing_digest": "502037314b19cda1088d39f44d6996475c01ac5ff0e0077c26e0c58c47e962cb",
+  "total_duration_sec": 75.0
+}

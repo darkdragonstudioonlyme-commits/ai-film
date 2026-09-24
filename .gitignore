@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+# Generated model-eval and media outputs
+benchmarks/
+projects/*/animatic/*.mp4
+projects/*/animatic/.tmp*/

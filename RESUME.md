@@ -2,11 +2,11 @@
 
 GOAL: ship a measurable 60–90 second vertical slice before adding more infrastructure.
 MILESTONE: M2 model-eval/casting preparation; M0 and M1 complete.
-BRANCH: film/vertical-slice-01
-BASELINE: origin/main @ 15f27a0; archived as archive/p00-governance-2026-09-24.
-DONE: T-001..T-004; practical host check PASS; film core 7/7 tests PASS; 8 benchmark shots compile deterministically.
-NEXT: T-008 benchmark harness/scoring; T-009 ffmpeg/animatic path.
-BLOCKERS: no discrete NVIDIA GPU; actual image/video generation waits for rental benchmark.
-LEGACY_P00: 11 scheduled P00 user timers re-audited, disabled and inactive; historical units/evidence preserved.
+CANONICAL_BASE_BEFORE_BATCH002: origin/main @ 29abfa0f1c7f38c1ecaeb516615bc90d7017f727.
+DONE: T-001..T-004, T-008, T-009.
+BATCH002_EVIDENCE: benchmark harness dry-run PASS; 22/22 product tests PASS; 75s EN/ZH/VI timing PASS; placeholder animatic 9:16 + 16:9 probe PASS with audio.
+NEXT: T-010 exact checkpoint/license pinning; T-011 CPU TTS feasibility; T-012 bounded GPU-rental proposal.
+BLOCKERS: no discrete NVIDIA GPU; all model candidates remain execution_ready=false until exact checkpoint/license/runtime review.
+LEGACY_P00: frozen at archive/p00-governance-2026-09-24; scheduled P00 timers disabled/inactive.
 PRODUCT DELTA RULE: every normal Continue turn advances a film artifact, executable code, test evidence, or benchmark asset.
-SAFETY: preserve historical P00 branches/worktrees/evidence; no publish, destructive cleanup, or unbounded paid resource use.
+SAFETY: preserve historical P00 evidence; no publish, destructive cleanup, voice cloning, or unbounded paid resource use.

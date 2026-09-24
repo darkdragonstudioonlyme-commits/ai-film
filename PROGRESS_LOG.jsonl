@@ -1,2 +1,3 @@
 {"turn":0,"ts":"2026-09-24T21:14:00+07:00","actor":"chatgpt","done":[],"blocked":["GPU_BENCHMARK"],"delta":["workflow-v2 bootstrap"],"tests":"not run","usd":0,"milestone":"M0 transition started"}
 {"turn": 1, "ts": "2026-09-24T14:28:14.204258+00:00", "actor": "turn_end", "summary": "batch001 complete: product-v2 bootstrap + film core + slice01 benchmark", "tests": "product_v2 checker PASS; 7/7 film tests PASS; 8 shots compiled"}
+{"turn": 2, "ts": "2026-09-24T16:09:17.422529+00:00", "actor": "turn_end", "summary": "batch002 complete: benchmark harness + 75s multilingual timing + dual-aspect animatic smoke", "tests": "22/22 tests PASS; product checker PASS; benchmark dry-run PASS; animatic 9:16+16:9 probe PASS"}
