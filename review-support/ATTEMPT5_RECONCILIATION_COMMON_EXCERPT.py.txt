@@ -1,0 +1,158 @@
+def require_within(path: str | Path, roots: Iterable[str | Path], reason: str = "PATH_OUTSIDE_AUTHORIZED_ROOT") -> None:
+    req(any(path_within(path, root) for root in roots), reason + ":" + str(path))
+
+def load_authorization(path: str | Path, expected_sha256: str, transaction_kind: str,
+                       *, candidate_id: str, binding_sha256: str,
+                       main_commit: str | None = None, validation_commit: str | None = None,
+                       executor_commit: str | None = None, executor_tree: str | None = None,
+                       now_unix: int | None = None) -> tuple[dict, str]:
+    p = Path(path)
+    req(p.is_file() and not p.is_symlink(), "AUTHORIZATION_UNSAFE")
+    raw = p.read_bytes()
+    actual = sha_bytes(raw)
+    req(actual == expected_sha256, "AUTHORIZATION_SHA256_MISMATCH")
+    value = load_json(p)
+    req(type(value) is dict and set(value) == AUTH_KEYS, "AUTHORIZATION_SCHEMA")
+    req(type(value["schema_version"]) is int and value["schema_version"] == 1, "AUTHORIZATION_VERSION")
+    req(value["kind"] == "AIFILM_P00_TRANSACTION_AUTHORIZATION_V1" and
+        value["status"] == "AUTHORIZED" and value["authorized"] is True,
+        "AUTHORIZATION_STATUS")
+    req(value["transaction_kind"] == transaction_kind, "AUTHORIZATION_KIND")
+    req(value["candidate_id"] == candidate_id and
+        value["candidate_binding_sha256"] == binding_sha256, "AUTHORIZATION_CANDIDATE")
+    _hex(value["main_commit"], 40, "AUTHORIZATION_MAIN_COMMIT")
+    _hex(value["validation_commit"], 40, "AUTHORIZATION_VALIDATION_COMMIT")
+    _hex(value["executor_commit"], 40, "AUTHORIZATION_EXECUTOR_COMMIT")
+    _hex(value["executor_tree"], 40, "AUTHORIZATION_EXECUTOR_TREE")
+    if main_commit is not None:
+        req(value["main_commit"] == main_commit, "AUTHORIZATION_MAIN_DRIFT")
+    if validation_commit is not None:
+        req(value["validation_commit"] == validation_commit, "AUTHORIZATION_VALIDATION_DRIFT")
+    if executor_commit is not None:
+        req(value["executor_commit"] == executor_commit, "AUTHORIZATION_EXECUTOR_DRIFT")
+    if executor_tree is not None:
+        req(value["executor_tree"] == executor_tree, "AUTHORIZATION_EXECUTOR_TREE_DRIFT")
+    req(type(value["attempt"]) is int and value["attempt"] == 1, "AUTHORIZATION_ATTEMPT")
+    req(type(value["transaction_id"]) is str and value["transaction_id"], "AUTHORIZATION_TRANSACTION_ID")
+    req(type(value["input_sha256"]) is dict and value["input_sha256"], "AUTHORIZATION_INPUTS")
+    for key, digest in value["input_sha256"].items():
+        req(isinstance(key, str) and key, "AUTHORIZATION_INPUT_KEY")
+        _hex(digest, 64, "AUTHORIZATION_INPUT_HASH")
+    roots = value["mutation_roots"]
+    req(type(roots) is list and roots and len(roots) == len(set(roots)) and
+        all(isinstance(x, str) and Path(x).is_absolute() for x in roots),
+        "AUTHORIZATION_MUTATION_ROOTS")
+    resolved_roots = [Path(x).resolve(strict=False) for x in roots]
+    req(all(str(x) not in ('/', '/home', '/home/dragon') for x in resolved_roots),
+        "AUTHORIZATION_ROOT_TOO_BROAD")
+    sensitive = [Path('/home/dragon/.ssh'), Path('/home/dragon/.gnupg'),
+                 Path('/home/dragon/ai-film-dev/local-authority'), Path('/home/dragon/ai-film-dev/root-ops')]
+    config_root = Path('/home/dragon/.config')
+    reviewed_user_systemd = Path('/home/dragon/.config/systemd/user')
+    def overlaps(a: Path, b: Path) -> bool:
+        try:
+            a.relative_to(b); return True
+        except ValueError:
+            try:
+                b.relative_to(a); return True
+            except ValueError:
+                return False
+    def under(path: Path, root: Path) -> bool:
+        try:
+            path.relative_to(root); return True
+        except ValueError:
+            return False
+    req(all(not any(overlaps(root, secret) for secret in sensitive) for root in resolved_roots),
+        "AUTHORIZATION_ROOT_SENSITIVE")
+    # The reviewed prodlike contract explicitly permits the dragon user-systemd tree.
+    # Keep the rest of ~/.config sensitive and reject any ancestor broad enough to cover it.
+    req(all(not overlaps(root, config_root) or under(root, reviewed_user_systemd)
+            for root in resolved_roots), "AUTHORIZATION_ROOT_CONFIG_SCOPE")
+    prefixes = value["allowed_command_prefixes"]
+    req(type(prefixes) is list and prefixes and all(type(x) is list and x and all(isinstance(y, str) and y for y in x)
+                                      for x in prefixes), "AUTHORIZATION_COMMANDS")
+    forbidden = {'sudo','su','bash','sh','dash','zsh','cmd.exe','powershell.exe','pwsh','curl','wget','pip','pip3','apt','apt-get','claude'}
+    for prefix in prefixes:
+        req(Path(prefix[0]).is_absolute(), "AUTHORIZATION_COMMAND_NOT_ABSOLUTE:" + prefix[0])
+        req(Path(prefix[0]).name.lower() not in forbidden, "AUTHORIZATION_COMMAND_FORBIDDEN:" + prefix[0])
+    for field in ("native_execution_authorized", "signing_authorized", "hklm_authorized",
+                  "site_authorized", "qualification_authorized", "host_ready_authorized"):
+        req(value[field] is False, "AUTHORIZATION_FORBIDDEN_CAPABILITY:" + field)
+    expires = value["expires_at"]
+    req(type(expires) is int and expires > 0, "AUTHORIZATION_EXPIRY")
+    if now_unix is None:
+        now_unix = int(time.time())
+    req(now_unix <= expires, "AUTHORIZATION_EXPIRED")
+    return value, actual
+
+def validated_user_bus_env(*, uid: int | None = None, runtime_base: str | Path = "/run/user") -> dict[str, str]:
+    if uid is None:
+        uid = os.getuid()
+    req(type(uid) is int and uid >= 0, "USER_BUS_UID")
+    runtime = Path(runtime_base) / str(uid)
+    req(runtime.exists() and not runtime.is_symlink(), "USER_BUS_RUNTIME_MISSING_OR_UNSAFE")
+    rst = runtime.lstat()
+    req(stat.S_ISDIR(rst.st_mode), "USER_BUS_RUNTIME_NOT_DIRECTORY")
+    req(rst.st_uid == uid, "USER_BUS_RUNTIME_OWNER")
+    req((rst.st_mode & 0o022) == 0, "USER_BUS_RUNTIME_WRITABLE")
+    bus = runtime / "bus"
+    req(bus.exists() and not bus.is_symlink(), "USER_BUS_SOCKET_MISSING_OR_UNSAFE")
+    bst = bus.lstat()
+    req(stat.S_ISSOCK(bst.st_mode), "USER_BUS_NOT_SOCKET")
+    req(bst.st_uid == uid, "USER_BUS_SOCKET_OWNER")
+    return {
+        "XDG_RUNTIME_DIR": str(runtime),
+        "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(bus),
+    }
+
+def run_checked(runner: Runner, argv: Sequence[str], *, internal_prefixes: Sequence[Sequence[str]],
+                authorized_prefixes: Sequence[Sequence[str]], input_bytes: bytes | None = None,
+                input_path: str | Path | None = None,
+                allowed_returncodes: Sequence[int] = (0,)) -> subprocess.CompletedProcess:
+    req(command_allowed(argv, internal_prefixes, authorized_prefixes),
+        "COMMAND_NOT_ALLOWED:" + json.dumps(list(argv)))
+    result = runner.run(argv, input_bytes=input_bytes, input_path=input_path)
+    if result.returncode not in allowed_returncodes:
+        raise UnknownCommandCompletion(
+            "COMMAND_NONZERO_OR_UNKNOWN:" + json.dumps(list(argv)) + ":" + str(result.returncode)
+        )
+    return result
+
+def begin_transaction(receipt_path: str | Path, *, transaction_id: str,
+                      transaction_kind: str, authorization_sha256: str,
+                      candidate_id: str, candidate_binding_sha256: str) -> tuple[dict, bool]:
+    path = Path(receipt_path)
+    lock_path = path.with_name(path.name + ".lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(lock_path, "a+b") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        if path.exists():
+            existing = load_json(path)
+            req(existing.get("transaction_id") == transaction_id, "TRANSACTION_RECEIPT_IDENTITY")
+            # One authorization = one attempt. Existing receipt is never re-executed implicitly.
+            req(existing.get("authorization_sha256") == authorization_sha256, "TRANSACTION_AUTHORIZATION_IDENTITY")
+            return existing, False
+        receipt = {
+            "schema_version": 1,
+            "kind": "AIFILM_P00_TRANSACTION_RECEIPT_V1",
+            "transaction_id": transaction_id,
+            "transaction_kind": transaction_kind,
+            "authorization_sha256": authorization_sha256,
+            "candidate_id": candidate_id,
+            "candidate_binding_sha256": candidate_binding_sha256,
+            "state": "PREPARED",
+            "phase": "PREMUTATION",
+            "mutation_started": False,
+            "rollback_attempted": False,
+            "rollback_verified": False,
+            "unknown_completion": False,
+            "events": [],
+            "native_execution_started": False,
+            "signing_performed": False,
+            "hklm_touched": False,
+            "site_entered": False,
+            "qualification_issued": False,
+            "host_ready": False,
+        }
+        atomic_json(path, receipt)
+        return receipt, True

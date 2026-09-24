@@ -1,0 +1,25 @@
+{
+  "authorization_command_count": 68,
+  "authorization_command_set_sha256": "703793cd39653e00541276cb113e444b1f96fcac9dad1747954e30ea88f29b2b",
+  "authorization_sha256": "a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4",
+  "command_sets_exact_equal": true,
+  "execution_started": false,
+  "executor_commit": "9dab706e189ce3a8e9453f9f678ee20665b77de5",
+  "executor_sha256": "3f5ed1bf40dece0725fe12c86d6681beca657b03d5dd15c83e524057bee4d29b",
+  "executor_tree": "6c73297297a4a0658fa40314a78d8c8e353c23a8",
+  "kind": "ATTEMPT5_RECONCILIATION_EXECUTOR_WITNESS",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation1-20260924"
+  ],
+  "mutation_roots_match_plan": true,
+  "plan_command_count": 68,
+  "plan_command_set_sha256": "703793cd39653e00541276cb113e444b1f96fcac9dad1747954e30ea88f29b2b",
+  "receipt_success_pending_verify_present": true,
+  "restore_dev22_call_present": true,
+  "same_transaction_nonreplay_call_present": true,
+  "schema_version": 1,
+  "transaction_common_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+  "validated_user_bus_call_present": true
+}

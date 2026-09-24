@@ -1,0 +1,44 @@
+{
+  "authorization_sha256": "a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4",
+  "dev23_corrected_disposition": "PRESERVE_UNMODIFIED_AS_FAILED_EVIDENCE",
+  "dev23_disposition": "PRESERVE_UNMODIFIED_AS_FAILED_EVIDENCE",
+  "execution_started": false,
+  "executor_requires_dev23_corrected_preservation": true,
+  "executor_requires_dev23_preservation": true,
+  "executor_success_pending_independent_verify": true,
+  "forward_fix_dev23_present": false,
+  "kind": "ATTEMPT5_RECONCILIATION_PRESERVATION_WITNESS",
+  "observed_current_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "prep_all_host_roots_equal": true,
+  "prep_host_rows": {
+    "/home/dragon/.config/systemd/user": {
+      "after_digest": "cd9b559df5c9980c048903d8286118a2db794a8c1b2f70e4b41d72595eabbc69",
+      "before_digest": "cd9b559df5c9980c048903d8286118a2db794a8c1b2f70e4b41d72595eabbc69",
+      "equal": true
+    },
+    "/home/dragon/ai-film-runtime/current": {
+      "after_digest": "2b296145c8044cfb7df688d6662fa5684a31ae3908ccc4932380745a96176e2e",
+      "before_digest": "2b296145c8044cfb7df688d6662fa5684a31ae3908ccc4932380745a96176e2e",
+      "equal": true
+    },
+    "/home/dragon/ai-film-runtime/dev22": {
+      "after_digest": "f2dbb71ede9cc741c503c8c7b7dd2a6e37a02b090f7a21a50ed4671888e84fde",
+      "before_digest": "f2dbb71ede9cc741c503c8c7b7dd2a6e37a02b090f7a21a50ed4671888e84fde",
+      "equal": true
+    },
+    "/home/dragon/ai-film-runtime/dev23": {
+      "after_digest": "418d9a813fd6565b5cb250a95de3f1aae6a90cfbdabb02f11d7a3662b2c1c89c",
+      "before_digest": "418d9a813fd6565b5cb250a95de3f1aae6a90cfbdabb02f11d7a3662b2c1c89c",
+      "equal": true
+    },
+    "/home/dragon/ai-film-runtime/dev23-corrected": {
+      "after_digest": "b8f8c9bf0937647c1c08ddf2c706d53d490e993671413f0dc87212f6d377638d",
+      "before_digest": "b8f8c9bf0937647c1c08ddf2c706d53d490e993671413f0dc87212f6d377638d",
+      "equal": true
+    }
+  },
+  "reconciliation_target": "/home/dragon/ai-film-runtime/dev22",
+  "release_control_test_change_allowed_before_reconciliation_pass": false,
+  "schema_version": 1,
+  "transaction_root_absent": true
+}

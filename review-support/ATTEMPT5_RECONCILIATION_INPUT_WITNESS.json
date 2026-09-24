@@ -1,0 +1,41 @@
+{
+  "actual_input_sha256": {
+    "dev22_runtime_manifest": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "dev22_verify_runtime": "3a9203b6490f5a3ff43e3e5d1678f354e7f810bfb0b76d6664f6cc7379a99f1e",
+    "host_witness": "e80c2f7e773cb680d010278c2015a144ca3258f08afcd54ff4bb50c60a82f57f",
+    "reconciliation_script": "3f5ed1bf40dece0725fe12c86d6681beca657b03d5dd15c83e524057bee4d29b",
+    "rollback_control_meta": "218ab36fe0d402dbe972864cf4d2dcc6c859b072845c3646af78e5fe233e3582",
+    "rollback_plan": "3cc97729304a212172b0bd60f0a58e8e419e5edd23e3a4351a4ce3f1b150b755",
+    "rollback_timer_state": "91d83fb5fbe0f41f01af2008ef679bd5322313a713cfbdc01cb59145f9c1a6ed",
+    "transaction005_receipt": "6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5",
+    "transaction_common": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e"
+  },
+  "all_input_hashes_exact": true,
+  "authorization_input_sha256": {
+    "dev22_runtime_manifest": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "dev22_verify_runtime": "3a9203b6490f5a3ff43e3e5d1678f354e7f810bfb0b76d6664f6cc7379a99f1e",
+    "host_witness": "e80c2f7e773cb680d010278c2015a144ca3258f08afcd54ff4bb50c60a82f57f",
+    "reconciliation_script": "3f5ed1bf40dece0725fe12c86d6681beca657b03d5dd15c83e524057bee4d29b",
+    "rollback_control_meta": "218ab36fe0d402dbe972864cf4d2dcc6c859b072845c3646af78e5fe233e3582",
+    "rollback_plan": "3cc97729304a212172b0bd60f0a58e8e419e5edd23e3a4351a4ce3f1b150b755",
+    "rollback_timer_state": "91d83fb5fbe0f41f01af2008ef679bd5322313a713cfbdc01cb59145f9c1a6ed",
+    "transaction005_receipt": "6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5",
+    "transaction_common": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e"
+  },
+  "authorization_sha256": "a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4",
+  "broken_dev23_runtime_manifest_sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45",
+  "corrected_runtime_manifest_sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d",
+  "dev22_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+  "dev22_verify_runtime_sha256": "3a9203b6490f5a3ff43e3e5d1678f354e7f810bfb0b76d6664f6cc7379a99f1e",
+  "execution_started": false,
+  "expected_current_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "host_current_precondition_match": true,
+  "host_current_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "kind": "ATTEMPT5_RECONCILIATION_INPUT_WITNESS",
+  "rollback_control_backups_hash_match": true,
+  "rollback_control_present_count": 64,
+  "rollback_control_rows": 64,
+  "rollback_timer_all_enabled_active": true,
+  "rollback_timer_count": 11,
+  "schema_version": 1
+}
