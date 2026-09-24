@@ -20,6 +20,13 @@ REQUIRED_PRODUCT_FILES = [
     "projects/slice01/timing/subtitles/en.srt",
     "projects/slice01/timing/subtitles/zh-CN.srt",
     "projects/slice01/timing/subtitles/vi.srt",
+    "projects/slice01/timing/voice_plan.json",
+    "model-evaluations/slice01/upstream_pins_2026-09-24.json",
+    "model-evaluations/slice01/PINNING_2026-09-24.md",
+    "model-evaluations/slice01/CPU_TTS_FEASIBILITY_2026-09-24.md",
+    "model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json",
+    "model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.md",
+    "run-evidence/CPU_TTS_SMOKE_20260924.json",
 ]
 LANGS = {"en","zh-CN","vi"}
 
@@ -112,6 +119,65 @@ def main() -> int:
         unknown=set(profile.get("shot_ids",[]))-shot_ids
         if unknown:
             errors.append("benchmark-profile-unknown-shot:"+name)
+
+
+    pins=json.loads((root/"model-evaluations/slice01/upstream_pins_2026-09-24.json").read_text(encoding="utf-8"))
+    pin_rows=pins.get("models",[])
+    pin_ids=[row.get("model_id") for row in pin_rows]
+    if len(pin_ids)!=len(set(pin_ids)) or len(pin_rows)<8:
+        errors.append("model-pins-identity")
+    pin_by_id={row.get("model_id"):row for row in pin_rows}
+    for model in models:
+        if model.get("pin_status")!="PINNED":
+            continue
+        model_id=model.get("model_id")
+        pin=pin_by_id.get(model_id)
+        if pin is None:
+            errors.append("matrix-pin-missing:"+str(model_id))
+            continue
+        revision=str(model.get("source_revision",""))
+        if not re.fullmatch(r"[0-9a-f]{40}",revision):
+            errors.append("matrix-pin-revision:"+str(model_id))
+        if revision != pin.get("source_revision"):
+            errors.append("matrix-pin-drift:"+str(model_id))
+        if "tbd" in str(model.get("checkpoint","")).lower():
+            errors.append("matrix-pin-tbd:"+str(model_id))
+        if model.get("execution_ready"):
+            errors.append("model-execution-must-remain-gated:"+str(model_id))
+
+    qwen=next((model for model in models if model.get("model_id")=="qwen-image-2.1"),None)
+    if qwen is None or qwen.get("enabled") or qwen.get("commercial_production_allowed") is not False:
+        errors.append("qwen-commercial-gate")
+
+    tts=json.loads((root/"run-evidence/CPU_TTS_SMOKE_20260924.json").read_text(encoding="utf-8"))
+    if tts.get("status")!="PASS":
+        errors.append("cpu-tts-not-pass")
+    if set(tts.get("languages_tested",[]))!={"en","vi"}:
+        errors.append("cpu-tts-language-scope")
+    if tts.get("language_not_tested",{}).get("zh-CN")!="ROUTE_TO_VOXCPM2_MODEL_EVAL":
+        errors.append("cpu-tts-zh-route")
+    samples=tts.get("samples",[])
+    if len(samples)!=4 or not all(row.get("fits_cue_budget") for row in samples):
+        errors.append("cpu-tts-cue-fit")
+    if not isinstance(tts.get("rtf_mean"),(int,float)) or tts["rtf_mean"]>=1.0:
+        errors.append("cpu-tts-rtf")
+
+    voice_plan=json.loads((p/"timing"/"voice_plan.json").read_text(encoding="utf-8"))
+    if voice_plan.get("zh_route",{}).get("model_id")!="voxcpm2":
+        errors.append("voice-plan-zh")
+    if voice_plan.get("cpu_previs_candidate",{}).get("model_id")!="vieneu-v3-turbo":
+        errors.append("voice-plan-cpu")
+
+    rental=json.loads((root/"model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json").read_text(encoding="utf-8"))
+    stage_compute=sum(float(row.get("compute_ceiling_usd",0)) for row in rental.get("stages",[]))
+    if round(stage_compute,2) != round(float(rental.get("compute_ceiling_usd",-1)),2):
+        errors.append("rental-compute-sum")
+    if float(rental.get("compute_ceiling_usd",9999)) > float(rental.get("hard_all_in_authorization_cap_usd",0)):
+        errors.append("rental-cap-undercompute")
+    if rental.get("launch_authorized") or rental.get("spend_authorized"):
+        errors.append("rental-unexpected-authority")
+    if float(rental.get("hard_all_in_authorization_cap_usd",0)) != 150.0:
+        errors.append("rental-cap-drift")
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

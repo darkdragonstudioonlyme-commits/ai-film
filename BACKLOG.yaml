@@ -50,15 +50,30 @@
 - id: T-010
   milestone: M2
   goal: "Pin exact model checkpoints/licenses and runner requirements before GPU execution"
-  status: READY
+  status: DONE
   owner: coordinator
 - id: T-011
   milestone: M2
   goal: "Run CPU dialogue/TTS feasibility and prepare voice timing assets without cloning"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-012
   milestone: M2
   goal: "Prepare rental GPU configuration and bounded budget proposal from the fixed benchmark"
-  status: READY
+  status: DONE
   owner: coordinator
+- id: T-013
+  milestone: M2
+  goal: "Build pinned GPU-worker runtime manifest/setup plan and validate it in dry-run mode"
+  status: READY
+  owner: executor
+- id: T-014
+  milestone: M2
+  goal: "Implement backend adapter contracts for pinned image/video benchmark jobs without GPU execution"
+  status: READY
+  owner: executor
+- id: T-015
+  milestone: M2
+  goal: "Generate full EN/VI CPU previsualization dialogue tracks and integrate timing into the 75s animatic"
+  status: READY
+  owner: executor

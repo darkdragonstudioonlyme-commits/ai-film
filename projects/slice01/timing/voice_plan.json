@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "purpose": "slice01_voice_routing_before_final_casting",
+  "production_multilingual_candidate": {
+    "model_id": "voxcpm2",
+    "languages": [
+      "en",
+      "zh-CN",
+      "vi"
+    ],
+    "status": "MODEL_EVAL_PENDING",
+    "reason": "one multilingual candidate should be evaluated for cross-language character identity"
+  },
+  "cpu_previs_candidate": {
+    "model_id": "vieneu-v3-turbo",
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "status": "CPU_FEASIBILITY_PASS",
+    "use": "dialogue timing/previsualization; built-in preset voices only",
+    "not_for": [
+      "final cross-language voice selection",
+      "unlicensed real-person cloning"
+    ]
+  },
+  "zh_route": {
+    "model_id": "voxcpm2",
+    "status": "GPU_MODEL_EVAL_PENDING"
+  }
+}

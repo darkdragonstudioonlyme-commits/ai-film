@@ -38,15 +38,16 @@ class BenchmarkTests(unittest.TestCase):
         a = build_jobs(self.matrix, self.plan, self.shots, profile_name="smoke", prompt_hashes=self.prompt_hashes)
         b = build_jobs(self.matrix, self.plan, self.shots, profile_name="smoke", prompt_hashes=self.prompt_hashes)
         self.assertEqual(a, b)
-        self.assertEqual(len(a), 6)
-        self.assertEqual(len({row["job_id"] for row in a}), 6)
+        self.assertEqual(len(a), 4)
+        self.assertEqual(len({row["job_id"] for row in a}), 4)
         self.assertTrue(all(row["model"]["stage"] == "image" for row in a))
+        self.assertNotIn("qwen-image-2.1",{row["model"]["model_id"] for row in a})
         self.assertTrue(all(len(row["prompt_sha256"]) == 64 for row in a))
         self.assertTrue(all(row["model"]["execution_ready"] is False for row in a))
 
     def test_keyframe_core_population(self):
         jobs = build_jobs(self.matrix, self.plan, self.shots, profile_name="keyframe_core", prompt_hashes=self.prompt_hashes)
-        self.assertEqual(len(jobs), 48)
+        self.assertEqual(len(jobs), 32)
 
     def test_video_jobs_expose_missing_reference(self):
         jobs = build_jobs(self.matrix, self.plan, self.shots, profile_name="video_core", prompt_hashes=self.prompt_hashes)
@@ -146,7 +147,7 @@ class BenchmarkTests(unittest.TestCase):
             )
             self.assertEqual(proc.returncode, 0, proc.stderr)
             summary = json.loads((out / "dry-gate-test" / "run_summary.json").read_text(encoding="utf-8"))
-            self.assertEqual(summary["model_gate_blocked"], 6)
+            self.assertEqual(summary["model_gate_blocked"], 4)
             self.assertEqual(summary["requirement_blocked"], 0)
             self.assertEqual(summary["ready_to_execute"], 0)
 

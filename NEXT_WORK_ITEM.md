@@ -1,26 +1,26 @@
-# NEXT WORK ITEM — Product v2 batch 003
+# NEXT WORK ITEM — Product v2 batch 004
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-010 — pin exact candidate checkpoint/version, upstream license source and runner requirements; keep execution_ready=false until all execution gates pass.
-2. T-011 — run CPU dialogue/TTS feasibility for slice01 timing, starting without voice cloning; preserve EN/ZH/VI line identity.
-3. T-012 — prepare a rental-GPU configuration/provider/budget proposal from the fixed benchmark; do not rent or spend.
+1. T-013 — create a reproducible pinned GPU-worker runtime/setup manifest and validate setup logic without creating a GPU instance.
+2. T-014 — implement backend adapter contracts for the pinned image/video candidates so benchmark jobs can be translated into exact runner inputs; no model inference yet.
+3. T-015 — generate all slice01 EN/VI preset-voice previsualization dialogue clips on CPU and integrate them into the 75s animatic; keep ZH as subtitle-only until VoxCPM2 MODEL-EVAL.
 
 CURRENT_BLOCK:
 - no discrete NVIDIA GPU
-- visual/video model execution is intentionally gated until exact model/license/runtime identity is pinned
-- any paid GPU/API execution needs a bounded budget
+- paid rental is proposed but not authorized
+- keyframe references do not exist yet
 
 SUCCESS:
-- exact model candidates have source/license/checkpoint/runtime requirements recorded without overclaiming production approval
-- CPU TTS path yields reproducible sample evidence or an explicit technical blocker
-- rental proposal names benchmark tier, estimated duration and a hard spend cap without launching resources
+- GPU worker setup/runtime identity is deterministic and dry-run testable
+- adapters preserve job/model/prompt/reference/seed identity and reject missing requirements
+- 75s previsualization animatic contains timed EN/VI dialogue tracks with manifests and no voice cloning
 
 DO_NOT:
-- resume P00 dev23/prodlike loops
-- enable legacy P00 timers
+- launch or rent GPU
+- enable Qwen-Image-2.1 for commercial production without a separate commercial license
+- clone a real person's voice without rights
+- resume P00 dev23/prodlike
 - publish content
-- clone a real person's voice without explicit rights
-- launch paid GPU/API work without a bounded budget

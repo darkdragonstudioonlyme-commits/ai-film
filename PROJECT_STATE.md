@@ -5,14 +5,17 @@ STATE_VERSION: PRODUCT_V2_001
 STATUS: ACTIVE
 CURRENT_PHASE: "Vertical Slice 01"
 CURRENT_MODE: PRODUCT_BUILD
-CURRENT_TASK: "T-010..T-012 — model pinning + CPU TTS + rental proposal"
+CURRENT_TASK: "T-013..T-015 — GPU runtime dry-run + adapters + CPU previs audio"
 CURRENT_WORK_STATUS: READY
 HOST_READY_PRACTICAL: PASS
-FILM_CORE_TESTS: "22 PASS / 0 fail"
+FILM_CORE_TESTS: "28 PASS / 0 fail"
 BENCHMARK_SHOTS_COMPILED: 8
 MODEL_EVAL_HARNESS: "DRY_RUN_PASS_EXECUTION_GATED"
 SLICE01_TIMING: "75.0s_EN_ZH_VI_PASS"
 ANIMATIC_SMOKE: "PASS_9X16_16X9_AUDIO"
+MODEL_PINNING: "PASS_8_CORE_PINNED_QWEN_COMMERCIAL_BLOCKED"
+CPU_TTS_FEASIBILITY: "PASS_EN_VI_PRESET_NO_CLONE_RTF_LT_1"
+GPU_RENTAL_PROPOSAL: "READY_NOT_AUTHORIZED_COMPUTE_99_CAP_150_USD"
 ACTIVE_ROUTER: CONTINUE_PROTOCOL.md
 ACTIVE_BACKLOG: BACKLOG.yaml
 ACTIVE_RESUME: RESUME.md
@@ -31,4 +34,4 @@ HISTORICAL_P00:
 - old JSON/checkpoint/review files are historical evidence, not active routing state
 - no P00 dev23/prodlike continuation unless explicitly reopened
 
-BLOCKERS: no discrete NVIDIA GPU; model execution remains gated until exact checkpoint/license/runtime review and bounded rental budget.
+BLOCKERS: no discrete NVIDIA GPU; paid rental remains unauthorized; keyframe references await MODEL-EVAL.
