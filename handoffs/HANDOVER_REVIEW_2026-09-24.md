@@ -258,7 +258,7 @@ Budget Claude theo quy mô task (vd 1–5 USD, 20–50 lượt) thay vì 0,25 US
 3. Tạo tag archive (xin xác nhận trước khi push).
 4. Viết + chạy script `HOST_READY_PRACTICAL`; lưu kết quả.
 5. Tạo branch `film/vertical-slice-01`; scaffold package `film/` + `projects/slice01/`.
-6. Viết kịch bản slice01 (SCRIPT_ENGINE bản đầu) và chọn 5–10 shot làm bộ benchmark → thuê GPU theo mục 12.10 → chốt stack model + cấu hình GPU mua → mua, cài đặt, chạy lại bộ benchmark để nghiệm thu. Trong lúc chuẩn bị, làm các việc ở mục 12.9.
+6. Viết kịch bản slice01 (SCRIPT_ENGINE bản đầu) và chọn 5–10 shot làm bộ benchmark → trình cấu hình thuê + trần chi phí để chủ dự án duyệt → thuê GPU theo mục 12.10 → chốt stack model + cấu hình GPU mua → trình cấu hình/giá để chủ dự án duyệt → mua, cài đặt, chạy lại bộ benchmark để nghiệm thu. Trong lúc chuẩn bị, làm các việc ở mục 12.9 đã được phê duyệt.
 7. Viết 7 tài liệu thiết kế phim ngắn → build: script → ledger → casting → keyframe → video → voice → edit → QC.
 8. Ra phim đầu tiên; chấm điểm; ghi FILM_LEARNINGS đầu tiên có số liệu.
 
@@ -446,7 +446,7 @@ Mục tiêu năng suất:
 ### 12.3 Kế hoạch GPU cục bộ
 - Blueprint §36 (đo trước khi mua) được giữ nguyên: chủ dự án chọn thuê GPU 3–5 ngày để benchmark rồi mới mua (12.10). Các mức dưới đây là cấu hình ứng viên để thuê thử.
 - Tối thiểu: 1 GPU NVIDIA 32 GB (vd RTX 5090). LTX-2.x có đường FP8 cho GPU 32 GB; HunyuanVideo 1.5 cần khoảng 14 GB; Wan 2.2 14B cần fp8/offload trên GPU 32 GB.
-- Khuyến nghị (ngân sách không giới hạn): 1 GPU 96 GB lớp workstation (vd RTX PRO 6000 Blackwell) trong **máy Linux riêng** (Ubuntu native) làm GPU worker; PC hiện tại giữ vai control plane + dựng (đúng Stage B của Blueprint). Máy GPU: RAM ≥ 128 GB, NVMe ≥ 4 TB cho model/asset.
+- Ứng viên benchmark cấu hình lớn (không phải quyết định mua): 1 GPU 96 GB lớp workstation (vd RTX PRO 6000 Blackwell) trong **máy Linux riêng** (Ubuntu native) làm GPU worker; PC hiện tại giữ vai control plane + dựng (đúng Stage B của Blueprint). Mốc RAM ≥ 128 GB, NVMe ≥ 4 TB là giả thuyết cấu hình để đo, chỉ chốt sau benchmark và báo giá.
 - Nếu gắn GPU thẳng vào PC hiện tại: kiểm PSU/case/khe PCIe cho GPU lớp ~600 W, nâng RAM, dùng CUDA trên WSL.
 - Chọn NVIDIA (CUDA) vì hệ sinh thái model/ComfyUI ưu tiên CUDA. Chọn mẫu cụ thể lúc mua; thêm GPU thứ 2 chỉ sau khi đo throughput slice01.
 
@@ -454,13 +454,13 @@ Mục tiêu năng suất:
 
 | Nhóm | Ứng viên | License | Ghi chú |
 |---|---|---|---|
-| Video | Wan 2.2 (T2V-14B, I2V-14B, TI2V-5B) | Apache 2.0 | Bản open cuối của dòng Wan; 2.5/2.6/2.7/3.0 không có weights |
+| Video | Wan 2.2 (T2V-14B, I2V-14B, TI2V-5B) | Apache 2.0 | Các checkpoint này có weights mở; không suy diễn trạng thái license/weights của các phiên bản Wan mới hơn — kiểm lại tại thời điểm MODEL-EVAL |
 | Video | Wan-Animate-2 (Base/Distillation, 08/2026) | Apache 2.0 | Repo chính thức phát hành inference scripts + weights ngày 07/08/2026; hoạt họa nhân vật từ video tham chiếu. Kiểm exact checkpoint trước benchmark |
 | Video | LTX-2.x (2.3/2.5) | LTX-2 Community: miễn phí thương mại khi doanh thu năm < 10 triệu USD | Audio + video một lượt, IC-LoRA điều khiển; kiểm lại khi doanh thu tăng |
 | Video | HunyuanVideo 1.5 (8,3B) | Tencent Hunyuan Community: không áp dụng tại EU/UK/Hàn Quốc | Rủi ro khi phát hành toàn cầu → chỉ dùng sau review pháp lý |
 | Ảnh/keyframe | Qwen-Image (bản đến 12/2025, gồm Edit), Z-Image, FLUX.2 klein-4B | Apache 2.0 | Tránh FLUX.2 dev/klein-9B (cần license thương mại) |
 | Giọng | VoxCPM2 (2B, 30 ngôn ngữ gồm EN/ZH/VI, clone + voice design, 48 kHz) | Apache 2.0 | Ứng viên chính cho giọng xuyên ngôn ngữ |
-| Giọng VI | VieNeu-TTS-v2 (300M, VI/EN, chạy được trên CPU) | Apache 2.0 (nguồn thứ ba — kiểm lại) | Dùng được ngay khi chưa có GPU |
+| Giọng VI | VieNeu-TTS-v2 (0.3B, VI/EN) + v2-Turbo/GGUF cho CPU | Apache 2.0 | Model card chính thức ghi Apache-2.0; biến thể Turbo/GGUF được tối ưu CPU. Vẫn kiểm exact weights/dependencies trước dùng thương mại |
 | Lip-sync | LatentSync (Apache 2.0), MuseTalk (MIT), InfiniteTalk (Apache 2.0) | như cột trước | Tránh Wav2Lip (cấm thương mại) |
 | Nhạc | ACE-Step 1.5 (02/2026; Base/SFT/Turbo; exact checkpoint cần chốt khi benchmark) | MIT | Repo và model card chính thức ghi MIT; vẫn kiểm lại license của đúng weights/dependency được tải |
 
@@ -489,15 +489,15 @@ Runtime đề xuất: ComfyUI chế độ API trên GPU worker, bọc sau adapte
 ### 12.8 Ước lượng tải GPU (công thức — thay bằng số đo thật)
 GPU-giờ/phim ≈ số shot × số take × phút/take ÷ 60. Ví dụ giả định: 45 shot × 3 take × 8 phút ≈ 18 GPU-giờ cho một phim 3 phút, chưa tính lip-sync, upscale và 16:9. Đo thật ở slice01 để quyết định thêm GPU.
 
-### 12.9 Việc làm được ngay khi chưa có GPU
-- Chuyển sang "Tiếp tục v2" (mục 11.4); scaffold package `film/` và schema shot/ledger/manifest.
+### 12.9 Việc có thể làm khi chưa có GPU (sau khi gỡ REVIEW_FREEZE và duyệt phạm vi)
+- Nếu chủ dự án phê duyệt "Tiếp tục v2": thực hiện mục 11.4; sau đó scaffold package `film/` và schema shot/ledger/manifest.
 - SCRIPT_ENGINE hai chế độ; kịch bản slice01 bản EN + bản địa hóa ZH/VI.
 - Continuity ledger, shot compiler (xuất prompt), casting spec (ngoại hình), voice bible.
 - Cài ffmpeg; dựng animatic (thẻ chữ/placeholder + TTS) để kiểm nhịp và thời lượng; pipeline phụ đề và xuất 9:16/16:9.
 - Thử VieNeu-TTS-v2 trên CPU cho bản VI.
 - Chuẩn bị bộ benchmark cho GPU thuê: 5–10 shot từ kịch bản slice01, câu thoại mẫu EN/ZH/VI, script cài đặt và script chạy benchmark (12.10).
 
-### 12.10 Kế hoạch thuê GPU để benchmark (đã chốt 24/09)
+### 12.10 Kế hoạch thuê GPU để benchmark (chiến lược đã chốt 24/09; cấu hình/nhà cung cấp/trần chi phí từng lần vẫn cần duyệt)
 
 Mục tiêu: trong 3–5 ngày thuê, trả lời ba câu hỏi — (1) stack model nào cho slice01; (2) mua cấu hình GPU nào; (3) một phim 3 phút tốn bao nhiêu GPU-giờ.
 
