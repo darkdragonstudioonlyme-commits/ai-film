@@ -1,0 +1,31 @@
+{
+  "active_control_documents_read": 0,
+  "authorization5_status": "NOT_CREATED",
+  "broken_staged_dev23_preserved": true,
+  "corrected_release_tree_sha256": "645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380",
+  "corrected_runtime_manifest_sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d",
+  "deployment_started": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "f02f5598262200ed5b909d99267f876c86934c36",
+    "release_review": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068",
+    "review_support": "57c41dd888f3948dc0af1671a326a8b6a219660f",
+    "validation": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Prepare fresh deployment authorization 005 for reviewed corrected release; no execution",
+  "session_denominator": null,
+  "signing_performed": false,
+  "target_path": "/home/dragon/ai-film-runtime/dev23-corrected"
+}

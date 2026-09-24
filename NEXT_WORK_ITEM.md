@@ -1,45 +1,47 @@
-# NEXT WORK ITEM — review corrected dev23 prodlike release 013
+# NEXT WORK ITEM — prepare corrected dev23 deployment authorization 005
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: cfba9f6a76118c8bb712d2818f5f3bb1ca36fe16
-  CURRENT_VALIDATION: abac81bd8b9e5e2df206b554950919ae3d754e37
-  REVIEW_SUPPORT_COMMIT: 57c41dd888f3948dc0af1671a326a8b6a219660f
-  PRODUCT_CANDIDATE: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-  PACKAGE_SHA256: d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf
-  WHEEL_SHA256: 55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df
-  RUNTIME_MANIFEST_SHA256: d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d
+  CURRENT_MAIN: f02f5598262200ed5b909d99267f876c86934c36
+  CURRENT_VALIDATION: a5dac299d54f5f6e482f6cdbb1879532b1f2a068
+  RELEASE_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-REBUILD-013.md
+  CORRECTED_RELEASE_TREE_SHA256: 645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380
+  CORRECTED_RUNTIME_MANIFEST_SHA256: d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d
   VERIFY_RUNTIME_SHA256: e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae
-  RELEASE_TREE_SHA256: 645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380
-  REBUILD_INDEX_SHA256: 4086b8c83501880ea14b1bec3b652b2256ca19c09cbcc9a062e5607b967fae69
-GOAL: "Independently verify corrected release/rebuild-set identities, verify-runtime/runtime-manifest binding and execution, reviewed package/wheel/binding provenance, and exact host non-mutation before any deployment authorization."
+  EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
+  EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
+  CURRENT_EXPECTED_TARGET: /home/dragon/ai-film-runtime/dev22
+  FAILED_EVIDENCE_TARGET: /home/dragon/ai-film-runtime/dev23
+  NEW_RELEASE_TARGET: /home/dragon/ai-film-runtime/dev23-corrected
+GOAL: "Prepare one immutable deployment authorization 005 for the reviewed corrected release using a new side-by-side target, with unique transaction id/hash/expiry/receipt root and exact pre/post non-mutation proof."
 STEPS:
-  - CORRECTED_RELEASE_BUILD: COMPLETE_PASS
-  - VERIFY_RUNTIME_EXECUTION: COMPLETE_PASS
-  - REBUILD_SET_BUILD: COMPLETE_PASS
-  - ARTIFACT_IDENTITY_RECEIPT: COMPLETE_FROZEN
-  - HOST_NON_MUTATION: COMPLETE_PASS
-  - CLAUDE_ARTIFACT_IDENTITY_REVIEW: READY
-  - FRESH_DEPLOYMENT_AUTHORIZATION: BLOCKED
-  - PRODLIKE_DEPLOYMENT: BLOCKED
+  - CORRECTED_RELEASE_REVIEW: COMPLETE_PASS
+  - CURRENT_DEV22_REVALIDATION: READY
+  - BROKEN_DEV23_PRESERVATION_REVALIDATION: READY
+  - NEW_TARGET_ABSENCE_REVALIDATION: READY
+  - PLAN_ONLY_CORRECTED_RELEASE: NOT_STARTED
+  - AUTHORIZATION005_AUTHOR: NOT_STARTED
+  - PREPARATION_NON_MUTATION: NOT_STARTED
+  - AUTHORIZATION005_CROSS_MODEL_REVIEW: BLOCKED
+  - DEPLOYMENT005_EXECUTION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal PASS/FINDINGS bound to corrected release/rebuild-set exact identities; no deployment proof."
-ON_SUCCESS: PREPARE-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-CORRECTED-013
-ON_FAIL: CORRECT_RELEASE_ARTIFACT_OR_REBUILD_EVIDENCE_WITHOUT_DEPLOYMENT
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-CORRECTED-RELEASE-REVIEW-013
+SUCCESS_OUTPUT: "Fresh authorization-005 hash plus exact plan/non-mutation evidence; no deployment proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005
+ON_FAIL: CORRECT_OR_REVOKE_AUTHORIZATION005_BEFORE_REVIEW
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION5-PREP-013
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Package/wheel/binding/builder/runtime-manifest/verifier/rebuild-set identities all exact; verifier mode/hash/runtime PASS exact; host non-mutation exact; no blocking/high/medium finding remains."
+EXIT_CONDITION: "Authorization 005 uniquely binds current main/validation/executor/corrected release/control/binding, new dev23-corrected target and bounded commands/roots; current dev22, broken dev23 evidence and user-systemd unchanged; no execution root created."
 ~~~
 
-Review only. Do not deploy corrected release, switch prodlike current, repair/delete broken staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.
+Preparation only. Do not deploy, switch current, repair/delete broken staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.
