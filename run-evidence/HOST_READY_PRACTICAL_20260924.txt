@@ -1,0 +1,10 @@
+PASS wsl                WSL distro is active
+PASS systemd            user systemd reachable
+PASS python             Python >= 3.11
+PASS git                git available
+PASS disk               >50 GiB free
+PASS dns                DNS resolves github.com
+PASS https              HTTPS egress works
+PASS origin             GitHub origin reachable
+INFO gpu                no NVIDIA GPU; generation stays benchmark-blocked
+INFO ffmpeg             not installed; needed before M6 edit/export

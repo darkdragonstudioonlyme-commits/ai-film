@@ -5,6 +5,11 @@ on:
     branches: ['**']
     paths:
       - '*.md'
+      - '*.yaml'
+      - '*.jsonl'
+      - 'film/**'
+      - 'projects/**'
+      - 'tests/film/**'
       - 'docs/**'
       - 'learning/**'
       - 'reviews/**'
@@ -17,12 +22,19 @@ on:
       - 'pyproject.toml'
       - 'tools/check_*.py'
       - 'tools/test_*.py'
+      - 'tools/compile_slice01.py'
+      - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
   pull_request:
     paths:
       - '*.md'
+      - '*.yaml'
+      - '*.jsonl'
+      - 'film/**'
+      - 'projects/**'
+      - 'tests/film/**'
       - 'docs/**'
       - 'learning/**'
       - 'reviews/**'
@@ -35,6 +47,8 @@ on:
       - 'pyproject.toml'
       - 'tools/check_*.py'
       - 'tools/test_*.py'
+      - 'tools/compile_slice01.py'
+      - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
       - '.github/workflows/documentation-governance.yml'
@@ -57,41 +71,78 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - id: mode
+        name: Detect active control plane
+        run: |
+          if grep -q '^STATE_VERSION: PRODUCT_V2_' PROJECT_STATE.md; then
+            echo 'product_v2=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'product_v2=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Product v2 structural contract
+        if: steps.mode.outputs.product_v2 == 'true'
+        run: python3 tools/check_product_v2.py
+      - name: Product v2 syntax and tests
+        if: steps.mode.outputs.product_v2 == 'true'
+        run: |
+          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tests/film/*.py
+          bash -n tools/host_ready_practical.sh tools/turn_start.sh tools/turn_end.sh
+          PYTHONPATH=. python3 -m unittest discover -s tests/film -v
+          PYTHONPATH=. python3 tools/compile_slice01.py
       - name: Current work and audit declaration scope
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_current_work.py
       - name: Adversarial current-work regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_current_work.py
       - name: No-execution authority construction model
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_authority_hash_model.py
       - name: Canonical state selector
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_state_contract.py
       - name: Adversarial state and continuity scope
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_state_contract.py
       - name: Learning lifecycle
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_learning_lifecycle.py
       - name: Adversarial lifecycle regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_learning_lifecycle_checker.py
       - name: Documentation governance
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_documentation_governance.py
       - name: Active documentation consistency
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_project_docs.py
       - name: Adversarial active docs regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_project_docs_checker.py
       - name: Workflow continuity
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_workflow_continuity.py --require-remote
       - name: Continuity effectiveness measurement
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_continuity_measurements.py
       - name: Adversarial continuity measurement regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_continuity_measurements.py
       - name: Dual-actor design declarations
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_dual_ai_contract.py
       - name: Adversarial dual-actor contract model
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_dual_ai_contract.py
       - name: Shared workflow and operative knowledge
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_shared_workflow.py
       - name: Adversarial shared workflow regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_shared_workflow.py
       - name: Foreground dual-AI text bridge regression
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/test_dual_ai_text_bridge.py
       - name: Holistic documentation audit
+        if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/audit_documentation_v2.py

@@ -1,0 +1,103 @@
+{
+  "characters": {
+    "an": {
+      "identity": {
+        "age": 28,
+        "gender": "male",
+        "hair": "short black",
+        "build": "lean"
+      },
+      "baseline": {
+        "costume": "charcoal rain jacket, dark jeans, white sneakers",
+        "props": {
+          "red_paper_crane": "in right jacket pocket"
+        }
+      }
+    },
+    "linh": {
+      "identity": {
+        "age": 31,
+        "gender": "female",
+        "hair": "shoulder-length black",
+        "build": "average"
+      },
+      "baseline": {
+        "costume": "navy station uniform, silver name badge",
+        "props": {
+          "flashlight": "belt clip"
+        }
+      }
+    }
+  },
+  "timeline": [
+    {
+      "t": "D1_2340",
+      "scene": "sc01",
+      "events": []
+    },
+    {
+      "t": "D1_2342",
+      "scene": "sc01",
+      "events": [
+        {
+          "char": "an",
+          "type": "prop_add",
+          "prop": "red_paper_crane",
+          "state": "held in right hand"
+        }
+      ]
+    },
+    {
+      "t": "D1_2344",
+      "scene": "sc01",
+      "events": [
+        {
+          "char": "an",
+          "type": "injury_add",
+          "part": "left_forearm",
+          "desc": "fresh shallow cut, small amount of blood"
+        },
+        {
+          "char": "an",
+          "type": "costume_damage",
+          "part": "left_sleeve",
+          "desc": "small tear, damp edge"
+        }
+      ]
+    },
+    {
+      "t": "D1_2345",
+      "scene": "sc01",
+      "events": [
+        {
+          "char": "an",
+          "type": "injury_update",
+          "part": "left_forearm",
+          "desc": "wrapped in clean white gauze"
+        },
+        {
+          "char": "an",
+          "type": "prop_remove",
+          "prop": "red_paper_crane"
+        },
+        {
+          "char": "linh",
+          "type": "prop_add",
+          "prop": "red_paper_crane",
+          "state": "held in left hand"
+        }
+      ]
+    },
+    {
+      "t": "D1_2347",
+      "scene": "sc01",
+      "events": [
+        {
+          "char": "an",
+          "type": "prop_remove",
+          "prop": "red_paper_crane"
+        }
+      ]
+    }
+  ]
+}

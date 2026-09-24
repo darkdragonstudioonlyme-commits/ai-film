@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh04",
+  "story_time": "D1_2342",
+  "dialogue_id": "dlg_002",
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"close-up\", \"lens_mm\": 85, \"movement\": \"static\"} | action=The lights blink out behind Linh; she raises the flashlight, alert but composed. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Only if we bring the signal back.\", \"vi\": \"Chỉ khi mình khôi phục được tín hiệu.\", \"zh-CN\": \"得先把信号恢复。\"}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 104,
+  "aspect": "9:16"
+}

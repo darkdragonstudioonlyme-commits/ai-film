@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh08",
+  "story_time": "D1_2347",
+  "dialogue_id": null,
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"wide\", \"lens_mm\": 35, \"movement\": \"locked\"} | action=Train doors open. An boards with gauze visible on his left forearm; Linh remains on the platform with the paper crane. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"wrapped in clean white gauze\"}, \"props\": {}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\", \"red_paper_crane\": \"held in left hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 108,
+  "aspect": "9:16"
+}

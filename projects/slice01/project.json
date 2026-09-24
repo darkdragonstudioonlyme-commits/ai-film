@@ -1,0 +1,14 @@
+{
+  "project_id": "slice01",
+  "title": "Last Train Signal",
+  "rights": {
+    "source": "original_generated_for_project",
+    "publish_clearance": "NOT_YET_REQUESTED"
+  },
+  "target_seconds": 75,
+  "master_aspect": "9:16",
+  "secondary_aspect": "16:9",
+  "languages": ["en", "zh-CN", "vi"],
+  "style_candidates": ["photoreal", "stylized_3d"],
+  "benchmark_shots": 8
+}

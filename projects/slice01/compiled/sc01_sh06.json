@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh06",
+  "story_time": "D1_2345",
+  "dialogue_id": "dlg_003",
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"close two-shot\", \"lens_mm\": 65, \"movement\": \"static\"} | action=Linh finishes wrapping An's left forearm in white gauze while holding the red paper crane in her left hand. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"wrapped in clean white gauze\"}, \"props\": {}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\", \"red_paper_crane\": \"held in left hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"You came back for this station?\", \"vi\": \"Anh quay lại vì nhà ga này sao?\", \"zh-CN\": \"你是为了这个车站回来的？\"}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 106,
+  "aspect": "9:16"
+}
