@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "authorization001_receipt_root_absent": true,
+  "authorization001_sha256": "a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4",
+  "authorization001_status": "SUPERSEDED_UNUSED",
+  "authorization001_transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-001",
+  "corrected_executor_sha256": "8e2118419bf76ff2dc248845516dc55bf26062fe775261bb421e755dbb658462",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "auth001_support": "a61871955432f434305f673738a6eddffd82c78f",
+    "corrected_support": "f1cbcf92bc9727190c9f242625d526e2fd0e63d1",
+    "main": "c48a906c62584f0d61f2708ff39caf33646b7198",
+    "validation": "8158325e0a98b73cb237098eff8512ba1f8d6136"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Supersede unexecuted reconciliation authorization001 and prepare corrected authorization002 only; no host mutation",
+  "session_denominator": null,
+  "signing_performed": false,
+  "source_transaction005_replay_authorized": false
+}
