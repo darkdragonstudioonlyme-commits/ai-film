@@ -1,0 +1,24 @@
+{
+  "actual_transaction_receipt_count": 1,
+  "actual_transaction_receipts": [
+    {
+      "mtime_ns": 1790244066741024673,
+      "path": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/transaction-receipt.json",
+      "sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9"
+    }
+  ],
+  "authorization_sha256": "f4aac9d60ecaf5267bd0086145820e5437652405992c8c26c65e57f5ab05e871",
+  "begin_transaction_existing_receipt_behavior": "returns existing receipt unchanged when transaction_id and authorization_sha256 match",
+  "canonical_main_commit": "6b71df3a59c22b044ab3e6bd854fd376999ac12a",
+  "canonical_receipt_path": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/transaction-receipt.json",
+  "canonical_receipt_sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9",
+  "canonical_state_blocks_reexecution": true,
+  "canonical_work_item": "REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-RECEIPT-002",
+  "execution_count_claim": 1,
+  "existing_receipt_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "kind": "ATTEMPT5_RECON2_NONREPLAY_LEDGER",
+  "receipt_root_exists": true,
+  "schema_version": 1,
+  "source_reconciliation_replay_authorized": false,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002"
+}

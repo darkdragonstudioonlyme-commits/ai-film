@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import hashlib, json, os, stat, subprocess, time
+
+ROOT=Path("/home/dragon/ai-film-dev")
+TX=ROOT/"run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/transaction-receipt.json"
+PRE=ROOT/"run-evidence/v139-attempt5-reconciliation2-preexec-20260924/fresh-host-snapshot.json"
+META=ROOT/"run-evidence/v139-attempt5-reconciliation2-preexec-20260924/rollback-control-meta.json"
+
+def sha(p):
+    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+def snap(p):
+    p=Path(p)
+    if not p.exists() and not p.is_symlink(): return {"type":"absent"}
+    if p.is_symlink(): return {"type":"symlink","target":os.readlink(p)}
+    if p.is_file():
+        s=p.stat()
+        return {"type":"file","sha256":sha(p),"bytes":s.st_size,"mode":format(stat.S_IMODE(s.st_mode),"o")}
+    rows={}
+    for x in sorted(p.rglob("*")):
+        rel=x.relative_to(p).as_posix()
+        if x.is_symlink(): rows[rel]={"type":"symlink","target":os.readlink(x)}
+        elif x.is_file():
+            s=x.stat(); rows[rel]={"type":"file","sha256":sha(x),"bytes":s.st_size,"mode":format(stat.S_IMODE(s.st_mode),"o")}
+        elif x.is_dir(): rows[rel]={"type":"dir","mode":format(stat.S_IMODE(x.stat().st_mode),"o")}
+    return {"type":"dir","entries":rows}
+
+def main():
+    start=time.time_ns()
+    receipt=json.load(open(TX)); pre=json.load(open(PRE)); meta=json.load(open(META))
+    uid=os.getuid(); runtime=Path("/run/user")/str(uid); bus=runtime/"bus"
+    assert runtime.is_dir() and not runtime.is_symlink()
+    assert bus.exists() and not bus.is_symlink()
+    env={"HOME":os.environ.get("HOME","/home/dragon"),"USER":os.environ.get("USER","dragon"),
+         "LOGNAME":os.environ.get("LOGNAME","dragon"),"LANG":"C.UTF-8","LC_ALL":"C.UTF-8",
+         "PATH":"/usr/bin:/bin:/mnt/c/Windows/System32","PYTHONNOUSERSITE":"1",
+         "PYTHONDONTWRITEBYTECODE":"1","XDG_RUNTIME_DIR":str(runtime),
+         "DBUS_SESSION_BUS_ADDRESS":"unix:path="+str(bus)}
+    vc=subprocess.run(["/home/dragon/ai-film-runtime/bin/verify-current"],text=True,capture_output=True,env=env)
+    timers={}
+    for t in receipt["timer_state_after"]:
+        en=subprocess.run(["/usr/bin/systemctl","--user","is-enabled",t],text=True,capture_output=True,env=env)
+        ac=subprocess.run(["/usr/bin/systemctl","--user","is-active",t],text=True,capture_output=True,env=env)
+        timers[t]={"enabled":en.stdout.strip(),"enabled_rc":en.returncode,"enabled_stderr":en.stderr.strip(),
+                   "active":ac.stdout.strip(),"active_rc":ac.returncode,"active_stderr":ac.stderr.strip()}
+    timer_ok=all(v["enabled"]=="enabled" and v["enabled_rc"]==0 and not v["enabled_stderr"]
+                 and v["active"]=="active" and v["active_rc"]==0 and not v["active_stderr"] for v in timers.values())
+    bad=[]
+    for row in meta:
+        p=Path(row["path"]); present=p.is_file() and not p.is_symlink()
+        if present != row["present"]: bad.append({"path":str(p),"reason":"presence"}); continue
+        if present:
+            h=sha(p); mode=format(stat.S_IMODE(p.stat().st_mode),"o")
+            if h != row["sha256"] or mode != row["mode"]: bad.append({"path":str(p),"reason":"hash_or_mode"})
+
+    roots=["/home/dragon/ai-film-runtime/dev22","/home/dragon/ai-film-runtime/dev23",
+           "/home/dragon/ai-film-runtime/dev23-corrected","/home/dragon/.config/systemd/user"]
+    preserve={k:(snap(k)==pre[k]) for k in roots}
+    current=os.readlink("/home/dragon/ai-film-runtime/current")
+    out={"schema_version":1,"kind":"ATTEMPT5_RECON2_INDEPENDENT_DEV22_VERIFY_V2",
+         "process_pid":os.getpid(),"process_start_ns":start,"process_end_ns":time.time_ns(),
+         "observed_unix":int(time.time()),"transaction_id":receipt["transaction_id"],
+         "transaction_receipt_path":str(TX),"transaction_receipt_sha256":sha(TX),
+         "receipt_state":receipt["state"],"current_target":current,"current_dev22_exact":current=="/home/dragon/ai-film-runtime/dev22",
+         "verify_current_rc":vc.returncode,"verify_current_stdout":vc.stdout.strip(),"verify_current_stderr":vc.stderr,
+         "verify_current_pass":vc.returncode==0,"timer_count":len(timers),"timers":timers,
+         "all_timers_enabled_active":timer_ok,"control_rows":len(meta),"control_bad":bad,"all_controls_exact":not bad,
+         "preservation":preserve,"all_preserved_exact":all(preserve.values()),
+         "dev23_deployment_receipt_absent":not Path("/home/dragon/ai-film-runtime/dev23/deployment-receipt.json").exists(),
+         "dev23_corrected_deployment_receipt_absent":not Path("/home/dragon/ai-film-runtime/dev23-corrected/deployment-receipt.json").exists(),
+         "native_execution_started":False,"signing_performed":False,"hklm_touched":False,
+         "site_entered":False,"qualification_issued":False,"host_ready":False}
+    print(json.dumps(out,sort_keys=True,separators=(",",":")))
+    ok=out["receipt_state"]=="RECONCILED_PENDING_INDEPENDENT_VERIFY" and out["current_dev22_exact"]
+    ok=ok and out["verify_current_pass"] and timer_ok and not bad and out["all_preserved_exact"]
+    return 0 if ok else 2
+
+if __name__=="__main__":
+    raise SystemExit(main())
