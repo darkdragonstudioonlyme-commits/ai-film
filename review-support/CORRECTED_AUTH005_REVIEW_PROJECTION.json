@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "attempt5_root_absent": true,
+  "authorization_sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "authorized": true,
+  "broken_dev23_snapshot_sha256": "418d9a813fd6565b5cb250a95de3f1aae6a90cfbdabb02f11d7a3662b2c1c89c",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "command_count": 91,
+  "command_set_equal_reviewed_auth4": true,
+  "command_set_sha256": "0baed76ed2a994cd90c6e436e1a0873a62fc776808597574fb761d71e5759409",
+  "current_snapshot": {
+    "target": "/home/dragon/ai-film-runtime/dev22",
+    "type": "symlink"
+  },
+  "execution_started": false,
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "expires_at": 1790254756,
+  "forbidden_authority_bits_all_false": true,
+  "input_sha256": {
+    "binding": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+    "control_bundle_manifest": "f2bd7fb36facb511fe2192750239bf9169c6ab8dcd7dc61db369407a5210b2e5",
+    "current_deployment_receipt": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a",
+    "current_runtime_manifest": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "release_runtime_manifest": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d"
+  },
+  "kind": "CORRECTED_AUTH005_REVIEW_PROJECTION",
+  "main_commit": "96f4ea3b8e313a07ff986326dcbe2b86be15dd99",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-20260924"
+  ],
+  "mutation_roots_exact": true,
+  "new_target_snapshot": {
+    "type": "absent"
+  },
+  "non_mutation_same": true,
+  "plan_old_current_target": "/home/dragon/ai-film-runtime/dev22",
+  "plan_release_source": "/home/dragon/ai-film-dev/run-evidence/v129-corrected-prodlike-release-20260924/release-dev23-corrected",
+  "plan_release_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "plan_status": "PLAN_ONLY",
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005",
+  "user_systemd_snapshot_sha256": "cd9b559df5c9980c048903d8286118a2db794a8c1b2f70e4b41d72595eabbc69",
+  "validation_commit": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068"
+}

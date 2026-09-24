@@ -1,0 +1,38 @@
+{
+  "attempt": 1,
+  "authorization_path": "/home/dragon/ai-film-dev/run-evidence/v131-corrected-release-auth5-prep-20260924/prodlike-authorization-005.json",
+  "authorization_sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "command_count": 91,
+  "corrected_release_tree_sha256": "645e641418404d14850a06dba6d24419cca33a9b17c3e114b76eec60f5fca380",
+  "corrected_runtime_manifest_sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d",
+  "execution_started": false,
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "expires_at": 1790254756,
+  "failed_evidence_target": "/home/dragon/ai-film-runtime/dev23",
+  "forbidden_authority_bits_all_false": true,
+  "input_sha256": {
+    "binding": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+    "control_bundle_manifest": "f2bd7fb36facb511fe2192750239bf9169c6ab8dcd7dc61db369407a5210b2e5",
+    "current_deployment_receipt": "dcd7bb011005032cc8564bfda386f6c3c4987ae3336b6a00f3e3a698fb41428a",
+    "current_runtime_manifest": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+    "release_runtime_manifest": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d"
+  },
+  "kind": "CORRECTED_RELEASE_DEPLOYMENT_AUTH005_PREP_RECEIPT",
+  "main_commit": "96f4ea3b8e313a07ff986326dcbe2b86be15dd99",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-20260924"
+  ],
+  "non_mutation_proof_sha256": "4e67ad3e77dee078143df2dd82b90ecc9467949354375f4dfcba9138071bb0ab",
+  "plan_sha256": "8701536186e59f75504bc03068e0ce67deaa572fbd439856583fb641998344dc",
+  "release_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "schema_version": 1,
+  "status": "READY_FOR_CROSS_MODEL_REVIEW",
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005",
+  "validation_commit": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068",
+  "verify_runtime_sha256": "e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae"
+}

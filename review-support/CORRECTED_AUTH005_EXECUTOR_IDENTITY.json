@@ -1,0 +1,23 @@
+{
+  "all_same": true,
+  "execution_claimed": false,
+  "executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "files": [
+    {
+      "executor_blob": "35e6c167e3ac64486f265d1dcb618d627d274c51",
+      "path": "validation/tooling/deployment_transaction_common.py",
+      "same": true,
+      "validation_blob": "35e6c167e3ac64486f265d1dcb618d627d274c51"
+    },
+    {
+      "executor_blob": "3b8ab0a5adad803173770a4fd03a93d12dd55050",
+      "path": "validation/tooling/deploy_prodlike_candidate-v2.py",
+      "same": true,
+      "validation_blob": "3b8ab0a5adad803173770a4fd03a93d12dd55050"
+    }
+  ],
+  "kind": "CORRECTED_AUTH005_EXECUTOR_IDENTITY",
+  "schema_version": 1,
+  "validation_commit": "a5dac299d54f5f6e482f6cdbb1879532b1f2a068"
+}

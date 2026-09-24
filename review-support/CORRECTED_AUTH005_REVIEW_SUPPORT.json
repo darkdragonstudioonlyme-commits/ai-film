@@ -1,0 +1,34 @@
+{
+  "files": {
+    "CORRECTED_AUTH005.json": {
+      "bytes": 12064,
+      "sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83"
+    },
+    "CORRECTED_AUTH005_EXECUTOR_IDENTITY.json": {
+      "bytes": 810,
+      "sha256": "3b701bdf03e8ef42aa59509803ecbbcabeb3f1ae3af1826f17621a6e76d7ad1b"
+    },
+    "CORRECTED_AUTH005_NON_MUTATION.json": {
+      "bytes": 341,
+      "sha256": "4e67ad3e77dee078143df2dd82b90ecc9467949354375f4dfcba9138071bb0ab"
+    },
+    "CORRECTED_AUTH005_PLAN.json": {
+      "bytes": 1517,
+      "sha256": "8701536186e59f75504bc03068e0ce67deaa572fbd439856583fb641998344dc"
+    },
+    "CORRECTED_AUTH005_PREP_RECEIPT.json": {
+      "bytes": 2304,
+      "sha256": "434cf0d178a49dc4ffc596d151c3b3518775e5995791e1f818201bc5a5c6118a"
+    },
+    "CORRECTED_AUTH005_REVIEW_PROJECTION.json": {
+      "bytes": 2395,
+      "sha256": "3159495cc4f8df17099a7fcda00a94db997e66430f7dee892bf203e444699970"
+    },
+    "CORRECTED_RELEASE_013_ARTIFACT_IDENTITY.json": {
+      "bytes": 1600,
+      "sha256": "dbf93a7768cf692d7e11d7bdf1cea46af5533841d7b3cea737220e70510a202b"
+    }
+  },
+  "kind": "CORRECTED_AUTH005_REVIEW_SUPPORT",
+  "schema_version": 1
+}
