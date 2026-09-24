@@ -1,0 +1,18 @@
+{
+  "current_restored_to_dev22": true,
+  "dev23_deployment_receipt_absent": true,
+  "independent_dev22_verify_pass": true,
+  "independent_verify_sha256": "1d67c6197e13c3af5e69a906cc6c70f0c17f78e034bcd0f3efd7e9a5fb383021",
+  "kind": "RECONCILIATION2_SOURCE_DEBT_ROUTING_PROJECTION",
+  "known_source_debt": "DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME",
+  "lab_rebuild_blocked": true,
+  "native_signing_hklm_blocked": true,
+  "new_deployment_authorization_blocked_until_test_change_013": true,
+  "receipt_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "reconciliation_transaction_replay_authorized": false,
+  "schema_version": 1,
+  "staged_dev23_preserved": true,
+  "staged_dev23_verify_runtime_absent": true,
+  "test_change_013_required": true,
+  "transaction_receipt_sha256": "d225adbd11221cb593a5f1b285b3d27c788f4e14ad4d840fcc5f7778b3b55d05"
+}
