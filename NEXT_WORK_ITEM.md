@@ -1,4 +1,4 @@
-# NEXT WORK ITEM — review dev23 prodlike verify-runtime test design 013
+# NEXT WORK ITEM — re-review verify-runtime test design 013 R2
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
@@ -6,38 +6,37 @@ WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
 MODE: TEST_REVIEW
 LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2
 ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 61e595712a19177ecc2ec263a171a0f1aa710f71
-  TEST_CHANGE_COMMIT: 77491f826c91f1dc239b3e7ba033a1b3eec137ca
+  CURRENT_MAIN: 43352f68c88b9fd9ac4af61be33180daabe22572
+  TEST_CHANGE_R2_COMMIT: 364e28eda4c12e154b3b792d960eb9a573d8aace
   TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
   COVERAGE: test-governance/design-evidence/TEST-DESIGN-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013-COVERAGE.json
   PRODUCT_SOURCE: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
   SOURCE_DEBT: DEV23_RELEASE_MISSING_BIN_VERIFY_RUNTIME
   ORACLE_CHANGED: false
-GOAL: "Independently verify two-file MODIFY-only scope, candidate-generic V2 verify-runtime semantics, runtime-manifest self-binding, control-path composition, negative cases, regression retention, preserved source-debt evidence and no deployment/native/signing authority."
+REVIEW_SEMANTICS: PRE_IMPLEMENTATION_CONSTRUCTIBILITY_NOT_CURRENT_IMPLEMENTATION_CONFORMANCE
+GOAL: "Independently verify that R2 is coherent and implementable within exactly two modified files, with acyclic verifier hash/manifest ordering, meaningful TV013 mapping, exact control composition, regression/non-mutation evidence split, ORACLE_CHANGED=false and no execution authority."
 STEPS:
-  - TEST_CHANGE_013_AUTHOR: COMPLETE_FROZEN
-  - TWO_FILE_SCOPE_REVIEW: READY
-  - VERIFY_RUNTIME_SEMANTICS_REVIEW: READY
+  - INITIAL_SCOPE_REVIEW: COMPLETE_PASS
+  - R2_PREIMPLEMENTATION_SEMANTICS: READY
+  - TWO_FILE_CONSTRUCTIBILITY: READY
+  - HASH_ORDER_REVIEW: READY
+  - TEST_EVIDENCE_MAPPING_REVIEW: READY
   - CONTROL_COMPOSITION_REVIEW: READY
-  - NEGATIVE_TEST_COVERAGE_REVIEW: READY
   - PREDECESSOR_RETENTION_REVIEW: READY
   - IMPLEMENTATION: BLOCKED
-  - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
-  - LAB_REBUILD_RESEED: BLOCKED
-  - AUTHORITY_SIGNING: BLOCKED
-  - NATIVE_VALIDATION: NOT_STARTED
+  - DEPLOYMENT_LAB_NATIVE_SIGNING: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal TEST_REVIEW PASS/FINDINGS bound to TEST_CHANGE 013; no implementation/deployment proof."
+SUCCESS_OUTPUT: "Formal R2 TEST_REVIEW PASS/FINDINGS bound to corrected test-design bytes; no implementation proof."
 ON_SUCCESS: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
-ON_FAIL: TEST_DESIGN_CORRECTION_013
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-TEST-REVIEW
+ON_FAIL: TEST_DESIGN_CORRECTION_013_R3
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-R2-TEST-REVIEW
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms exact two-file modify scope, TV013-01..12 meaningful coverage, no venv/dev22 hard-code, control composition, ORACLE_CHANGED=false, byte-identical dependencies and no deployment/LAB/native/signing authority."
+EXIT_CONDITION: "Reviewer confirms test design is constructible within two files; current pre-fix gaps are expected debt, not review blockers; TV013 mapping/control composition/regression evidence are meaningful; no blocking/high/medium test-design finding remains."
 ~~~
 
-Review only. Do not modify release tooling, create deployment authorization, repair/delete staged dev23, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not implement TV013, deploy prodlike, repair/delete staged dev23, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

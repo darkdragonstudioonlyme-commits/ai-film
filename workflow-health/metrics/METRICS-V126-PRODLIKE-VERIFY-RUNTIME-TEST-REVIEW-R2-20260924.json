@@ -1,0 +1,25 @@
+{
+  "active_control_documents_read": 0,
+  "deployment_authorized": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "implementation_authorized": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "initial_scope_review": "PASS",
+  "initial_semantics_review": "PACKET_FRAMING_FINDINGS",
+  "input_refs": {
+    "main": "43352f68c88b9fd9ac4af61be33180daabe22572",
+    "source": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "test_change_r2": "364e28eda4c12e154b3b792d960eb9a573d8aace",
+    "validation": "364e28eda4c12e154b3b792d960eb9a573d8aace"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "r2_status": "PENDING_INDEPENDENT_REVIEW",
+  "schema_version": 1,
+  "scope": "Re-review TEST_CHANGE 013 R2 as pre-implementation constructibility contract; no implementation/deployment/native/signing",
+  "session_denominator": null
+}
