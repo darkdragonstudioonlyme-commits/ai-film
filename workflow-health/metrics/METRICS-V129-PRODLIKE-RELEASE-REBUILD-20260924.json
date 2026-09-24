@@ -1,0 +1,27 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "fe3550fae7305bd8327f5326e5ed2752ce549909",
+    "product_candidate": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+    "validation": "abac81bd8b9e5e2df206b554950919ae3d754e37",
+    "verify_runtime_author": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+    "verify_runtime_tree": "ca0be120320a8d6aa7af201a9d58523de8a087ff"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "prodlike_deployment_started": false,
+  "release_rebuild_status": "NOT_STARTED",
+  "schema_version": 1,
+  "scope": "Build corrected dev23 release/rebuild artifacts from reviewed package+wheel using reviewed verify-runtime builder; no live deployment",
+  "session_denominator": null,
+  "signing_performed": false,
+  "staged_broken_dev23_preserve_required": true
+}
