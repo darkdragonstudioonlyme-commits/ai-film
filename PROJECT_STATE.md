@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V135
+# AI-FILM-SERVER — intended canonical content V136
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 135
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 136
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-PREP-048
-  REASON: "Receipt005 review is complete: transaction005 is immutable/non-replayable, release-control V1/V2 mismatch is a real test-design gap, and rollback assets are sufficient. Prepare a separate bounded reconciliation restoring exact dev22 while preserving both failed dev23 evidence trees; no mutation until authorization review PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-REVIEW-049
+  REASON: "Attempt5 reconciliation authorization is prepared plan-only with a new transaction/hash/root, exact rollback/input hashes, dev22 restore target, byte-identical preservation of both failed dev23 trees, bounded commands/roots and host non-mutation. Cross-model review is required before execution."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_ATTEMPT5_RECONCILIATION_PREP
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_ATTEMPT5_RECONCILIATION_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare plan-only attempt5 reconciliation with a new transaction/hash/root, exact rollback asset/input hashes, dev22 restore target, byte-identical preservation of dev23 and dev23-corrected, bounded command/root sets and non-mutation proof; then hand exact authorization to Claude review."
+NEXT_ACTION: "Claude reviews exact attempt5 reconciliation authorization a84bfdad, executor/support identities, source receipt/rollback hashes, 68-command set, bounded roots, dual-tree preservation and preparation non-mutation. Do not execute until PASS."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

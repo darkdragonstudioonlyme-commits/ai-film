@@ -1,48 +1,48 @@
-# NEXT WORK ITEM — prepare bounded reconciliation for prodlike attempt5
+# NEXT WORK ITEM — review bounded reconciliation for prodlike attempt5
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 275f3724257e07c8562cba1aeb99b249cb1f54a4
+  CURRENT_MAIN: 24d1c0a20a98b7dabcce671abdd73f2e9210ab93
   CURRENT_VALIDATION: e492d606bf58a032a7432a6053e0b2db07c91728
-  RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-005.md
-  SOURCE_TRANSACTION_ID: PRODLIKE-DEV23-CORRECTED-96F4EA3-005
+  REVIEW_SUPPORT_COMMIT: a61871955432f434305f673738a6eddffd82c78f
+  REVIEW_SUPPORT_TREE: 73c6f2f55aeb60d27f79a8f4d3f3bd14351e1e75
+  AUTHORIZATION_SHA256: a84bfdadbf918c1d1492d8fa0b5817b7396dace07e1629c2c428777bdc3d0ee4
+  TRANSACTION_ID: PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-001
+  EXECUTOR_COMMIT: 9dab706e189ce3a8e9453f9f678ee20665b77de5
+  EXECUTOR_TREE: 6c73297297a4a0658fa40314a78d8c8e353c23a8
+  PLAN_SHA256: 15ba6453362aec27ef65cfc3aa84791404ee716b5ad696892d07f1e54b9011e9
+  NON_MUTATION_SHA256: 7a87cd60a4007cd3f87abdae13635cda64009b60f7674dfed39f74f7eb962f8d
   SOURCE_RECEIPT_SHA256: 6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5
-  SOURCE_REPLAY_AUTHORIZED: false
-  RECONCILIATION_TARGET: /home/dragon/ai-film-runtime/dev22
-GOAL: "Prepare one new immutable reconciliation authorization restoring exact dev22 current/control/11-timer state from transaction005 rollback assets while preserving dev23 and dev23-corrected byte-identically. No host mutation during preparation."
+GOAL: "Independently review the exact bounded attempt5 reconciliation authorization before any host mutation."
 STEPS:
-  - RECEIPT005_REVIEW: COMPLETE_FINDINGS
-  - SOURCE_TRANSACTION_REPLAY: PERMANENTLY_FORBIDDEN
-  - ROLLBACK_ASSET_REVALIDATION: READY
-  - CURRENT_DEV23_CORRECTED_PRECONDITION: READY
-  - FAILED_DEV23_TREE_SNAPSHOT: READY
-  - FAILED_DEV23_CORRECTED_TREE_SNAPSHOT: READY
-  - RECONCILIATION_EXECUTOR_SUCCESSOR: NOT_STARTED
-  - PLAN_ONLY: NOT_STARTED
-  - RECONCILIATION_AUTHORIZATION: NOT_STARTED
-  - PREPARATION_NON_MUTATION: NOT_STARTED
-  - CROSS_MODEL_RECONCILIATION_REVIEW: BLOCKED
+  - PREPARATION_PLAN_ONLY: COMPLETE_PASS
+  - PREPARATION_NON_MUTATION: COMPLETE_PASS
+  - SOURCE_RECEIPT_NONREPLAY: COMPLETE_BOUND
+  - AUTHORIZATION_IDENTITY_EXPIRY_REVIEW: READY
+  - ROLLBACK_ASSET_INPUT_REVIEW: READY
+  - EXECUTOR_COMMAND_ROOT_REVIEW: READY
+  - DEV22_TARGET_DUAL_FAILED_TREE_PRESERVATION_REVIEW: READY
   - RECONCILIATION_EXECUTION: BLOCKED
   - RELEASE_CONTROL_TEST_CHANGE: BLOCKED_UNTIL_RECONCILIATION_PASS
   - NEW_PRODLIKE_DEPLOYMENT: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh reconciliation authorization/hash/plan/non-mutation evidence only; no reconciliation execution proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
-ON_FAIL: CORRECT_RECONCILIATION_INPUT_OR_EXECUTOR_WITHOUT_MUTATION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-PREP-048
+SUCCESS_OUTPUT: "Formal reconciliation authorization PASS/FINDINGS bound to exact hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-001
+ON_FAIL: CORRECT_RECONCILIATION_AUTHORIZATION_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-REVIEW-049
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "New transaction/hash/root unique; source receipt exact/non-replayable; rollback 64+11 assets exact; current dev23-corrected precondition exact; both failed dev23 trees snapshotted; dev22 target exact; command/root sets bounded; before/after preparation identical; no execution/native/signing/HKLM."
+EXIT_CONDITION: "Exact auth/executor/source/rollback/dev22 hashes pass; expiry bounded; 68 command set/executor composition exact; roots minimal; current precondition dev23-corrected; dev23 and dev23-corrected preservation explicit; prep non-mutation exact; no blocking/high/medium finding remains."
 ~~~
 
-Preparation only. Do not replay transaction005, switch current, restore controls/timers, modify either failed dev23 tree, patch release-control, create a new deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute reconciliation, replay transaction005, switch current, restore control/timers, patch release-control, create deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
