@@ -1,0 +1,47 @@
+{
+  "authorization_sha256": "22fd6119d0d5005c9dfeb126477b07ac781e1eb7ff2d6249bada5443c565a494",
+  "execution_gate_main": "65114f42c7b50e062f78c277ce662295bd92964d",
+  "files": {
+    "RECONCILIATION2_EXECUTOR.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "RECONCILIATION2_EXECUTOR.stdout.txt": {
+      "bytes": 2519,
+      "sha256": "f7630bf1d8a16c31cf296f87ca3473d633c51c35820bd5a6f0141cd28fa32bd7"
+    },
+    "RECONCILIATION2_INDEPENDENT_DEV22_LIVE_VERIFICATION.json": {
+      "bytes": 34767,
+      "sha256": "1d67c6197e13c3af5e69a906cc6c70f0c17f78e034bcd0f3efd7e9a5fb383021"
+    },
+    "RECONCILIATION2_PLAN.json": {
+      "bytes": 9521,
+      "sha256": "e8934b28bbb5e392b6911d8bcfd81e382609745797cbc67063c1758a6ac3a265"
+    },
+    "RECONCILIATION2_PREEXEC_PLAN_RECHECK.json": {
+      "bytes": 6757,
+      "sha256": "bbb627a8048df00d903d0f5cd5769de610fa2804cf0c42918c59096237c27018"
+    },
+    "RECONCILIATION2_TRANSACTION_RECEIPT.json": {
+      "bytes": 3203,
+      "sha256": "d225adbd11221cb593a5f1b285b3d27c788f4e14ad4d840fcc5f7778b3b55d05"
+    },
+    "RECONCILIATION2_VERIFY_CURRENT.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "RECONCILIATION2_VERIFY_CURRENT.stdout.txt": {
+      "bytes": 58,
+      "sha256": "126a7795749d4ce973ee7efb1656c907303bc28e262526dcdd1bdc456e9752a0"
+    }
+  },
+  "formal_review_validation": "94940cc1dbdaa2e85c23e6a166760d735566ffbe",
+  "hklm_touched": false,
+  "independent_verify_sha256": "1d67c6197e13c3af5e69a906cc6c70f0c17f78e034bcd0f3efd7e9a5fb383021",
+  "kind": "RECONCILIATION2_RECEIPT_REVIEW_SUPPORT",
+  "native_executed": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-002",
+  "transaction_receipt_sha256": "d225adbd11221cb593a5f1b285b3d27c788f4e14ad4d840fcc5f7778b3b55d05"
+}
