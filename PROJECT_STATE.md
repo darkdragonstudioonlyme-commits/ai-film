@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V137
+# AI-FILM-SERVER — intended canonical content V138
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 137
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 138
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-002
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION2-PREP-050
-  REASON: "Authorization 001 is formally FINDINGS and unexecuted: its input-map key disagrees with executor bytes and aggregate rollback evidence is insufficient for review. Supersede it with a new authorization 002 using corrected executor bytes, itemized 64/11 evidence and a new transaction/hash/root; no mutation until new review PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION2-REVIEW-051
+  REASON: "Corrected reconciliation authorization002 is prepared with durable remote support, corrected transaction005 input binding, itemized 64/11 evidence, new transaction/hash/root/expiry and exact non-mutation. Cross-model review is required before any reconciliation execution."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_ATTEMPT5_RECONCILIATION2_PREP
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_ATTEMPT5_RECONCILIATION2_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Prepare corrected attempt5 reconciliation authorization 002 with transaction005 receipt binding, corrected executor SHA, new transaction/hash/root/expiry, itemized rollback witnesses and exact preparation non-mutation; then hand the new hash to Claude review."
+NEXT_ACTION: "Claude reviews exact authorization002 f4aac9d6, durable support 5a4e0a5, corrected executor/input binding, itemized rollback witnesses, bounded expiry/commands/roots and dual failed-tree preservation. Do not execute until PASS."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
