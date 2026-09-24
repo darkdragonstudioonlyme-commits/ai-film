@@ -396,7 +396,7 @@ Thuật toán mỗi lượt:
 7. `tools/turn_end.sh` (1 lệnh): cập nhật BACKLOG + RESUME + 1 dòng PROGRESS_LOG → 1 commit.
 8. Báo cáo ≤ 6 dòng: đã xong, delta sản phẩm, test, chi phí, % milestone, việc kế, câu hỏi cho chủ dự án (0–3).
 
-Bộ trạng thái mới — cold-start ≤ 10 KB thay vì ~170–210 KB. Ví dụ (số liệu minh họa):
+Bộ trạng thái v2 — target cold-start ≤10 KB; **đo hiện tại**: RESUME+BACKLOG+MILESTONES+CONTINUE_PROTOCOL ≈4.074 byte, hoặc ≈5.925 byte khi cộng PROJECT_STATE+NEXT. Ví dụ dưới đây vẫn là số liệu minh họa, không phải current state:
 
 ```markdown
 # RESUME  (≤ 2 KB, ghi đè mỗi lượt)
@@ -433,9 +433,9 @@ MILESTONES.md: M0 host thực dụng · M1 kịch bản + shot list · M2 castin
 - Dùng lại khung `tools/dual_ai_text_bridge.py` (receipt, idempotency, trần budget), thêm profile IMPLEMENT: bật tool đọc/sửa/chạy lệnh trong worktree riêng, effort cao hơn, 30–60 lượt, budget theo task (vd 1–5 USD).
 - Guardrail: chỉ ghi trong worktree `film/wip-*`; không push main; không đọc secrets; mọi API trả phí đi qua một wrapper có trần chi phí và ghi log; file `AUTOPILOT_STOP` là công tắc dừng.
 
-Hai mức tự động (đề xuất, chưa bật):
-- **L1 (mặc định sau khi v2 được phê duyệt):** mỗi "Tiếp tục" chạy một lô rồi báo cáo.
-- **L2 (chỉ khi chủ dự án bật rõ ràng):** runner nền bằng systemd user timer (máy đã chạy 11 timer) xử lý backlog theo lịch, trần USD/ngày; "Tiếp tục" chỉ để review, duyệt merge và gỡ chặn.
+Hai mức tự động:
+- **L1: ACTIVE.** Mỗi "Tiếp tục" chạy một bounded product batch theo CONTINUE_PROTOCOL; turn scripts đã smoke-test.
+- **L2: NOT ENABLED.** Nếu sau này cần runner nền, phải tạo dedicated Product-V2 timer + daily budget/stop guard riêng. Không tái sử dụng P00 timers; 11 scheduled P00 timers đã được disable+stop trong re-audit.
 
 Tự cải thiện có đo (thay self-learning quy trình hiện tại):
 - Mỗi 10 lượt: retro tự tính KPI (task/lượt, lượt không delta, USD/task, top lý do chặn) → đề xuất tối đa 3 thay đổi, mỗi thay đổi có KPI mục tiêu; 10 lượt sau không cải thiện → hoàn tác.
