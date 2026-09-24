@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V114
+# AI-FILM-SERVER — intended canonical content V115
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 114
-CURRENT_MODE: CODE_REVIEW
+STATE_VERSION: 115
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT1-RECONCILIATION-001
+CURRENT_TASK: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-004
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-ATTEMPT1-RECONCILIATION-040
-  REASON: "Corrected authorization 003 review found HIGH ATTEMPT1-RECONCILE-DEBT. Read-only reconciliation observation shows exact accepted dev22 current/control/timer state and no effects beyond staging. Review that evidence before any new prodlike authorization or execution."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-PREP-041
+  REASON: "Attempt1 reconciliation is independently reviewed PASS: actual host is exact accepted dev22 with staged dev23 nonactive; original receipt remains immutable/non-replayable. Old auth2/auth3 capsules are not executable. Prepare a fresh authorization 004 bound to current state; no mutation until new review PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_ATTEMPT1_RECONCILIATION_REVIEW
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_AUTHORIZATION4_PREP
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews attempt1 reconciliation observation/proposal against immutable attempt1 receipt and accepted dev22 baseline. Corrected auth3 remains blocked and must not execute."
+NEXT_ACTION: "Prepare a fresh immutable authorization 004 with new transaction id/hash/expiry/receipt root from current exact dev22 baseline and staged dev23 bytes. Do not execute until cross-model review PASS."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

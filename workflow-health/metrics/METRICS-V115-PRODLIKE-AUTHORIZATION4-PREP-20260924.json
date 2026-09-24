@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "attempt1_receipt_state": "RECONCILE_REQUIRED_IMMUTABLE",
+  "attempt1_reconciliation_review": "PASS",
+  "attempt1_replay_authorized": false,
+  "authorization2_status": "EXPIRED_UNUSED",
+  "authorization3_status": "REJECTED_OR_STALE_UNEXECUTED",
+  "authorization4_status": "NOT_CREATED",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "45f248dfa21f96a6098c6a982d4c4db3c7867bac",
+    "validation": "c5c5e0d66f7624ac768ddfe9630359fd20116e93"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "new_prodlike_execution_authorized": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Attempt1 reconciliation PASS; prepare fresh authorization 004 only; no execution",
+  "session_denominator": null,
+  "signing_performed": false
+}

@@ -1,43 +1,46 @@
-# NEXT WORK ITEM — review attempt1 prodlike reconciliation evidence
+# NEXT WORK ITEM — prepare fresh prodlike authorization 004
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT1-RECONCILIATION-001
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-AUTHORIZATION-004
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: efbf2c3eba5218d19e8eeddfa3db7fe99ee7cce4
-  VALIDATION_HEAD: df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a
-  REVIEW_SUPPORT_COMMIT: 177a967
-  ATTEMPT1_TRANSACTION_ID: PRODLIKE-DEV23-E317DCF-001
+  CURRENT_MAIN: 45f248dfa21f96a6098c6a982d4c4db3c7867bac
+  CURRENT_VALIDATION: c5c5e0d66f7624ac768ddfe9630359fd20116e93
+  EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
+  EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
   ATTEMPT1_RECEIPT_SHA256: fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd
   ATTEMPT1_REPLAY_AUTHORIZED: false
-  CORRECTED_AUTH3_SHA256: 1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c
-GOAL: "Independently verify whether read-only evidence is sufficient to reconcile attempt1 unknown completion to the exact accepted dev22 baseline without mutating the original receipt or authorizing replay."
+  ATTEMPT1_RECONCILIATION_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT1-RECONCILIATION-001.md
+  AUTHORIZATION2_STATUS: EXPIRED_UNUSED
+  AUTHORIZATION3_STATUS: REJECTED_OR_STALE_UNEXECUTED
+GOAL: "Prepare one new immutable PRODLIKE_DEPLOYMENT_V2 authorization 004 from the current exact accepted-dev22 baseline and exact staged dev23 bytes. Use a new transaction id/hash/expiry/receipt root and prove preparation is non-mutating."
 STEPS:
-  - ATTEMPT1_RECEIPT: COMPLETE_RECONCILE_REQUIRED
-  - READONLY_HOST_OBSERVATION: COMPLETE
-  - CURRENT_DEV22_IDENTITY_CHECK: COMPLETE_PASS
-  - CONTROL_64_ARTIFACT_CHECK: COMPLETE_PASS
-  - TIMER_11_STATE_CHECK: COMPLETE_PASS
-  - CROSS_MODEL_RECONCILIATION_REVIEW: READY
-  - RECONCILIATION_DISPOSITION: BLOCKED
-  - CORRECTED_AUTH3_EXECUTION: BLOCKED
+  - ATTEMPT1_RECONCILIATION: COMPLETE_PASS
+  - ATTEMPT1_REPLAY: FORBIDDEN
+  - OLD_AUTHORIZATION2_3: NON_EXECUTABLE
+  - CURRENT_BASELINE_REVALIDATION: READY
+  - PLAN_ONLY_EXECUTOR: NOT_STARTED
+  - AUTHORIZATION4_AUTHOR: NOT_STARTED
+  - NON_MUTATION_PROOF: NOT_STARTED
+  - AUTHORIZATION4_CROSS_MODEL_REVIEW: BLOCKED
+  - NEXT_PRODLIKE_TRANSACTION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal reconciliation PASS/FINDINGS declaring whether attempt1 debt is closed; original receipt remains immutable and no execution proof is created."
-ON_SUCCESS: RECONCILE-P00-DEV23-PRODLIKE-ATTEMPT1-001
-ON_FAIL: TEST_DESIGN_OR_RECONCILIATION_CORRECTION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-ATTEMPT1-RECONCILIATION-040
+SUCCESS_OUTPUT: "Fresh authorization-004 hash plus exact plan/non-mutation evidence; no execution proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-004
+ON_FAIL: CORRECT_OR_REVOKE_AUTHORIZATION4_BEFORE_REVIEW
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-AUTHORIZATION4-PREP-041
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Reviewer confirms accepted dev22 current/runtime/control/timer state exactly matches and no attempt1 effect beyond staging exists; replay remains forbidden; original receipt is not rewritten; reconciliation does not itself authorize a new prodlike transaction."
+EXIT_CONDITION: "Authorization 004 has a unique transaction id/hash/receipt root, current remains exact dev22, staged dev23 exact, all input/executor hashes match, expiry bounded, forbidden authority bits false and before/after preparation snapshots identical."
 ~~~
 
-Review only. Do not mutate original receipt, replay attempt1, execute auth2/auth3, remove staged dev23, mutate systemd/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Preparation only. Do not execute attempt1/auth2/auth3/auth4, remove staged dev23, mutate user-systemd/control/current, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
