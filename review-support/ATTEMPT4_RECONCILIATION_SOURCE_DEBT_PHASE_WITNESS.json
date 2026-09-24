@@ -1,0 +1,23 @@
+{
+  "broken_dev23_verify_runtime_absent": true,
+  "desired_postexecution_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "dev22_verify_runtime_exists_executable": true,
+  "independent_live_verify_required_after_execution": true,
+  "kind": "ATTEMPT4_RECONCILIATION_SOURCE_DEBT_PHASE_WITNESS",
+  "live_current_target": "/home/dragon/ai-film-runtime/dev23",
+  "new_deployment_authorization_blocked_until_reconciliation_and_test_fix": true,
+  "new_reconciliation_receipt_root_absent": true,
+  "observed_at_unix": 1790224427,
+  "preexecution_current_matches_required": true,
+  "reconciliation_execution_not_claimed": true,
+  "required_preexecution_current_target": "/home/dragon/ai-film-runtime/dev23",
+  "review_phase": "PRE_EXECUTION_CORRECTED_RECONCILIATION_PLAN_REVIEW",
+  "schema_version": 1,
+  "source_debt_is_input_to_reconciliation_not_plan_postcondition": true,
+  "source_mutation_started": true,
+  "source_receipt_state": "RECONCILE_REQUIRED",
+  "source_rollback_attempted": false,
+  "source_transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+  "source_unknown_completion": true,
+  "test_change_013_blocked_until_reconciliation_pass": true
+}

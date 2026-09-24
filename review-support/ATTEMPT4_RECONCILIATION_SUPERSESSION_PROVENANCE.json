@@ -1,0 +1,20 @@
+{
+  "kind": "ATTEMPT4_RECONCILIATION_AUTH_SUPERSESSION_PROVENANCE",
+  "new_authorization_executed": false,
+  "new_authorization_sha256": "22fd6119d0d5005c9dfeb126477b07ac781e1eb7ff2d6249bada5443c565a494",
+  "new_executor_commit": "d7232c06cf256fe1483c4f921fe4e2a7c8ac1916",
+  "new_executor_tree": "99ef0a383ed26a6eec668deec795f6d80a39cd67",
+  "new_receipt_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt4-reconciliation2-20260924",
+  "new_receipt_root_absent": true,
+  "new_transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-002",
+  "observed_at_unix": 1790224427,
+  "old_authorization_executed": false,
+  "old_authorization_sha256": "113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d",
+  "old_executor_commit": "b7ccdbbf73e25f8bfd1db6bb884326ec52d862ae",
+  "old_executor_tree": "3fbbc260a00dec489bbbfbedc32fed042da9247b",
+  "old_receipt_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt4-reconciliation-20260924",
+  "old_receipt_root_absent": true,
+  "old_transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-001",
+  "schema_version": 1,
+  "supersession_reason": "EXECUTOR_V1_REVIEW_FOUND_MISSING_STAGED_DEV23_POSTCHECK_AND_LABELING_GAP"
+}
