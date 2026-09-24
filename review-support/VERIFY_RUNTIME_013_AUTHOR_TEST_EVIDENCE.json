@@ -1,0 +1,99 @@
+{
+  "historical_all_pass": true,
+  "historical_scripts_total": 11,
+  "hklm_touched": false,
+  "kind": "DEV23_VERIFY_RUNTIME_013_AUTHOR_TEST_EVIDENCE",
+  "lab_mutated": false,
+  "native_executed": false,
+  "prodlike_deployment_started": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "successor_tests_total": 90,
+  "suites": [
+    {
+      "exit": 0,
+      "file": "tests/test_prodlike_release_v2.py",
+      "name": "tv013-release",
+      "sha256": "5bb9261af7aea7c3c469e968866d6178f7c6b0a28bbc0a44841f676833adf25f",
+      "tests": 11
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_prodlike_control_bundle_v2.py",
+      "name": "tv010-control",
+      "sha256": "a5929103d690d94a90b6e4b82970cfb86260f915f6a8c34620b076decdc28978",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_lab_candidate_rebuild_v2.py",
+      "name": "tv010-lab-plan",
+      "sha256": "38b3560c9a59ba306aebfa8766f5fc2a2b2af4b623a5a70d6bf91247be65c990",
+      "tests": 7
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_prodlike_deployment_transaction_v2.py",
+      "name": "tv01112-prodlike-txn",
+      "sha256": "5813eaea05e976302177c09db4da3e2f0b000072c75c99e7253651c554eab12d",
+      "tests": 22
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_lab_rebuild_transaction_v2.py",
+      "name": "tv011-lab-txn",
+      "sha256": "8baf5b4cbf2c990c063c351097ff35be8dbf3680dcfbf2dd89880d3a55695b00",
+      "tests": 11
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v02_candidate_profile.py",
+      "name": "tv009-profile",
+      "sha256": "23b70db47ee53ccd181647c127d8fe4e84015194e6f977da18c47b85fbdd6567",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v02_dev23_generic_tooling.py",
+      "name": "tv009-generic",
+      "sha256": "d61d1d304f7d6789d9133a41986fadd4bdbb028f6aabb84d8b376c47fbaa2822",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v02_dev23_candidate_hardcuts.py",
+      "name": "tv009-hardcuts",
+      "sha256": "0c52717dbeeb68d9981f554028a2c289959250ab8c95d0bd722f7fe7ba876f37",
+      "tests": 4
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v03_binding_producer.py",
+      "name": "tv009-binding",
+      "sha256": "1258debab969567295a0214d2c94ad809f2ee75c440c50c8eee1dc2ed875737f",
+      "tests": 6
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v03_policy_generation.py",
+      "name": "tv009-policy",
+      "sha256": "b5501989636338c263fe6b3973b55a2a05a9195551cb507bd9311549a35bf6fa",
+      "tests": 5
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v03_fixture_preparation_controller.py",
+      "name": "tv009-fixture",
+      "sha256": "fd9d923ecdd4ed87c961f99ffc918c8f5bb5853eabb6bef27992f695d36448ab",
+      "tests": 3
+    },
+    {
+      "exit": 0,
+      "file": "tests/test_v03_late_proof_materializer.py",
+      "name": "tv009-proof",
+      "sha256": "72e23e7ec4b018ddf02c7ad027a4299cbe1c3c20c6ecd46a093c578d02409ce2",
+      "tests": 6
+    }
+  ],
+  "validation_base": "f4c68b47f154c3f4ff38acf64127d4adc1e02c28"
+}

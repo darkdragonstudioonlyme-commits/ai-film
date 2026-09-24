@@ -1,0 +1,30 @@
+{
+  "author_test_evidence_sha256": "9b242275e977ffa981d838f405fd1170943ceb38dc441e2d57daaceedd3d6611",
+  "candidate_commit": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+  "candidate_tree": "ca0be120320a8d6aa7af201a9d58523de8a087ff",
+  "changed_file_count": 2,
+  "changed_files": [
+    "validation/tooling/build_prodlike_release-v2.py",
+    "validation/tooling/tests/test_prodlike_release_v2.py"
+  ],
+  "deployment_started": false,
+  "files": {
+    "validation/tooling/build_prodlike_release-v2.py": {
+      "bytes": 12624,
+      "sha256": "769407d22cdee44f4f3892cf7841311ad25f6b08d81125d15911eb10cafaf635"
+    },
+    "validation/tooling/tests/test_prodlike_release_v2.py": {
+      "bytes": 11198,
+      "sha256": "982a20e5ca77e507731016f6e6ec662c29f2a204aed7ceb8032c3bf2c2844800"
+    }
+  },
+  "hklm_touched": false,
+  "host_non_mutation_sha256": "92949f1d5c2a66abeda39ecd8cea43f609ca0ace80835eba3e02a4345fa74226",
+  "kind": "VERIFY_RUNTIME_013_IMPLEMENTATION_SCOPE_WITNESS",
+  "lab_mutated": false,
+  "native_executed": false,
+  "only_authorized_two_files": true,
+  "schema_version": 1,
+  "signing_performed": false,
+  "validation_base": "f4c68b47f154c3f4ff38acf64127d4adc1e02c28"
+}

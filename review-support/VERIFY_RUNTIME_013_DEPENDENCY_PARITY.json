@@ -1,0 +1,57 @@
+{
+  "all_byte_identical": true,
+  "candidate_commit": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+  "kind": "VERIFY_RUNTIME_013_DEPENDENCY_PARITY",
+  "rows": [
+    {
+      "base_sha256": "cdd433b3110ded57b83766775d346bc969e068d17cc382ae515012987edb6d01",
+      "byte_identical": true,
+      "candidate_sha256": "cdd433b3110ded57b83766775d346bc969e068d17cc382ae515012987edb6d01",
+      "path": "validation/tooling/build_prodlike_rebuild_set-v2.py"
+    },
+    {
+      "base_sha256": "d14320d8b11298d25cb3f9ecd8e5022c2eef842e9db14345da899d18012ec994",
+      "byte_identical": true,
+      "candidate_sha256": "d14320d8b11298d25cb3f9ecd8e5022c2eef842e9db14345da899d18012ec994",
+      "path": "validation/tooling/build_prodlike_control_bundle-v2.py"
+    },
+    {
+      "base_sha256": "3ed5953a601f099c2c6056354e48554e7f04ed5347ffbf4c7d319d8a7f845df8",
+      "byte_identical": true,
+      "candidate_sha256": "3ed5953a601f099c2c6056354e48554e7f04ed5347ffbf4c7d319d8a7f845df8",
+      "path": "validation/tooling/verify_prodlike_control_bundle-v2.py"
+    },
+    {
+      "base_sha256": "c8d49c9e82150d1dd535f4622a938f1f92bfe6d5f9f5b36929982fcc6ba5c115",
+      "byte_identical": true,
+      "candidate_sha256": "c8d49c9e82150d1dd535f4622a938f1f92bfe6d5f9f5b36929982fcc6ba5c115",
+      "path": "validation/tooling/verify_prodlike_user_systemd-v2.py"
+    },
+    {
+      "base_sha256": "4d46440639472de5207f76e08ead56a0675417f9659c6eb77755dca3d9975110",
+      "byte_identical": true,
+      "candidate_sha256": "4d46440639472de5207f76e08ead56a0675417f9659c6eb77755dca3d9975110",
+      "path": "validation/tooling/prodlike_control_templates_v2.json"
+    },
+    {
+      "base_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+      "byte_identical": true,
+      "candidate_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+      "path": "validation/tooling/deployment_transaction_common.py"
+    },
+    {
+      "base_sha256": "3d60e86b76d097ee3c13b9259be1577b70b6100085f5760a1f9bb0aaed1236d5",
+      "byte_identical": true,
+      "candidate_sha256": "3d60e86b76d097ee3c13b9259be1577b70b6100085f5760a1f9bb0aaed1236d5",
+      "path": "validation/tooling/deploy_prodlike_candidate-v2.py"
+    },
+    {
+      "base_sha256": "ec9d960fb8af667e143b3e07b8ce1ead6843989b261a4d906c8858acda585758",
+      "byte_identical": true,
+      "candidate_sha256": "ec9d960fb8af667e143b3e07b8ce1ead6843989b261a4d906c8858acda585758",
+      "path": "validation/tooling/rebuild_lab_candidate-v2.py"
+    }
+  ],
+  "schema_version": 1,
+  "validation_base": "f4c68b47f154c3f4ff38acf64127d4adc1e02c28"
+}

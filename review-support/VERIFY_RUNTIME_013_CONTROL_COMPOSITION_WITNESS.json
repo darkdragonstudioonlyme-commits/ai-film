@@ -1,0 +1,30 @@
+{
+  "activate_requires_target_verifier": true,
+  "candidate_commit": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+  "kind": "VERIFY_RUNTIME_013_CONTROL_COMPOSITION_WITNESS",
+  "required_release_path": "<release>/bin/verify-runtime",
+  "rows": [
+    {
+      "content": "#!/usr/bin/env bash\nset -euo pipefail\nif [[ \"${AIFILM_CLEAN_REEXEC:-}\" != 1 ]]; then\n  exec env -i HOME=/home/dragon USER=dragon LOGNAME=dragon LANG=C.UTF-8 LC_ALL=C.UTF-8 \\\n    PATH=/usr/bin:/bin AIFILM_CLEAN_REEXEC=1 \"$0\" \"$@\"\nfi\numask 077\nBASE=/home/dragon/ai-film-runtime\nRELEASE=\"${1:?release name required}\"\n[[ \"$RELEASE\" =~ ^dev[0-9]+$ ]] || { echo INVALID_RELEASE >&2; exit 2; }\nTARGET=\"$BASE/$RELEASE\"\n[[ -d \"$TARGET/app\" && -x \"$TARGET/bin/verify-runtime\" && -f \"$TARGET/runtime-manifest.json\" ]] || { echo INCOMPLETE_RELEASE >&2; exit 3; }\n\"$TARGET/bin/verify-runtime\" >/dev/null\nOLD=$(readlink -f \"$BASE/current\" 2>/dev/null || true)\nNEXT=\"$BASE/.current.next.$$\"\nln -s \"$TARGET\" \"$NEXT\"\nmv -Tf \"$NEXT\" \"$BASE/current\"\nHASH=$(sha256sum \"$TARGET/runtime-manifest.json\" | awk '{print $1}')\nprintf '%s old=%s new=%s manifest=%s runtime_only=true\\n' \"$(date -u +%FT%TZ)\" \"${OLD:-NONE}\" \"$TARGET\" \"$HASH\" >> \"$BASE/release-history.log\"\nchmod 600 \"$BASE/release-history.log\"\necho \"RUNTIME_ACTIVATION_PASS $RELEASE NATIVE_SITE_AUTHORITY_UNCHANGED\"\n",
+      "content_sha256": "b175d934787eec0fe919de96b2ebcdd1f5abe9c5249b9b62d8e88bd53a7531cf",
+      "deploy_mode": "750",
+      "path": "scripts/activate-release"
+    },
+    {
+      "content": "#!/usr/bin/env bash\nset -euo pipefail\nif [[ \"${AIFILM_CLEAN_REEXEC:-}\" != 1 ]]; then\n  exec env -i HOME=/home/dragon USER=dragon LOGNAME=dragon LANG=C.UTF-8 LC_ALL=C.UTF-8 \\\n    PATH=/usr/bin:/bin AIFILM_CLEAN_REEXEC=1 \"$0\" \"$@\"\nfi\nexec /home/dragon/ai-film-runtime/current/bin/verify-runtime\n",
+      "content_sha256": "93e6d32a0b6c7a8a980ed3c80a654e6256fa9f000cc0746a3dbb9b030819032f",
+      "deploy_mode": "750",
+      "path": "scripts/verify-current"
+    },
+    {
+      "content": "[Unit]\nDescription=AI-FILM Phase00 current runtime integrity verification\nAfter=default.target\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/dragon/ai-film-runtime/current\nExecStart=/home/dragon/ai-film-runtime/current/bin/verify-runtime\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nPrivateDevices=true\nProtectSystem=strict\nProtectHome=read-only\nReadWritePaths=/home/dragon/ai-film-runtime/current/var/tmp\nProtectKernelTunables=true\nProtectKernelModules=true\nProtectKernelLogs=true\nProtectControlGroups=true\nProtectClock=true\nProtectHostname=true\nRestrictRealtime=true\nRestrictSUIDSGID=true\nLockPersonality=true\nMemoryDenyWriteExecute=true\nSystemCallArchitectures=native\nRestrictAddressFamilies=AF_UNIX\nCapabilityBoundingSet=\nAmbientCapabilities=\nStandardOutput=journal\nStandardError=journal\n",
+      "content_sha256": "ddacc5c299b51196e998376fc4c35830c7572da102752df4d266153c09709c9b",
+      "deploy_mode": "644",
+      "path": "systemd/aifilm-p00-current-verify.service"
+    }
+  ],
+  "schema_version": 1,
+  "systemd_execstart_requires_current_verifier": true,
+  "template_sha256": "4d46440639472de5207f76e08ead56a0675417f9659c6eb77755dca3d9975110",
+  "verify_current_requires_current_verifier": true
+}
