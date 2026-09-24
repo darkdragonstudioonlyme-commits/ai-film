@@ -1,44 +1,51 @@
-# NEXT WORK ITEM — implement verify-runtime release contract 013
+# NEXT WORK ITEM — review exact verify-runtime implementation 013
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 30040e36f356a742a9054a0debe42e0016ab050f
-  TEST_REVIEW_COMMIT: f4c68b47f154c3f4ff38acf64127d4adc1e02c28
-  TEST_CHANGE: test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
-  TEST_REVIEW: test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
-  PRODUCT_SOURCE: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
-AUTHORIZED_MODIFY:
-  - validation/tooling/build_prodlike_release-v2.py
-  - validation/tooling/tests/test_prodlike_release_v2.py
-GOAL: "Implement candidate-generic bin/verify-runtime generation, runtime-manifest verifier hash binding, final verifier self-check, and TV013-01..12 tests within exactly the reviewed two-file scope."
+  CURRENT_MAIN: 291cc7e72a2e9ba98c1cd2db67eb1e7f7d51344e
+  VALIDATION_BASE: f4c68b47f154c3f4ff38acf64127d4adc1e02c28
+  AUTHOR_CANDIDATE_COMMIT: 0a05cd4b0ef49565f77eb503d918828a539b6237
+  AUTHOR_CANDIDATE_TREE: ca0be120320a8d6aa7af201a9d58523de8a087ff
+  TEST_CHANGE: lane/validation-p00:test-governance/TEST_CHANGE-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
+  TEST_REVIEW: lane/validation-p00:test-governance/TEST_REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013.md
+  ORACLE_CHANGED: false
+AUTHOR_EVIDENCE:
+  TV013_AND_PREDECESSOR_TESTS: 90_PASS
+  HISTORICAL_DEV22_SCRIPTS: 11_OF_11_PASS
+  STAGED_DEV23_BEFORE_AFTER: BYTE_IDENTICAL
+  CURRENT_BEFORE_AFTER: IDENTICAL
+  USER_SYSTEMD_BEFORE_AFTER: IDENTICAL
+  PRODLIKE_DEPLOYMENT: NOT_STARTED
+  LAB_NATIVE_SIGNING_HKLM: NOT_STARTED
+GOAL: "Independently review exact two-file candidate for generated verify-runtime contract, manifest self-binding, clean-env/system-Python semantics, TV013 negative matrix, control composition, predecessor retention and non-mutation evidence."
 STEPS:
   - TEST_REVIEW_013: COMPLETE_PASS
-  - IMPLEMENT_VERIFY_RUNTIME: READY
-  - TV013_TARGETED_TESTS: NOT_STARTED
-  - TV010_TV011_TV012_TV009_REGRESSION: NOT_STARTED
-  - HISTORICAL_11_REGRESSION: NOT_STARTED
-  - STAGED_DEV23_NON_MUTATION_SNAPSHOT: NOT_STARTED
-  - AUTHOR_FREEZE: BLOCKED
-  - CLAUDE_CODE_REVIEW: BLOCKED
+  - AUTHOR_TWO_FILE_IMPLEMENTATION: COMPLETE_FROZEN
+  - AUTHOR_TV013_TARGETED: COMPLETE_PASS
+  - AUTHOR_PREDECESSOR_REGRESSION: COMPLETE_PASS
+  - AUTHOR_HOST_NON_MUTATION: COMPLETE_PASS
+  - CLAUDE_CODE_REVIEW: READY
+  - VALIDATION_LANE_PROMOTION: BLOCKED
+  - CORRECTED_RELEASE_REBUILD_REVIEW: BLOCKED
   - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Exact two-file candidate commit/tree plus TV013/predecessor/non-mutation evidence; no deployment proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+SUCCESS_OUTPUT: "Formal CODE_REVIEW PASS/FINDINGS bound to exact candidate tree; no deployment proof."
+ON_SUCCESS: DEV23_VERIFY_RUNTIME_PROMOTION_THEN_PRODLIKE_REBUILD_REVIEW
 ON_FAIL: SAME_CAUSAL_FAMILY_IMPLEMENTATION_CORRECTION_OR_REOPEN_TEST_DESIGN
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-IMPLEMENTATION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-CODE-REVIEW
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Only two authorized files changed; generated verifier 0750/self-bound/clean-env passes; all TV013 negative cases and predecessor regressions pass; staged broken dev23 before/after snapshot exact; no deployment/LAB/native/signing/HKLM action."
+EXIT_CONDITION: "Reviewer confirms TV013-01..12 behavior, acyclic verifier hash/manifest order, clean-env no-venv semantics, control composition, exact two-file scope, predecessor retention and no deployment/native authority; no blocking/high/medium finding remains."
 ~~~
 
-Authoring/tests only. Do not create deployment authorization, switch prodlike current, repair/delete staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY.
+Static/code review only. Do not rebuild or deploy prodlike, repair/delete staged dev23, mutate user-systemd, rebuild LAB, sign authority, write HKLM, run native routes, issue qualification or mark HOST_READY during review.

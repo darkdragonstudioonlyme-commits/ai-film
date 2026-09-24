@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V127
+# AI-FILM-SERVER — intended canonical content V128
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 127
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 128
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: IMPL-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
+CURRENT_TASK: CODE-REVIEW-P00-DEV23-PRODLIKE-VERIFY-RUNTIME-013
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-IMPLEMENTATION
-  REASON: "TEST_REVIEW 013 is PASS. Only the reviewed two-file release-builder/test implementation is allowed; deployment/LAB/native/signing remain blocked until author tests and independent CODE_REVIEW PASS."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-VERIFY-RUNTIME-013-CODE-REVIEW
+  REASON: "Exact two-file verify-runtime author candidate is frozen and author-tested. Owning validation lane, prodlike rebuild/deployment, LAB/native/signing/HKLM remain blocked until cross-model CODE_REVIEW PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_VERIFY_RUNTIME_IMPLEMENTATION_013
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_VERIFY_RUNTIME_CODE_REVIEW_013
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Implement TEST_CHANGE 013 in exactly build_prodlike_release-v2.py and test_prodlike_release_v2.py, run TV013 plus predecessor regressions and host non-mutation snapshot, then freeze exact candidate for Claude CODE_REVIEW."
+NEXT_ACTION: "Claude reviews exact verify-runtime candidate tree ca0be120 with TEST_CHANGE/REVIEW 013 and host author evidence. PASS permits validation-lane promotion and corrected release rebuild review; deployment/LAB/native/signing remain closed."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
