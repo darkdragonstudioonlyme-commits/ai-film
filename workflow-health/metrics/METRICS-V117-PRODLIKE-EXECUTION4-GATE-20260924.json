@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "authorization_review_result": "PASS",
+  "authorization_sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "authorization_main_snapshot": "1ce088a5eb13d3eca5067155eda926d83b0aa5a6",
+    "authorization_validation_snapshot": "c5c5e0d66f7624ac768ddfe9630359fd20116e93",
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+    "main": "a5d3d95704ae1d04dd44c0e69531e9ff4ac62de1",
+    "validation_review_head": "62aa80afe7452c5578e7a179a2bba4a9d869aa1e"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_lab_mutated": false,
+  "real_prodlike_mutated": false,
+  "schema_version": 1,
+  "scope": "Route reviewed authorization 004 to exactly one prodlike foreground transaction attempt; no LAB/native/signing/HKLM",
+  "session_denominator": null,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+  "transaction_state": "NOT_STARTED"
+}
