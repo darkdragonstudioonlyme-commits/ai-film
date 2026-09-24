@@ -1,50 +1,46 @@
-# NEXT WORK ITEM — review attempt5 reconciliation002 receipt and independent dev22 verification
+# NEXT WORK ITEM — design release-control producer/consumer compatibility 014
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: TEST_DESIGN
+LANE: TEST_DESIGN
 STATUS: READY
-WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-RECEIPT-002
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  EXECUTION_GATE_MAIN: dde84636d3763bca121b6812fd6252449aab72f8
-  FORMAL_AUTHORIZATION_REVIEW: a972b04cd8bb0bb8ccd067faf1fa7f7255b7b3bc
-  REVIEW_SUPPORT_COMMIT: 535dfb4f296b73d77793dec1ad624aa29103a44b
-  REVIEW_SUPPORT_TREE: d7d9ab791143d48e001dbc9766a9236275ea76e5
-  TRANSACTION_ID: PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002
-  TRANSACTION_RECEIPT_SHA256: 1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9
-  RECEIPT_STATE: RECONCILED_PENDING_INDEPENDENT_VERIFY
+  CURRENT_MAIN: 6b71df3a59c22b044ab3e6bd854fd376999ac12a
+  CURRENT_VALIDATION: 9f341bea77d9e8e0df081f00a69315116822801f
+  RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-RECEIPT-002.md
+  SOURCE_TRANSACTION005_RECEIPT_SHA256: 6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5
+  RECONCILIATION002_RECEIPT_SHA256: 1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9
   INDEPENDENT_DEV22_VERIFY_SHA256: 37f6a5b1369a1f0e543081ea3da15ad821cb77140a51139fc7ed02eed9b5f99e
-  SOURCE_DEBT: RELEASE_CONTROL_V1_V2_PRODUCER_CONSUMER_MISMATCH
-  REPLAY_AUTHORIZED: false
-GOAL: "Independently verify the immutable reconciliation002 receipt and separate live dev22 verification: exact dev22 current/control/timers restored, both failed dev23 trees unchanged, no forbidden authority boundary crossed, and release-control source debt is ready to route to TEST_CHANGE 014 only after PASS."
+  ROOT_CAUSE: RELEASE_CONTROL_V1_V2_PRODUCER_CONSUMER_MISMATCH
+GOAL: "Define the smallest fail-closed test contract that proves the produced release-control document is accepted by the runtime consumer before any deployment, including version/schema compatibility and negative drift cases."
 STEPS:
-  - ONE_RECONCILIATION002_ATTEMPT: COMPLETE_NO_REPLAY
-  - TRANSACTION_RECEIPT_IMMUTABILITY: READY
-  - DEV22_CURRENT_IDENTITY: READY
-  - DEV22_VERIFY_CURRENT: READY
-  - CONTROL_64_EXACT: READY
-  - TIMER_11_LIVE: READY
-  - DEV23_PRESERVATION: READY
-  - DEV23_CORRECTED_PRESERVATION: READY
-  - INDEPENDENT_VERIFY_SEPARATION: READY
-  - NATIVE_SIGNING_HKLM_BOUNDARIES: READY
-  - RELEASE_CONTROL_TEST_CHANGE_014: BLOCKED_PENDING_REVIEW_PASS
-  - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
+  - RECONCILIATION002_REVIEW: COMPLETE_PASS
+  - DEV22_BASELINE_RESTORED: COMPLETE_PASS
+  - ROOT_CAUSE_CLASSIFICATION: COMPLETE
+  - PRODUCER_CONSUMER_SOURCE_REVIEW: READY
+  - CONTRACT_DIRECTION_DECISION: READY
+  - TEST_CHANGE_014_AUTHOR: READY
+  - CONSTRUCTIBILITY_WITNESS: READY
+  - NEGATIVE_SCHEMA_KIND_VERSION_MATRIX: READY
+  - TEST_REVIEW_014: BLOCKED
+  - IMPLEMENTATION_014: BLOCKED
+  - CORRECTED_RELEASE_REBUILD: BLOCKED
+  - NEW_PRODLIKE_DEPLOYMENT: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
-  - AUTHORITY_SIGNING: BLOCKED
-  - NATIVE_VALIDATION: NOT_STARTED
+  - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal receipt-review PASS/FINDINGS bound to receipt 1c8d48e8 and independent verification 37f6a5b1; no new execution proof."
-ON_SUCCESS: TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-ON_FAIL: RECONCILE_RECEIPT002_FINDINGS_WITHOUT_REPLAY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-ATTEMPT5-RECONCILIATION2-RECEIPT-REVIEW-053
+SUCCESS_OUTPUT: "TEST_CHANGE 014 defining exact producer/consumer contract, tests, allowed files and byte-identical boundaries; no code/deployment proof."
+ON_SUCCESS: TEST-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ON_FAIL: REVISE_TEST_DESIGN_014_WITHOUT_IMPLEMENTATION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-TEST-DESIGN-054
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Receipt immutable/non-replay; current exact dev22; verify-current PASS; 64 controls exact; 11 timers enabled/active; dev22/dev23/dev23-corrected/user-systemd preservation exact; no dev23 deployment receipts; independent verification consistent and no blocking/high/medium finding remains."
+EXIT_CONDITION: "TEST_CHANGE 014 binds exact producer and runtime consumer, defines compatibility policy, generated-document-through-real-consumer test, positive/negative schema-kind-version matrix, regression retention and no weakening of candidate identity semantics; implementation remains blocked pending TEST_REVIEW PASS."
 ~~~
 
-Review only. Do not replay transaction005/reconciliation002, modify failed dev23 trees, patch release-control, create deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Test design only. Do not patch producer/consumer code, create deployment authorization, switch current, modify failed dev23 trees, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

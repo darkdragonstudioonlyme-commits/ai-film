@@ -1,0 +1,26 @@
+{
+  "active_control_documents_read": 0,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "independent_dev22_verify_sha256": "37f6a5b1369a1f0e543081ea3da15ad821cb77140a51139fc7ed02eed9b5f99e",
+  "input_refs": {
+    "main": "6b71df3a59c22b044ab3e6bd854fd376999ac12a",
+    "receipt_review": "9f341bea77d9e8e0df081f00a69315116822801f",
+    "validation": "9f341bea77d9e8e0df081f00a69315116822801f"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "reconciliation002_receipt_sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9",
+  "schema_version": 1,
+  "scope": "Design release-control producer-consumer compatibility TEST_CHANGE 014 only; no product patch or deployment",
+  "session_denominator": null,
+  "signing_performed": false,
+  "source_debt": "RELEASE_CONTROL_V1_V2_PRODUCER_CONSUMER_MISMATCH"
+}
