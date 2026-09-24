@@ -176,7 +176,7 @@ def execute(args):
     assert_input_hashes(auth,{
         "reconciliation_script":Path(__file__),
         "transaction_common":Path(__file__).with_name("deployment_transaction_common.py"),
-        "transaction004_receipt":args.transaction_receipt,
+        "transaction005_receipt":args.transaction_receipt,
         "host_witness":args.host_witness,
         "rollback_plan":args.rollback_plan,
         "rollback_timer_state":args.rollback_timer_state,

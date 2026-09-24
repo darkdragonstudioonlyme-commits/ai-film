@@ -5,7 +5,7 @@
   "command_sets_exact_equal": true,
   "execution_started": false,
   "executor_commit": "9dab706e189ce3a8e9453f9f678ee20665b77de5",
-  "executor_sha256": "3f5ed1bf40dece0725fe12c86d6681beca657b03d5dd15c83e524057bee4d29b",
+  "executor_sha256": "8e2118419bf76ff2dc248845516dc55bf26062fe775261bb421e755dbb658462",
   "executor_tree": "6c73297297a4a0658fa40314a78d8c8e353c23a8",
   "kind": "ATTEMPT5_RECONCILIATION_EXECUTOR_WITNESS",
   "mutation_roots": [
@@ -17,9 +17,12 @@
   "plan_command_count": 68,
   "plan_command_set_sha256": "703793cd39653e00541276cb113e444b1f96fcac9dad1747954e30ea88f29b2b",
   "receipt_success_pending_verify_present": true,
+  "restore_controls_excerpt_supplied": true,
   "restore_dev22_call_present": true,
   "same_transaction_nonreplay_call_present": true,
   "schema_version": 1,
+  "transaction004_input_key_present": false,
+  "transaction005_input_key_present": true,
   "transaction_common_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
   "validated_user_bus_call_present": true
 }
