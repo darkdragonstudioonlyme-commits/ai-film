@@ -1,0 +1,185 @@
+{
+  "all_observed_match_expected": true,
+  "execution_started": false,
+  "kind": "ATTEMPT5_RECONCILIATION2_TIMER_HOST_WITNESS",
+  "rows": [
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-control-backup.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-current-verify.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-dr-rehearsal.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-evidence-ledger.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-failclosed-campaign.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-host-mirror.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-offhost-export.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-rebuild-verify.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-recovery-verify.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-runtime-health.timer"
+    },
+    {
+      "expected": {
+        "active": true,
+        "active_raw": "active",
+        "enabled": true,
+        "enabled_raw": "enabled"
+      },
+      "observed_active_raw": "active",
+      "observed_active_rc": 0,
+      "observed_enabled_raw": "enabled",
+      "observed_enabled_rc": 0,
+      "observed_matches_expected": true,
+      "stderr_active": "",
+      "stderr_enabled": "",
+      "timer": "aifilm-p00-v02-authority-watch.timer"
+    }
+  ],
+  "schema_version": 1,
+  "timer_count": 11
+}

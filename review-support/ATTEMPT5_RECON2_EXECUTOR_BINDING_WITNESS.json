@@ -1,0 +1,18 @@
+{
+  "authorization_common_input_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+  "authorization_executor_input_sha256": "8e2118419bf76ff2dc248845516dc55bf26062fe775261bb421e755dbb658462",
+  "command_count_authorization": 68,
+  "command_count_plan": 68,
+  "command_set_exact": true,
+  "execution_started": false,
+  "executor_commit": "43944bc7d117080bcfe7b0f0680685dfb7102b4f",
+  "executor_sha256": "8e2118419bf76ff2dc248845516dc55bf26062fe775261bb421e755dbb658462",
+  "executor_tree": "1968ce9241b4100a8c3b9d9a99f42ea62d593bf0",
+  "input_preflight_status": "PASS",
+  "kind": "ATTEMPT5_RECON2_EXECUTOR_BINDING_WITNESS",
+  "legacy_transaction004_input_key_present": false,
+  "mutation_roots_exact": true,
+  "schema_version": 1,
+  "transaction_common_sha256": "ef2425308decd51cda1e4ebbb7a0e817eedbe66a0b701c523867c756e5dc219e",
+  "transaction_input_key_present": true
+}

@@ -1,0 +1,12 @@
+{
+  "authorization_sha256": "958ace60af5f7794e0a9e86031115678fc4ebf736471592e5a18720edf61ca44",
+  "bounded_under_24h": true,
+  "execution_claimed": false,
+  "expired": false,
+  "expires_at": 1790262949,
+  "kind": "ATTEMPT5_RECON2_EXPIRY_WITNESS",
+  "observed_at_unix": 1790241426,
+  "remaining_seconds": 21523,
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002"
+}

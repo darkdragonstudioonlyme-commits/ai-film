@@ -1,0 +1,23 @@
+{
+  "current_after": {
+    "target": "/home/dragon/ai-film-runtime/dev23-corrected",
+    "type": "symlink"
+  },
+  "current_before": {
+    "target": "/home/dragon/ai-film-runtime/dev23-corrected",
+    "type": "symlink"
+  },
+  "dev23_after_digest": "418d9a813fd6565b5cb250a95de3f1aae6a90cfbdabb02f11d7a3662b2c1c89c",
+  "dev23_before_digest": "418d9a813fd6565b5cb250a95de3f1aae6a90cfbdabb02f11d7a3662b2c1c89c",
+  "dev23_corrected_after_digest": "b8f8c9bf0937647c1c08ddf2c706d53d490e993671413f0dc87212f6d377638d",
+  "dev23_corrected_before_digest": "b8f8c9bf0937647c1c08ddf2c706d53d490e993671413f0dc87212f6d377638d",
+  "dev23_corrected_equal": true,
+  "dev23_equal": true,
+  "execution_started": false,
+  "kind": "ATTEMPT5_RECON2_PRESERVATION_WITNESS",
+  "receipt_root_absent": true,
+  "schema_version": 1,
+  "user_systemd_after_digest": "cd9b559df5c9980c048903d8286118a2db794a8c1b2f70e4b41d72595eabbc69",
+  "user_systemd_before_digest": "cd9b559df5c9980c048903d8286118a2db794a8c1b2f70e4b41d72595eabbc69",
+  "user_systemd_equal": true
+}
