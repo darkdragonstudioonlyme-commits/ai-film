@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V139
+# AI-FILM-SERVER — intended canonical content V140
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 139
-CURRENT_MODE: IMPLEMENTATION
+STATE_VERSION: 140
+CURRENT_MODE: CODE_REVIEW
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-002
+CURRENT_TASK: REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-RECEIPT-002
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CHATGPT
+CURRENT_ASSIGNEE: CLAUDE_CODE
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-ATTEMPT5-RECONCILIATION2-EXECUTION-052
-  REASON: "Corrected reconciliation authorization002 received formal cross-model PASS. Exactly one foreground reconciliation attempt may run after fresh expiry/current/input/user-bus/dual-tree/root checks. Any durable receipt owns subsequent replay; release-control correction/new deployment remain blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-ATTEMPT5-RECONCILIATION2-RECEIPT-REVIEW-053
+  REASON: "Reconciliation002 executed exactly once and emitted immutable RECONCILED_PENDING_INDEPENDENT_VERIFY receipt. Independent read-only dev22 verification passed current/verify-current/64 controls/11 timers/dual failed-tree preservation. Cross-model receipt review must PASS before release-control TEST_CHANGE 014 or any new deployment."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_ATTEMPT5_RECONCILIATION2_EXECUTION
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_ATTEMPT5_RECONCILIATION2_RECEIPT_REVIEW
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Revalidate auth002 f4aac9d6 expiry, current dev23-corrected state, exact inputs/executor/user-bus, both failed-tree snapshots and absent receipt root; if exact, run one foreground reconciliation attempt and stop on its durable receipt."
+NEXT_ACTION: "Claude reviews immutable reconciliation002 receipt SHA 1c8d48e8 plus independent dev22 verification SHA 37f6a5b1. Do not replay reconciliation or mutate prodlike during review."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.
