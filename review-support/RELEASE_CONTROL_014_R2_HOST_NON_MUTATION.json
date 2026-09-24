@@ -1,0 +1,12 @@
+{
+  "after_sha256": "3a4d31bc2a1aa240ef2221f6239a33db18272e934563930aab30d4e19af74623",
+  "before_sha256": "3a4d31bc2a1aa240ef2221f6239a33db18272e934563930aab30d4e19af74623",
+  "hklm_touched": false,
+  "kind": "RELEASE_CONTROL_014_FAILED_AUTHOR_ATTEMPT_NON_MUTATION",
+  "lab_mutated": false,
+  "native_executed": false,
+  "prodlike_mutated": false,
+  "same": true,
+  "schema_version": 1,
+  "signing_performed": false
+}

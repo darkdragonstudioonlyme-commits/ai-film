@@ -1,0 +1,15 @@
+{
+  "current_authorized_modify_file_count": 4,
+  "deployment_started": false,
+  "host_non_mutation": true,
+  "kind": "RELEASE_CONTROL_014_IMPLEMENTATION_SCOPE_FINDING",
+  "native_executed": false,
+  "predecessor_failure_suite": "tests/test_prodlike_deployment_transaction_v2.py",
+  "predecessor_failure_tests": 22,
+  "producer_contract_should_be_weakened": false,
+  "required_additional_test_fixture_file": "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+  "root_cause": "PREDECESSOR_SYNTHETIC_RUNTIME_MANIFEST_FIXTURE_MISSING_PACKAGE_NAME_WHEEL_NAME_APP_FILE_COUNT",
+  "schema_version": 1,
+  "status": "RETURN_TO_TEST_DESIGN_REQUIRED",
+  "targeted_tv014_tests_passed": 13
+}

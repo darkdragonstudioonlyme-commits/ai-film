@@ -1,0 +1,38 @@
+        old_runtime = {
+            "implementation_version": "0.1.0.dev22",
+            "source_commit": "86bb64938a136e3f8d6cfd0266685a01cb832b77",
+            "package_sha256": "c2ea52087039f4c7b98c53a7cc0eaf1a4a0f931645f86491bf2eb8ef12956aae",
+            "native_execution_started": False,
+        }
+        (self.old / "runtime-manifest.json").write_text(json.dumps(old_runtime, sort_keys=True))
+        self.current = self.r / "runtime" / "current"
+        self.current.symlink_to(self.old)
+        self.old_receipt = self.r / "dev22-receipt.json"
+        self.old_receipt.write_text(json.dumps({
+            "kind": "AIFILM_P00_PRODLIKE_DEV22_MIGRATION_DEPLOYMENT",
+            "status": "PASS",
+            "current_release": str(self.old),
+            "production_like_status": "READY_NON_NATIVE_PRODLIKE_OPERATIONS",
+            "native_inventory_status": "86_NOT_RUN",
+            "native_execution_started": False,
+            "source_commit": old_runtime["source_commit"],
+            "package_sha256": old_runtime["package_sha256"],
+            "runtime_manifest_sha256": sha_file(self.old / "runtime-manifest.json"),
+        }, sort_keys=True))
+
+        self.release_source = self.r / "release-source"
+        (self.release_source / "evidence").mkdir(parents=True)
+        runtime = {
+            "candidate_id": self.profile["candidate_id"],
+            "candidate_binding_sha256": self.bsha,
+            "implementation_version": self.profile["implementation_version"],
+            "source_commit": self.profile["source_commit"],
+            "source_digest": self.profile["build_digest"],
+            "test_digest": self.profile["test_set_digest"],
+            "contract_digest": self.profile["contract_digest"],
+            "package_sha256": self.profile["package_sha256"],
+            "wheel_sha256": self.profile["wheel_sha256"],
+            "native_execution_started": False,
+            "native_lab_authority": False,
+        }
+        (self.release_source / "runtime-manifest.json").write_text(json.dumps(runtime, sort_keys=True))

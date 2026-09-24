@@ -1,0 +1,33 @@
+{
+  "additional_authorized_file": "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+  "additional_authorized_file_count": 1,
+  "allowed_edit_region": "ProdlikeTxnTests.setUp synthetic candidate runtime manifest fixture",
+  "base_validation_commit": "4850b4d2930d6f2eaad8065f306314ea8a352867",
+  "deployment_authorized": false,
+  "fixture_excerpt_sha256": "ada0ed15f457d965896a16e798bb78533c9e062e1982a37bd7db8fc1caa50f07",
+  "fixture_missing_fields": [
+    "package_name",
+    "wheel_name",
+    "app_file_count"
+  ],
+  "kind": "RELEASE_CONTROL_014_R2_SCOPE_PROJECTION",
+  "lab_mutation_authorized": false,
+  "native_execution_authorized": false,
+  "oracle_changed": false,
+  "predecessor_fixture_base_sha256": "8261313e7215a01a9cb097af5c443486d415c5112490beed9c132d8e59e4771e",
+  "predecessor_fixture_path": "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+  "predecessor_tests_blocked_before_body": 22,
+  "prior_test_review_commit": "4850b4d2930d6f2eaad8065f306314ea8a352867",
+  "producer_fallback_allowed": false,
+  "r2_test_change_commit": "b5fdb4d936fc9a501d030abe4f123eb372e0b644",
+  "runner_or_command_change_allowed": false,
+  "schema_version": 1,
+  "signing_authorized": false,
+  "strict_producer_requires": [
+    "package_name",
+    "wheel_name",
+    "app_file_count"
+  ],
+  "targeted_tv014_tests_passed": 13,
+  "transaction_semantics_change_allowed": false
+}

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "RELEASE_CONTROL_014_R2_HOST_NON_MUTATION.json": {
+      "bytes": 419,
+      "sha256": "5fedb5939fe6d9e97e833c7b942a7faeb77cd1d9b97d52b8338ab4fa53e8567c"
+    },
+    "RELEASE_CONTROL_014_R2_PREDECESSOR_FIXTURE_EXCERPT.txt": {
+      "bytes": 2055,
+      "sha256": "ada0ed15f457d965896a16e798bb78533c9e062e1982a37bd7db8fc1caa50f07"
+    },
+    "RELEASE_CONTROL_014_R2_SCOPE_FINDING.json": {
+      "bytes": 698,
+      "sha256": "7e6d978c036c59dee8a0a4be6d7cd5b524c421a62bce206c0d69edcc7a48d6cd"
+    },
+    "RELEASE_CONTROL_014_R2_SCOPE_PROJECTION.json": {
+      "bytes": 1412,
+      "sha256": "b9c01a7591c67ab2b53f8eac66929b758b44721b7710b85b3a450791af78b3eb"
+    }
+  },
+  "kind": "RELEASE_CONTROL_014_R2_REVIEW_SUPPORT",
+  "schema_version": 1
+}
