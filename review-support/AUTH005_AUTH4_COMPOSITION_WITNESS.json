@@ -1,0 +1,31 @@
+{
+  "auth004_command_count": 91,
+  "auth004_command_set_sha256": "0baed76ed2a994cd90c6e436e1a0873a62fc776808597574fb761d71e5759409",
+  "auth004_executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "auth004_executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "auth004_sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837",
+  "auth004_transaction_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt4-20260924",
+  "auth005_command_count": 91,
+  "auth005_command_set_sha256": "0baed76ed2a994cd90c6e436e1a0873a62fc776808597574fb761d71e5759409",
+  "auth005_executor_commit": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+  "auth005_executor_tree": "0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62",
+  "auth005_sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "auth005_transaction_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-20260924",
+  "auth005_transaction_root_matches_id": true,
+  "command_vectors_exact_equal": true,
+  "execution_started": false,
+  "executor_identity_equal": true,
+  "kind": "AUTH005_AUTH4_COMPOSITION_WITNESS",
+  "schema_version": 1,
+  "stable_mutation_roots_auth004": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user"
+  ],
+  "stable_mutation_roots_auth005": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user"
+  ],
+  "stable_mutation_roots_equal": true,
+  "transaction_root_changed_for_new_attempt": true,
+  "user_bus_review_inheritance": "same exact executor commit/tree as reviewed AUTH004; user-bus behavior is executor-owned, not authorization-owned"
+}

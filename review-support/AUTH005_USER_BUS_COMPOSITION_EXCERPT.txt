@@ -1,0 +1,81 @@
+def minimal_subprocess_env() -> dict[str, str]:
+    return {
+        "HOME": os.environ.get("HOME", "/home/dragon"),
+        "USER": os.environ.get("USER", "dragon"),
+        "LOGNAME": os.environ.get("LOGNAME", "dragon"),
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/usr/bin:/bin:/mnt/c/Windows/System32",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+    }
+
+def validated_user_bus_env(*, uid: int | None = None, runtime_base: str | Path = "/run/user") -> dict[str, str]:
+    if uid is None:
+        uid = os.getuid()
+    req(type(uid) is int and uid >= 0, "USER_BUS_UID")
+    runtime = Path(runtime_base) / str(uid)
+    req(runtime.exists() and not runtime.is_symlink(), "USER_BUS_RUNTIME_MISSING_OR_UNSAFE")
+    rst = runtime.lstat()
+    req(stat.S_ISDIR(rst.st_mode), "USER_BUS_RUNTIME_NOT_DIRECTORY")
+    req(rst.st_uid == uid, "USER_BUS_RUNTIME_OWNER")
+    req((rst.st_mode & 0o022) == 0, "USER_BUS_RUNTIME_WRITABLE")
+    bus = runtime / "bus"
+    req(bus.exists() and not bus.is_symlink(), "USER_BUS_SOCKET_MISSING_OR_UNSAFE")
+    bst = bus.lstat()
+    req(stat.S_ISSOCK(bst.st_mode), "USER_BUS_NOT_SOCKET")
+    req(bst.st_uid == uid, "USER_BUS_SOCKET_OWNER")
+    return {
+        "XDG_RUNTIME_DIR": str(runtime),
+        "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(bus),
+    }
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--binding", required=True); ap.add_argument("--binding-sha256", required=True)
+    ap.add_argument("--release-source", required=True); ap.add_argument("--control-bundle", required=True)
+    ap.add_argument("--current-link", required=True); ap.add_argument("--current-deployment-receipt", required=True)
+    ap.add_argument("--current-runtime-manifest", required=True); ap.add_argument("--release-target", required=True)
+    ap.add_argument("--bin-root", required=True); ap.add_argument("--unit-root", required=True)
+    ap.add_argument("--config-path", required=True); ap.add_argument("--rollback-root", required=True)
+    ap.add_argument("--authorization"); ap.add_argument("--authorization-sha256")
+    ap.add_argument("--main-commit"); ap.add_argument("--validation-commit")
+    ap.add_argument("--executor-commit"); ap.add_argument("--executor-tree"); ap.add_argument("--receipt")
+    ap.add_argument("--deployment-receipt")
+    ap.add_argument("--execute", action="store_true")
+    a = ap.parse_args()
+    try:
+        if not a.execute:
+            out = build_plan(binding=a.binding, binding_sha256=a.binding_sha256,
+                             release_source=a.release_source, control_bundle=a.control_bundle,
+                             current_link=a.current_link, current_deployment_receipt=a.current_deployment_receipt,
+                             current_runtime_manifest=a.current_runtime_manifest, release_target=a.release_target,
+                             bin_root=a.bin_root, unit_root=a.unit_root,
+                             config_path=a.config_path, rollback_root=a.rollback_root)
+            print(json.dumps(out, sort_keys=True, separators=(",", ":")))
+            return 0
+        req(all((a.authorization, a.authorization_sha256, a.main_commit, a.validation_commit,
+                     a.executor_commit, a.executor_tree, a.receipt, a.deployment_receipt)), "EXECUTION_AUTHORIZATION_REQUIRED")
+        out = execute_transaction(
+            binding=a.binding, binding_sha256=a.binding_sha256,
+            release_source=a.release_source, control_bundle=a.control_bundle,
+            current_link=a.current_link, current_deployment_receipt=a.current_deployment_receipt,
+            current_runtime_manifest=a.current_runtime_manifest, release_target=a.release_target,
+            bin_root=a.bin_root, unit_root=a.unit_root,
+            config_path=a.config_path, rollback_root=a.rollback_root,
+            authorization=a.authorization, authorization_sha256=a.authorization_sha256,
+            main_commit=a.main_commit, validation_commit=a.validation_commit,
+            executor_commit=a.executor_commit, executor_tree=a.executor_tree, receipt_path=a.receipt,
+            deployment_receipt=a.deployment_receipt,
+            runner=SubprocessRunner(env={**minimal_subprocess_env(), **validated_user_bus_env()}),
+        )
+        print(json.dumps(out, sort_keys=True, separators=(",", ":")))
+        return 0 if out["state"] == "PASS" else 3
+    except (ProfileError, TxnError, OSError, ValueError, json.JSONDecodeError) as exc:
+        print(json.dumps({"kind": "AIFILM_P00_PRODLIKE_DEPLOYMENT_V2", "status": "FAIL",
+                          "reason": str(exc), "deployment_started": False,
+                          "native_execution_started": False, "signing_performed": False},
+                         sort_keys=True, separators=(",", ":")))
+        return 2
+

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "AUTH005_AUTH4_COMPOSITION_WITNESS.json": {
+      "bytes": 1645,
+      "sha256": "271eede92d14b3d6db8556cbb371825eec71d64b22a51469365e1422a17dc019"
+    },
+    "AUTH005_SHA256_CORRECTION_WITNESS.json": {
+      "bytes": 581,
+      "sha256": "2bf7994c1fde32859b8bbb21ec807d461f6e1e6245cfe6a7659485f2552008c8"
+    },
+    "AUTH005_TRANSACTION_UNIQUENESS_WITNESS.json": {
+      "bytes": 2023,
+      "sha256": "12aa4385bc633b935e4ef0b7207ad2c24eba0f96509f784c92bcccfec1c1f744"
+    },
+    "AUTH005_USER_BUS_COMPOSITION_EXCERPT.txt": {
+      "bytes": 4819,
+      "sha256": "5ae3ba050adedc4b5f4266de95ed39f26a76d8cdfc5afe13a9183244691c49d5"
+    }
+  },
+  "kind": "AUTH005_REVIEW_CLOSURE_SUPPORT",
+  "schema_version": 1
+}

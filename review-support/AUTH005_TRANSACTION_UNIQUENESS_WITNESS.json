@@ -1,0 +1,25 @@
+{
+  "attempt5_receipt_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-20260924",
+  "attempt5_receipt_root_exists": false,
+  "execution_started": false,
+  "kind": "AUTH005_TRANSACTION_UNIQUENESS_WITNESS",
+  "known_occurrence_count": 12,
+  "known_occurrences": [
+    "/home/dragon/ai-film-dev/run-evidence/v131-corrected-release-auth5-prep-20260924/authorization005-prep-receipt.json",
+    "/home/dragon/ai-film-dev/run-evidence/v131-corrected-release-auth5-prep-20260924/prodlike-authorization-005.json",
+    "/home/dragon/ai-film-dev/worktrees/auth005-review-support-closure/review-support/CORRECTED_AUTH005.json",
+    "/home/dragon/ai-film-dev/worktrees/auth005-review-support-closure/review-support/CORRECTED_AUTH005_EXPIRY_WITNESS.json",
+    "/home/dragon/ai-film-dev/worktrees/auth005-review-support-closure/review-support/CORRECTED_AUTH005_PREP_RECEIPT.json",
+    "/home/dragon/ai-film-dev/worktrees/auth005-review-support-closure/review-support/CORRECTED_AUTH005_REVIEW_PROJECTION.json",
+    "/home/dragon/ai-film-dev/worktrees/auth5-review-support/review-support/CORRECTED_AUTH005.json",
+    "/home/dragon/ai-film-dev/worktrees/auth5-review-support/review-support/CORRECTED_AUTH005_EXPIRY_WITNESS.json",
+    "/home/dragon/ai-film-dev/worktrees/auth5-review-support/review-support/CORRECTED_AUTH005_PREP_RECEIPT.json",
+    "/home/dragon/ai-film-dev/worktrees/auth5-review-support/review-support/CORRECTED_AUTH005_REVIEW_PROJECTION.json",
+    "/home/dragon/ai-film-dev/worktrees/v132-auth005-review/workflow-health/metrics/METRICS-V132-CORRECTED-AUTH005-REVIEW-20260924.json",
+    "/home/dragon/ai-film-dev/worktrees/v132-main-auth005-review/workflow-health/metrics/METRICS-V132-CORRECTED-AUTH005-REVIEW-20260924.json"
+  ],
+  "note": "Multiple copies are evidence/support projections of one immutable transaction id, not multiple executed transactions.",
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005",
+  "unique_logical_authorization_family": true
+}

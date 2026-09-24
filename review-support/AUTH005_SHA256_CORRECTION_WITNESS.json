@@ -1,0 +1,12 @@
+{
+  "authorization_file": "review-support/CORRECTED_AUTH005.json",
+  "authorization_has_embedded_self_hash_field": false,
+  "authorization_sha256_actual": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "authorization_sha256_hex_length": 64,
+  "execution_started": false,
+  "finding_disposition": "AUTH005-HASH-MALFORMED-001_FALSE_POSITIVE",
+  "kind": "AUTH005_SHA256_CORRECTION_WITNESS",
+  "prep_receipt_authorization_sha256": "293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83",
+  "prep_receipt_matches_actual": true,
+  "schema_version": 1
+}
