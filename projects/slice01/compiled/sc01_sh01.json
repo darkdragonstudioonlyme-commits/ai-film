@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh01",
+  "story_time": "D1_2340",
+  "dialogue_id": null,
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"wide\", \"lens_mm\": 28, \"movement\": \"slow push\"} | action=Rainy near-empty station platform. An enters under flickering practical lights, jacket visibly wet. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"props\": {\"red_paper_crane\": \"in right jacket pocket\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 101,
+  "aspect": "9:16"
+}

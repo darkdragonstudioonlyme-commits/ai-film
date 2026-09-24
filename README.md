@@ -1,35 +1,18 @@
 # AI-FILM-SERVER
 
-Persistent control plane for the single-chat AI film project. Current truth is `PROJECT_STATE.md`, not the newest-looking checkpoint or a previous chat. Product source is addressed by the exact source identity declared there; this branch is not the product runtime.
+The active goal is now product output: ship a measurable 60–90 second AI-film vertical slice before adding more infrastructure.
 
-## Cold-start order
+## Cold start
+1. Fetch refs and preserve unrelated WIP/worktrees.
+2. Read RESUME.md, BACKLOG.yaml, MILESTONES.md and CONTINUE_PROTOCOL.md.
+3. Read PROJECT_STATE.md and NEXT_WORK_ITEM.md for the active batch.
+4. Work on the earliest READY product tasks; finish with tests and progress-log updates.
 
-1. Fresh-fetch `main` and the relevant lane refs; preserve local WIP.
-2. Read `PROJECT_STATE.md`, `NEXT_WORK_ITEM.md` and `WORKFLOW_ROUTER.md`.
-3. Resolve the owning lane and existing run; reconcile before executing. Use the task-specific read profile in `DOCUMENTATION_MAP.md`.
+## Minimal request
+"Tiếp tục." runs one bounded product batch under CONTINUE_PROTOCOL.md.
 
-## Minimal requests
+## Historical Phase00
+The previous enterprise-style P00 control plane is frozen at archive ref archive/p00-governance-2026-09-24. Its state JSON, reviews, lanes and evidence remain in Git for audit/reuse, but they no longer route normal Continue turns.
 
-```text
-Tiếp tục.
-```
-
-```text
-Review thiết kế MD → chỉnh sửa cần thiết → review → audit toàn bộ.
-```
-
-The first resumes verified state. The second is an explicit documentation excursion; it must preserve any blocked product run and its return point. Neither request grants permission to skip gates, change frozen contracts, spend money or perform host-destructive actions.
-
-## Authority and evidence
-
-`DOC-DESIGN → DOC-REVIEW → DOC-AUDIT` governs material documentation changes. Exact commits, evidence and role-specific verdicts determine acceptance. Same-chat role separation is not external independent certification. See `EXECUTION_LANES.md` and `GIT_WORKFLOW.md`.
-
-`CHAT_HANDOFF.md` is the compact continuation entrypoint. `PROJECT_ROADMAP.md` orders gates; it does not own their current status. Historical checkpoints, designs and reviews preserve evidence, not a second mutable state.
-
-## Two actors, one project
-
-The minimal request remains `Tiếp tục`. The coordinator uses a task-bound handoff,
-not a user-written Claude prompt. See `docs/DUAL_AI_COLLABORATION.md` and
-`docs/DUAL_AI_AUTOMATIC_HANDOFF.md`. Both actors share `SELF_LEARNING.md` and the
-single lifecycle register. Live delegation depends on the verified capability state;
-a design, queued file or CLI example is not a running worker.
+## Product rules
+Story/visual/character/motion/audio quality and continuity are measured on real outputs. Keep asset provenance and deterministic structured inputs. Use the simplest deployment that satisfies measured load; queue/distributed infrastructure follows demonstrated bottlenecks, not anticipation.

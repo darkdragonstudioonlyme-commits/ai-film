@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh03",
+  "story_time": "D1_2342",
+  "dialogue_id": "dlg_001",
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"two-shot\", \"lens_mm\": 50, \"movement\": \"subtle handheld\"} | action=An shows the red paper crane and asks about the last train. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"props\": {\"red_paper_crane\": \"held in right hand\"}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Does the 11:40 still stop here?\", \"vi\": \"Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?\", \"zh-CN\": \"十一点四十的末班车还停这里吗？\"}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 103,
+  "aspect": "9:16"
+}

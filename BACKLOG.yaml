@@ -1,0 +1,49 @@
+# Product backlog v2 — single active source
+- id: T-001
+  milestone: M0
+  goal: "Prove practical host readiness and record evidence"
+  status: DONE
+  owner: coordinator
+- id: T-002
+  milestone: M1
+  goal: "Create original slice01 screenplay, continuity, casting and 8-shot benchmark set"
+  status: DONE
+  owner: coordinator
+- id: T-003
+  milestone: M1
+  goal: "Implement continuity ledger, asset manifest and shot compiler with tests"
+  status: DONE
+  owner: executor
+- id: T-004
+  milestone: M1
+  goal: "Compile slice01 benchmark prompts from structured film data"
+  status: DONE
+  owner: executor
+- id: T-005
+  milestone: M2
+  goal: "Create visual/voice casting references after model benchmark"
+  status: BLOCKED
+  owner: executor
+  blocker: GPU_BENCHMARK
+- id: T-006
+  milestone: M3
+  goal: "Render benchmark keyframes and score identity/style"
+  status: BLOCKED
+  owner: executor
+  blocker: GPU_BENCHMARK
+- id: T-007
+  milestone: M4
+  goal: "Render motion clips and measure usable-take rate"
+  status: BLOCKED
+  owner: executor
+  blocker: GPU_BENCHMARK
+- id: T-008
+  milestone: M2
+  goal: "Prepare reproducible rental-GPU benchmark harness and scoring rubric"
+  status: READY
+  owner: executor
+- id: T-009
+  milestone: M2
+  goal: "Prepare ffmpeg/animatic path and EN/ZH/VI timing assets without GPU"
+  status: READY
+  owner: executor

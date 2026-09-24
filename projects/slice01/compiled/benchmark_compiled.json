@@ -1,0 +1,82 @@
+[
+  {
+    "shot_id": "sc01_sh01",
+    "story_time": "D1_2340",
+    "dialogue_id": null,
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"wide\", \"lens_mm\": 28, \"movement\": \"slow push\"} | action=Rainy near-empty station platform. An enters under flickering practical lights, jacket visibly wet. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"props\": {\"red_paper_crane\": \"in right jacket pocket\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 101,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh02",
+    "story_time": "D1_2340",
+    "dialogue_id": null,
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"medium\", \"lens_mm\": 50, \"movement\": \"static\"} | action=Linh looks up from the station desk toward the platform clock. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 102,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh03",
+    "story_time": "D1_2342",
+    "dialogue_id": "dlg_001",
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"two-shot\", \"lens_mm\": 50, \"movement\": \"subtle handheld\"} | action=An shows the red paper crane and asks about the last train. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"props\": {\"red_paper_crane\": \"held in right hand\"}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Does the 11:40 still stop here?\", \"vi\": \"Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?\", \"zh-CN\": \"十一点四十的末班车还停这里吗？\"}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 103,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh04",
+    "story_time": "D1_2342",
+    "dialogue_id": "dlg_002",
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"close-up\", \"lens_mm\": 85, \"movement\": \"static\"} | action=The lights blink out behind Linh; she raises the flashlight, alert but composed. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Only if we bring the signal back.\", \"vi\": \"Chỉ khi mình khôi phục được tín hiệu.\", \"zh-CN\": \"得先把信号恢复。\"}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 104,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh05",
+    "story_time": "D1_2344",
+    "dialogue_id": null,
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"medium close-up\", \"lens_mm\": 50, \"movement\": \"handheld\"} | action=An pulls a jammed panel free; his left sleeve tears and a shallow cut appears on the left forearm. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"fresh shallow cut, small amount of blood\"}, \"props\": {\"red_paper_crane\": \"held in right hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 105,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh06",
+    "story_time": "D1_2345",
+    "dialogue_id": "dlg_003",
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"close two-shot\", \"lens_mm\": 65, \"movement\": \"static\"} | action=Linh finishes wrapping An's left forearm in white gauze while holding the red paper crane in her left hand. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"wrapped in clean white gauze\"}, \"props\": {}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\", \"red_paper_crane\": \"held in left hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"You came back for this station?\", \"vi\": \"Anh quay lại vì nhà ga này sao?\", \"zh-CN\": \"你是为了这个车站回来的？\"}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 106,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh07",
+    "story_time": "D1_2345",
+    "dialogue_id": "dlg_004",
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"profile two-shot\", \"lens_mm\": 50, \"movement\": \"slow track\"} | action=The signal turns green and distant train headlights bloom through rain. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"wrapped in clean white gauze\"}, \"props\": {}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\", \"red_paper_crane\": \"held in left hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"For a promise.\", \"vi\": \"Vì một lời hứa.\", \"zh-CN\": \"为了一个承诺。\"}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 107,
+    "aspect": "9:16"
+  },
+  {
+    "shot_id": "sc01_sh08",
+    "story_time": "D1_2347",
+    "dialogue_id": null,
+    "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"wide\", \"lens_mm\": 35, \"movement\": \"locked\"} | action=Train doors open. An boards with gauze visible on his left forearm; Linh remains on the platform with the paper crane. | character_state={\"an\": {\"costume\": \"charcoal rain jacket, dark jeans, white sneakers\", \"costume_damage\": {\"left_sleeve\": \"small tear, damp edge\"}, \"identity\": {\"age\": 28, \"build\": \"lean\", \"gender\": \"male\", \"hair\": \"short black\"}, \"injuries\": {\"left_forearm\": \"wrapped in clean white gauze\"}, \"props\": {}}, \"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\", \"red_paper_crane\": \"held in left hand\"}}} | casting={\"an\": {\"face_ref\": null, \"visual\": \"Vietnamese man, 28, lean, calm eyes, short black hair\", \"voice\": {\"en\": \"warm restrained tenor\", \"vi\": \"giọng nam ấm, tiết chế\", \"zh-CN\": \"warm restrained tenor\"}}, \"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}}",
+    "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+    "references": [],
+    "seed": 108,
+    "aspect": "9:16"
+  }
+]

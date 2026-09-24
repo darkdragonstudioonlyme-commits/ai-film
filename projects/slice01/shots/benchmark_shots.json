@@ -1,0 +1,154 @@
+[
+  {
+    "shot_id": "sc01_sh01",
+    "story_time": "D1_2340",
+    "characters": [
+      "an"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "wide",
+      "lens_mm": 28,
+      "movement": "slow push"
+    },
+    "action": "Rainy near-empty station platform. An enters under flickering practical lights, jacket visibly wet.",
+    "dialogue": null,
+    "seed": 101
+  },
+  {
+    "shot_id": "sc01_sh02",
+    "story_time": "D1_2340",
+    "characters": [
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "medium",
+      "lens_mm": 50,
+      "movement": "static"
+    },
+    "action": "Linh looks up from the station desk toward the platform clock.",
+    "dialogue": null,
+    "seed": 102
+  },
+  {
+    "shot_id": "sc01_sh03",
+    "story_time": "D1_2342",
+    "characters": [
+      "an",
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "two-shot",
+      "lens_mm": 50,
+      "movement": "subtle handheld"
+    },
+    "action": "An shows the red paper crane and asks about the last train.",
+    "dialogue": {
+      "en": "Does the 11:40 still stop here?",
+      "zh-CN": "十一点四十的末班车还停这里吗？",
+      "vi": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?"
+    },
+    "seed": 103,
+    "dialogue_id": "dlg_001"
+  },
+  {
+    "shot_id": "sc01_sh04",
+    "story_time": "D1_2342",
+    "characters": [
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "close-up",
+      "lens_mm": 85,
+      "movement": "static"
+    },
+    "action": "The lights blink out behind Linh; she raises the flashlight, alert but composed.",
+    "dialogue": {
+      "en": "Only if we bring the signal back.",
+      "zh-CN": "得先把信号恢复。",
+      "vi": "Chỉ khi mình khôi phục được tín hiệu."
+    },
+    "seed": 104,
+    "dialogue_id": "dlg_002"
+  },
+  {
+    "shot_id": "sc01_sh05",
+    "story_time": "D1_2344",
+    "characters": [
+      "an"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "medium close-up",
+      "lens_mm": 50,
+      "movement": "handheld"
+    },
+    "action": "An pulls a jammed panel free; his left sleeve tears and a shallow cut appears on the left forearm.",
+    "dialogue": null,
+    "seed": 105
+  },
+  {
+    "shot_id": "sc01_sh06",
+    "story_time": "D1_2345",
+    "characters": [
+      "an",
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "close two-shot",
+      "lens_mm": 65,
+      "movement": "static"
+    },
+    "action": "Linh finishes wrapping An's left forearm in white gauze while holding the red paper crane in her left hand.",
+    "dialogue": {
+      "en": "You came back for this station?",
+      "zh-CN": "你是为了这个车站回来的？",
+      "vi": "Anh quay lại vì nhà ga này sao?"
+    },
+    "seed": 106,
+    "dialogue_id": "dlg_003"
+  },
+  {
+    "shot_id": "sc01_sh07",
+    "story_time": "D1_2345",
+    "characters": [
+      "an",
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "profile two-shot",
+      "lens_mm": 50,
+      "movement": "slow track"
+    },
+    "action": "The signal turns green and distant train headlights bloom through rain.",
+    "dialogue": {
+      "en": "For a promise.",
+      "zh-CN": "为了一个承诺。",
+      "vi": "Vì một lời hứa."
+    },
+    "seed": 107,
+    "dialogue_id": "dlg_004"
+  },
+  {
+    "shot_id": "sc01_sh08",
+    "story_time": "D1_2347",
+    "characters": [
+      "an",
+      "linh"
+    ],
+    "style": "benchmark-neutral",
+    "camera": {
+      "framing": "wide",
+      "lens_mm": 35,
+      "movement": "locked"
+    },
+    "action": "Train doors open. An boards with gauze visible on his left forearm; Linh remains on the platform with the paper crane.",
+    "dialogue": null,
+    "seed": 108
+  }
+]

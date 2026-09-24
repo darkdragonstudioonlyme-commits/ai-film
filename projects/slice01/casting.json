@@ -1,0 +1,22 @@
+{
+  "characters": {
+    "an": {
+      "visual": "Vietnamese man, 28, lean, calm eyes, short black hair",
+      "voice": {
+        "en": "warm restrained tenor",
+        "zh-CN": "warm restrained tenor",
+        "vi": "giọng nam ấm, tiết chế"
+      },
+      "face_ref": null
+    },
+    "linh": {
+      "visual": "Vietnamese woman, 31, observant expression, shoulder-length black hair",
+      "voice": {
+        "en": "clear grounded alto",
+        "zh-CN": "clear grounded alto",
+        "vi": "giọng nữ rõ, trầm vừa"
+      },
+      "face_ref": null
+    }
+  }
+}

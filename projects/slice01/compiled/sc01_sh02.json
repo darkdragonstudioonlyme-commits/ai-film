@@ -1,0 +1,10 @@
+{
+  "shot_id": "sc01_sh02",
+  "story_time": "D1_2340",
+  "dialogue_id": null,
+  "prompt": "style=benchmark-neutral | aspect=9:16 | camera={\"framing\": \"medium\", \"lens_mm\": 50, \"movement\": \"static\"} | action=Linh looks up from the station desk toward the platform clock. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}}",
+  "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts",
+  "references": [],
+  "seed": 102,
+  "aspect": "9:16"
+}
