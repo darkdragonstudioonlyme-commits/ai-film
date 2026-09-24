@@ -1,0 +1,54 @@
+{
+  "authorized_modify": [
+    "validation/tooling/build_prodlike_control_bundle-v2.py",
+    "validation/tooling/verify_prodlike_control_bundle-v2.py",
+    "validation/tooling/prodlike_control_templates_v2.json",
+    "validation/tooling/tests/test_prodlike_control_bundle_v2.py",
+    "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py"
+  ],
+  "base_validation_commit": "4850b4d2930d6f2eaad8065f306314ea8a352867",
+  "expected_business_behavior_changed": false,
+  "fifth_file_constraint": {
+    "allowed_fields": [
+      "package_name",
+      "wheel_name",
+      "app_file_count"
+    ],
+    "allowed_region": "ProdlikeTxnTests.setUp synthetic candidate runtime manifest fixture",
+    "path": "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+    "runner_or_command_change_allowed": false,
+    "transaction_semantics_change_allowed": false
+  },
+  "kind": "TEST_DESIGN_COVERAGE",
+  "lab_mutation_authorized": false,
+  "native_execution_authorized": false,
+  "observed_pre_review_author_evidence": {
+    "blocked_predecessor_suite": "validation/tooling/tests/test_prodlike_deployment_transaction_v2.py",
+    "blocked_predecessor_test_count": 22,
+    "failure": "RUNTIME_PACKAGE_NAME",
+    "host_non_mutation": true,
+    "tv014_targeted_tests_passed": 13
+  },
+  "oracle_changed": false,
+  "prodlike_deployment_authorized": false,
+  "producer_contract_strictness": {
+    "fallback_or_optional_fields_allowed": false,
+    "package_name_required": true,
+    "positive_app_file_count_required": true,
+    "wheel_name_required": true
+  },
+  "r2_evidence_required": [
+    "TV014_TARGETED_13_PASS",
+    "PRODLIKE_TRANSACTION_22_PASS_OR_CURRENT_COUNT_WITH_ORIGINAL_SEMANTICS",
+    "FIFTH_FILE_DIFF_FIXTURE_ONLY",
+    "FULL_TV009_010_011_012_013_PASS",
+    "HISTORICAL_11_PASS",
+    "HOST_NON_MUTATION_PASS"
+  ],
+  "review_semantics": "PRE_IMPLEMENTATION_R2_SCOPE_CORRECTION_AFTER_AUTHOR_PRECHECK_EXPOSED_FIXTURE_GAP",
+  "revision": "R2",
+  "schema_version": 1,
+  "signing_authorized": false,
+  "source_scope_finding": "LOCAL:/home/dragon/ai-film-dev/run-evidence/v143-release-control-014-author-20260924/scope-finding.json",
+  "test_change_id": "TEST_CHANGE-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014"
+}

@@ -4,7 +4,10 @@
 TEST_CHANGE_ID: TEST_CHANGE-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
 RUN_ID: RUN-P00-VALIDATION-002
 WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-BASE_VALIDATION_COMMIT: 9f341bea77d9e8e0df081f00a69315116822801f
+BASE_VALIDATION_COMMIT: 4850b4d2930d6f2eaad8065f306314ea8a352867
+ORIGINAL_PRE_FIX_BASE: 9f341bea77d9e8e0df081f00a69315116822801f
+REVISION: R2
+PRIOR_TEST_REVIEW_COMMIT: 4850b4d2930d6f2eaad8065f306314ea8a352867
 PRODUCT_SOURCE_COMMIT: 2f7da39984a7a582c7cf2a84f743299fc7fe735f
 CANDIDATE_ID: acf18da3-4969-451c-8a4b-a7e46ad89c98
 CANDIDATE_BINDING_SHA256: ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890
@@ -16,7 +19,7 @@ NATIVE_EXECUTION_AUTHORIZED: false
 AUTHORITY_SIGNING_AUTHORIZED: false
 PRODLIKE_DEPLOYMENT_AUTHORIZED: false
 LAB_MUTATION_AUTHORIZED: false
-STATUS: PENDING_INDEPENDENT_TEST_REVIEW
+STATUS: PENDING_INDEPENDENT_TEST_REVIEW_R2
 ~~~
 
 ## Purpose
@@ -89,8 +92,11 @@ MODIFY only:
 - `validation/tooling/verify_prodlike_control_bundle-v2.py`
 - `validation/tooling/prodlike_control_templates_v2.json`
 - `validation/tooling/tests/test_prodlike_control_bundle_v2.py`
+- `validation/tooling/tests/test_prodlike_deployment_transaction_v2.py` — fixture-only update described below; no transaction semantics may change
 
 Within `prodlike_control_templates_v2.json`, only the `scripts/control_common.py` template row may change. The other 62 template rows must remain byte/field-identical to the base.
+
+Within `validation/tooling/tests/test_prodlike_deployment_transaction_v2.py`, only the synthetic candidate runtime-manifest fixture constructed in `ProdlikeTxnTests.setUp()` may change for this correction. It must add the three fields now required by the strict V2 producer contract: `package_name`, `wheel_name`, and positive integer `app_file_count`. No FakeRunner behavior, authorization logic, transaction assertions, command sets, fault-injection cases, user-bus checks, or deployment semantics may change.
 
 Everything else remains byte-identical, including:
 
@@ -103,6 +109,33 @@ Everything else remains byte-identical, including:
 - `validation/prodlike-dev22/**`, including historical V1 `control_common.py` and `release-control.json`;
 - all historical dev22 tooling/tests/evidence;
 - accepted product source/contracts and private/local authority material.
+
+
+## R2 implementation-scope correction after author precheck
+
+The first reviewed four-file scope was proven insufficient by implementation evidence before any candidate was frozen or deployed. TV014 targeted tests passed 13/13, but the full predecessor regression stopped at all 22 `test_prodlike_deployment_transaction_v2.py` tests before their bodies executed because that predecessor fixture constructs a synthetic candidate runtime manifest without `package_name`, `wheel_name`, or `app_file_count`. The corrected producer properly rejects that manifest with `RUNTIME_PACKAGE_NAME`. Host before/after snapshots were identical; no deployment/native/LAB/signing/HKLM action occurred.
+
+This is a **test-fixture constructibility gap**, not a reason to weaken the producer contract. The producer must continue requiring all three fields. R2 therefore expands the MODIFY allowlist by exactly one test file and only for its synthetic runtime-manifest fixture.
+
+Required fixture values are deterministic test data, not live-host observations:
+
+- `package_name`: safe basename derived for the synthetic candidate release (for example `AI-FILM-P00-dev23.tar.gz`);
+- `wheel_name`: safe synthetic wheel basename consistent with the candidate implementation version;
+- `app_file_count`: positive integer synthetic app count.
+
+The fixture must continue deriving candidate ID/binding/version/source/digests/package SHA/wheel SHA from the same reviewed binding/profile as before. The new fields exist only so predecessor transaction tests can construct a V2 control bundle under the stricter producer precondition.
+
+### R2 regression witness
+
+After the fixture-only edit, author evidence must show:
+
+1. the 13 TV014 tests remain PASS without relaxing any negative assertion;
+2. all 22 predecessor prodlike transaction tests enter and complete their original test bodies rather than failing in `setUp()`;
+3. current `test_prodlike_deployment_transaction_v2.py` differs from base only in the synthetic runtime-manifest fixture fields described above;
+4. all other TV009/010/011/012/013 suites and 11 historical dev22 scripts remain PASS; and
+5. host `current`, dev22, failed dev23, failed dev23-corrected and user-systemd snapshots remain byte-identical.
+
+If the predecessor suite still requires any edit outside that fixture block, or producer strictness would need to be reduced, stop and return to TEST_DESIGN again.
 
 ## Required V2 producer behavior
 
@@ -183,7 +216,7 @@ TEST_REVIEW 014 must explicitly decide:
 1. whether the 27-key V2 contract is sufficient for every current V2 template consumer;
 2. whether keeping V2 candidate ID/binding while restoring four operational fields preserves the intended candidate-bound semantics without oracle change;
 3. whether deriving `offhost_export_name` from `release_name` is deterministic and compatible with existing operational scripts;
-4. whether the four-file MODIFY-only scope is sufficient;
+4. whether the R2 five-file scope is sufficient and the fifth file is constrained to the predecessor synthetic runtime-manifest fixture;
 5. whether the generated-document-through-real-consumer witness would have caught transaction005 before deployment;
 6. whether negative tests meaningfully reject mixed V1/V2 schemas instead of merely matching self-produced bytes; and
 7. whether all historical dev22 bytes remain outside the correction.
@@ -194,8 +227,8 @@ TEST_REVIEW 014 must explicitly decide:
 
 Transaction005 and both failed dev23 trees remain immutable historical evidence. Reconciliation002 restored exact dev22. No failed receipt/artifact is rewritten or deleted.
 
-If implementation requires files outside the four-file allowlist, changes any of the other 62 template rows, changes historical dev22, introduces a new control version, or changes native/business expectations, return to TEST_DESIGN/TEST_REVIEW rather than widening scope.
+If implementation requires files outside the R2 five-file allowlist, changes any of the other 62 template rows, changes historical dev22, introduces a new control version, or changes native/business expectations, return to TEST_DESIGN/TEST_REVIEW rather than widening scope.
 
 ## Exit gate
 
-Independent TEST_REVIEW must PASS the exact 27-key V2 contract, four-file scope, real producer→consumer witness, negative matrix, 62-row/historical byte hardcuts, predecessor regression retention, `ORACLE_CHANGED=false`, and no deployment/native/signing/LAB authority. Only then may implementation begin.
+Independent TEST_REVIEW R2 must PASS the exact 27-key V2 contract, R2 five-file scope and fixture-only fifth-file constraint, real producer→consumer witness, negative matrix, 62-row/historical byte hardcuts, predecessor regression retention, `ORACLE_CHANGED=false`, and no deployment/native/signing/LAB authority. Only then may implementation begin.
