@@ -1,0 +1,22 @@
+{
+  "authorization_sha256": "113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d",
+  "command_count": 68,
+  "execution_started": false,
+  "executor_commit": "b7ccdbbf73e25f8bfd1db6bb884326ec52d862ae",
+  "executor_tree": "3fbbc260a00dec489bbbfbedc32fed042da9247b",
+  "expires_at": 1790240814,
+  "kind": "ATTEMPT4_RECONCILIATION_PREP_RECEIPT",
+  "main_commit": "2bcd627bbcfe2ecf5927a366b4e0fdb253782bef",
+  "mutation_roots": [
+    "/home/dragon/ai-film-runtime",
+    "/home/dragon/.config/systemd/user",
+    "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-attempt4-reconciliation-20260924"
+  ],
+  "non_mutation_proof_sha256": "5c452653b03b6b802827b6ea061f9051bddd0329367ffdf8c3f498fd4485dd2e",
+  "plan_sha256": "18f563faa2e9e4e2101dbddf2aed0ffe91b68ce2eb9d63804d9121190a7b9183",
+  "schema_version": 1,
+  "source_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce",
+  "status": "READY_FOR_CROSS_MODEL_REVIEW",
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-001",
+  "validation_commit": "5005c1547865e68956c90f23edd8c22266f8967a"
+}
