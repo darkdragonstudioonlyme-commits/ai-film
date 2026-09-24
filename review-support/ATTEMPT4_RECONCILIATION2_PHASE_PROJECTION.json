@@ -1,0 +1,23 @@
+{
+  "authorization_sha256": "22fd6119d0d5005c9dfeb126477b07ac781e1eb7ff2d6249bada5443c565a494",
+  "broken_dev23_verify_runtime_absent": true,
+  "desired_postexecution_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "executor_commit": "d7232c06cf256fe1483c4f921fe4e2a7c8ac1916",
+  "executor_tree": "99ef0a383ed26a6eec668deec795f6d80a39cd67",
+  "hklm_authorized": false,
+  "independent_live_verify_required_after_execution": true,
+  "kind": "ATTEMPT4_RECONCILIATION2_PHASE_PROJECTION",
+  "live_current_target": "/home/dragon/ai-film-runtime/dev23",
+  "native_execution_authorized": false,
+  "new_deployment_authorization_blocked_until_reconciliation_and_test_fix": true,
+  "required_preexecution_current_target": "/home/dragon/ai-film-runtime/dev23",
+  "review_phase": "PRE_EXECUTION_CORRECTED_RECONCILIATION_PLAN_REVIEW",
+  "schema_version": 1,
+  "signing_authorized": false,
+  "source_debt_is_input_to_reconciliation_not_plan_postcondition": true,
+  "source_receipt_state": "RECONCILE_REQUIRED",
+  "source_rollback_attempted": false,
+  "source_unknown_completion": true,
+  "test_change_013_blocked_until_reconciliation_pass": true,
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-002"
+}

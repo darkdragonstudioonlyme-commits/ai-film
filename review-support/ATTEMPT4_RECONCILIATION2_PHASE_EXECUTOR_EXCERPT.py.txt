@@ -1,0 +1,130 @@
+def build_plan(args):
+    receipt,witness,rollback_plan,timer_state,meta,timers=validate_inputs(args)
+    return {
+        "schema_version":1,
+        "kind":"AIFILM_P00_PRODLIKE_RECONCILIATION_PLAN_V1",
+        "status":"PLAN_ONLY",
+        "source_transaction_id":OLD_TX,
+        "source_transaction_receipt_sha256":sha_file(args.transaction_receipt),
+        "observed_current_target":witness["current_target"],
+        "reconciliation_target":DEV22,
+        "staged_dev23_disposition":"PRESERVE_UNMODIFIED_AS_FAILED_EVIDENCE_UNTIL_CORRECTED_RELEASE_REBUILD",
+        "control_entry_count":len(meta),
+        "timer_count":len(timers),
+        "timers":timers,
+        "required_steps":[
+            "QUIESCE_REVIEWED_11_TIMER_SERVICE_SET",
+            "RESTORE_EXACT_64_CAPTURED_CONTROL_ENTRIES",
+            "ATOMIC_SWITCH_CURRENT_TO_DEV22",
+            "SYSTEMD_USER_DAEMON_RELOAD",
+            "RESTORE_CAPTURED_11_TIMER_ENABLED_ACTIVE_STATE",
+            "VERIFY_CURRENT_PASS",
+            "VERIFY_ALL_11_TIMERS_ENABLED_ACTIVE",
+            "PERSIST_RECONCILIATION_RECEIPT",
+            "REQUIRE_SEPARATE_CANONICAL_DEV22_LIVE_VERIFICATION",
+        ],
+        "allowed_command_prefixes":command_prefixes(timers),
+        "mutation_roots":[
+            "/home/dragon/ai-film-runtime",
+            "/home/dragon/.config/systemd/user",
+            str(Path(args.receipt).parent),
+        ],
+        "native_execution_started":False,
+        "signing_performed":False,
+        "hklm_touched":False,
+        "site_entered":False,
+        "qualification_issued":False,
+        "host_ready":False,
+    }
+
+def execute(args):
+    receipt0,witness,plan0,timer_state,meta,timers=validate_inputs(args)
+    auth,auth_sha=load_authorization(
+        args.authorization,args.authorization_sha256,TX_KIND,
+        candidate_id=args.candidate_id,binding_sha256=args.candidate_binding_sha256,
+        main_commit=args.main_commit,validation_commit=args.validation_commit,
+        executor_commit=args.executor_commit,executor_tree=args.executor_tree,
+    )
+    assert_input_hashes(auth,{
+        "reconciliation_script":Path(__file__),
+        "transaction_common":Path(__file__).with_name("deployment_transaction_common.py"),
+        "transaction004_receipt":args.transaction_receipt,
+        "host_witness":args.host_witness,
+        "rollback_plan":args.rollback_plan,
+        "rollback_timer_state":args.rollback_timer_state,
+        "rollback_control_meta":args.rollback_control_meta,
+        "dev22_runtime_manifest":args.dev22_runtime_manifest,
+        "dev22_verify_runtime":args.dev22_verify_runtime,
+    })
+    roots=auth["mutation_roots"]
+    for p in [CURRENT,*[row["path"] for row in meta],Path(args.receipt).parent]:
+        require_within(p,roots)
+    req(auth["allowed_command_prefixes"]==command_prefixes(timers),"AUTHORIZATION_COMMAND_SET")
+    rec,fresh=begin_transaction(
+        args.receipt,transaction_id=auth["transaction_id"],transaction_kind=TX_KIND,
+        authorization_sha256=auth_sha,candidate_id=args.candidate_id,
+        candidate_binding_sha256=args.candidate_binding_sha256,
+    )
+    if not fresh:
+        return rec
+    current=Path(CURRENT)
+    req(current.is_symlink() and os.readlink(current)==DEV23,"LIVE_CURRENT_PRECONDITION")
+    req(sha_file("/home/dragon/ai-film-runtime/dev23/runtime-manifest.json")==
+        witness["dev23_runtime_manifest"]["sha256"],"DEV23_RUNTIME_DRIFT")
+    dev23_before=tree_snapshot(Path(DEV23))
+    dev23_before_digest=snapshot_digest(dev23_before)
+    runner=SubprocessRunner(env={**minimal_subprocess_env(),**validated_user_bus_env()})
+    authorized=auth["allowed_command_prefixes"]
+    mutation=False
+    try:
+        atomic_json(Path(args.receipt).parent/"plan.json",build_plan(args))
+        set_receipt(args.receipt,state="RUNNING",phase="PREMUTATION_VERIFIED")
+        mutation=True
+        set_receipt(args.receipt,mutation_started=True,phase="QUIESCE")
+        internal=[[SYSTEMCTL,"--user"]]
+        for timer in timers:
+            run_checked(runner,[SYSTEMCTL,"--user","stop",timer],
+                internal_prefixes=internal,authorized_prefixes=authorized)
+            run_checked(runner,[SYSTEMCTL,"--user","stop",service_for_timer(timer)],
+                internal_prefixes=internal,authorized_prefixes=authorized,allowed_returncodes=(0,5))
+        append_event(args.receipt,"USER_SYSTEMD_QUIESCED",timer_count=len(timers))
+        set_receipt(args.receipt,phase="RESTORE_CONTROL")
+        restore_controls(meta,roots)
+        append_event(args.receipt,"CONTROL_RESTORED",control_entries=len(meta))
+        set_receipt(args.receipt,phase="SWITCH_CURRENT_DEV22")
+        atomic_symlink(DEV22,CURRENT)
+        req(os.readlink(CURRENT)==DEV22,"CURRENT_DEV22_READBACK")
+        append_event(args.receipt,"CURRENT_RESTORED",target=DEV22)
+        run_checked(runner,[SYSTEMCTL,"--user","daemon-reload"],
+            internal_prefixes=internal,authorized_prefixes=authorized)
+        set_receipt(args.receipt,phase="RESTORE_TIMERS")
+        for timer in timers:
+            run_checked(runner,[SYSTEMCTL,"--user","enable",timer],
+                internal_prefixes=internal,authorized_prefixes=authorized)
+            run_checked(runner,[SYSTEMCTL,"--user","start",timer],
+                internal_prefixes=internal,authorized_prefixes=authorized)
+        live=timer_state_live(runner,timers,authorized)
+        set_receipt(args.receipt,phase="VERIFY_CURRENT")
+        run_checked(runner,[VERIFY_CURRENT],
+            internal_prefixes=[[VERIFY_CURRENT]],authorized_prefixes=authorized)
+        req(Path(DEV23).is_dir(),"STAGED_DEV23_MUST_BE_PRESERVED")
+        dev23_after=tree_snapshot(Path(DEV23))
+        req(dev23_after==dev23_before,"STAGED_DEV23_DRIFT")
+        rec=set_receipt(
+            args.receipt,state="RECONCILED_PENDING_INDEPENDENT_VERIFY",phase="INTERNAL_VERIFY_PASS",
+            current_target=DEV22,timer_state_after=live,rollback_attempted=True,rollback_verified=True,
+            staged_dev23_preserved=True,staged_dev23_snapshot_sha256=dev23_before_digest,
+            internal_verify_pass=True,independent_live_verification_required=True,
+            independent_live_verification_status="PENDING",
+            native_execution_started=False,signing_performed=False,
+            hklm_touched=False,site_entered=False,qualification_issued=False,host_ready=False,
+        )
+        append_event(args.receipt,"RECONCILIATION_INTERNAL_PASS")
+        return load_json(args.receipt)
+    except Exception as exc:
+        unknown=isinstance(exc,UnknownCommandCompletion)
+        if mutation:
+            return set_receipt(args.receipt,state="RECONCILE_REQUIRED",phase="RECONCILIATION_UNCERTAIN",
+                unknown_completion=unknown,failure=type(exc).__name__+":"+str(exc),rollback_verified=False)
+        return set_receipt(args.receipt,state="FAILED_PREMUTATION",phase="FAILED",
+            failure=type(exc).__name__+":"+str(exc))
