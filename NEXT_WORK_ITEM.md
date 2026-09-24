@@ -1,46 +1,43 @@
-# NEXT WORK ITEM — design release-control producer/consumer compatibility 014
+# NEXT WORK ITEM — review release-control producer/consumer TEST_CHANGE 014
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_DESIGN
-LANE: TEST_DESIGN
+MODE: TEST_REVIEW
+LANE: TEST_REVIEW
 STATUS: READY
-WORK_ITEM: TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-ASSIGNEE: CHATGPT
+WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: 6b71df3a59c22b044ab3e6bd854fd376999ac12a
+  CURRENT_MAIN: fae1880ce9371c89896e4d4a97d1a97dc2f07dc0
   CURRENT_VALIDATION: 9f341bea77d9e8e0df081f00a69315116822801f
-  RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT5-RECONCILIATION-RECEIPT-002.md
-  SOURCE_TRANSACTION005_RECEIPT_SHA256: 6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5
-  RECONCILIATION002_RECEIPT_SHA256: 1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9
-  INDEPENDENT_DEV22_VERIFY_SHA256: 37f6a5b1369a1f0e543081ea3da15ad821cb77140a51139fc7ed02eed9b5f99e
+  TEST_CHANGE_COMMIT: acfd174271173bed5a96a358fc84ffc80389b4ac
+  TEST_CHANGE_TREE: 257ae7f59602c6b7ce63cc33ec57083e9dbb8e67
+  REVIEW_SUPPORT_COMMIT: 8874985ba34c2a7c16068f6cd49f324c6b2a6f17
+  REVIEW_SUPPORT_TREE: fe6cd598052e79adc35bd7ccbeba656417fcc2ce
   ROOT_CAUSE: RELEASE_CONTROL_V1_V2_PRODUCER_CONSUMER_MISMATCH
-GOAL: "Define the smallest fail-closed test contract that proves the produced release-control document is accepted by the runtime consumer before any deployment, including version/schema compatibility and negative drift cases."
+  TARGET_V2_KEY_COUNT: 27
+  MODIFY_FILE_COUNT: 4
+GOAL: "Independently review TEST_CHANGE 014 before any implementation: exact V2 contract, scope, constructibility, meaningful negative tests, predecessor/historical hardcuts and no authority expansion."
 STEPS:
-  - RECONCILIATION002_REVIEW: COMPLETE_PASS
-  - DEV22_BASELINE_RESTORED: COMPLETE_PASS
-  - ROOT_CAUSE_CLASSIFICATION: COMPLETE
-  - PRODUCER_CONSUMER_SOURCE_REVIEW: READY
-  - CONTRACT_DIRECTION_DECISION: READY
-  - TEST_CHANGE_014_AUTHOR: READY
-  - CONSTRUCTIBILITY_WITNESS: READY
-  - NEGATIVE_SCHEMA_KIND_VERSION_MATRIX: READY
-  - TEST_REVIEW_014: BLOCKED
+  - TEST_CHANGE_014_AUTHOR: COMPLETE_FROZEN
+  - CONTRACT_SCOPE_REVIEW: READY
+  - TEST_MEANINGFULNESS_REVIEW: READY
+  - ORACLE_NO_AUTHORITY_REVIEW: READY
   - IMPLEMENTATION_014: BLOCKED
-  - CORRECTED_RELEASE_REBUILD: BLOCKED
+  - CORRECTED_CONTROL_BUNDLE_REBUILD: BLOCKED
   - NEW_PRODLIKE_DEPLOYMENT: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "TEST_CHANGE 014 defining exact producer/consumer contract, tests, allowed files and byte-identical boundaries; no code/deployment proof."
-ON_SUCCESS: TEST-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-ON_FAIL: REVISE_TEST_DESIGN_014_WITHOUT_IMPLEMENTATION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-TEST-DESIGN-054
+SUCCESS_OUTPUT: "Formal TEST_REVIEW 014 PASS/FINDINGS bound to exact TEST_CHANGE; no implementation or deployment proof."
+ON_SUCCESS: IMPLEMENT-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ON_FAIL: REVISE_TEST_CHANGE_014_BEFORE_IMPLEMENTATION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-TEST-REVIEW-055
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "TEST_CHANGE 014 binds exact producer and runtime consumer, defines compatibility policy, generated-document-through-real-consumer test, positive/negative schema-kind-version matrix, regression retention and no weakening of candidate identity semantics; implementation remains blocked pending TEST_REVIEW PASS."
+EXIT_CONDITION: "No blocking/high/medium design finding remains; four-file scope sufficient; 27-key V2 covers every consumer; real generated consumer witness and negative matrices meaningful; dev22/predecessor hardcuts explicit; ORACLE_CHANGED=false; no deployment/native/signing/LAB authority."
 ~~~
 
-Test design only. Do not patch producer/consumer code, create deployment authorization, switch current, modify failed dev23 trees, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not implement producer/consumer changes, rebuild control artifacts, create deployment authorization, switch current, modify failed dev23 evidence, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
