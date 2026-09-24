@@ -1,0 +1,35 @@
+{
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "contract_digest": "f259656c48ed24c15bd48da2bb040950ed94d8edcf1473cf6456b96578c933ee",
+  "files": {
+    "IMPL-P00-001_IMPLEMENTATION_PACKAGE_V23.zip": {
+      "bytes": 1202628,
+      "sha256": "d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf"
+    },
+    "aifilm_p00_contracts-0.1.0.dev23-py3-none-any.whl": {
+      "bytes": 188909,
+      "sha256": "55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df"
+    },
+    "app-manifest.sha256": {
+      "bytes": 29714,
+      "sha256": "e0e6ab2ddf5f4c982ef07696336935d24e2082327ed4f1ecd90ec91e0ab13d6b"
+    },
+    "runtime-manifest.json": {
+      "bytes": 1576,
+      "sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d"
+    }
+  },
+  "host_venv_included": false,
+  "implementation_version": "0.1.0.dev23",
+  "kind": "AIFILM_P00_REBUILD_SET_V2",
+  "native_authority_included": false,
+  "package_sha256": "d60433b2b559c975dd93378db7c3c8481ba80896deb539d8227b28b169a83dbf",
+  "private_key_included": false,
+  "protected_identity_included": false,
+  "schema_version": 1,
+  "source_commit": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "source_digest": "d07c053704f58f18647b9e3d0eca778d930d9af9e8595d3c4e6e13462511bb6d",
+  "test_digest": "c859758b4bbe8e467c0495238c28cededf261aa89a639044a59833bf51859864",
+  "wheel_sha256": "55853acf55374db3e8da6159ae6fe26dcad2d0a6b7f022aef79b2009c40253df"
+}

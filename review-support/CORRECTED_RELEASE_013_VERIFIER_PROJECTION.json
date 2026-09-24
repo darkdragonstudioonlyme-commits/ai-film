@@ -1,0 +1,22 @@
+{
+  "builder_author_commit": "0a05cd4b0ef49565f77eb503d918828a539b6237",
+  "executable": true,
+  "hash_bound": true,
+  "host_ready": false,
+  "implementation_version": "0.1.0.dev23",
+  "inventory_case_count": 86,
+  "inventory_status": "NOT_RUN",
+  "is_regular": true,
+  "kind": "CORRECTED_RELEASE_013_VERIFIER_PROJECTION",
+  "manifest_verify_runtime_sha256": "e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae",
+  "mode": "750",
+  "native_execution_started": false,
+  "product_candidate": "2f7da39984a7a582c7cf2a84f743299fc7fe735f",
+  "qualification_issued": false,
+  "runtime_verify": "PASS",
+  "schema_version": 1,
+  "validation_commit": "abac81bd8b9e5e2df206b554950919ae3d754e37",
+  "verify_runtime_path": "bin/verify-runtime",
+  "verify_runtime_sha256": "e62022fb5e6393595ef1c813453d2f0f439375423b1f4bc0aef94d0a91e03dae",
+  "verify_stdout": "PRODLIKE_RUNTIME_VERIFY_PASS version=0.1.0.dev23 native=NOT_RUN"
+}
