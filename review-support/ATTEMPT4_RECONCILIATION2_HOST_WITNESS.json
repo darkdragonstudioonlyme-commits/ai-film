@@ -1,0 +1,264 @@
+{
+  "all_timers_enabled_active": true,
+  "current_link": {
+    "exists": true,
+    "target": "/home/dragon/ai-film-runtime/dev23",
+    "type": "symlink"
+  },
+  "current_target": "/home/dragon/ai-film-runtime/dev23",
+  "current_verify_runtime": {
+    "exists": false
+  },
+  "deployment_receipt": {
+    "exists": false
+  },
+  "dev22_top_level": [
+    "app",
+    "app-manifest.sha256",
+    "bin",
+    "dist",
+    "evidence",
+    "home",
+    "runtime-manifest.json",
+    "var",
+    "venv"
+  ],
+  "dev22_verify_runtime": {
+    "bytes": 2683,
+    "exists": true,
+    "gid": 1000,
+    "mode": "750",
+    "sha256": "3a9203b6490f5a3ff43e3e5d1678f354e7f810bfb0b76d6664f6cc7379a99f1e",
+    "type": "file",
+    "uid": 1000
+  },
+  "dev23_runtime_manifest": {
+    "bytes": 1453,
+    "exists": true,
+    "gid": 1000,
+    "mode": "444",
+    "sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45",
+    "type": "file",
+    "uid": 1000
+  },
+  "dev23_top_level": [
+    "app",
+    "app-manifest.sha256",
+    "dist",
+    "evidence",
+    "home",
+    "runtime-manifest.json",
+    "var"
+  ],
+  "dev23_verify_runtime": {
+    "exists": false
+  },
+  "hklm_touched": false,
+  "host_ready": false,
+  "kind": "PRODLIKE_ATTEMPT4_RECEIPT_REVIEW_HOST_WITNESS",
+  "native_execution_started": false,
+  "observed_at_unix": 1790213267,
+  "qualification_issued": false,
+  "release_runtime_manifest": {
+    "bytes": 1453,
+    "exists": true,
+    "gid": 1000,
+    "mode": "444",
+    "sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45",
+    "type": "file",
+    "uid": 1000
+  },
+  "release_source_top_level": [
+    "app",
+    "app-manifest.sha256",
+    "dist",
+    "evidence",
+    "home",
+    "runtime-manifest.json",
+    "var"
+  ],
+  "release_source_verify_runtime": {
+    "exists": false
+  },
+  "rollback_artifacts": {
+    "control-meta.json": {
+      "bytes": 21054,
+      "exists": true,
+      "gid": 1000,
+      "mode": "600",
+      "sha256": "0fc5c747a2c45df3f6bf3b54f293467c99f0082a9f7dc6222355066b506a19dc",
+      "type": "file",
+      "uid": 1000
+    },
+    "plan.json": {
+      "bytes": 1627,
+      "exists": true,
+      "gid": 1000,
+      "mode": "600",
+      "sha256": "f33af28c89347f8bfaee1745d551b2e514322c5130ce2fd3909dac6e944bfc81",
+      "type": "file",
+      "uid": 1000
+    },
+    "timer-state.json": {
+      "bytes": 1572,
+      "exists": true,
+      "gid": 1000,
+      "mode": "600",
+      "sha256": "91d83fb5fbe0f41f01af2008ef679bd5322313a713cfbdc01cb59145f9c1a6ed",
+      "type": "file",
+      "uid": 1000
+    }
+  },
+  "schema_version": 1,
+  "signing_performed": false,
+  "site_entered": false,
+  "timers": {
+    "aifilm-p00-control-backup.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-current-verify.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-dr-rehearsal.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-evidence-ledger.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-failclosed-campaign.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-host-mirror.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-offhost-export.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-rebuild-verify.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-recovery-verify.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-runtime-health.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    },
+    "aifilm-p00-v02-authority-watch.timer": {
+      "active_rc": 0,
+      "active_stderr": "",
+      "active_stdout": "active",
+      "enabled_rc": 0,
+      "enabled_stderr": "",
+      "enabled_stdout": "enabled"
+    }
+  },
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+  "transaction_receipt": {
+    "authorization_sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837",
+    "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+    "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+    "events": [
+      {
+        "control_entries": 64,
+        "event": "ROLLBACK_CAPTURED",
+        "old_current_target": "/home/dragon/ai-film-runtime/dev22",
+        "timer_count": 11
+      },
+      {
+        "event": "RELEASE_STAGED",
+        "target": "/home/dragon/ai-film-runtime/dev23"
+      },
+      {
+        "event": "USER_SYSTEMD_QUIESCED",
+        "timer_count": 11
+      },
+      {
+        "event": "CONTROL_DEPLOYED_VERIFIED"
+      },
+      {
+        "event": "CURRENT_SWITCHED",
+        "target": "/home/dragon/ai-film-runtime/dev23"
+      }
+    ],
+    "failure": "UnknownCommandCompletion:COMMAND_NONZERO_OR_UNKNOWN:[\"/home/dragon/ai-film-runtime/bin/verify-current\"]:127",
+    "hklm_touched": false,
+    "host_ready": false,
+    "kind": "AIFILM_P00_TRANSACTION_RECEIPT_V1",
+    "mutation_started": true,
+    "native_execution_started": false,
+    "phase": "UNKNOWN_COMPLETION",
+    "qualification_issued": false,
+    "rollback_attempted": false,
+    "rollback_verified": false,
+    "schema_version": 1,
+    "signing_performed": false,
+    "site_entered": false,
+    "state": "RECONCILE_REQUIRED",
+    "transaction_id": "PRODLIKE-DEV23-1CE088A-004",
+    "transaction_kind": "PRODLIKE_DEPLOYMENT_V2",
+    "unknown_completion": true
+  },
+  "transaction_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce",
+  "verify_current": {
+    "bytes": 293,
+    "exists": true,
+    "gid": 1000,
+    "mode": "750",
+    "sha256": "93e6d32a0b6c7a8a980ed3c80a654e6256fa9f000cc0746a3dbb9b030819032f",
+    "type": "file",
+    "uid": 1000
+  },
+  "verify_current_rc": 127,
+  "verify_current_stderr": "/home/dragon/ai-film-runtime/bin/verify-current: line 7: /home/dragon/ai-film-runtime/current/bin/verify-runtime: No such file or directory\n",
+  "verify_current_stdout": ""
+}

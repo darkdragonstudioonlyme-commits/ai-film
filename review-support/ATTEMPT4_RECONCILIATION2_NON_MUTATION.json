@@ -1,0 +1,10 @@
+{
+  "after_sha256": "5f782e640c72ce39050519378e725c76c5e5523fd4e3c8bf44c78d3acfc527b7",
+  "before_sha256": "5f782e640c72ce39050519378e725c76c5e5523fd4e3c8bf44c78d3acfc527b7",
+  "current_target": "/home/dragon/ai-film-runtime/dev23",
+  "execution_started": false,
+  "kind": "ATTEMPT4_RECONCILIATION2_PREPARATION_NON_MUTATION",
+  "receipt_root_absent": true,
+  "same": true,
+  "schema_version": 1
+}
