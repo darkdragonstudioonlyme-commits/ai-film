@@ -7,5 +7,6 @@ BASELINE: origin/main @ 15f27a0; archived as archive/p00-governance-2026-09-24.
 DONE: T-001..T-004; practical host check PASS; film core 7/7 tests PASS; 8 benchmark shots compile deterministically.
 NEXT: T-008 benchmark harness/scoring; T-009 ffmpeg/animatic path.
 BLOCKERS: no discrete NVIDIA GPU; actual image/video generation waits for rental benchmark.
+LEGACY_P00: 11 scheduled P00 user timers re-audited, disabled and inactive; historical units/evidence preserved.
 PRODUCT DELTA RULE: every normal Continue turn advances a film artifact, executable code, test evidence, or benchmark asset.
 SAFETY: preserve historical P00 branches/worktrees/evidence; no publish, destructive cleanup, or unbounded paid resource use.
