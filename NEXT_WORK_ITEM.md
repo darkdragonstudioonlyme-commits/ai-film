@@ -1,44 +1,57 @@
-# NEXT WORK ITEM — execute one reviewed corrected-release prodlike attempt 005
+# NEXT WORK ITEM — review prodlike transaction 005 receipt and reconciliation
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: EXECUTE-P00-DEV23-PRODLIKE-DEPLOYMENT-005
-ASSIGNEE: CHATGPT
+WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-005
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  VALIDATION_REVIEW_HEAD: 6e746227d561bd36abd2ac6819ea33a217570a25
-  AUTHORIZATION_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-AUTHORIZATION-005.md
-  AUTHORIZATION_MAIN_SNAPSHOT: 96f4ea3b8e313a07ff986326dcbe2b86be15dd99
-  AUTHORIZATION_VALIDATION_SNAPSHOT: a5dac299d54f5f6e482f6cdbb1879532b1f2a068
+  MAIN_COMMIT: 2a95d80fa82e9b66bfd630f7e457fc38fc90e27a
+  VALIDATION_HEAD: 6e746227d561bd36abd2ac6819ea33a217570a25
   EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
-  EXECUTOR_TREE: 0f56ea32d26a73dbe7d3a6982bcd8fc4ba109b62
+  REVIEW_SUPPORT_COMMIT: b0cbab7f9f1c0cb5cc87d2d1567f22f1669f33e7
   AUTHORIZATION_SHA256: 293098adbe9c66d17bd3dc3c6dd2030d6e847c49bf19232f21c8693a5bca3b83
   TRANSACTION_ID: PRODLIKE-DEV23-CORRECTED-96F4EA3-005
-  RELEASE_TARGET: /home/dragon/ai-film-runtime/dev23-corrected
-  FAILED_EVIDENCE_TARGET: /home/dragon/ai-film-runtime/dev23
-  ATTEMPT: 1
-GOAL: "Run exactly one reviewed foreground corrected-release prodlike transaction attempt; receipt state owns replay/reconcile; do not begin LAB/native/signing."
+  TRANSACTION_RECEIPT_SHA256: 6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5
+OBSERVED:
+  RECEIPT_STATE: RECONCILE_REQUIRED
+  PHASE: UNKNOWN_COMPLETION
+  FAILURE: runtime_health_release_control_schema
+  CURRENT_TARGET: dev23-corrected
+  CONTROL_DEPLOYED_VERIFIED: true
+  ALL_11_TIMERS_WITH_EXPLICIT_USER_BUS: ENABLED_ACTIVE
+  DEPLOYMENT_RECEIPT: ABSENT
+  ROLLBACK_CONTROL_BACKUPS: 64_OF_64_HASH_MATCH
+  RELEASE_CONTROL_SCHEMA_MATCH: false
+  RELEASE_CONTROL_KIND_MATCH: false
+  NATIVE_EXECUTION: false
+  SIGNING: false
+GOAL: "Independently classify transaction-005 receipt, exact post-state and release-control consumer/producer root cause; prescribe the minimal fail-closed reconciliation and required test/design correction before another authorization."
 STEPS:
-  - AUTHORIZATION5_REVIEW: COMPLETE_PASS
-  - PRE_EXECUTION_EXACT_REVALIDATION: READY
-  - SINGLE_FOREGROUND_TRANSACTION_ATTEMPT: BLOCKED_UNTIL_REVALIDATION
-  - TRANSACTION_RECEIPT_CAPTURE: NOT_STARTED
-  - RECEIPT_CROSS_MODEL_REVIEW: BLOCKED
+  - TRANSACTION005_RECEIPT: COMPLETE_RECONCILE_REQUIRED
+  - READ_ONLY_HOST_WITNESS: COMPLETE
+  - TRANSACTION005_REPLAY: PERMANENTLY_FORBIDDEN
+  - CLAUDE_RECEIPT_CLASSIFICATION: READY
+  - CLAUDE_ROOT_CAUSE_REVIEW: READY
+  - CLAUDE_RECONCILIATION_REVIEW: READY
+  - HOST_RECONCILIATION_MUTATION: BLOCKED
+  - TEST_DESIGN_CORRECTION: BLOCKED_PENDING_REVIEW
+  - NEW_PRODLIKE_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Durable transaction 005 receipt and before/after evidence; no LAB/native/signing proof."
-ON_SUCCESS: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-005
-ON_FAIL: RECONCILE_OR_REVIEW_TRANSACTION_RECEIPT_NO_IMPLICIT_RETRY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-EXECUTION5-046
+SUCCESS_OUTPUT: "Formal immutable receipt disposition plus exact reconciliation/test-design route; no retry/native proof."
+ON_SUCCESS: RECONCILE-P00-DEV23-PRODLIKE-ATTEMPT5
+ON_FAIL: SAME_RECEIPT_RECONCILIATION_CAUSAL_FAMILY
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RECEIPT005-REVIEW-047
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "One attempt returns durable PASS/FAILED_ROLLED_BACK/FAILED_PREMUTATION/RECONCILE_REQUIRED; never start a second attempt implicitly."
+EXIT_CONDITION: "Review establishes immutable receipt disposition, exact current/control/timer state, why runtime-health failed, whether rollback assets are sufficient, the only permitted reconciliation action, and the required release-control/test-design correction. No blocking ambiguity remains before reconciliation."
 ~~~
 
-Before execution require unexpired capsule, current still exact dev22, exact input hashes, corrected target absent, broken dev23 preserved, valid user bus and no existing transaction-005 receipt. After any receipt is written, stop and route it to review. LAB/native/signing/HKLM/SITE/qualification/HOST_READY remain forbidden.
+Review only. Do not rerun transaction 005, delete/repair either staged dev23 tree, rollback/switch current, mutate user-systemd/control, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
