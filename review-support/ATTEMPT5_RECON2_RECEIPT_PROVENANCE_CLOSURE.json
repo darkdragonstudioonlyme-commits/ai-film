@@ -1,0 +1,14 @@
+{
+  "files": {
+    "ATTEMPT5_RECON2_ONE_ATTEMPT_LEDGER.json": {
+      "bytes": 3317,
+      "sha256": "85a6091af9a6e6f86b034aeb593e8c00dc154388a44c628fb9e65560144d1ce5"
+    },
+    "ATTEMPT5_RECON2_POST_RECEIPT_VERIFY_PROVENANCE.json": {
+      "bytes": 2262,
+      "sha256": "afa49b546e74cbaa072c5dd8580355e34c90d67a66e5da7c9cd6ba14e1d33f4c"
+    }
+  },
+  "kind": "ATTEMPT5_RECON2_RECEIPT_PROVENANCE_CLOSURE",
+  "schema_version": 1
+}

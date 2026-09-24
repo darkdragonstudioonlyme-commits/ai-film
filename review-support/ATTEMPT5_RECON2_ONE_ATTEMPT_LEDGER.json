@@ -1,0 +1,80 @@
+{
+  "authorization_sha256": "f4aac9d60ecaf5267bd0086145820e5437652405992c8c26c65e57f5ab05e871",
+  "execution_exit": {
+    "bytes": 2,
+    "mtime_ns": 1790244066745408385,
+    "path": "/home/dragon/ai-film-dev/run-evidence/v139-attempt5-reconciliation2-preexec-20260924/execution.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "execution_stderr": {
+    "bytes": 0,
+    "mtime_ns": 1790244064639229969,
+    "path": "/home/dragon/ai-film-dev/run-evidence/v139-attempt5-reconciliation2-preexec-20260924/execution.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "execution_stdout": {
+    "bytes": 2677,
+    "mtime_ns": 1790244066745408385,
+    "path": "/home/dragon/ai-film-dev/run-evidence/v139-attempt5-reconciliation2-preexec-20260924/execution.stdout",
+    "sha256": "db04f117c8c859df72c331e11a9621f22943e668a7d0e11c60b3e9c6fb97694a"
+  },
+  "hklm_touched": false,
+  "kind": "ATTEMPT5_RECON2_ONE_ATTEMPT_LEDGER",
+  "known_transaction_receipt_count_for_transaction_id": 1,
+  "known_transaction_receipts": [
+    {
+      "path": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/transaction-receipt.json",
+      "sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9"
+    }
+  ],
+  "native_execution_started": false,
+  "preexec_checked_unix": 1790244064,
+  "preexec_final": {
+    "bytes": 1052,
+    "mtime_ns": 1790244064552531095,
+    "path": "/home/dragon/ai-film-dev/run-evidence/v139-attempt5-reconciliation2-preexec-20260924/preexec-final.json",
+    "sha256": "4e4ed09d5bd52ad5d92d3cbf244c365903468268fd71f81968d82b1edd7d5a67"
+  },
+  "reason": "Exactly one immutable receipt was found for this transaction id; the existing receipt is the non-replay ledger anchor.",
+  "receipt_events": [
+    {
+      "event": "USER_SYSTEMD_QUIESCED",
+      "timer_count": 11
+    },
+    {
+      "control_entries": 64,
+      "event": "CONTROL_RESTORED"
+    },
+    {
+      "event": "CURRENT_RESTORED",
+      "target": "/home/dragon/ai-film-runtime/dev22"
+    },
+    {
+      "event": "RECONCILIATION_INTERNAL_PASS"
+    }
+  ],
+  "receipt_root": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924",
+  "receipt_root_files": [
+    "plan.json",
+    "transaction-receipt.json",
+    "transaction-receipt.json.lock"
+  ],
+  "receipt_sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9",
+  "receipt_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "same_transaction_id_replay_allowed": false,
+  "schema_version": 1,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002",
+  "transaction_plan": {
+    "bytes": 9601,
+    "mtime_ns": 1790244064720753632,
+    "path": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/plan.json",
+    "sha256": "d16113c297069b979a199ebacfc2b7b466fb269c0554ec7992f5e93b12251198"
+  },
+  "transaction_receipt": {
+    "bytes": 3369,
+    "mtime_ns": 1790244066741024673,
+    "path": "/home/dragon/ai-film-dev/run-evidence/prodlike-dev23-corrected-attempt5-reconciliation2-20260924/transaction-receipt.json",
+    "sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9"
+  }
+}
