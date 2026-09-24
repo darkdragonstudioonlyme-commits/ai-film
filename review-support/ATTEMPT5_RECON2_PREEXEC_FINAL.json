@@ -1,0 +1,22 @@
+{
+  "authorization_sha256": "f4aac9d60ecaf5267bd0086145820e5437652405992c8c26c65e57f5ab05e871",
+  "candidate_binding_sha256": "ed7823332afa96c3335f3353518ca0330b9e3c687b0022926c776319611c1890",
+  "candidate_id": "acf18da3-4969-451c-8a4b-a7e46ad89c98",
+  "checked_unix": 1790244064,
+  "current_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "execution_started": false,
+  "executor_commit": "43944bc7d117080bcfe7b0f0680685dfb7102b4f",
+  "executor_tree": "1968ce9241b4100a8c3b9d9a99f42ea62d593bf0",
+  "expires_at": 1790262405,
+  "host_snapshot_verified": true,
+  "input_hashes_verified": true,
+  "kind": "ATTEMPT5_RECONCILIATION2_PREEXEC_FINAL",
+  "main_commit": "c48a906c62584f0d61f2708ff39caf33646b7198",
+  "plan_sha256": "1e794b9831c2ef8eb3719f58d2c3f1d758d39fce20f1318d8478492957948e1b",
+  "receipt_root_absent": true,
+  "remaining_seconds": 18341,
+  "schema_version": 1,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002",
+  "user_bus_verified": true,
+  "validation_commit": "e492d606bf58a032a7432a6053e0b2db07c91728"
+}

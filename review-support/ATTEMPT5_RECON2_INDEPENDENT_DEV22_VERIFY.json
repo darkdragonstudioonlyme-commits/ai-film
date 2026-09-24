@@ -1,0 +1,125 @@
+{
+  "all_11_timers_enabled_active": true,
+  "all_64_control_entries_exact": true,
+  "all_preserved_roots_exact": true,
+  "control_bad": [],
+  "control_rows": 64,
+  "current_dev22_exact": true,
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "dev23_corrected_deployment_receipt_absent": true,
+  "dev23_deployment_receipt_absent": true,
+  "hklm_touched": false,
+  "host_ready": false,
+  "kind": "ATTEMPT5_RECONCILIATION2_INDEPENDENT_DEV22_VERIFY",
+  "native_execution_started": false,
+  "observed_unix": 1790244170,
+  "preservation": {
+    "/home/dragon/.config/systemd/user": true,
+    "/home/dragon/ai-film-runtime/dev22": true,
+    "/home/dragon/ai-film-runtime/dev23": true,
+    "/home/dragon/ai-film-runtime/dev23-corrected": true
+  },
+  "qualification_issued": false,
+  "receipt_internal_verify_pass": true,
+  "receipt_state": "RECONCILED_PENDING_INDEPENDENT_VERIFY",
+  "schema_version": 1,
+  "signing_performed": false,
+  "site_entered": false,
+  "timer_count": 11,
+  "timers": {
+    "aifilm-p00-control-backup.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-current-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-dr-rehearsal.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-evidence-ledger.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-failclosed-campaign.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-host-mirror.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-offhost-export.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-rebuild-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-recovery-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-runtime-health.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    },
+    "aifilm-p00-v02-authority-watch.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "active_stderr": "",
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "enabled_stderr": ""
+    }
+  },
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002",
+  "transaction_receipt_sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9",
+  "verify_current_pass": true,
+  "verify_current_rc": 0,
+  "verify_current_stderr": "",
+  "verify_current_stdout_sha256": "126a7795749d4ce973ee7efb1656c907303bc28e262526dcdd1bdc456e9752a0"
+}
