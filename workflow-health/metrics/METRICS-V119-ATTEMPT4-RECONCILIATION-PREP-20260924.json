@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "current_target_observed": "dev23",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "504f4d107b4a6ab3e08404b77159bf555fc87960",
+    "review_support": "32bc1264de46972e4faa650860e2801cc59d0f21",
+    "validation": "5005c1547865e68956c90f23edd8c22266f8967a"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutation": false,
+  "receipt_review_record": "reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-004.md",
+  "reconciliation_target": "accepted_dev22",
+  "release_test_change_required": true,
+  "schema_version": 1,
+  "scope": "Route transaction004 receipt findings to plan-only bounded dev22 reconciliation preparation; no mutation",
+  "session_denominator": null,
+  "signing_performed": false,
+  "staged_dev23_disposition": "PRESERVE_AS_EVIDENCE_DURING_RECONCILIATION_THEN_REBUILD_AFTER_TEST_FIX",
+  "transaction004_replay_authorized": false,
+  "transaction_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce"
+}

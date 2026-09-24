@@ -1,56 +1,46 @@
-# NEXT WORK ITEM — review prodlike transaction 004 receipt and reconciliation
+# NEXT WORK ITEM — prepare bounded reconciliation for prodlike transaction004
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: CODE_REVIEW
-LANE: CODE_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-004
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: 4daa08ce303b939e3bd06902fc0cdfe727adf101
-  VALIDATION_HEAD: 62aa80afe7452c5578e7a179a2bba4a9d869aa1e
-  EXECUTOR_COMMIT: b94eb5b115385a6b0634b2ff424f26c34407f9ad
-  REVIEW_SUPPORT_COMMIT: 32bc1264de46972e4faa650860e2801cc59d0f21
-  AUTHORIZATION_SHA256: 7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837
-  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004
-  TRANSACTION_RECEIPT_SHA256: 1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce
-OBSERVED:
-  RECEIPT_STATE: RECONCILE_REQUIRED
-  PHASE: UNKNOWN_COMPLETION
-  FAILURE: verify_current_rc127_missing_current_bin_verify_runtime
-  CURRENT_TARGET: dev23
-  CONTROL_DEPLOYED_VERIFIED: true
-  ALL_11_TIMERS_WITH_EXPLICIT_USER_BUS: ENABLED_ACTIVE
-  DEPLOYMENT_RECEIPT: ABSENT
-  RELEASE_SOURCE_VERIFY_RUNTIME: ABSENT
-  ROLLBACK_ATTEMPTED: false
-  NATIVE_EXECUTION: false
-  SIGNING: false
-GOAL: "Independently classify transaction-004 receipt, exact post-state and root cause; prescribe the minimal fail-closed reconciliation and any required test/design correction before another authorization."
+  MAIN_COMMIT: 504f4d107b4a6ab3e08404b77159bf555fc87960
+  VALIDATION_HEAD: 5005c1547865e68956c90f23edd8c22266f8967a
+  RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-004.md
+  TRANSACTION004_ID: PRODLIKE-DEV23-1CE088A-004
+  TRANSACTION004_RECEIPT_SHA256: 1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce
+  TRANSACTION004_REPLAY_AUTHORIZED: false
+  CURRENT_OBSERVED_TARGET: /home/dragon/ai-film-runtime/dev23
+  RECONCILIATION_TARGET: /home/dragon/ai-film-runtime/dev22
+GOAL: "Prepare one immutable reconciliation plan and receipt identity that restores the exact captured dev22 control/current/11-timer baseline without replaying transaction004 or modifying the staged broken dev23 tree."
 STEPS:
-  - TRANSACTION004_RECEIPT: COMPLETE_RECONCILE_REQUIRED
-  - READ_ONLY_HOST_WITNESS: COMPLETE
+  - RECEIPT004_REVIEW: COMPLETE_FINDINGS_RECONCILE_REQUIRED
   - TRANSACTION004_REPLAY: PERMANENTLY_FORBIDDEN
-  - CLAUDE_RECEIPT_CLASSIFICATION: READY
-  - CLAUDE_ROOT_CAUSE_REVIEW: READY
-  - CLAUDE_RECONCILIATION_REVIEW: READY
+  - ROLLBACK_ASSETS: CAPTURED_NOT_EXECUTED
+  - RECONCILIATION_PLAN_AUTHOR: READY
+  - PREMUTATION_SNAPSHOT: NOT_STARTED
+  - RECONCILIATION_PLAN_CROSS_MODEL_REVIEW: BLOCKED
   - HOST_RECONCILIATION_MUTATION: BLOCKED
-  - TEST_DESIGN_CORRECTION: BLOCKED_PENDING_REVIEW
-  - NEW_PRODLIKE_AUTHORIZATION: BLOCKED
+  - INDEPENDENT_DEV22_LIVE_VERIFICATION: BLOCKED
+  - RELEASE_VERIFY_RUNTIME_TEST_CHANGE_013: BLOCKED_UNTIL_RECONCILIATION_PASS
+  - NEW_PRODLIKE_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal immutable receipt disposition plus exact reconciliation/test-design route; no retry/native proof."
-ON_SUCCESS: RECONCILE-P00-DEV23-PRODLIKE-ATTEMPT4
-ON_FAIL: SAME_RECEIPT_RECONCILIATION_CAUSAL_FAMILY
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RECEIPT004-REVIEW-044
+SUCCESS_OUTPUT: "Fresh reconciliation plan/hash/receipt-root plus before-snapshot evidence; no mutation proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
+ON_FAIL: CORRECT_RECONCILIATION_PLAN_BEFORE_MUTATION
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-PREP-045
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Review establishes immutable receipt disposition, exact current/control/timer state, why verify-current failed, whether rollback assets are sufficient, the only permitted reconciliation action, and whether release/package/test design must change. No blocking ambiguity remains before reconciliation."
+EXIT_CONDITION: "Plan has a unique transaction id/root, binds exact receipt004 rollback assets, limits mutation to current symlink + 64 captured control entries + reviewed user-systemd commands, preserves broken dev23 as evidence, and requires independent dev22 verifier + 11 timer checks before reconciliation can be accepted."
 ~~~
 
-Review only. Do not rerun transaction 004, delete staged dev23, rollback/switch current, mutate user-systemd/control, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Preparation only. Do not replay transaction004, switch current, restore control, mutate timers, delete/repair dev23, issue a new deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
