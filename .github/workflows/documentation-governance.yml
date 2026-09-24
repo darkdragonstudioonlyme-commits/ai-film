@@ -23,6 +23,9 @@ on:
       - 'tools/check_*.py'
       - 'tools/test_*.py'
       - 'tools/compile_slice01.py'
+      - 'tools/build_animatic.py'
+      - 'tools/build_subtitles.py'
+      - 'tools/run_model_benchmark.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -48,6 +51,9 @@ on:
       - 'tools/check_*.py'
       - 'tools/test_*.py'
       - 'tools/compile_slice01.py'
+      - 'tools/build_animatic.py'
+      - 'tools/build_subtitles.py'
+      - 'tools/run_model_benchmark.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -85,10 +91,13 @@ jobs:
       - name: Product v2 syntax and tests
         if: steps.mode.outputs.product_v2 == 'true'
         run: |
-          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tests/film/*.py
+          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/build_subtitles.py tools/build_animatic.py tests/film/*.py
           bash -n tools/host_ready_practical.sh tools/turn_start.sh tools/turn_end.sh
           PYTHONPATH=. python3 -m unittest discover -s tests/film -v
           PYTHONPATH=. python3 tools/compile_slice01.py
+          PYTHONPATH=. python3 tools/run_model_benchmark.py --profile smoke --run-id ci-smoke --out-root /tmp/aifilm-benchmark
+          PYTHONPATH=. python3 tools/build_subtitles.py --out-dir /tmp/aifilm-timing/subtitles
+          PYTHONPATH=. python3 tools/build_animatic.py --plan-only --out-root /tmp/aifilm-animatic
       - name: Current work and audit declaration scope
         if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_current_work.py

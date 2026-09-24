@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "fps": 24,
+  "shots": [
+    {
+      "shot_id": "sc01_sh01",
+      "duration_sec": 8.0
+    },
+    {
+      "shot_id": "sc01_sh02",
+      "duration_sec": 7.0
+    },
+    {
+      "shot_id": "sc01_sh03",
+      "duration_sec": 10.0
+    },
+    {
+      "shot_id": "sc01_sh04",
+      "duration_sec": 9.0
+    },
+    {
+      "shot_id": "sc01_sh05",
+      "duration_sec": 9.0
+    },
+    {
+      "shot_id": "sc01_sh06",
+      "duration_sec": 11.0
+    },
+    {
+      "shot_id": "sc01_sh07",
+      "duration_sec": 9.0
+    },
+    {
+      "shot_id": "sc01_sh08",
+      "duration_sec": 12.0
+    }
+  ],
+  "dialogue_cues": [
+    {
+      "dialogue_id": "dlg_001",
+      "shot_id": "sc01_sh03",
+      "start_offset_sec": 1.5,
+      "end_offset_sec": 5.0
+    },
+    {
+      "dialogue_id": "dlg_002",
+      "shot_id": "sc01_sh04",
+      "start_offset_sec": 1.5,
+      "end_offset_sec": 4.8
+    },
+    {
+      "dialogue_id": "dlg_003",
+      "shot_id": "sc01_sh06",
+      "start_offset_sec": 1.5,
+      "end_offset_sec": 5.5
+    },
+    {
+      "dialogue_id": "dlg_004",
+      "shot_id": "sc01_sh07",
+      "start_offset_sec": 1.5,
+      "end_offset_sec": 3.6
+    }
+  ]
+}

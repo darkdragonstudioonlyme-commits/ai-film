@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "license_gate": "RECHECK_EXACT_CODE_WEIGHTS_DATASET_AND_TERRITORY_BEFORE_EXECUTION",
+    "paid_execution": "REQUIRES_BOUNDED_BUDGET",
+    "notes": "License strings are shortlist hints, not production approval."
+  },
+  "models": [
+    {
+      "model_id": "qwen-image",
+      "stage": "image",
+      "family": "Qwen-Image",
+      "checkpoint": "benchmark_exact_checkpoint_tbd",
+      "runner_profile": "text_to_image",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": true,
+      "requires": [],
+      "execution_ready": false
+    },
+    {
+      "model_id": "z-image",
+      "stage": "image",
+      "family": "Z-Image",
+      "checkpoint": "benchmark_exact_checkpoint_tbd",
+      "runner_profile": "text_to_image",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": true,
+      "requires": [],
+      "execution_ready": false
+    },
+    {
+      "model_id": "flux2-klein-4b",
+      "stage": "image",
+      "family": "FLUX.2 klein",
+      "checkpoint": "4B",
+      "runner_profile": "text_to_image",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": true,
+      "requires": [],
+      "execution_ready": false
+    },
+    {
+      "model_id": "wan22-ti2v-5b",
+      "stage": "video",
+      "family": "Wan 2.2",
+      "checkpoint": "TI2V-5B",
+      "runner_profile": "text_image_to_video",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": true,
+      "requires": [
+        "reference_image"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "wan22-i2v-14b",
+      "stage": "video",
+      "family": "Wan 2.2",
+      "checkpoint": "I2V-14B",
+      "runner_profile": "image_to_video",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": true,
+      "requires": [
+        "reference_image"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "ltx-2x",
+      "stage": "video",
+      "family": "LTX-2.x",
+      "checkpoint": "exact_version_tbd",
+      "runner_profile": "text_image_to_video",
+      "license_hint": "LTX-2 Community",
+      "license_gate": "RECHECK_REVENUE_THRESHOLD_AND_EXACT_VERSION",
+      "enabled": true,
+      "requires": [
+        "reference_image"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "wan-animate-2",
+      "stage": "video",
+      "family": "Wan-Animate-2",
+      "checkpoint": "Base_or_Distillation_tbd",
+      "runner_profile": "reference_video_animation",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "reference_video",
+        "reference_character"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "voxcpm2",
+      "stage": "voice",
+      "family": "VoxCPM2",
+      "checkpoint": "exact_version_tbd",
+      "runner_profile": "tts_multilingual",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "dialogue"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "vieneu-tts-v2",
+      "stage": "voice",
+      "family": "VieNeu-TTS-v2",
+      "checkpoint": "v2_or_v2_turbo_gguf_tbd",
+      "runner_profile": "tts_vi",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "dialogue_vi"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "latent-sync",
+      "stage": "lipsync",
+      "family": "LatentSync",
+      "checkpoint": "exact_version_tbd",
+      "runner_profile": "lipsync",
+      "license_hint": "Apache-2.0",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "video",
+        "dialogue_audio"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "musetalk",
+      "stage": "lipsync",
+      "family": "MuseTalk",
+      "checkpoint": "exact_version_tbd",
+      "runner_profile": "lipsync",
+      "license_hint": "MIT",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "video",
+        "dialogue_audio"
+      ],
+      "execution_ready": false
+    },
+    {
+      "model_id": "ace-step-1.5",
+      "stage": "music",
+      "family": "ACE-Step 1.5",
+      "checkpoint": "exact_version_tbd",
+      "runner_profile": "music",
+      "license_hint": "MIT",
+      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "enabled": false,
+      "requires": [
+        "music_prompt"
+      ],
+      "execution_ready": false
+    }
+  ]
+}

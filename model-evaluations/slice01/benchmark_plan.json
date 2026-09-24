@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "slice01-model-eval-v1",
+  "shot_source": "projects/slice01/shots/benchmark_shots.json",
+  "compiled_source": "projects/slice01/compiled/benchmark_compiled.json",
+  "profiles": {
+    "smoke": {
+      "stages": [
+        "image"
+      ],
+      "shot_ids": [
+        "sc01_sh03",
+        "sc01_sh06"
+      ],
+      "styles": [
+        "photoreal"
+      ],
+      "seed_offsets": [
+        0
+      ],
+      "aspect": "9:16",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      }
+    },
+    "keyframe_core": {
+      "stages": [
+        "image"
+      ],
+      "shot_ids": [
+        "sc01_sh01",
+        "sc01_sh02",
+        "sc01_sh03",
+        "sc01_sh04",
+        "sc01_sh05",
+        "sc01_sh06",
+        "sc01_sh07",
+        "sc01_sh08"
+      ],
+      "styles": [
+        "photoreal",
+        "stylized_3d"
+      ],
+      "seed_offsets": [
+        0
+      ],
+      "aspect": "9:16",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      }
+    },
+    "keyframe_stability": {
+      "stages": [
+        "image"
+      ],
+      "shot_ids": [
+        "sc01_sh03",
+        "sc01_sh05",
+        "sc01_sh06",
+        "sc01_sh08"
+      ],
+      "styles": [
+        "photoreal"
+      ],
+      "seed_offsets": [
+        0,
+        1000,
+        2000
+      ],
+      "aspect": "9:16",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      }
+    },
+    "video_core": {
+      "stages": [
+        "video"
+      ],
+      "shot_ids": [
+        "sc01_sh01",
+        "sc01_sh02",
+        "sc01_sh03",
+        "sc01_sh04",
+        "sc01_sh05",
+        "sc01_sh06",
+        "sc01_sh07",
+        "sc01_sh08"
+      ],
+      "styles": [
+        "photoreal",
+        "stylized_3d"
+      ],
+      "seed_offsets": [
+        0
+      ],
+      "aspect": "9:16",
+      "resolution": {
+        "width": 720,
+        "height": 1280
+      }
+    },
+    "reframe_probe": {
+      "stages": [
+        "image"
+      ],
+      "shot_ids": [
+        "sc01_sh03",
+        "sc01_sh07"
+      ],
+      "styles": [
+        "photoreal"
+      ],
+      "seed_offsets": [
+        0
+      ],
+      "aspect": "16:9",
+      "resolution": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  }
+}

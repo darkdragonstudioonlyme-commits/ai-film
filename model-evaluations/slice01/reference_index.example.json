@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "shots": {
+    "sc01_sh03": {
+      "reference_image": "projects/slice01/refs/sc01_sh03_keyframe.png"
+    },
+    "sc01_sh06": {
+      "reference_image": "projects/slice01/refs/sc01_sh06_keyframe.png"
+    }
+  }
+}

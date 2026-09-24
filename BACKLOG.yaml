@@ -40,10 +40,25 @@
 - id: T-008
   milestone: M2
   goal: "Prepare reproducible rental-GPU benchmark harness and scoring rubric"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-009
   milestone: M2
   goal: "Prepare ffmpeg/animatic path and EN/ZH/VI timing assets without GPU"
+  status: DONE
+  owner: executor
+- id: T-010
+  milestone: M2
+  goal: "Pin exact model checkpoints/licenses and runner requirements before GPU execution"
+  status: READY
+  owner: coordinator
+- id: T-011
+  milestone: M2
+  goal: "Run CPU dialogue/TTS feasibility and prepare voice timing assets without cloning"
   status: READY
   owner: executor
+- id: T-012
+  milestone: M2
+  goal: "Prepare rental GPU configuration and bounded budget proposal from the fixed benchmark"
+  status: READY
+  owner: coordinator
