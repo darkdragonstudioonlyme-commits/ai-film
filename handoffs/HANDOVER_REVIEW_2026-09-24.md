@@ -8,7 +8,7 @@
 > Cập nhật lượt 4: ghi quyết định chủ dự án (24/09), phát hiện máy không có GPU rời, shortlist model mở kèm license (mục 12).
 > Cập nhật lượt 5: chủ dự án chọn thuê GPU vài ngày để benchmark rồi mới mua — kế hoạch ở mục 12.10.
 > Cập nhật lượt 6: đẩy lên GitHub — branch `handover/review-2026-09-24`, file `handoffs/HANDOVER_REVIEW_2026-09-24.md` (không đụng `main`).
-> Cập nhật lượt 7 (ChatGPT, 24/09/2026): đối chiếu GitHub xác nhận `main` vẫn ở `15f27a0`, nhánh handoff ahead `main` đúng 1 commit và chỉ thêm file này; `NEXT_WORK_ITEM.md` trên `main` vẫn trỏ TEST_DESIGN R2 / BLOCK 057. Bổ sung freeze + phân loại thẩm quyền để tránh agent sau tự biến khuyến nghị review thành lệnh thực thi.
+> Cập nhật lượt 7 (ChatGPT, 24/09/2026): đối chiếu GitHub xác nhận `main` vẫn ở `15f27a0`; nhánh handoff tách từ đúng commit đó và so với `main` chỉ thay đổi đường dẫn `handoffs/HANDOVER_REVIEW_2026-09-24.md` (các commit tiếp theo trên nhánh này chỉ hiệu đính chính handoff); `NEXT_WORK_ITEM.md` trên `main` vẫn trỏ TEST_DESIGN R2 / BLOCK 057. Bổ sung freeze + phân loại thẩm quyền để tránh agent sau tự biến khuyến nghị review thành lệnh thực thi.
 
 ## Trạng thái freeze và thẩm quyền của handoff
 
@@ -34,7 +34,7 @@ Các quyết định đã ghi ở mục 12.1 vẫn là ràng buộc thiết kế
 - Đề xuất của reviewer (chưa phải lệnh thực thi): freeze Phase 00 → vertical slice phim 60–90s trong 2 tuần → quy trình nhẹ → Claude Code implement có tool.
 - TRẠNG THÁI MAIN: nếu dùng "Tiếp tục." với state hiện hành, router vẫn trỏ tới `REVISE-TEST-DESIGN-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014-R2` (tiếp vòng Phase 00). Trong REVIEW_FREEZE không dùng lệnh này.
 - "Tiếp tục" hiện chỉ chạy 1 bước quy trình mỗi lượt và không đo năng suất; thiết kế v2 (mục 11) chuyển sang lượt theo lô có backlog sản phẩm, KPI mỗi lượt và Claude Code headless làm động cơ chạy dài.
-- Chủ dự án đã chốt (24/09): 9:16 trước (dễ ra 16:9), ≤ 3 phút, tả thực + 3D, 3 ngôn ngữ EN/ZH/VI (doanh thu chủ yếu EN/ZH), tự viết + chuyển thể, model cục bộ, ngân sách tạm không giới hạn — xem mục 12.
+- Chủ dự án đã chốt (24/09): 9:16 trước (dễ ra 16:9), ≤ 3 phút, tả thực + 3D, 3 ngôn ngữ EN/ZH/VI (doanh thu chủ yếu EN/ZH), tự viết + chuyển thể, model cục bộ; chưa đặt trần chiến lược cho lựa chọn GPU/API nhưng mọi khoản chi cụ thể vẫn cần phê duyệt/trần chi phí — xem mục 12.
 - Máy hiện tại KHÔNG có GPU rời (chỉ iGPU AMD). Đã chốt: thuê GPU 3–5 ngày để benchmark model mở rồi mới mua cấu hình phù hợp (mục 12.10); trong lúc chuẩn bị vẫn làm được kịch bản, ledger, dựng, TTS tiếng Việt trên CPU (mục 12.9).
 
 ## 1. Bản đồ nguồn (đã xác minh)
@@ -264,7 +264,7 @@ Budget Claude theo quy mô task (vd 1–5 USD, 20–50 lượt) thay vì 0,25 US
 
 Chỉ nếu chủ dự án phê duyệt pivot + giao thức v2: làm mục 11.4 cùng lúc với bước 3–4 để mọi lượt sau đều có KPI. Nếu chưa có phê duyệt đó, giữ nguyên router/state hiện hành.
 
-Nếu chủ dự án muốn file này nằm trên GitHub: commit vào branch riêng (vd `handover/review-2026-09-24`), không commit thẳng main.
+File này **đã** nằm trên GitHub ở branch riêng `handover/review-2026-09-24`. Mọi hiệu đính handoff tiếp theo tiếp tục ở branch này; không merge/commit vào `main` trong REVIEW_FREEZE.
 
 **Resume prompt mẫu — chỉ dùng sau khi chủ dự án phê duyệt pivot:**
 
@@ -290,7 +290,7 @@ Mục tiêu: phim ngắn ≤ 3 phút, master 9:16, EN/ZH/VI, model cục bộ. B
 Đã chốt thêm (24/09): thuê GPU vài ngày để benchmark rồi mới mua (mục 12.10).
 
 ## 9. Giới hạn của review
-- Không sửa working tree, `main`, lane hay state của dự án. Đã ghi: file bàn giao này (trong `handoffs/`, ngoài git), các thư mục tạm dưới đây, và branch mới `handover/review-2026-09-24` trên GitHub (1 commit trên nền `main` 15f27a0, chỉ thêm file này).
+- Reviewer ban đầu không sửa working tree, `main`, lane hay state của dự án; đã ghi bản handoff local ngoài repo, các thư mục tạm dưới đây và branch `handover/review-2026-09-24`. ChatGPT lượt 7 chỉ hiệu đính **cùng file handoff trên branch đó**. So sánh branch với `main` có đúng một changed path: `handoffs/HANDOVER_REVIEW_2026-09-24.md`; base/merge-base vẫn là `15f27a0`.
 - Thư mục tạm có thể xóa: /tmp/aifilm-review-main, /tmp/aifilm-review-val, /tmp/aifilm-review-src, log /tmp/aifilm-review-tests.log.
 - Đã xác minh độc lập: 766 test workspace. Chưa chạy lại: static check 101, test của lane validation, test trong tools/ trên main.
 - Chưa đọc hết 486 MD và 108 review, chưa đọc từng dòng code, chưa kiểm các worktree ẩn (có thể chứa WIP — không được xóa).
@@ -455,14 +455,14 @@ Mục tiêu năng suất:
 | Nhóm | Ứng viên | License | Ghi chú |
 |---|---|---|---|
 | Video | Wan 2.2 (T2V-14B, I2V-14B, TI2V-5B) | Apache 2.0 | Bản open cuối của dòng Wan; 2.5/2.6/2.7/3.0 không có weights |
-| Video | Wan2.2-Animate-2-14B (08/2026) | Apache 2.0 | Hoạt họa nhân vật từ video tham chiếu |
+| Video | Wan-Animate-2 (Base/Distillation, 08/2026) | Apache 2.0 | Repo chính thức phát hành inference scripts + weights ngày 07/08/2026; hoạt họa nhân vật từ video tham chiếu. Kiểm exact checkpoint trước benchmark |
 | Video | LTX-2.x (2.3/2.5) | LTX-2 Community: miễn phí thương mại khi doanh thu năm < 10 triệu USD | Audio + video một lượt, IC-LoRA điều khiển; kiểm lại khi doanh thu tăng |
 | Video | HunyuanVideo 1.5 (8,3B) | Tencent Hunyuan Community: không áp dụng tại EU/UK/Hàn Quốc | Rủi ro khi phát hành toàn cầu → chỉ dùng sau review pháp lý |
 | Ảnh/keyframe | Qwen-Image (bản đến 12/2025, gồm Edit), Z-Image, FLUX.2 klein-4B | Apache 2.0 | Tránh FLUX.2 dev/klein-9B (cần license thương mại) |
 | Giọng | VoxCPM2 (2B, 30 ngôn ngữ gồm EN/ZH/VI, clone + voice design, 48 kHz) | Apache 2.0 | Ứng viên chính cho giọng xuyên ngôn ngữ |
 | Giọng VI | VieNeu-TTS-v2 (300M, VI/EN, chạy được trên CPU) | Apache 2.0 (nguồn thứ ba — kiểm lại) | Dùng được ngay khi chưa có GPU |
 | Lip-sync | LatentSync (Apache 2.0), MuseTalk (MIT), InfiniteTalk (Apache 2.0) | như cột trước | Tránh Wav2Lip (cấm thương mại) |
-| Nhạc | ACE-Step 1.5 (02/2026; Base/Turbo/XL) | Apache 2.0 | |
+| Nhạc | ACE-Step 1.5 (02/2026; Base/SFT/Turbo; exact checkpoint cần chốt khi benchmark) | MIT | Repo và model card chính thức ghi MIT; vẫn kiểm lại license của đúng weights/dependency được tải |
 
 Luật license: kiểm đủ 3 lớp (code, weights, dataset huấn luyện); ghi license + phiên bản weights vào manifest mỗi asset; model không rõ license thì không dùng cho sản phẩm.
 Runtime đề xuất: ComfyUI chế độ API trên GPU worker, bọc sau adapter của pipeline (Blueprint §19) để đổi model mà không đổi dữ liệu phim.
