@@ -1,15 +1,15 @@
-# AI-FILM-SERVER — intended canonical content V142
+# AI-FILM-SERVER — intended canonical content V143
 
 > This is an exact-tree promotion projection, not a publication receipt. It has operational authority only when resolved from verified canonical main, or is read-only material under an explicitly authorized review. Routing: `WORKFLOW_ROUTER.md`.
 
 ```yaml
 PROJECT: AI-FILM-SERVER
-STATE_VERSION: 142
-CURRENT_MODE: TEST_REVIEW
+STATE_VERSION: 143
+CURRENT_MODE: IMPLEMENTATION
 CURRENT_PHASE: "00 — Host / WSL"
-CURRENT_TASK: TEST-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+CURRENT_TASK: IMPLEMENT-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
 CURRENT_WORK_STATUS: READY
-CURRENT_ASSIGNEE: CLAUDE_CODE
+CURRENT_ASSIGNEE: CHATGPT
 CURRENT_AUTHOR_ACTOR: CHATGPT
 READINESS_SCOPE: ACCEPTED_CODE_CANDIDATE
 TARGET_GATE: M-P00-VALIDATION
@@ -164,16 +164,16 @@ VALIDATION_STATUS:
   HOST_READY: NOT_EVALUATED
 
 VALIDATION_ENTRY_BLOCK:
-  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-TEST-REVIEW-055
-  REASON: "TEST_CHANGE 014 is frozen with a 27-key V2 contract, four-file scope and real producer→consumer constructibility witness design. Claude TEST_REVIEW is required before implementation; deployment remains blocked."
+  BLOCK_ID: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-IMPLEMENT-056
+  REASON: "TEST_REVIEW 014 PASSed the exact 27-key V2 contract, four-file scope, generated-consumer witness and negative/hardcut matrices. Implement only the reviewed four-file scope; deployment remains blocked until author evidence and cross-model code review PASS."
   USER_ACTION_REQUIRED: false
-  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_RELEASE_CONTROL_TEST_REVIEW_014
+  RETURN_TO: NEXT_WORK_ITEM/DEV23_PRODLIKE_RELEASE_CONTROL_IMPLEMENT_014
   STATUS: OPEN
 
 AUTHOR_COMPLETE: true
 CODE_REVIEW_HANDOFF_READY: true
 CODE_REVIEW_PASS: true
-NEXT_ACTION: "Claude reviews exact TEST_CHANGE 014 acfd174 plus support 8874985 for 27-key V2 sufficiency, four-file constructibility, generated-document-through-real-consumer evidence, negative matrices and historical hardcuts. Do not implement before PASS."
+NEXT_ACTION: "Implement the reviewed four-file release-control V2 correction, run TV014-01..12 plus predecessor/historical regressions with host non-mutation proof, freeze exact candidate and hand it to Claude CODE_REVIEW before any deployment authorization."
 ```
 
 Historical R35/A35 bind V61. Historical unpromoted R36/A36 were reserved for V70 but not issued as final acceptance. The accepted dev22 source/package and parent validation run remain unchanged. Root author/code-review flags refer only to ACCEPTED_CODE_CANDIDATE, never the proposed successor. Product design applicability is reopened for the bounded feasibility review; this documentation audit does not certify a new product design, native result or future efficiency improvement.

@@ -1,43 +1,50 @@
-# NEXT WORK ITEM — review release-control producer/consumer TEST_CHANGE 014
+# NEXT WORK ITEM — implement release-control producer/consumer compatibility 014
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: TEST_REVIEW
-LANE: TEST_REVIEW
+MODE: IMPLEMENTATION
+LANE: IMPLEMENT
 STATUS: READY
-WORK_ITEM: TEST-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-ASSIGNEE: CLAUDE_CODE
+WORK_ITEM: IMPLEMENT-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ASSIGNEE: CHATGPT
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  CURRENT_MAIN: fae1880ce9371c89896e4d4a97d1a97dc2f07dc0
-  CURRENT_VALIDATION: 9f341bea77d9e8e0df081f00a69315116822801f
+  CURRENT_MAIN: aad9eecfbf116230966dd0495fce4a52e0d30439
+  CURRENT_VALIDATION: 4850b4d2930d6f2eaad8065f306314ea8a352867
   TEST_CHANGE_COMMIT: acfd174271173bed5a96a358fc84ffc80389b4ac
-  TEST_CHANGE_TREE: 257ae7f59602c6b7ce63cc33ec57083e9dbb8e67
+  TEST_REVIEW_COMMIT: 4850b4d2930d6f2eaad8065f306314ea8a352867
   REVIEW_SUPPORT_COMMIT: 8874985ba34c2a7c16068f6cd49f324c6b2a6f17
-  REVIEW_SUPPORT_TREE: fe6cd598052e79adc35bd7ccbeba656417fcc2ce
-  ROOT_CAUSE: RELEASE_CONTROL_V1_V2_PRODUCER_CONSUMER_MISMATCH
   TARGET_V2_KEY_COUNT: 27
-  MODIFY_FILE_COUNT: 4
-GOAL: "Independently review TEST_CHANGE 014 before any implementation: exact V2 contract, scope, constructibility, meaningful negative tests, predecessor/historical hardcuts and no authority expansion."
+  ORACLE_CHANGED: false
+FILES_ALLOWED:
+  - validation/tooling/build_prodlike_control_bundle-v2.py
+  - validation/tooling/verify_prodlike_control_bundle-v2.py
+  - validation/tooling/prodlike_control_templates_v2.json
+  - validation/tooling/tests/test_prodlike_control_bundle_v2.py
+GOAL: "Implement the reviewed exact V2 release-control contract and real producer→generated-consumer constructibility witness without host mutation or historical-byte drift."
 STEPS:
-  - TEST_CHANGE_014_AUTHOR: COMPLETE_FROZEN
-  - CONTRACT_SCOPE_REVIEW: READY
-  - TEST_MEANINGFULNESS_REVIEW: READY
-  - ORACLE_NO_AUTHORITY_REVIEW: READY
-  - IMPLEMENTATION_014: BLOCKED
-  - CORRECTED_CONTROL_BUNDLE_REBUILD: BLOCKED
-  - NEW_PRODLIKE_DEPLOYMENT: BLOCKED
+  - TEST_CHANGE_014: COMPLETE
+  - TEST_REVIEW_014: COMPLETE_PASS
+  - FOUR_FILE_IMPLEMENTATION: READY
+  - TV014_01_12_AUTHOR_TESTS: NOT_STARTED
+  - PREDECESSOR_REGRESSION: NOT_STARTED
+  - HISTORICAL_DEV22_HARDCUT: NOT_STARTED
+  - HOST_NON_MUTATION: NOT_STARTED
+  - AUTHOR_CANDIDATE_FREEZE: BLOCKED
+  - CLAUDE_CODE_REVIEW: BLOCKED
+  - CONTROL_BUNDLE_REBUILD: BLOCKED
+  - PRODLIKE_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - NATIVE_SIGNING_HKLM: BLOCKED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Formal TEST_REVIEW 014 PASS/FINDINGS bound to exact TEST_CHANGE; no implementation or deployment proof."
-ON_SUCCESS: IMPLEMENT-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
-ON_FAIL: REVISE_TEST_CHANGE_014_BEFORE_IMPLEMENTATION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-TEST-REVIEW-055
+SUCCESS_OUTPUT: "Exact four-file implementation candidate plus TV014/predecessor/historical/host-nonmutation author evidence; no deployment proof."
+ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-RELEASE-CONTROL-014
+ON_FAIL: FIX_WITHIN_REVIEWED_FOUR_FILE_SCOPE_OR_RETURN_TO_TEST_DESIGN
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-RELEASE-CONTROL-IMPLEMENT-056
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "No blocking/high/medium design finding remains; four-file scope sufficient; 27-key V2 covers every consumer; real generated consumer witness and negative matrices meaningful; dev22/predecessor hardcuts explicit; ORACLE_CHANGED=false; no deployment/native/signing/LAB authority."
+EXIT_CONDITION: "Only four reviewed files changed; generated V2 release-control has exact 27 keys; real generated consumer and verifier both accept the same valid document; required negative matrices reject drift; 62 other template rows and historical dev22 bytes exact; TV009/010/011/012/013 + historical regression retained; host current/failed trees/user-systemd unchanged; no deployment/LAB/native/signing/HKLM action."
 ~~~
 
-Review only. Do not implement producer/consumer changes, rebuild control artifacts, create deployment authorization, switch current, modify failed dev23 evidence, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Implementation/tests only. Do not deploy, switch current, modify failed dev23 evidence, mutate user-systemd, rebuild LAB, create deployment authorization, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

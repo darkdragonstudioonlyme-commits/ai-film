@@ -1,0 +1,29 @@
+{
+  "active_control_documents_read": 0,
+  "deployment_started": false,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "implementation_status": "NOT_STARTED",
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "aad9eecfbf116230966dd0495fce4a52e0d30439",
+    "review_support": "8874985ba34c2a7c16068f6cd49f324c6b2a6f17",
+    "test_change": "acfd174271173bed5a96a358fc84ffc80389b4ac",
+    "test_review": "4850b4d2930d6f2eaad8065f306314ea8a352867",
+    "validation": "4850b4d2930d6f2eaad8065f306314ea8a352867"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "modify_file_count": 4,
+  "native_executed": false,
+  "native_revalidated": false,
+  "oracle_changed": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "schema_version": 1,
+  "scope": "Implement TEST_CHANGE 014 in exactly four validation-tooling files; no deployment/LAB/native/signing/HKLM",
+  "session_denominator": null,
+  "signing_performed": false,
+  "target_v2_key_count": 27
+}
