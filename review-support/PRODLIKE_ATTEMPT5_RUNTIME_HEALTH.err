@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/dragon/ai-film-runtime/bin/runtime-health.py", line 8, in <module>
+    CONTROL=load_control()
+            ^^^^^^^^^^^^^^
+  File "/home/dragon/ai-film-runtime/bin/control_common.py", line 10, in load_control
+    if not isinstance(x,dict) or set(x)!=REQUIRED: raise RuntimeError('release-control-schema')
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: release-control-schema

@@ -1,0 +1,171 @@
+{
+  "all_live_timers_enabled_active": true,
+  "broken_dev23_runtime_manifest_sha256": "2aba21339354507627621ea7583d19c3213bc099626d32ee74df200407439d45",
+  "control_common_expected_kind": "AIFILM_P00_RELEASE_CONTROL",
+  "control_common_required_keys": [
+    "app_file_count",
+    "authority_evidence_root",
+    "authority_model",
+    "contract_digest",
+    "expected_timer_count",
+    "host_backup_root",
+    "implementation_version",
+    "kind",
+    "native_authority",
+    "native_execution_started",
+    "offhost_export_name",
+    "offhost_export_root",
+    "package_name",
+    "package_sha256",
+    "rebuild_root",
+    "release_name",
+    "runtime_root",
+    "schema_version",
+    "source_commit",
+    "source_digest",
+    "test_digest",
+    "verify_service",
+    "verify_timer",
+    "wheel_name",
+    "wheel_sha256"
+  ],
+  "corrected_runtime_manifest_sha256": "d72c9ddf333b0d4a4fa2b13377f559d5775c5d35a35f6df6cc2e4ce479d6f26d",
+  "current_target": "/home/dragon/ai-film-runtime/dev23-corrected",
+  "deployment_receipt_exists": false,
+  "hklm_touched": false,
+  "kind": "PRODLIKE_ATTEMPT5_HOST_WITNESS",
+  "live_timer_states": {
+    "aifilm-p00-control-backup.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-current-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-dr-rehearsal.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-evidence-ledger.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-failclosed-campaign.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-host-mirror.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-offhost-export.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-rebuild-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-recovery-verify.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-runtime-health.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    },
+    "aifilm-p00-v02-authority-watch.timer": {
+      "active": "active",
+      "active_rc": 0,
+      "enabled": "enabled",
+      "enabled_rc": 0,
+      "stderr": ""
+    }
+  },
+  "mutation_started": true,
+  "native_execution_started": false,
+  "receipt_phase": "UNKNOWN_COMPLETION",
+  "receipt_state": "RECONCILE_REQUIRED",
+  "release_control_actual_keys": [
+    "authority_evidence_root",
+    "authority_model",
+    "candidate_binding_sha256",
+    "candidate_id",
+    "contract_digest",
+    "expected_timer_count",
+    "host_backup_root",
+    "implementation_version",
+    "kind",
+    "native_authority",
+    "native_execution_started",
+    "offhost_export_root",
+    "package_sha256",
+    "rebuild_root",
+    "release_name",
+    "runtime_root",
+    "schema_version",
+    "source_commit",
+    "source_digest",
+    "test_digest",
+    "verify_service",
+    "verify_timer",
+    "wheel_sha256"
+  ],
+  "release_control_exact_schema_match": false,
+  "release_control_extra_keys": [
+    "candidate_binding_sha256",
+    "candidate_id"
+  ],
+  "release_control_kind": "AIFILM_P00_RELEASE_CONTROL_V2",
+  "release_control_kind_matches_consumer": false,
+  "release_control_missing_keys": [
+    "app_file_count",
+    "offhost_export_name",
+    "package_name",
+    "wheel_name"
+  ],
+  "rollback_assets_all_hash_match": true,
+  "rollback_attempted": false,
+  "rollback_control_bad": [],
+  "rollback_control_rows": 64,
+  "rollback_timer_count": 11,
+  "rollback_verified": false,
+  "runtime_health_failure": "RuntimeError:release-control-schema",
+  "runtime_health_rc": 1,
+  "schema_version": 1,
+  "signing_performed": false,
+  "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005",
+  "transaction_receipt_sha256": "6474e4f7ba20416c6575565573e1a96b09b55c37ffdfd0c2c980a2bab43208a5",
+  "unknown_completion": true
+}
