@@ -1,0 +1,88 @@
+{
+  "all_enabled_active_exact": true,
+  "execution_started": false,
+  "kind": "ATTEMPT5_RECON2_TIMER_ITEMIZED_CLOSURE",
+  "rollback_timer_state_sha256": "91d83fb5fbe0f41f01af2008ef679bd5322313a713cfbdc01cb59145f9c1a6ed",
+  "rows": [
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-control-backup.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-current-verify.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-dr-rehearsal.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-evidence-ledger.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-failclosed-campaign.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-host-mirror.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-offhost-export.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-rebuild-verify.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-recovery-verify.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-runtime-health.timer"
+    },
+    {
+      "active": true,
+      "active_raw": "active",
+      "enabled": true,
+      "enabled_raw": "enabled",
+      "timer": "aifilm-p00-v02-authority-watch.timer"
+    }
+  ],
+  "schema_version": 1,
+  "source_full_witness_sha256": "08e7ab1b69c5fbde3fe0fdac93bd79a6bd554f884d0dacaa96adbf2deb8be7e8",
+  "timer_count": 11
+}
