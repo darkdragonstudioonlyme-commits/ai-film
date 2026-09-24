@@ -1,0 +1,33 @@
+{
+  "active_control_documents_read": 0,
+  "all_11_timers_enabled_active_with_explicit_user_bus": true,
+  "current_target": "/home/dragon/ai-film-runtime/dev23",
+  "deployment_receipt_absent": true,
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b94eb5b115385a6b0634b2ff424f26c34407f9ad",
+    "main": "4daa08ce303b939e3bd06902fc0cdfe727adf101",
+    "review_support": "32bc1264de46972e4faa650860e2801cc59d0f21",
+    "validation": "62aa80afe7452c5578e7a179a2bba4a9d869aa1e"
+  },
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": true,
+  "rollback_attempted": false,
+  "schema_version": 1,
+  "scope": "Review one immutable RECONCILE_REQUIRED prodlike receipt and read-only host/root-cause evidence; no retry/rollback/LAB/native/signing",
+  "session_denominator": null,
+  "signing_performed": false,
+  "transaction_phase": "UNKNOWN_COMPLETION",
+  "transaction_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce",
+  "transaction_state": "RECONCILE_REQUIRED",
+  "verify_current_rc": 127,
+  "verify_runtime_missing_from_current": true,
+  "verify_runtime_missing_from_release_source": true
+}
