@@ -1,46 +1,48 @@
-# NEXT WORK ITEM — prepare bounded reconciliation for prodlike transaction004
+# NEXT WORK ITEM — review bounded prodlike attempt4 reconciliation
 
 ~~~yaml
 RUN_ID: RUN-P00-VALIDATION-002
 WORKFLOW_ID: WF-P00-VALIDATION-ENTRY
-MODE: IMPLEMENTATION
-LANE: IMPLEMENT
+MODE: CODE_REVIEW
+LANE: CODE_REVIEW
 STATUS: READY
-WORK_ITEM: PREPARE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
-ASSIGNEE: CHATGPT
+WORK_ITEM: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
+ASSIGNEE: CLAUDE_CODE
 AUTHOR_ACTOR: CHATGPT
 PRESERVED_CURSOR: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
 INPUT_IDENTITY:
-  MAIN_COMMIT: 504f4d107b4a6ab3e08404b77159bf555fc87960
-  VALIDATION_HEAD: 5005c1547865e68956c90f23edd8c22266f8967a
-  RECEIPT_REVIEW: lane/validation-p00:reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-004.md
-  TRANSACTION004_ID: PRODLIKE-DEV23-1CE088A-004
-  TRANSACTION004_RECEIPT_SHA256: 1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce
-  TRANSACTION004_REPLAY_AUTHORIZED: false
-  CURRENT_OBSERVED_TARGET: /home/dragon/ai-film-runtime/dev23
-  RECONCILIATION_TARGET: /home/dragon/ai-film-runtime/dev22
-GOAL: "Prepare one immutable reconciliation plan and receipt identity that restores the exact captured dev22 control/current/11-timer baseline without replaying transaction004 or modifying the staged broken dev23 tree."
+  MAIN_SNAPSHOT: 2bcd627bbcfe2ecf5927a366b4e0fdb253782bef
+  VALIDATION_SNAPSHOT: 5005c1547865e68956c90f23edd8c22266f8967a
+  REVIEW_SUPPORT_COMMIT: d87b175a5ebf259818bf1fb5b384c94149c242fd
+  EXECUTOR_COMMIT: b7ccdbbf73e25f8bfd1db6bb884326ec52d862ae
+  EXECUTOR_TREE: 3fbbc260a00dec489bbbfbedc32fed042da9247b
+  AUTHORIZATION_SHA256: 113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d
+  TRANSACTION_ID: PRODLIKE-DEV23-1CE088A-004-RECON-001
+  PLAN_SHA256: 18f563faa2e9e4e2101dbddf2aed0ffe91b68ce2eb9d63804d9121190a7b9183
+  SOURCE_TRANSACTION_RECEIPT_SHA256: 1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce
+  SOURCE_TRANSACTION004_REPLAY_AUTHORIZED: false
+GOAL: "Independently verify the one-attempt reconciliation capsule restores only exact dev22 current/control/11-timer state, preserves broken dev23 as evidence, and requires independent live verification before acceptance."
 STEPS:
-  - RECEIPT004_REVIEW: COMPLETE_FINDINGS_RECONCILE_REQUIRED
-  - TRANSACTION004_REPLAY: PERMANENTLY_FORBIDDEN
-  - ROLLBACK_ASSETS: CAPTURED_NOT_EXECUTED
-  - RECONCILIATION_PLAN_AUTHOR: READY
-  - PREMUTATION_SNAPSHOT: NOT_STARTED
-  - RECONCILIATION_PLAN_CROSS_MODEL_REVIEW: BLOCKED
+  - RECEIPT004_REVIEW: COMPLETE_RECONCILE_REQUIRED
+  - RECONCILIATION_PLAN_AUTHOR: COMPLETE_FROZEN
+  - PREPARATION_NON_MUTATION: COMPLETE_PASS
+  - IDENTITY_INPUT_EXPIRY_REVIEW: READY
+  - EXECUTOR_COMMAND_ROOT_REVIEW: READY
+  - ROLLBACK_ASSET_COMPOSITION_REVIEW: READY
   - HOST_RECONCILIATION_MUTATION: BLOCKED
   - INDEPENDENT_DEV22_LIVE_VERIFICATION: BLOCKED
   - RELEASE_VERIFY_RUNTIME_TEST_CHANGE_013: BLOCKED_UNTIL_RECONCILIATION_PASS
-  - NEW_PRODLIKE_DEPLOYMENT_AUTHORIZATION: BLOCKED
+  - NEW_DEPLOYMENT_AUTHORIZATION: BLOCKED
   - LAB_REBUILD_RESEED: BLOCKED
   - AUTHORITY_SIGNING: BLOCKED
   - NATIVE_VALIDATION: NOT_STARTED
 CURRENT_STEP: V02_LOCAL_OPERATOR_LAB_AUTHORITY
-SUCCESS_OUTPUT: "Fresh reconciliation plan/hash/receipt-root plus before-snapshot evidence; no mutation proof."
-ON_SUCCESS: CODE-REVIEW-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
-ON_FAIL: CORRECT_RECONCILIATION_PLAN_BEFORE_MUTATION
-ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-PREP-045
+SUCCESS_OUTPUT: "Formal reconciliation-plan PASS/FINDINGS bound to exact authorization hash; no execution proof."
+ON_SUCCESS: EXECUTE-P00-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-001
+ON_FAIL: CORRECT_RECONCILIATION_PLAN_AND_REVIEW_NEW_HASH
+ON_BLOCK: BLOCK-P00-VAL-V03-DEV23-PRODLIKE-ATTEMPT4-RECONCILIATION-REVIEW-046
 RETURN_TO: RUN-P00-VALIDATION-002/V02B_LOCAL_AUTHORITY_PACKAGE
-EXIT_CONDITION: "Plan has a unique transaction id/root, binds exact receipt004 rollback assets, limits mutation to current symlink + 64 captured control entries + reviewed user-systemd commands, preserves broken dev23 as evidence, and requires independent dev22 verifier + 11 timer checks before reconciliation can be accepted."
+EXIT_CONDITION: "Exact identities/expiry/inputs pass; transaction/root unique and absent; 68 command prefixes compose with frozen executor; mutation limited to runtime/current + captured control entries + reviewed user-systemd; transaction004 non-replay preserved; broken dev23 untouched; no blocking/high/medium finding remains."
 ~~~
 
-Preparation only. Do not replay transaction004, switch current, restore control, mutate timers, delete/repair dev23, issue a new deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.
+Review only. Do not execute reconciliation, replay transaction004, delete/repair dev23, issue a deployment authorization, rebuild LAB, sign authority, write HKLM, run native cases, issue qualification or mark HOST_READY.

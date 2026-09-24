@@ -1,0 +1,30 @@
+{
+  "active_control_documents_read": 0,
+  "authorization_sha256": "113349511b2f4a9c8ed0b8068ffb876c43e67077bfd4dff4c6d8150e05a3965d",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "executor": "b7ccdbbf73e25f8bfd1db6bb884326ec52d862ae",
+    "main": "2bcd627bbcfe2ecf5927a366b4e0fdb253782bef",
+    "review_support": "d87b175a5ebf259818bf1fb5b384c94149c242fd",
+    "validation": "5005c1547865e68956c90f23edd8c22266f8967a"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "non_mutation_proof_sha256": "5c452653b03b6b802827b6ea061f9051bddd0329367ffdf8c3f498fd4485dd2e",
+  "plan_sha256": "18f563faa2e9e4e2101dbddf2aed0ffe91b68ce2eb9d63804d9121190a7b9183",
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutation": false,
+  "receipt_root_absent": true,
+  "schema_version": 1,
+  "scope": "Review one bounded attempt4 reconciliation authorization/plan; no mutation",
+  "session_denominator": null,
+  "signing_performed": false,
+  "source_transaction_receipt_sha256": "1fafcb5304eeca608e99e7138771a3124bde0617815f95f039430b7fb78d9bce",
+  "transaction_id": "PRODLIKE-DEV23-1CE088A-004-RECON-001"
+}
