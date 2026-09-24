@@ -1,0 +1,33 @@
+{
+  "active_control_documents_read": 0,
+  "attempt1_original_state": "RECONCILE_REQUIRED",
+  "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "attempt1_replay_authorized": false,
+  "corrected_auth3_execution_authorized": false,
+  "corrected_auth3_sha256": "1fcdbc1c5885e2eff11b7b87e930616ab1f49c841334ae5a717877bd533e289c",
+  "historical_semantic_review_complete": false,
+  "historical_sessions_reconstructed": false,
+  "hklm_touched": false,
+  "improvement_status": "IMPROVEMENT_NOT_PROVEN",
+  "input_refs": {
+    "main": "efbf2c3eba5218d19e8eeddfa3db7fe99ee7cce4",
+    "review_support": "177a9679f8a08e8a6fb76cf5f456d3a261978911",
+    "validation": "df87d7ff4c3a2bd95c70a0d5716e877d5bbb2b7a"
+  },
+  "lab_mutated": false,
+  "learning_register_changed": false,
+  "main_commits_in_window": 1,
+  "native_executed": false,
+  "native_revalidated": false,
+  "observation_control_all_exact": true,
+  "observation_current_dev22_exact": true,
+  "observation_effects_beyond_staging": false,
+  "observation_timers_all_match_accepted_dev22": true,
+  "population_kind": "EXACT_REPOSITORY_BOUNDARIES",
+  "real_prodlike_mutated": false,
+  "reconciliation_review_result": "PENDING",
+  "schema_version": 1,
+  "scope": "Cross-model review of read-only attempt1 reconciliation evidence; corrected auth3 remains blocked",
+  "session_denominator": null,
+  "signing_performed": false
+}
