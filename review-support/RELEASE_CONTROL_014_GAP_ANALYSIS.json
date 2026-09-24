@@ -1,0 +1,180 @@
+{
+  "all_template_control_field_usage": {
+    "scripts/aifilm-prodlike-status.py": [
+      "authority_evidence_root"
+    ],
+    "scripts/archive-operational-evidence.py": [
+      "authority_evidence_root"
+    ],
+    "scripts/backup-control-state.py": [
+      "authority_evidence_root",
+      "runtime_root"
+    ],
+    "scripts/build-offhost-export.py": [
+      "offhost_export_name",
+      "offhost_export_root",
+      "rebuild_root",
+      "release_name",
+      "source_commit"
+    ],
+    "scripts/mirror-control-backup.py": [
+      "host_backup_root"
+    ],
+    "scripts/run-dr-recovery-rehearsal.py": [
+      "app_file_count",
+      "implementation_version",
+      "offhost_export_name",
+      "offhost_export_root",
+      "package_name"
+    ],
+    "scripts/run-failclosed-campaign.py": [
+      "offhost_export_name",
+      "offhost_export_root",
+      "rebuild_root"
+    ],
+    "scripts/runtime-health.py": [
+      "authority_evidence_root",
+      "contract_digest",
+      "implementation_version",
+      "package_sha256",
+      "release_name",
+      "runtime_root",
+      "source_commit",
+      "source_digest",
+      "test_digest",
+      "verify_service",
+      "verify_timer",
+      "wheel_sha256"
+    ],
+    "scripts/verify-host-mirror.py": [
+      "host_backup_root"
+    ],
+    "scripts/verify-offhost-export.py": [
+      "app_file_count",
+      "implementation_version",
+      "offhost_export_name",
+      "offhost_export_root",
+      "package_name",
+      "release_name",
+      "source_commit"
+    ],
+    "scripts/verify-rebuild-set.py": [
+      "app_file_count",
+      "implementation_version",
+      "package_name",
+      "rebuild_root",
+      "release_name"
+    ]
+  },
+  "all_used_fields_covered_by_proposed_v2": true,
+  "base_validation_commit": "9f341bea77d9e8e0df081f00a69315116822801f",
+  "candidate_fields_extra_vs_v1": [
+    "candidate_binding_sha256",
+    "candidate_id"
+  ],
+  "consumer_required_count_prefx": 25,
+  "consumer_required_keys_prefx": [
+    "app_file_count",
+    "authority_evidence_root",
+    "authority_model",
+    "contract_digest",
+    "expected_timer_count",
+    "host_backup_root",
+    "implementation_version",
+    "kind",
+    "native_authority",
+    "native_execution_started",
+    "offhost_export_name",
+    "offhost_export_root",
+    "package_name",
+    "package_sha256",
+    "rebuild_root",
+    "release_name",
+    "runtime_root",
+    "schema_version",
+    "source_commit",
+    "source_digest",
+    "test_digest",
+    "verify_service",
+    "verify_timer",
+    "wheel_name",
+    "wheel_sha256"
+  ],
+  "control_common_template_row_mode": "700",
+  "control_common_template_row_sha256_prefx": "edb692e833c084ea3b5dc9b0a812e518f5057deb5b9db349347a9932ad61feff",
+  "deployment_authorized": false,
+  "historical_dev22_control_common_sha256": "edb692e833c084ea3b5dc9b0a812e518f5057deb5b9db349347a9932ad61feff",
+  "historical_dev22_release_control_sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803",
+  "kind": "RELEASE_CONTROL_014_GAP_ANALYSIS",
+  "missing_operational_fields_prefx": [
+    "app_file_count",
+    "offhost_export_name",
+    "package_name",
+    "wheel_name"
+  ],
+  "native_execution_authorized": false,
+  "non_control_common_rows_required_byte_identical": 62,
+  "producer_sha256": "d14320d8b11298d25cb3f9ecd8e5022c2eef842e9db14345da899d18012ec994",
+  "producer_v2_count_prefx": 23,
+  "producer_v2_keys_prefx": [
+    "authority_evidence_root",
+    "authority_model",
+    "candidate_binding_sha256",
+    "candidate_id",
+    "contract_digest",
+    "expected_timer_count",
+    "host_backup_root",
+    "implementation_version",
+    "kind",
+    "native_authority",
+    "native_execution_started",
+    "offhost_export_root",
+    "package_sha256",
+    "rebuild_root",
+    "release_name",
+    "runtime_root",
+    "schema_version",
+    "source_commit",
+    "source_digest",
+    "test_digest",
+    "verify_service",
+    "verify_timer",
+    "wheel_sha256"
+  ],
+  "proposed_v2_exact_key_count": 27,
+  "proposed_v2_exact_keys": [
+    "app_file_count",
+    "authority_evidence_root",
+    "authority_model",
+    "candidate_binding_sha256",
+    "candidate_id",
+    "contract_digest",
+    "expected_timer_count",
+    "host_backup_root",
+    "implementation_version",
+    "kind",
+    "native_authority",
+    "native_execution_started",
+    "offhost_export_name",
+    "offhost_export_root",
+    "package_name",
+    "package_sha256",
+    "rebuild_root",
+    "release_name",
+    "runtime_root",
+    "schema_version",
+    "source_commit",
+    "source_digest",
+    "test_digest",
+    "verify_service",
+    "verify_timer",
+    "wheel_name",
+    "wheel_sha256"
+  ],
+  "root_cause_receipt_review": "reviews/CODE-REVIEW-P00-DEV23-PRODLIKE-DEPLOYMENT-RECEIPT-005.md",
+  "schema_version": 1,
+  "template_row_count": 63,
+  "template_sha256": "4d46440639472de5207f76e08ead56a0675417f9659c6eb77755dca3d9975110",
+  "test_sha256": "5d84317e80272cbb07e546fb23413ac7f0f3d7b413383000a289aac114850572",
+  "verifier_sha256": "3ed5953a601f099c2c6056354e48554e7f04ed5347ffbf4c7d319d8a7f845df8"
+}
