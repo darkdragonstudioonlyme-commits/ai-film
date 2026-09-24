@@ -1,6 +1,11 @@
 {
-  "control_64_exact": null,
+  "all_preserved_roots_exact": true,
+  "control_64_exact": true,
+  "correction_note": "Derived using exact source keys all_64_control_entries_exact and all_11_timers_enabled_active; prior null projection is superseded.",
+  "current_dev22_exact": true,
   "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "dev23_corrected_deployment_receipt_absent": true,
+  "dev23_deployment_receipt_absent": true,
   "external_actor_claimed": false,
   "hklm_touched": false,
   "host_phase_claim": "SEPARATE_POST_RECEIPT_READ_ONLY_VERIFICATION_PHASE",
@@ -19,13 +24,14 @@
   "schema_version": 1,
   "separate_evidence_root": true,
   "signing_performed": false,
+  "source_verify_sha256": "37f6a5b1369a1f0e543081ea3da15ad821cb77140a51139fc7ed02eed9b5f99e",
   "timer_states_file": {
     "bytes": 2045,
     "mtime_ns": 1790244170951865412,
     "path": "/home/dragon/ai-film-dev/run-evidence/v140-attempt5-reconciliation2-independent-verify-20260924/timer-states.json",
     "sha256": "6e352a9d7015c74c6ee8d2c8828c3ea4e7a0bfcd5b40cf1ca12c79c4a5720ca0"
   },
-  "timers_11_enabled_active": null,
+  "timers_11_enabled_active": true,
   "transaction_id": "PRODLIKE-DEV23-CORRECTED-96F4EA3-005-RECON-002",
   "transaction_receipt_sha256": "1c8d48e81137fb373abeba681b549d70af241947c63da7ed3e7d37dc10698ef9",
   "verify_binds_receipt_sha256": true,
@@ -41,6 +47,7 @@
     "path": "/home/dragon/ai-film-dev/run-evidence/v140-attempt5-reconciliation2-independent-verify-20260924/verify-current.out",
     "sha256": "126a7795749d4ce973ee7efb1656c907303bc28e262526dcdd1bdc456e9752a0"
   },
+  "verify_current_pass": true,
   "verify_current_rc": 0,
   "verify_delay_seconds": 104.210760837,
   "verify_occurs_after_receipt": true
