@@ -1,0 +1,15 @@
+{
+  "after_sha256": "046a86d27bbf054e470a8a3bbbe58a3de91329091f6bc12c0c9208845db702c6",
+  "authorization_sha256": "7cdcd51bf7574ab9cec3a7b96257b33d2c94001ddb418ec0bee3b0f5a8e17837",
+  "before_sha256": "046a86d27bbf054e470a8a3bbbe58a3de91329091f6bc12c0c9208845db702c6",
+  "hklm_touched": false,
+  "identical": true,
+  "kind": "AUTHORIZATION4_NON_MUTATION_PROOF",
+  "native_execution_started": false,
+  "plan_mutation_started": false,
+  "plan_only_sha256": "f33af28c89347f8bfaee1745d551b2e514322c5130ce2fd3909dac6e944bfc81",
+  "plan_status": "PLAN_ONLY",
+  "schema_version": 1,
+  "signing_performed": false,
+  "txroot_absent": true
+}

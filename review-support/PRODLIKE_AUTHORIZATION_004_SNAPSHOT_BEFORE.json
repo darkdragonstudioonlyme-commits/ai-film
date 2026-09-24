@@ -1,0 +1,29 @@
+{
+  "attempt1_receipt_sha256": "fcb3b059634e41cf08dc61ec39c80d5dc93250e735ab2d795afbd67583ddabfd",
+  "attempt2_root_exists": false,
+  "attempt3_root_exists": false,
+  "attempt4_root_exists": false,
+  "bin_tree": {
+    "entries": 19,
+    "sha256": "7a6226b757d55aac36fb93f29eb7e70b60935a87fc1c1eeb92b0a8349a7924b0"
+  },
+  "config_sha256": "2988b93eef37e9b18a14979902f6686f7fb2fb4bb9d1f0b34392ab01ac9c9803",
+  "current_target": "/home/dragon/ai-film-runtime/dev22",
+  "dev22_runtime_manifest_sha256": "ef19d1bbb573bb8b75a7f49d01231436151ec74f614ba2f97cf5f0cff7ae009a",
+  "dev23_tree": {
+    "entries": 290,
+    "sha256": "81eb2df54e007ce0cac56bc826b4fe797975da89c511e2fa7a0953530aa7a552"
+  },
+  "unit_tree": {
+    "entries": 58,
+    "sha256": "97c43dfa98c4df3c94cd2036368b656f6e0f0016ae456cbfe93a5a7936b16cb8"
+  },
+  "user_bus": {
+    "bus": "/run/user/1000/bus",
+    "bus_is_socket": true,
+    "bus_uid": 1000,
+    "runtime": "/run/user/1000",
+    "runtime_mode": "700",
+    "runtime_uid": 1000
+  }
+}
