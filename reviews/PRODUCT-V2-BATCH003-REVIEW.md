@@ -18,3 +18,8 @@ Acceptance evidence:
 - repo-native CPU TTS smoke PASS, 4/4 samples fit cue budget, mean RTF <1
 - no WAV/model binary is committed
 - no GPU/API rental/resource was launched
+
+## 2026-09-25 refresh
+- Exact pins expanded from the 8 immediately active candidates to all 12 shortlist entries.
+- Corrected LatentSync-1.6 license identity from the earlier Apache assumption to upstream OpenRAIL++; it remains blocked pending legal review.
+- RunPod Secure rates were rechecked against the current official rate card. Existing USD 150 three-stage proposal remains non-authorizing; an initial USD 60 sub-cap is recorded for any future explicitly approved launch.

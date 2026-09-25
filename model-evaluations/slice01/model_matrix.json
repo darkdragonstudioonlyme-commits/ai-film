@@ -5,7 +5,13 @@
     "paid_execution": "REQUIRES_BOUNDED_BUDGET",
     "notes": "License strings are shortlist hints, not production approval.",
     "pin_file": "model-evaluations/slice01/upstream_pins_2026-09-24.json",
-    "commercial_rule": "MODEL_WITHOUT_COMMERCIAL_RIGHTS_MUST_NOT_ENTER_PRODUCTION"
+    "commercial_rule": "MODEL_WITHOUT_COMMERCIAL_RIGHTS_MUST_NOT_ENTER_PRODUCTION",
+    "pin_refreshed_at": "2026-09-25",
+    "license_corrections": [
+      "Qwen-Image-2.1 is evaluation-only without a separate commercial license.",
+      "LatentSync-1.6 uses OpenRAIL++, not Apache-2.0; legal review required.",
+      "LTX-2.5 commercial rights are conditional on entity revenue and license terms."
+    ]
   },
   "models": [
     {
@@ -159,17 +165,28 @@
       "model_id": "wan-animate-2",
       "stage": "video",
       "family": "Wan-Animate-2",
-      "checkpoint": "Base_or_Distillation_tbd",
+      "checkpoint": "Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers@59e4141466bcb1bf9733eca1bc78be6891c9fbdf",
       "runner_profile": "reference_video_animation",
-      "license_hint": "Apache-2.0",
-      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "license_hint": "apache-2.0",
+      "license_gate": "UPSTREAM_APACHE_2_0_PINNED",
       "enabled": false,
       "requires": [
         "reference_video",
         "reference_character"
       ],
       "execution_ready": false,
-      "pin_status": "DEFERRED"
+      "pin_status": "PINNED",
+      "source_repo": "Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers",
+      "source_revision": "59e4141466bcb1bf9733eca1bc78be6891c9fbdf",
+      "source_url": "https://huggingface.co/Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runtime_requirements": [
+        "diffusers with Wan-Animate-2 support",
+        "CUDA GPU",
+        "reference_video",
+        "reference_character"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
     },
     {
       "model_id": "voxcpm2",
@@ -228,48 +245,78 @@
       "model_id": "latent-sync",
       "stage": "lipsync",
       "family": "LatentSync",
-      "checkpoint": "exact_version_tbd",
+      "checkpoint": "ByteDance/LatentSync-1.6@c42c7e6c8e9c213626389fa7d9a3c444b8536353",
       "runner_profile": "lipsync",
-      "license_hint": "Apache-2.0",
-      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "license_hint": "openrail++",
+      "license_gate": "LEGAL_REVIEW_REQUIRED_OPENRAIL_PLUS_PLUS",
       "enabled": false,
       "requires": [
         "video",
         "dialogue_audio"
       ],
       "execution_ready": false,
-      "pin_status": "DEFERRED"
+      "pin_status": "PINNED",
+      "source_repo": "ByteDance/LatentSync-1.6",
+      "source_revision": "c42c7e6c8e9c213626389fa7d9a3c444b8536353",
+      "source_url": "https://huggingface.co/ByteDance/LatentSync-1.6",
+      "commercial_production_allowed": "REQUIRES_LICENSE_LEGAL_REVIEW",
+      "runtime_requirements": [
+        "CUDA lip-sync runtime",
+        "video",
+        "dialogue_audio"
+      ],
+      "production_gate": "BLOCKED_PENDING_OPENRAIL_PLUS_PLUS_LEGAL_REVIEW"
     },
     {
       "model_id": "musetalk",
       "stage": "lipsync",
       "family": "MuseTalk",
-      "checkpoint": "exact_version_tbd",
+      "checkpoint": "TMElyralab/MuseTalk@2bcb936e2fddb4d86db4c62fd45b387d0c061571",
       "runner_profile": "lipsync",
-      "license_hint": "MIT",
-      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "license_hint": "mit",
+      "license_gate": "UPSTREAM_MIT_PINNED",
       "enabled": false,
       "requires": [
         "video",
         "dialogue_audio"
       ],
       "execution_ready": false,
-      "pin_status": "DEFERRED"
+      "pin_status": "PINNED",
+      "source_repo": "TMElyralab/MuseTalk",
+      "source_revision": "2bcb936e2fddb4d86db4c62fd45b387d0c061571",
+      "source_url": "https://huggingface.co/TMElyralab/MuseTalk",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
+      "runtime_requirements": [
+        "CUDA lip-sync runtime",
+        "video",
+        "dialogue_audio"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
     },
     {
       "model_id": "ace-step-1.5",
       "stage": "music",
       "family": "ACE-Step 1.5",
-      "checkpoint": "exact_version_tbd",
+      "checkpoint": "ACE-Step/Ace-Step1.5@19671f406d603126926c1b7e2adc169acbcade22",
       "runner_profile": "music",
-      "license_hint": "MIT",
-      "license_gate": "RECHECK_EXACT_CHECKPOINT",
+      "license_hint": "mit",
+      "license_gate": "UPSTREAM_MIT_PINNED",
       "enabled": false,
       "requires": [
         "music_prompt"
       ],
       "execution_ready": false,
-      "pin_status": "DEFERRED"
+      "pin_status": "PINNED",
+      "source_repo": "ACE-Step/Ace-Step1.5",
+      "source_revision": "19671f406d603126926c1b7e2adc169acbcade22",
+      "source_url": "https://huggingface.co/ACE-Step/Ace-Step1.5",
+      "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS_OUTPUT_RIGHTS_STILL_REVIEW",
+      "runtime_requirements": [
+        "ACE-Step 1.5 runtime",
+        "music_prompt",
+        "originality/copyright review before publication"
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
     }
   ]
 }

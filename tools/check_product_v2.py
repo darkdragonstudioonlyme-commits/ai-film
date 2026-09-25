@@ -124,11 +124,12 @@ def main() -> int:
     pins=json.loads((root/"model-evaluations/slice01/upstream_pins_2026-09-24.json").read_text(encoding="utf-8"))
     pin_rows=pins.get("models",[])
     pin_ids=[row.get("model_id") for row in pin_rows]
-    if len(pin_ids)!=len(set(pin_ids)) or len(pin_rows)<8:
+    if len(pin_ids)!=len(set(pin_ids)) or len(pin_rows)!=len(models):
         errors.append("model-pins-identity")
     pin_by_id={row.get("model_id"):row for row in pin_rows}
     for model in models:
         if model.get("pin_status")!="PINNED":
+            errors.append("model-not-pinned:"+str(model.get("model_id")))
             continue
         model_id=model.get("model_id")
         pin=pin_by_id.get(model_id)
@@ -148,6 +149,10 @@ def main() -> int:
     qwen=next((model for model in models if model.get("model_id")=="qwen-image-2.1"),None)
     if qwen is None or qwen.get("enabled") or qwen.get("commercial_production_allowed") is not False:
         errors.append("qwen-commercial-gate")
+
+    latent=next((model for model in models if model.get("model_id")=="latent-sync"),None)
+    if latent is None or latent.get("license_hint")!="openrail++" or "LEGAL_REVIEW" not in latent.get("license_gate",""):
+        errors.append("latentsync-license-gate")
 
     tts=json.loads((root/"run-evidence/CPU_TTS_SMOKE_20260924.json").read_text(encoding="utf-8"))
     if tts.get("status")!="PASS":
@@ -178,6 +183,10 @@ def main() -> int:
         errors.append("rental-unexpected-authority")
     if float(rental.get("hard_all_in_authorization_cap_usd",0)) != 150.0:
         errors.append("rental-cap-drift")
+    if float(rental.get("initial_execution_subcap_usd",0)) != 60.0:
+        errors.append("rental-initial-subcap-drift")
+    if float(rental.get("initial_execution_subcap_usd",9999)) >= float(rental.get("hard_all_in_authorization_cap_usd",0)):
+        errors.append("rental-subcap-order")
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

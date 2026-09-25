@@ -5,13 +5,15 @@
   "provider_baseline": {
     "provider": "RunPod",
     "tier": "Secure Cloud",
-    "pricing_source": "https://www.runpod.io/articles/guides/ai-server-cost",
+    "pricing_source": "https://www.runpod.io/pricing",
     "pricing_verified_by_source": "2026-08-10",
     "billing": "per-second according to source",
     "rates_usd_per_hour": {
       "RTX_5090_32GB": 0.99,
       "RTX_PRO_6000_96GB": 2.09
-    }
+    },
+    "pricing_rechecked_at": "2026-09-25",
+    "pricing_note": "Official RunPod rate card observed RTX 5090 Secure USD 0.99/h and RTX Pro 6000 Secure USD 2.09/h; recheck live price/availability immediately before any launch."
   },
   "calendar_window_days": {
     "min": 3,
@@ -84,5 +86,8 @@
       "VRAM/timing metrics"
     ],
     "cleanup": "terminate rented compute and remove temporary provider storage after verified download"
-  }
+  },
+  "pricing_rechecked_at": "2026-09-25",
+  "initial_execution_subcap_usd": 60.0,
+  "initial_execution_subcap_note": "If paid execution is later explicitly approved, first launch batch must remain within USD 60; the USD 150 envelope is a proposal ceiling for all three stages, not standing spend authority."
 }
