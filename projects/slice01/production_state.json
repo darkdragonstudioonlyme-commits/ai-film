@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "READY_NO_GENERATED_TAKES",
+  "shots": [
+    {
+      "shot_id": "sc01_sh01",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh02",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh03",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh04",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh05",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh06",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh07",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    },
+    {
+      "shot_id": "sc01_sh08",
+      "spec_revision": 1,
+      "state": "READY",
+      "version": 2,
+      "selection_revision": 0,
+      "selected_take_id": null
+    }
+  ],
+  "selection_history": []
+}

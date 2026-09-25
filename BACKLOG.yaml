@@ -161,15 +161,30 @@
 - id: T-032
   milestone: M2
   goal: "Implement production state transitions and immutable selected-take revisions"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-033
   milestone: M2
   goal: "Implement logical generation key, attempt lifecycle, retry/cancel/unknown-outcome controls"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-034
   milestone: M2
   goal: "Implement deterministic edit timeline compiler for selected takes, dialogue and subtitles"
+  status: DONE
+  owner: executor
+- id: T-035
+  milestone: M2
+  goal: "Implement deterministic ffmpeg render-command compiler from a READY edit plan without executing when blocked"
+  status: READY
+  owner: executor
+- id: T-036
+  milestone: M2
+  goal: "Implement technical media probe/QC for duration, dimensions, streams and hash-bound export identity"
+  status: READY
+  owner: executor
+- id: T-037
+  milestone: M2
+  goal: "Implement multi-aspect/multi-language delivery package manifest with provenance and publication boundary"
   status: READY
   owner: executor
