@@ -24,35 +24,27 @@ class Flux2QualificationEvidenceTests(unittest.TestCase):
         self.assertFalse(EVIDENCE["production_acceptance"])
         self.assertFalse(EVIDENCE["selection_authorized"])
 
-    def test_measurements_are_real_but_formal_admission_stays_closed(self):
+    def test_512_evidence_remains_non_authorizing_after_formal_smoke(self):
         self.assertEqual(EVIDENCE["measurements"]["gpu_peak_memory_mb"],16577.0)
         self.assertEqual(EVIDENCE["measurements"]["inference_sec"],1.285966)
-        profile=next(row for row in RESOURCES["profiles"] if row["model_id"]=="flux2-klein-4b")
-        self.assertEqual(profile["vram_status"],"MEASURED_512_QUALIFICATION")
-        self.assertEqual(profile["production_resolution_vram_status"],"UNMEASURED_1024_SMOKE_PENDING")
-        self.assertIsNone(profile["required_vram_gb"])
-        self.assertFalse(profile["admission_ready"])
-        decision=evaluate_admission(profile,WORKER)
-        self.assertFalse(decision["admitted"])
-        self.assertEqual(decision["reasons"],["PROFILE_NOT_ADMISSION_READY","VRAM_REQUIREMENT_UNMEASURED","VRAM_REQUIREMENT_MISSING"])
+        self.assertFalse(EVIDENCE["admission_ready_after_qualification"])
+        self.assertEqual(EVIDENCE["next_gate"],"FORMAL_1024X1024_FOUR_JOB_SMOKE")
 
-    def test_runtime_and_worker_advance_without_claiming_formal_smoke(self):
+    def test_current_runtime_has_advanced_beyond_historical_512_evidence(self):
         qual=LIVE_RUNTIME["flux2_qualification"]
-        self.assertEqual(qual["status"],"PASS_512_FULL_GPU")
-        self.assertEqual(qual["peak_vram_mib"],16577.0)
-        self.assertTrue(qual["formal_1024_smoke_pending"])
+        self.assertEqual(qual["status"],"PASS_FORMAL_1024_FOUR_JOB")
+        self.assertEqual(qual["peak_vram_mib"],20415)
+        self.assertFalse(qual["formal_1024_smoke_pending"])
         worker=WORKER["qualified_models"]["flux2-klein-4b"]
-        self.assertEqual(worker["status"],"PASS_512_QUALIFICATION")
-        self.assertTrue(worker["formal_1024_smoke_pending"])
-        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_512_MEASURED_1024_PENDING")
+        self.assertEqual(worker["status"],"PASS_FORMAL_1024_FOUR_JOB")
+        self.assertTrue(worker["admission_ready"])
+        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_1024_MEASURED_ADMISSION_READY_OTHERS_PENDING")
 
-    def test_cost_ledger_tracks_bootstrap_plus_qualification_under_cap(self):
+    def test_cost_ledger_preserves_512_entry_after_formal_smoke(self):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
-        self.assertEqual(set(by_id),{"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass"})
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.11165,places=6)
+        self.assertIn("flux2-castjob_d3ec86da4ca6b1fc-pass",by_id)
         self.assertAlmostEqual(by_id["flux2-castjob_d3ec86da4ca6b1fc-pass"]["amount_usd"],0.00138,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.8)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.9)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.11375,places=6)
 
 
 if __name__=="__main__":

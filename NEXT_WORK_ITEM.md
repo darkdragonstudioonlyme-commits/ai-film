@@ -1,29 +1,30 @@
-# NEXT WORK ITEM — T-019 FLUX.2 formal casting smoke
+# NEXT WORK ITEM — T-019 Z-Image qualification on A40
 
 STATUS: READY
 MILESTONE: M2
-TASK: run the fixed four-job 1024×1024 FLUX.2 klein casting smoke on the authorized RunPod A40, then ingest measured evidence before broader casting.
+TASK: qualify the exact pinned Z-Image runtime and run the same four face_front comparison jobs after FLUX.2 formal smoke passed.
 
-COMPLETED QUALIFICATION:
-- one canonical FLUX.2 klein job at 512×512 / 4 steps / guidance 1.0 / BF16 / FULL_GPU
-- status: PASS
-- total elapsed: 10.139162s
-- inference: 1.285966s
-- peak GPU memory: 16,577 MiB
-- artifact SHA-256: f1af28a78a13be0bc8f3cb82f591f6c2bfa7046658b51b142c67532dc2871bf9
-- raw evidence SHA-256: 494b833da19cc03b9dc4146f0c74eeab0ed0d2adb1fe7f07c9247348c1bbf7df
-- estimated compute cost: USD 0.00138
-- profile remains admission_ready=false because 1024 production smoke has not been measured
+FLUX2 FORMAL SMOKE COMPLETE:
+- four fixed face_front jobs, characters An/Linh × photoreal/stylized_3d
+- 1024×1024, 4 steps, guidance 1.0, BF16 FULL_GPU
+- 4/4 PASS
+- total elapsed: 15.430117s
+- mean job elapsed: 2.366221s; median: 2.239497s
+- max torch reserved: 20,080 MiB; max nvidia-smi: 20,415 MiB
+- estimated batch compute cost: USD 0.0021
+- cost ledger total: USD 0.11375
+- FLUX2 profile required_vram_gb=20.0 + reserve=4.0, admission_ready=true
+- outputs remain smoke evidence only; no winner/production acceptance/publication
 
 NEXT:
-1. Run tools/run_flux2_casting_batch.py on the fixed four face_front jobs at 1024×1024.
-2. Capture per-job elapsed/peak VRAM, output hashes and batch estimated cost.
-3. If all four jobs pass and budget remains healthy, ingest evidence and set a measured 1024 requirement/reserve before admission_ready.
-4. Preserve/sync Pod-local PNGs before Pod termination.
-5. Then qualify Z-Image on the same fixed population; do not choose a winner before blind scores.
+1. Inspect exact Z-Image model repository/revision and dependency/runtime requirements.
+2. Download only required inference components into /workspace/models.
+3. Run a single low-resolution qualification before the four-job 1024 comparison smoke.
+4. Ingest Z-Image measurement/cost evidence before any blind scoring.
+5. Preserve/sync all FLUX2/Z-Image smoke assets before Pod termination.
 
 DO NOT:
+- select FLUX2 as winner before blind scores
+- treat smoke assets as production references
 - create another Pod/resource
-- mark FLUX2 admission-ready from the 512-only measurement
-- publish or production-accept generated smoke assets
 - exceed the USD 60 project cap

@@ -1,0 +1,149 @@
+{
+  "admission_ready_after_smoke": true,
+  "artifact_persistence_status": "POD_LOCAL_ONLY_PENDING_SYNC",
+  "failed_jobs": 0,
+  "gpu": "NVIDIA A40",
+  "measurements": {
+    "elapsed_sec_total": 15.430117,
+    "estimated_compute_cost_usd": 0.0021,
+    "load_cpu_sec": 0.768076,
+    "max_nvidia_smi_memory_mib": 20415,
+    "max_torch_peak_memory_mb": 20080.0,
+    "mean_job_elapsed_sec": 2.366221,
+    "median_job_elapsed_sec": 2.239497,
+    "nvidia_smi_after_load_mib": 15561,
+    "to_cuda_sec": 3.357238,
+    "torch_peak_after_load_mib": 15290.0
+  },
+  "model_id": "flux2-klein-4b",
+  "model_repo": "black-forest-labs/FLUX.2-klein-4B",
+  "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+  "next_gate": "QUALIFY_Z_IMAGE_ON_SAME_FIXED_POPULATION",
+  "observed_at_utc": "2026-09-25T18:18:25Z",
+  "outputs": [
+    {
+      "asset_id": "asset_flux2_3681cb753c1eabcd",
+      "asset_sha256": "3681cb753c1eabcdeba187a4d6dce0b086eecac3fe8c0eb3d521a54fbe47d86c",
+      "blind_id": "cast_d0117568f9ed",
+      "bytes": 1392603,
+      "character_id": "an",
+      "elapsed_sec": 2.751941,
+      "gpu_peak_memory_mb": 20080.0,
+      "height": 1024,
+      "job_id": "castjob_d3ec86da4ca6b1fc",
+      "manifest_sha256": "39dc1ab28b9fbdb6966d209c8a04c86b2b517a4cb77d9e89c470ac137e67ca46",
+      "nvidia_smi_after_inference_mib": 20415,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_id": "asset_flux2_18a2c2888a5e37c6",
+      "asset_sha256": "18a2c2888a5e37c615dc63329fe1458fde6483855885f096b2d4d81678b4eed8",
+      "blind_id": "cast_bb18b00c95b6",
+      "bytes": 1016671,
+      "character_id": "an",
+      "elapsed_sec": 2.233951,
+      "gpu_peak_memory_mb": 20080.0,
+      "height": 1024,
+      "job_id": "castjob_f7ba9f7de5b19299",
+      "manifest_sha256": "de63318e67026b274ff3d64325bc60ac76d1c353d8709884f100f9cfab3f0d81",
+      "nvidia_smi_after_inference_mib": 20415,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    },
+    {
+      "asset_id": "asset_flux2_8916d95f63bb5112",
+      "asset_sha256": "8916d95f63bb5112b36008155bf85ac19970cda478d2643c971302f676bbab8c",
+      "blind_id": "cast_10127a780c51",
+      "bytes": 1214653,
+      "character_id": "linh",
+      "elapsed_sec": 2.24373,
+      "gpu_peak_memory_mb": 20080.0,
+      "height": 1024,
+      "job_id": "castjob_1952dc2f4a07acca",
+      "manifest_sha256": "a974f276b19ac331387802a02ac51e948d68f8b549c953debc0c328b0a57d22c",
+      "nvidia_smi_after_inference_mib": 20415,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_id": "asset_flux2_05a4ae8aafe9c767",
+      "asset_sha256": "05a4ae8aafe9c7675f43170994c65eb1a77f444a18d3e83fc980e39141b767d1",
+      "blind_id": "cast_28f1dd7b2c4a",
+      "bytes": 1281673,
+      "character_id": "linh",
+      "elapsed_sec": 2.235263,
+      "gpu_peak_memory_mb": 20080.0,
+      "height": 1024,
+      "job_id": "castjob_96706cd45a1c876e",
+      "manifest_sha256": "fba1aa96e080517e47aa513f77fae584b0e14ad0579af5dbf2a2039bd2ae5632",
+      "nvidia_smi_after_inference_mib": 20415,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    }
+  ],
+  "outputs_json": {
+    "pod_path": "/workspace/artifacts/flux2-casting-smoke/outputs.json",
+    "sha256": "5fd077febd1158ded2f4b580e9f89f73660aee56b38ca36e08b1ff47f2a2fb12"
+  },
+  "parameters": {
+    "guidance_scale": 1.0,
+    "height": 1024,
+    "num_inference_steps": 4,
+    "width": 1024
+  },
+  "passed_jobs": 4,
+  "planned_jobs": 4,
+  "pod_id": "0h1twwxqw6yx0k",
+  "post_run_budget": {
+    "allowed": true,
+    "budget_usd": 60.0,
+    "projected_total_usd": 0.11375,
+    "run_cost_usd": 0.0021,
+    "spent_before_run_usd": 0.11165
+  },
+  "post_run_model_dir_validation": {
+    "required_bytes": 15980131745,
+    "required_file_count": 18,
+    "required_gib": 14.882657,
+    "status": "PASS_AFTER_VALIDATOR_FIX",
+    "validator_gap_closed": true
+  },
+  "production_acceptance": false,
+  "profile_id": "flux2-klein-4b-casting-a40-v1",
+  "provider": "RunPod",
+  "publish_authority": false,
+  "raw_evidence": {
+    "bytes": 4461,
+    "pod_path": "/workspace/runs/flux2-casting-smoke/evidence.json",
+    "sha256": "3d54fe2cc730353aec60d63cfde24e779afad85db9fa3a77800343cec08c2da4"
+  },
+  "raw_model_snapshot_shape": {
+    "required_bytes": 7930689961,
+    "required_file_count": 9,
+    "required_gib": 7.386031,
+    "status": "UNDERCOUNTED_BY_PRE_RUN_VALIDATOR"
+  },
+  "runtime": {
+    "diffusers": "0.40.0",
+    "dtype": "bfloat16",
+    "mode": "FULL_GPU",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8"
+  },
+  "schema_version": 1,
+  "selection_authorized": false,
+  "status": "PASS_FORMAL_1024_FOUR_JOB_SMOKE",
+  "vram_policy": {
+    "admission_threshold_gb": 24.0,
+    "measured_peak_gib": 19.936523,
+    "measured_peak_mib": 20415,
+    "required_vram_gb": 20.0,
+    "reserve_gb": 4.0,
+    "rule": "ceil(max_nvidia_smi_mib/1024) as required_vram_gb plus fixed 4 GiB operational reserve"
+  }
+}
