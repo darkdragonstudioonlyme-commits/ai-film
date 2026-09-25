@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "master_language": "en",
+  "languages": [
+    "en",
+    "zh-CN",
+    "vi"
+  ],
+  "status": "PARTIAL_TIMING_ZH_PENDING",
+  "lines": [
+    {
+      "dialogue_id": "dlg_001",
+      "character_id": "an",
+      "cue_budget_sec": 3.5,
+      "texts": {
+        "en": "Does the 11:40 still stop here?",
+        "zh-CN": "十一点四十的末班车还停这里吗？",
+        "vi": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?"
+      },
+      "timing_measurements": {
+        "en": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 2.72,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        },
+        "zh-CN": {
+          "status": "NOT_MEASURED",
+          "duration_sec": null,
+          "evidence_ref": null,
+          "measurement_source": "NONE",
+          "evidence_sha256": null
+        },
+        "vi": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 2.56,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        }
+      }
+    },
+    {
+      "dialogue_id": "dlg_002",
+      "character_id": "linh",
+      "cue_budget_sec": 3.3,
+      "texts": {
+        "en": "Only if we bring the signal back.",
+        "zh-CN": "得先把信号恢复。",
+        "vi": "Chỉ khi mình khôi phục được tín hiệu."
+      },
+      "timing_measurements": {
+        "en": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 2.32,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        },
+        "zh-CN": {
+          "status": "NOT_MEASURED",
+          "duration_sec": null,
+          "evidence_ref": null,
+          "measurement_source": "NONE",
+          "evidence_sha256": null
+        },
+        "vi": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 1.92,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        }
+      }
+    },
+    {
+      "dialogue_id": "dlg_003",
+      "character_id": "linh",
+      "cue_budget_sec": 4.0,
+      "texts": {
+        "en": "You came back for this station?",
+        "zh-CN": "你是为了这个车站回来的？",
+        "vi": "Anh quay lại vì nhà ga này sao?"
+      },
+      "timing_measurements": {
+        "en": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 1.92,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        },
+        "zh-CN": {
+          "status": "NOT_MEASURED",
+          "duration_sec": null,
+          "evidence_ref": null,
+          "measurement_source": "NONE",
+          "evidence_sha256": null
+        },
+        "vi": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 1.92,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        }
+      }
+    },
+    {
+      "dialogue_id": "dlg_004",
+      "character_id": "an",
+      "cue_budget_sec": 2.1,
+      "texts": {
+        "en": "For a promise.",
+        "zh-CN": "为了一个承诺。",
+        "vi": "Vì một lời hứa."
+      },
+      "timing_measurements": {
+        "en": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 1.2,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        },
+        "zh-CN": {
+          "status": "NOT_MEASURED",
+          "duration_sec": null,
+          "evidence_ref": null,
+          "measurement_source": "NONE",
+          "evidence_sha256": null
+        },
+        "vi": {
+          "status": "PREVIS_MEASURED",
+          "duration_sec": 1.28,
+          "evidence_ref": "run-evidence/PREVIS_AUDIO_20260925.json",
+          "measurement_source": "VIE-CPU-PREVIS_NOT_FINAL",
+          "evidence_sha256": "202cdc8f64b3791c5740cad5ced4dcb3d2b62cfa93ec00bc8c2543164de8ef64"
+        }
+      }
+    }
+  ],
+  "timing_note": "EN/VI durations are measured CPU previs only; ZH durations are deliberately NOT_MEASURED until VoxCPM2 or another approved path is run."
+}

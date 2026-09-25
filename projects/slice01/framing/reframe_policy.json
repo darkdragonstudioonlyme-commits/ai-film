@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "master_aspect": "9:16",
+  "target_aspect": "16:9",
+  "status": "POLICY_READY_NO_RENDER",
+  "shots": [
+    {
+      "shot_id": "sc01_sh01",
+      "strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_full_body",
+        "platform_geometry"
+      ],
+      "horizontal_intent": "preserve station scale and arrival direction"
+    },
+    {
+      "shot_id": "sc01_sh02",
+      "strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "linh_face",
+        "uniform_badge"
+      ],
+      "horizontal_intent": "retain desk context around centered medium portrait"
+    },
+    {
+      "shot_id": "sc01_sh03",
+      "strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_face",
+        "linh_face",
+        "red_paper_crane"
+      ],
+      "horizontal_intent": "separate both characters while keeping crane readable"
+    },
+    {
+      "shot_id": "sc01_sh04",
+      "strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "linh_face",
+        "flashlight"
+      ],
+      "horizontal_intent": "retain close-up emotional read with lateral negative space"
+    },
+    {
+      "shot_id": "sc01_sh05",
+      "strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "an_face",
+        "left_forearm_injury"
+      ],
+      "horizontal_intent": "keep injury action readable with service-panel context"
+    },
+    {
+      "shot_id": "sc01_sh06",
+      "strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_face",
+        "linh_face",
+        "left_forearm_gauze",
+        "red_paper_crane"
+      ],
+      "horizontal_intent": "preserve bandage action and two-character eye line"
+    },
+    {
+      "shot_id": "sc01_sh07",
+      "strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_profile",
+        "linh_profile",
+        "green_signal"
+      ],
+      "horizontal_intent": "preserve profile separation and signal/train depth"
+    },
+    {
+      "shot_id": "sc01_sh08",
+      "strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an",
+        "linh",
+        "train_doors"
+      ],
+      "horizontal_intent": "show boarding action and platform separation in a true wide frame"
+    }
+  ],
+  "crop_only_allowed": false,
+  "render_authorized": false
+}

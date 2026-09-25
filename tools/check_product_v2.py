@@ -2,6 +2,7 @@
 """Structural contract for the active product-first control plane."""
 from __future__ import annotations
 import csv
+import hashlib
 import json
 import re
 import sys
@@ -561,6 +562,64 @@ def main() -> int:
     for rel in required_batch013:
         if not (root/rel).is_file():
             errors.append("batch013-missing:"+rel)
+
+
+    screenplay=json.loads((root/"projects/slice01/story/screenplay.json").read_text(encoding="utf-8"))
+    scenes=screenplay.get("scenes",[])
+    if screenplay.get("master_language")!="en" or float(screenplay.get("target_duration_sec",0))!=75.0:
+        errors.append("screenplay-core")
+    if len(scenes)!=1 or len(scenes[0].get("beats",[]))!=6 or len(scenes[0].get("dialogue",[]))!=4:
+        errors.append("screenplay-shape")
+    source=screenplay.get("source",{})
+    project_sha=hashlib.sha256((root/"projects/slice01/project.json").read_bytes()).hexdigest()
+    if source.get("kind")!="ORIGINAL_PROJECT" or source.get("rights_id")!="source-original" or source.get("rights_status")!="ORIGINAL":
+        errors.append("screenplay-source-rights")
+    if source.get("source_identity_sha256")!=project_sha:
+        errors.append("screenplay-source-identity")
+    if {row.get("dialogue_id") for row in scenes[0].get("dialogue",[])} != {shot.get("dialogue_id") for shot in shots if shot.get("dialogue_id")}:
+        errors.append("screenplay-dialogue-shot-drift")
+
+    bundle=json.loads((root/"projects/slice01/localization/dialogue_bundle.json").read_text(encoding="utf-8"))
+    if bundle.get("status")!="PARTIAL_TIMING_ZH_PENDING" or bundle.get("languages")!=["en","zh-CN","vi"] or len(bundle.get("lines",[]))!=4:
+        errors.append("localization-bundle-shape")
+    previs_sha=hashlib.sha256((root/"run-evidence/PREVIS_AUDIO_20260925.json").read_bytes()).hexdigest()
+    for line in bundle.get("lines",[]):
+        if set(line.get("texts",{})) != LANGS or any(not str(v).strip() for v in line.get("texts",{}).values()):
+            errors.append("localization-text-coverage:"+str(line.get("dialogue_id")))
+        measurements=line.get("timing_measurements",{})
+        for language in ("en","vi"):
+            row=measurements.get(language,{})
+            if row.get("status")!="PREVIS_MEASURED" or row.get("evidence_sha256")!=previs_sha or row.get("duration_sec") is None:
+                errors.append("localization-previs-evidence:"+str(line.get("dialogue_id"))+":"+language)
+        zh=measurements.get("zh-CN",{})
+        if zh.get("status")!="NOT_MEASURED" or zh.get("duration_sec") is not None or zh.get("evidence_sha256") is not None:
+            errors.append("localization-zh-must-remain-unmeasured:"+str(line.get("dialogue_id")))
+
+    reframe_policy=json.loads((root/"projects/slice01/framing/reframe_policy.json").read_text(encoding="utf-8"))
+    reframe_plan=json.loads((root/"projects/slice01/framing/reframe_plan_16x9.json").read_text(encoding="utf-8"))
+    if reframe_policy.get("master_aspect")!="9:16" or reframe_policy.get("target_aspect")!="16:9" or reframe_policy.get("crop_only_allowed") is not False:
+        errors.append("reframe-policy")
+    if len(reframe_policy.get("shots",[]))!=8 or {row.get("shot_id") for row in reframe_policy.get("shots",[])} != shot_ids:
+        errors.append("reframe-policy-population")
+    if reframe_plan.get("status")!="READY_FOR_RENDER_BACKEND" or reframe_plan.get("render_authorized") is not False:
+        errors.append("reframe-current-plan")
+    if len(reframe_plan.get("shots",[]))!=8 or reframe_plan.get("fallback_to_rerender_count")!=3:
+        errors.append("reframe-current-plan-shape")
+    if any(row.get("effective_strategy")!="RERENDER_FROM_SPEC" for row in reframe_plan.get("shots",[])):
+        errors.append("reframe-current-plan-strategy")
+
+    required_batch014=[
+        "film/BATCH014_CONTRACT.md",
+        "film/script_engine.py",
+        "film/localization.py",
+        "film/reframe.py",
+        "tools/validate_screenplay.py",
+        "tools/validate_localization_bundle.py",
+        "tools/compile_reframe_plan.py",
+    ]
+    for rel in required_batch014:
+        if not (root/rel).is_file():
+            errors.append("batch014-missing:"+rel)
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

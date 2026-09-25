@@ -1,24 +1,24 @@
-# NEXT WORK ITEM — Product v2 batch 014
+# NEXT WORK ITEM — Product v2 batch 015
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-044 — implement an executable screenplay/scene schema for slice01 with stable scene/beat/dialogue IDs, runtime estimates and rights/source identity validation.
-2. T-045 — implement EN-master localization bundle validation for ZH/VI with stable dialogue IDs, complete language coverage and cue-budget timing-fit checks.
-3. T-046 — implement deterministic framing/reframe planning from 9:16 master to 16:9 using per-shot camera/framing intent and safe-area constraints; no rendering.
+1. T-047 — implement story beat→shot coverage and runtime reconciliation so every screenplay beat is represented and every shot maps to story intent.
+2. T-048 — implement per-shot continuity expectation manifests from the ledger and a diff checker for observed/generated metadata.
+3. T-049 — implement EN/ZH/VI subtitle layout and safe-area planning for both 9:16 and 16:9, including line-length/reading-density blockers without rendering.
 
 DEFERRED:
 - T-019 paid rental GPU benchmark remains BLOCKED pending explicit bounded approval.
 
 SUCCESS:
-- story/script data is machine-validatable rather than Markdown-only
-- localization cannot silently drop/relabel dialogue or exceed cue timing without a blocker
-- 16:9 path preserves shot identity/camera intent and exposes shots requiring rerender rather than pretending crop is always safe
+- story beats and shots cannot drift independently or leave orphan coverage
+- continuity expectations are explicit machine data and intentional changes are not mistaken for drift
+- subtitle plans expose unsafe/overdense text and aspect-specific layout without claiming visual render validation
 - no paid compute or media generation is launched
 
 DO NOT:
 - launch/rent GPU
-- fabricate translated timing measurements
+- fabricate observed visual continuity
+- claim subtitle visual QC without rendered frames
 - publish content
-- treat crop/reframe planning as rendered media
