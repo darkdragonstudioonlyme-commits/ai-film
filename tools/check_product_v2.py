@@ -419,6 +419,39 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch009-missing:"+rel)
 
+
+    prod_state=json.loads((root/"projects/slice01/production_state.json").read_text(encoding="utf-8"))
+    prod_shots=prod_state.get("shots",[])
+    if prod_state.get("status")!="READY_NO_GENERATED_TAKES" or len(prod_shots)!=8:
+        errors.append("production-state-shape")
+    if any(row.get("state")!="READY" or row.get("selected_take_id") is not None for row in prod_shots):
+        errors.append("production-state-unexpected-selection")
+    if prod_state.get("selection_history")!=[]:
+        errors.append("production-state-selection-history")
+    selected_takes=json.loads((root/"projects/slice01/edit/selected_takes.json").read_text(encoding="utf-8"))
+    dialogue_tracks=json.loads((root/"projects/slice01/edit/dialogue_tracks.json").read_text(encoding="utf-8"))
+    edit_placeholder=json.loads((root/"projects/slice01/edit/edit_plan.placeholder.json").read_text(encoding="utf-8"))
+    if selected_takes.get("status")!="NO_TAKES_SELECTED" or selected_takes.get("selected_takes")!={}:
+        errors.append("edit-selected-takes-state")
+    if dialogue_tracks.get("status")!="NO_FINAL_DIALOGUE_AUDIO" or dialogue_tracks.get("tracks")!={}:
+        errors.append("edit-dialogue-tracks-state")
+    if edit_placeholder.get("status")!="BLOCKED_MISSING_MEDIA" or edit_placeholder.get("duration_sec")!=75.0 or edit_placeholder.get("render_authorized") is not False:
+        errors.append("edit-placeholder-state")
+    if len(edit_placeholder.get("blockers",[]))!=12:
+        errors.append("edit-placeholder-blockers")
+    required_batch010=[
+        "film/BATCH010_CONTRACT.md",
+        "film/production_state.py",
+        "film/generation_control.py",
+        "film/edit_plan.py",
+        "tools/build_logical_generation_job.py",
+        "tools/compile_edit_plan.py",
+        "tools/create_selection_revision.py",
+    ]
+    for rel in required_batch010:
+        if not (root/rel).is_file():
+            errors.append("batch010-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

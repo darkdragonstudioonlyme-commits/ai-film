@@ -1,0 +1,112 @@
+{
+  "aspect": "9:16",
+  "blockers": [
+    "missing-dialogue-audio:dlg_001:en",
+    "missing-dialogue-audio:dlg_002:en",
+    "missing-dialogue-audio:dlg_003:en",
+    "missing-dialogue-audio:dlg_004:en",
+    "missing-selected-take:sc01_sh01",
+    "missing-selected-take:sc01_sh02",
+    "missing-selected-take:sc01_sh03",
+    "missing-selected-take:sc01_sh04",
+    "missing-selected-take:sc01_sh05",
+    "missing-selected-take:sc01_sh06",
+    "missing-selected-take:sc01_sh07",
+    "missing-selected-take:sc01_sh08"
+  ],
+  "dialogue": [
+    {
+      "audio": null,
+      "dialogue_id": "dlg_001",
+      "end_sec": 20.0,
+      "shot_id": "sc01_sh03",
+      "start_sec": 16.5
+    },
+    {
+      "audio": null,
+      "dialogue_id": "dlg_002",
+      "end_sec": 29.8,
+      "shot_id": "sc01_sh04",
+      "start_sec": 26.5
+    },
+    {
+      "audio": null,
+      "dialogue_id": "dlg_003",
+      "end_sec": 48.5,
+      "shot_id": "sc01_sh06",
+      "start_sec": 44.5
+    },
+    {
+      "audio": null,
+      "dialogue_id": "dlg_004",
+      "end_sec": 57.6,
+      "shot_id": "sc01_sh07",
+      "start_sec": 55.5
+    }
+  ],
+  "duration_sec": 75.0,
+  "language": "en",
+  "plan_digest": "6920e09ef51e005b00f4eefb9d8ba999af3849be330045c00de4a04bec25eedd",
+  "render_authorized": false,
+  "schema_version": 1,
+  "segments": [
+    {
+      "duration_sec": 8.0,
+      "end_sec": 8.0,
+      "shot_id": "sc01_sh01",
+      "start_sec": 0.0,
+      "video": null
+    },
+    {
+      "duration_sec": 7.0,
+      "end_sec": 15.0,
+      "shot_id": "sc01_sh02",
+      "start_sec": 8.0,
+      "video": null
+    },
+    {
+      "duration_sec": 10.0,
+      "end_sec": 25.0,
+      "shot_id": "sc01_sh03",
+      "start_sec": 15.0,
+      "video": null
+    },
+    {
+      "duration_sec": 9.0,
+      "end_sec": 34.0,
+      "shot_id": "sc01_sh04",
+      "start_sec": 25.0,
+      "video": null
+    },
+    {
+      "duration_sec": 9.0,
+      "end_sec": 43.0,
+      "shot_id": "sc01_sh05",
+      "start_sec": 34.0,
+      "video": null
+    },
+    {
+      "duration_sec": 11.0,
+      "end_sec": 54.0,
+      "shot_id": "sc01_sh06",
+      "start_sec": 43.0,
+      "video": null
+    },
+    {
+      "duration_sec": 9.0,
+      "end_sec": 63.0,
+      "shot_id": "sc01_sh07",
+      "start_sec": 54.0,
+      "video": null
+    },
+    {
+      "duration_sec": 12.0,
+      "end_sec": 75.0,
+      "shot_id": "sc01_sh08",
+      "start_sec": 63.0,
+      "video": null
+    }
+  ],
+  "status": "BLOCKED_MISSING_MEDIA",
+  "subtitle_path": "projects/slice01/timing/subtitles/en.srt"
+}
