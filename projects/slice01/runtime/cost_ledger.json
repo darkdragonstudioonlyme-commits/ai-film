@@ -28,6 +28,15 @@
       "attempt_id": "flux2-klein-4b-casting-a40-v1",
       "asset_id": null,
       "note": "Estimated from measured 15.430117s formal smoke elapsed time at USD 0.49/h. Four smoke assets are individually hash-bound in formal smoke evidence."
+    },
+    {
+      "cost_id": "zimage-castjob_8e02916e0db64eb6-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.004647,
+      "logical_key": "T-019-ZIMAGE-QUALIFICATION",
+      "attempt_id": "castjob_8e02916e0db64eb6",
+      "asset_id": "asset_zimage_682f2ae66cf26200",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
     }
   ]
 }

@@ -74,16 +74,17 @@ class RunPodA40LiveAuthorityTests(unittest.TestCase):
         self.assertTrue(decision["admitted"])
         self.assertEqual(decision["reasons"],[])
         self.assertEqual(WORKER["vram_status"],"MEASURED")
-        self.assertEqual(WORKER["runtime_status"],"BASE_RUNTIME_MEASURED_FLUX2_1024_FORMAL_PASS_OTHER_ADAPTERS_PENDING")
+        self.assertEqual(WORKER["runtime_status"],"BASE_RUNTIME_MEASURED_FLUX2_1024_PASS_ZIMAGE_512_PASS_OTHER_ADAPTERS_PENDING")
 
     def test_cost_policy_and_bootstrap_estimate_enforce_60_cap(self):
         self.assertEqual(COST_POLICY["status"],"AUTHORIZED_BOUNDED")
         self.assertEqual(COST_POLICY["current_authorized_budget_usd"],60.0)
-        self.assertEqual(len(COST_LEDGER["entries"]),3)
+        self.assertEqual(len(COST_LEDGER["entries"]),4)
         by_id={row["cost_id"]:row for row in COST_LEDGER["entries"]}
         self.assertAlmostEqual(by_id["runpod-a40-bootstrap-estimate-20260925"]["amount_usd"],0.11027,places=6)
         self.assertAlmostEqual(by_id["flux2-castjob_d3ec86da4ca6b1fc-pass"]["amount_usd"],0.00138,places=6)
         self.assertAlmostEqual(by_id["flux2-formal-smoke-20260925"]["amount_usd"],0.0021,places=6)
+        self.assertAlmostEqual(by_id["zimage-castjob_8e02916e0db64eb6-pass"]["amount_usd"],0.004647,places=6)
         ok=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.8)
         self.assertTrue(ok["allowed"])
         blocked=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.9)
@@ -94,12 +95,17 @@ class RunPodA40LiveAuthorityTests(unittest.TestCase):
         self.assertEqual(tier["measured_vram_mib"],46068)
         self.assertEqual(tier["measurement_status"],"HOST_MEASURED_MODEL_STACK_UNMEASURED")
         flux=next(row for row in RESOURCES["profiles"] if row["model_id"]=="flux2-klein-4b")
-        others=[row for row in RESOURCES["profiles"] if row["model_id"]!="flux2-klein-4b"]
+        zimg=next(row for row in RESOURCES["profiles"] if row["model_id"]=="z-image")
+        others=[row for row in RESOURCES["profiles"] if row["model_id"] not in {"flux2-klein-4b","z-image"}]
         self.assertEqual(flux["vram_status"],"MEASURED")
         self.assertEqual(flux["formal_smoke_peak_nvidia_mib"],20415)
         self.assertTrue(flux["admission_ready"])
         self.assertEqual(flux["required_vram_gb"],20.0)
         self.assertEqual(flux["vram_reserve_gb"],4.0)
+        self.assertEqual(zimg["vram_status"],"MEASURED_512_QUALIFICATION")
+        self.assertEqual(zimg["qualification_peak_vram_mib"],21913.0)
+        self.assertFalse(zimg["admission_ready"])
+        self.assertIsNone(zimg["required_vram_gb"])
         self.assertTrue(all(row["vram_status"]=="UNMEASURED" for row in others))
         self.assertTrue(all(row["admission_ready"] is False for row in others))
 

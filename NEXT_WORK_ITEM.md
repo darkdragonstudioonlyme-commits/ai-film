@@ -1,36 +1,34 @@
-# NEXT WORK ITEM — T-019 Z-Image qualification on A40
+# NEXT WORK ITEM — T-019 Z-Image formal casting smoke
 
 STATUS: READY
 MILESTONE: M2
-TASK: qualify the exact pinned Z-Image runtime and run the same four face_front comparison jobs after FLUX.2 formal smoke passed.
+TASK: run the fixed four-job 1024×1024 Z-Image casting smoke on the authorized RunPod A40, then ingest measured evidence before blind scoring.
 
-FLUX2 FORMAL SMOKE COMPLETE:
-- four fixed face_front jobs, characters An/Linh × photoreal/stylized_3d
-- 1024×1024, 4 steps, guidance 1.0, BF16 FULL_GPU
-- 4/4 PASS
-- total elapsed: 15.430117s
-- mean job elapsed: 2.366221s; median: 2.239497s
-- max torch reserved: 20,080 MiB; max nvidia-smi: 20,415 MiB
-- estimated batch compute cost: USD 0.0021
-- cost ledger total: USD 0.11375
-- FLUX2 profile required_vram_gb=20.0 + reserve=4.0, admission_ready=true
-- outputs remain smoke evidence only; no winner/production acceptance/publication
-
-RUNNER PREPARED:
-- exact pinned Z-Image revision: 04cc4abb7c5069926f75c9bfde9ef43d49423021
-- diffusers 0.40.0 ZImagePipeline import verified on A40 runtime
-- upstream pinned settings: BF16, low_cpu_mem_usage=false, 50 steps, guidance 4, cfg_normalization=false
-- qualification runner is plan-first and uses native canonical negative_prompt
+COMPLETED Z-IMAGE QUALIFICATION:
+- exact revision 04cc4abb7c5069926f75c9bfde9ef43d49423021
+- canonical job castjob_8e02916e0db64eb6 / seed 2382532974
+- 512×512, 50 steps, guidance 4, cfg_normalization=false, BF16 FULL_GPU
+- native canonical negative_prompt applied
+- status: PASS
+- load CPU: 7.743865s; transfer to CUDA: 4.718485s
+- inference: 21.623722s; total elapsed: 34.140679s
+- nvidia-smi after load: 20,263 MiB; measured peak: 21,913 MiB
+- artifact SHA-256: 682f2ae66cf262004e5487d809e7c840c8a4fc2e86ba8529f98a446294a2f567
+- raw evidence SHA-256: db0dec072f4c77aff01e5cf97d5145ec376b97e32c0d22086d4c8f2659465af4
+- estimated compute cost: USD 0.004647
+- canonical cost ledger after qualification: USD 0.118397
+- profile remains admission_ready=false because the 1024 four-job comparison profile is still unmeasured
 
 NEXT:
-1. Merge the plan-only Z-Image qualification runner.
-2. Download the exact 18-file diffusers snapshot into /workspace/models/z-image.
-3. Run a single low-resolution qualification before the four-job 1024 comparison smoke.
-4. Ingest Z-Image measurement/cost evidence before any blind scoring.
-5. Preserve/sync all FLUX2/Z-Image smoke assets before Pod termination.
+1. Add/review a formal Z-Image four-job 1024 runner matching the FLUX2 face_front population.
+2. Execute An/Linh × photoreal/stylized_3d at 1024×1024 with the same Z-Image 50-step settings.
+3. Capture per-job elapsed/peak VRAM/output hashes and batch estimated cost.
+4. Only after 4/4 PASS, derive required_vram_gb + reserve and mark Z-Image resource admission ready.
+5. Then prepare blind comparison scoring; do not select a winner before complete blind scores.
 
 DO NOT:
-- select FLUX2 as winner before blind scores
+- promote Z-Image admission from the 512-only result
 - treat smoke assets as production references
 - create another Pod/resource
 - exceed the USD 60 project cap
+- publish content

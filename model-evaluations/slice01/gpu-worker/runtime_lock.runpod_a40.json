@@ -1,5 +1,6 @@
 {
   "blockers": [
+    "ZIMAGE_FORMAL_1024_SMOKE_PENDING",
     "OTHER_MODEL_SPECIFIC_ADAPTER_RUNTIMES_NOT_INSTALLED",
     "OTHER_MODEL_PROFILES_VRAM_UNMEASURED"
   ],
@@ -43,5 +44,11 @@
     "torch": "2.8.0+cu128",
     "torch_cuda": "12.8"
   },
-  "torch_source": "RunPod base image; not reinstalled during qualification"
+  "torch_source": "RunPod base image; not reinstalled during qualification",
+  "z_image_qualification": {
+    "evidence_ref": "run-evidence/Z_IMAGE_A40_QUALIFICATION_20260925.json",
+    "formal_1024_smoke_pending": true,
+    "peak_vram_mib": 21913.0,
+    "status": "PASS_512_FULL_GPU"
+  }
 }
