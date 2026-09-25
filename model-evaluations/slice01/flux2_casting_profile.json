@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "profile_id": "flux2-klein-4b-casting-a40-v1",
+  "model_id": "flux2-klein-4b",
+  "repo": "black-forest-labs/FLUX.2-klein-4B",
+  "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+  "runtime_lock_ref": "model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json",
+  "authorization_ref": "model-evaluations/slice01/launch_authorization.active.json",
+  "gpu": "NVIDIA A40",
+  "dtype": "bfloat16",
+  "mode": "FULL_GPU",
+  "width": 1024,
+  "height": 1024,
+  "num_inference_steps": 4,
+  "guidance_scale": 1.0,
+  "smoke_population": "FACE_FRONT_BY_CHARACTER_STYLE",
+  "smoke_jobs": 4,
+  "max_wall_sec": 300,
+  "execution_authorized_by_profile": false,
+  "notes": [
+    "Runner must independently validate active paid authorization and budget.",
+    "This profile does not select a model winner or publish assets.",
+    "Model-specific admission remains gated until formal smoke evidence is ingested."
+  ]
+}
