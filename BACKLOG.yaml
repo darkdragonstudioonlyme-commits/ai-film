@@ -65,15 +65,36 @@
 - id: T-013
   milestone: M2
   goal: "Build pinned GPU-worker runtime manifest/setup plan and validate it in dry-run mode"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-014
   milestone: M2
   goal: "Implement backend adapter contracts for pinned image/video benchmark jobs without GPU execution"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-015
   milestone: M2
   goal: "Generate full EN/VI CPU previsualization dialogue tracks and integrate timing into the 75s animatic"
+  status: DONE
+  owner: executor
+- id: T-016
+  milestone: M2
+  goal: "Build stage-specific GPU runner/prelaunch bundle for pinned visual models without renting"
   status: READY
   owner: executor
+- id: T-017
+  milestone: M2
+  goal: "Define casting reference manifest and blind identity/style acceptance contract for An and Linh"
+  status: READY
+  owner: coordinator
+- id: T-018
+  milestone: M2
+  goal: "Prepare VoxCPM2 EN/ZH/VI fixed voice-eval packet and scoring contract without cloning"
+  status: READY
+  owner: executor
+- id: T-019
+  milestone: M2
+  goal: "Launch paid rental GPU benchmark after explicit bounded approval"
+  status: BLOCKED
+  owner: coordinator
+  blocker: PAID_GPU_APPROVAL

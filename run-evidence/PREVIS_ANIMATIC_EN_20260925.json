@@ -1,0 +1,60 @@
+{
+  "audio_source": {
+    "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/dialogue_en.wav",
+    "sha256": "c065aac084c3adbabea1e228b816935f84a27a46fd286ad72ae6e02366d44150"
+  },
+  "ffmpeg": "/home/dragon/ai-film-dev/venvs/film-tools/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+  "ffmpeg_sha256": "e7e7fb30477f717e6f55f9180a70386c62677ef8a4d4d1a5d948f4098aa3eb99",
+  "ffmpeg_version": "ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers",
+  "fps": 24,
+  "outputs": [
+    {
+      "aspect": "9x16",
+      "bytes": 2541008,
+      "height": 1280,
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-en/slice01_animatic_9x16.mp4",
+      "probe": {
+        "duration_sec": 75.0,
+        "has_audio": true,
+        "height": 1280,
+        "width": 720
+      },
+      "sha256": "68e96acc66cf647e1092f9cc48091739ad8b7d194453b77672eade3a29a1b137",
+      "width": 720
+    },
+    {
+      "aspect": "16x9",
+      "bytes": 2542602,
+      "height": 720,
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-en/slice01_animatic_16x9.mp4",
+      "probe": {
+        "duration_sec": 75.0,
+        "has_audio": true,
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "4974b228eb60b4dc602c9b5afab56748bd9128b41afa298e3dcb83d3adcccfb3",
+      "width": 1280
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "subtitle_files": [
+    {
+      "language": "en",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-en/subtitles/en.srt",
+      "sha256": "a2dc58bdc23043078c9aaa5a5f2aaaeb1cd6471af0d4755c626be0afbf747b8f"
+    },
+    {
+      "language": "zh-CN",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-en/subtitles/zh-CN.srt",
+      "sha256": "e3a2cb68810ddc8450de98cfc4591b43a13848ae99cf800aff8890df366ea0a7"
+    },
+    {
+      "language": "vi",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-en/subtitles/vi.srt",
+      "sha256": "4440f0363269f8fc95cb14f5a0e183a6deb6d68f0d136b6585286e71e5ed3f55"
+    }
+  ],
+  "total_duration_sec_expected": 75.0
+}

@@ -22,7 +22,14 @@
     "not_for": [
       "final cross-language voice selection",
       "unlicensed real-person cloning"
-    ]
+    ],
+    "dialogue_voice_map": {
+      "dlg_001": "Phạm Tuyên",
+      "dlg_002": "Mai Anh",
+      "dlg_003": "Mai Anh",
+      "dlg_004": "Phạm Tuyên"
+    },
+    "voice_source": "built_in_presets_no_cloning"
   },
   "zh_route": {
     "model_id": "voxcpm2",

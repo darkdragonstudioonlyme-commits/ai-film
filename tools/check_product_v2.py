@@ -21,6 +21,14 @@ REQUIRED_PRODUCT_FILES = [
     "projects/slice01/timing/subtitles/zh-CN.srt",
     "projects/slice01/timing/subtitles/vi.srt",
     "projects/slice01/timing/voice_plan.json",
+    "model-evaluations/slice01/gpu-worker/runtime_lock.json",
+    "model-evaluations/slice01/gpu-worker/requirements-base.lock.txt",
+    "model-evaluations/slice01/BACKEND_ADAPTERS.md",
+    "run-evidence/GPU_WORKER_DRYRUN_20260925.json",
+    "run-evidence/PREVIS_AUDIO_20260925.json",
+    "run-evidence/PREVIS_ANIMATIC_EN_20260925.json",
+    "run-evidence/PREVIS_ANIMATIC_VI_20260925.json",
+    "projects/slice01/timing/voice_plan.json",
     "model-evaluations/slice01/upstream_pins_2026-09-24.json",
     "model-evaluations/slice01/PINNING_2026-09-24.md",
     "model-evaluations/slice01/CPU_TTS_FEASIBILITY_2026-09-24.md",
@@ -172,6 +180,42 @@ def main() -> int:
         errors.append("voice-plan-zh")
     if voice_plan.get("cpu_previs_candidate",{}).get("model_id")!="vieneu-v3-turbo":
         errors.append("voice-plan-cpu")
+
+    runtime=json.loads((root/"model-evaluations/slice01/gpu-worker/runtime_lock.json").read_text(encoding="utf-8"))
+    if runtime.get("status")!="PINNED_BASE_DRY_RUN_ONLY" or runtime.get("execution_ready") is not False:
+        errors.append("gpu-runtime-authority")
+    package_values=list((runtime.get("packages") or {}).values())
+    if not package_values or any("tbd" in str(value).lower() for value in package_values):
+        errors.append("gpu-runtime-package-pins")
+    worker_plan=json.loads((root/"run-evidence/GPU_WORKER_DRYRUN_20260925.json").read_text(encoding="utf-8"))
+    if worker_plan.get("mode")!="DRY_RUN" or worker_plan.get("execution_ready") is not False:
+        errors.append("gpu-worker-dryrun")
+
+    previs=json.loads((root/"run-evidence/PREVIS_AUDIO_20260925.json").read_text(encoding="utf-8"))
+    if previs.get("status")!="PASS" or set(previs.get("languages",[]))!={"en","vi"}:
+        errors.append("previs-audio-status")
+    clips=previs.get("clips",[])
+    if len(clips)!=8 or not all(row.get("fits_cue_budget") for row in clips):
+        errors.append("previs-audio-clips")
+    if previs.get("voice_source")!="built_in_presets_no_cloning":
+        errors.append("previs-audio-cloning")
+    tracks=previs.get("tracks",{})
+    for language in ("en","vi"):
+        track=tracks.get(language,{})
+        if track.get("duration_sec")!=75.0 or len(str(track.get("sha256","")))!=64:
+            errors.append("previs-audio-track:"+language)
+
+    for language in ("EN","VI"):
+        anim=json.loads((root/f"run-evidence/PREVIS_ANIMATIC_{language}_20260925.json").read_text(encoding="utf-8"))
+        if anim.get("status")!="PASS" or len(anim.get("outputs",[]))!=2:
+            errors.append("previs-animatic:"+language)
+            continue
+        if anim.get("audio_source",{}).get("sha256") != tracks[language.lower()]["sha256"]:
+            errors.append("previs-animatic-audio:"+language)
+        for output in anim["outputs"]:
+            probe=output.get("probe",{})
+            if probe.get("duration_sec")!=75.0 or probe.get("has_audio") is not True:
+                errors.append("previs-animatic-probe:"+language)
 
     rental=json.loads((root/"model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json").read_text(encoding="utf-8"))
     stage_compute=sum(float(row.get("compute_ceiling_usd",0)) for row in rental.get("stages",[]))
