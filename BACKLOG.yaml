@@ -101,15 +101,30 @@
 - id: T-020
   milestone: M2
   goal: "Compile casting-reference generation jobs for active image models from the 16-slot casting contract"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-021
   milestone: M2
   goal: "Implement blind-score ingestion and deterministic casting/model ranking without premature unblinding"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-022
   milestone: M2
   goal: "Implement VoxCPM2 voice-design runner request/output contract and score ingestion without synthesis"
+  status: DONE
+  owner: executor
+- id: T-023
+  milestone: M2
+  goal: "Implement image-model GPU runner contract for casting jobs with dry-run preflight and immutable output manifests"
+  status: READY
+  owner: executor
+- id: T-024
+  milestone: M2
+  goal: "Implement generated casting-asset ingestion into reference contract/index with provenance validation"
+  status: READY
+  owner: executor
+- id: T-025
+  milestone: M2
+  goal: "Implement benchmark result/cost ledger and decision-report aggregation for later GPU runs"
   status: READY
   owner: executor

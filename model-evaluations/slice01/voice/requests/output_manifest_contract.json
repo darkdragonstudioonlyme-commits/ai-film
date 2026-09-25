@@ -1,0 +1,14 @@
+{
+  "note": "One output manifest is required per request after synthesis. No output is accepted unless it binds the exact request_digest.",
+  "required_fields": [
+    "request_digest",
+    "blind_id",
+    "audio_sha256",
+    "sample_rate_hz",
+    "duration_sec",
+    "bytes"
+  ],
+  "sample_rate_hz": 48000,
+  "schema_version": 1,
+  "status": "SCHEMA_ONLY_NO_AUDIO"
+}

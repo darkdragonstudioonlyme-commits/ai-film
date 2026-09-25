@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Structural contract for the active product-first control plane."""
 from __future__ import annotations
+import csv
 import json
 import re
 import sys
@@ -283,6 +284,57 @@ def main() -> int:
     vox_matrix=next((m for m in models if m.get("model_id")=="voxcpm2"),None)
     if vox_matrix is None or "voxcpm==2.0.3" not in vox_matrix.get("runtime_requirements",[]):
         errors.append("voxcpm2-runtime-pin")
+
+
+    cast_gen=root/"projects/slice01/casting/generation"
+    cast_jobs=json.loads((cast_gen/"casting_jobs.json").read_text(encoding="utf-8"))
+    cast_public=json.loads((cast_gen/"blind_items.json").read_text(encoding="utf-8"))
+    cast_private=json.loads((cast_gen/"blind_map_private.json").read_text(encoding="utf-8"))
+    jobs=cast_jobs.get("jobs",[])
+    enabled_images={
+        m["model_id"] for m in models
+        if m.get("enabled") and m.get("stage")=="image"
+    }
+    if cast_jobs.get("status")!="COMPILED_NOT_EXECUTED" or len(jobs)!=32:
+        errors.append("casting-generation-shape")
+    if {row.get("model_id") for row in jobs} != enabled_images:
+        errors.append("casting-generation-models")
+    if any(row.get("execution_permitted") is not False for row in jobs):
+        errors.append("casting-generation-authority")
+    if len({row.get("job_id") for row in jobs})!=32 or len({row.get("blind_id") for row in jobs})!=32:
+        errors.append("casting-generation-identity")
+    public_items=cast_public.get("items",[])
+    private_map=cast_private.get("mapping",[])
+    if len(public_items)!=32 or len(private_map)!=32:
+        errors.append("casting-blind-population")
+    if any("character_id" in row or "model_id" in row for row in public_items):
+        errors.append("casting-public-leak")
+    if {row.get("blind_id") for row in public_items}!={row.get("blind_id") for row in private_map}:
+        errors.append("casting-private-map-drift")
+    with (cast_gen/"scores.csv").open(encoding="utf-8",newline="") as fh:
+        cast_score_rows=list(csv.DictReader(fh))
+    if len(cast_score_rows)!=32:
+        errors.append("casting-score-template-population")
+    else:
+        score_fields=("identity_match","within_character_consistency","between_character_separation","style_quality","anatomy_artifact_free","overall")
+        if any(any((row.get(field) or "").strip() for field in score_fields) for row in cast_score_rows):
+            errors.append("casting-score-template-must-remain-blank-before-assets")
+
+    vox_requests=json.loads((root/"model-evaluations/slice01/voice/requests/requests.json").read_text(encoding="utf-8"))
+    requests=vox_requests.get("requests",[])
+    if vox_requests.get("status")!="COMPILED_NOT_EXECUTED" or len(requests)!=12:
+        errors.append("voxcpm2-request-shape")
+    if any(row.get("execution_permitted") is not False or row.get("reference_audio") is not None for row in requests):
+        errors.append("voxcpm2-request-authority")
+    if any(row.get("model",{}).get("revision")!="32279effe8c19989596f05d353d1447f51d9e915" for row in requests):
+        errors.append("voxcpm2-request-revision")
+    if any(row.get("model",{}).get("package")!="voxcpm==2.0.3" for row in requests):
+        errors.append("voxcpm2-request-package")
+    if len({row.get("request_id") for row in requests})!=12 or len({row.get("request_digest") for row in requests})!=12:
+        errors.append("voxcpm2-request-identity")
+    output_contract=json.loads((root/"model-evaluations/slice01/voice/requests/output_manifest_contract.json").read_text(encoding="utf-8"))
+    if output_contract.get("status")!="SCHEMA_ONLY_NO_AUDIO" or output_contract.get("sample_rate_hz")!=48000:
+        errors.append("voxcpm2-output-contract")
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

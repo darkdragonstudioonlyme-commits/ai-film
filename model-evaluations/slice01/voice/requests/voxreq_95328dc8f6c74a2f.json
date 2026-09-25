@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_67cf87393d99",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 4.0,
+  "dialogue_id": "dlg_003",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "en",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.)You came back for this station?",
+  "reference_audio": null,
+  "request_digest": "95328dc8f6c74a2f8d726b9588cf31ecd79cad5089849d85788d7666ceaa7384",
+  "request_id": "voxreq_95328dc8f6c74a2f",
+  "schema_version": 1,
+  "seed": 42001,
+  "target_text": "You came back for this station?",
+  "voice_design_description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.",
+  "voice_group": "voice_f3adeea4"
+}
