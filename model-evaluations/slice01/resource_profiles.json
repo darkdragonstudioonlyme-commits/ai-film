@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PARTIAL_MEASUREMENTS_FLUX2_512_ONLY",
+  "status": "PARTIAL_MEASUREMENTS_FLUX2_1024_READY_OTHERS_UNMEASURED",
   "profiles": [
     {
       "profile_id": "model-z-image",
@@ -26,11 +26,11 @@
         "cuda"
       ],
       "required_runtime_id": "gpu-worker-base-v1",
-      "vram_status": "MEASURED_512_QUALIFICATION",
-      "required_vram_gb": null,
-      "vram_reserve_gb": null,
-      "admission_ready": false,
-      "throughput_status": "MEASURED_512_QUALIFICATION",
+      "vram_status": "MEASURED",
+      "required_vram_gb": 20.0,
+      "vram_reserve_gb": 4.0,
+      "admission_ready": true,
+      "throughput_status": "MEASURED_1024_FORMAL_SMOKE",
       "qualification_resolution": {
         "width": 512,
         "height": 512
@@ -43,7 +43,22 @@
       "qualification_elapsed_sec": 10.139162,
       "qualification_evidence_ref": "run-evidence/FLUX2_KLEIN_A40_QUALIFICATION_20260925.json",
       "qualification_artifact_sha256": "f1af28a78a13be0bc8f3cb82f591f6c2bfa7046658b51b142c67532dc2871bf9",
-      "production_resolution_vram_status": "UNMEASURED_1024_SMOKE_PENDING"
+      "production_resolution_vram_status": "MEASURED_1024_FOUR_JOB_SMOKE",
+      "formal_smoke_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "formal_smoke_jobs": 4,
+      "formal_smoke_steps": 4,
+      "formal_smoke_guidance_scale": 1.0,
+      "formal_smoke_peak_torch_mib": 20080.0,
+      "formal_smoke_peak_nvidia_mib": 20415,
+      "formal_smoke_mean_job_sec": 2.366221,
+      "formal_smoke_median_job_sec": 2.239497,
+      "formal_smoke_total_elapsed_sec": 15.430117,
+      "formal_smoke_cost_usd": 0.0021,
+      "formal_smoke_evidence_ref": "run-evidence/FLUX2_KLEIN_A40_FORMAL_SMOKE_20260925.json",
+      "vram_policy": "CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE"
     },
     {
       "profile_id": "model-wan22-ti2v-5b",

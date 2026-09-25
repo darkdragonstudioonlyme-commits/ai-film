@@ -217,8 +217,10 @@ def main() -> int:
     if live_runtime.get("target",{}).get("torch")!="2.8.0+cu128" or live_runtime.get("packages",{}).get("huggingface-hub")!="1.33.0":
         errors.append("gpu-runtime-a40-binding")
     flux_qual=live_runtime.get("flux2_qualification") or {}
-    if flux_qual.get("status")!="PASS_512_FULL_GPU" or flux_qual.get("peak_vram_mib")!=16577.0 or flux_qual.get("formal_1024_smoke_pending") is not True:
-        errors.append("gpu-runtime-a40-flux2-qualification")
+    if flux_qual.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_qual.get("peak_vram_mib")!=20415 or flux_qual.get("formal_1024_smoke_pending") is not False:
+        errors.append("gpu-runtime-a40-flux2-formal-smoke")
+    if flux_qual.get("admission_ready") is not True or flux_qual.get("required_vram_gb")!=20.0 or flux_qual.get("vram_reserve_gb")!=4.0:
+        errors.append("gpu-runtime-a40-flux2-admission")
     worker_plan=json.loads((root/"run-evidence/GPU_WORKER_DRYRUN_20260925.json").read_text(encoding="utf-8"))
     if worker_plan.get("mode")!="DRY_RUN" or worker_plan.get("execution_ready") is not False:
         errors.append("gpu-worker-dryrun")
@@ -527,22 +529,24 @@ def main() -> int:
 
     resources=json.loads((root/"model-evaluations/slice01/resource_profiles.json").read_text(encoding="utf-8"))
     profiles=resources.get("profiles",[])
-    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_512_ONLY" or len(profiles)!=5:
+    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_1024_READY_OTHERS_UNMEASURED" or len(profiles)!=5:
         errors.append("resource-profile-state")
     flux_profile=next((row for row in profiles if row.get("model_id")=="flux2-klein-4b"),None)
     if flux_profile is None:
         errors.append("resource-profile-flux2-missing")
     else:
-        if flux_profile.get("admission_ready") is not False or flux_profile.get("vram_status")!="MEASURED_512_QUALIFICATION":
-            errors.append("resource-profile-flux2-qualification-state")
-        if flux_profile.get("required_vram_gb") is not None or flux_profile.get("vram_reserve_gb") is not None:
-            errors.append("resource-profile-flux2-formal-vram-must-remain-unset")
-        if flux_profile.get("throughput_status")!="MEASURED_512_QUALIFICATION":
+        if flux_profile.get("admission_ready") is not True or flux_profile.get("vram_status")!="MEASURED":
+            errors.append("resource-profile-flux2-admission-state")
+        if flux_profile.get("required_vram_gb")!=20.0 or flux_profile.get("vram_reserve_gb")!=4.0:
+            errors.append("resource-profile-flux2-vram-policy")
+        if flux_profile.get("throughput_status")!="MEASURED_1024_FORMAL_SMOKE":
             errors.append("resource-profile-flux2-throughput-state")
-        if flux_profile.get("qualification_peak_vram_mib")!=16577.0 or flux_profile.get("qualification_inference_sec")!=1.285966:
-            errors.append("resource-profile-flux2-measurements")
-        if flux_profile.get("production_resolution_vram_status")!="UNMEASURED_1024_SMOKE_PENDING":
+        if flux_profile.get("formal_smoke_peak_nvidia_mib")!=20415 or flux_profile.get("formal_smoke_peak_torch_mib")!=20080.0:
+            errors.append("resource-profile-flux2-formal-measurements")
+        if flux_profile.get("production_resolution_vram_status")!="MEASURED_1024_FOUR_JOB_SMOKE":
             errors.append("resource-profile-flux2-production-boundary")
+        if flux_profile.get("vram_policy")!="CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE":
+            errors.append("resource-profile-flux2-vram-policy-name")
     other_profiles=[row for row in profiles if row.get("model_id")!="flux2-klein-4b"]
     if any(row.get("admission_ready") is not False or row.get("vram_status")!="UNMEASURED" or row.get("required_vram_gb") is not None for row in other_profiles):
         errors.append("resource-profile-other-unmeasured-boundary")
@@ -562,11 +566,13 @@ def main() -> int:
     worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
     if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
         errors.append("runpod-a40-worker-measurement")
-    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_512_QUALIFIED_OTHER_ADAPTERS_PENDING":
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_1024_FORMAL_PASS_OTHER_ADAPTERS_PENDING":
         errors.append("runpod-a40-worker-binding")
     flux_worker=(worker.get("qualified_models") or {}).get("flux2-klein-4b",{})
-    if flux_worker.get("status")!="PASS_512_QUALIFICATION" or flux_worker.get("peak_vram_mib")!=16577.0 or flux_worker.get("formal_1024_smoke_pending") is not True:
-        errors.append("runpod-a40-worker-flux2-qualification")
+    if flux_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_worker.get("peak_vram_mib")!=20415 or flux_worker.get("formal_1024_smoke_pending") is not False:
+        errors.append("runpod-a40-worker-flux2-formal-smoke")
+    if flux_worker.get("admission_ready") is not True or flux_worker.get("required_vram_gb")!=20.0 or flux_worker.get("vram_reserve_gb")!=4.0:
+        errors.append("runpod-a40-worker-flux2-admission")
 
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
@@ -584,15 +590,18 @@ def main() -> int:
         errors.append("cost-policy-binding")
     entries=cost_ledger.get("entries",[])
     by_cost_id={row.get("cost_id"):row for row in entries}
-    if len(entries)!=2 or set(by_cost_id)!={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass"}:
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925"}
+    if len(entries)!=3 or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
         if by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("category")!="OTHER" or abs(float(by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("amount_usd",0))-0.11027)>1e-9:
             errors.append("cost-ledger-bootstrap-entry")
         if by_cost_id["flux2-castjob_d3ec86da4ca6b1fc-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["flux2-castjob_d3ec86da4ca6b1fc-pass"].get("amount_usd",0))-0.00138)>1e-9:
             errors.append("cost-ledger-flux2-qualification-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.11165)>1e-9:
-            errors.append("cost-ledger-total-after-flux2-qualification")
+        if by_cost_id["flux2-formal-smoke-20260925"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["flux2-formal-smoke-20260925"].get("amount_usd",0))-0.0021)>1e-9:
+            errors.append("cost-ledger-flux2-formal-smoke-entry")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.11375)>1e-9:
+            errors.append("cost-ledger-total-after-flux2-formal-smoke")
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -892,6 +901,20 @@ def main() -> int:
         errors.append("flux2-qualification-artifact-identity")
     if flux_qual_evidence.get("admission_ready_after_qualification") is not False or flux_qual_evidence.get("next_gate")!="FORMAL_1024X1024_FOUR_JOB_SMOKE":
         errors.append("flux2-qualification-boundary")
+
+    flux_formal=json.loads((root/"run-evidence/FLUX2_KLEIN_A40_FORMAL_SMOKE_20260925.json").read_text(encoding="utf-8"))
+    if flux_formal.get("status")!="PASS_FORMAL_1024_FOUR_JOB_SMOKE" or flux_formal.get("passed_jobs")!=4 or flux_formal.get("failed_jobs")!=0:
+        errors.append("flux2-formal-smoke-status")
+    if flux_formal.get("measurements",{}).get("max_nvidia_smi_memory_mib")!=20415 or flux_formal.get("measurements",{}).get("max_torch_peak_memory_mb")!=20080.0:
+        errors.append("flux2-formal-smoke-vram")
+    if flux_formal.get("measurements",{}).get("estimated_compute_cost_usd")!=0.0021 or flux_formal.get("post_run_budget",{}).get("projected_total_usd")!=0.11375:
+        errors.append("flux2-formal-smoke-cost")
+    if len(flux_formal.get("outputs",[]))!=4 or any(row.get("width")!=1024 or row.get("height")!=1024 for row in flux_formal.get("outputs",[])):
+        errors.append("flux2-formal-smoke-output-population")
+    if flux_formal.get("post_run_model_dir_validation",{}).get("required_file_count")!=18 or flux_formal.get("post_run_model_dir_validation",{}).get("required_bytes")!=15980131745:
+        errors.append("flux2-formal-smoke-model-dir-validation")
+    if flux_formal.get("production_acceptance") is not False or flux_formal.get("selection_authorized") is not False or flux_formal.get("publish_authority") is not False:
+        errors.append("flux2-formal-smoke-authority")
 
     # Live FLUX.2 klein runner contract must remain plan-first and exact-authority bound.
     if not (root/"film/flux2_klein_live.py").is_file() or not (root/"tools/run_flux2_klein_live.py").is_file():

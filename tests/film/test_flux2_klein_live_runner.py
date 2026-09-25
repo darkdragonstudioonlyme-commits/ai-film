@@ -6,6 +6,7 @@ import unittest
 
 from film.flux2_klein_live import (
     Flux2KleinQualificationError,
+    REQUIRED_MODEL_FILES,
     build_cost_entry,
     build_output_manifest,
     prepare_flux2_qualification,
@@ -43,7 +44,7 @@ class Flux2KleinLiveRunnerTests(unittest.TestCase):
         self.assertEqual(q["qualification"]["num_inference_steps"],4)
         self.assertEqual(q["qualification"]["guidance_scale"],1.0)
         self.assertAlmostEqual(q["proposed_max_cost_usd"],0.245,places=6)
-        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.11165,places=6)
+        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.11375,places=6)
         self.assertFalse(q["new_resource_creation_authorized"])
         self.assertFalse(q["publish_authority"])
         self.assertFalse(q["request"]["execution_permitted"])
@@ -63,19 +64,13 @@ class Flux2KleinLiveRunnerTests(unittest.TestCase):
             root=Path(td)
             with self.assertRaisesRegex(Flux2KleinQualificationError,"missing required files"):
                 validate_model_dir(root)
-            required=[
-                "model_index.json","scheduler/scheduler_config.json","transformer/config.json",
-                "transformer/diffusion_pytorch_model.safetensors","text_encoder/config.json",
-                "text_encoder/model.safetensors.index.json","tokenizer/tokenizer.json",
-                "vae/config.json","vae/diffusion_pytorch_model.safetensors",
-            ]
-            for rel in required:
+            for rel in REQUIRED_MODEL_FILES:
                 p=root/rel
                 p.parent.mkdir(parents=True,exist_ok=True)
                 p.write_bytes(b"x")
             shape=validate_model_dir(root)
-            self.assertEqual(shape["required_file_count"],9)
-            self.assertEqual(shape["required_bytes"],9)
+            self.assertEqual(shape["required_file_count"],18)
+            self.assertEqual(shape["required_bytes"],18)
 
     def test_output_manifest_validates_and_cost_entry_tracks_pass_fail(self):
         q=prepare()
