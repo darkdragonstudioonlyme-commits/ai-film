@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "NO_PAID_BUDGET_AUTHORIZED",
+  "current_authorized_budget_usd": 0.0,
+  "categories": [
+    "COMPUTE_ACCEPTED",
+    "COMPUTE_FAILED",
+    "COMPUTE_REJECTED_TAKE",
+    "STORAGE",
+    "TRANSFER",
+    "API",
+    "OTHER"
+  ],
+  "note": "T-019 remains blocked. Rental proposal caps are proposals, not standing budget authority."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "status": "PROFILES_PINNED_VRAM_UNMEASURED",
+  "profiles": [
+    {
+      "profile_id": "model-z-image",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "required_capabilities": [
+        "image_generation",
+        "cuda"
+      ],
+      "required_runtime_id": "gpu-worker-base-v1",
+      "vram_status": "UNMEASURED",
+      "required_vram_gb": null,
+      "vram_reserve_gb": null,
+      "admission_ready": false,
+      "throughput_status": "UNMEASURED"
+    },
+    {
+      "profile_id": "model-flux2-klein-4b",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "required_capabilities": [
+        "image_generation",
+        "cuda"
+      ],
+      "required_runtime_id": "gpu-worker-base-v1",
+      "vram_status": "UNMEASURED",
+      "required_vram_gb": null,
+      "vram_reserve_gb": null,
+      "admission_ready": false,
+      "throughput_status": "UNMEASURED"
+    },
+    {
+      "profile_id": "model-wan22-ti2v-5b",
+      "model_id": "wan22-ti2v-5b",
+      "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "required_capabilities": [
+        "video_generation",
+        "cuda"
+      ],
+      "required_runtime_id": "gpu-worker-base-v1",
+      "vram_status": "UNMEASURED",
+      "required_vram_gb": null,
+      "vram_reserve_gb": null,
+      "admission_ready": false,
+      "throughput_status": "UNMEASURED"
+    },
+    {
+      "profile_id": "model-wan22-i2v-14b",
+      "model_id": "wan22-i2v-14b",
+      "model_revision": "206a9ee1b7bfaaf8f7e4d81335650533490646a3",
+      "required_capabilities": [
+        "video_generation",
+        "cuda"
+      ],
+      "required_runtime_id": "gpu-worker-base-v1",
+      "vram_status": "UNMEASURED",
+      "required_vram_gb": null,
+      "vram_reserve_gb": null,
+      "admission_ready": false,
+      "throughput_status": "UNMEASURED"
+    },
+    {
+      "profile_id": "model-ltx-2.5",
+      "model_id": "ltx-2.5",
+      "model_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "required_capabilities": [
+        "video_generation",
+        "cuda"
+      ],
+      "required_runtime_id": "gpu-worker-base-v1",
+      "vram_status": "UNMEASURED",
+      "required_vram_gb": null,
+      "vram_reserve_gb": null,
+      "admission_ready": false,
+      "throughput_status": "UNMEASURED"
+    }
+  ],
+  "worker_tiers": [
+    {
+      "tier": "RTX_5090_32GB",
+      "declared_vram_gb": 32,
+      "measurement_status": "NOT_MEASURED_FOR_STACK"
+    },
+    {
+      "tier": "RTX_PRO_6000_96GB",
+      "declared_vram_gb": 96,
+      "measurement_status": "NOT_MEASURED_FOR_STACK"
+    }
+  ]
+}
