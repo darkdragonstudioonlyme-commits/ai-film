@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "DESIGN_CUES_ASSETS_AND_RIGHTS_PENDING",
+  "cues": [
+    {
+      "cue_id": "amb_rain",
+      "kind": "ambience",
+      "description": "steady exterior rain around station",
+      "start_sec": 0.0,
+      "end_sec": 75.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "amb_station",
+      "kind": "ambience",
+      "description": "low station electrical/room tone",
+      "start_sec": 0.0,
+      "end_sec": 75.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "sfx_blackout",
+      "kind": "sfx",
+      "description": "electrical flicker and power-down at blackout",
+      "start_sec": 25.0,
+      "end_sec": 27.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "sfx_panel",
+      "kind": "sfx",
+      "description": "metal service panel scrape and release",
+      "start_sec": 35.0,
+      "end_sec": 40.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "sfx_signal",
+      "kind": "sfx",
+      "description": "signal relay click and electrical restore",
+      "start_sec": 54.0,
+      "end_sec": 56.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "sfx_train",
+      "kind": "sfx",
+      "description": "distant train approach, brake and door arrival",
+      "start_sec": 54.0,
+      "end_sec": 75.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    },
+    {
+      "cue_id": "music_resolve",
+      "kind": "music",
+      "description": "subtle emotional resolve, minimal motif under final signal/train beat",
+      "start_sec": 48.0,
+      "end_sec": 75.0,
+      "required_for_final": true,
+      "source_status": "PENDING_ASSET",
+      "rights_status": "UNKNOWN",
+      "rights_ref": null,
+      "asset": null
+    }
+  ]
+}

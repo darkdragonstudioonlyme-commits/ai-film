@@ -1,24 +1,24 @@
-# NEXT WORK ITEM — Product v2 batch 013
+# NEXT WORK ITEM — Product v2 batch 014
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-041 — implement per-language lip-sync request planning that only includes dialogue shots explicitly marked mouth-visible and binds exact video/audio identities when available.
-2. T-042 — implement structured ambience/SFX/music cue sheet with timeline bounds and rights/provenance placeholders; no music generation.
-3. T-043 — implement deterministic audio-mix plan for dialogue + ambience + SFX + music with cue timing and target output identity; no ffmpeg execution.
+1. T-044 — implement an executable screenplay/scene schema for slice01 with stable scene/beat/dialogue IDs, runtime estimates and rights/source identity validation.
+2. T-045 — implement EN-master localization bundle validation for ZH/VI with stable dialogue IDs, complete language coverage and cue-budget timing-fit checks.
+3. T-046 — implement deterministic framing/reframe planning from 9:16 master to 16:9 using per-shot camera/framing intent and safe-area constraints; no rendering.
 
 DEFERRED:
 - T-019 paid rental GPU benchmark remains BLOCKED pending explicit bounded approval.
 
 SUCCESS:
-- lip-sync is selective rather than applied to every shot
-- audio cues cannot exceed the 75s timeline or masquerade as rights-cleared assets
-- mix plan exposes missing assets/rights as blockers and does not execute tools
-- no paid compute is launched
+- story/script data is machine-validatable rather than Markdown-only
+- localization cannot silently drop/relabel dialogue or exceed cue timing without a blocker
+- 16:9 path preserves shot identity/camera intent and exposes shots requiring rerender rather than pretending crop is always safe
+- no paid compute or media generation is launched
 
 DO NOT:
 - launch/rent GPU
-- generate or clone voices/music
-- assume music/SFX rights
+- fabricate translated timing measurements
 - publish content
+- treat crop/reframe planning as rendered media

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "POLICY_READY_NO_FINAL_MEDIA",
+  "languages": [
+    "en",
+    "zh-CN",
+    "vi"
+  ],
+  "backend_candidates": [
+    "latentsync-1.6",
+    "musetalk"
+  ],
+  "dialogue_shots": [
+    {
+      "dialogue_id": "dlg_001",
+      "shot_id": "sc01_sh03",
+      "speaker_id": "an",
+      "mouth_visible": true,
+      "visibility": "CLEAR_TWO_SHOT",
+      "skip_reason": null
+    },
+    {
+      "dialogue_id": "dlg_002",
+      "shot_id": "sc01_sh04",
+      "speaker_id": "linh",
+      "mouth_visible": true,
+      "visibility": "CLEAR_CLOSE_UP",
+      "skip_reason": null
+    },
+    {
+      "dialogue_id": "dlg_003",
+      "shot_id": "sc01_sh06",
+      "speaker_id": "linh",
+      "mouth_visible": true,
+      "visibility": "CLEAR_CLOSE_TWO_SHOT",
+      "skip_reason": null
+    },
+    {
+      "dialogue_id": "dlg_004",
+      "shot_id": "sc01_sh07",
+      "speaker_id": "an",
+      "mouth_visible": false,
+      "visibility": "PROFILE_DISTANCE_LOW_CONFIDENCE",
+      "skip_reason": "MOUTH_NOT_CLEAR_ENOUGH_FOR_REQUIRED_LIPSYNC"
+    }
+  ],
+  "production_audio_requirement": "FINAL_DIALOGUE_ASSET_ONLY",
+  "previs_audio_allowed_for_production_lipsync": false
+}

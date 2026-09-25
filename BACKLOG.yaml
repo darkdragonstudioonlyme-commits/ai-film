@@ -206,15 +206,30 @@
 - id: T-041
   milestone: M2
   goal: "Implement per-language lip-sync request planner that only targets visible-mouth dialogue shots"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-042
   milestone: M2
   goal: "Implement structured SFX/music cue sheet with timeline validation and rights placeholders"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-043
   milestone: M2
   goal: "Implement final audio-mix plan compiler for dialogue, ambience, SFX and music without executing media tools"
+  status: DONE
+  owner: executor
+- id: T-044
+  milestone: M2
+  goal: "Implement executable screenplay/scene schema and story/runtime validation"
+  status: READY
+  owner: executor
+- id: T-045
+  milestone: M2
+  goal: "Implement EN master to ZH/VI localization bundle validation with stable dialogue IDs and timing fit"
+  status: READY
+  owner: executor
+- id: T-046
+  milestone: M2
+  goal: "Implement deterministic 9:16 master to 16:9 framing/reframe plan without media rendering"
   status: READY
   owner: executor

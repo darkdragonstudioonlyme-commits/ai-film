@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "POLICY_READY_FINAL_ASSETS_PENDING",
+  "target": {
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "format": "wav_pcm16"
+  },
+  "dialogue_bus": {
+    "target_peak_dbfs": -6.0
+  },
+  "ambience_bus": {
+    "target_peak_dbfs": -14.0
+  },
+  "sfx_bus": {
+    "target_peak_dbfs": -9.0
+  },
+  "music_bus": {
+    "target_peak_dbfs": -16.0
+  },
+  "master": {
+    "target_peak_dbfs": -1.0
+  },
+  "execution_permitted": false
+}

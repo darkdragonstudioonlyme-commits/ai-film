@@ -514,6 +514,54 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch012-missing:"+rel)
 
+
+    lip_policy=json.loads((root/"projects/slice01/lipsync/policy.json").read_text(encoding="utf-8"))
+    lip_rows=lip_policy.get("dialogue_shots",[])
+    if lip_policy.get("status")!="POLICY_READY_NO_FINAL_MEDIA" or len(lip_rows)!=4:
+        errors.append("lipsync-policy-shape")
+    if sum(bool(row.get("mouth_visible")) for row in lip_rows)!=3:
+        errors.append("lipsync-visible-mouth-count")
+    if {row.get("dialogue_id") for row in lip_rows}!={shot.get("dialogue_id") for shot in shots if shot.get("dialogue_id")}:
+        errors.append("lipsync-dialogue-population")
+    if set(lip_policy.get("backend_candidates",[]))!={"latentsync-1.6","musetalk"}:
+        errors.append("lipsync-backend-candidates")
+    for language in ("en","zh-CN","vi"):
+        plan=json.loads((root/f"projects/slice01/lipsync/plan_{language}.json").read_text(encoding="utf-8"))
+        if plan.get("status")!="BLOCKED_MISSING_MEDIA" or plan.get("execution_permitted") is not False:
+            errors.append("lipsync-current-plan:"+language)
+        if len(plan.get("requests",[]))!=3 or len(plan.get("skipped",[]))!=1:
+            errors.append("lipsync-current-plan-shape:"+language)
+        if plan.get("skipped",[{}])[0].get("dialogue_id")!="dlg_004":
+            errors.append("lipsync-skip-policy:"+language)
+
+    cue_sheet=json.loads((root/"projects/slice01/audio/cue_sheet.json").read_text(encoding="utf-8"))
+    if cue_sheet.get("status")!="DESIGN_CUES_ASSETS_AND_RIGHTS_PENDING" or len(cue_sheet.get("cues",[]))!=7:
+        errors.append("audio-cue-sheet-shape")
+    if any(cue.get("source_status")!="PENDING_ASSET" or cue.get("rights_status")!="UNKNOWN" for cue in cue_sheet.get("cues",[])):
+        errors.append("audio-cue-sheet-fake-clearance")
+    mix_policy=json.loads((root/"projects/slice01/audio/mix_policy.json").read_text(encoding="utf-8"))
+    if mix_policy.get("execution_permitted") is not False or mix_policy.get("target",{}).get("sample_rate_hz")!=48000:
+        errors.append("audio-mix-policy")
+    for language in ("en","zh-CN","vi"):
+        plan=json.loads((root/f"projects/slice01/audio/mix_plan_{language}.json").read_text(encoding="utf-8"))
+        if plan.get("status")!="BLOCKED_MISSING_ASSETS_OR_RIGHTS" or plan.get("execution_permitted") is not False:
+            errors.append("audio-current-mix:"+language)
+        if float(plan.get("duration_sec",0))!=75.0:
+            errors.append("audio-current-mix-duration:"+language)
+
+    required_batch013=[
+        "film/BATCH013_CONTRACT.md",
+        "film/lipsync_plan.py",
+        "film/audio_cues.py",
+        "film/audio_mix_plan.py",
+        "tools/compile_lipsync_plan.py",
+        "tools/validate_audio_cues.py",
+        "tools/compile_audio_mix_plan.py",
+    ]
+    for rel in required_batch013:
+        if not (root/rel).is_file():
+            errors.append("batch013-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
