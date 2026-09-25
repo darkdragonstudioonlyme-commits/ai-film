@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "WAITING_FINAL_MEDIA",
+  "expected_variants": [
+    {
+      "aspect": "9:16",
+      "language": "en"
+    },
+    {
+      "aspect": "9:16",
+      "language": "zh-CN"
+    },
+    {
+      "aspect": "9:16",
+      "language": "vi"
+    },
+    {
+      "aspect": "16:9",
+      "language": "en"
+    },
+    {
+      "aspect": "16:9",
+      "language": "zh-CN"
+    },
+    {
+      "aspect": "16:9",
+      "language": "vi"
+    }
+  ],
+  "deliverables": []
+}
