@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "SPEC_GRAPH_NO_GENERATED_MEDIA",
+  "assets": [
+    {
+      "asset_id": "screenplay",
+      "kind": "story",
+      "path": "projects/slice01/story/SCREENPLAY_EN.md",
+      "content_sha256": "1ba3890588b7d6fb4b27f6bf5bf51cc454c645237a868cfb31b7f675c08ac4c3",
+      "manifest_sha256": "58eab99cc1a6b3c6dc4bc29311229ecc818ce87bd0ec5a14f8c045236c6d42d7",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "continuity",
+      "kind": "continuity",
+      "path": "projects/slice01/continuity.json",
+      "content_sha256": "3409df5a04b2c703f8b3961f140ef84a58c17bfd5dee8533885fdc9489f7356d",
+      "manifest_sha256": "ba6db992aee96ada868fd45ee8e55a7d01d3961f42247de2bf32ba344e6ed74c",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "casting",
+      "kind": "casting",
+      "path": "projects/slice01/casting.json",
+      "content_sha256": "7431c6f1324f615de2eb9ce53809e5c4d7cb511ed039346519098149134b2e71",
+      "manifest_sha256": "ed16258b7bb34594dccb8293920eb74370fe2b1c263121f8b2f203c2eebc4be7",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "shots",
+      "kind": "shot_spec",
+      "path": "projects/slice01/shots/benchmark_shots.json",
+      "content_sha256": "80e353b89fc71e885a0467e3b6601a64b6f1202f5b44f2c1a019872538c7a432",
+      "manifest_sha256": "4e53b58bdd92c5af086d2b43691fbfd6777c3c0addfbc9753435822be3d56cb6",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "compiled",
+      "kind": "compiled_prompt",
+      "path": "projects/slice01/compiled/benchmark_compiled.json",
+      "content_sha256": "81a0292ff017a9fba3411612a1f2dd6b7b5d5c3cf786566d58aa2950b58b9d37",
+      "manifest_sha256": "d6d83d252edaf27503d8e42ee3971d99995da3b368bd977d56e99608d7f290bf",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "timing",
+      "kind": "timing",
+      "path": "projects/slice01/timing/timing.json",
+      "content_sha256": "b0d87656df0ceb9ce54a8178fafb9e5f2e0b56a745da56f86f0ecfd15c1b0deb",
+      "manifest_sha256": "0d33147af033a158280c54a2ee46e12a1426ed26b46d57261e563ca21912c8db",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "sub_en",
+      "kind": "subtitle",
+      "path": "projects/slice01/timing/subtitles/en.srt",
+      "content_sha256": "a2dc58bdc23043078c9aaa5a5f2aaaeb1cd6471af0d4755c626be0afbf747b8f",
+      "manifest_sha256": "c3283e2255f301cae359ba424e37b3fab26312192a03481f6293919bf9564c74",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "sub_zh",
+      "kind": "subtitle",
+      "path": "projects/slice01/timing/subtitles/zh-CN.srt",
+      "content_sha256": "e3a2cb68810ddc8450de98cfc4591b43a13848ae99cf800aff8890df366ea0a7",
+      "manifest_sha256": "085cd2c08515632ca64d3017afbb01c6805560bd069b19437b2ae5290be26ab9",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "sub_vi",
+      "kind": "subtitle",
+      "path": "projects/slice01/timing/subtitles/vi.srt",
+      "content_sha256": "4440f0363269f8fc95cb14f5a0e183a6deb6d68f0d136b6585286e71e5ed3f55",
+      "manifest_sha256": "9d1ff76d37897de727648deb7d0a625eecfbc7f08ac6adbb0d1b58f68912459d",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    },
+    {
+      "asset_id": "voice_plan",
+      "kind": "voice_plan",
+      "path": "projects/slice01/timing/voice_plan.json",
+      "content_sha256": "f95df4e60dc18e22f8cb624cb381e2433cf7762c61316bc3725e8c7dae9cf8ac",
+      "manifest_sha256": "c282bbddc3d4eaf6da70b04485b029198a368607c75c33db211fcb26083eee85",
+      "approved": true,
+      "evidence": false,
+      "publishable": false
+    }
+  ],
+  "edges": [
+    {
+      "parent_asset_id": "screenplay",
+      "child_asset_id": "shots"
+    },
+    {
+      "parent_asset_id": "continuity",
+      "child_asset_id": "compiled"
+    },
+    {
+      "parent_asset_id": "casting",
+      "child_asset_id": "compiled"
+    },
+    {
+      "parent_asset_id": "shots",
+      "child_asset_id": "compiled"
+    },
+    {
+      "parent_asset_id": "shots",
+      "child_asset_id": "timing"
+    },
+    {
+      "parent_asset_id": "timing",
+      "child_asset_id": "sub_en"
+    },
+    {
+      "parent_asset_id": "timing",
+      "child_asset_id": "sub_zh"
+    },
+    {
+      "parent_asset_id": "timing",
+      "child_asset_id": "sub_vi"
+    },
+    {
+      "parent_asset_id": "voice_plan",
+      "child_asset_id": "sub_en"
+    },
+    {
+      "parent_asset_id": "voice_plan",
+      "child_asset_id": "sub_zh"
+    },
+    {
+      "parent_asset_id": "voice_plan",
+      "child_asset_id": "sub_vi"
+    }
+  ]
+}

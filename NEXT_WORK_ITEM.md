@@ -1,33 +1,24 @@
-# NEXT WORK ITEM — T-019 paid GPU benchmark gate
+# NEXT WORK ITEM — Product v2 batch 010
 
-STATUS: BLOCKED
+STATUS: READY
 MILESTONE: M2
-TASK: T-019 — launch the bounded rental-GPU benchmark and generate real casting/model evidence.
 
-BLOCKER: EXPLICIT_PAID_GPU_APPROVAL_REQUIRED
+BATCH:
+1. T-032 — implement production project/scene/shot/take state transitions and immutable selected-take revisions with stale-revision fencing.
+2. T-033 — implement normalized logical generation key, attempt lifecycle, retry/cancel and UNKNOWN_OUTCOME reconciliation guards.
+3. T-034 — implement deterministic edit timeline compiler that binds selected takes, timing, dialogue/audio and subtitle tracks without requiring final GPU media.
 
-PREPARED AND VERIFIED:
-- exact model revisions/licenses/runtimes pinned
-- RunPod rate snapshot hash-bound; 2026-09-25 Secure baseline: RTX 5090 USD 0.99/h, RTX Pro 6000 USD 2.09/h
-- initial execution sub-cap proposal: USD 60
-- full three-stage proposal hard cap: USD 150
-- current repository authorization receipt: NOT_AUTHORIZED
-- 32 casting jobs, blind scoring, worker/output manifests, asset ingestion and decision/cost ledger ready
-- synthetic end-to-end fixtures prove control flow but are never production assets
-- no standing authority to rent or spend
+DEFERRED:
+- T-019 paid rental GPU benchmark remains BLOCKED pending explicit bounded approval.
 
-TO UNBLOCK:
-The project owner must explicitly approve a bounded paid launch, including at minimum the maximum USD amount. At launch time the provider/GPU/rate snapshot is rechecked and bound into the authorization receipt.
+SUCCESS:
+- stale workers/selections cannot overwrite newer shot revision
+- retry cannot silently resubmit UNKNOWN_OUTCOME or exceed attempt/cost ceilings
+- selected takes compile into a deterministic 75s edit plan with explicit missing-media blockers
+- no paid compute is launched
 
-AFTER APPROVAL:
-1. Start with RTX 5090 stage A under the approved cap.
-2. Run fixed smoke/casting population; download manifests/outputs/metrics.
-3. Review OOM, quality, throughput and cost before any 96 GB stage.
-4. Only escalate to RTX Pro 6000 if the measured decision gap justifies it.
-
-DO NOT:
-- launch/rent GPU before explicit bounded approval
-- spend above the approved receipt
-- bypass live-rate/model/license/runtime gates
-- treat synthetic fixtures as generated film assets
+DO_NOT:
+- launch/rent GPU
 - publish content
+- weaken rights/QC/provenance gates
+- create fake generated media

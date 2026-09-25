@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "INCOMPLETE_BLOCK_PUBLICATION",
+  "records": [
+    {
+      "rights_id": "source-original",
+      "subject_type": "source",
+      "subject_id": "project-source",
+      "status": "ORIGINAL",
+      "allowed_uses": [
+        "COMMERCIAL_PUBLICATION"
+      ],
+      "evidence_ref": "projects/slice01/project.json"
+    },
+    {
+      "rights_id": "likeness-an-fictional",
+      "subject_type": "likeness",
+      "subject_id": "an",
+      "status": "ORIGINAL",
+      "allowed_uses": [
+        "COMMERCIAL_PUBLICATION"
+      ],
+      "evidence_ref": "projects/slice01/casting.json"
+    },
+    {
+      "rights_id": "likeness-linh-fictional",
+      "subject_type": "likeness",
+      "subject_id": "linh",
+      "status": "ORIGINAL",
+      "allowed_uses": [
+        "COMMERCIAL_PUBLICATION"
+      ],
+      "evidence_ref": "projects/slice01/casting.json"
+    },
+    {
+      "rights_id": "voice-an-final",
+      "subject_type": "voice",
+      "subject_id": "an",
+      "status": "UNKNOWN",
+      "allowed_uses": [],
+      "evidence_ref": "PENDING_FINAL_VOICE_SELECTION"
+    },
+    {
+      "rights_id": "voice-linh-final",
+      "subject_type": "voice",
+      "subject_id": "linh",
+      "status": "UNKNOWN",
+      "allowed_uses": [],
+      "evidence_ref": "PENDING_FINAL_VOICE_SELECTION"
+    },
+    {
+      "rights_id": "visual-model-output",
+      "subject_type": "model_output",
+      "subject_id": "visual-generation",
+      "status": "UNKNOWN",
+      "allowed_uses": [],
+      "evidence_ref": "PENDING_MODEL_SELECTION_AND_OUTPUT"
+    },
+    {
+      "rights_id": "music-final",
+      "subject_type": "music",
+      "subject_id": "project-music",
+      "status": "UNKNOWN",
+      "allowed_uses": [],
+      "evidence_ref": "PENDING_MUSIC_SELECTION"
+    }
+  ]
+}
