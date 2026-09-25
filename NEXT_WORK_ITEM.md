@@ -1,26 +1,26 @@
-# NEXT WORK ITEM — Product v2 batch 004
+# NEXT WORK ITEM — Product v2 batch 005
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-013 — create a reproducible pinned GPU-worker runtime/setup manifest and validate setup logic without creating a GPU instance.
-2. T-014 — implement backend adapter contracts for the pinned image/video candidates so benchmark jobs can be translated into exact runner inputs; no model inference yet.
-3. T-015 — generate all slice01 EN/VI preset-voice previsualization dialogue clips on CPU and integrate them into the 75s animatic; keep ZH as subtitle-only until VoxCPM2 MODEL-EVAL.
+1. T-016 — build stage-specific GPU runner/prelaunch bundle from the pinned runtime/model matrix; validate locally without creating a provider resource.
+2. T-017 — define casting reference manifest + blind identity/style acceptance contract for An and Linh; create reference-index schema but no generated images.
+3. T-018 — prepare VoxCPM2 EN/ZH/VI fixed voice-eval inputs/scoring contract using synthetic/built-in or non-cloned voices only.
 
-CURRENT_BLOCK:
-- no discrete NVIDIA GPU
-- paid rental is proposed but not authorized
-- keyframe references do not exist yet
+BLOCKED:
+- T-019 paid rental GPU execution requires explicit bounded approval and live provider-rate recheck.
 
 SUCCESS:
-- GPU worker setup/runtime identity is deterministic and dry-run testable
-- adapters preserve job/model/prompt/reference/seed identity and reject missing requirements
-- 75s previsualization animatic contains timed EN/VI dialogue tracks with manifests and no voice cloning
+- each enabled visual model has a deterministic stage-specific runner/install/input contract
+- casting reference identities/roles and acceptance measurements are machine-readable before keyframe generation
+- multilingual voice packet binds dialogue IDs, languages, target character identity, scoring and rights constraints
+- no paid compute is launched
 
 DO_NOT:
-- launch or rent GPU
-- enable Qwen-Image-2.1 for commercial production without a separate commercial license
+- launch/rent GPU
+- enable Qwen-Image-2.1 for commercial production without separate license
+- treat LatentSync OpenRAIL++ as automatically cleared for commercial use
 - clone a real person's voice without rights
-- resume P00 dev23/prodlike
 - publish content
+- resume P00 dev23/prodlike

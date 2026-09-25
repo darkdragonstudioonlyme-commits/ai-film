@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-09-25",
+  "status": "PINNED_BASE_DRY_RUN_ONLY",
+  "execution_ready": false,
+  "target": {
+    "os": "Ubuntu 24.04 LTS",
+    "python": "3.12",
+    "gpu_vendor": "NVIDIA",
+    "cuda": "PIN_ON_RENTED_HOST_AFTER_DRIVER_PROBE"
+  },
+  "packages": {
+    "torch": "2.14.0",
+    "diffusers": "0.40.0",
+    "transformers": "5.17.0",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "huggingface-hub": "2.0.0",
+    "pillow": "12.3.0",
+    "numpy": "2.5.3",
+    "psutil": "7.2.2",
+    "imageio-ffmpeg": "0.6.0"
+  },
+  "package_source": "PyPI JSON latest snapshot verified 2026-09-25",
+  "package_urls": {
+    "torch": "https://pypi.org/project/torch/",
+    "diffusers": "https://pypi.org/project/diffusers/",
+    "transformers": "https://pypi.org/project/transformers/",
+    "accelerate": "https://pypi.org/project/accelerate/",
+    "safetensors": "https://pypi.org/project/safetensors/",
+    "huggingface-hub": "https://pypi.org/project/huggingface-hub/",
+    "pillow": "https://pypi.org/project/pillow/",
+    "numpy": "https://pypi.org/project/numpy/",
+    "psutil": "https://pypi.org/project/psutil/",
+    "imageio-ffmpeg": "https://pypi.org/project/imageio-ffmpeg/"
+  },
+  "preflight": [
+    "nvidia-smi must succeed",
+    "record driver version, GPU model, VRAM and CUDA compatibility",
+    "recheck selected model license/source revision",
+    "choose compatible torch CUDA install source before apply",
+    "verify at least 150 GiB free for smoke tier; increase for large video checkpoints",
+    "no secrets are copied from repo"
+  ],
+  "blockers": [
+    "NO_GPU_HOST_YET",
+    "CUDA_DRIVER_TORCH_WHEEL_NOT_PROBED",
+    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
+    "PAID_RENTAL_NOT_AUTHORIZED"
+  ],
+  "reproducibility_note": "Base packages are exact pins; CUDA-compatible torch install source remains host-specific and must be bound after nvidia-smi/driver probe."
+}

@@ -94,6 +94,7 @@ def render_aspect(
     height: int,
     fps: int,
     out_path: Path,
+    audio_wav: Path | None = None,
 ) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="aifilm-animatic-") as td:
@@ -153,6 +154,10 @@ def render_aspect(
             ]
         )
         total = sum(float(row["duration_sec"]) for row in timeline)
+        if audio_wav is None:
+            audio_args=["-f","lavfi","-i","anullsrc=r=48000:cl=stereo"]
+        else:
+            audio_args=["-i",str(audio_wav)]
         run(
             [
                 str(ffmpeg),
@@ -162,12 +167,13 @@ def render_aspect(
                 "error",
                 "-i",
                 str(video_only),
-                "-f",
-                "lavfi",
-                "-i",
-                "anullsrc=r=48000:cl=stereo",
+                *audio_args,
                 "-t",
                 str(total),
+                "-map",
+                "0:v:0",
+                "-map",
+                "1:a:0",
                 "-c:v",
                 "copy",
                 "-c:a",
@@ -199,6 +205,7 @@ def main() -> int:
     parser.add_argument("--aspect", choices=["9:16", "16:9", "both"], default="both")
     parser.add_argument("--plan-only", action="store_true")
     parser.add_argument("--evidence")
+    parser.add_argument("--audio-wav")
     args = parser.parse_args()
 
     timing_path = ROOT / "projects/slice01/timing/timing.json"
@@ -246,6 +253,10 @@ def main() -> int:
         print(json.dumps({"status": "PLAN_ONLY", **plan}, ensure_ascii=False, sort_keys=True))
         return 0
 
+    audio_wav = Path(args.audio_wav).expanduser().resolve() if args.audio_wav else None
+    if audio_wav is not None and not audio_wav.is_file():
+        parser.error(f"audio WAV not found: {audio_wav}")
+
     ffmpeg = resolve_ffmpeg(args.ffmpeg)
     if ffmpeg is None:
         print("FFMPEG_NOT_FOUND: pass --ffmpeg or install ffmpeg", file=sys.stderr)
@@ -261,6 +272,7 @@ def main() -> int:
             height=height,
             fps=validated["fps"],
             out_path=output,
+            audio_wav=audio_wav,
         )
         probe = probe_media(ffmpeg, output)
         if probe["width"] != width or probe["height"] != height:
@@ -289,6 +301,7 @@ def main() -> int:
         "ffmpeg_sha256": file_sha256(ffmpeg),
         "total_duration_sec_expected": validated["total_duration_sec"],
         "fps": validated["fps"],
+        "audio_source": None if audio_wav is None else {"path":str(audio_wav),"sha256":file_sha256(audio_wav)},
         "outputs": outputs,
         "subtitle_files": [
             {

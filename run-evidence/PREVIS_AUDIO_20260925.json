@@ -1,0 +1,217 @@
+{
+  "backend": "onnx_cpu",
+  "clips": [
+    {
+      "audio_duration_sec": 2.72,
+      "bytes": 261164,
+      "cue_budget_sec": 3.5,
+      "dialogue_id": "dlg_001",
+      "elapsed_sec": 1.885843,
+      "fits_cue_budget": true,
+      "language": "en",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/en/dlg_001.wav",
+      "rtf": 0.693325,
+      "sha256": "5b01dcb862b1099ff283cbab3067a21a8e5ce09de6f3907e4f6c3bf968b6075a",
+      "start_sec": 16.5,
+      "text": "Does the 11:40 still stop here?",
+      "voice": "Phạm Tuyên",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 2.32,
+      "bytes": 222764,
+      "cue_budget_sec": 3.3,
+      "dialogue_id": "dlg_002",
+      "elapsed_sec": 1.547784,
+      "fits_cue_budget": true,
+      "language": "en",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/en/dlg_002.wav",
+      "rtf": 0.667148,
+      "sha256": "07fc84b925dc28c9d020b8cf88ce91f45347872f287cc477ab738d9d3d507a3b",
+      "start_sec": 26.5,
+      "text": "Only if we bring the signal back.",
+      "voice": "Mai Anh",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 1.92,
+      "bytes": 184364,
+      "cue_budget_sec": 4.0,
+      "dialogue_id": "dlg_003",
+      "elapsed_sec": 1.178823,
+      "fits_cue_budget": true,
+      "language": "en",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/en/dlg_003.wav",
+      "rtf": 0.61397,
+      "sha256": "09b101605fe7e989c25c27e911110ac3d7602973e75f983dabb8621d74bec9be",
+      "start_sec": 44.5,
+      "text": "You came back for this station?",
+      "voice": "Mai Anh",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 1.2,
+      "bytes": 115244,
+      "cue_budget_sec": 2.1,
+      "dialogue_id": "dlg_004",
+      "elapsed_sec": 0.789323,
+      "fits_cue_budget": true,
+      "language": "en",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/en/dlg_004.wav",
+      "rtf": 0.657769,
+      "sha256": "98778dfdf30d8bcf13b3d8d4a394d7510892e85bb5bff113b2c3fc9800639a8f",
+      "start_sec": 55.5,
+      "text": "For a promise.",
+      "voice": "Phạm Tuyên",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 2.56,
+      "bytes": 245804,
+      "cue_budget_sec": 3.5,
+      "dialogue_id": "dlg_001",
+      "elapsed_sec": 1.697248,
+      "fits_cue_budget": true,
+      "language": "vi",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/vi/dlg_001.wav",
+      "rtf": 0.662988,
+      "sha256": "daea99ef499efde866ae1b7f3d8c041f8dc6b65d8e9d91df1bc4a99d259c496f",
+      "start_sec": 16.5,
+      "text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+      "voice": "Phạm Tuyên",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 1.92,
+      "bytes": 184364,
+      "cue_budget_sec": 3.3,
+      "dialogue_id": "dlg_002",
+      "elapsed_sec": 1.266392,
+      "fits_cue_budget": true,
+      "language": "vi",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/vi/dlg_002.wav",
+      "rtf": 0.659579,
+      "sha256": "3e7454475ebaa583719a41bf49cf4f0f8d418629f05fd5e746f8cf0d7170177e",
+      "start_sec": 26.5,
+      "text": "Chỉ khi mình khôi phục được tín hiệu.",
+      "voice": "Mai Anh",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 1.92,
+      "bytes": 184364,
+      "cue_budget_sec": 4.0,
+      "dialogue_id": "dlg_003",
+      "elapsed_sec": 1.214042,
+      "fits_cue_budget": true,
+      "language": "vi",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/vi/dlg_003.wav",
+      "rtf": 0.632313,
+      "sha256": "b586f09ebb1bf2f3900d268d6cdb8b9a87d59b756a725fefcce39c07c13c22b4",
+      "start_sec": 44.5,
+      "text": "Anh quay lại vì nhà ga này sao?",
+      "voice": "Mai Anh",
+      "voice_source": "built_in_presets_no_cloning"
+    },
+    {
+      "audio_duration_sec": 1.28,
+      "bytes": 122924,
+      "cue_budget_sec": 2.1,
+      "dialogue_id": "dlg_004",
+      "elapsed_sec": 0.766846,
+      "fits_cue_budget": true,
+      "language": "vi",
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/vi/dlg_004.wav",
+      "rtf": 0.599099,
+      "sha256": "efde3ad3a5f874ac5604d24c2122f5ddddc1987778a53c6b19a50902e45d2577",
+      "start_sec": 55.5,
+      "text": "Vì một lời hứa.",
+      "voice": "Phạm Tuyên",
+      "voice_source": "built_in_presets_no_cloning"
+    }
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "model": {
+    "repo": "pnnbao-ump/VieNeu-TTS-v3-Turbo",
+    "revision": "61b85e3d937fbbacb387714180e8182823512523"
+  },
+  "package_version": "3.8.3",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "purpose": "FULL_EN_VI_CPU_PREVIS_DIALOGUE_NOT_FINAL_CASTING",
+  "schema_version": 1,
+  "status": "PASS",
+  "total_duration_sec": 75.0,
+  "tracks": {
+    "en": {
+      "bytes": 7200044,
+      "duration_sec": 75.0,
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/dialogue_en.wav",
+      "placements": [
+        {
+          "dialogue_id": "dlg_001",
+          "duration_sec": 2.72,
+          "source_sha256": "5b01dcb862b1099ff283cbab3067a21a8e5ce09de6f3907e4f6c3bf968b6075a",
+          "start_sec": 16.5
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "duration_sec": 2.32,
+          "source_sha256": "07fc84b925dc28c9d020b8cf88ce91f45347872f287cc477ab738d9d3d507a3b",
+          "start_sec": 26.5
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "duration_sec": 1.92,
+          "source_sha256": "09b101605fe7e989c25c27e911110ac3d7602973e75f983dabb8621d74bec9be",
+          "start_sec": 44.5
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "duration_sec": 1.2,
+          "source_sha256": "98778dfdf30d8bcf13b3d8d4a394d7510892e85bb5bff113b2c3fc9800639a8f",
+          "start_sec": 55.5
+        }
+      ],
+      "sample_rate": 48000,
+      "sha256": "c065aac084c3adbabea1e228b816935f84a27a46fd286ad72ae6e02366d44150"
+    },
+    "vi": {
+      "bytes": 7200044,
+      "duration_sec": 75.0,
+      "path": "/home/dragon/ai-film-dev/artifacts/slice01-previs-audio/dialogue_vi.wav",
+      "placements": [
+        {
+          "dialogue_id": "dlg_001",
+          "duration_sec": 2.56,
+          "source_sha256": "daea99ef499efde866ae1b7f3d8c041f8dc6b65d8e9d91df1bc4a99d259c496f",
+          "start_sec": 16.5
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "duration_sec": 1.92,
+          "source_sha256": "3e7454475ebaa583719a41bf49cf4f0f8d418629f05fd5e746f8cf0d7170177e",
+          "start_sec": 26.5
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "duration_sec": 1.92,
+          "source_sha256": "b586f09ebb1bf2f3900d268d6cdb8b9a87d59b756a725fefcce39c07c13c22b4",
+          "start_sec": 44.5
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "duration_sec": 1.28,
+          "source_sha256": "efde3ad3a5f874ac5604d24c2122f5ddddc1987778a53c6b19a50902e45d2577",
+          "start_sec": 55.5
+        }
+      ],
+      "sample_rate": 48000,
+      "sha256": "5dffbb0b534f6e1a701286988ad2b796a48e90a160114a81f5d669ab883a1d09"
+    }
+  },
+  "voice_source": "built_in_presets_no_cloning",
+  "zh_status": "SUBTITLE_ONLY_PENDING_VOXCPM2_MODEL_EVAL"
+}

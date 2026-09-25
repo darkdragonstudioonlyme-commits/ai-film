@@ -1,0 +1,29 @@
+{
+  "blockers": [
+    "NO_GPU_HOST_YET",
+    "CUDA_DRIVER_TORCH_WHEEL_NOT_PROBED",
+    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
+    "PAID_RENTAL_NOT_AUTHORIZED"
+  ],
+  "commands": [
+    "nvidia-smi",
+    "python3 --version",
+    "df -h /",
+    "python3 -m venv /opt/aifilm/venv",
+    "/opt/aifilm/venv/bin/python -m pip install --upgrade pip",
+    "/opt/aifilm/venv/bin/python -m pip install -r requirements-base.lock.txt",
+    "/opt/aifilm/venv/bin/python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'"
+  ],
+  "execution_ready": false,
+  "mode": "DRY_RUN",
+  "note": "Commands are a plan only. CUDA-compatible torch source and model runtimes are pinned after rented-host preflight.",
+  "requirements_lock_sha256": "75b2e256aef1eaf935c254311221acb41e4c5ca14cf2e3ca98dc488a6b625429",
+  "runtime_lock_sha256": "ddb4a5bc3132e386e67ac1e89749f63a1ccf141f73b1936ada9c600fa0ae9799",
+  "schema_version": 1,
+  "target": {
+    "cuda": "PIN_ON_RENTED_HOST_AFTER_DRIVER_PROBE",
+    "gpu_vendor": "NVIDIA",
+    "os": "Ubuntu 24.04 LTS",
+    "python": "3.12"
+  }
+}
