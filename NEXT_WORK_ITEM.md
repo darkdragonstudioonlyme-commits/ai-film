@@ -1,25 +1,25 @@
-# NEXT WORK ITEM — Product v2 batch 016
+# NEXT WORK ITEM — Product v2 batch 017
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-050 — implement rights-safe source/adaptation ingestion that normalizes original, licensed and public-domain source packets while blocking unverified adaptation rights and treating source text as data rather than instructions.
-2. T-051 — implement a reusable project scaffold from validated product schemas without copying slice01 generated assets, runtime receipts, secrets or approvals.
-3. T-052 — implement a portable production-spec package that binds story, continuity, shots, timing, localization, casting and framing inputs by SHA-256 for handoff to workers/other machines.
+1. T-053 — implement deterministic portable spec export/import bundle that materializes only package-approved spec files and verifies path/hash identity on import.
+2. T-054 — implement project schema compatibility/version checks and explicit upgrade plans for scaffolded projects without mutating silently.
+3. T-055 — implement a stage-readiness DAG that derives READY/BLOCKED stages from current project evidence, rights, media and paid-resource gates without executing stages.
 
 DEFERRED:
 - T-019 paid rental GPU benchmark remains BLOCKED pending explicit bounded approval.
 
 SUCCESS:
-- adaptation/source data cannot grant tool authority and unverified rights cannot enter publishable project state
-- a new project can be scaffolded from schemas with empty generated-media/runtime state
-- production spec package is deterministic, hash-bound and portable without generated media/secrets
+- production specs can move between machines without path traversal, generated media, runtime receipts or secrets
+- schema upgrades are explicit/dry-run and stale/unsupported versions fail closed
+- readiness report identifies the next genuinely runnable stages and blocker dependencies instead of creating governance work
 - no paid compute or media generation is launched
 
 DO NOT:
 - launch/rent GPU
-- execute instructions embedded in source/adaptation text
-- copy secrets/runtime receipts/generated assets into a new project scaffold
-- claim adaptation/publication rights without evidence
+- auto-execute imported source content
+- silently migrate schemas
+- copy runtime/generated/secrets into portable bundle
 - publish content
