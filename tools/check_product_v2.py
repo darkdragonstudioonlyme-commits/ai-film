@@ -28,13 +28,24 @@ REQUIRED_PRODUCT_FILES = [
     "run-evidence/PREVIS_AUDIO_20260925.json",
     "run-evidence/PREVIS_ANIMATIC_EN_20260925.json",
     "run-evidence/PREVIS_ANIMATIC_VI_20260925.json",
-    "projects/slice01/timing/voice_plan.json",
     "model-evaluations/slice01/upstream_pins_2026-09-24.json",
     "model-evaluations/slice01/PINNING_2026-09-24.md",
     "model-evaluations/slice01/CPU_TTS_FEASIBILITY_2026-09-24.md",
     "model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json",
     "model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.md",
     "run-evidence/CPU_TTS_SMOKE_20260924.json",
+    "run-evidence/GPU_PRELAUNCH_BUNDLE_20260925.json",
+    "projects/slice01/casting/reference_contract.json",
+    "projects/slice01/casting/CASTING_REFERENCE_ACCEPTANCE.md",
+    "projects/slice01/casting/eval/blind_items.json",
+    "projects/slice01/casting/eval/blind_map_private.json",
+    "projects/slice01/casting/eval/scores.csv",
+    "model-evaluations/slice01/voice/voxcpm2_eval_config.json",
+    "model-evaluations/slice01/voice/requirements-voxcpm2-eval.txt",
+    "model-evaluations/slice01/voice/VOXCPM2_EVAL.md",
+    "model-evaluations/slice01/voice/packet/eval_packet.json",
+    "model-evaluations/slice01/voice/packet/blind_map_private.json",
+    "model-evaluations/slice01/voice/packet/scores.csv",
 ]
 LANGS = {"en","zh-CN","vi"}
 
@@ -231,6 +242,47 @@ def main() -> int:
         errors.append("rental-initial-subcap-drift")
     if float(rental.get("initial_execution_subcap_usd",9999)) >= float(rental.get("hard_all_in_authorization_cap_usd",0)):
         errors.append("rental-subcap-order")
+
+    prelaunch=json.loads((root/"run-evidence/GPU_PRELAUNCH_BUNDLE_20260925.json").read_text(encoding="utf-8"))
+    enabled_visual={
+        model["model_id"] for model in models
+        if model.get("enabled") and model.get("stage") in {"image","video"}
+    }
+    if prelaunch.get("mode")!="PRELAUNCH_DRY_RUN_ONLY" or prelaunch.get("execution_ready") is not False or prelaunch.get("provider_resource_created") is not False:
+        errors.append("gpu-prelaunch-authority")
+    pre_rows=prelaunch.get("models",[])
+    if {row.get("model_id") for row in pre_rows} != enabled_visual:
+        errors.append("gpu-prelaunch-population")
+    for row in pre_rows:
+        if row.get("execution_ready") is not False or row.get("runner_contract",{}).get("paid_authority_inherited") is not False:
+            errors.append("gpu-prelaunch-model-authority:"+str(row.get("model_id")))
+
+    cast_contract=json.loads((root/"projects/slice01/casting/reference_contract.json").read_text(encoding="utf-8"))
+    if cast_contract.get("status")!="CONTRACT_READY_REFERENCES_NOT_GENERATED":
+        errors.append("casting-reference-status")
+    if cast_contract.get("generated_reference_paths") != []:
+        errors.append("casting-reference-fake-assets")
+    if set(cast_contract.get("characters",{})) != set(casting.get("characters",{})):
+        errors.append("casting-reference-population")
+    for char in cast_contract.get("characters",{}).values():
+        for style in cast_contract.get("styles",[]):
+            slots=char.get("styles",{}).get(style,{}).get("slots",[])
+            if len(slots)!=4 or any(slot.get("asset_id") is not None or slot.get("manifest_sha256") is not None for slot in slots):
+                errors.append("casting-reference-slot-state")
+
+    voice_packet=json.loads((root/"model-evaluations/slice01/voice/packet/eval_packet.json").read_text(encoding="utf-8"))
+    samples=voice_packet.get("samples",[])
+    if voice_packet.get("mode")!="voice_design" or len(samples)!=12:
+        errors.append("voxcpm2-packet-shape")
+    if {row.get("language") for row in samples} != LANGS:
+        errors.append("voxcpm2-packet-languages")
+    if any(row.get("reference_audio") is not None or row.get("mode")!="voice_design" for row in samples):
+        errors.append("voxcpm2-cloning-boundary")
+    if voice_packet.get("model",{}).get("package")!="voxcpm==2.0.3":
+        errors.append("voxcpm2-package-pin")
+    vox_matrix=next((m for m in models if m.get("model_id")=="voxcpm2"),None)
+    if vox_matrix is None or "voxcpm==2.0.3" not in vox_matrix.get("runtime_requirements",[]):
+        errors.append("voxcpm2-runtime-pin")
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

@@ -1,26 +1,27 @@
-# NEXT WORK ITEM — Product v2 batch 005
+# NEXT WORK ITEM — Product v2 batch 006
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-016 — build stage-specific GPU runner/prelaunch bundle from the pinned runtime/model matrix; validate locally without creating a provider resource.
-2. T-017 — define casting reference manifest + blind identity/style acceptance contract for An and Linh; create reference-index schema but no generated images.
-3. T-018 — prepare VoxCPM2 EN/ZH/VI fixed voice-eval inputs/scoring contract using synthetic/built-in or non-cloned voices only.
+1. T-020 — compile deterministic casting-reference generation jobs from the 16-slot An/Linh contract for active image candidates; no image generation.
+2. T-021 — implement blind-score ingestion/ranking for casting/model evaluation; keep model/character private mapping sealed until scoring completeness checks pass.
+3. T-022 — implement VoxCPM2 Voice Design runner request/output manifest contract plus score ingestion; no synthesis/model execution.
 
 BLOCKED:
+- T-005/T-006 require generated visual assets.
 - T-019 paid rental GPU execution requires explicit bounded approval and live provider-rate recheck.
 
 SUCCESS:
-- each enabled visual model has a deterministic stage-specific runner/install/input contract
-- casting reference identities/roles and acceptance measurements are machine-readable before keyframe generation
-- multilingual voice packet binds dialogue IDs, languages, target character identity, scoring and rights constraints
+- casting jobs bind exact character/style/slot/model/prompt/seed provenance
+- incomplete/tampered blind score sets fail closed before unblinding/ranking
+- VoxCPM2 requests bind exact model revision/package, voice group, text, seed and no-reference-audio policy
 - no paid compute is launched
 
 DO_NOT:
 - launch/rent GPU
+- execute model inference
 - enable Qwen-Image-2.1 for commercial production without separate license
-- treat LatentSync OpenRAIL++ as automatically cleared for commercial use
+- treat LatentSync OpenRAIL++ as automatically commercially cleared
 - clone a real person's voice without rights
 - publish content
-- resume P00 dev23/prodlike

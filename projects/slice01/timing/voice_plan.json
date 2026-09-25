@@ -34,5 +34,23 @@
   "zh_route": {
     "model_id": "voxcpm2",
     "status": "GPU_MODEL_EVAL_PENDING"
+  },
+  "dialogue_character_map": {
+    "dlg_001": "an",
+    "dlg_002": "linh",
+    "dlg_003": "linh",
+    "dlg_004": "an"
+  },
+  "voxcpm2_eval": {
+    "model_id": "voxcpm2",
+    "mode": "voice_design_no_reference_audio",
+    "package": "voxcpm==2.0.3",
+    "model_revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "languages": [
+      "en",
+      "zh-CN",
+      "vi"
+    ],
+    "status": "PACKET_READY_NOT_EXECUTED"
   }
 }

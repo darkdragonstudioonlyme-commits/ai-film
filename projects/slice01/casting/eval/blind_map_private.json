@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "mapping": [
+    {
+      "blind_id": "cast_c848f9d018bf",
+      "character_id": "an",
+      "style": "photoreal",
+      "slot": "face_front"
+    },
+    {
+      "blind_id": "cast_ce0e1388eba7",
+      "character_id": "an",
+      "style": "photoreal",
+      "slot": "face_3q"
+    },
+    {
+      "blind_id": "cast_5c6473282b42",
+      "character_id": "an",
+      "style": "photoreal",
+      "slot": "full_body_neutral"
+    },
+    {
+      "blind_id": "cast_63508cb1fab6",
+      "character_id": "an",
+      "style": "photoreal",
+      "slot": "expression_neutral"
+    },
+    {
+      "blind_id": "cast_ba93ca93e502",
+      "character_id": "an",
+      "style": "stylized_3d",
+      "slot": "face_front"
+    },
+    {
+      "blind_id": "cast_062ba4bfdad2",
+      "character_id": "an",
+      "style": "stylized_3d",
+      "slot": "face_3q"
+    },
+    {
+      "blind_id": "cast_19f0dfebaf27",
+      "character_id": "an",
+      "style": "stylized_3d",
+      "slot": "full_body_neutral"
+    },
+    {
+      "blind_id": "cast_5b7d2b4b602b",
+      "character_id": "an",
+      "style": "stylized_3d",
+      "slot": "expression_neutral"
+    },
+    {
+      "blind_id": "cast_57e0557dcfd0",
+      "character_id": "linh",
+      "style": "photoreal",
+      "slot": "face_front"
+    },
+    {
+      "blind_id": "cast_8e364239bc71",
+      "character_id": "linh",
+      "style": "photoreal",
+      "slot": "face_3q"
+    },
+    {
+      "blind_id": "cast_7bdefe620970",
+      "character_id": "linh",
+      "style": "photoreal",
+      "slot": "full_body_neutral"
+    },
+    {
+      "blind_id": "cast_abfe98b9dc49",
+      "character_id": "linh",
+      "style": "photoreal",
+      "slot": "expression_neutral"
+    },
+    {
+      "blind_id": "cast_70fee052ccd3",
+      "character_id": "linh",
+      "style": "stylized_3d",
+      "slot": "face_front"
+    },
+    {
+      "blind_id": "cast_6d384ffa6789",
+      "character_id": "linh",
+      "style": "stylized_3d",
+      "slot": "face_3q"
+    },
+    {
+      "blind_id": "cast_d9c7dd228e88",
+      "character_id": "linh",
+      "style": "stylized_3d",
+      "slot": "full_body_neutral"
+    },
+    {
+      "blind_id": "cast_0bff5e09b902",
+      "character_id": "linh",
+      "style": "stylized_3d",
+      "slot": "expression_neutral"
+    }
+  ]
+}
