@@ -1,0 +1,230 @@
+{
+  "blocking_frontier": [
+    {
+      "blockers": [
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "stage_id": "casting_reference_generation"
+    },
+    {
+      "blockers": [
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "stage_id": "voice_eval"
+    }
+  ],
+  "evidence": {
+    "continuity_ready": true,
+    "creative_qc_pass": false,
+    "delivery_package_ready": false,
+    "final_audio_mix": false,
+    "final_lipsync_assets": false,
+    "final_music_asset": false,
+    "final_voice_eval_complete": false,
+    "generated_casting_assets": false,
+    "localization_text_ready": true,
+    "music_rights_ready": false,
+    "paid_gpu_authorized": false,
+    "publication_rights_ready": false,
+    "rendered_final_media": false,
+    "screenplay_ready": true,
+    "selected_video_takes": false,
+    "shots_ready": true,
+    "source_packet_ready": true,
+    "technical_qc_pass": false,
+    "timing_ready": true,
+    "visual_model_selected": false
+  },
+  "execution_permitted": false,
+  "ready_stages": [],
+  "schema_version": 1,
+  "stages": [
+    {
+      "blockers": [],
+      "completion_evidence": [
+        "source_packet_ready"
+      ],
+      "depends_on": [],
+      "execution_permitted": false,
+      "requires_evidence": [],
+      "stage_id": "source_ingestion",
+      "status": "COMPLETE"
+    },
+    {
+      "blockers": [],
+      "completion_evidence": [
+        "screenplay_ready",
+        "localization_text_ready"
+      ],
+      "depends_on": [
+        "source_ingestion"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [],
+      "stage_id": "screenplay_localization",
+      "status": "COMPLETE"
+    },
+    {
+      "blockers": [],
+      "completion_evidence": [
+        "continuity_ready",
+        "shots_ready",
+        "timing_ready"
+      ],
+      "depends_on": [
+        "screenplay_localization"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [],
+      "stage_id": "continuity_shot_spec",
+      "status": "COMPLETE"
+    },
+    {
+      "blockers": [
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "completion_evidence": [
+        "generated_casting_assets"
+      ],
+      "depends_on": [
+        "continuity_shot_spec"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "paid_gpu_authorized"
+      ],
+      "stage_id": "casting_reference_generation",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:casting_reference_generation",
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "completion_evidence": [
+        "visual_model_selected"
+      ],
+      "depends_on": [
+        "casting_reference_generation"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "paid_gpu_authorized"
+      ],
+      "stage_id": "visual_model_eval",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:visual_model_eval",
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "completion_evidence": [
+        "selected_video_takes"
+      ],
+      "depends_on": [
+        "visual_model_eval"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "paid_gpu_authorized"
+      ],
+      "stage_id": "video_generation",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "missing-evidence:paid_gpu_authorized"
+      ],
+      "completion_evidence": [
+        "final_voice_eval_complete"
+      ],
+      "depends_on": [
+        "screenplay_localization"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "paid_gpu_authorized"
+      ],
+      "stage_id": "voice_eval",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:voice_eval",
+        "missing-evidence:final_music_asset",
+        "missing-evidence:music_rights_ready"
+      ],
+      "completion_evidence": [
+        "final_audio_mix"
+      ],
+      "depends_on": [
+        "voice_eval"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "final_music_asset",
+        "music_rights_ready"
+      ],
+      "stage_id": "audio_finalization",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:video_generation",
+        "upstream-not-complete:audio_finalization"
+      ],
+      "completion_evidence": [
+        "rendered_final_media"
+      ],
+      "depends_on": [
+        "video_generation",
+        "audio_finalization"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [],
+      "stage_id": "edit_render",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:edit_render",
+        "missing-evidence:publication_rights_ready",
+        "missing-evidence:technical_qc_pass",
+        "missing-evidence:creative_qc_pass"
+      ],
+      "completion_evidence": [
+        "delivery_package_ready"
+      ],
+      "depends_on": [
+        "edit_render"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [
+        "publication_rights_ready",
+        "technical_qc_pass",
+        "creative_qc_pass"
+      ],
+      "stage_id": "delivery_qc",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "upstream-not-complete:video_generation",
+        "upstream-not-complete:audio_finalization"
+      ],
+      "completion_evidence": [
+        "final_lipsync_assets"
+      ],
+      "depends_on": [
+        "video_generation",
+        "audio_finalization"
+      ],
+      "execution_permitted": false,
+      "requires_evidence": [],
+      "stage_id": "lipsync",
+      "status": "BLOCKED"
+    }
+  ],
+  "status": "NO_RUNNABLE_STAGE"
+}

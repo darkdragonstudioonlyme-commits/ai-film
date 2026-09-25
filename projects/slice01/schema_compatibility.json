@@ -1,0 +1,149 @@
+{
+  "documents": [
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "audio_cues",
+      "name": "projects/slice01/audio/cue_sheet.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "audio_mix",
+      "name": "projects/slice01/audio/mix_policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 0,
+      "document_type": "casting",
+      "name": "projects/slice01/casting.json",
+      "status": "UPGRADE_REQUIRED",
+      "target_version": 1,
+      "upgrade_strategy": "WRAP_OR_ADD_SCHEMA_VERSION_1"
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 0,
+      "document_type": "continuity",
+      "name": "projects/slice01/continuity.json",
+      "status": "UPGRADE_REQUIRED",
+      "target_version": 1,
+      "upgrade_strategy": "WRAP_OR_ADD_SCHEMA_VERSION_1"
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "framing",
+      "name": "projects/slice01/framing/reframe_policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "lipsync",
+      "name": "projects/slice01/lipsync/policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "localization",
+      "name": "projects/slice01/localization/dialogue_bundle.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 0,
+      "document_type": "project",
+      "name": "projects/slice01/project.json",
+      "status": "UPGRADE_REQUIRED",
+      "target_version": 1,
+      "upgrade_strategy": "WRAP_OR_ADD_SCHEMA_VERSION_1"
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "qc",
+      "name": "projects/slice01/qc_policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "publication_policy",
+      "name": "projects/slice01/rights/publication_policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 0,
+      "document_type": "shots",
+      "name": "projects/slice01/shots/benchmark_shots.json",
+      "status": "UPGRADE_REQUIRED",
+      "target_version": 1,
+      "upgrade_strategy": "WRAP_OR_ADD_SCHEMA_VERSION_1"
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "source",
+      "name": "projects/slice01/source/source_packet.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "screenplay",
+      "name": "projects/slice01/story/screenplay.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "subtitle_layout",
+      "name": "projects/slice01/subtitles/layout_policy.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    },
+    {
+      "apply_authorized": false,
+      "detected_version": 1,
+      "document_type": "timing",
+      "name": "projects/slice01/timing/timing.json",
+      "status": "COMPATIBLE",
+      "target_version": 1,
+      "upgrade_strategy": null
+    }
+  ],
+  "mutations_applied": false,
+  "schema_version": 1,
+  "status": "UPGRADE_REQUIRED",
+  "unsupported": [],
+  "upgrade_required": [
+    "projects/slice01/casting.json",
+    "projects/slice01/continuity.json",
+    "projects/slice01/project.json",
+    "projects/slice01/shots/benchmark_shots.json"
+  ]
+}
