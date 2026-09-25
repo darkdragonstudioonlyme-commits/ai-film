@@ -1,12 +1,13 @@
 # AI-FILM — Resume v2
 
 GOAL: ship a measurable 60–90 second vertical slice before adding more infrastructure.
-MILESTONE: M2 model-eval/casting preparation; M0 and M1 complete.
-CANONICAL_BASE_BEFORE_BATCH017: origin/main @ d6af95bdb9caeb4cce98cce09a70be1d8ae617e0.
+MILESTONE: M2 live model-eval/casting execution on RunPod A40.
+CANONICAL_BASE_BEFORE_LIVE_GPU_AUTH: origin/main @ fc2cb236f2430984f93816d40e90a8e064731304.
 DONE: T-001..T-004, T-008..T-018, T-020..T-055.
-BATCH017_EVIDENCE: portable spec export/import round-trip verifies all payload hashes/paths and rejects symlinks/extras/runtime/media; schema compatibility reports exactly four legacy-v0 documents and applies no mutation; stage-readiness DAG has NO_RUNNABLE_STAGE with frontier exactly casting_reference_generation + voice_eval, both blocked only by paid_gpu_authorized.
-NEXT: T-019 — actual paid rental GPU benchmark / generation boundary. BLOCKED pending explicit bounded paid approval and launch-time live-rate recheck.
-WHY_STOP_NON_GPU_BACKLOG: current readiness DAG finds no remaining runnable production stage independent of paid GPU/final generated media. Creating more preparatory tasks would be process work rather than film-product delta.
-CURRENT_MEDIA_STATE: final visual/voice/music/SFX/video assets remain ungenerated.
+LIVE_GPU: RunPod Pod 0h1twwxqw6yx0k, NVIDIA A40, 46068 MiB, USD 0.49/h, 250 GB container/root disk, Torch 2.8.0+cu128, Python 3.12.3.
+AUTHORITY: project owner explicitly authorized maximum USD 60 for T-019 Stage A. Active receipt and live rate/host evidence are hash-bound; no new resource creation or publication authority is granted.
+NEXT: T-019 — qualify exact model adapter runtimes, then run fixed casting-reference/image smoke and multilingual voice eval while recording VRAM/time/failure/cost evidence.
+READINESS: casting_reference_generation and voice_eval are READY; execution_permitted remains false at the generic DAG layer and model-specific admission remains fail-closed until VRAM/runtime measurements exist.
+STORAGE_NOTE: /workspace currently shares the 250 GB root overlay rather than a separate Network Volume; sync evidence/artifacts before Pod termination.
 LEGACY_P00: frozen at archive/p00-governance-2026-09-24; scheduled P00 timers disabled/inactive.
-SAFETY: no publish, destructive cleanup, real-person voice cloning, or paid GPU/API launch without explicit bounded authority.
+SAFETY: hard project cap USD 60; no extra Pod/resource creation, no publish, no destructive cleanup, no real-person voice cloning.

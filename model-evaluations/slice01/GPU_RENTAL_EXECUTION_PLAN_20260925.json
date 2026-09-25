@@ -1,0 +1,38 @@
+{
+  "data_center_id": "EU-SE-1",
+  "declared_vram_gb": 48,
+  "execution_authorized": true,
+  "gpu": "NVIDIA A40",
+  "gpu_count": 1,
+  "host_evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json",
+  "host_evidence_sha256": "e3a8f2b4da3dece444cd9c96cf12d4c0f4067554b938914025d4a1fd76b50af5",
+  "max_total_usd": 60.0,
+  "measured_vram_mib": 46068,
+  "new_resource_creation_authorized": false,
+  "plan_digest": "f921acbfc4bb6b705f31fc82751e6d893212601d048c77c80d4d356ec6e89ab9",
+  "plan_id": "T019-RUNPOD-A40-STAGE-A-20260925",
+  "pod_id": "0h1twwxqw6yx0k",
+  "pod_name": "hurt_scarlet_marsupial",
+  "proposal_digest": "ba2442521969903a814e7d474abdb3064c582a72f68c9aafde16d89f47ec26ea",
+  "proposal_ref": "model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json",
+  "provider": "RunPod",
+  "publish_authority": false,
+  "purpose": [
+    "qualify exact image-model runtimes on A40",
+    "run fixed casting-reference smoke population",
+    "measure model VRAM, elapsed time, failures and cost",
+    "run multilingual voice evaluation after image smoke if budget remains"
+  ],
+  "rate_snapshot_digest": "2dab0f274bdf9b7920d4d9316feab5dcb7b0acdec7be81e734a3f4e5623782fe",
+  "rate_snapshot_ref": "model-evaluations/slice01/rate_snapshot_20260925.json",
+  "rate_usd_per_hour": 0.49,
+  "resource_launch_already_performed_by_owner": true,
+  "schema_version": 1,
+  "status": "AUTHORIZED_STAGE_A_PLAN",
+  "stop_conditions": [
+    "projected all-in project spend would exceed USD 60",
+    "model/license/runtime identity becomes unclear",
+    "two repeated setup attempts fail for the same runtime premise",
+    "artifact/evidence cannot be verified before Pod stop/termination"
+  ]
+}

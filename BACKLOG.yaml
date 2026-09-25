@@ -94,10 +94,9 @@
   owner: executor
 - id: T-019
   milestone: M2
-  goal: "Launch paid rental GPU benchmark after explicit bounded approval"
-  status: BLOCKED
+  goal: "Run bounded RunPod A40 Stage-A benchmark and first real generation evidence"
+  status: READY
   owner: coordinator
-  blocker: PAID_GPU_APPROVAL
 - id: T-020
   milestone: M2
   goal: "Compile casting-reference generation jobs for active image models from the 16-slot casting contract"

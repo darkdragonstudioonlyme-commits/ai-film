@@ -1,0 +1,48 @@
+{
+  "cgroup": {
+    "cpu_max": "765000 100000",
+    "cpu_quota_cores": 7.65,
+    "memory_max_bytes": 49999998976
+  },
+  "data_center_id": "EU-SE-1",
+  "gpu": {
+    "count": 1,
+    "driver_version": "580.159.03",
+    "host_cuda_version": "13.0",
+    "memory_total_gib": 44.988281,
+    "memory_total_mib": 46068,
+    "name": "NVIDIA A40"
+  },
+  "hourly_rate_usd": 0.49,
+  "network": {
+    "direct_tcp_last_observed_port": 22060,
+    "direct_tcp_public_ip": "194.68.245.122",
+    "direct_tcp_status": "UNRELIABLE_AFTER_RESTART",
+    "ssh_gateway": "0h1twwxqw6yx0k-6441126b@ssh.runpod.io",
+    "ssh_gateway_status": "PASS"
+  },
+  "observed_at": "2026-09-25T11:35:16Z",
+  "pod_id": "0h1twwxqw6yx0k",
+  "pod_name": "hurt_scarlet_marsupial",
+  "provider": "RunPod",
+  "provider_accrued_billing_status": "NOT_EXPOSED_BY_RUNPOD_MCP",
+  "python_version": "3.12.3",
+  "repo": {
+    "head": "fc2cb236f2430984f93816d40e90a8e064731304",
+    "path": "/workspace/ai-film",
+    "product_checker": "PASS"
+  },
+  "schema_version": 1,
+  "started_at": "2026-09-25T11:21:45.856Z",
+  "status": "RUNNING",
+  "storage": {
+    "disk_bytes_available": 268332986368,
+    "disk_bytes_total": 268435456000,
+    "storage_class_observed": "250GB_CONTAINER_ROOT_OVERLAY",
+    "workspace_path": "/workspace",
+    "workspace_separate_mount": false
+  },
+  "torch_cuda_available": true,
+  "torch_cuda_version": "12.8",
+  "torch_version": "2.8.0+cu128"
+}

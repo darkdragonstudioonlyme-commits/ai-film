@@ -88,6 +88,15 @@
       "tier": "RTX_PRO_6000_96GB",
       "declared_vram_gb": 96,
       "measurement_status": "NOT_MEASURED_FOR_STACK"
+    },
+    {
+      "tier": "RUNPOD_A40_48GB",
+      "declared_vram_gb": 48,
+      "measured_vram_mib": 46068,
+      "measured_vram_gib": 44.988281,
+      "measurement_status": "HOST_MEASURED_MODEL_STACK_UNMEASURED",
+      "pod_id": "0h1twwxqw6yx0k",
+      "evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json"
     }
   ]
 }

@@ -1,7 +1,15 @@
 {
   "schema_version": 1,
-  "status": "NO_PAID_BUDGET_AUTHORIZED",
-  "current_authorized_budget_usd": 0.0,
+  "status": "AUTHORIZED_BOUNDED",
+  "current_authorized_budget_usd": 60.0,
+  "authorization_id": "T019-RUNPOD-A40-20260925",
+  "authorization_ref": "model-evaluations/slice01/launch_authorization.active.json",
+  "provider": "RunPod",
+  "pod_id": "0h1twwxqw6yx0k",
+  "gpu": "NVIDIA A40",
+  "rate_usd_per_hour": 0.49,
+  "rate_snapshot_ref": "model-evaluations/slice01/rate_snapshot_20260925.json",
+  "provider_accrued_billing_status": "NOT_EXPOSED_BY_RUNPOD_MCP",
   "categories": [
     "COMPUTE_ACCEPTED",
     "COMPUTE_FAILED",
@@ -11,5 +19,5 @@
     "API",
     "OTHER"
   ],
-  "note": "T-019 remains blocked. Rental proposal caps are proposals, not standing budget authority."
+  "note": "Project owner explicitly authorized up to USD 60. RunPod MCP does not expose accrued billing; ledger uses evidence-based estimates and must remain below the cap."
 }
