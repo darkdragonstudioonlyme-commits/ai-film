@@ -176,15 +176,30 @@
 - id: T-035
   milestone: M2
   goal: "Implement deterministic ffmpeg render-command compiler from a READY edit plan without executing when blocked"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-036
   milestone: M2
   goal: "Implement technical media probe/QC for duration, dimensions, streams and hash-bound export identity"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-037
   milestone: M2
   goal: "Implement multi-aspect/multi-language delivery package manifest with provenance and publication boundary"
+  status: DONE
+  owner: executor
+- id: T-038
+  milestone: M2
+  goal: "Implement capability-based worker admission from model/runtime/VRAM requirements"
+  status: READY
+  owner: executor
+- id: T-039
+  milestone: M2
+  goal: "Implement bounded project queue, per-project concurrency and visible backpressure/cancellation"
+  status: READY
+  owner: executor
+- id: T-040
+  milestone: M2
+  goal: "Implement full cost ledger and budget enforcement including failed/rejected/storage/transfer costs"
   status: READY
   owner: executor

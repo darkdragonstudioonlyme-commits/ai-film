@@ -452,6 +452,32 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch010-missing:"+rel)
 
+
+    asset_catalog=json.loads((root/"projects/slice01/edit/asset_catalog.json").read_text(encoding="utf-8"))
+    if asset_catalog.get("status")!="NO_FINAL_MEDIA_ASSETS" or asset_catalog.get("assets")!={}:
+        errors.append("render-asset-catalog-state")
+    tech_policy=json.loads((root/"projects/slice01/technical_qc_policy.json").read_text(encoding="utf-8"))
+    if tech_policy.get("status")!="POLICY_READY_NO_FINAL_MEDIA" or tech_policy.get("duration_sec")!=75.0:
+        errors.append("technical-qc-policy-state")
+    delivery_inputs=json.loads((root/"projects/slice01/delivery/delivery_inputs.json").read_text(encoding="utf-8"))
+    if delivery_inputs.get("status")!="WAITING_FINAL_MEDIA" or delivery_inputs.get("deliverables")!=[]:
+        errors.append("delivery-input-state")
+    expected_delivery={(row.get("aspect"),row.get("language")) for row in delivery_inputs.get("expected_variants",[])}
+    if expected_delivery!={(a,l) for a in ("9:16","16:9") for l in ("en","zh-CN","vi")}:
+        errors.append("delivery-variant-matrix")
+    required_batch011=[
+        "film/BATCH011_CONTRACT.md",
+        "film/render_compile.py",
+        "film/technical_qc.py",
+        "film/delivery.py",
+        "tools/compile_ffmpeg_render_spec.py",
+        "tools/evaluate_technical_media_qc.py",
+        "tools/build_delivery_manifest.py",
+    ]
+    for rel in required_batch011:
+        if not (root/rel).is_file():
+            errors.append("batch011-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

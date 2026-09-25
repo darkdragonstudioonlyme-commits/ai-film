@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "duration_sec": 75.0,
+  "duration_tolerance_sec": 0.25,
+  "fps": 24.0,
+  "fps_tolerance": 0.1,
+  "audio_required": true,
+  "audio_sample_rate": 48000,
+  "variants": {
+    "9:16": {
+      "width": 720,
+      "height": 1280
+    },
+    "16:9": {
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "status": "POLICY_READY_NO_FINAL_MEDIA"
+}
