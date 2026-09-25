@@ -1,0 +1,70 @@
+{
+  "blockers": [
+    "missing-audio:dlg_001:en",
+    "missing-audio:dlg_002:en",
+    "missing-audio:dlg_003:en",
+    "missing-video:sc01_sh03",
+    "missing-video:sc01_sh04",
+    "missing-video:sc01_sh06"
+  ],
+  "execution_permitted": false,
+  "language": "en",
+  "project_id": "slice01",
+  "requests": [
+    {
+      "audio": null,
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_001",
+      "execution_permitted": false,
+      "language": "en",
+      "mouth_visibility": "CLEAR_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh03",
+      "speaker_id": "an",
+      "video": null
+    },
+    {
+      "audio": null,
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_002",
+      "execution_permitted": false,
+      "language": "en",
+      "mouth_visibility": "CLEAR_CLOSE_UP",
+      "schema_version": 1,
+      "shot_id": "sc01_sh04",
+      "speaker_id": "linh",
+      "video": null
+    },
+    {
+      "audio": null,
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_003",
+      "execution_permitted": false,
+      "language": "en",
+      "mouth_visibility": "CLEAR_CLOSE_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh06",
+      "speaker_id": "linh",
+      "video": null
+    }
+  ],
+  "schema_version": 1,
+  "skipped": [
+    {
+      "dialogue_id": "dlg_004",
+      "reason": "MOUTH_NOT_CLEAR_ENOUGH_FOR_REQUIRED_LIPSYNC",
+      "shot_id": "sc01_sh07",
+      "speaker_id": "an"
+    }
+  ],
+  "status": "BLOCKED_MISSING_MEDIA"
+}

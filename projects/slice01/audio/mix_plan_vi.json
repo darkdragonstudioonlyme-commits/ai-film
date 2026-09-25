@@ -1,0 +1,156 @@
+{
+  "blockers": [
+    "missing-audio-asset:amb_rain",
+    "missing-audio-asset:amb_station",
+    "missing-audio-asset:music_resolve",
+    "missing-audio-asset:sfx_blackout",
+    "missing-audio-asset:sfx_panel",
+    "missing-audio-asset:sfx_signal",
+    "missing-audio-asset:sfx_train",
+    "missing-final-dialogue:dlg_001:vi",
+    "missing-final-dialogue:dlg_002:vi",
+    "missing-final-dialogue:dlg_003:vi",
+    "missing-final-dialogue:dlg_004:vi",
+    "rights-not-cleared:amb_rain:UNKNOWN",
+    "rights-not-cleared:amb_station:UNKNOWN",
+    "rights-not-cleared:music_resolve:UNKNOWN",
+    "rights-not-cleared:sfx_blackout:UNKNOWN",
+    "rights-not-cleared:sfx_panel:UNKNOWN",
+    "rights-not-cleared:sfx_signal:UNKNOWN",
+    "rights-not-cleared:sfx_train:UNKNOWN"
+  ],
+  "cues": [
+    {
+      "asset": null,
+      "cue_id": "amb_rain",
+      "description": "steady exterior rain around station",
+      "duration_sec": 75.0,
+      "end_sec": 75.0,
+      "kind": "ambience",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 0.0
+    },
+    {
+      "asset": null,
+      "cue_id": "amb_station",
+      "description": "low station electrical/room tone",
+      "duration_sec": 75.0,
+      "end_sec": 75.0,
+      "kind": "ambience",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 0.0
+    },
+    {
+      "asset": null,
+      "cue_id": "sfx_blackout",
+      "description": "electrical flicker and power-down at blackout",
+      "duration_sec": 2.0,
+      "end_sec": 27.0,
+      "kind": "sfx",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 25.0
+    },
+    {
+      "asset": null,
+      "cue_id": "sfx_panel",
+      "description": "metal service panel scrape and release",
+      "duration_sec": 5.0,
+      "end_sec": 40.0,
+      "kind": "sfx",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 35.0
+    },
+    {
+      "asset": null,
+      "cue_id": "music_resolve",
+      "description": "subtle emotional resolve, minimal motif under final signal/train beat",
+      "duration_sec": 27.0,
+      "end_sec": 75.0,
+      "kind": "music",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 48.0
+    },
+    {
+      "asset": null,
+      "cue_id": "sfx_signal",
+      "description": "signal relay click and electrical restore",
+      "duration_sec": 2.0,
+      "end_sec": 56.0,
+      "kind": "sfx",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 54.0
+    },
+    {
+      "asset": null,
+      "cue_id": "sfx_train",
+      "description": "distant train approach, brake and door arrival",
+      "duration_sec": 21.0,
+      "end_sec": 75.0,
+      "kind": "sfx",
+      "required_for_final": true,
+      "rights_ref": null,
+      "rights_status": "UNKNOWN",
+      "source_status": "PENDING_ASSET",
+      "start_sec": 54.0
+    }
+  ],
+  "dialogue": [
+    {
+      "asset": null,
+      "dialogue_id": "dlg_001",
+      "end_sec": 20.0,
+      "shot_id": "sc01_sh03",
+      "start_sec": 16.5
+    },
+    {
+      "asset": null,
+      "dialogue_id": "dlg_002",
+      "end_sec": 29.8,
+      "shot_id": "sc01_sh04",
+      "start_sec": 26.5
+    },
+    {
+      "asset": null,
+      "dialogue_id": "dlg_003",
+      "end_sec": 48.5,
+      "shot_id": "sc01_sh06",
+      "start_sec": 44.5
+    },
+    {
+      "asset": null,
+      "dialogue_id": "dlg_004",
+      "end_sec": 57.6,
+      "shot_id": "sc01_sh07",
+      "start_sec": 55.5
+    }
+  ],
+  "duration_sec": 75.0,
+  "execution_permitted": false,
+  "language": "vi",
+  "plan_digest": "fbee4669093fab8c2bd8d55c2aeb3f10608198f41ea8b7888c64093267313f60",
+  "schema_version": 1,
+  "status": "BLOCKED_MISSING_ASSETS_OR_RIGHTS",
+  "target": {
+    "channels": 2,
+    "format": "wav_pcm16",
+    "sample_rate_hz": 48000
+  }
+}
