@@ -336,6 +336,26 @@ def main() -> int:
     if output_contract.get("status")!="SCHEMA_ONLY_NO_AUDIO" or output_contract.get("sample_rate_hz")!=48000:
         errors.append("voxcpm2-output-contract")
 
+
+    cast_jobs_bundle=json.loads((root/"projects/slice01/casting/generation/casting_jobs.json").read_text(encoding="utf-8"))
+    cast_jobs=cast_jobs_bundle.get("jobs",[])
+    if len(cast_jobs)!=32 or any(row.get("execution_permitted") is not False for row in cast_jobs):
+        errors.append("batch007-casting-job-source")
+
+    # Batch007 contracts remain code-only until real GPU outputs exist.
+    required_batch007=[
+        "model-evaluations/slice01/BATCH007_CONTRACT.md",
+        "film/image_runner.py",
+        "film/casting_ingest.py",
+        "film/decision_ledger.py",
+        "tools/compile_image_worker_request.py",
+        "tools/ingest_casting_assets.py",
+        "tools/build_benchmark_decision_report.py",
+    ]
+    for rel in required_batch007:
+        if not (root/rel).is_file():
+            errors.append("batch007-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

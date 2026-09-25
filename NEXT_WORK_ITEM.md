@@ -1,27 +1,26 @@
-# NEXT WORK ITEM — Product v2 batch 007
+# NEXT WORK ITEM — Product v2 batch 008
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-023 — implement the image-model GPU runner contract for casting jobs, including dry-run environment/model/reference validation and immutable output manifests; do not create a provider resource.
-2. T-024 — implement generated casting-asset ingestion that verifies job/output/provenance identities before updating reference slots/reference index.
-3. T-025 — implement benchmark result + cost ledger aggregation and a deterministic decision report for later GPU runs.
+1. T-026 — build the authorization receipt schema + live provider-rate recheck gate required before T-019; do not launch any resource.
+2. T-027 — build a synthetic casting-output fixture pack that exercises worker output → provenance ingestion → blind asset binding → score gate without model inference.
+3. T-028 — build stage-specific benchmark/cost decision-report templates and import paths for later real GPU runs.
 
 BLOCKED:
+- T-019 paid rental GPU execution remains blocked until explicit bounded approval.
 - T-005/T-006 still require actual generated visual assets.
-- T-019 paid rental GPU execution requires explicit bounded approval and live provider-rate recheck.
 
 SUCCESS:
-- a casting job can be translated into an executable worker request but remains non-executing without a local authorized GPU runtime
-- only hash-bound generated assets can populate casting reference slots
-- benchmark timing/VRAM/failure/cost data can produce a reproducible comparison report without inventing a winner when evidence is incomplete
+- paid launch cannot proceed without a hash-bound explicit authorization receipt and current rate check
+- casting ingestion/scoring path is proven end-to-end on synthetic assets without fake production acceptance
+- decision reports can ingest later image/video/voice run data without inventing winners when evidence is incomplete
 - no paid compute is launched
 
 DO_NOT:
 - launch/rent GPU
-- execute model inference on paid infrastructure
-- bypass model/license/runtime gates
-- unblind incomplete evaluations
-- clone a real person's voice without rights
+- execute model inference
+- treat synthetic fixtures as real casting assets
+- bypass licensing/runtime/reference gates
 - publish content
