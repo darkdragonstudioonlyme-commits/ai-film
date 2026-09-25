@@ -1,0 +1,32 @@
+{
+  "failed_resolution": {
+    "reason": "diffusers 0.40.0 depends on huggingface-hub<2.0 and >=1.23.0",
+    "requirements": [
+      "diffusers==0.40.0",
+      "huggingface-hub==2.0.0"
+    ]
+  },
+  "note": "No model inference was executed. Resolver dry-run only.",
+  "observed_at": "2026-09-25T12:15:34Z",
+  "pod_id": "0h1twwxqw6yx0k",
+  "provider": "RunPod",
+  "python": "3.12.3",
+  "repo_head": "fad8c49d4dee690b63d99dc3060d8b233d57c482",
+  "schema_version": 1,
+  "status": "PASS",
+  "successful_dry_run": {
+    "requested": [
+      "diffusers==0.40.0",
+      "transformers==5.17.0",
+      "accelerate==1.15.0",
+      "safetensors==0.8.0",
+      "pillow==12.3.0",
+      "numpy==2.5.3",
+      "psutil==7.2.2",
+      "imageio-ffmpeg==0.6.0"
+    ],
+    "resolver_selected_huggingface_hub": "1.33.0"
+  },
+  "torch_existing": "2.8.0+cu128",
+  "torch_reinstall_attempted": false
+}

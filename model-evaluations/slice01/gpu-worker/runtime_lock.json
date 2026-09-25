@@ -1,38 +1,43 @@
 {
-  "schema_version": 1,
-  "snapshot_date": "2026-09-25",
-  "status": "PINNED_BASE_DRY_RUN_ONLY",
+  "blockers": [
+    "NO_GPU_HOST_YET",
+    "CUDA_DRIVER_TORCH_WHEEL_NOT_PROBED",
+    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
+    "PAID_RENTAL_NOT_AUTHORIZED"
+  ],
+  "dependency_resolution": {
+    "evidence_ref": "run-evidence/RUNPOD_A40_RUNTIME_RESOLVER_20260925.json",
+    "failed_pin": "huggingface-hub==2.0.0",
+    "failure_reason": "diffusers==0.40.0 requires huggingface-hub>=1.23.0,<2.0",
+    "observed_on": "RunPod A40 / Python 3.12.3",
+    "selected_compatible_pin": "huggingface-hub==1.33.0",
+    "status": "PASS_AFTER_HF_HUB_PIN_CORRECTION"
+  },
   "execution_ready": false,
-  "target": {
-    "os": "Ubuntu 24.04 LTS",
-    "python": "3.12",
-    "gpu_vendor": "NVIDIA",
-    "cuda": "PIN_ON_RENTED_HOST_AFTER_DRIVER_PROBE"
-  },
-  "packages": {
-    "torch": "2.14.0",
-    "diffusers": "0.40.0",
-    "transformers": "5.17.0",
-    "accelerate": "1.15.0",
-    "safetensors": "0.8.0",
-    "huggingface-hub": "2.0.0",
-    "pillow": "12.3.0",
-    "numpy": "2.5.3",
-    "psutil": "7.2.2",
-    "imageio-ffmpeg": "0.6.0"
-  },
   "package_source": "PyPI JSON latest snapshot verified 2026-09-25",
   "package_urls": {
-    "torch": "https://pypi.org/project/torch/",
-    "diffusers": "https://pypi.org/project/diffusers/",
-    "transformers": "https://pypi.org/project/transformers/",
     "accelerate": "https://pypi.org/project/accelerate/",
-    "safetensors": "https://pypi.org/project/safetensors/",
+    "diffusers": "https://pypi.org/project/diffusers/",
     "huggingface-hub": "https://pypi.org/project/huggingface-hub/",
-    "pillow": "https://pypi.org/project/pillow/",
+    "imageio-ffmpeg": "https://pypi.org/project/imageio-ffmpeg/",
     "numpy": "https://pypi.org/project/numpy/",
+    "pillow": "https://pypi.org/project/pillow/",
     "psutil": "https://pypi.org/project/psutil/",
-    "imageio-ffmpeg": "https://pypi.org/project/imageio-ffmpeg/"
+    "safetensors": "https://pypi.org/project/safetensors/",
+    "torch": "https://pypi.org/project/torch/",
+    "transformers": "https://pypi.org/project/transformers/"
+  },
+  "packages": {
+    "accelerate": "1.15.0",
+    "diffusers": "0.40.0",
+    "huggingface-hub": "1.33.0",
+    "imageio-ffmpeg": "0.6.0",
+    "numpy": "2.5.3",
+    "pillow": "12.3.0",
+    "psutil": "7.2.2",
+    "safetensors": "0.8.0",
+    "torch": "2.14.0",
+    "transformers": "5.17.0"
   },
   "preflight": [
     "nvidia-smi must succeed",
@@ -42,11 +47,14 @@
     "verify at least 150 GiB free for smoke tier; increase for large video checkpoints",
     "no secrets are copied from repo"
   ],
-  "blockers": [
-    "NO_GPU_HOST_YET",
-    "CUDA_DRIVER_TORCH_WHEEL_NOT_PROBED",
-    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
-    "PAID_RENTAL_NOT_AUTHORIZED"
-  ],
-  "reproducibility_note": "Base packages are exact pins; CUDA-compatible torch install source remains host-specific and must be bound after nvidia-smi/driver probe."
+  "reproducibility_note": "Base packages are exact pins; CUDA-compatible torch install source remains host-specific and must be bound after nvidia-smi/driver probe.",
+  "schema_version": 1,
+  "snapshot_date": "2026-09-25",
+  "status": "PINNED_BASE_DRY_RUN_ONLY",
+  "target": {
+    "cuda": "PIN_ON_RENTED_HOST_AFTER_DRIVER_PROBE",
+    "gpu_vendor": "NVIDIA",
+    "os": "Ubuntu 24.04 LTS",
+    "python": "3.12"
+  }
 }

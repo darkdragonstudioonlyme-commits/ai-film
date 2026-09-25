@@ -4,7 +4,7 @@
     "packages": {
       "accelerate": "1.15.0",
       "diffusers": "0.40.0",
-      "huggingface-hub": "2.0.0",
+      "huggingface-hub": "1.33.0",
       "imageio-ffmpeg": "0.6.0",
       "numpy": "2.5.3",
       "pillow": "12.3.0",
@@ -13,8 +13,8 @@
       "torch": "2.14.0",
       "transformers": "5.17.0"
     },
-    "requirements_lock_sha256": "75b2e256aef1eaf935c254311221acb41e4c5ca14cf2e3ca98dc488a6b625429",
-    "runtime_lock_sha256": "ddb4a5bc3132e386e67ac1e89749f63a1ccf141f73b1936ada9c600fa0ae9799"
+    "requirements_lock_sha256": "136616d224f5b0726f50524b0bb70a7c4edd5a91a5b3a7316f8b54b59cdb0d72",
+    "runtime_lock_sha256": "9d1a5294bbaf91216c6df26321903afd5abc2f320ae46311ef2d41ab3d9bbece"
   },
   "execution_ready": false,
   "mode": "PRELAUNCH_DRY_RUN_ONLY",
