@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "CONTRACT_READY_REFERENCES_NOT_GENERATED",
+  "styles": [
+    "photoreal",
+    "stylized_3d"
+  ],
+  "characters": {
+    "an": {
+      "character_id": "an",
+      "visual_target": "Vietnamese man, 28, lean, calm eyes, short black hair",
+      "identity_source": "projects/slice01/casting.json",
+      "forbidden_shortcut": "NO_REAL_PERSON_LIKENESS_WITHOUT_RIGHTS",
+      "styles": {
+        "photoreal": {
+          "status": "PENDING_GENERATION",
+          "slots": [
+            {
+              "slot": "face_front",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "face_3q",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "full_body_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "expression_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            }
+          ]
+        },
+        "stylized_3d": {
+          "status": "PENDING_GENERATION",
+          "slots": [
+            {
+              "slot": "face_front",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "face_3q",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "full_body_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "expression_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            }
+          ]
+        }
+      }
+    },
+    "linh": {
+      "character_id": "linh",
+      "visual_target": "Vietnamese woman, 31, observant expression, shoulder-length black hair",
+      "identity_source": "projects/slice01/casting.json",
+      "forbidden_shortcut": "NO_REAL_PERSON_LIKENESS_WITHOUT_RIGHTS",
+      "styles": {
+        "photoreal": {
+          "status": "PENDING_GENERATION",
+          "slots": [
+            {
+              "slot": "face_front",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "face_3q",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "full_body_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "expression_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            }
+          ]
+        },
+        "stylized_3d": {
+          "status": "PENDING_GENERATION",
+          "slots": [
+            {
+              "slot": "face_front",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "face_3q",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "full_body_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            },
+            {
+              "slot": "expression_neutral",
+              "asset_id": null,
+              "manifest_sha256": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "reference_slots": [
+    {
+      "slot": "face_front",
+      "purpose": "primary identity anchor",
+      "required": true
+    },
+    {
+      "slot": "face_3q",
+      "purpose": "three-quarter identity anchor",
+      "required": true
+    },
+    {
+      "slot": "full_body_neutral",
+      "purpose": "body/proportion anchor",
+      "required": true
+    },
+    {
+      "slot": "expression_neutral",
+      "purpose": "neutral-expression anchor",
+      "required": true
+    }
+  ],
+  "human_scoring": {
+    "scale": [
+      1,
+      5
+    ],
+    "criteria": [
+      "identity_match",
+      "within_character_consistency",
+      "between_character_separation",
+      "style_quality",
+      "anatomy_artifact_free",
+      "overall"
+    ],
+    "provisional_acceptance": {
+      "identity_match_min": 4,
+      "within_character_consistency_min": 4,
+      "between_character_separation_min": 4,
+      "style_quality_min": 4,
+      "overall_min": 4,
+      "severe_failure_tags_max": 0
+    }
+  },
+  "embedding_policy": {
+    "absolute_threshold": "CALIBRATE_AFTER_EMBEDDING_MODEL_SELECTION",
+    "required_relation": "within_character_similarity_median > between_character_similarity_max",
+    "note": "Do not invent an absolute embedding threshold before MODEL-EVAL selects the embedding model and accepted casting population."
+  },
+  "failure_tags": [
+    "FACE_DRIFT",
+    "BODY_DRIFT",
+    "HAIR_DRIFT",
+    "AGE_DRIFT",
+    "COSTUME_DRIFT",
+    "BAD_HAND",
+    "LOW_REALISM"
+  ],
+  "generated_reference_paths": []
+}

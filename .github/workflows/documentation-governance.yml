@@ -31,6 +31,9 @@ on:
       - 'tools/build_previs_audio.py'
       - 'tools/compile_backend_request.py'
       - 'tools/setup_gpu_worker.py'
+      - 'tools/build_voxcpm2_eval_packet.py'
+      - 'tools/build_casting_eval_packet.py'
+      - 'tools/build_gpu_prelaunch_bundle.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -64,6 +67,9 @@ on:
       - 'tools/build_previs_audio.py'
       - 'tools/compile_backend_request.py'
       - 'tools/setup_gpu_worker.py'
+      - 'tools/build_voxcpm2_eval_packet.py'
+      - 'tools/build_casting_eval_packet.py'
+      - 'tools/build_gpu_prelaunch_bundle.py'
       - 'tools/*.sh'
       - 'tools/audit_documentation_v2.py'
       - 'AI_FILM_PROJECT_STATE_V*.json'
@@ -101,7 +107,7 @@ jobs:
       - name: Product v2 syntax and tests
         if: steps.mode.outputs.product_v2 == 'true'
         run: |
-          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/run_cpu_tts_smoke.py tools/build_subtitles.py tools/build_animatic.py tools/setup_gpu_worker.py tools/compile_backend_request.py tools/build_previs_audio.py tests/film/*.py
+          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/run_cpu_tts_smoke.py tools/build_subtitles.py tools/build_animatic.py tools/setup_gpu_worker.py tools/compile_backend_request.py tools/build_previs_audio.py tools/build_gpu_prelaunch_bundle.py tools/build_casting_eval_packet.py tools/build_voxcpm2_eval_packet.py tests/film/*.py
           bash -n tools/host_ready_practical.sh tools/turn_start.sh tools/turn_end.sh
           PYTHONPATH=. python3 -m unittest discover -s tests/film -v
           PYTHONPATH=. python3 tools/compile_slice01.py
@@ -109,6 +115,9 @@ jobs:
           PYTHONPATH=. python3 tools/build_subtitles.py --out-dir /tmp/aifilm-timing/subtitles
           PYTHONPATH=. python3 tools/build_animatic.py --plan-only --out-root /tmp/aifilm-animatic
           PYTHONPATH=. python3 tools/setup_gpu_worker.py --out /tmp/aifilm-gpu-worker-plan.json
+          PYTHONPATH=. python3 tools/build_gpu_prelaunch_bundle.py --out /tmp/aifilm-gpu-prelaunch.json
+          PYTHONPATH=. python3 tools/build_casting_eval_packet.py --out-dir /tmp/aifilm-casting-eval
+          PYTHONPATH=. python3 tools/build_voxcpm2_eval_packet.py --out-dir /tmp/aifilm-voxcpm2-eval
       - name: Current work and audit declaration scope
         if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_current_work.py

@@ -1,0 +1,266 @@
+{
+  "base_runtime": {
+    "cuda": "PIN_ON_RENTED_HOST_AFTER_DRIVER_PROBE",
+    "packages": {
+      "accelerate": "1.15.0",
+      "diffusers": "0.40.0",
+      "huggingface-hub": "2.0.0",
+      "imageio-ffmpeg": "0.6.0",
+      "numpy": "2.5.3",
+      "pillow": "12.3.0",
+      "psutil": "7.2.2",
+      "safetensors": "0.8.0",
+      "torch": "2.14.0",
+      "transformers": "5.17.0"
+    },
+    "requirements_lock_sha256": "75b2e256aef1eaf935c254311221acb41e4c5ca14cf2e3ca98dc488a6b625429",
+    "runtime_lock_sha256": "ddb4a5bc3132e386e67ac1e89749f63a1ccf141f73b1936ada9c600fa0ae9799"
+  },
+  "execution_ready": false,
+  "mode": "PRELAUNCH_DRY_RUN_ONLY",
+  "models": [
+    {
+      "bundle_digest": "c83a6d78adbbeebd2af8384cb2d66ff31e62488fc8a8454b7847bfadc36dc491",
+      "checkpoint": "black-forest-labs/FLUX.2-klein-4B@e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "execution_ready": false,
+      "install_plan": [
+        {
+          "command": [
+            "/opt/aifilm/venv/bin/hf",
+            "download",
+            "black-forest-labs/FLUX.2-klein-4B",
+            "--revision",
+            "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+            "--local-dir",
+            "/opt/aifilm/models/flux2-klein-4b"
+          ],
+          "kind": "weights"
+        }
+      ],
+      "license_gate": "UPSTREAM_APACHE_2_0_PINNED",
+      "model_id": "flux2-klein-4b",
+      "preflight": [
+        "nvidia-smi",
+        "test -d /opt/aifilm/models/flux2-klein-4b",
+        "test -n \"$(find /opt/aifilm/models/flux2-klein-4b -type f -print -quit)\""
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW",
+      "requirements": [],
+      "runner_contract": {
+        "input": "backend_request.json",
+        "must_preserve": [
+          "job_id",
+          "job_digest",
+          "model.source_revision",
+          "prompt_sha256",
+          "seed",
+          "references"
+        ],
+        "no_publish": true,
+        "output_dir": "artifacts/",
+        "paid_authority_inherited": false
+      },
+      "runner_profile": "text_to_image",
+      "schema_version": 1,
+      "source_repo": "black-forest-labs/FLUX.2-klein-4B",
+      "source_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "stage": "image"
+    },
+    {
+      "bundle_digest": "a50995a2fdcc9f4acbd1337f4d5c9d03413953cad48ad57ad0c0115984eb2942",
+      "checkpoint": "Lightricks/LTX-2.5@5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "execution_ready": false,
+      "install_plan": [
+        {
+          "command": [
+            "/opt/aifilm/venv/bin/hf",
+            "download",
+            "Lightricks/LTX-2.5",
+            "--revision",
+            "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+            "--local-dir",
+            "/opt/aifilm/models/ltx-2.5"
+          ],
+          "kind": "weights"
+        }
+      ],
+      "license_gate": "CONDITIONAL_COMMERCIAL_REVENUE_THRESHOLD",
+      "model_id": "ltx-2.5",
+      "preflight": [
+        "nvidia-smi",
+        "test -d /opt/aifilm/models/ltx-2.5",
+        "test -n \"$(find /opt/aifilm/models/ltx-2.5 -type f -print -quit)\""
+      ],
+      "production_gate": "PENDING_ENTITY_STATUS_DEPENDENCIES_DATASET_AND_PUBLICATION_REVIEW",
+      "requirements": [
+        "reference_image"
+      ],
+      "runner_contract": {
+        "input": "backend_request.json",
+        "must_preserve": [
+          "job_id",
+          "job_digest",
+          "model.source_revision",
+          "prompt_sha256",
+          "seed",
+          "references"
+        ],
+        "no_publish": true,
+        "output_dir": "artifacts/",
+        "paid_authority_inherited": false
+      },
+      "runner_profile": "text_image_to_video",
+      "schema_version": 1,
+      "source_repo": "Lightricks/LTX-2.5",
+      "source_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "stage": "video"
+    },
+    {
+      "bundle_digest": "e08ecf1ddcd8cd705262d81761cc964c086ff09f8071f27ecd194f665945beef",
+      "checkpoint": "Wan-AI/Wan2.2-I2V-A14B@206a9ee1b7bfaaf8f7e4d81335650533490646a3",
+      "execution_ready": false,
+      "install_plan": [
+        {
+          "command": [
+            "/opt/aifilm/venv/bin/hf",
+            "download",
+            "Wan-AI/Wan2.2-I2V-A14B",
+            "--revision",
+            "206a9ee1b7bfaaf8f7e4d81335650533490646a3",
+            "--local-dir",
+            "/opt/aifilm/models/wan22-i2v-14b"
+          ],
+          "kind": "weights"
+        }
+      ],
+      "license_gate": "UPSTREAM_APACHE_2_0_PINNED",
+      "model_id": "wan22-i2v-14b",
+      "preflight": [
+        "nvidia-smi",
+        "test -d /opt/aifilm/models/wan22-i2v-14b",
+        "test -n \"$(find /opt/aifilm/models/wan22-i2v-14b -type f -print -quit)\""
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW",
+      "requirements": [
+        "reference_image"
+      ],
+      "runner_contract": {
+        "input": "backend_request.json",
+        "must_preserve": [
+          "job_id",
+          "job_digest",
+          "model.source_revision",
+          "prompt_sha256",
+          "seed",
+          "references"
+        ],
+        "no_publish": true,
+        "output_dir": "artifacts/",
+        "paid_authority_inherited": false
+      },
+      "runner_profile": "image_to_video",
+      "schema_version": 1,
+      "source_repo": "Wan-AI/Wan2.2-I2V-A14B",
+      "source_revision": "206a9ee1b7bfaaf8f7e4d81335650533490646a3",
+      "stage": "video"
+    },
+    {
+      "bundle_digest": "8edf633bb10e2ac7a8d065bbaf12c4e252b7ad6caa71ee696d74d4e8add28da9",
+      "checkpoint": "Wan-AI/Wan2.2-TI2V-5B@921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "execution_ready": false,
+      "install_plan": [
+        {
+          "command": [
+            "/opt/aifilm/venv/bin/hf",
+            "download",
+            "Wan-AI/Wan2.2-TI2V-5B",
+            "--revision",
+            "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+            "--local-dir",
+            "/opt/aifilm/models/wan22-ti2v-5b"
+          ],
+          "kind": "weights"
+        }
+      ],
+      "license_gate": "UPSTREAM_APACHE_2_0_PINNED",
+      "model_id": "wan22-ti2v-5b",
+      "preflight": [
+        "nvidia-smi",
+        "test -d /opt/aifilm/models/wan22-ti2v-5b",
+        "test -n \"$(find /opt/aifilm/models/wan22-ti2v-5b -type f -print -quit)\""
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW",
+      "requirements": [
+        "reference_image"
+      ],
+      "runner_contract": {
+        "input": "backend_request.json",
+        "must_preserve": [
+          "job_id",
+          "job_digest",
+          "model.source_revision",
+          "prompt_sha256",
+          "seed",
+          "references"
+        ],
+        "no_publish": true,
+        "output_dir": "artifacts/",
+        "paid_authority_inherited": false
+      },
+      "runner_profile": "text_image_to_video",
+      "schema_version": 1,
+      "source_repo": "Wan-AI/Wan2.2-TI2V-5B",
+      "source_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "stage": "video"
+    },
+    {
+      "bundle_digest": "2a66d941dca1749c944e2c2867a79b4895af1f21d970668fde5148080dc07249",
+      "checkpoint": "Tongyi-MAI/Z-Image@04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "execution_ready": false,
+      "install_plan": [
+        {
+          "command": [
+            "/opt/aifilm/venv/bin/hf",
+            "download",
+            "Tongyi-MAI/Z-Image",
+            "--revision",
+            "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+            "--local-dir",
+            "/opt/aifilm/models/z-image"
+          ],
+          "kind": "weights"
+        }
+      ],
+      "license_gate": "UPSTREAM_APACHE_2_0_PINNED",
+      "model_id": "z-image",
+      "preflight": [
+        "nvidia-smi",
+        "test -d /opt/aifilm/models/z-image",
+        "test -n \"$(find /opt/aifilm/models/z-image -type f -print -quit)\""
+      ],
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW",
+      "requirements": [],
+      "runner_contract": {
+        "input": "backend_request.json",
+        "must_preserve": [
+          "job_id",
+          "job_digest",
+          "model.source_revision",
+          "prompt_sha256",
+          "seed",
+          "references"
+        ],
+        "no_publish": true,
+        "output_dir": "artifacts/",
+        "paid_authority_inherited": false
+      },
+      "runner_profile": "text_to_image",
+      "schema_version": 1,
+      "source_repo": "Tongyi-MAI/Z-Image",
+      "source_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "stage": "image"
+    }
+  ],
+  "provider_resource_created": false,
+  "schema_version": 1
+}

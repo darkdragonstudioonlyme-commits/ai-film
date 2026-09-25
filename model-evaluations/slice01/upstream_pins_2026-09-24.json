@@ -206,10 +206,12 @@
       "commercial_production_allowed": "UPSTREAM_MODEL_LICENSE_PERMITS",
       "runner": "voxcpm:VoxCPM",
       "runtime_requirements": [
-        "voxcpm package",
-        "torch",
-        "GPU recommended for MODEL-EVAL",
-        "no cloning without voice rights"
+        "Python>=3.10",
+        "voxcpm==2.0.3",
+        "torch>=2.5.0",
+        "torchaudio>=2.5.0",
+        "CUDA GPU recommended for MODEL-EVAL",
+        "Voice Design only for T-018; no reference audio/no cloning"
       ],
       "evaluation_enabled": true,
       "execution_ready": false,
@@ -218,7 +220,8 @@
         "GPU_RUNTIME_NOT_BUILT",
         "VOICE_IDENTITY_NOT_SELECTED"
       ],
-      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW"
+      "production_gate": "PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW",
+      "package_pin": "voxcpm==2.0.3"
     },
     {
       "model_id": "wan-animate-2",

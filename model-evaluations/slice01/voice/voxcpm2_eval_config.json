@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "status": "PACKET_READY_NOT_EXECUTED",
+  "model": {
+    "model_id": "voxcpm2",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "package": "voxcpm==2.0.3",
+    "license": "Apache-2.0",
+    "sample_rate_hz": 48000
+  },
+  "mode": "voice_design",
+  "reference_audio_allowed": false,
+  "voice_cloning_allowed": false,
+  "parameters": {
+    "cfg_value": 2.0,
+    "inference_timesteps": 10
+  },
+  "character_profiles": {
+    "an": {
+      "seed": 41001,
+      "description": "A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation."
+    },
+    "linh": {
+      "seed": 42001,
+      "description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation."
+    }
+  },
+  "languages": [
+    "en",
+    "zh-CN",
+    "vi"
+  ],
+  "scoring": {
+    "scale": [
+      1,
+      5
+    ],
+    "criteria": [
+      "intelligibility",
+      "character_match",
+      "cross_language_identity",
+      "between_character_separation",
+      "prosody",
+      "artifact_free",
+      "overall"
+    ],
+    "cue_fit_required": true,
+    "provisional_human_gate": {
+      "intelligibility_min": 4,
+      "character_match_min": 4,
+      "prosody_min": 4,
+      "artifact_free_min": 4,
+      "overall_min": 4
+    },
+    "identity_metric": "speaker embedding threshold remains uncalibrated until outputs exist; use human blind grouping plus relative same-character vs cross-character similarity first"
+  }
+}

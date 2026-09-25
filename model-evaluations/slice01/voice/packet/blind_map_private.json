@@ -1,0 +1,65 @@
+{
+  "mapping": [
+    {
+      "blind_id": "vox_b5649d601f09",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    },
+    {
+      "blind_id": "vox_ae6c3e5af03f",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    },
+    {
+      "blind_id": "vox_52af55f53319",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    },
+    {
+      "blind_id": "vox_9373295aa488",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_13399c04d206",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_0b3a62fff486",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_67cf87393d99",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_fd8d0508e077",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_94f82cfeb1e1",
+      "character_id": "linh",
+      "voice_group": "voice_f3adeea4"
+    },
+    {
+      "blind_id": "vox_539e9b43601d",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    },
+    {
+      "blind_id": "vox_6cd531479b73",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    },
+    {
+      "blind_id": "vox_c18649999184",
+      "character_id": "an",
+      "voice_group": "voice_ea325d76"
+    }
+  ],
+  "schema_version": 1
+}
