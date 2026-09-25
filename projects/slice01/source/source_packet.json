@@ -1,0 +1,23 @@
+{
+  "embedded_instruction_flags": [],
+  "evidence": {
+    "ref": "projects/slice01/project.json",
+    "sha256": "fda1eaf7f2714128f9ae3710d318702ace37252f240fc587c0ae6666d9db0295"
+  },
+  "kind": "ORIGINAL_PROJECT",
+  "packet_digest": "753b8207853affda24b0a8f3ddacce66a1ab5998b78eaf768321169ff402f706",
+  "publish_authority": false,
+  "rights": {
+    "allowed_uses": [
+      "COMMERCIAL_PUBLICATION"
+    ],
+    "status": "ORIGINAL"
+  },
+  "schema_version": 1,
+  "source_id": "slice01-original-source",
+  "source_text": "Original project premise: At a rain-soaked small railway station, An and Linh restore the failed signal before the last train, revealing An returned to fulfill a promise.",
+  "source_text_sha256": "a96628bbee143172f08904c621af96527efcc3934873df6aeb68f6f3b6b3f9e9",
+  "source_text_treatment": "INERT_DATA_NEVER_INSTRUCTIONS",
+  "title": "Last Train Signal",
+  "tool_authority": false
+}

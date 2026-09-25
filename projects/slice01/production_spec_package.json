@@ -1,0 +1,89 @@
+{
+  "contains_generated_media": false,
+  "contains_runtime_receipts": false,
+  "contains_secrets": false,
+  "entries": [
+    {
+      "bytes": 2477,
+      "path": "projects/slice01/audio/cue_sheet.json",
+      "sha256": "8b424a16f428fc2537ee16009dd28d01b27ff529e534f345d0d5029028771867"
+    },
+    {
+      "bytes": 485,
+      "path": "projects/slice01/audio/mix_policy.json",
+      "sha256": "19b98e6917b15b3eb254a9bcffa1a365138f9ba45e9c7c5c9c3d33e2590782fc"
+    },
+    {
+      "bytes": 578,
+      "path": "projects/slice01/casting.json",
+      "sha256": "7431c6f1324f615de2eb9ce53809e5c4d7cb511ed039346519098149134b2e71"
+    },
+    {
+      "bytes": 2128,
+      "path": "projects/slice01/continuity.json",
+      "sha256": "3409df5a04b2c703f8b3961f140ef84a58c17bfd5dee8533885fdc9489f7356d"
+    },
+    {
+      "bytes": 2252,
+      "path": "projects/slice01/framing/reframe_policy.json",
+      "sha256": "36eece0dd7bce1523cec1406b68bb3828c9f079431816587603e087ce6f9455c"
+    },
+    {
+      "bytes": 1208,
+      "path": "projects/slice01/lipsync/policy.json",
+      "sha256": "43a0582bbc6a6556d57fa66d60c9a86f8840ede767d8d782bc68fc1390df0b4a"
+    },
+    {
+      "bytes": 5053,
+      "path": "projects/slice01/localization/dialogue_bundle.json",
+      "sha256": "83cd4398215192320fb7478297fccabc6fc9b3361276a8ce2e66635d2c3732c8"
+    },
+    {
+      "bytes": 369,
+      "path": "projects/slice01/project.json",
+      "sha256": "fda1eaf7f2714128f9ae3710d318702ace37252f240fc587c0ae6666d9db0295"
+    },
+    {
+      "bytes": 454,
+      "path": "projects/slice01/qc_policy.json",
+      "sha256": "4dcc468fdb454293a654333a809b294f2b4da0ae1d850b13b72118d415d40ab7"
+    },
+    {
+      "bytes": 830,
+      "path": "projects/slice01/rights/publication_policy.json",
+      "sha256": "6e36bf9077a15e577449798e465dc3fd90cf0073e277f9fbf2b537b3e391ff27"
+    },
+    {
+      "bytes": 3884,
+      "path": "projects/slice01/shots/benchmark_shots.json",
+      "sha256": "80e353b89fc71e885a0467e3b6601a64b6f1202f5b44f2c1a019872538c7a432"
+    },
+    {
+      "bytes": 903,
+      "path": "projects/slice01/source/source_packet.json",
+      "sha256": "bb2d41ccc0fc686be2ed73f2465ec6d7119249881fa60a10adb3a27128d2a95c"
+    },
+    {
+      "bytes": 3014,
+      "path": "projects/slice01/story/screenplay.json",
+      "sha256": "727ec16dae1c50e07d4478812da0ce789c4e3bdcfc0897d4cee29ef08183aebf"
+    },
+    {
+      "bytes": 780,
+      "path": "projects/slice01/subtitles/layout_policy.json",
+      "sha256": "b41259e6c3e2da995fd990fb70130629ce7d322990f92d0ab2506e0ca77bd31a"
+    },
+    {
+      "bytes": 1172,
+      "path": "projects/slice01/timing/timing.json",
+      "sha256": "b0d87656df0ceb9ce54a8178fafb9e5f2e0b56a745da56f86f0ecfd15c1b0deb"
+    }
+  ],
+  "entry_count": 15,
+  "execution_authority": false,
+  "package_digest": "3944b80df3f569872648005e8555df1c911ebd29d974850179e452e34d2e890a",
+  "project_id": "slice01",
+  "publish_authority": false,
+  "schema_version": 1,
+  "status": "SPEC_ONLY_NO_GENERATED_MEDIA"
+}

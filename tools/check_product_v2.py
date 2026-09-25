@@ -682,6 +682,72 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch015-missing:"+rel)
 
+
+    source_packet=json.loads((root/"projects/slice01/source/source_packet.json").read_text(encoding="utf-8"))
+    if source_packet.get("kind")!="ORIGINAL_PROJECT" or source_packet.get("source_text_treatment")!="INERT_DATA_NEVER_INSTRUCTIONS":
+        errors.append("source-packet-core")
+    if source_packet.get("tool_authority") is not False or source_packet.get("publish_authority") is not False:
+        errors.append("source-packet-authority")
+    if source_packet.get("rights",{}).get("status")!="ORIGINAL" or "COMMERCIAL_PUBLICATION" not in source_packet.get("rights",{}).get("allowed_uses",[]):
+        errors.append("source-packet-rights")
+    evidence=source_packet.get("evidence",{})
+    evidence_path=root/str(evidence.get("ref",""))
+    if not evidence_path.is_file() or hashlib.sha256(evidence_path.read_bytes()).hexdigest()!=evidence.get("sha256"):
+        errors.append("source-packet-evidence")
+    if len(str(source_packet.get("packet_digest","")))!=64:
+        errors.append("source-packet-digest")
+
+    spec_package=json.loads((root/"projects/slice01/production_spec_package.json").read_text(encoding="utf-8"))
+    expected_spec_paths={
+        "projects/slice01/project.json",
+        "projects/slice01/source/source_packet.json",
+        "projects/slice01/story/screenplay.json",
+        "projects/slice01/continuity.json",
+        "projects/slice01/casting.json",
+        "projects/slice01/shots/benchmark_shots.json",
+        "projects/slice01/timing/timing.json",
+        "projects/slice01/localization/dialogue_bundle.json",
+        "projects/slice01/framing/reframe_policy.json",
+        "projects/slice01/lipsync/policy.json",
+        "projects/slice01/audio/cue_sheet.json",
+        "projects/slice01/audio/mix_policy.json",
+        "projects/slice01/qc_policy.json",
+        "projects/slice01/rights/publication_policy.json",
+        "projects/slice01/subtitles/layout_policy.json",
+    }
+    package_entries=spec_package.get("entries",[])
+    if spec_package.get("status")!="SPEC_ONLY_NO_GENERATED_MEDIA" or spec_package.get("entry_count")!=15:
+        errors.append("production-spec-package-shape")
+    if {row.get("path") for row in package_entries}!=expected_spec_paths:
+        errors.append("production-spec-package-population")
+    if any(spec_package.get(key) is not False for key in ("contains_generated_media","contains_runtime_receipts","contains_secrets","execution_authority","publish_authority")):
+        errors.append("production-spec-package-authority")
+    forbidden_parts={"runtime","compiled","delivery","artifacts","run-evidence","secrets","credentials"}
+    for entry in package_entries:
+        rel=str(entry.get("path",""))
+        if set(rel.split("/")) & forbidden_parts:
+            errors.append("production-spec-package-forbidden:"+rel)
+            continue
+        full=root/rel
+        if not full.is_file():
+            errors.append("production-spec-package-missing:"+rel)
+            continue
+        if hashlib.sha256(full.read_bytes()).hexdigest()!=entry.get("sha256") or full.stat().st_size!=entry.get("bytes"):
+            errors.append("production-spec-package-identity:"+rel)
+
+    required_batch016=[
+        "film/BATCH016_CONTRACT.md",
+        "film/source_ingest.py",
+        "film/project_scaffold.py",
+        "film/production_package.py",
+        "tools/ingest_source_packet.py",
+        "tools/scaffold_project.py",
+        "tools/build_production_spec_package.py",
+    ]
+    for rel in required_batch016:
+        if not (root/rel).is_file():
+            errors.append("batch016-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

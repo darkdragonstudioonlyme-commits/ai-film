@@ -251,15 +251,30 @@
 - id: T-050
   milestone: M2
   goal: "Implement rights-safe source/adaptation ingestion and normalized source packet"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-051
   milestone: M2
   goal: "Implement reusable project scaffold from validated product schemas without copying generated assets or secrets"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-052
   milestone: M2
   goal: "Implement portable production-spec package with hash-bound story, continuity, shots, localization and framing inputs"
+  status: DONE
+  owner: executor
+- id: T-053
+  milestone: M2
+  goal: "Implement deterministic portable spec export/import bundle with path and hash verification"
+  status: READY
+  owner: executor
+- id: T-054
+  milestone: M2
+  goal: "Implement project schema compatibility/version upgrade checks for scaffolded projects"
+  status: READY
+  owner: executor
+- id: T-055
+  milestone: M2
+  goal: "Implement stage-readiness DAG that derives runnable and blocked pipeline stages from project evidence"
   status: READY
   owner: executor
