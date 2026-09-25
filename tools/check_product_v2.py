@@ -529,7 +529,7 @@ def main() -> int:
 
     resources=json.loads((root/"model-evaluations/slice01/resource_profiles.json").read_text(encoding="utf-8"))
     profiles=resources.get("profiles",[])
-    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_1024_READY_OTHERS_UNMEASURED" or len(profiles)!=5:
+    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_1024_READY_ZIMAGE_512_PENDING_OTHERS_UNMEASURED" or len(profiles)!=5:
         errors.append("resource-profile-state")
     flux_profile=next((row for row in profiles if row.get("model_id")=="flux2-klein-4b"),None)
     if flux_profile is None:
@@ -547,7 +547,21 @@ def main() -> int:
             errors.append("resource-profile-flux2-production-boundary")
         if flux_profile.get("vram_policy")!="CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE":
             errors.append("resource-profile-flux2-vram-policy-name")
-    other_profiles=[row for row in profiles if row.get("model_id")!="flux2-klein-4b"]
+    z_profile=next((row for row in profiles if row.get("model_id")=="z-image"),None)
+    if z_profile is None:
+        errors.append("resource-profile-zimage-missing")
+    else:
+        if z_profile.get("admission_ready") is not False or z_profile.get("vram_status")!="MEASURED_512_QUALIFICATION":
+            errors.append("resource-profile-zimage-qualification-state")
+        if z_profile.get("required_vram_gb") is not None or z_profile.get("vram_reserve_gb") is not None:
+            errors.append("resource-profile-zimage-formal-vram-must-remain-unset")
+        if z_profile.get("throughput_status")!="MEASURED_512_QUALIFICATION":
+            errors.append("resource-profile-zimage-throughput-state")
+        if z_profile.get("qualification_peak_vram_mib")!=21913.0 or z_profile.get("qualification_inference_sec")!=21.623722:
+            errors.append("resource-profile-zimage-measurements")
+        if z_profile.get("production_resolution_vram_status")!="UNMEASURED_1024_SMOKE_PENDING":
+            errors.append("resource-profile-zimage-production-boundary")
+    other_profiles=[row for row in profiles if row.get("model_id") not in {"flux2-klein-4b","z-image"}]
     if any(row.get("admission_ready") is not False or row.get("vram_status")!="UNMEASURED" or row.get("required_vram_gb") is not None for row in other_profiles):
         errors.append("resource-profile-other-unmeasured-boundary")
     if any(row.get("throughput_status")!="UNMEASURED" for row in other_profiles):
@@ -566,13 +580,18 @@ def main() -> int:
     worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
     if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
         errors.append("runpod-a40-worker-measurement")
-    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_1024_FORMAL_PASS_OTHER_ADAPTERS_PENDING":
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_1024_PASS_ZIMAGE_512_PASS_OTHER_ADAPTERS_PENDING":
         errors.append("runpod-a40-worker-binding")
     flux_worker=(worker.get("qualified_models") or {}).get("flux2-klein-4b",{})
     if flux_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_worker.get("peak_vram_mib")!=20415 or flux_worker.get("formal_1024_smoke_pending") is not False:
         errors.append("runpod-a40-worker-flux2-formal-smoke")
     if flux_worker.get("admission_ready") is not True or flux_worker.get("required_vram_gb")!=20.0 or flux_worker.get("vram_reserve_gb")!=4.0:
         errors.append("runpod-a40-worker-flux2-admission")
+    z_worker=(worker.get("qualified_models") or {}).get("z-image",{})
+    if z_worker.get("status")!="PASS_512_QUALIFICATION" or z_worker.get("peak_vram_mib")!=21913.0 or z_worker.get("formal_1024_smoke_pending") is not True:
+        errors.append("runpod-a40-worker-zimage-qualification")
+    if z_worker.get("admission_ready") is not False:
+        errors.append("runpod-a40-worker-zimage-admission-boundary")
 
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
@@ -590,8 +609,8 @@ def main() -> int:
         errors.append("cost-policy-binding")
     entries=cost_ledger.get("entries",[])
     by_cost_id={row.get("cost_id"):row for row in entries}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925"}
-    if len(entries)!=3 or set(by_cost_id)!=expected_cost_ids:
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass"}
+    if len(entries)!=4 or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
         if by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("category")!="OTHER" or abs(float(by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("amount_usd",0))-0.11027)>1e-9:
@@ -600,8 +619,10 @@ def main() -> int:
             errors.append("cost-ledger-flux2-qualification-entry")
         if by_cost_id["flux2-formal-smoke-20260925"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["flux2-formal-smoke-20260925"].get("amount_usd",0))-0.0021)>1e-9:
             errors.append("cost-ledger-flux2-formal-smoke-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.11375)>1e-9:
-            errors.append("cost-ledger-total-after-flux2-formal-smoke")
+        if by_cost_id["zimage-castjob_8e02916e0db64eb6-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["zimage-castjob_8e02916e0db64eb6-pass"].get("amount_usd",0))-0.004647)>1e-9:
+            errors.append("cost-ledger-zimage-qualification-entry")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.118397)>1e-9:
+            errors.append("cost-ledger-total-after-zimage-qualification")
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -957,6 +978,18 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("flux2-casting-smoke-missing:"+rel)
 
+
+    z_qual_evidence=json.loads((root/"run-evidence/Z_IMAGE_A40_QUALIFICATION_20260925.json").read_text(encoding="utf-8"))
+    if z_qual_evidence.get("status")!="PASS_512_QUALIFICATION" or z_qual_evidence.get("model_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
+        errors.append("zimage-qualification-evidence-status")
+    if z_qual_evidence.get("measurements",{}).get("gpu_peak_memory_mb")!=21913.0 or z_qual_evidence.get("measurements",{}).get("inference_sec")!=21.623722:
+        errors.append("zimage-qualification-evidence-measurement")
+    if z_qual_evidence.get("artifact",{}).get("sha256")!="682f2ae66cf262004e5487d809e7c840c8a4fc2e86ba8529f98a446294a2f567" or z_qual_evidence.get("artifact",{}).get("persistence_status")!="POD_LOCAL_ONLY_PENDING_SYNC":
+        errors.append("zimage-qualification-artifact-identity")
+    if z_qual_evidence.get("raw_evidence",{}).get("sha256")!="db0dec072f4c77aff01e5cf97d5145ec376b97e32c0d22086d4c8f2659465af4":
+        errors.append("zimage-qualification-raw-evidence")
+    if z_qual_evidence.get("admission_ready_after_qualification") is not False or z_qual_evidence.get("next_gate")!="FORMAL_1024X1024_FOUR_JOB_SMOKE":
+        errors.append("zimage-qualification-boundary")
 
     # Live Z-Image qualification runner must remain plan-first, exact-revision and non-authorizing.
     if not (root/"film/z_image_live.py").is_file() or not (root/"tools/run_z_image_live.py").is_file():

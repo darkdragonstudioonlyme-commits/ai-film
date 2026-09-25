@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PARTIAL_MEASUREMENTS_FLUX2_1024_READY_OTHERS_UNMEASURED",
+  "status": "PARTIAL_MEASUREMENTS_FLUX2_1024_READY_ZIMAGE_512_PENDING_OTHERS_UNMEASURED",
   "profiles": [
     {
       "profile_id": "model-z-image",
@@ -11,11 +11,26 @@
         "cuda"
       ],
       "required_runtime_id": "gpu-worker-base-v1",
-      "vram_status": "UNMEASURED",
+      "vram_status": "MEASURED_512_QUALIFICATION",
       "required_vram_gb": null,
       "vram_reserve_gb": null,
       "admission_ready": false,
-      "throughput_status": "UNMEASURED"
+      "throughput_status": "MEASURED_512_QUALIFICATION",
+      "qualification_resolution": {
+        "width": 512,
+        "height": 512
+      },
+      "qualification_steps": 50,
+      "qualification_guidance_scale": 4.0,
+      "qualification_cfg_normalization": false,
+      "qualification_negative_prompt_applied": true,
+      "qualification_peak_vram_mib": 21913.0,
+      "qualification_peak_vram_gib": 21.399414,
+      "qualification_inference_sec": 21.623722,
+      "qualification_elapsed_sec": 34.140679,
+      "qualification_evidence_ref": "run-evidence/Z_IMAGE_A40_QUALIFICATION_20260925.json",
+      "qualification_artifact_sha256": "682f2ae66cf262004e5487d809e7c840c8a4fc2e86ba8529f98a446294a2f567",
+      "production_resolution_vram_status": "UNMEASURED_1024_SMOKE_PENDING"
     },
     {
       "profile_id": "model-flux2-klein-4b",
