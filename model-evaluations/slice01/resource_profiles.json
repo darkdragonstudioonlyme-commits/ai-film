@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PROFILES_PINNED_VRAM_UNMEASURED",
+  "status": "PARTIAL_MEASUREMENTS_FLUX2_512_ONLY",
   "profiles": [
     {
       "profile_id": "model-z-image",
@@ -26,11 +26,24 @@
         "cuda"
       ],
       "required_runtime_id": "gpu-worker-base-v1",
-      "vram_status": "UNMEASURED",
+      "vram_status": "MEASURED_512_QUALIFICATION",
       "required_vram_gb": null,
       "vram_reserve_gb": null,
       "admission_ready": false,
-      "throughput_status": "UNMEASURED"
+      "throughput_status": "MEASURED_512_QUALIFICATION",
+      "qualification_resolution": {
+        "width": 512,
+        "height": 512
+      },
+      "qualification_steps": 4,
+      "qualification_guidance_scale": 1.0,
+      "qualification_peak_vram_mib": 16577.0,
+      "qualification_peak_vram_gib": 16.188477,
+      "qualification_inference_sec": 1.285966,
+      "qualification_elapsed_sec": 10.139162,
+      "qualification_evidence_ref": "run-evidence/FLUX2_KLEIN_A40_QUALIFICATION_20260925.json",
+      "qualification_artifact_sha256": "f1af28a78a13be0bc8f3cb82f591f6c2bfa7046658b51b142c67532dc2871bf9",
+      "production_resolution_vram_status": "UNMEASURED_1024_SMOKE_PENDING"
     },
     {
       "profile_id": "model-wan22-ti2v-5b",

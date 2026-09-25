@@ -1,38 +1,29 @@
-# NEXT WORK ITEM — T-019 RunPod A40 Stage A
+# NEXT WORK ITEM — T-019 FLUX.2 formal casting smoke
 
 STATUS: READY
 MILESTONE: M2
-TASK: qualify the live A40 runtime and produce the first real model-eval/casting/voice evidence under the bounded USD 60 authority.
+TASK: run the fixed four-job 1024×1024 FLUX.2 klein casting smoke on the authorized RunPod A40, then ingest measured evidence before broader casting.
 
-LIVE HOST:
-- RunPod Pod: 0h1twwxqw6yx0k / hurt_scarlet_marsupial
-- GPU: NVIDIA A40 ×1, 46068 MiB measured VRAM
-- rate: USD 0.49/h
-- Python 3.12.3; Torch 2.8.0+cu128; torch CUDA 12.8
-- repo: /workspace/ai-film @ fc2cb236f2430984f93816d40e90a8e064731304
-- storage: 250 GB root/container overlay; sync outputs before termination
+COMPLETED QUALIFICATION:
+- one canonical FLUX.2 klein job at 512×512 / 4 steps / guidance 1.0 / BF16 / FULL_GPU
+- status: PASS
+- total elapsed: 10.139162s
+- inference: 1.285966s
+- peak GPU memory: 16,577 MiB
+- artifact SHA-256: f1af28a78a13be0bc8f3cb82f591f6c2bfa7046658b51b142c67532dc2871bf9
+- raw evidence SHA-256: 494b833da19cc03b9dc4146f0c74eeab0ed0d2adb1fe7f07c9247348c1bbf7df
+- estimated compute cost: USD 0.00138
+- profile remains admission_ready=false because 1024 production smoke has not been measured
 
-AUTHORIZATION:
-- receipt: model-evaluations/slice01/launch_authorization.active.json
-- execution plan: model-evaluations/slice01/GPU_RENTAL_EXECUTION_PLAN_20260925.json
-- maximum total project spend: USD 60
-- existing A40 Pod only; creating additional resources is NOT authorized
-
-BATCH:
-1. Install/qualify exact adapter runtime for the first enabled image candidate, starting with FLUX.2 klein 4B.
-2. Run the fixed minimum smoke population and capture peak VRAM, elapsed time, failures, output SHA-256 and estimated compute cost.
-3. Update that model's measured resource profile before broader casting jobs.
-4. Qualify Z-Image on the same fixed population and compare evidence without inventing a winner.
-5. If image smoke is healthy and budget remains, run the fixed VoxCPM2 multilingual voice-eval packet.
-
-STOP:
-- projected total project cost would exceed USD 60
-- model/license/runtime identity becomes unclear
-- same runtime premise fails twice
-- evidence/artifact hashes cannot be preserved
+NEXT:
+1. Run tools/run_flux2_casting_batch.py on the fixed four face_front jobs at 1024×1024.
+2. Capture per-job elapsed/peak VRAM, output hashes and batch estimated cost.
+3. If all four jobs pass and budget remains healthy, ingest evidence and set a measured 1024 requirement/reserve before admission_ready.
+4. Preserve/sync Pod-local PNGs before Pod termination.
+5. Then qualify Z-Image on the same fixed population; do not choose a winner before blind scores.
 
 DO NOT:
-- create another Pod/GPU resource
-- mark a model admission-ready before measured VRAM/runtime evidence
-- run Wan 14B merely because the host has 48 GB
-- publish content or clone a real person's voice
+- create another Pod/resource
+- mark FLUX2 admission-ready from the 512-only measurement
+- publish or production-accept generated smoke assets
+- exceed the USD 60 project cap
