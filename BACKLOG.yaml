@@ -266,15 +266,15 @@
 - id: T-053
   milestone: M2
   goal: "Implement deterministic portable spec export/import bundle with path and hash verification"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-054
   milestone: M2
   goal: "Implement project schema compatibility/version upgrade checks for scaffolded projects"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-055
   milestone: M2
   goal: "Implement stage-readiness DAG that derives runnable and blocked pipeline stages from project evidence"
-  status: READY
+  status: DONE
   owner: executor

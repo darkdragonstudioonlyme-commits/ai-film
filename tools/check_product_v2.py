@@ -748,6 +748,50 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch016-missing:"+rel)
 
+
+    schema_report=json.loads((root/"projects/slice01/schema_compatibility.json").read_text(encoding="utf-8"))
+    expected_legacy={
+        "projects/slice01/project.json",
+        "projects/slice01/casting.json",
+        "projects/slice01/continuity.json",
+        "projects/slice01/shots/benchmark_shots.json",
+    }
+    if schema_report.get("status")!="UPGRADE_REQUIRED" or set(schema_report.get("upgrade_required",[]))!=expected_legacy:
+        errors.append("schema-compatibility-current-report")
+    if schema_report.get("unsupported")!=[] or schema_report.get("mutations_applied") is not False:
+        errors.append("schema-compatibility-mutation-or-unsupported")
+    for row in schema_report.get("documents",[]):
+        if row.get("apply_authorized") is not False:
+            errors.append("schema-compatibility-authority:"+str(row.get("name")))
+
+    readiness=json.loads((root/"projects/slice01/readiness/stage_readiness.json").read_text(encoding="utf-8"))
+    if readiness.get("status")!="NO_RUNNABLE_STAGE" or readiness.get("ready_stages")!=[] or readiness.get("execution_permitted") is not False:
+        errors.append("stage-readiness-current-status")
+    frontier={row.get("stage_id"):row.get("blockers") for row in readiness.get("blocking_frontier",[])}
+    if set(frontier)!={"casting_reference_generation","voice_eval"}:
+        errors.append("stage-readiness-frontier")
+    else:
+        if frontier["casting_reference_generation"]!=["missing-evidence:paid_gpu_authorized"]:
+            errors.append("stage-readiness-casting-blocker")
+        if frontier["voice_eval"]!=["missing-evidence:paid_gpu_authorized"]:
+            errors.append("stage-readiness-voice-blocker")
+    if readiness.get("evidence",{}).get("paid_gpu_authorized") is not False:
+        errors.append("stage-readiness-paid-authority")
+
+    required_batch017=[
+        "film/BATCH017_CONTRACT.md",
+        "film/spec_transport.py",
+        "film/schema_compat.py",
+        "film/stage_readiness.py",
+        "tools/export_spec_bundle.py",
+        "tools/import_spec_bundle.py",
+        "tools/plan_schema_compatibility.py",
+        "tools/build_stage_readiness.py",
+    ]
+    for rel in required_batch017:
+        if not (root/rel).is_file():
+            errors.append("batch017-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
