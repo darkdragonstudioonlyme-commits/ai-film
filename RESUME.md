@@ -7,6 +7,7 @@ AUTHORITY: maximum USD 60; existing A40 Pod only; no new resource or publication
 FLUX2_FORMAL_1024_SMOKE: PASS 4/4 — admission-ready resource profile only; no winner/production acceptance.
 ZIMAGE_512_QUALIFICATION: PASS — exact job castjob_8e02916e0db64eb6, peak 21,913 MiB, 21.623722s inference, 34.140679s total, USD 0.004647.
 ZIMAGE_PROFILE_BOUNDARY: qualification is 512 only; required_vram_gb remains unset and admission_ready=false until the fixed 1024×1024 four-job smoke passes.
+ZIMAGE_FORMAL_RUNNER: READY — fixed 4-job 1024 profile is plan-first/non-authorizing and has not executed yet.
 COST_LEDGER: estimated canonical execution entries total USD 0.118397; provider accrued billing total is not exposed by MCP.
 NEXT: implement/run Z-Image formal 1024 four-job face_front smoke, ingest evidence, then blind-score FLUX2 vs Z-Image without premature winner selection.
 STORAGE_NOTE: FLUX2/Z-Image smoke PNGs remain Pod-local; canonical repo stores hashes/evidence, not binary media. Sync assets before Pod termination.

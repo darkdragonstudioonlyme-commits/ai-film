@@ -1032,6 +1032,40 @@ def main() -> int:
             if not (root/rel).is_file():
                 errors.append("z-image-live-runner-missing:"+rel)
 
+
+    z_casting_profile=json.loads((root/"model-evaluations/slice01/z_image_casting_profile.json").read_text(encoding="utf-8"))
+    if z_casting_profile.get("profile_id")!="z-image-casting-a40-v1":
+        errors.append("zimage-casting-smoke-profile-id")
+    if z_casting_profile.get("model_id")!="z-image" or z_casting_profile.get("revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
+        errors.append("zimage-casting-smoke-model")
+    if z_casting_profile.get("gpu")!="NVIDIA A40" or z_casting_profile.get("dtype")!="bfloat16" or z_casting_profile.get("mode")!="FULL_GPU":
+        errors.append("zimage-casting-smoke-runtime")
+    if (
+        z_casting_profile.get("width")!=1024
+        or z_casting_profile.get("height")!=1024
+        or z_casting_profile.get("num_inference_steps")!=50
+        or float(z_casting_profile.get("guidance_scale",-1))!=4.0
+        or z_casting_profile.get("cfg_normalization") is not False
+        or z_casting_profile.get("low_cpu_mem_usage") is not False
+    ):
+        errors.append("zimage-casting-smoke-params")
+    if z_casting_profile.get("negative_prompt_mode")!="NATIVE_JOB_NEGATIVE_PROMPT":
+        errors.append("zimage-casting-smoke-negative-prompt")
+    if z_casting_profile.get("smoke_jobs")!=4 or z_casting_profile.get("execution_authorized_by_profile") is not False:
+        errors.append("zimage-casting-smoke-authority")
+    if z_casting_profile.get("runtime_lock_ref")!="model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json":
+        errors.append("zimage-casting-smoke-runtime-ref")
+    if z_casting_profile.get("authorization_ref")!="model-evaluations/slice01/launch_authorization.active.json":
+        errors.append("zimage-casting-smoke-auth-ref")
+    for rel in (
+        "film/z_image_casting.py",
+        "tools/run_z_image_casting_batch.py",
+        "tests/film/test_z_image_casting_smoke_runner.py",
+        "reviews/PRODUCT-V2-Z-IMAGE-CASTING-SMOKE-RUNNER-REVIEW.md",
+    ):
+        if not (root/rel).is_file():
+            errors.append("zimage-casting-smoke-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
