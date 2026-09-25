@@ -872,6 +872,31 @@ def main() -> int:
             errors.append("flux2-live-runner-active-authority")
         if execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("new_resource_creation_authorized") is not False:
             errors.append("flux2-live-runner-execution-plan")
+
+    flux_casting_profile=json.loads((root/"model-evaluations/slice01/flux2_casting_profile.json").read_text(encoding="utf-8"))
+    if flux_casting_profile.get("profile_id")!="flux2-klein-4b-casting-a40-v1":
+        errors.append("flux2-casting-smoke-profile-id")
+    if flux_casting_profile.get("model_id")!="flux2-klein-4b" or flux_casting_profile.get("revision")!="e7b7dc27f91deacad38e78976d1f2b499d76a294":
+        errors.append("flux2-casting-smoke-model")
+    if flux_casting_profile.get("gpu")!="NVIDIA A40" or flux_casting_profile.get("dtype")!="bfloat16" or flux_casting_profile.get("mode")!="FULL_GPU":
+        errors.append("flux2-casting-smoke-runtime")
+    if flux_casting_profile.get("width")!=1024 or flux_casting_profile.get("height")!=1024 or flux_casting_profile.get("num_inference_steps")!=4 or float(flux_casting_profile.get("guidance_scale",-1))!=1.0:
+        errors.append("flux2-casting-smoke-params")
+    if flux_casting_profile.get("smoke_jobs")!=4 or flux_casting_profile.get("execution_authorized_by_profile") is not False:
+        errors.append("flux2-casting-smoke-authority")
+    if flux_casting_profile.get("runtime_lock_ref")!="model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json":
+        errors.append("flux2-casting-smoke-runtime-ref")
+    if flux_casting_profile.get("authorization_ref")!="model-evaluations/slice01/launch_authorization.active.json":
+        errors.append("flux2-casting-smoke-auth-ref")
+    for rel in (
+        "film/flux2_casting.py",
+        "tools/run_flux2_casting_batch.py",
+        "tests/film/test_flux2_casting_smoke_runner.py",
+        "reviews/PRODUCT-V2-FLUX2-CASTING-SMOKE-RUNNER-REVIEW.md",
+    ):
+        if not (root/rel).is_file():
+            errors.append("flux2-casting-smoke-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
