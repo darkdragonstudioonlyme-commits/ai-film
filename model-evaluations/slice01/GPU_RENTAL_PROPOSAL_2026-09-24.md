@@ -14,3 +14,6 @@ Worst-case compute ceiling is USD 99.00. Reserve USD 51.00 is held for temporary
 The launch must stop before creation if the provider's live all-in projected charge cannot fit the USD 150 cap. Paid execution remains blocked until a bounded spend approval exists.
 
 The benchmark uses the fixed slice01 profiles already in the repository. Model selection is based on blind quality scoring plus elapsed time, VRAM peak, failure/OOM rate and actual rental cost; one hero sample is not enough to select a winner.
+
+- **Initial execution sub-cap:** USD 60 if/when explicit paid-run approval is given; full USD 150 remains only the proposed ceiling across all stages.
+- Pricing rechecked 2026-09-25 against the official RunPod pricing page: RTX 5090 Secure USD 0.99/h; RTX Pro 6000 Secure USD 2.09/h.

@@ -15,7 +15,7 @@ class Batch003ContractTests(unittest.TestCase):
     def test_active_model_pins_are_exact_and_execution_gated(self):
         pins={row["model_id"]:row for row in PINS["models"]}
         pinned=[m for m in MATRIX["models"] if m.get("pin_status")=="PINNED"]
-        self.assertGreaterEqual(len(pinned),8)
+        self.assertEqual(len(pinned),len(MATRIX["models"]))
         for model in pinned:
             self.assertRegex(model["source_revision"],r"^[0-9a-f]{40}$")
             self.assertEqual(model["source_revision"],pins[model["model_id"]]["source_revision"])
@@ -27,6 +27,14 @@ class Batch003ContractTests(unittest.TestCase):
         self.assertFalse(qwen["enabled"])
         self.assertFalse(qwen["commercial_production_allowed"])
         self.assertEqual(qwen["license_hint"],"qwen-research")
+
+    def test_latentsync_license_is_corrected(self):
+        latent=next(m for m in MATRIX["models"] if m["model_id"]=="latent-sync")
+        self.assertEqual(latent["license_hint"],"openrail++")
+        self.assertIn("LEGAL_REVIEW",latent["license_gate"])
+        self.assertEqual(latent["pin_status"],"PINNED")
+        self.assertRegex(latent["source_revision"],r"^[0-9a-f]{40}$")
+
 
     def test_core_visual_candidates_remain_enabled_for_evaluation(self):
         enabled={m["model_id"] for m in MATRIX["models"] if m.get("enabled")}
@@ -55,6 +63,8 @@ class Batch003ContractTests(unittest.TestCase):
         self.assertEqual(computed,99.00)
         self.assertEqual(RENTAL["compute_ceiling_usd"],99.00)
         self.assertEqual(RENTAL["hard_all_in_authorization_cap_usd"],150.00)
+        self.assertEqual(RENTAL["initial_execution_subcap_usd"],60.00)
+        self.assertLess(RENTAL["initial_execution_subcap_usd"],RENTAL["hard_all_in_authorization_cap_usd"])
         self.assertFalse(RENTAL["launch_authorized"])
         self.assertFalse(RENTAL["spend_authorized"])
         self.assertLess(RENTAL["compute_ceiling_usd"],RENTAL["hard_all_in_authorization_cap_usd"])
