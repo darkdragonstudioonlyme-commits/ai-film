@@ -1,0 +1,67 @@
+{
+  "admission_ready_after_qualification": false,
+  "artifact": {
+    "asset_id": "asset_b93836ed3188c4e7",
+    "bytes": 280407,
+    "height": 512,
+    "manifest_sha256": "05949e404124604f10b17bfe6144dc06e3aeabee6988d805e7920d71d9f4c40b",
+    "persistence_status": "POD_LOCAL_ONLY_PENDING_SYNC",
+    "pod_path": "/workspace/runs/flux2-klein-live/castjob_d3ec86da4ca6b1fc/castjob_d3ec86da4ca6b1fc_512.png",
+    "sha256": "f1af28a78a13be0bc8f3cb82f591f6c2bfa7046658b51b142c67532dc2871bf9",
+    "width": 512
+  },
+  "blind_id": "cast_d0117568f9ed",
+  "cost_entry": {
+    "amount_usd": 0.00138,
+    "asset_id": "asset_b93836ed3188c4e7",
+    "attempt_id": "castjob_d3ec86da4ca6b1fc",
+    "category": "COMPUTE_ACCEPTED",
+    "cost_id": "flux2-castjob_d3ec86da4ca6b1fc-pass",
+    "logical_key": "T-019-FLUX2-QUALIFICATION",
+    "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+  },
+  "gpu": "NVIDIA A40",
+  "job_digest": "d3ec86da4ca6b1fcf13616e80ca684dafefa3486eea1bdd1642e6fc7cd313174",
+  "job_id": "castjob_d3ec86da4ca6b1fc",
+  "measurements": {
+    "elapsed_sec": 10.139162,
+    "gpu_peak_memory_mb": 16577.0,
+    "inference_sec": 1.285966,
+    "load_cpu_sec": 5.481112,
+    "nvidia_smi_after_load_mib": 15561,
+    "to_cuda_sec": 3.347752,
+    "torch_peak_after_load_mib": 15290.0
+  },
+  "model_id": "flux2-klein-4b",
+  "model_repo": "black-forest-labs/FLUX.2-klein-4B",
+  "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+  "next_gate": "FORMAL_1024X1024_FOUR_JOB_SMOKE",
+  "observed_at_utc": "2026-09-25T18:03:35Z",
+  "pod_id": "0h1twwxqw6yx0k",
+  "production_acceptance": false,
+  "provider": "RunPod",
+  "publish_authority": false,
+  "qualification": {
+    "dtype": "bfloat16",
+    "guidance_scale": 1.0,
+    "height": 512,
+    "mode": "FULL_GPU",
+    "num_inference_steps": 4,
+    "width": 512
+  },
+  "raw_evidence": {
+    "bytes": 6016,
+    "pod_path": "/workspace/runs/flux2-klein-live/castjob_d3ec86da4ca6b1fc/evidence.json",
+    "sha256": "494b833da19cc03b9dc4146f0c74eeab0ed0d2adb1fe7f07c9247348c1bbf7df"
+  },
+  "request_digest": "551bea3740c9b94c663b93b23b635998a8aa01d9a5c3ef35aaedb7554c5e1e05",
+  "runtime": {
+    "diffusers": "0.40.0",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8"
+  },
+  "schema_version": 1,
+  "seed": 3555493594,
+  "selection_authorized": false,
+  "status": "PASS_512_QUALIFICATION"
+}

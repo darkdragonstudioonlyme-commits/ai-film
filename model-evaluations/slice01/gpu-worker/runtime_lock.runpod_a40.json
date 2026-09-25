@@ -1,10 +1,18 @@
 {
   "blockers": [
-    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
-    "MODEL_PROFILE_VRAM_UNMEASURED"
+    "FLUX2_FORMAL_1024_SMOKE_PENDING",
+    "OTHER_MODEL_SPECIFIC_ADAPTER_RUNTIMES_NOT_INSTALLED",
+    "OTHER_MODEL_PROFILES_VRAM_UNMEASURED"
   ],
   "container_image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
   "execution_ready": false,
+  "flux2_qualification": {
+    "evidence_ref": "run-evidence/FLUX2_KLEIN_A40_QUALIFICATION_20260925.json",
+    "formal_1024_smoke_pending": true,
+    "inference_sec": 1.285966,
+    "peak_vram_mib": 16577.0,
+    "status": "PASS_512_FULL_GPU"
+  },
   "host_evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json",
   "packages": {
     "accelerate": "1.15.0",

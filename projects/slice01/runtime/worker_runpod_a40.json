@@ -9,14 +9,22 @@
   "execution_authorization_ref": "model-evaluations/slice01/launch_authorization.active.json",
   "host_evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json",
   "host_evidence_sha256": "e3a8f2b4da3dece444cd9c96cf12d4c0f4067554b938914025d4a1fd76b50af5",
-  "model_profile_measurements_status": "UNMEASURED",
+  "model_profile_measurements_status": "FLUX2_512_MEASURED_1024_PENDING",
   "pod_id": "0h1twwxqw6yx0k",
   "provider": "RunPod",
+  "qualified_models": {
+    "flux2-klein-4b": {
+      "evidence_ref": "run-evidence/FLUX2_KLEIN_A40_QUALIFICATION_20260925.json",
+      "formal_1024_smoke_pending": true,
+      "peak_vram_mib": 16577.0,
+      "status": "PASS_512_QUALIFICATION"
+    }
+  },
   "quarantined": false,
   "runtime_ids": [
     "gpu-worker-base-v1"
   ],
-  "runtime_status": "BASE_RUNTIME_MEASURED_MODEL_ADAPTERS_PENDING",
+  "runtime_status": "BASE_RUNTIME_MEASURED_FLUX2_512_QUALIFIED_OTHER_ADAPTERS_PENDING",
   "schema_version": 1,
   "vram_status": "MEASURED",
   "worker_id": "runpod-0h1twwxqw6yx0k-a40"
