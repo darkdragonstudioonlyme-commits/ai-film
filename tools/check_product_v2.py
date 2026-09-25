@@ -855,6 +855,23 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch017-missing:"+rel)
 
+
+    # Live FLUX.2 klein runner contract must remain plan-first and exact-authority bound.
+    if not (root/"film/flux2_klein_live.py").is_file() or not (root/"tools/run_flux2_klein_live.py").is_file():
+        errors.append("flux2-live-runner-missing")
+    else:
+        flux_job=next((row for row in cast_jobs if row.get("model_id")=="flux2-klein-4b" and row.get("job_id")=="castjob_d3ec86da4ca6b1fc"),None)
+        if flux_job is None:
+            errors.append("flux2-live-runner-canonical-job-missing")
+        flux_model=next((row for row in models if row.get("model_id")=="flux2-klein-4b"),None)
+        if flux_model is None or flux_model.get("source_revision")!="e7b7dc27f91deacad38e78976d1f2b499d76a294":
+            errors.append("flux2-live-runner-model-revision")
+        if flux_model is not None and flux_model.get("execution_ready") is not False:
+            errors.append("flux2-live-runner-model-must-remain-unmeasured")
+        if active_auth.get("status")!="AUTHORIZED" or active_auth.get("max_total_usd")!=60.0:
+            errors.append("flux2-live-runner-active-authority")
+        if execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("new_resource_creation_authorized") is not False:
+            errors.append("flux2-live-runner-execution-plan")
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
