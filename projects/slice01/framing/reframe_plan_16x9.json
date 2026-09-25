@@ -1,0 +1,229 @@
+{
+  "blockers": [],
+  "fallback_to_rerender_count": 3,
+  "master_aspect": "9:16",
+  "project_id": "slice01",
+  "render_authorized": false,
+  "schema_version": 1,
+  "shots": [
+    {
+      "action": "Rainy near-empty station platform. An enters under flickering practical lights, jacket visibly wet.",
+      "camera": {
+        "framing": "wide",
+        "lens_mm": 28,
+        "movement": "slow push"
+      },
+      "characters": [
+        "an"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": null,
+      "horizontal_intent": "preserve station scale and arrival direction",
+      "master_aspect": "9:16",
+      "policy_strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_full_body",
+        "platform_geometry"
+      ],
+      "render_authorized": false,
+      "seed": 101,
+      "shot_id": "sc01_sh01",
+      "source_master_asset": null,
+      "story_time": "D1_2340",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "Linh looks up from the station desk toward the platform clock.",
+      "camera": {
+        "framing": "medium",
+        "lens_mm": 50,
+        "movement": "static"
+      },
+      "characters": [
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": "master-asset-unavailable:sc01_sh02",
+      "horizontal_intent": "retain desk context around centered medium portrait",
+      "master_aspect": "9:16",
+      "policy_strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "linh_face",
+        "uniform_badge"
+      ],
+      "render_authorized": false,
+      "seed": 102,
+      "shot_id": "sc01_sh02",
+      "source_master_asset": null,
+      "story_time": "D1_2340",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "An shows the red paper crane and asks about the last train.",
+      "camera": {
+        "framing": "two-shot",
+        "lens_mm": 50,
+        "movement": "subtle handheld"
+      },
+      "characters": [
+        "an",
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": null,
+      "horizontal_intent": "separate both characters while keeping crane readable",
+      "master_aspect": "9:16",
+      "policy_strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_face",
+        "linh_face",
+        "red_paper_crane"
+      ],
+      "render_authorized": false,
+      "seed": 103,
+      "shot_id": "sc01_sh03",
+      "source_master_asset": null,
+      "story_time": "D1_2342",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "The lights blink out behind Linh; she raises the flashlight, alert but composed.",
+      "camera": {
+        "framing": "close-up",
+        "lens_mm": 85,
+        "movement": "static"
+      },
+      "characters": [
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": "master-asset-unavailable:sc01_sh04",
+      "horizontal_intent": "retain close-up emotional read with lateral negative space",
+      "master_aspect": "9:16",
+      "policy_strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "linh_face",
+        "flashlight"
+      ],
+      "render_authorized": false,
+      "seed": 104,
+      "shot_id": "sc01_sh04",
+      "source_master_asset": null,
+      "story_time": "D1_2342",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "An pulls a jammed panel free; his left sleeve tears and a shallow cut appears on the left forearm.",
+      "camera": {
+        "framing": "medium close-up",
+        "lens_mm": 50,
+        "movement": "handheld"
+      },
+      "characters": [
+        "an"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": "master-asset-unavailable:sc01_sh05",
+      "horizontal_intent": "keep injury action readable with service-panel context",
+      "master_aspect": "9:16",
+      "policy_strategy": "OUTPAINT_OR_RERENDER",
+      "protect": [
+        "an_face",
+        "left_forearm_injury"
+      ],
+      "render_authorized": false,
+      "seed": 105,
+      "shot_id": "sc01_sh05",
+      "source_master_asset": null,
+      "story_time": "D1_2344",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "Linh finishes wrapping An's left forearm in white gauze while holding the red paper crane in her left hand.",
+      "camera": {
+        "framing": "close two-shot",
+        "lens_mm": 65,
+        "movement": "static"
+      },
+      "characters": [
+        "an",
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": null,
+      "horizontal_intent": "preserve bandage action and two-character eye line",
+      "master_aspect": "9:16",
+      "policy_strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_face",
+        "linh_face",
+        "left_forearm_gauze",
+        "red_paper_crane"
+      ],
+      "render_authorized": false,
+      "seed": 106,
+      "shot_id": "sc01_sh06",
+      "source_master_asset": null,
+      "story_time": "D1_2345",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "The signal turns green and distant train headlights bloom through rain.",
+      "camera": {
+        "framing": "profile two-shot",
+        "lens_mm": 50,
+        "movement": "slow track"
+      },
+      "characters": [
+        "an",
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": null,
+      "horizontal_intent": "preserve profile separation and signal/train depth",
+      "master_aspect": "9:16",
+      "policy_strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an_profile",
+        "linh_profile",
+        "green_signal"
+      ],
+      "render_authorized": false,
+      "seed": 107,
+      "shot_id": "sc01_sh07",
+      "source_master_asset": null,
+      "story_time": "D1_2345",
+      "target_aspect": "16:9"
+    },
+    {
+      "action": "Train doors open. An boards with gauze visible on his left forearm; Linh remains on the platform with the paper crane.",
+      "camera": {
+        "framing": "wide",
+        "lens_mm": 35,
+        "movement": "locked"
+      },
+      "characters": [
+        "an",
+        "linh"
+      ],
+      "effective_strategy": "RERENDER_FROM_SPEC",
+      "fallback_reason": null,
+      "horizontal_intent": "show boarding action and platform separation in a true wide frame",
+      "master_aspect": "9:16",
+      "policy_strategy": "RERENDER_FROM_SPEC",
+      "protect": [
+        "an",
+        "linh",
+        "train_doors"
+      ],
+      "render_authorized": false,
+      "seed": 108,
+      "shot_id": "sc01_sh08",
+      "source_master_asset": null,
+      "story_time": "D1_2347",
+      "target_aspect": "16:9"
+    }
+  ],
+  "status": "READY_FOR_RENDER_BACKEND",
+  "target_aspect": "16:9"
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "title": "Last Train Signal",
+  "master_language": "en",
+  "target_duration_sec": 75.0,
+  "source": {
+    "kind": "ORIGINAL_PROJECT",
+    "rights_id": "source-original",
+    "rights_status": "ORIGINAL",
+    "evidence_ref": "projects/slice01/project.json",
+    "source_identity_sha256": "fda1eaf7f2714128f9ae3710d318702ace37252f240fc587c0ae6666d9db0295",
+    "subject_type": "source",
+    "subject_id": "project-source"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "heading": "EXT./INT. SMALL RAILWAY STATION — NIGHT",
+      "purpose": "Reunite a returning traveler with a station promise through a failed signal and the last train.",
+      "conflict": "The last train cannot stop while the station signal is dead.",
+      "turn": "Repairing the signal reveals An returned because of a promise, not simply to catch a train.",
+      "character_objective": "An must restore the signal and reach the train; Linh must decide whether to help him fulfill the unfinished promise.",
+      "estimated_duration_sec": 75.0,
+      "beats": [
+        {
+          "beat_id": "beat_001",
+          "start_sec": 0.0,
+          "end_sec": 15.0,
+          "action": "Rainy station setup; An arrives while Linh closes the desk."
+        },
+        {
+          "beat_id": "beat_002",
+          "start_sec": 15.0,
+          "end_sec": 34.0,
+          "action": "An asks about the last train; the lights and signal fail; Linh states the problem."
+        },
+        {
+          "beat_id": "beat_003",
+          "start_sec": 34.0,
+          "end_sec": 43.0,
+          "action": "An frees the service panel, tears his sleeve and cuts his left forearm."
+        },
+        {
+          "beat_id": "beat_004",
+          "start_sec": 43.0,
+          "end_sec": 54.0,
+          "action": "Linh bandages An and asks why he returned."
+        },
+        {
+          "beat_id": "beat_005",
+          "start_sec": 54.0,
+          "end_sec": 63.0,
+          "action": "An answers that he returned for a promise as the signal turns green."
+        },
+        {
+          "beat_id": "beat_006",
+          "start_sec": 63.0,
+          "end_sec": 75.0,
+          "action": "The train arrives; An boards while Linh keeps the red paper crane."
+        }
+      ],
+      "dialogue": [
+        {
+          "dialogue_id": "dlg_001",
+          "speaker_id": "an",
+          "language": "en",
+          "master_text": "Does the 11:40 still stop here?"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "speaker_id": "linh",
+          "language": "en",
+          "master_text": "Only if we bring the signal back."
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "speaker_id": "linh",
+          "language": "en",
+          "master_text": "You came back for this station?"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "speaker_id": "an",
+          "language": "en",
+          "master_text": "For a promise."
+        }
+      ]
+    }
+  ]
+}

@@ -221,15 +221,30 @@
 - id: T-044
   milestone: M2
   goal: "Implement executable screenplay/scene schema and story/runtime validation"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-045
   milestone: M2
   goal: "Implement EN master to ZH/VI localization bundle validation with stable dialogue IDs and timing fit"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-046
   milestone: M2
   goal: "Implement deterministic 9:16 master to 16:9 framing/reframe plan without media rendering"
+  status: DONE
+  owner: executor
+- id: T-047
+  milestone: M2
+  goal: "Implement story beat to shot coverage and runtime reconciliation"
+  status: READY
+  owner: executor
+- id: T-048
+  milestone: M2
+  goal: "Implement per-shot continuity expectation manifests and observed-state diff checker"
+  status: READY
+  owner: executor
+- id: T-049
+  milestone: M2
+  goal: "Implement multilingual subtitle layout/safe-area planning for 9:16 and 16:9"
   status: READY
   owner: executor
