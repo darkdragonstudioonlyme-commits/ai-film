@@ -143,3 +143,33 @@
   goal: "Build benchmark decision-report templates for image/video/voice stages and cost ledger import"
   status: DONE
   owner: executor
+- id: T-029
+  milestone: M2
+  goal: "Implement immutable asset graph and selective invalidation/deletion impact"
+  status: DONE
+  owner: executor
+- id: T-030
+  milestone: M2
+  goal: "Implement QC acceptance and governed film-quality experiment records"
+  status: DONE
+  owner: executor
+- id: T-031
+  milestone: M2
+  goal: "Implement rights and publication gate with project policy and owner approval boundary"
+  status: DONE
+  owner: executor
+- id: T-032
+  milestone: M2
+  goal: "Implement production state transitions and immutable selected-take revisions"
+  status: READY
+  owner: executor
+- id: T-033
+  milestone: M2
+  goal: "Implement logical generation key, attempt lifecycle, retry/cancel/unknown-outcome controls"
+  status: READY
+  owner: executor
+- id: T-034
+  milestone: M2
+  goal: "Implement deterministic edit timeline compiler for selected takes, dialogue and subtitles"
+  status: READY
+  owner: executor

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "scope": "sequence",
+  "required_scores": {
+    "story_comprehension": 4.0,
+    "visual_quality": 4.0,
+    "character_consistency": 4.0,
+    "motion_quality": 3.5,
+    "continuity": 4.0
+  },
+  "severe_failure_tags": [
+    "FACE_DRIFT",
+    "BODY_DRIFT",
+    "COSTUME_DRIFT",
+    "BAD_MOTION",
+    "LIP_SYNC_ERROR",
+    "TEMPORAL_FLICKER",
+    "BAD_EDIT"
+  ],
+  "status": "POLICY_READY_NO_MEDIA_QC"
+}

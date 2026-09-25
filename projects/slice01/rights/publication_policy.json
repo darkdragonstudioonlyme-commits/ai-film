@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "PREPUBLICATION_POLICY",
+  "required_subjects": [
+    {
+      "subject_type": "source",
+      "subject_id": "project-source"
+    },
+    {
+      "subject_type": "voice",
+      "subject_id": "an"
+    },
+    {
+      "subject_type": "voice",
+      "subject_id": "linh"
+    },
+    {
+      "subject_type": "likeness",
+      "subject_id": "an"
+    },
+    {
+      "subject_type": "likeness",
+      "subject_id": "linh"
+    },
+    {
+      "subject_type": "model_output",
+      "subject_id": "visual-generation"
+    },
+    {
+      "subject_type": "music",
+      "subject_id": "project-music"
+    }
+  ],
+  "required_checks": [
+    "creative_qc",
+    "technical_qc",
+    "provenance",
+    "distribution_rules_current"
+  ],
+  "publication_action_requires_owner_approval": true
+}

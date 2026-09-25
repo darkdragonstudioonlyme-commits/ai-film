@@ -383,6 +383,42 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch008-missing:"+rel)
 
+
+    asset_graph=json.loads((root/"projects/slice01/asset_graph.json").read_text(encoding="utf-8"))
+    if asset_graph.get("status")!="SPEC_GRAPH_NO_GENERATED_MEDIA" or len(asset_graph.get("assets",[]))<10:
+        errors.append("asset-graph-shape")
+    if len({row.get("asset_id") for row in asset_graph.get("assets",[])}) != len(asset_graph.get("assets",[])):
+        errors.append("asset-graph-identity")
+    qc_policy=json.loads((root/"projects/slice01/qc_policy.json").read_text(encoding="utf-8"))
+    if qc_policy.get("status")!="POLICY_READY_NO_MEDIA_QC":
+        errors.append("qc-policy-status")
+    if float(qc_policy.get("required_scores",{}).get("character_consistency",0))<4.0:
+        errors.append("qc-policy-character-threshold")
+    pub_policy=json.loads((root/"projects/slice01/rights/publication_policy.json").read_text(encoding="utf-8"))
+    rights_register=json.loads((root/"projects/slice01/rights/rights_register.json").read_text(encoding="utf-8"))
+    selected_assets=json.loads((root/"projects/slice01/rights/selected_assets.json").read_text(encoding="utf-8"))
+    if pub_policy.get("publication_action_requires_owner_approval") is not True:
+        errors.append("publication-owner-gate")
+    if rights_register.get("status")!="INCOMPLETE_BLOCK_PUBLICATION":
+        errors.append("publication-rights-register-status")
+    if selected_assets.get("status")!="NO_FINAL_MEDIA_SELECTED" or selected_assets.get("assets")!=[]:
+        errors.append("publication-selected-assets-state")
+    rights_status={row.get("status") for row in rights_register.get("records",[])}
+    if "UNKNOWN" not in rights_status:
+        errors.append("publication-rights-must-remain-incomplete")
+    required_batch009=[
+        "film/BATCH009_CONTRACT.md",
+        "film/asset_graph.py",
+        "film/qc.py",
+        "film/rights.py",
+        "tools/plan_asset_invalidation.py",
+        "tools/evaluate_qc_record.py",
+        "tools/check_publication_gate.py",
+    ]
+    for rel in required_batch009:
+        if not (root/rel).is_file():
+            errors.append("batch009-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
