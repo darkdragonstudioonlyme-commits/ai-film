@@ -116,15 +116,30 @@
 - id: T-023
   milestone: M2
   goal: "Implement image-model GPU runner contract for casting jobs with dry-run preflight and immutable output manifests"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-024
   milestone: M2
   goal: "Implement generated casting-asset ingestion into reference contract/index with provenance validation"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-025
   milestone: M2
   goal: "Implement benchmark result/cost ledger and decision-report aggregation for later GPU runs"
+  status: DONE
+  owner: executor
+- id: T-026
+  milestone: M2
+  goal: "Build authorized-launch receipt schema and live-rate recheck gate for T-019 without launching resources"
+  status: READY
+  owner: coordinator
+- id: T-027
+  milestone: M2
+  goal: "Build synthetic casting-output fixture pack to exercise ingestion/scoring pipeline end-to-end without model inference"
+  status: READY
+  owner: executor
+- id: T-028
+  milestone: M2
+  goal: "Build benchmark decision-report templates for image/video/voice stages and cost ledger import"
   status: READY
   owner: executor

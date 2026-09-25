@@ -109,7 +109,7 @@ jobs:
       - name: Product v2 syntax and tests
         if: steps.mode.outputs.product_v2 == 'true'
         run: |
-          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/run_cpu_tts_smoke.py tools/build_subtitles.py tools/build_animatic.py tools/setup_gpu_worker.py tools/compile_backend_request.py tools/build_previs_audio.py tools/build_gpu_prelaunch_bundle.py tools/build_casting_eval_packet.py tools/build_voxcpm2_eval_packet.py tools/compile_casting_jobs.py tools/ingest_casting_scores.py tools/compile_voxcpm2_requests.py tools/ingest_voxcpm2_scores.py tests/film/*.py
+          python3 -m py_compile film/*.py tools/compile_slice01.py tools/check_product_v2.py tools/run_model_benchmark.py tools/run_cpu_tts_smoke.py tools/build_subtitles.py tools/build_animatic.py tools/setup_gpu_worker.py tools/compile_backend_request.py tools/build_previs_audio.py tools/build_gpu_prelaunch_bundle.py tools/build_casting_eval_packet.py tools/build_voxcpm2_eval_packet.py tools/compile_casting_jobs.py tools/ingest_casting_scores.py tools/compile_voxcpm2_requests.py tools/ingest_voxcpm2_scores.py tools/compile_image_worker_request.py tools/ingest_casting_assets.py tools/build_benchmark_decision_report.py tests/film/*.py
           bash -n tools/host_ready_practical.sh tools/turn_start.sh tools/turn_end.sh
           PYTHONPATH=. python3 -m unittest discover -s tests/film -v
           PYTHONPATH=. python3 tools/compile_slice01.py
