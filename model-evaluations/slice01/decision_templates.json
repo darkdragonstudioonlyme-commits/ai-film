@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATES_ONLY_NO_DECISION",
+  "templates": {
+    "image_casting": {
+      "stage": "image",
+      "expected_models": [
+        "z-image",
+        "flux2-klein-4b"
+      ],
+      "required_metrics": [
+        "quality_overall",
+        "usable",
+        "elapsed_sec",
+        "gpu_peak_memory_mb",
+        "cost_usd"
+      ]
+    },
+    "video_core": {
+      "stage": "video",
+      "expected_models": [
+        "wan22-ti2v-5b",
+        "wan22-i2v-14b",
+        "ltx-2.5"
+      ],
+      "required_metrics": [
+        "quality_overall",
+        "usable",
+        "elapsed_sec",
+        "gpu_peak_memory_mb",
+        "cost_usd"
+      ]
+    },
+    "voice_multilingual": {
+      "stage": "voice",
+      "expected_models": [
+        "voxcpm2"
+      ],
+      "required_metrics": [
+        "quality_overall",
+        "usable",
+        "elapsed_sec",
+        "cost_usd"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-09-25",
+  "provider": "RunPod",
+  "rates_usd_per_hour": {
+    "RTX 5090": 0.99,
+    "RTX A6000": 0.53,
+    "RTX Pro 6000": 2.09
+  },
+  "schema_version": 1,
+  "snapshot_digest": "355f8807f8a61b3d35dd9f776bd2b7a2e524ff4836bf97a82b84dac6a3a13948",
+  "source_url": "https://www.runpod.io/pricing"
+}

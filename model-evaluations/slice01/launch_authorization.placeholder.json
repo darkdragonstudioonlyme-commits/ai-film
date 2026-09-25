@@ -1,0 +1,15 @@
+{
+  "allowed_gpus": [],
+  "authorization_id": "NOT_AUTHORIZED",
+  "authorized_at": null,
+  "authorized_by": null,
+  "expires_at": null,
+  "max_total_usd": 0.0,
+  "proposal_digest": "ba2442521969903a814e7d474abdb3064c582a72f68c9aafde16d89f47ec26ea",
+  "provider": "RunPod",
+  "rate_snapshot_digest": "355f8807f8a61b3d35dd9f776bd2b7a2e524ff4836bf97a82b84dac6a3a13948",
+  "receipt_digest": "82df596bff2928f771be0ae8a029064453c091ed87421c8293450eeecc147fcb",
+  "schema_version": 1,
+  "scope": "NO_PAID_LAUNCH_AUTHORITY",
+  "status": "NOT_AUTHORIZED"
+}
