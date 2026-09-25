@@ -196,15 +196,33 @@ def main() -> int:
     if voice_plan.get("cpu_previs_candidate",{}).get("model_id")!="vieneu-v3-turbo":
         errors.append("voice-plan-cpu")
 
-    runtime=json.loads((root/"model-evaluations/slice01/gpu-worker/runtime_lock.json").read_text(encoding="utf-8"))
+    runtime_path=root/"model-evaluations/slice01/gpu-worker/runtime_lock.json"
+    req_path=root/"model-evaluations/slice01/gpu-worker/requirements-base.lock.txt"
+    runtime=json.loads(runtime_path.read_text(encoding="utf-8"))
     if runtime.get("status")!="PINNED_BASE_DRY_RUN_ONLY" or runtime.get("execution_ready") is not False:
         errors.append("gpu-runtime-authority")
     package_values=list((runtime.get("packages") or {}).values())
     if not package_values or any("tbd" in str(value).lower() for value in package_values):
         errors.append("gpu-runtime-package-pins")
+    if runtime.get("packages",{}).get("huggingface-hub")!="1.33.0":
+        errors.append("gpu-runtime-hfhub-pin")
+    if "huggingface-hub==1.33.0" not in req_path.read_text(encoding="utf-8"):
+        errors.append("gpu-requirements-hfhub-pin")
+    resolver=json.loads((root/"run-evidence/RUNPOD_A40_RUNTIME_RESOLVER_20260925.json").read_text(encoding="utf-8"))
+    if resolver.get("status")!="PASS" or resolver.get("successful_dry_run",{}).get("resolver_selected_huggingface_hub")!="1.33.0":
+        errors.append("gpu-runtime-resolver-evidence")
+    live_runtime=json.loads((root/"model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json").read_text(encoding="utf-8"))
+    if live_runtime.get("status")!="RUNPOD_A40_HOST_BOUND_RUNTIME" or live_runtime.get("execution_ready") is not False:
+        errors.append("gpu-runtime-a40-authority")
+    if live_runtime.get("target",{}).get("torch")!="2.8.0+cu128" or live_runtime.get("packages",{}).get("huggingface-hub")!="1.33.0":
+        errors.append("gpu-runtime-a40-binding")
     worker_plan=json.loads((root/"run-evidence/GPU_WORKER_DRYRUN_20260925.json").read_text(encoding="utf-8"))
     if worker_plan.get("mode")!="DRY_RUN" or worker_plan.get("execution_ready") is not False:
         errors.append("gpu-worker-dryrun")
+    if worker_plan.get("requirements_lock_sha256")!=hashlib.sha256(req_path.read_bytes()).hexdigest():
+        errors.append("gpu-worker-requirements-hash")
+    if worker_plan.get("runtime_lock_sha256")!=hashlib.sha256(runtime_path.read_bytes()).hexdigest():
+        errors.append("gpu-worker-runtime-hash")
 
     previs=json.loads((root/"run-evidence/PREVIS_AUDIO_20260925.json").read_text(encoding="utf-8"))
     if previs.get("status")!="PASS" or set(previs.get("languages",[]))!={"en","vi"}:

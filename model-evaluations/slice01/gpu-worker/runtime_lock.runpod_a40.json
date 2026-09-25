@@ -1,0 +1,38 @@
+{
+  "blockers": [
+    "MODEL_SPECIFIC_ADAPTER_RUNTIME_NOT_INSTALLED",
+    "MODEL_PROFILE_VRAM_UNMEASURED"
+  ],
+  "container_image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "execution_ready": false,
+  "host_evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json",
+  "packages": {
+    "accelerate": "1.15.0",
+    "diffusers": "0.40.0",
+    "huggingface-hub": "1.33.0",
+    "imageio-ffmpeg": "0.6.0",
+    "numpy": "2.5.3",
+    "pillow": "12.3.0",
+    "psutil": "7.2.2",
+    "safetensors": "0.8.0",
+    "transformers": "5.17.0"
+  },
+  "pod_id": "0h1twwxqw6yx0k",
+  "provider": "RunPod",
+  "requirements_ref": "model-evaluations/slice01/gpu-worker/requirements-runpod-a40.lock.txt",
+  "resolver_evidence_ref": "run-evidence/RUNPOD_A40_RUNTIME_RESOLVER_20260925.json",
+  "schema_version": 1,
+  "snapshot_date": "2026-09-25",
+  "status": "RUNPOD_A40_HOST_BOUND_RUNTIME",
+  "target": {
+    "driver": "580.159.03",
+    "gpu": "NVIDIA A40",
+    "host_cuda": "13.0",
+    "measured_vram_mib": 46068,
+    "os": "Ubuntu 24.04.3 LTS",
+    "python": "3.12.3",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8"
+  },
+  "torch_source": "RunPod base image; not reinstalled during qualification"
+}

@@ -15,6 +15,7 @@ class Batch004ContractTests(unittest.TestCase):
         self.assertFalse(runtime["execution_ready"])
         self.assertEqual(runtime["packages"]["torch"],"2.14.0")
         self.assertEqual(runtime["packages"]["diffusers"],"0.40.0")
+        self.assertEqual(runtime["packages"]["huggingface-hub"],"1.33.0")
         self.assertTrue(all("tbd" not in value.lower() for value in runtime["packages"].values()))
         plan=json.loads((ROOT/"run-evidence/GPU_WORKER_DRYRUN_20260925.json").read_text(encoding="utf-8"))
         self.assertEqual(plan["mode"],"DRY_RUN")
