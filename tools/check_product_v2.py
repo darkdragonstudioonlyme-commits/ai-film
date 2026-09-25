@@ -74,7 +74,9 @@ def main() -> int:
     if len(ids)!=len(set(ids)) or len(ids)<4:
         errors.append("backlog-ids")
     if "status: READY" not in backlog:
-        errors.append("backlog-no-ready")
+        next_work=(root/"NEXT_WORK_ITEM.md").read_text(encoding="utf-8")
+        if "STATUS: BLOCKED" not in next_work or "CURRENT_WORK_STATUS: BLOCKED" not in state:
+            errors.append("backlog-no-ready-without-canonical-block")
 
     p=root/"projects"/"slice01"
     project=json.loads((p/"project.json").read_text(encoding="utf-8"))
@@ -355,6 +357,31 @@ def main() -> int:
     for rel in required_batch007:
         if not (root/rel).is_file():
             errors.append("batch007-missing:"+rel)
+
+
+    rate_snap=json.loads((root/"model-evaluations/slice01/rate_snapshot_20260925.json").read_text(encoding="utf-8"))
+    if rate_snap.get("provider")!="RunPod" or rate_snap.get("observed_at")!="2026-09-25":
+        errors.append("paid-gate-rate-snapshot")
+    rates=rate_snap.get("rates_usd_per_hour",{})
+    if rates.get("RTX 5090")!=0.99 or rates.get("RTX Pro 6000")!=2.09:
+        errors.append("paid-gate-rate-drift")
+    auth=json.loads((root/"model-evaluations/slice01/launch_authorization.placeholder.json").read_text(encoding="utf-8"))
+    if auth.get("status")!="NOT_AUTHORIZED" or auth.get("max_total_usd")!=0.0 or auth.get("allowed_gpus")!=[]:
+        errors.append("paid-gate-placeholder-authority")
+    if not (root/"model-evaluations/slice01/decision_templates.json").is_file():
+        errors.append("decision-templates-missing")
+    required_batch008=[
+        "model-evaluations/slice01/BATCH008_CONTRACT.md",
+        "film/launch_gate.py",
+        "film/synthetic_fixtures.py",
+        "film/decision_templates.py",
+        "tools/check_paid_launch_gate.py",
+        "tools/build_synthetic_casting_fixture.py",
+        "tools/build_stage_decision_report.py",
+    ]
+    for rel in required_batch008:
+        if not (root/rel).is_file():
+            errors.append("batch008-missing:"+rel)
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
