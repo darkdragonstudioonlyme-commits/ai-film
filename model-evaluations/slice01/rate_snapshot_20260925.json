@@ -1,12 +1,17 @@
 {
+  "data_center_id": "EU-SE-1",
+  "observation_kind": "RUNPOD_MCP_LIVE_POD_PLUS_PROVIDER_RATE_CARD",
   "observed_at": "2026-09-25",
+  "observed_at_utc": "2026-09-25T11:35:16Z",
+  "pod_id": "0h1twwxqw6yx0k",
   "provider": "RunPod",
   "rates_usd_per_hour": {
+    "NVIDIA A40": 0.49,
     "RTX 5090": 0.99,
     "RTX A6000": 0.53,
     "RTX Pro 6000": 2.09
   },
   "schema_version": 1,
-  "snapshot_digest": "355f8807f8a61b3d35dd9f776bd2b7a2e524ff4836bf97a82b84dac6a3a13948",
+  "snapshot_digest": "2dab0f274bdf9b7920d4d9316feab5dcb7b0acdec7be81e734a3f4e5623782fe",
   "source_url": "https://www.runpod.io/pricing"
 }

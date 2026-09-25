@@ -364,11 +364,35 @@ def main() -> int:
     if rate_snap.get("provider")!="RunPod" or rate_snap.get("observed_at")!="2026-09-25":
         errors.append("paid-gate-rate-snapshot")
     rates=rate_snap.get("rates_usd_per_hour",{})
-    if rates.get("RTX 5090")!=0.99 or rates.get("RTX Pro 6000")!=2.09:
+    if rates.get("RTX 5090")!=0.99 or rates.get("RTX Pro 6000")!=2.09 or rates.get("NVIDIA A40")!=0.49:
         errors.append("paid-gate-rate-drift")
-    auth=json.loads((root/"model-evaluations/slice01/launch_authorization.placeholder.json").read_text(encoding="utf-8"))
-    if auth.get("status")!="NOT_AUTHORIZED" or auth.get("max_total_usd")!=0.0 or auth.get("allowed_gpus")!=[]:
+    rate_body={k:v for k,v in rate_snap.items() if k!="snapshot_digest"}
+    rate_digest=hashlib.sha256(json.dumps(rate_body,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    if rate_snap.get("snapshot_digest")!=rate_digest:
+        errors.append("paid-gate-rate-digest")
+
+    placeholder=json.loads((root/"model-evaluations/slice01/launch_authorization.placeholder.json").read_text(encoding="utf-8"))
+    if placeholder.get("status")!="NOT_AUTHORIZED" or placeholder.get("max_total_usd")!=0.0 or placeholder.get("allowed_gpus")!=[]:
         errors.append("paid-gate-placeholder-authority")
+
+    active_auth=json.loads((root/"model-evaluations/slice01/launch_authorization.active.json").read_text(encoding="utf-8"))
+    execution_plan=json.loads((root/"model-evaluations/slice01/GPU_RENTAL_EXECUTION_PLAN_20260925.json").read_text(encoding="utf-8"))
+    proposal=json.loads((root/"model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json").read_text(encoding="utf-8"))
+    proposal_digest=hashlib.sha256(json.dumps(proposal,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    plan_body={k:v for k,v in execution_plan.items() if k!="plan_digest"}
+    plan_digest=hashlib.sha256(json.dumps(plan_body,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    auth_body={k:v for k,v in active_auth.items() if k!="receipt_digest"}
+    auth_digest=hashlib.sha256(json.dumps(auth_body,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    if execution_plan.get("plan_digest")!=plan_digest or execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("max_total_usd")!=60.0:
+        errors.append("paid-gate-execution-plan")
+    if active_auth.get("status")!="AUTHORIZED" or active_auth.get("max_total_usd")!=60.0 or active_auth.get("allowed_gpus")!=["NVIDIA A40"]:
+        errors.append("paid-gate-active-authority")
+    if active_auth.get("new_resource_creation_authorized") is not False or active_auth.get("publish_authority") is not False:
+        errors.append("paid-gate-active-scope")
+    if active_auth.get("proposal_digest")!=proposal_digest or active_auth.get("execution_plan_digest")!=plan_digest or active_auth.get("rate_snapshot_digest")!=rate_digest:
+        errors.append("paid-gate-active-binding")
+    if active_auth.get("receipt_digest")!=auth_digest:
+        errors.append("paid-gate-active-receipt-digest")
     if not (root/"model-evaluations/slice01/decision_templates.json").is_file():
         errors.append("decision-templates-missing")
     required_batch008=[
@@ -488,6 +512,23 @@ def main() -> int:
         errors.append("resource-profile-unmeasured-boundary")
     if any(row.get("throughput_status")!="UNMEASURED" for row in profiles):
         errors.append("resource-profile-throughput-claim")
+    a40_tier=next((row for row in resources.get("worker_tiers",[]) if row.get("tier")=="RUNPOD_A40_48GB"),None)
+    if a40_tier is None or a40_tier.get("measured_vram_mib")!=46068 or a40_tier.get("measurement_status")!="HOST_MEASURED_MODEL_STACK_UNMEASURED":
+        errors.append("resource-profile-a40-host-measurement")
+
+    host_evidence_path=root/"run-evidence/RUNPOD_A40_HOST_20260925.json"
+    host_evidence=json.loads(host_evidence_path.read_text(encoding="utf-8"))
+    if host_evidence.get("pod_id")!="0h1twwxqw6yx0k" or host_evidence.get("gpu",{}).get("name")!="NVIDIA A40" or host_evidence.get("gpu",{}).get("memory_total_mib")!=46068:
+        errors.append("runpod-a40-host-evidence")
+    if host_evidence.get("torch_version")!="2.8.0+cu128" or host_evidence.get("torch_cuda_available") is not True:
+        errors.append("runpod-a40-torch-evidence")
+    host_sha=hashlib.sha256(host_evidence_path.read_bytes()).hexdigest()
+    worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
+    if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
+        errors.append("runpod-a40-worker-measurement")
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_MODEL_ADAPTERS_PENDING":
+        errors.append("runpod-a40-worker-binding")
+
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
     if queue_policy.get("max_depth")!=16 or queue_policy.get("per_project_concurrency")!=2:
@@ -498,10 +539,15 @@ def main() -> int:
         errors.append("queue-state-policy-drift")
     cost_policy=json.loads((root/"projects/slice01/runtime/cost_policy.json").read_text(encoding="utf-8"))
     cost_ledger=json.loads((root/"projects/slice01/runtime/cost_ledger.json").read_text(encoding="utf-8"))
-    if cost_policy.get("status")!="NO_PAID_BUDGET_AUTHORIZED" or cost_policy.get("current_authorized_budget_usd")!=0.0:
+    if cost_policy.get("status")!="AUTHORIZED_BOUNDED" or cost_policy.get("current_authorized_budget_usd")!=60.0:
         errors.append("cost-policy-authority")
-    if cost_ledger.get("entries")!=[]:
-        errors.append("cost-ledger-unexpected-runtime-cost")
+    if cost_policy.get("authorization_id")!="T019-RUNPOD-A40-20260925" or cost_policy.get("rate_usd_per_hour")!=0.49:
+        errors.append("cost-policy-binding")
+    entries=cost_ledger.get("entries",[])
+    if len(entries)!=1 or entries[0].get("cost_id")!="runpod-a40-bootstrap-estimate-20260925" or entries[0].get("category")!="OTHER":
+        errors.append("cost-ledger-bootstrap-entry")
+    elif abs(float(entries[0].get("amount_usd",0))-0.11027)>1e-9:
+        errors.append("cost-ledger-bootstrap-amount")
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -765,18 +811,17 @@ def main() -> int:
             errors.append("schema-compatibility-authority:"+str(row.get("name")))
 
     readiness=json.loads((root/"projects/slice01/readiness/stage_readiness.json").read_text(encoding="utf-8"))
-    if readiness.get("status")!="NO_RUNNABLE_STAGE" or readiness.get("ready_stages")!=[] or readiness.get("execution_permitted") is not False:
+    if readiness.get("status")!="HAS_RUNNABLE_STAGE" or set(readiness.get("ready_stages",[]))!={"casting_reference_generation","voice_eval"} or readiness.get("execution_permitted") is not False:
         errors.append("stage-readiness-current-status")
-    frontier={row.get("stage_id"):row.get("blockers") for row in readiness.get("blocking_frontier",[])}
-    if set(frontier)!={"casting_reference_generation","voice_eval"}:
+    if readiness.get("blocking_frontier")!=[]:
         errors.append("stage-readiness-frontier")
-    else:
-        if frontier["casting_reference_generation"]!=["missing-evidence:paid_gpu_authorized"]:
-            errors.append("stage-readiness-casting-blocker")
-        if frontier["voice_eval"]!=["missing-evidence:paid_gpu_authorized"]:
-            errors.append("stage-readiness-voice-blocker")
-    if readiness.get("evidence",{}).get("paid_gpu_authorized") is not False:
+    if readiness.get("evidence",{}).get("paid_gpu_authorized") is not True:
         errors.append("stage-readiness-paid-authority")
+    readiness_by={row.get("stage_id"):row for row in readiness.get("stages",[])}
+    for stage_id in ("casting_reference_generation","voice_eval"):
+        row=readiness_by.get(stage_id,{})
+        if row.get("status")!="READY" or row.get("execution_permitted") is not False or row.get("blockers")!=[]:
+            errors.append("stage-readiness-ready-stage:"+stage_id)
 
     required_batch017=[
         "film/BATCH017_CONTRACT.md",

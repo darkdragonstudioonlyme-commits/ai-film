@@ -1,18 +1,5 @@
 {
-  "blocking_frontier": [
-    {
-      "blockers": [
-        "missing-evidence:paid_gpu_authorized"
-      ],
-      "stage_id": "casting_reference_generation"
-    },
-    {
-      "blockers": [
-        "missing-evidence:paid_gpu_authorized"
-      ],
-      "stage_id": "voice_eval"
-    }
-  ],
+  "blocking_frontier": [],
   "evidence": {
     "continuity_ready": true,
     "creative_qc_pass": false,
@@ -24,7 +11,7 @@
     "generated_casting_assets": false,
     "localization_text_ready": true,
     "music_rights_ready": false,
-    "paid_gpu_authorized": false,
+    "paid_gpu_authorized": true,
     "publication_rights_ready": false,
     "rendered_final_media": false,
     "screenplay_ready": true,
@@ -36,7 +23,10 @@
     "visual_model_selected": false
   },
   "execution_permitted": false,
-  "ready_stages": [],
+  "ready_stages": [
+    "casting_reference_generation",
+    "voice_eval"
+  ],
   "schema_version": 1,
   "stages": [
     {
@@ -80,9 +70,7 @@
       "status": "COMPLETE"
     },
     {
-      "blockers": [
-        "missing-evidence:paid_gpu_authorized"
-      ],
+      "blockers": [],
       "completion_evidence": [
         "generated_casting_assets"
       ],
@@ -94,12 +82,11 @@
         "paid_gpu_authorized"
       ],
       "stage_id": "casting_reference_generation",
-      "status": "BLOCKED"
+      "status": "READY"
     },
     {
       "blockers": [
-        "upstream-not-complete:casting_reference_generation",
-        "missing-evidence:paid_gpu_authorized"
+        "upstream-not-complete:casting_reference_generation"
       ],
       "completion_evidence": [
         "visual_model_selected"
@@ -116,8 +103,7 @@
     },
     {
       "blockers": [
-        "upstream-not-complete:visual_model_eval",
-        "missing-evidence:paid_gpu_authorized"
+        "upstream-not-complete:visual_model_eval"
       ],
       "completion_evidence": [
         "selected_video_takes"
@@ -133,9 +119,7 @@
       "status": "BLOCKED"
     },
     {
-      "blockers": [
-        "missing-evidence:paid_gpu_authorized"
-      ],
+      "blockers": [],
       "completion_evidence": [
         "final_voice_eval_complete"
       ],
@@ -147,7 +131,7 @@
         "paid_gpu_authorized"
       ],
       "stage_id": "voice_eval",
-      "status": "BLOCKED"
+      "status": "READY"
     },
     {
       "blockers": [
@@ -226,5 +210,5 @@
       "status": "BLOCKED"
     }
   ],
-  "status": "NO_RUNNABLE_STAGE"
+  "status": "HAS_RUNNABLE_STAGE"
 }

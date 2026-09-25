@@ -122,13 +122,14 @@ jobs:
           PYTHONPATH=. python3 tools/build_voxcpm2_eval_packet.py --out-dir /tmp/aifilm-voxcpm2-eval
           PYTHONPATH=. python3 tools/compile_casting_jobs.py --out-dir /tmp/aifilm-casting-generation
           PYTHONPATH=. python3 tools/compile_voxcpm2_requests.py --out-dir /tmp/aifilm-voxcpm2-requests
-          if PYTHONPATH=. python3 tools/check_paid_launch_gate.py; then
-            echo "paid launch gate unexpectedly passed" >&2
+          if PYTHONPATH=. python3 tools/check_paid_launch_gate.py --receipt model-evaluations/slice01/launch_authorization.placeholder.json --gpu "RTX 5090"; then
+            echo "historical placeholder launch gate unexpectedly passed" >&2
             exit 1
           else
             rc=$?
             test "$rc" -eq 2
           fi
+          PYTHONPATH=. python3 tools/check_paid_launch_gate.py --receipt model-evaluations/slice01/launch_authorization.active.json --gpu "NVIDIA A40" --max-usd 60
       - name: Current work and audit declaration scope
         if: steps.mode.outputs.product_v2 != 'true'
         run: python3 tools/check_current_work.py

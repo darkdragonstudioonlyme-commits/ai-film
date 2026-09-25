@@ -1,5 +1,15 @@
 {
   "schema_version": 1,
   "project_id": "slice01",
-  "entries": []
+  "entries": [
+    {
+      "cost_id": "runpod-a40-bootstrap-estimate-20260925",
+      "category": "OTHER",
+      "amount_usd": 0.11027,
+      "logical_key": "T-019-BOOTSTRAP",
+      "attempt_id": "pod-0h1twwxqw6yx0k-start",
+      "asset_id": null,
+      "note": "Estimated provider runtime from 2026-09-25T11:21:45.856Z to host evidence 2026-09-25T11:35:16Z at USD 0.49/h. Provider billed total not exposed by MCP."
+    }
+  ]
 }

@@ -94,23 +94,28 @@ class SchemaCompatibilityTests(unittest.TestCase):
         self.assertFalse(report["mutations_applied"])
 
 class StageReadinessTests(unittest.TestCase):
-    def test_current_readiness_has_no_runnable_stage_and_paid_frontier(self):
-        self.assertEqual(READINESS["status"],"NO_RUNNABLE_STAGE")
-        self.assertEqual(READINESS["ready_stages"],[])
+    def test_current_readiness_has_authorized_casting_and_voice_frontier(self):
+        self.assertEqual(READINESS["status"],"HAS_RUNNABLE_STAGE")
+        self.assertEqual(set(READINESS["ready_stages"]),{"casting_reference_generation","voice_eval"})
+        self.assertEqual(READINESS["blocking_frontier"],[])
+        self.assertTrue(READINESS["evidence"]["paid_gpu_authorized"])
         self.assertFalse(READINESS["execution_permitted"])
-        frontier={row["stage_id"]:row["blockers"] for row in READINESS["blocking_frontier"]}
+        by={row["stage_id"]:row for row in READINESS["stages"]}
+        for stage_id in ("casting_reference_generation","voice_eval"):
+            self.assertEqual(by[stage_id]["status"],"READY")
+            self.assertEqual(by[stage_id]["blockers"],[])
+            self.assertFalse(by[stage_id]["execution_permitted"])
+
+    def test_removing_paid_authority_blocks_frontier_again(self):
+        evidence=copy.deepcopy(READINESS["evidence"])
+        evidence["paid_gpu_authorized"]=False
+        report=evaluate_stage_readiness(SLICE01_STAGE_DAG,evidence)
+        self.assertEqual(report["status"],"NO_RUNNABLE_STAGE")
+        self.assertEqual(report["ready_stages"],[])
+        frontier={row["stage_id"]:row["blockers"] for row in report["blocking_frontier"]}
         self.assertEqual(set(frontier),{"casting_reference_generation","voice_eval"})
         self.assertEqual(frontier["casting_reference_generation"],["missing-evidence:paid_gpu_authorized"])
         self.assertEqual(frontier["voice_eval"],["missing-evidence:paid_gpu_authorized"])
-
-    def test_paid_authority_would_make_frontier_ready_not_execute(self):
-        evidence=copy.deepcopy(READINESS["evidence"])
-        evidence["paid_gpu_authorized"]=True
-        report=evaluate_stage_readiness(SLICE01_STAGE_DAG,evidence)
-        self.assertEqual(set(report["ready_stages"]),{"casting_reference_generation","voice_eval"})
-        self.assertFalse(report["execution_permitted"])
-        by={row["stage_id"]:row for row in report["stages"]}
-        self.assertFalse(by["casting_reference_generation"]["execution_permitted"])
 
     def test_missing_source_blocks_downstream(self):
         evidence=copy.deepcopy(READINESS["evidence"])

@@ -13,7 +13,9 @@ def main():
     continuity=json.loads((ROOT/"projects/slice01/continuity.json").read_text(encoding="utf-8"))
     shots=json.loads((ROOT/"projects/slice01/shots/benchmark_shots.json").read_text(encoding="utf-8"))
     timing=json.loads((ROOT/"projects/slice01/timing/timing.json").read_text(encoding="utf-8"))
-    auth=json.loads((ROOT/"model-evaluations/slice01/launch_authorization.placeholder.json").read_text(encoding="utf-8"))
+    active_auth=ROOT/"model-evaluations/slice01/launch_authorization.active.json"
+    auth_path=active_auth if active_auth.is_file() else ROOT/"model-evaluations/slice01/launch_authorization.placeholder.json"
+    auth=json.loads(auth_path.read_text(encoding="utf-8"))
     cast_ref=json.loads((ROOT/"projects/slice01/casting/reference_contract.json").read_text(encoding="utf-8"))
     selected=json.loads((ROOT/"projects/slice01/edit/selected_takes.json").read_text(encoding="utf-8"))
     mix=json.loads((ROOT/"projects/slice01/audio/mix_plan_en.json").read_text(encoding="utf-8"))

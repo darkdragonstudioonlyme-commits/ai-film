@@ -11,8 +11,8 @@ def canonical_digest(value):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("--receipt",default="model-evaluations/slice01/launch_authorization.placeholder.json")
-    ap.add_argument("--gpu",default="RTX 5090")
+    ap.add_argument("--receipt",default="model-evaluations/slice01/launch_authorization.active.json")
+    ap.add_argument("--gpu",default="NVIDIA A40")
     ap.add_argument("--max-usd",type=float,default=60.0)
     args=ap.parse_args()
     proposal=json.loads((ROOT/"model-evaluations/slice01/GPU_RENTAL_PROPOSAL_2026-09-24.json").read_text(encoding="utf-8"))

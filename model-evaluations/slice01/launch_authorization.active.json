@@ -1,0 +1,21 @@
+{
+  "allowed_gpus": [
+    "NVIDIA A40"
+  ],
+  "authorization_id": "T019-RUNPOD-A40-20260925",
+  "authorized_at": "2026-09-25T11:33:35Z",
+  "authorized_by": "PROJECT_OWNER_CHAT",
+  "execution_plan_digest": "f921acbfc4bb6b705f31fc82751e6d893212601d048c77c80d4d356ec6e89ab9",
+  "expires_at": null,
+  "max_total_usd": 60.0,
+  "new_resource_creation_authorized": false,
+  "pod_id": "0h1twwxqw6yx0k",
+  "proposal_digest": "ba2442521969903a814e7d474abdb3064c582a72f68c9aafde16d89f47ec26ea",
+  "provider": "RunPod",
+  "publish_authority": false,
+  "rate_snapshot_digest": "2dab0f274bdf9b7920d4d9316feab5dcb7b0acdec7be81e734a3f4e5623782fe",
+  "receipt_digest": "3903f7c558f4ebc32821e64835b7e33e9d0c6d03cd5e43383a5c30794a658a5e",
+  "schema_version": 1,
+  "scope": "T-019_STAGE_A_A40_RUNTIME_CASTING_AND_VOICE_EVAL",
+  "status": "AUTHORIZED"
+}

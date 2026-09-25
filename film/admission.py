@@ -44,7 +44,8 @@ def evaluate_admission(
             available = float(available)
         except (TypeError, ValueError) as exc:
             raise AdmissionError("invalid worker available_vram_gb") from exc
-        reserve = float(job_profile.get("vram_reserve_gb", 0))
+        reserve_value = job_profile.get("vram_reserve_gb")
+        reserve = 0.0 if reserve_value is None else float(reserve_value)
         if required_vram is not None and available < required_vram + reserve:
             reasons.append(
                 f"INSUFFICIENT_VRAM:{available}<{required_vram + reserve}"
