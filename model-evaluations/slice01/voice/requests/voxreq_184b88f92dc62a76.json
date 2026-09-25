@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_13399c04d206",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 3.3,
+  "dialogue_id": "dlg_002",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "zh-CN",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.)得先把信号恢复。",
+  "reference_audio": null,
+  "request_digest": "184b88f92dc62a7614bd1ce2a419934a800b123ead699683def3cf9ea108c1c2",
+  "request_id": "voxreq_184b88f92dc62a76",
+  "schema_version": 1,
+  "seed": 42001,
+  "target_text": "得先把信号恢复。",
+  "voice_design_description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.",
+  "voice_group": "voice_f3adeea4"
+}

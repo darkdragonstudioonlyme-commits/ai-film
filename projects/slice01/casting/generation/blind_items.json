@@ -1,0 +1,230 @@
+{
+  "items": [
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_d0117568f9ed",
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_6a8ff509c1c1",
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_7a237bae8672",
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_a91c92c92c62",
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_48c43f804e0d",
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_4098a922bb60",
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_91951ce3fcdf",
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_6d309c6a1c87",
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_bb18b00c95b6",
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_b2cbd4f36cf4",
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_f39c5ddfe51e",
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_518aed2002db",
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_c989c26d6627",
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_aa8f11b8ee87",
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_ce587292280d",
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_b3d7038bac06",
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_10127a780c51",
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_b503488d5306",
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_ebea0bfaf073",
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_800f75a6272c",
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_353626b0c914",
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_78c0b14555e0",
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_e467cbfce824",
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_aa09967a3506",
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_28f1dd7b2c4a",
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_d30eaa3e6070",
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_a9895c09f20f",
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_362a99773993",
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_472c1f30cd6b",
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_aec57def48e5",
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_e8b94d8922ce",
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "asset_id": null,
+      "asset_sha256": null,
+      "blind_id": "cast_9b8588609ddf",
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    }
+  ],
+  "schema_version": 1,
+  "status": "AWAITING_GENERATED_ASSETS"
+}

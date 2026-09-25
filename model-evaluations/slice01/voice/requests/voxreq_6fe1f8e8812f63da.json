@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_0b3a62fff486",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 3.3,
+  "dialogue_id": "dlg_002",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "vi",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.)Chỉ khi mình khôi phục được tín hiệu.",
+  "reference_audio": null,
+  "request_digest": "6fe1f8e8812f63da4feee20e2e0d6286796ac84a2aa27649b9341ab3f01315f0",
+  "request_id": "voxreq_6fe1f8e8812f63da",
+  "schema_version": 1,
+  "seed": 42001,
+  "target_text": "Chỉ khi mình khôi phục được tín hiệu.",
+  "voice_design_description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.",
+  "voice_group": "voice_f3adeea4"
+}

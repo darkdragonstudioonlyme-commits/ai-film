@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_fd8d0508e077",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 4.0,
+  "dialogue_id": "dlg_003",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "zh-CN",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.)你是为了这个车站回来的？",
+  "reference_audio": null,
+  "request_digest": "8dfc521e00a730c646a35d92841396d8eca4d1fc3d17976b2f62868d0ef8b680",
+  "request_id": "voxreq_8dfc521e00a730c6",
+  "schema_version": 1,
+  "seed": 42001,
+  "target_text": "你是为了这个车站回来的？",
+  "voice_design_description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.",
+  "voice_group": "voice_f3adeea4"
+}

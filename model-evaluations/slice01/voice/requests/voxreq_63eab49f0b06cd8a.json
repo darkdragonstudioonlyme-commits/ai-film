@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_9373295aa488",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 3.3,
+  "dialogue_id": "dlg_002",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "en",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.)Only if we bring the signal back.",
+  "reference_audio": null,
+  "request_digest": "63eab49f0b06cd8aed34241494b5ba43dcefb1184278ccde7aa2a38f42422470",
+  "request_id": "voxreq_63eab49f0b06cd8a",
+  "schema_version": 1,
+  "seed": 42001,
+  "target_text": "Only if we bring the signal back.",
+  "voice_design_description": "A Vietnamese woman in her early thirties, clear grounded alto, composed and observant, natural delivery, medium pace, no celebrity imitation.",
+  "voice_group": "voice_f3adeea4"
+}

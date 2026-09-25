@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_52af55f53319",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 3.5,
+  "dialogue_id": "dlg_001",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "vi",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.)Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+  "reference_audio": null,
+  "request_digest": "b01817af14a9c0b2c838f8260074689cd0630a0e00afcb839dabaaf6ba0bacfe",
+  "request_id": "voxreq_b01817af14a9c0b2",
+  "schema_version": 1,
+  "seed": 41001,
+  "target_text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+  "voice_design_description": "A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.",
+  "voice_group": "voice_ea325d76"
+}

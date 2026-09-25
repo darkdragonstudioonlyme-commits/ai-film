@@ -1,27 +1,27 @@
-# NEXT WORK ITEM — Product v2 batch 006
+# NEXT WORK ITEM — Product v2 batch 007
 
 STATUS: READY
 MILESTONE: M2
 
 BATCH:
-1. T-020 — compile deterministic casting-reference generation jobs from the 16-slot An/Linh contract for active image candidates; no image generation.
-2. T-021 — implement blind-score ingestion/ranking for casting/model evaluation; keep model/character private mapping sealed until scoring completeness checks pass.
-3. T-022 — implement VoxCPM2 Voice Design runner request/output manifest contract plus score ingestion; no synthesis/model execution.
+1. T-023 — implement the image-model GPU runner contract for casting jobs, including dry-run environment/model/reference validation and immutable output manifests; do not create a provider resource.
+2. T-024 — implement generated casting-asset ingestion that verifies job/output/provenance identities before updating reference slots/reference index.
+3. T-025 — implement benchmark result + cost ledger aggregation and a deterministic decision report for later GPU runs.
 
 BLOCKED:
-- T-005/T-006 require generated visual assets.
+- T-005/T-006 still require actual generated visual assets.
 - T-019 paid rental GPU execution requires explicit bounded approval and live provider-rate recheck.
 
 SUCCESS:
-- casting jobs bind exact character/style/slot/model/prompt/seed provenance
-- incomplete/tampered blind score sets fail closed before unblinding/ranking
-- VoxCPM2 requests bind exact model revision/package, voice group, text, seed and no-reference-audio policy
+- a casting job can be translated into an executable worker request but remains non-executing without a local authorized GPU runtime
+- only hash-bound generated assets can populate casting reference slots
+- benchmark timing/VRAM/failure/cost data can produce a reproducible comparison report without inventing a winner when evidence is incomplete
 - no paid compute is launched
 
 DO_NOT:
 - launch/rent GPU
-- execute model inference
-- enable Qwen-Image-2.1 for commercial production without separate license
-- treat LatentSync OpenRAIL++ as automatically commercially cleared
+- execute model inference on paid infrastructure
+- bypass model/license/runtime gates
+- unblind incomplete evaluations
 - clone a real person's voice without rights
 - publish content

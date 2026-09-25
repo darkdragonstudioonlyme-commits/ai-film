@@ -1,0 +1,325 @@
+{
+  "mapping": [
+    {
+      "blind_id": "cast_d0117568f9ed",
+      "character_id": "an",
+      "job_id": "castjob_d3ec86da4ca6b1fc",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 3555493594,
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_6a8ff509c1c1",
+      "character_id": "an",
+      "job_id": "castjob_8e02916e0db64eb6",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2382532974,
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_7a237bae8672",
+      "character_id": "an",
+      "job_id": "castjob_cf89b3f9f0e7e3dc",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 3481908217,
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_a91c92c92c62",
+      "character_id": "an",
+      "job_id": "castjob_83e54a59081fc32f",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2212842073,
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_48c43f804e0d",
+      "character_id": "an",
+      "job_id": "castjob_9e71fc9ba4f7f01a",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 2658270363,
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_4098a922bb60",
+      "character_id": "an",
+      "job_id": "castjob_fdfe0a79d0c30f58",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 4261284473,
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_91951ce3fcdf",
+      "character_id": "an",
+      "job_id": "castjob_c58fe87b384a9caa",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 3314542715,
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_6d309c6a1c87",
+      "character_id": "an",
+      "job_id": "castjob_6ac0581f8a3b2bc0",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 1790990367,
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_bb18b00c95b6",
+      "character_id": "an",
+      "job_id": "castjob_f7ba9f7de5b19299",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 4156202877,
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_b2cbd4f36cf4",
+      "character_id": "an",
+      "job_id": "castjob_cecf6c6fb3a15ee4",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3469700207,
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_f39c5ddfe51e",
+      "character_id": "an",
+      "job_id": "castjob_f4a40abbc035ffe3",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 4104391355,
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_518aed2002db",
+      "character_id": "an",
+      "job_id": "castjob_9618b4fc7f6dce00",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2518201596,
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_c989c26d6627",
+      "character_id": "an",
+      "job_id": "castjob_0b0dae11ba7de0d5",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 185445905,
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_aa8f11b8ee87",
+      "character_id": "an",
+      "job_id": "castjob_ebb594d1f803a698",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3954545873,
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_ce587292280d",
+      "character_id": "an",
+      "job_id": "castjob_9d639dddb934dfd1",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 2640551389,
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_b3d7038bac06",
+      "character_id": "an",
+      "job_id": "castjob_e3b02b69fc40448d",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3819973481,
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_10127a780c51",
+      "character_id": "linh",
+      "job_id": "castjob_1952dc2f4a07acca",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 424860719,
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_b503488d5306",
+      "character_id": "linh",
+      "job_id": "castjob_89f0558afef48759",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2314229130,
+      "slot": "face_front",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_ebea0bfaf073",
+      "character_id": "linh",
+      "job_id": "castjob_ef526ff06c18e2db",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 4015157232,
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_800f75a6272c",
+      "character_id": "linh",
+      "job_id": "castjob_306bbcc1ebfc7467",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 812367041,
+      "slot": "face_3q",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_353626b0c914",
+      "character_id": "linh",
+      "job_id": "castjob_f93ac74fc862c4e7",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 4181378895,
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_78c0b14555e0",
+      "character_id": "linh",
+      "job_id": "castjob_cf39b503811712bd",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3476665603,
+      "slot": "full_body_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_e467cbfce824",
+      "character_id": "linh",
+      "job_id": "castjob_37e17e510d92955d",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 937524817,
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_aa09967a3506",
+      "character_id": "linh",
+      "job_id": "castjob_76742236f3e274de",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 1987322422,
+      "slot": "expression_neutral",
+      "style": "photoreal"
+    },
+    {
+      "blind_id": "cast_28f1dd7b2c4a",
+      "character_id": "linh",
+      "job_id": "castjob_96706cd45a1c876e",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 2523950292,
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_d30eaa3e6070",
+      "character_id": "linh",
+      "job_id": "castjob_e7ea31ed5678b58a",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3890885101,
+      "slot": "face_front",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_a9895c09f20f",
+      "character_id": "linh",
+      "job_id": "castjob_bb735668daa78f93",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 3144898152,
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_362a99773993",
+      "character_id": "linh",
+      "job_id": "castjob_dcd8d473ff2bfdd0",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 3705197683,
+      "slot": "face_3q",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_472c1f30cd6b",
+      "character_id": "linh",
+      "job_id": "castjob_1599404582cf318a",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 362364997,
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_aec57def48e5",
+      "character_id": "linh",
+      "job_id": "castjob_7d879837ab153091",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2106038327,
+      "slot": "full_body_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_e8b94d8922ce",
+      "character_id": "linh",
+      "job_id": "castjob_56498c1f573791b8",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "seed": 1447660575,
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    },
+    {
+      "blind_id": "cast_9b8588609ddf",
+      "character_id": "linh",
+      "job_id": "castjob_7ab5d99421f33dac",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "seed": 2058738068,
+      "slot": "expression_neutral",
+      "style": "stylized_3d"
+    }
+  ],
+  "schema_version": 1
+}

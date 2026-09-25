@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_c18649999184",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 2.1,
+  "dialogue_id": "dlg_004",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "vi",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.)Vì một lời hứa.",
+  "reference_audio": null,
+  "request_digest": "782df7a9a85203d107cf17bbbd24c1cef621b910c42efb78649e95a51125108a",
+  "request_id": "voxreq_782df7a9a85203d1",
+  "schema_version": 1,
+  "seed": 41001,
+  "target_text": "Vì một lời hứa.",
+  "voice_design_description": "A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.",
+  "voice_group": "voice_ea325d76"
+}

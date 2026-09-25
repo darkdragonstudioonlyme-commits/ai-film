@@ -1,0 +1,27 @@
+{
+  "blind_id": "vox_539e9b43601d",
+  "cfg_value": 2.0,
+  "cue_budget_sec": 2.1,
+  "dialogue_id": "dlg_004",
+  "evaluation_id": "slice01-voxcpm2-voice-design-v1",
+  "execution_permitted": false,
+  "inference_timesteps": 10,
+  "language": "en",
+  "mode": "voice_design",
+  "model": {
+    "model_id": "voxcpm2",
+    "package": "voxcpm==2.0.3",
+    "repo": "openbmb/VoxCPM2",
+    "revision": "32279effe8c19989596f05d353d1447f51d9e915",
+    "sample_rate_hz": 48000
+  },
+  "model_input_text": "(A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.)For a promise.",
+  "reference_audio": null,
+  "request_digest": "0a18140a542860ca96f50b388b392e779d9a626653082b4e15ae2821dfdb690a",
+  "request_id": "voxreq_0a18140a542860ca",
+  "schema_version": 1,
+  "seed": 41001,
+  "target_text": "For a promise.",
+  "voice_design_description": "A Vietnamese man in his late twenties, warm restrained tenor, calm and intimate, natural delivery, medium-slow pace, no celebrity imitation.",
+  "voice_group": "voice_ea325d76"
+}
