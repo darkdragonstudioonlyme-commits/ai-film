@@ -19,12 +19,18 @@ COMPLETED Z-IMAGE QUALIFICATION:
 - canonical cost ledger after qualification: USD 0.118397
 - profile remains admission_ready=false because the 1024 four-job comparison profile is still unmeasured
 
+RUNNER_READY:
+- model-evaluations/slice01/z_image_casting_profile.json
+- film/z_image_casting.py
+- tools/run_z_image_casting_batch.py
+- fixed population: An/Linh × photoreal/stylized_3d × face_front
+- profile itself remains non-authorizing; execution context validates active A40 receipt/budget and the prior 512 gate
+
 NEXT:
-1. Add/review a formal Z-Image four-job 1024 runner matching the FLUX2 face_front population.
-2. Execute An/Linh × photoreal/stylized_3d at 1024×1024 with the same Z-Image 50-step settings.
-3. Capture per-job elapsed/peak VRAM/output hashes and batch estimated cost.
-4. Only after 4/4 PASS, derive required_vram_gb + reserve and mark Z-Image resource admission ready.
-5. Then prepare blind comparison scoring; do not select a winner before complete blind scores.
+1. Execute the fixed four-job Z-Image population at 1024×1024, 50 steps, guidance 4, cfg_normalization=false.
+2. Capture per-job elapsed/peak VRAM/output hashes and batch estimated cost.
+3. Only after 4/4 PASS, derive required_vram_gb + reserve and mark Z-Image resource admission ready.
+4. Then prepare blind comparison scoring; do not select a winner before complete blind scores.
 
 DO NOT:
 - promote Z-Image admission from the 512-only result

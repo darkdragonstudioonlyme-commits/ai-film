@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "profile_id": "z-image-casting-a40-v1",
+  "model_id": "z-image",
+  "repo": "Tongyi-MAI/Z-Image",
+  "revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+  "runtime_lock_ref": "model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json",
+  "authorization_ref": "model-evaluations/slice01/launch_authorization.active.json",
+  "gpu": "NVIDIA A40",
+  "dtype": "bfloat16",
+  "mode": "FULL_GPU",
+  "width": 1024,
+  "height": 1024,
+  "num_inference_steps": 50,
+  "guidance_scale": 4.0,
+  "cfg_normalization": false,
+  "low_cpu_mem_usage": false,
+  "negative_prompt_mode": "NATIVE_JOB_NEGATIVE_PROMPT",
+  "smoke_population": "FACE_FRONT_BY_CHARACTER_STYLE",
+  "smoke_jobs": 4,
+  "max_wall_sec": 900,
+  "execution_authorized_by_profile": false,
+  "notes": [
+    "Runner independently validates active paid authorization and budget.",
+    "Canonical per-job negative_prompt is applied natively.",
+    "This profile does not select a model winner or publish assets.",
+    "Model-specific admission remains gated until formal smoke evidence is ingested."
+  ]
+}
