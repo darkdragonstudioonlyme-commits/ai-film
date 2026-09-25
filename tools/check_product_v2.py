@@ -621,6 +621,67 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch014-missing:"+rel)
 
+
+    coverage=json.loads((root/"projects/slice01/story/shot_coverage.json").read_text(encoding="utf-8"))
+    if coverage.get("status")!="COMPLETE" or float(coverage.get("duration_sec",0))!=75.0:
+        errors.append("story-coverage-status")
+    if len(coverage.get("beat_coverage",[]))!=6 or len(coverage.get("shots",[]))!=8 or coverage.get("blockers")!=[]:
+        errors.append("story-coverage-shape")
+    if any(row.get("covered") is not True or not row.get("shot_ids") for row in coverage.get("beat_coverage",[])):
+        errors.append("story-coverage-orphan-beat")
+    if {row.get("shot_id") for row in coverage.get("shots",[])} != shot_ids:
+        errors.append("story-coverage-shot-population")
+
+    continuity_expectations=json.loads((root/"projects/slice01/continuity_expectations.json").read_text(encoding="utf-8"))
+    exp_rows=continuity_expectations.get("shots",[])
+    if continuity_expectations.get("status")!="EXPECTATIONS_READY_NO_VISUAL_OBSERVATIONS" or len(exp_rows)!=8:
+        errors.append("continuity-expectations-status")
+    if {row.get("shot_id") for row in exp_rows} != shot_ids:
+        errors.append("continuity-expectations-population")
+    if len({row.get("expectation_digest") for row in exp_rows})!=8 or any(len(str(row.get("expectation_digest","")))!=64 for row in exp_rows):
+        errors.append("continuity-expectations-digest")
+    sh06=next((row for row in exp_rows if row.get("shot_id")=="sc01_sh06"),None)
+    if sh06 is None:
+        errors.append("continuity-expectations-sh06-missing")
+    else:
+        if sh06.get("characters",{}).get("an",{}).get("injuries",{}).get("left_forearm")!="wrapped in clean white gauze":
+            errors.append("continuity-expectations-sh06-injury")
+        if sh06.get("characters",{}).get("linh",{}).get("props",{}).get("red_paper_crane")!="held in left hand":
+            errors.append("continuity-expectations-sh06-prop")
+
+    subtitle_policy=json.loads((root/"projects/slice01/subtitles/layout_policy.json").read_text(encoding="utf-8"))
+    subtitle_plans=json.loads((root/"projects/slice01/subtitles/layout_plans.json").read_text(encoding="utf-8"))
+    if subtitle_policy.get("status")!="HEURISTIC_TEXT_LAYOUT_POLICY_NOT_VISUAL_QC" or subtitle_policy.get("visual_collision_qc_required") is not True:
+        errors.append("subtitle-layout-policy")
+    plans=subtitle_plans.get("plans",[])
+    if subtitle_plans.get("status")!="TEXT_LAYOUT_PLANS_READY_VISUAL_QC_NOT_RUN" or len(plans)!=6:
+        errors.append("subtitle-layout-plan-shape")
+    expected_plan_keys={(aspect,language) for aspect in ("9:16","16:9") for language in ("en","zh-CN","vi")}
+    if {(row.get("aspect"),row.get("language")) for row in plans} != expected_plan_keys:
+        errors.append("subtitle-layout-plan-population")
+    for row in plans:
+        key=str(row.get("aspect"))+":"+str(row.get("language"))
+        if row.get("status")!="READY_TEXT_LAYOUT" or row.get("blockers")!=[]:
+            errors.append("subtitle-layout-plan-blocked:"+key)
+        if row.get("visual_collision_status")!="NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC":
+            errors.append("subtitle-layout-fake-visual-qc:"+key)
+        if row.get("render_authorized") is not False or len(row.get("rows",[]))!=4:
+            errors.append("subtitle-layout-plan-authority:"+key)
+
+    required_batch015=[
+        "film/BATCH015_CONTRACT.md",
+        "film/story_coverage.py",
+        "film/continuity_expectations.py",
+        "film/subtitle_layout.py",
+        "tools/validate_story_coverage.py",
+        "tools/compile_continuity_expectations.py",
+        "tools/check_continuity_observation.py",
+        "tools/compile_subtitle_layouts.py",
+    ]
+    for rel in required_batch015:
+        if not (root/rel).is_file():
+            errors.append("batch015-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

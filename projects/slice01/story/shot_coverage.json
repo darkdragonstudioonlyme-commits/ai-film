@@ -1,0 +1,159 @@
+{
+  "beat_coverage": [
+    {
+      "beat_id": "beat_001",
+      "covered": true,
+      "end_sec": 15.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh01",
+        "sc01_sh02"
+      ],
+      "start_sec": 0.0,
+      "story_intent": "Rainy station setup; An arrives while Linh closes the desk."
+    },
+    {
+      "beat_id": "beat_002",
+      "covered": true,
+      "end_sec": 34.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh03",
+        "sc01_sh04"
+      ],
+      "start_sec": 15.0,
+      "story_intent": "An asks about the last train; the lights and signal fail; Linh states the problem."
+    },
+    {
+      "beat_id": "beat_003",
+      "covered": true,
+      "end_sec": 43.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh05"
+      ],
+      "start_sec": 34.0,
+      "story_intent": "An frees the service panel, tears his sleeve and cuts his left forearm."
+    },
+    {
+      "beat_id": "beat_004",
+      "covered": true,
+      "end_sec": 54.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh06"
+      ],
+      "start_sec": 43.0,
+      "story_intent": "Linh bandages An and asks why he returned."
+    },
+    {
+      "beat_id": "beat_005",
+      "covered": true,
+      "end_sec": 63.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh07"
+      ],
+      "start_sec": 54.0,
+      "story_intent": "An answers that he returned for a promise as the signal turns green."
+    },
+    {
+      "beat_id": "beat_006",
+      "covered": true,
+      "end_sec": 75.0,
+      "scene_id": "sc01",
+      "shot_ids": [
+        "sc01_sh08"
+      ],
+      "start_sec": 63.0,
+      "story_intent": "The train arrives; An boards while Linh keeps the red paper crane."
+    }
+  ],
+  "blockers": [],
+  "duration_sec": 75.0,
+  "project_id": "slice01",
+  "schema_version": 1,
+  "shots": [
+    {
+      "beat_id": "beat_001",
+      "dialogue_id": null,
+      "duration_sec": 8.0,
+      "end_sec": 8.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh01",
+      "start_sec": 0.0,
+      "story_intent": "Rainy station setup; An arrives while Linh closes the desk."
+    },
+    {
+      "beat_id": "beat_001",
+      "dialogue_id": null,
+      "duration_sec": 7.0,
+      "end_sec": 15.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh02",
+      "start_sec": 8.0,
+      "story_intent": "Rainy station setup; An arrives while Linh closes the desk."
+    },
+    {
+      "beat_id": "beat_002",
+      "dialogue_id": "dlg_001",
+      "duration_sec": 10.0,
+      "end_sec": 25.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh03",
+      "start_sec": 15.0,
+      "story_intent": "An asks about the last train; the lights and signal fail; Linh states the problem."
+    },
+    {
+      "beat_id": "beat_002",
+      "dialogue_id": "dlg_002",
+      "duration_sec": 9.0,
+      "end_sec": 34.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh04",
+      "start_sec": 25.0,
+      "story_intent": "An asks about the last train; the lights and signal fail; Linh states the problem."
+    },
+    {
+      "beat_id": "beat_003",
+      "dialogue_id": null,
+      "duration_sec": 9.0,
+      "end_sec": 43.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh05",
+      "start_sec": 34.0,
+      "story_intent": "An frees the service panel, tears his sleeve and cuts his left forearm."
+    },
+    {
+      "beat_id": "beat_004",
+      "dialogue_id": "dlg_003",
+      "duration_sec": 11.0,
+      "end_sec": 54.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh06",
+      "start_sec": 43.0,
+      "story_intent": "Linh bandages An and asks why he returned."
+    },
+    {
+      "beat_id": "beat_005",
+      "dialogue_id": "dlg_004",
+      "duration_sec": 9.0,
+      "end_sec": 63.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh07",
+      "start_sec": 54.0,
+      "story_intent": "An answers that he returned for a promise as the signal turns green."
+    },
+    {
+      "beat_id": "beat_006",
+      "dialogue_id": null,
+      "duration_sec": 12.0,
+      "end_sec": 75.0,
+      "scene_id": "sc01",
+      "shot_id": "sc01_sh08",
+      "start_sec": 63.0,
+      "story_intent": "The train arrives; An boards while Linh keeps the red paper crane."
+    }
+  ],
+  "status": "COMPLETE"
+}

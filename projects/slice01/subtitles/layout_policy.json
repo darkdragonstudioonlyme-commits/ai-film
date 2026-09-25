@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "HEURISTIC_TEXT_LAYOUT_POLICY_NOT_VISUAL_QC",
+  "max_cps": {
+    "en": 17.0,
+    "vi": 17.0,
+    "zh-CN": 12.0
+  },
+  "aspects": {
+    "9:16": {
+      "max_lines": 2,
+      "max_chars_per_line": {
+        "en": 30,
+        "vi": 30,
+        "zh-CN": 18
+      },
+      "safe_box_norm": {
+        "x": 0.08,
+        "y": 0.72,
+        "width": 0.84,
+        "height": 0.18
+      }
+    },
+    "16:9": {
+      "max_lines": 2,
+      "max_chars_per_line": {
+        "en": 42,
+        "vi": 42,
+        "zh-CN": 22
+      },
+      "safe_box_norm": {
+        "x": 0.08,
+        "y": 0.78,
+        "width": 0.84,
+        "height": 0.14
+      }
+    }
+  },
+  "visual_collision_qc_required": true,
+  "render_authorized": false
+}
