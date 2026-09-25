@@ -9,6 +9,7 @@ FLUX2_FORMAL_1024_SMOKE: PASS 4/4 — max nvidia-smi 20,415 MiB, max torch reser
 FLUX2_ADMISSION: READY for measured 1024 smoke scope with required_vram_gb=20.0 and vram_reserve_gb=4.0; model_matrix execution_ready remains false and no winner is selected.
 COST_LEDGER: estimated total USD 0.11375; provider accrued billing total is not exposed by MCP.
 VALIDATOR_FINDING: pre-run model-dir validator undercounted the text encoder/tokenizer set; validator now binds all 18 required diffusers files / 15,980,131,745 bytes / 14.882657 GiB. No rerun was needed because inference already loaded those files successfully; post-run directory revalidation passed.
+ZIMAGE_RUNNER: plan-only qualification runner ready for exact pinned revision; 512² BF16, 50 steps, guidance 4, native negative prompt; execution waits for merge + exact model-dir validation.
 NEXT: qualify exact pinned Z-Image on the same A40 and fixed face_front population before blind scoring.
 STORAGE_NOTE: smoke PNGs remain Pod-local; canonical repo stores hashes/evidence, not binary media. Sync assets before Pod termination.
 SAFETY: no winner selection, no production acceptance, no publish, no extra resource creation, hard cap USD 60.

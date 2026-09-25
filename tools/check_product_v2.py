@@ -957,6 +957,48 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("flux2-casting-smoke-missing:"+rel)
 
+
+    # Live Z-Image qualification runner must remain plan-first, exact-revision and non-authorizing.
+    if not (root/"film/z_image_live.py").is_file() or not (root/"tools/run_z_image_live.py").is_file():
+        errors.append("z-image-live-runner-missing")
+    else:
+        z_job=next((row for row in cast_jobs if row.get("model_id")=="z-image" and row.get("job_id")=="castjob_8e02916e0db64eb6"),None)
+        if z_job is None:
+            errors.append("z-image-live-runner-canonical-job-missing")
+        else:
+            if z_job.get("model_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
+                errors.append("z-image-live-runner-job-revision")
+            if not str(z_job.get("negative_prompt","")).strip():
+                errors.append("z-image-live-runner-negative-prompt")
+        z_model=next((row for row in models if row.get("model_id")=="z-image"),None)
+        if z_model is None or z_model.get("source_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
+            errors.append("z-image-live-runner-model-revision")
+        else:
+            if z_model.get("license_gate")!="UPSTREAM_APACHE_2_0_PINNED":
+                errors.append("z-image-live-runner-license")
+            if z_model.get("commercial_production_allowed")!="UPSTREAM_MODEL_LICENSE_PERMITS":
+                errors.append("z-image-live-runner-commercial-gate")
+            if z_model.get("production_gate")!="PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW":
+                errors.append("z-image-live-runner-production-gate")
+            if z_model.get("execution_ready") is not False:
+                errors.append("z-image-live-runner-model-authority")
+        if active_auth.get("status")!="AUTHORIZED" or active_auth.get("max_total_usd")!=60.0:
+            errors.append("z-image-live-runner-active-authority")
+        if execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("new_resource_creation_authorized") is not False:
+            errors.append("z-image-live-runner-execution-plan")
+        live_runtime=json.loads((root/"model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json").read_text(encoding="utf-8"))
+        if live_runtime.get("target",{}).get("torch")!="2.8.0+cu128" or live_runtime.get("packages",{}).get("diffusers")!="0.40.0":
+            errors.append("z-image-live-runner-runtime")
+        required_z_files=[
+            "film/z_image_live.py",
+            "tools/run_z_image_live.py",
+            "tests/film/test_z_image_live_runner.py",
+            "reviews/PRODUCT-V2-Z-IMAGE-LIVE-RUNNER-REVIEW.md",
+        ]
+        for rel in required_z_files:
+            if not (root/rel).is_file():
+                errors.append("z-image-live-runner-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

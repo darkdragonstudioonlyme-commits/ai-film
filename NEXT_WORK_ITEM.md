@@ -16,9 +16,15 @@ FLUX2 FORMAL SMOKE COMPLETE:
 - FLUX2 profile required_vram_gb=20.0 + reserve=4.0, admission_ready=true
 - outputs remain smoke evidence only; no winner/production acceptance/publication
 
+RUNNER PREPARED:
+- exact pinned Z-Image revision: 04cc4abb7c5069926f75c9bfde9ef43d49423021
+- diffusers 0.40.0 ZImagePipeline import verified on A40 runtime
+- upstream pinned settings: BF16, low_cpu_mem_usage=false, 50 steps, guidance 4, cfg_normalization=false
+- qualification runner is plan-first and uses native canonical negative_prompt
+
 NEXT:
-1. Inspect exact Z-Image model repository/revision and dependency/runtime requirements.
-2. Download only required inference components into /workspace/models.
+1. Merge the plan-only Z-Image qualification runner.
+2. Download the exact 18-file diffusers snapshot into /workspace/models/z-image.
 3. Run a single low-resolution qualification before the four-job 1024 comparison smoke.
 4. Ingest Z-Image measurement/cost evidence before any blind scoring.
 5. Preserve/sync all FLUX2/Z-Image smoke assets before Pod termination.
