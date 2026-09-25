@@ -1,0 +1,463 @@
+{
+  "plans": [
+    {
+      "aspect": "9:16",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "en",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 8.857143,
+          "line_count": 2,
+          "lines": [
+            "Does the 11:40 still stop",
+            "here?"
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "Does the 11:40 still stop here?"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 10.0,
+          "line_count": 2,
+          "lines": [
+            "Only if we bring the signal",
+            "back."
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "Only if we bring the signal back."
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 7.75,
+          "line_count": 2,
+          "lines": [
+            "You came back for this",
+            "station?"
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "You came back for this station?"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 6.666667,
+          "line_count": 1,
+          "lines": [
+            "For a promise."
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "For a promise."
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.18,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.72
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    },
+    {
+      "aspect": "9:16",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "zh-CN",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 4.285714,
+          "line_count": 1,
+          "lines": [
+            "十一点四十的末班车还停这里吗？"
+          ],
+          "max_chars_per_line": 18,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "十一点四十的末班车还停这里吗？"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 2.424242,
+          "line_count": 1,
+          "lines": [
+            "得先把信号恢复。"
+          ],
+          "max_chars_per_line": 18,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "得先把信号恢复。"
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 3.0,
+          "line_count": 1,
+          "lines": [
+            "你是为了这个车站回来的？"
+          ],
+          "max_chars_per_line": 18,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "你是为了这个车站回来的？"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 3.333333,
+          "line_count": 1,
+          "lines": [
+            "为了一个承诺。"
+          ],
+          "max_chars_per_line": 18,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "为了一个承诺。"
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.18,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.72
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    },
+    {
+      "aspect": "9:16",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "vi",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 13.714286,
+          "line_count": 2,
+          "lines": [
+            "Chuyến mười một giờ bốn mươi",
+            "vẫn dừng ở đây chứ?"
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 11.212121,
+          "line_count": 2,
+          "lines": [
+            "Chỉ khi mình khôi phục được",
+            "tín hiệu."
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "Chỉ khi mình khôi phục được tín hiệu."
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 7.75,
+          "line_count": 2,
+          "lines": [
+            "Anh quay lại vì nhà ga này",
+            "sao?"
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "Anh quay lại vì nhà ga này sao?"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 7.142857,
+          "line_count": 1,
+          "lines": [
+            "Vì một lời hứa."
+          ],
+          "max_chars_per_line": 30,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "Vì một lời hứa."
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.18,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.72
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    },
+    {
+      "aspect": "16:9",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "en",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 8.857143,
+          "line_count": 1,
+          "lines": [
+            "Does the 11:40 still stop here?"
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "Does the 11:40 still stop here?"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 10.0,
+          "line_count": 1,
+          "lines": [
+            "Only if we bring the signal back."
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "Only if we bring the signal back."
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 7.75,
+          "line_count": 1,
+          "lines": [
+            "You came back for this station?"
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "You came back for this station?"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 6.666667,
+          "line_count": 1,
+          "lines": [
+            "For a promise."
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "For a promise."
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.14,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.78
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    },
+    {
+      "aspect": "16:9",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "zh-CN",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 4.285714,
+          "line_count": 1,
+          "lines": [
+            "十一点四十的末班车还停这里吗？"
+          ],
+          "max_chars_per_line": 22,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "十一点四十的末班车还停这里吗？"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 2.424242,
+          "line_count": 1,
+          "lines": [
+            "得先把信号恢复。"
+          ],
+          "max_chars_per_line": 22,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "得先把信号恢复。"
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 3.0,
+          "line_count": 1,
+          "lines": [
+            "你是为了这个车站回来的？"
+          ],
+          "max_chars_per_line": 22,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "你是为了这个车站回来的？"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 3.333333,
+          "line_count": 1,
+          "lines": [
+            "为了一个承诺。"
+          ],
+          "max_chars_per_line": 22,
+          "max_cps_heuristic": 12.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "为了一个承诺。"
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.14,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.78
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    },
+    {
+      "aspect": "16:9",
+      "blockers": [],
+      "duration_sec": 75.0,
+      "language": "vi",
+      "project_id": "slice01",
+      "render_authorized": false,
+      "rows": [
+        {
+          "dialogue_id": "dlg_001",
+          "end_sec": 20.0,
+          "estimated_cps": 13.714286,
+          "line_count": 2,
+          "lines": [
+            "Chuyến mười một giờ bốn mươi vẫn dừng ở",
+            "đây chứ?"
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh03",
+          "start_sec": 16.5,
+          "text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?"
+        },
+        {
+          "dialogue_id": "dlg_002",
+          "end_sec": 29.8,
+          "estimated_cps": 11.212121,
+          "line_count": 1,
+          "lines": [
+            "Chỉ khi mình khôi phục được tín hiệu."
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh04",
+          "start_sec": 26.5,
+          "text": "Chỉ khi mình khôi phục được tín hiệu."
+        },
+        {
+          "dialogue_id": "dlg_003",
+          "end_sec": 48.5,
+          "estimated_cps": 7.75,
+          "line_count": 1,
+          "lines": [
+            "Anh quay lại vì nhà ga này sao?"
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh06",
+          "start_sec": 44.5,
+          "text": "Anh quay lại vì nhà ga này sao?"
+        },
+        {
+          "dialogue_id": "dlg_004",
+          "end_sec": 57.6,
+          "estimated_cps": 7.142857,
+          "line_count": 1,
+          "lines": [
+            "Vì một lời hứa."
+          ],
+          "max_chars_per_line": 42,
+          "max_cps_heuristic": 17.0,
+          "shot_id": "sc01_sh07",
+          "start_sec": 55.5,
+          "text": "Vì một lời hứa."
+        }
+      ],
+      "safe_box_norm": {
+        "height": 0.14,
+        "width": 0.84,
+        "x": 0.08,
+        "y": 0.78
+      },
+      "schema_version": 1,
+      "status": "READY_TEXT_LAYOUT",
+      "visual_collision_status": "NOT_EVALUATED_REQUIRES_RENDERED_FRAME_QC"
+    }
+  ],
+  "schema_version": 1,
+  "status": "TEXT_LAYOUT_PLANS_READY_VISUAL_QC_NOT_RUN"
+}

@@ -236,15 +236,30 @@
 - id: T-047
   milestone: M2
   goal: "Implement story beat to shot coverage and runtime reconciliation"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-048
   milestone: M2
   goal: "Implement per-shot continuity expectation manifests and observed-state diff checker"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-049
   milestone: M2
   goal: "Implement multilingual subtitle layout/safe-area planning for 9:16 and 16:9"
+  status: DONE
+  owner: executor
+- id: T-050
+  milestone: M2
+  goal: "Implement rights-safe source/adaptation ingestion and normalized source packet"
+  status: READY
+  owner: executor
+- id: T-051
+  milestone: M2
+  goal: "Implement reusable project scaffold from validated product schemas without copying generated assets or secrets"
+  status: READY
+  owner: executor
+- id: T-052
+  milestone: M2
+  goal: "Implement portable production-spec package with hash-bound story, continuity, shots, localization and framing inputs"
   status: READY
   owner: executor

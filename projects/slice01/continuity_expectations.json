@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "shots": [
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "props": {
+            "red_paper_crane": "in right jacket pocket"
+          }
+        }
+      },
+      "expectation_digest": "a9aa0cf3eeefea519322fa3a72a57888df3c8b603e6999a3464b7ed26a58b591",
+      "shot_id": "sc01_sh01",
+      "story_time": "D1_2340"
+    },
+    {
+      "characters": {
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip"
+          }
+        }
+      },
+      "expectation_digest": "8c8dc221c0cb721fc8cfed33e6ff54342c833c46e9f7ba315995ab9b4fba4999",
+      "shot_id": "sc01_sh02",
+      "story_time": "D1_2340"
+    },
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "props": {
+            "red_paper_crane": "held in right hand"
+          }
+        },
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip"
+          }
+        }
+      },
+      "expectation_digest": "fb97f471a69e5986d50f0f2c030ca4d949d5c6eda3327d6e98d78c099801d0cc",
+      "shot_id": "sc01_sh03",
+      "story_time": "D1_2342"
+    },
+    {
+      "characters": {
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip"
+          }
+        }
+      },
+      "expectation_digest": "5431b99c096ff795dd37fdf34d5c8f9be9e88b57da9d06c05f5763f43f345fb4",
+      "shot_id": "sc01_sh04",
+      "story_time": "D1_2342"
+    },
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "costume_damage": {
+            "left_sleeve": "small tear, damp edge"
+          },
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "injuries": {
+            "left_forearm": "fresh shallow cut, small amount of blood"
+          },
+          "props": {
+            "red_paper_crane": "held in right hand"
+          }
+        }
+      },
+      "expectation_digest": "593d4547bc290eb78af945e68aa48647faffeac741769b9079ff4159f5339299",
+      "shot_id": "sc01_sh05",
+      "story_time": "D1_2344"
+    },
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "costume_damage": {
+            "left_sleeve": "small tear, damp edge"
+          },
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "injuries": {
+            "left_forearm": "wrapped in clean white gauze"
+          },
+          "props": {}
+        },
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip",
+            "red_paper_crane": "held in left hand"
+          }
+        }
+      },
+      "expectation_digest": "94d72bc54662f90dc59ba4cc08bccb6c6378b50485bad6afca90f523c077e4a9",
+      "shot_id": "sc01_sh06",
+      "story_time": "D1_2345"
+    },
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "costume_damage": {
+            "left_sleeve": "small tear, damp edge"
+          },
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "injuries": {
+            "left_forearm": "wrapped in clean white gauze"
+          },
+          "props": {}
+        },
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip",
+            "red_paper_crane": "held in left hand"
+          }
+        }
+      },
+      "expectation_digest": "b572b912000ee221ac5d4a8dfe67a4aa7222e3bf4c0b38a00fc2049dc41c30f4",
+      "shot_id": "sc01_sh07",
+      "story_time": "D1_2345"
+    },
+    {
+      "characters": {
+        "an": {
+          "costume": "charcoal rain jacket, dark jeans, white sneakers",
+          "costume_damage": {
+            "left_sleeve": "small tear, damp edge"
+          },
+          "identity": {
+            "age": 28,
+            "build": "lean",
+            "gender": "male",
+            "hair": "short black"
+          },
+          "injuries": {
+            "left_forearm": "wrapped in clean white gauze"
+          },
+          "props": {}
+        },
+        "linh": {
+          "costume": "navy station uniform, silver name badge",
+          "identity": {
+            "age": 31,
+            "build": "average",
+            "gender": "female",
+            "hair": "shoulder-length black"
+          },
+          "props": {
+            "flashlight": "belt clip",
+            "red_paper_crane": "held in left hand"
+          }
+        }
+      },
+      "expectation_digest": "47105a0454544778cd2eafee84ac5b777eeed4cc0f03bedb5701f2d5c014210d",
+      "shot_id": "sc01_sh08",
+      "story_time": "D1_2347"
+    }
+  ],
+  "status": "EXPECTATIONS_READY_NO_VISUAL_OBSERVATIONS"
+}

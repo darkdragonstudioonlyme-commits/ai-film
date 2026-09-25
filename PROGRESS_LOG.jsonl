@@ -13,3 +13,4 @@
 {"turn": 12, "ts": "2026-09-25T09:21:50.954806+00:00", "actor": "turn_end", "summary": "batch012 complete: worker admission + bounded queue + full cost ledger", "tests": "113/113 tests PASS; VRAM profiles unmeasured; budget remains zero"}
 {"turn": 13, "ts": "2026-09-25T09:45:14.970472+00:00", "actor": "turn_end", "summary": "batch013 complete: selective lip-sync + SFX/music cues + audio mix planning", "tests": "126/126 tests PASS; product checker PASS; no media execution"}
 {"turn": 14, "ts": "2026-09-25T09:52:44.916690+00:00", "actor": "turn_end", "summary": "batch014 complete: screenplay schema + localization timing + 16x9 reframe plan", "tests": "140/140 tests PASS; product checker PASS; no media generation"}
+{"turn": 15, "ts": "2026-09-25T10:01:45.481485+00:00", "actor": "turn_end", "summary": "batch015 complete: story-shot coverage + continuity expectations + subtitle layout", "tests": "153/153 tests PASS; product checker PASS; no media generation"}
