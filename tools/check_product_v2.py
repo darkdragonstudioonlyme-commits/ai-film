@@ -478,6 +478,42 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("batch011-missing:"+rel)
 
+
+    resources=json.loads((root/"model-evaluations/slice01/resource_profiles.json").read_text(encoding="utf-8"))
+    profiles=resources.get("profiles",[])
+    if resources.get("status")!="PROFILES_PINNED_VRAM_UNMEASURED" or len(profiles)!=5:
+        errors.append("resource-profile-state")
+    if any(row.get("admission_ready") is not False or row.get("vram_status")!="UNMEASURED" or row.get("required_vram_gb") is not None for row in profiles):
+        errors.append("resource-profile-unmeasured-boundary")
+    if any(row.get("throughput_status")!="UNMEASURED" for row in profiles):
+        errors.append("resource-profile-throughput-claim")
+    queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
+    queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
+    if queue_policy.get("max_depth")!=16 or queue_policy.get("per_project_concurrency")!=2:
+        errors.append("queue-policy-limits")
+    if queue_state.get("status")!="NO_RUNTIME_QUEUE_STARTED" or queue_state.get("jobs")!=[]:
+        errors.append("queue-state-not-empty")
+    if queue_state.get("max_depth")!=16 or queue_state.get("per_project_concurrency")!=2:
+        errors.append("queue-state-policy-drift")
+    cost_policy=json.loads((root/"projects/slice01/runtime/cost_policy.json").read_text(encoding="utf-8"))
+    cost_ledger=json.loads((root/"projects/slice01/runtime/cost_ledger.json").read_text(encoding="utf-8"))
+    if cost_policy.get("status")!="NO_PAID_BUDGET_AUTHORIZED" or cost_policy.get("current_authorized_budget_usd")!=0.0:
+        errors.append("cost-policy-authority")
+    if cost_ledger.get("entries")!=[]:
+        errors.append("cost-ledger-unexpected-runtime-cost")
+    required_batch012=[
+        "film/BATCH012_CONTRACT.md",
+        "film/admission.py",
+        "film/queue_control.py",
+        "film/cost_ledger.py",
+        "tools/check_worker_admission.py",
+        "tools/dispatch_queue_once.py",
+        "tools/check_project_budget.py",
+    ]
+    for rel in required_batch012:
+        if not (root/rel).is_file():
+            errors.append("batch012-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")

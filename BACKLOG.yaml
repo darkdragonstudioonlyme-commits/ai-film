@@ -191,15 +191,30 @@
 - id: T-038
   milestone: M2
   goal: "Implement capability-based worker admission from model/runtime/VRAM requirements"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-039
   milestone: M2
   goal: "Implement bounded project queue, per-project concurrency and visible backpressure/cancellation"
-  status: READY
+  status: DONE
   owner: executor
 - id: T-040
   milestone: M2
   goal: "Implement full cost ledger and budget enforcement including failed/rejected/storage/transfer costs"
+  status: DONE
+  owner: executor
+- id: T-041
+  milestone: M2
+  goal: "Implement per-language lip-sync request planner that only targets visible-mouth dialogue shots"
+  status: READY
+  owner: executor
+- id: T-042
+  milestone: M2
+  goal: "Implement structured SFX/music cue sheet with timeline validation and rights placeholders"
+  status: READY
+  owner: executor
+- id: T-043
+  milestone: M2
+  goal: "Implement final audio-mix plan compiler for dialogue, ambience, SFX and music without executing media tools"
   status: READY
   owner: executor

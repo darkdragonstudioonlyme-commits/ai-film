@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "status": "POLICY_READY_NO_RUNTIME_QUEUE",
+  "max_depth": 16,
+  "per_project_concurrency": 2,
+  "note": "Limits are safety defaults for the first single-project worker pool, not throughput claims."
+}
