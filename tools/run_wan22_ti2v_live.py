@@ -67,6 +67,7 @@ def ffprobe(path: Path) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Plan or execute a bounded Wan2.2 TI2V-5B A40 technical smoke.")
     ap.add_argument("--smoke-id", required=True)
+    ap.add_argument("--spec-path", default="model-evaluations/slice01/video/wan22_ti2v_smoke.json")
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--max-runtime-sec", type=float)
     ap.add_argument("--wan-repo-dir")
@@ -75,7 +76,10 @@ def main() -> int:
     ap.add_argument("--out-root", default="/workspace/runs/wan22-ti2v-live")
     args = ap.parse_args()
 
-    spec = load(ROOT / "model-evaluations/slice01/video/wan22_ti2v_smoke.json")
+    spec_path=Path(args.spec_path)
+    if not spec_path.is_absolute():
+        spec_path=ROOT/spec_path
+    spec=load(spec_path)
     if spec.get("smoke_id") != args.smoke_id:
         raise SystemExit("unknown Wan2.2 smoke id")
     if args.max_runtime_sec is not None:
@@ -85,6 +89,7 @@ def main() -> int:
     matrix = load(ROOT / "model-evaluations/slice01/model_matrix.json")
     gpu_session = load(ROOT / "projects/slice01/runtime/gpu_session.json")
     plan = validate_smoke_spec(spec, matrix=matrix, gpu_session=gpu_session)
+    plan["spec_path"]=str(spec_path)
     if not args.execute:
         print(json.dumps(plan, ensure_ascii=False, sort_keys=True))
         return 0

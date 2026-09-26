@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "batch_id": "world-capability-historical-motion-20260926",
+  "stop_on_failure": true,
+  "jobs": [
+    {
+      "job_id": "world-tang-changan-motion-v1",
+      "adapter": "wan22-ti2v-live",
+      "work_id": "world-tang-changan-motion-v1",
+      "receipt_path": "/workspace/runs/world-capability-motion/world-tang-changan-motion-v1/evidence.json",
+      "model_dir": "/workspace/models/wan22-ti2v-5b",
+      "code_dir": "/workspace/wan2.2-src",
+      "reference_image": "/workspace/runs/world-capability/world-tang-changan-cast-v1/world-tang-changan-cast-v1.png",
+      "out_root": "/workspace/runs/world-capability-motion",
+      "max_runtime_sec": 1200,
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/wan22/bin/python",
+      "spec_path": "model-evaluations/world-capability/wan22_tang_motion_smoke.json"
+    },
+    {
+      "job_id": "world-paris-belle-epoque-motion-v1",
+      "adapter": "wan22-ti2v-live",
+      "work_id": "world-paris-belle-epoque-motion-v1",
+      "receipt_path": "/workspace/runs/world-capability-motion/world-paris-belle-epoque-motion-v1/evidence.json",
+      "model_dir": "/workspace/models/wan22-ti2v-5b",
+      "code_dir": "/workspace/wan2.2-src",
+      "reference_image": "/workspace/runs/world-capability/world-paris-belle-epoque-cast-v2/world-paris-belle-epoque-cast-v2.png",
+      "out_root": "/workspace/runs/world-capability-motion",
+      "max_runtime_sec": 1200,
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/wan22/bin/python",
+      "spec_path": "model-evaluations/world-capability/wan22_paris_motion_smoke.json"
+    }
+  ]
+}
