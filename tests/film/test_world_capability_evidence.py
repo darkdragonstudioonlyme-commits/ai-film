@@ -50,7 +50,7 @@ class WorldCapabilityEvidenceTests(unittest.TestCase):
         self.assertEqual(SESSION["provider_state"],"RUNNING")
         self.assertEqual(SESSION["operational_state"],"IDLE_OWNER_REVIEW_GATE")
         self.assertAlmostEqual(SESSION["execution_cost_usd"],0.455474,places=6)
-        self.assertAlmostEqual(SESSION["provider_billed_usd"],9.710120756644756,places=9)
+        self.assertGreaterEqual(SESSION["provider_billed_usd"],EV["provider_billed_snapshot_usd"])
         self.assertLess(SESSION["provider_billed_usd"],SESSION["budget_cap_usd"])
         self.assertEqual(SESSION["world_capability"]["generated_outputs"],5)
         self.assertEqual(SESSION["world_capability"]["synced_outputs"],5)

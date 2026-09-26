@@ -14,17 +14,19 @@ OWNER REVIEW:
 - local review page: http://localhost:8765/
 - required score set: 12 voice samples + blind motion_A/motion_B;
 - scale: integer 0–8;
+- click Submit & Save after all 14 scores; server writes /home/dragon/ai-film-dev/media/slice01/owner-review-20260926/owner_review_scores_20260926.json;
 - motion mapping stays sealed until the complete score set is ingested.
 
 NEXT AFTER COMPLETE SCORES:
-1. ingest owner review JSON with tools/ingest_owner_review_scores.py;
+1. ingest the server-saved owner review JSON with tools/ingest_owner_review_scores.py;
 2. unblind motion only after all 14 scores validate;
-3. promote only scored media/reference choices into the first multi-shot M3/M4 quality benchmark;
-4. keep 14B/LTX gated until measured admission/runtime evidence exists.
+3. build the fail-closed scored-media promotion plan with tools/build_scored_benchmark_plan.py; unique motion top score may configure the benchmark, while a tie blocks;
+4. promote only scored media/reference choices into the first multi-shot M3/M4 quality benchmark;
+5. keep 14B/LTX gated until measured admission/runtime evidence exists.
 
 PAID RESOURCE:
 - existing RunPod A40 only, USD 0.49/h, hard cap USD 60;
-- lifetime provider bill snapshot USD 9.710121;
+- lifetime provider bill snapshot USD 9.971950;
 - no useful GPU batch is queued while owner review is pending; stopping the existing Pod is recommended if review will pause.
 
 DO NOT:

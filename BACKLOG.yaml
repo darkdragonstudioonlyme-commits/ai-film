@@ -297,3 +297,8 @@
   goal: "Prove historical-China and European world profiles end-to-end with generated image + Wan2.2 motion media"
   status: DONE
   owner: executor
+- id: T-060
+  milestone: M3
+  goal: "Implement fail-closed scored-media promotion gate from complete owner voice/motion review to multi-shot benchmark configuration"
+  status: DONE
+  owner: executor

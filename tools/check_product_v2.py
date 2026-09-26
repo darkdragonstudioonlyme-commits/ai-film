@@ -59,6 +59,7 @@ REQUIRED_PRODUCT_FILES = [
     "tests/film/test_image_keyframe_live.py",
     "film/scored_media_promotion.py",
     "tools/build_scored_benchmark_plan.py",
+    "tools/serve_owner_review.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
