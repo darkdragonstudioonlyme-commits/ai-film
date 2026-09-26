@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "batch_id": "wan22-sc01-sh04-balanced-motion-20260926",
+  "stop_on_failure": true,
+  "jobs": [
+    {
+      "job_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "adapter": "wan22-quality-live",
+      "work_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "receipt_path": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/evidence.json",
+      "model_dir": "/workspace/models/wan22-ti2v-5b",
+      "code_dir": "/workspace/wan2.2-src",
+      "reference_image": "/workspace/runs/image-keyframe-live/sc01-sh04-flux2-portrait-v2/sc01-sh04-flux2-portrait-v2.png",
+      "out_root": "/workspace/runs/wan22-quality-live",
+      "max_runtime_sec": 1200,
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/wan22/bin/python"
+    },
+    {
+      "job_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "adapter": "wan22-quality-live",
+      "work_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "receipt_path": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/evidence.json",
+      "model_dir": "/workspace/models/wan22-ti2v-5b",
+      "code_dir": "/workspace/wan2.2-src",
+      "reference_image": "/workspace/runs/image-keyframe-live/sc01-sh04-zimage-portrait-v2/sc01-sh04-zimage-portrait-v2.png",
+      "out_root": "/workspace/runs/wan22-quality-live",
+      "max_runtime_sec": 1200,
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/wan22/bin/python"
+    }
+  ]
+}

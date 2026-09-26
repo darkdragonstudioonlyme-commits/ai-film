@@ -177,11 +177,12 @@ def build_smoke_evidence(
     peak_vram_mib: float,
     ffprobe: dict[str, Any],
     returncode: int,
+    pass_status: str="PASS_RUNTIME_SMOKE",
 ) -> dict[str, Any]:
     passed = returncode == 0 and output_file.is_file() and output_file.stat().st_size > 0
     evidence = {
         **plan,
-        "status": "PASS_RUNTIME_SMOKE" if passed else "FAILED",
+        "status": pass_status if passed else "FAILED",
         "elapsed_sec": round(float(elapsed_sec), 6),
         "peak_vram_mib": round(float(peak_vram_mib), 3),
         "returncode": int(returncode),

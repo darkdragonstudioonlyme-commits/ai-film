@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "probe_id": "sc01-sh04-wan22-balanced-motion-v1",
+  "status": "READY_NOT_EXECUTED",
+  "purpose": "first balanced Wan2.2 quality-motion probe using both image-model keyframes; no image-model winner implied",
+  "shot_id": "sc01_sh04",
+  "model_id": "wan22-ti2v-5b",
+  "model_repo": "Wan-AI/Wan2.2-TI2V-5B",
+  "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+  "code_repo": "Wan-Video/Wan2.2",
+  "code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+  "task": "ti2v-5B",
+  "size": "704*1280",
+  "frame_num": 25,
+  "sample_steps": 8,
+  "base_seed": 52004,
+  "offload_model": true,
+  "convert_model_dtype": true,
+  "t5_cpu": true,
+  "prompt": "Cinematic photoreal close-up of Linh at a railway station desk as the lights flicker out behind her. She raises a flashlight, alert but composed. Preserve the exact face, age, shoulder-length black hair, navy station uniform and silver name badge from the reference image. Subtle natural breathing, one small eye movement and a slight controlled head adjustment only. Static 85mm camera, stable background, realistic skin and fabric motion, no camera shake, no scene cut, no new person, no written text, no subtitles, no logos or watermark.",
+  "quality_acceptance": false,
+  "production_acceptance": false,
+  "selection_authorized": false,
+  "jobs": [
+    {
+      "probe_job_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "reference_model_id": "flux2-klein-4b",
+      "reference_image": "/workspace/runs/image-keyframe-live/sc01-sh04-flux2-portrait-v2/sc01-sh04-flux2-portrait-v2.png",
+      "reference_image_sha256": "04095985c12f274c589e9a65787a6750f20c3d991371d1acfb1a3a54a24d66c2",
+      "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+      "max_runtime_sec": 1200
+    },
+    {
+      "probe_job_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "reference_model_id": "z-image",
+      "reference_image": "/workspace/runs/image-keyframe-live/sc01-sh04-zimage-portrait-v2/sc01-sh04-zimage-portrait-v2.png",
+      "reference_image_sha256": "bee38a1fdb6a0984773704f43389d1eb1658b639ee70f65abd64d8b0aff7a5c4",
+      "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+      "max_runtime_sec": 1200
+    }
+  ]
+}
