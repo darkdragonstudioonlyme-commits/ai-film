@@ -1,0 +1,106 @@
+{
+  "blindness_note": "Process seal only: model identity is excluded from public packet but asset hashes also exist in private/canonical evidence.",
+  "comparison_id": "slice01-face-front-flux2-vs-zimage-v1",
+  "criteria": [
+    "identity_match",
+    "prompt_adherence",
+    "style_quality",
+    "anatomy_artifact_free",
+    "overall"
+  ],
+  "items": [
+    {
+      "asset_bytes": 1214653,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "8916d95f63bb5112b36008155bf85ac19970cda478d2643c971302f676bbab8c",
+      "blind_id": "cmp_1075894217d7",
+      "character_id": "linh",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 1392603,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "3681cb753c1eabcdeba187a4d6dce0b086eecac3fe8c0eb3d521a54fbe47d86c",
+      "blind_id": "cmp_4720d9887d35",
+      "character_id": "an",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 1342592,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "25ff2a658702760c07a4d4395f0746be6f889a06932db39d727fef43e95170ea",
+      "blind_id": "cmp_4aec71e23d09",
+      "character_id": "linh",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 961314,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "8bdbbaff9534b04dda80082e59811ea161cbcbb3230f297657c50ab8ed2ebe11",
+      "blind_id": "cmp_5b3a6b9f6a7f",
+      "character_id": "linh",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 1216905,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "e5509ef7f4bd9016179d2b1e485cfcfa83ad2e1e6bd2f2df66196c8dde32bc89",
+      "blind_id": "cmp_8d3dafe6afa1",
+      "character_id": "an",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "photoreal",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 1281673,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "05a4ae8aafe9c7675f43170994c65eb1a77f444a18d3e83fc980e39141b767d1",
+      "blind_id": "cmp_bcb5b7623da6",
+      "character_id": "linh",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 978741,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "5e20fd1087a00e18670cd320f767a650985b6faa6d8454af8a08332980f8021c",
+      "blind_id": "cmp_c511ddee505c",
+      "character_id": "an",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    },
+    {
+      "asset_bytes": 1016671,
+      "asset_locator_status": "POD_LOCAL_HASH_ONLY",
+      "asset_sha256": "18a2c2888a5e37c615dc63329fe1458fde6483855885f096b2d4d81678b4eed8",
+      "blind_id": "cmp_dd8f09f694fa",
+      "character_id": "an",
+      "height": 1024,
+      "slot": "face_front",
+      "style": "stylized_3d",
+      "width": 1024
+    }
+  ],
+  "production_acceptance": false,
+  "sample_count": 8,
+  "schema_version": 1,
+  "selection_authorized": false,
+  "status": "AWAITING_BLIND_SCORES"
+}

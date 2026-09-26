@@ -529,7 +529,7 @@ def main() -> int:
 
     resources=json.loads((root/"model-evaluations/slice01/resource_profiles.json").read_text(encoding="utf-8"))
     profiles=resources.get("profiles",[])
-    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_1024_READY_ZIMAGE_512_PENDING_OTHERS_UNMEASURED" or len(profiles)!=5:
+    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_READY_OTHERS_UNMEASURED" or len(profiles)!=5:
         errors.append("resource-profile-state")
     flux_profile=next((row for row in profiles if row.get("model_id")=="flux2-klein-4b"),None)
     if flux_profile is None:
@@ -551,16 +551,20 @@ def main() -> int:
     if z_profile is None:
         errors.append("resource-profile-zimage-missing")
     else:
-        if z_profile.get("admission_ready") is not False or z_profile.get("vram_status")!="MEASURED_512_QUALIFICATION":
-            errors.append("resource-profile-zimage-qualification-state")
-        if z_profile.get("required_vram_gb") is not None or z_profile.get("vram_reserve_gb") is not None:
-            errors.append("resource-profile-zimage-formal-vram-must-remain-unset")
-        if z_profile.get("throughput_status")!="MEASURED_512_QUALIFICATION":
+        if z_profile.get("admission_ready") is not True or z_profile.get("vram_status")!="MEASURED":
+            errors.append("resource-profile-zimage-admission-state")
+        if z_profile.get("required_vram_gb")!=26.0 or z_profile.get("vram_reserve_gb")!=4.0:
+            errors.append("resource-profile-zimage-vram-policy")
+        if z_profile.get("throughput_status")!="MEASURED_1024_FORMAL_SMOKE":
             errors.append("resource-profile-zimage-throughput-state")
         if z_profile.get("qualification_peak_vram_mib")!=21913.0 or z_profile.get("qualification_inference_sec")!=21.623722:
-            errors.append("resource-profile-zimage-measurements")
-        if z_profile.get("production_resolution_vram_status")!="UNMEASURED_1024_SMOKE_PENDING":
+            errors.append("resource-profile-zimage-qualification-measurements")
+        if z_profile.get("formal_smoke_peak_nvidia_mib")!=26227 or z_profile.get("formal_smoke_peak_torch_mib")!=25892.0:
+            errors.append("resource-profile-zimage-formal-measurements")
+        if z_profile.get("production_resolution_vram_status")!="MEASURED_1024_FOUR_JOB_SMOKE":
             errors.append("resource-profile-zimage-production-boundary")
+        if z_profile.get("vram_policy")!="CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE":
+            errors.append("resource-profile-zimage-vram-policy-name")
     other_profiles=[row for row in profiles if row.get("model_id") not in {"flux2-klein-4b","z-image"}]
     if any(row.get("admission_ready") is not False or row.get("vram_status")!="UNMEASURED" or row.get("required_vram_gb") is not None for row in other_profiles):
         errors.append("resource-profile-other-unmeasured-boundary")
@@ -580,7 +584,7 @@ def main() -> int:
     worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
     if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
         errors.append("runpod-a40-worker-measurement")
-    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_1024_PASS_ZIMAGE_512_PASS_OTHER_ADAPTERS_PENDING":
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_1024_PASS_OTHER_ADAPTERS_PENDING":
         errors.append("runpod-a40-worker-binding")
     flux_worker=(worker.get("qualified_models") or {}).get("flux2-klein-4b",{})
     if flux_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_worker.get("peak_vram_mib")!=20415 or flux_worker.get("formal_1024_smoke_pending") is not False:
@@ -588,10 +592,10 @@ def main() -> int:
     if flux_worker.get("admission_ready") is not True or flux_worker.get("required_vram_gb")!=20.0 or flux_worker.get("vram_reserve_gb")!=4.0:
         errors.append("runpod-a40-worker-flux2-admission")
     z_worker=(worker.get("qualified_models") or {}).get("z-image",{})
-    if z_worker.get("status")!="PASS_512_QUALIFICATION" or z_worker.get("peak_vram_mib")!=21913.0 or z_worker.get("formal_1024_smoke_pending") is not True:
-        errors.append("runpod-a40-worker-zimage-qualification")
-    if z_worker.get("admission_ready") is not False:
-        errors.append("runpod-a40-worker-zimage-admission-boundary")
+    if z_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or z_worker.get("peak_vram_mib")!=26227 or z_worker.get("formal_1024_smoke_pending") is not False:
+        errors.append("runpod-a40-worker-zimage-formal-smoke")
+    if z_worker.get("admission_ready") is not True or z_worker.get("required_vram_gb")!=26.0 or z_worker.get("vram_reserve_gb")!=4.0:
+        errors.append("runpod-a40-worker-zimage-admission")
 
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
@@ -609,8 +613,8 @@ def main() -> int:
         errors.append("cost-policy-binding")
     entries=cost_ledger.get("entries",[])
     by_cost_id={row.get("cost_id"):row for row in entries}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass"}
-    if len(entries)!=4 or set(by_cost_id)!=expected_cost_ids:
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926"}
+    if len(entries)!=5 or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
         if by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("category")!="OTHER" or abs(float(by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("amount_usd",0))-0.11027)>1e-9:
@@ -621,8 +625,10 @@ def main() -> int:
             errors.append("cost-ledger-flux2-formal-smoke-entry")
         if by_cost_id["zimage-castjob_8e02916e0db64eb6-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["zimage-castjob_8e02916e0db64eb6-pass"].get("amount_usd",0))-0.004647)>1e-9:
             errors.append("cost-ledger-zimage-qualification-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.118397)>1e-9:
-            errors.append("cost-ledger-total-after-zimage-qualification")
+        if by_cost_id["zimage-formal-smoke-20260926"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["zimage-formal-smoke-20260926"].get("amount_usd",0))-0.048111)>1e-9:
+            errors.append("cost-ledger-zimage-formal-smoke-entry")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.166508)>1e-9:
+            errors.append("cost-ledger-total-after-zimage-formal")
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -1065,6 +1071,46 @@ def main() -> int:
     ):
         if not (root/rel).is_file():
             errors.append("zimage-casting-smoke-missing:"+rel)
+
+
+    z_formal=json.loads((root/"run-evidence/Z_IMAGE_A40_FORMAL_SMOKE_20260926.json").read_text(encoding="utf-8"))
+    if z_formal.get("status")!="PASS_FORMAL_1024_FOUR_JOB_SMOKE" or z_formal.get("passed_jobs")!=4 or z_formal.get("failed_jobs")!=0:
+        errors.append("zimage-formal-smoke-status")
+    if z_formal.get("measurements",{}).get("max_nvidia_smi_memory_mib")!=26227 or z_formal.get("measurements",{}).get("max_torch_peak_memory_mb")!=25892.0:
+        errors.append("zimage-formal-smoke-vram")
+    if z_formal.get("measurements",{}).get("estimated_compute_cost_usd")!=0.048111 or z_formal.get("post_run_budget",{}).get("projected_total_usd")!=0.166508:
+        errors.append("zimage-formal-smoke-cost")
+    if z_formal.get("raw_evidence",{}).get("sha256")!="ce43303ec34682f843b9b4e16ef39a68d40a51fd9e4ff04bd21fb0fbb2a9b942":
+        errors.append("zimage-formal-smoke-raw-evidence")
+    if len(z_formal.get("outputs",[]))!=4 or any(row.get("width")!=1024 or row.get("height")!=1024 for row in z_formal.get("outputs",[])):
+        errors.append("zimage-formal-smoke-output-population")
+    if z_formal.get("model_snapshot_shape",{}).get("required_file_count")!=18 or z_formal.get("model_snapshot_shape",{}).get("required_bytes")!=20538488559:
+        errors.append("zimage-formal-smoke-model-dir-validation")
+    if z_formal.get("admission_ready_after_smoke") is not True or z_formal.get("selection_authorized") is not False or z_formal.get("production_acceptance") is not False:
+        errors.append("zimage-formal-smoke-boundary")
+
+    comparison=json.loads((root/"projects/slice01/casting/formal_comparison/blind_items.json").read_text(encoding="utf-8"))
+    comparison_private=json.loads((root/"projects/slice01/casting/formal_comparison/blind_map_private.json").read_text(encoding="utf-8"))
+    if comparison.get("status")!="AWAITING_BLIND_SCORES" or comparison.get("sample_count")!=8 or comparison.get("selection_authorized") is not False:
+        errors.append("image-model-comparison-status")
+    if len(comparison.get("items",[]))!=8 or len(comparison_private.get("mapping",[]))!=8:
+        errors.append("image-model-comparison-population")
+    if any("model_id" in row or "job_id" in row or "model_revision" in row for row in comparison.get("items",[])):
+        errors.append("image-model-comparison-public-leak")
+    if {row.get("model_id") for row in comparison_private.get("mapping",[])}!={"flux2-klein-4b","z-image"}:
+        errors.append("image-model-comparison-private-models")
+    score_text=(root/"projects/slice01/casting/formal_comparison/scores.csv").read_text(encoding="utf-8")
+    if any(token.strip() for line in score_text.splitlines()[1:] for token in line.split(",")[1:-2]):
+        errors.append("image-model-comparison-scores-must-remain-blank")
+    for rel in (
+        "film/image_model_blind_compare.py",
+        "tools/build_image_model_blind_comparison.py",
+        "tests/film/test_image_model_blind_comparison.py",
+        "tests/film/test_z_image_formal_smoke_evidence.py",
+        "reviews/PRODUCT-V2-Z-IMAGE-FORMAL-SMOKE-REVIEW.md",
+    ):
+        if not (root/rel).is_file():
+            errors.append("zimage-formal-comparison-missing:"+rel)
 
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:

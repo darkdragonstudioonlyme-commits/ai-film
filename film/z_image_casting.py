@@ -114,8 +114,20 @@ def validate_execution_context(root: Path,profile: dict[str,Any]) -> dict[str,An
     if packages.get("diffusers")!="0.40.0" or packages.get("huggingface-hub")!="1.33.0":
         raise ZImageCastingError("live runtime package drift")
     zqual=runtime.get("z_image_qualification") or {}
-    if zqual.get("status")!="PASS_512_FULL_GPU" or zqual.get("formal_1024_smoke_pending") is not True:
-        raise ZImageCastingError("Z-Image 512 qualification gate missing")
+    zqual_pending=(
+        zqual.get("status")=="PASS_512_FULL_GPU"
+        and zqual.get("formal_1024_smoke_pending") is True
+        and zqual.get("admission_ready") in {None,False}
+    )
+    zqual_complete=(
+        zqual.get("status")=="PASS_FORMAL_1024_FOUR_JOB"
+        and zqual.get("formal_1024_smoke_pending") is False
+        and zqual.get("admission_ready") is True
+        and zqual.get("required_vram_gb")==26.0
+        and zqual.get("vram_reserve_gb")==4.0
+    )
+    if not (zqual_pending or zqual_complete):
+        raise ZImageCastingError("Z-Image qualification/formal-smoke gate inconsistent")
 
     rows=[row for row in matrix.get("models",[]) if row.get("model_id")==MODEL_ID]
     if len(rows)!=1:
@@ -135,10 +147,22 @@ def validate_execution_context(root: Path,profile: dict[str,Any]) -> dict[str,An
     if worker.get("provider")!="RunPod" or worker.get("vram_status")!="MEASURED" or worker.get("quarantined") is not False:
         raise ZImageCastingError("worker provider/measurement/availability drift")
     zw=(worker.get("qualified_models") or {}).get("z-image",{})
-    if zw.get("status")!="PASS_512_QUALIFICATION" or zw.get("formal_1024_smoke_pending") is not True:
-        raise ZImageCastingError("worker Z-Image qualification gate missing")
-    if zw.get("admission_ready") is not False:
-        raise ZImageCastingError("Z-Image must not be admission-ready before formal smoke")
+    worker_pending=(
+        zw.get("status")=="PASS_512_QUALIFICATION"
+        and zw.get("formal_1024_smoke_pending") is True
+        and zw.get("admission_ready") is False
+    )
+    worker_complete=(
+        zw.get("status")=="PASS_FORMAL_1024_FOUR_JOB"
+        and zw.get("formal_1024_smoke_pending") is False
+        and zw.get("admission_ready") is True
+        and zw.get("required_vram_gb")==26.0
+        and zw.get("vram_reserve_gb")==4.0
+    )
+    if not (worker_pending or worker_complete):
+        raise ZImageCastingError("worker Z-Image qualification/formal-smoke gate inconsistent")
+    if worker_complete != zqual_complete:
+        raise ZImageCastingError("runtime/worker formal-smoke completion drift")
 
     if cost_policy.get("authorization_id")!=authorization.get("authorization_id"):
         raise ZImageCastingError("cost policy authorization mismatch")
@@ -170,7 +194,8 @@ def validate_execution_context(root: Path,profile: dict[str,Any]) -> dict[str,An
         "runtime_torch_cuda":target["torch_cuda"],
         "runtime_diffusers":packages["diffusers"],
         "worker_id":worker["worker_id"],
-        "qualification_gate":"PASS_512_FULL_GPU",
+        "qualification_gate":"PASS_FORMAL_1024_FOUR_JOB" if zqual_complete else "PASS_512_FULL_GPU",
+        "formal_smoke_complete":bool(zqual_complete),
         "new_resource_creation_authorized":False,
         "publish_authority":False,
     }
@@ -218,7 +243,7 @@ def build_smoke_plan(root: Path,profile: dict[str,Any],jobs: list[dict[str,Any]]
     context=validate_execution_context(root,profile)
     return {
         "schema_version":1,
-        "status":"READY_FOR_EXPLICIT_RUNNER_EXECUTION",
+        "status":"FORMAL_SMOKE_COMPLETE_NO_RERUN" if context.get("formal_smoke_complete") else "READY_FOR_EXPLICIT_RUNNER_EXECUTION",
         "model_id":MODEL_ID,
         "model_revision":MODEL_REVISION,
         "job_ids":[row["job_id"] for row in selected],

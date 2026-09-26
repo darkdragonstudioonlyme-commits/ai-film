@@ -29,33 +29,36 @@ class ZImageQualificationEvidenceTests(unittest.TestCase):
         self.assertFalse(EVIDENCE["selection_authorized"])
         self.assertFalse(EVIDENCE["publish_authority"])
 
-    def test_real_measurement_is_recorded_but_formal_admission_stays_closed(self):
+    def test_historical_512_measurement_remains_exact_while_current_formal_admission_is_ready(self):
         m=EVIDENCE["measurements"]
         self.assertEqual(m["gpu_peak_memory_mb"],21913.0)
         self.assertEqual(m["nvidia_smi_after_load_mib"],20263)
         self.assertAlmostEqual(m["inference_sec"],21.623722,places=6)
         self.assertAlmostEqual(m["elapsed_sec"],34.140679,places=6)
+        self.assertFalse(EVIDENCE["admission_ready_after_qualification"])
         profile=next(row for row in RESOURCES["profiles"] if row["model_id"]=="z-image")
-        self.assertEqual(profile["vram_status"],"MEASURED_512_QUALIFICATION")
-        self.assertEqual(profile["production_resolution_vram_status"],"UNMEASURED_1024_SMOKE_PENDING")
-        self.assertIsNone(profile["required_vram_gb"])
-        self.assertIsNone(profile["vram_reserve_gb"])
-        self.assertFalse(profile["admission_ready"])
+        self.assertEqual(profile["vram_status"],"MEASURED")
+        self.assertEqual(profile["production_resolution_vram_status"],"MEASURED_1024_FOUR_JOB_SMOKE")
+        self.assertEqual(profile["required_vram_gb"],26.0)
+        self.assertEqual(profile["vram_reserve_gb"],4.0)
+        self.assertTrue(profile["admission_ready"])
         decision=evaluate_admission(profile,WORKER)
-        self.assertFalse(decision["admitted"])
-        self.assertIn("PROFILE_NOT_ADMISSION_READY",decision["reasons"])
-        self.assertIn("VRAM_REQUIREMENT_MISSING",decision["reasons"])
+        self.assertTrue(decision["admitted"])
+        self.assertEqual(decision["reasons"],[])
 
-    def test_runtime_worker_and_matrix_keep_authority_boundaries(self):
+    def test_runtime_worker_advance_to_formal_pass_while_matrix_keeps_execution_boundary(self):
         qual=LIVE_RUNTIME["z_image_qualification"]
-        self.assertEqual(qual["status"],"PASS_512_FULL_GPU")
-        self.assertEqual(qual["peak_vram_mib"],21913.0)
-        self.assertTrue(qual["formal_1024_smoke_pending"])
+        self.assertEqual(qual["status"],"PASS_FORMAL_1024_FOUR_JOB")
+        self.assertEqual(qual["peak_vram_mib"],26227)
+        self.assertFalse(qual["formal_1024_smoke_pending"])
+        self.assertTrue(qual["admission_ready"])
+        self.assertEqual(qual["required_vram_gb"],26.0)
+        self.assertEqual(qual["vram_reserve_gb"],4.0)
         worker=WORKER["qualified_models"]["z-image"]
-        self.assertEqual(worker["status"],"PASS_512_QUALIFICATION")
-        self.assertEqual(worker["peak_vram_mib"],21913.0)
-        self.assertTrue(worker["formal_1024_smoke_pending"])
-        self.assertFalse(worker["admission_ready"])
+        self.assertEqual(worker["status"],"PASS_FORMAL_1024_FOUR_JOB")
+        self.assertEqual(worker["peak_vram_mib"],26227)
+        self.assertFalse(worker["formal_1024_smoke_pending"])
+        self.assertTrue(worker["admission_ready"])
         matrix=next(row for row in MATRIX["models"] if row["model_id"]=="z-image")
         self.assertFalse(matrix["execution_ready"])
 
@@ -63,9 +66,9 @@ class ZImageQualificationEvidenceTests(unittest.TestCase):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("zimage-castjob_8e02916e0db64eb6-pass",by_id)
         self.assertAlmostEqual(by_id["zimage-castjob_8e02916e0db64eb6-pass"]["amount_usd"],0.004647,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.118397,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.88)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.89)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.166508,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.83)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.84)["allowed"])
 
 
 if __name__=="__main__":

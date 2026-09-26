@@ -96,6 +96,8 @@ def main() -> int:
     if not args.execute:
         print(json.dumps(plan, ensure_ascii=False, sort_keys=True))
         return 0
+    if plan.get("status")!="READY_FOR_EXPLICIT_RUNNER_EXECUTION":
+        raise ZImageCastingError("formal smoke already complete; rerun is not authorized")
 
     model_dir = Path(args.model_dir).expanduser().resolve()
     model_snapshot_shape = validate_model_dir(model_dir)
