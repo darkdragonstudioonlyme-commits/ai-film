@@ -1112,6 +1112,15 @@ def main() -> int:
         if not (root/rel).is_file():
             errors.append("zimage-formal-comparison-missing:"+rel)
 
+    for rel in (
+        "film/voxcpm2_live.py",
+        "tools/run_voxcpm2_live.py",
+        "tests/film/test_voxcpm2_live_runner.py",
+        "reviews/PRODUCT-V2-VOXCPM2-LIVE-RUNNER-REVIEW.md",
+    ):
+        if not (root/rel).is_file():
+            errors.append("voxcpm2-live-runner-missing:"+rel)
+
     designs=list((root/"film"/"design").glob("*.md"))
     if len(designs)!=7:
         errors.append("film-design-count")
