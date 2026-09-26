@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "runtime_id": "vbench-cu121-pinned-v1",
+  "status": "BUNDLE_READY_GPU_EXECUTION_BLOCKED",
+  "python": "3.11",
+  "venv": "/workspace/venvs/vbench",
+  "code_repo": "Vchitect/VBench",
+  "code_revision": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+  "code_dir": "/workspace/evaluators/VBench",
+  "package": "vbench==0.1.5",
+  "torch": "2.5.1",
+  "torchvision": "0.20.1",
+  "torch_index_url": "https://download.pytorch.org/whl/cu121",
+  "required_torch_cuda": "12.1",
+  "required_gpu": "NVIDIA A40",
+  "requirements_ref": "model-evaluations/auto-eval/requirements-vbench-cu121.lock.txt",
+  "mode": "custom_input",
+  "dimensions": [
+    "subject_consistency",
+    "background_consistency",
+    "motion_smoothness",
+    "dynamic_degree",
+    "aesthetic_quality",
+    "imaging_quality"
+  ],
+  "detectron2_required_for_selected_dimensions": false,
+  "new_resource_creation_authorized": false,
+  "production_acceptance": false,
+  "publish_authority": false
+}

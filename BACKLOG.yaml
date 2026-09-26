@@ -332,3 +332,8 @@
   goal: "Materialize hash-bound rough-cut voice candidate indexes from AUTO_SHORTLIST media and recompile non-executing lip-sync plans"
   status: DONE
   owner: executor
+- id: T-067
+  milestone: M4
+  goal: "Prepare a portable pinned VBench CUDA 12.1 runtime/setup/validation bundle for future authorized GPU execution"
+  status: DONE
+  owner: executor

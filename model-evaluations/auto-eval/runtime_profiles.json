@@ -54,7 +54,9 @@
       },
       "code_repo_dir": "/workspace/evaluators/VBench",
       "code_revision": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
-      "setup_status": "PENDING_EXISTING_A40_RESTART"
+      "setup_status": "BUNDLE_READY_GPU_EXECUTION_BLOCKED",
+      "runtime_lock_ref": "model-evaluations/auto-eval/vbench_runtime_lock.json",
+      "pending_set_ref": "model-evaluations/auto-eval/vbench_pending_20260926.json"
     },
     {
       "runtime_profile": "paddleocr-cpu",

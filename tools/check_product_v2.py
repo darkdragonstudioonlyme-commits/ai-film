@@ -104,6 +104,12 @@ REQUIRED_PRODUCT_FILES = [
     "projects/slice01/lipsync/plan_rough_zh-CN.json",
     "tools/build_rough_voice_candidate_indexes.py",
     "tests/film/test_rough_voice_candidates.py",
+    "model-evaluations/auto-eval/vbench_runtime_lock.json",
+    "model-evaluations/auto-eval/requirements-vbench-cu121.lock.txt",
+    "tools/setup_vbench_runtime.py",
+    "tools/validate_vbench_runtime.py",
+    "tools/run_pending_vbench_plan.py",
+    "tests/film/test_vbench_runtime_bundle.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -203,7 +209,7 @@ def main() -> int:
     for rp in ("whisper-cpu-local","qwen3vl-cpu-local","paddleocr-cpu"):
         if runtime_by_id.get(rp,{}).get("setup_status")!="QUALIFIED_LOCAL_CPU_PASS":
             errors.append("auto-eval-runtime-not-qualified:"+rp)
-    if runtime_by_id.get("vbench-cu121",{}).get("setup_status")!="PENDING_EXISTING_A40_RESTART":
+    if runtime_by_id.get("vbench-cu121",{}).get("setup_status")!="BUNDLE_READY_GPU_EXECUTION_BLOCKED":
         errors.append("auto-eval-vbench-runtime-state")
 
     voice_ev_v1=json.loads((root/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text(encoding="utf-8"))
@@ -273,6 +279,15 @@ def main() -> int:
         errors.append("auto-eval-vbench-hard-fail-short-circuit")
     if vbench_pending.get("new_resource_creation_authorized") is not False or vbench_pending.get("production_acceptance") is not False:
         errors.append("auto-eval-vbench-pending-authority")
+    vbench_lock=json.loads((root/"model-evaluations/auto-eval/vbench_runtime_lock.json").read_text(encoding="utf-8"))
+    if vbench_lock.get("status")!="BUNDLE_READY_GPU_EXECUTION_BLOCKED" or vbench_lock.get("required_torch_cuda")!="12.1":
+        errors.append("auto-eval-vbench-runtime-lock")
+    if vbench_lock.get("code_revision")!="fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490" or vbench_lock.get("package")!="vbench==0.1.5":
+        errors.append("auto-eval-vbench-pin")
+    if set(vbench_lock.get("dimensions",[]))!={"subject_consistency","background_consistency","motion_smoothness","dynamic_degree","aesthetic_quality","imaging_quality"}:
+        errors.append("auto-eval-vbench-dimensions")
+    if vbench_lock.get("new_resource_creation_authorized") is not False or vbench_lock.get("detectron2_required_for_selected_dimensions") is not False:
+        errors.append("auto-eval-vbench-bundle-boundary")
 
     rough_voice=json.loads((root/"projects/slice01/audio/rough_cut_voice_candidates.json").read_text(encoding="utf-8"))
     if rough_voice.get("status")!="ROUGH_CUT_CANDIDATES_HASH_VERIFIED" or rough_voice.get("sample_count")!=10:

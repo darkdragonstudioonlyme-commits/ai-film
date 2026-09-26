@@ -73,7 +73,7 @@ class AutoEvalRuntimeEvidenceTests(unittest.TestCase):
         self.assertEqual(profiles["whisper-cpu-local"]["setup_status"],"QUALIFIED_LOCAL_CPU_PASS")
         self.assertEqual(profiles["qwen3vl-cpu-local"]["setup_status"],"QUALIFIED_LOCAL_CPU_PASS")
         self.assertEqual(profiles["paddleocr-cpu"]["setup_status"],"QUALIFIED_LOCAL_CPU_PASS")
-        self.assertEqual(profiles["vbench-cu121"]["setup_status"],"PENDING_EXISTING_A40_RESTART")
+        self.assertEqual(profiles["vbench-cu121"]["setup_status"],"BUNDLE_READY_GPU_EXECUTION_BLOCKED")
 
 
 if __name__=="__main__":
