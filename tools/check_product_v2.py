@@ -48,8 +48,18 @@ REQUIRED_PRODUCT_FILES = [
     "model-evaluations/slice01/voice/packet/eval_packet.json",
     "model-evaluations/slice01/voice/packet/blind_map_private.json",
     "model-evaluations/slice01/voice/packet/scores.csv",
+    "production-profiles/world_profiles.json",
+    "film/world_profile.py",
+    "tools/compile_project_shots.py",
 ]
 LANGS = {"en","zh-CN","vi"}
+REQUIRED_WORLD_PRESETS = {
+    "china_tang_changan_8c",
+    "china_ming_jiangnan_16c",
+    "europe_victorian_london_1890s",
+    "europe_belle_epoque_paris_1900s",
+    "europe_contemporary_berlin",
+}
 
 
 def main() -> int:
@@ -69,6 +79,25 @@ def main() -> int:
         errors.append("resume-too-large")
     if (root/"CONTINUE_PROTOCOL.md").stat().st_size > 6144:
         errors.append("continue-protocol-too-large")
+
+    world_catalog=json.loads((root/"production-profiles/world_profiles.json").read_text(encoding="utf-8"))
+    world_rows=world_catalog.get("profiles",[])
+    world_ids=[row.get("profile_id") for row in world_rows]
+    if world_catalog.get("schema_version")!=1 or len(world_ids)!=len(set(world_ids)):
+        errors.append("world-profile-catalog")
+    if not REQUIRED_WORLD_PRESETS.issubset(set(world_ids)):
+        errors.append("world-profile-required-presets")
+    for row in world_rows:
+        family=row.get("setting_family")
+        period=row.get("period",{})
+        if family=="historical_china":
+            if row.get("country")!="China" or period.get("mode")!="historical" or not period.get("dynasty"):
+                errors.append("world-profile-historical-china:"+str(row.get("profile_id")))
+        if family=="european_cinema":
+            if str(row.get("country","")).casefold() in {"europe","european"} or not row.get("region"):
+                errors.append("world-profile-europe-specificity:"+str(row.get("profile_id")))
+        if not row.get("casting_policy") or not row.get("avoid"):
+            errors.append("world-profile-production-guards:"+str(row.get("profile_id")))
 
     backlog=(root/"BACKLOG.yaml").read_text(encoding="utf-8")
     ids=re.findall(r"^- id: (T-[0-9]+)$",backlog,re.M)
@@ -969,229 +998,3 @@ def main() -> int:
     else:
         flux_job=next((row for row in cast_jobs if row.get("model_id")=="flux2-klein-4b" and row.get("job_id")=="castjob_d3ec86da4ca6b1fc"),None)
         if flux_job is None:
-            errors.append("flux2-live-runner-canonical-job-missing")
-        flux_model=next((row for row in models if row.get("model_id")=="flux2-klein-4b"),None)
-        if flux_model is None or flux_model.get("source_revision")!="e7b7dc27f91deacad38e78976d1f2b499d76a294":
-            errors.append("flux2-live-runner-model-revision")
-        if flux_model is not None and flux_model.get("execution_ready") is not False:
-            errors.append("flux2-live-runner-model-must-remain-unmeasured")
-        if active_auth.get("status")!="AUTHORIZED" or active_auth.get("max_total_usd")!=60.0:
-            errors.append("flux2-live-runner-active-authority")
-        if execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("new_resource_creation_authorized") is not False:
-            errors.append("flux2-live-runner-execution-plan")
-
-    flux_casting_profile=json.loads((root/"model-evaluations/slice01/flux2_casting_profile.json").read_text(encoding="utf-8"))
-    if flux_casting_profile.get("profile_id")!="flux2-klein-4b-casting-a40-v1":
-        errors.append("flux2-casting-smoke-profile-id")
-    if flux_casting_profile.get("model_id")!="flux2-klein-4b" or flux_casting_profile.get("revision")!="e7b7dc27f91deacad38e78976d1f2b499d76a294":
-        errors.append("flux2-casting-smoke-model")
-    if flux_casting_profile.get("gpu")!="NVIDIA A40" or flux_casting_profile.get("dtype")!="bfloat16" or flux_casting_profile.get("mode")!="FULL_GPU":
-        errors.append("flux2-casting-smoke-runtime")
-    if flux_casting_profile.get("width")!=1024 or flux_casting_profile.get("height")!=1024 or flux_casting_profile.get("num_inference_steps")!=4 or float(flux_casting_profile.get("guidance_scale",-1))!=1.0:
-        errors.append("flux2-casting-smoke-params")
-    if flux_casting_profile.get("smoke_jobs")!=4 or flux_casting_profile.get("execution_authorized_by_profile") is not False:
-        errors.append("flux2-casting-smoke-authority")
-    if flux_casting_profile.get("runtime_lock_ref")!="model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json":
-        errors.append("flux2-casting-smoke-runtime-ref")
-    if flux_casting_profile.get("authorization_ref")!="model-evaluations/slice01/launch_authorization.active.json":
-        errors.append("flux2-casting-smoke-auth-ref")
-    for rel in (
-        "film/flux2_casting.py",
-        "tools/run_flux2_casting_batch.py",
-        "tests/film/test_flux2_casting_smoke_runner.py",
-        "reviews/PRODUCT-V2-FLUX2-CASTING-SMOKE-RUNNER-REVIEW.md",
-    ):
-        if not (root/rel).is_file():
-            errors.append("flux2-casting-smoke-missing:"+rel)
-
-
-    z_qual_evidence=json.loads((root/"run-evidence/Z_IMAGE_A40_QUALIFICATION_20260925.json").read_text(encoding="utf-8"))
-    if z_qual_evidence.get("status")!="PASS_512_QUALIFICATION" or z_qual_evidence.get("model_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
-        errors.append("zimage-qualification-evidence-status")
-    if z_qual_evidence.get("measurements",{}).get("gpu_peak_memory_mb")!=21913.0 or z_qual_evidence.get("measurements",{}).get("inference_sec")!=21.623722:
-        errors.append("zimage-qualification-evidence-measurement")
-    if z_qual_evidence.get("artifact",{}).get("sha256")!="682f2ae66cf262004e5487d809e7c840c8a4fc2e86ba8529f98a446294a2f567" or z_qual_evidence.get("artifact",{}).get("persistence_status")!="POD_LOCAL_ONLY_PENDING_SYNC":
-        errors.append("zimage-qualification-artifact-identity")
-    if z_qual_evidence.get("raw_evidence",{}).get("sha256")!="db0dec072f4c77aff01e5cf97d5145ec376b97e32c0d22086d4c8f2659465af4":
-        errors.append("zimage-qualification-raw-evidence")
-    if z_qual_evidence.get("admission_ready_after_qualification") is not False or z_qual_evidence.get("next_gate")!="FORMAL_1024X1024_FOUR_JOB_SMOKE":
-        errors.append("zimage-qualification-boundary")
-
-    # Live Z-Image qualification runner must remain plan-first, exact-revision and non-authorizing.
-    if not (root/"film/z_image_live.py").is_file() or not (root/"tools/run_z_image_live.py").is_file():
-        errors.append("z-image-live-runner-missing")
-    else:
-        z_job=next((row for row in cast_jobs if row.get("model_id")=="z-image" and row.get("job_id")=="castjob_8e02916e0db64eb6"),None)
-        if z_job is None:
-            errors.append("z-image-live-runner-canonical-job-missing")
-        else:
-            if z_job.get("model_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
-                errors.append("z-image-live-runner-job-revision")
-            if not str(z_job.get("negative_prompt","")).strip():
-                errors.append("z-image-live-runner-negative-prompt")
-        z_model=next((row for row in models if row.get("model_id")=="z-image"),None)
-        if z_model is None or z_model.get("source_revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
-            errors.append("z-image-live-runner-model-revision")
-        else:
-            if z_model.get("license_gate")!="UPSTREAM_APACHE_2_0_PINNED":
-                errors.append("z-image-live-runner-license")
-            if z_model.get("commercial_production_allowed")!="UPSTREAM_MODEL_LICENSE_PERMITS":
-                errors.append("z-image-live-runner-commercial-gate")
-            if z_model.get("production_gate")!="PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW":
-                errors.append("z-image-live-runner-production-gate")
-            if z_model.get("execution_ready") is not False:
-                errors.append("z-image-live-runner-model-authority")
-        if active_auth.get("status")!="AUTHORIZED" or active_auth.get("max_total_usd")!=60.0:
-            errors.append("z-image-live-runner-active-authority")
-        if execution_plan.get("gpu")!="NVIDIA A40" or execution_plan.get("new_resource_creation_authorized") is not False:
-            errors.append("z-image-live-runner-execution-plan")
-        live_runtime=json.loads((root/"model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json").read_text(encoding="utf-8"))
-        if live_runtime.get("target",{}).get("torch")!="2.8.0+cu128" or live_runtime.get("packages",{}).get("diffusers")!="0.40.0":
-            errors.append("z-image-live-runner-runtime")
-        required_z_files=[
-            "film/z_image_live.py",
-            "tools/run_z_image_live.py",
-            "tests/film/test_z_image_live_runner.py",
-            "reviews/PRODUCT-V2-Z-IMAGE-LIVE-RUNNER-REVIEW.md",
-        ]
-        for rel in required_z_files:
-            if not (root/rel).is_file():
-                errors.append("z-image-live-runner-missing:"+rel)
-
-
-    z_casting_profile=json.loads((root/"model-evaluations/slice01/z_image_casting_profile.json").read_text(encoding="utf-8"))
-    if z_casting_profile.get("profile_id")!="z-image-casting-a40-v1":
-        errors.append("zimage-casting-smoke-profile-id")
-    if z_casting_profile.get("model_id")!="z-image" or z_casting_profile.get("revision")!="04cc4abb7c5069926f75c9bfde9ef43d49423021":
-        errors.append("zimage-casting-smoke-model")
-    if z_casting_profile.get("gpu")!="NVIDIA A40" or z_casting_profile.get("dtype")!="bfloat16" or z_casting_profile.get("mode")!="FULL_GPU":
-        errors.append("zimage-casting-smoke-runtime")
-    if (
-        z_casting_profile.get("width")!=1024
-        or z_casting_profile.get("height")!=1024
-        or z_casting_profile.get("num_inference_steps")!=50
-        or float(z_casting_profile.get("guidance_scale",-1))!=4.0
-        or z_casting_profile.get("cfg_normalization") is not False
-        or z_casting_profile.get("low_cpu_mem_usage") is not False
-    ):
-        errors.append("zimage-casting-smoke-params")
-    if z_casting_profile.get("negative_prompt_mode")!="NATIVE_JOB_NEGATIVE_PROMPT":
-        errors.append("zimage-casting-smoke-negative-prompt")
-    if z_casting_profile.get("smoke_jobs")!=4 or z_casting_profile.get("execution_authorized_by_profile") is not False:
-        errors.append("zimage-casting-smoke-authority")
-    if z_casting_profile.get("runtime_lock_ref")!="model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json":
-        errors.append("zimage-casting-smoke-runtime-ref")
-    if z_casting_profile.get("authorization_ref")!="model-evaluations/slice01/launch_authorization.active.json":
-        errors.append("zimage-casting-smoke-auth-ref")
-    for rel in (
-        "film/z_image_casting.py",
-        "tools/run_z_image_casting_batch.py",
-        "tests/film/test_z_image_casting_smoke_runner.py",
-        "reviews/PRODUCT-V2-Z-IMAGE-CASTING-SMOKE-RUNNER-REVIEW.md",
-    ):
-        if not (root/rel).is_file():
-            errors.append("zimage-casting-smoke-missing:"+rel)
-
-
-    z_formal=json.loads((root/"run-evidence/Z_IMAGE_A40_FORMAL_SMOKE_20260926.json").read_text(encoding="utf-8"))
-    if z_formal.get("status")!="PASS_FORMAL_1024_FOUR_JOB_SMOKE" or z_formal.get("passed_jobs")!=4 or z_formal.get("failed_jobs")!=0:
-        errors.append("zimage-formal-smoke-status")
-    if z_formal.get("measurements",{}).get("max_nvidia_smi_memory_mib")!=26227 or z_formal.get("measurements",{}).get("max_torch_peak_memory_mb")!=25892.0:
-        errors.append("zimage-formal-smoke-vram")
-    if z_formal.get("measurements",{}).get("estimated_compute_cost_usd")!=0.048111 or z_formal.get("post_run_budget",{}).get("projected_total_usd")!=0.166508:
-        errors.append("zimage-formal-smoke-cost")
-    if z_formal.get("raw_evidence",{}).get("sha256")!="ce43303ec34682f843b9b4e16ef39a68d40a51fd9e4ff04bd21fb0fbb2a9b942":
-        errors.append("zimage-formal-smoke-raw-evidence")
-    if len(z_formal.get("outputs",[]))!=4 or any(row.get("width")!=1024 or row.get("height")!=1024 for row in z_formal.get("outputs",[])):
-        errors.append("zimage-formal-smoke-output-population")
-    if z_formal.get("model_snapshot_shape",{}).get("required_file_count")!=18 or z_formal.get("model_snapshot_shape",{}).get("required_bytes")!=20538488559:
-        errors.append("zimage-formal-smoke-model-dir-validation")
-    if z_formal.get("admission_ready_after_smoke") is not True or z_formal.get("selection_authorized") is not False or z_formal.get("production_acceptance") is not False:
-        errors.append("zimage-formal-smoke-boundary")
-
-    comparison=json.loads((root/"projects/slice01/casting/formal_comparison/blind_items.json").read_text(encoding="utf-8"))
-    comparison_private=json.loads((root/"projects/slice01/casting/formal_comparison/blind_map_private.json").read_text(encoding="utf-8"))
-    if comparison.get("status")!="AWAITING_BLIND_SCORES" or comparison.get("sample_count")!=8 or comparison.get("selection_authorized") is not False:
-        errors.append("image-model-comparison-status")
-    if len(comparison.get("items",[]))!=8 or len(comparison_private.get("mapping",[]))!=8:
-        errors.append("image-model-comparison-population")
-    if any("model_id" in row or "job_id" in row or "model_revision" in row for row in comparison.get("items",[])):
-        errors.append("image-model-comparison-public-leak")
-    materialization=comparison.get("neutral_materialization",{})
-    if materialization.get("status")!="PASS_8_VERIFIED_POD_LOCAL_NEUTRAL_COPIES" or materialization.get("manifest_sha256")!="2dbc18d0f9ebc56024980b864a7fc27d6633a18ed9741049f851404512fe2728" or materialization.get("model_identity_in_manifest") is not False:
-        errors.append("image-model-comparison-neutral-materialization")
-    if any(row.get("asset_locator_status")!="POD_LOCAL_NEUTRAL_COPY_VERIFIED" or row.get("pod_neutral_path")!=f"/workspace/artifacts/blind-comparison/{row.get('blind_id')}.png" for row in comparison.get("items",[])):
-        errors.append("image-model-comparison-neutral-paths")
-    if {row.get("model_id") for row in comparison_private.get("mapping",[])}!={"flux2-klein-4b","z-image"}:
-        errors.append("image-model-comparison-private-models")
-    score_text=(root/"projects/slice01/casting/formal_comparison/scores.csv").read_text(encoding="utf-8")
-    if any(token.strip() for line in score_text.splitlines()[1:] for token in line.split(",")[1:-2]):
-        errors.append("image-model-comparison-scores-must-remain-blank")
-    for rel in (
-        "film/image_model_blind_compare.py",
-        "tools/build_image_model_blind_comparison.py",
-        "tests/film/test_image_model_blind_comparison.py",
-        "tests/film/test_z_image_formal_smoke_evidence.py",
-        "reviews/PRODUCT-V2-Z-IMAGE-FORMAL-SMOKE-REVIEW.md",
-    ):
-        if not (root/rel).is_file():
-            errors.append("zimage-formal-comparison-missing:"+rel)
-
-    blind_materialization=json.loads((root/"run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json").read_text(encoding="utf-8"))
-    if blind_materialization.get("status")!="PASS_8_NEUTRAL_COPIES_VERIFIED" or blind_materialization.get("sample_count")!=8 or blind_materialization.get("selection_authorized") is not False:
-        errors.append("image-model-blind-materialization-evidence")
-    if blind_materialization.get("manifest",{}).get("sha256")!="2dbc18d0f9ebc56024980b864a7fc27d6633a18ed9741049f851404512fe2728" or blind_materialization.get("manifest",{}).get("model_identity_in_manifest") is not False:
-        errors.append("image-model-blind-materialization-manifest")
-    vox_qual=json.loads((root/"run-evidence/VOXCPM2_A40_QUALIFICATION_20260926.json").read_text(encoding="utf-8"))
-    if vox_qual.get("status")!="PASS_SINGLE_SAMPLE_RUNTIME_QUALIFICATION" or vox_qual.get("request",{}).get("request_id")!="voxreq_7f50b3325b6132e8":
-        errors.append("voxcpm2-qualification-status")
-    if vox_qual.get("measurements",{}).get("gpu_peak_memory_mib")!=5827.0 or vox_qual.get("measurements",{}).get("estimated_compute_cost_usd")!=0.004291:
-        errors.append("voxcpm2-qualification-measurements")
-    if vox_qual.get("output",{}).get("cue_fit") is not True or vox_qual.get("output",{}).get("sha256")!="f562abbb391460d4cda9f75c0930bfe8ccb603257fd971b6a8a19a33544d3940":
-        errors.append("voxcpm2-qualification-output")
-    if vox_qual.get("request",{}).get("reference_audio") is not None or vox_qual.get("request",{}).get("voice_cloning") is not False or vox_qual.get("quality_status")!="NOT_EVALUATED":
-        errors.append("voxcpm2-qualification-boundary")
-    voice_profiles=json.loads((root/"model-evaluations/slice01/voice/resource_profiles.json").read_text(encoding="utf-8"))
-    vp=(voice_profiles.get("profiles") or [{}])[0]
-    if voice_profiles.get("status")!="VOXCPM2_FORMAL_PACKET_MEASURED_QUALITY_PENDING" or vp.get("model_id")!="voxcpm2":
-        errors.append("voxcpm2-resource-profile-status")
-    if vp.get("required_vram_gb")!=6.0 or vp.get("vram_reserve_gb")!=4.0 or vp.get("admission_threshold_gb")!=10.0 or vp.get("admission_ready") is not True:
-        errors.append("voxcpm2-resource-profile-vram")
-    if vp.get("formal_packet_status")!="PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12" or vp.get("quality_status")!="AWAITING_OWNER_SCORING" or vp.get("production_acceptance") is not False:
-        errors.append("voxcpm2-resource-profile-boundary")
-
-    for rel in (
-        "run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json",
-        "run-evidence/VOXCPM2_A40_QUALIFICATION_20260926.json",
-        "model-evaluations/slice01/voice/resource_profiles.json",
-        "tests/film/test_voxcpm2_qualification_evidence.py",
-        "reviews/PRODUCT-V2-VOXCPM2-QUALIFICATION-REVIEW.md",
-    ):
-        if not (root/rel).is_file():
-            errors.append("voxcpm2-qualification-evidence-missing:"+rel)
-
-    for rel in (
-        "film/voxcpm2_live.py",
-        "tools/run_voxcpm2_live.py",
-        "tests/film/test_voxcpm2_live_runner.py",
-        "reviews/PRODUCT-V2-VOXCPM2-LIVE-RUNNER-REVIEW.md",
-    ):
-        if not (root/rel).is_file():
-            errors.append("voxcpm2-live-runner-missing:"+rel)
-
-    designs=list((root/"film"/"design").glob("*.md"))
-    if len(designs)!=7:
-        errors.append("film-design-count")
-    if errors:
-        print("PRODUCT_V2_CHECK_FAIL")
-        print("\n".join(errors))
-        return 1
-    print(
-        "PRODUCT_V2_CHECK_PASS "
-        f"shots=8 designs=7 languages=en,zh-CN,vi timing={total:.1f}s models={len(models)}"
-    )
-    return 0
-
-
-if __name__=="__main__":
-    sys.exit(main())

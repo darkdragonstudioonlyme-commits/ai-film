@@ -3,6 +3,7 @@ from pathlib import Path
 from film.batch_orchestrator import BatchOrchestratorError,build_argv,plan_batch,validate_config
 ROOT=Path(__file__).resolve().parents[2]
 CFG=json.loads((ROOT/"model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json").read_text())
+VIDEO_CFG=json.loads((ROOT/"model-evaluations/slice01/batches/wan22_ti2v_smoke_20260926.json").read_text())
 
 class BatchOrchestratorTests(unittest.TestCase):
     def test_voice_batch_binds_12_existing_adapter_jobs(self):
@@ -18,6 +19,17 @@ class BatchOrchestratorTests(unittest.TestCase):
         self.assertIn("--request-id",argv)
         self.assertIn("--execute",argv)
         self.assertNotIn("sh -c"," ".join(argv))
+
+    def test_video_smoke_uses_wan_adapter_and_explicit_runtime_paths(self):
+        jobs=validate_config(VIDEO_CFG)
+        self.assertEqual(len(jobs),1)
+        self.assertEqual(jobs[0]["adapter"],"wan22-ti2v-live")
+        argv=build_argv(jobs[0],root=ROOT,execute=True)
+        self.assertEqual(argv[1],str(ROOT/"tools/run_wan22_ti2v_live.py"))
+        self.assertIn("--smoke-id",argv)
+        self.assertIn("--wan-repo-dir",argv)
+        self.assertIn("--reference-image",argv)
+        self.assertIn("--execute",argv)
 
     def test_existing_pass_receipt_is_idempotently_skipped(self):
         with tempfile.TemporaryDirectory() as td:

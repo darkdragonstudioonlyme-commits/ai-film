@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "smoke_id": "wan22-ti2v-5b-a40-smoke-v1",
+  "model_id": "wan22-ti2v-5b",
+  "model_repo": "Wan-AI/Wan2.2-TI2V-5B",
+  "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+  "code_repo": "Wan-Video/Wan2.2",
+  "code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+  "task": "ti2v-5B",
+  "size": "704*1280",
+  "frame_num": 17,
+  "sample_steps": 5,
+  "base_seed": 51001,
+  "offload_model": true,
+  "convert_model_dtype": true,
+  "t5_cpu": true,
+  "reference_image_pod_path": "/workspace/artifacts/blind-comparison/cmp_4720d9887d35.png",
+  "reference_image_sha256": "3681cb753c1eabcdeba187a4d6dce0b086eecac3fe8c0eb3d521a54fbe47d86c",
+  "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+  "prompt": "A restrained technical motion test. The same adult man remains centered and recognizable, subtle natural breathing and a small head turn, stable facial identity, stable hair, stable black shirt, neutral studio background, locked camera, realistic motion, no scene change.",
+  "max_runtime_sec": 1800,
+  "quality_acceptance": false,
+  "production_acceptance": false,
+  "selection_authorized": false,
+  "notes": [
+    "Resource/runtime smoke only; the reference image is not a selected production casting winner.",
+    "17 frames and 5 sampling steps intentionally reduce paid smoke duration; quality is not evaluated from this run."
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "schema_version": 1,
+      "profile_id": "china_tang_changan_8c",
+      "setting_family": "historical_china",
+      "country": "China",
+      "region": "Chang'an / Guanzhong",
+      "period": {
+        "mode": "historical",
+        "label": "Tang dynasty, 8th century",
+        "dynasty": "Tang",
+        "start_year": 700,
+        "end_year": 799
+      },
+      "visual_language": [
+        "historically grounded Tang-dynasty Chinese setting rather than generic fantasy Asia",
+        "materials, silhouettes and public spaces should read as a coherent 8th-century Chang'an production world"
+      ],
+      "wardrobe_rules": [
+        "use Tang-period Chinese garment silhouettes, layering and accessories appropriate to character role and status",
+        "hair styling and headwear must be chosen per character role, gender presentation and social context"
+      ],
+      "architecture_rules": [
+        "use Tang-era Chinese timber architecture, courtyard planning, gates, tiled roofs and urban street logic appropriate to Chang'an",
+        "keep building scale and ornament consistent within the same social location"
+      ],
+      "prop_rules": [
+        "use period-plausible lamps, ceramics, paper, writing implements, furnishings, transport and weapons only when story-relevant"
+      ],
+      "environment_rules": [
+        "weather, vegetation and street dressing should match the selected season and north-central China setting"
+      ],
+      "cinematography": [
+        "cinematic composition with controlled production design; do not use theme-park or cosplay presentation unless explicitly requested"
+      ],
+      "avoid": [
+        "modern clothing",
+        "modern electronics",
+        "modern signage",
+        "Qing queue hairstyle",
+        "Japanese kimono substitution",
+        "Korean hanbok substitution",
+        "generic pan-Asian costume mixing",
+        "unsupported fantasy armor",
+        "text artifacts",
+        "watermark"
+      ],
+      "casting_policy": "Character identity comes from casting. This profile constrains Tang-era Chinese wardrobe, environment and material culture; it does not copy any real person."
+    },
+    {
+      "schema_version": 1,
+      "profile_id": "china_ming_jiangnan_16c",
+      "setting_family": "historical_china",
+      "country": "China",
+      "region": "Jiangnan",
+      "period": {
+        "mode": "historical",
+        "label": "Ming dynasty, 16th century",
+        "dynasty": "Ming",
+        "start_year": 1500,
+        "end_year": 1599
+      },
+      "visual_language": [
+        "historically grounded Ming-dynasty Jiangnan setting with coherent domestic, street and water-town material culture",
+        "keep costume and architecture tied to the same century and social milieu"
+      ],
+      "wardrobe_rules": [
+        "use Ming-period Chinese garment silhouettes, collars, layering, belts and headwear appropriate to role and status",
+        "do not borrow later Qing-era hair or dress conventions"
+      ],
+      "architecture_rules": [
+        "use Jiangnan timber-and-masonry dwellings, courtyards, lanes, bridges and waterside structures appropriate to the Ming period"
+      ],
+      "prop_rules": [
+        "use period-plausible furniture, ceramics, lanterns, books, writing tools, market goods and transport"
+      ],
+      "environment_rules": [
+        "use humid Jiangnan atmosphere, waterways, planting and street texture only when consistent with the selected location and season"
+      ],
+      "cinematography": [
+        "naturalistic historical drama framing with restrained production design and believable lived-in surfaces"
+      ],
+      "avoid": [
+        "modern clothing",
+        "modern electronics",
+        "modern signage",
+        "Qing queue hairstyle",
+        "Japanese kimono substitution",
+        "Korean hanbok substitution",
+        "generic pan-Asian costume mixing",
+        "unsupported fantasy armor",
+        "text artifacts",
+        "watermark"
+      ],
+      "casting_policy": "Character identity comes from casting. This profile constrains Ming-era Jiangnan wardrobe, environment and material culture; it does not copy any real person."
+    },
+    {
+      "schema_version": 1,
+      "profile_id": "europe_victorian_london_1890s",
+      "setting_family": "european_cinema",
+      "country": "United Kingdom",
+      "region": "London",
+      "period": {
+        "mode": "historical",
+        "label": "late Victorian London, 1890s",
+        "start_year": 1890,
+        "end_year": 1899
+      },
+      "visual_language": [
+        "late-Victorian London production world with coherent street, domestic and institutional design",
+        "social class and occupation should control wardrobe, interiors and props more than generic period decoration"
+      ],
+      "wardrobe_rules": [
+        "use late-1890s British silhouettes, tailoring, outerwear, hats, footwear and fabrics appropriate to character class and occupation"
+      ],
+      "architecture_rules": [
+        "use London brick terraces, stone civic buildings, industrial infrastructure and interiors appropriate to the chosen neighborhood"
+      ],
+      "prop_rules": [
+        "use period-plausible lighting, print media, transport, furniture, tools and household objects"
+      ],
+      "environment_rules": [
+        "street dressing, weather and industrial haze should follow the specific scene rather than a permanent fog stereotype"
+      ],
+      "cinematography": [
+        "cinematic period-drama lighting with realistic materials and restrained production design"
+      ],
+      "avoid": [
+        "modern cars",
+        "modern electronics",
+        "modern street furniture",
+        "post-1900 fashion drift",
+        "generic medieval styling",
+        "generic pan-European costume mixing",
+        "text artifacts",
+        "watermark"
+      ],
+      "casting_policy": "Character identity and ethnicity come from casting. This profile constrains late-Victorian London period design and does not imply a generic European facial type."
+    },
+    {
+      "schema_version": 1,
+      "profile_id": "europe_belle_epoque_paris_1900s",
+      "setting_family": "european_cinema",
+      "country": "France",
+      "region": "Paris",
+      "period": {
+        "mode": "historical",
+        "label": "Belle Époque Paris, circa 1900",
+        "start_year": 1895,
+        "end_year": 1905
+      },
+      "visual_language": [
+        "Belle Époque Paris production world with coherent boulevard, apartment, café and working-city material culture",
+        "distinguish elegant, bourgeois and working environments by production design rather than mixing them"
+      ],
+      "wardrobe_rules": [
+        "use turn-of-the-century French silhouettes, tailoring, dresses, hats, footwear and accessories appropriate to role and class"
+      ],
+      "architecture_rules": [
+        "use Haussmann-era streets and façades, period shopfronts, cafés and interiors when location-appropriate"
+      ],
+      "prop_rules": [
+        "use period-plausible bicycles, carriages, early motor vehicles only where justified, printed matter, furniture and lighting"
+      ],
+      "environment_rules": [
+        "street activity, signage density and weather should be scene-specific and not a postcard caricature"
+      ],
+      "cinematography": [
+        "cinematic historical realism with warm practicals where motivated and controlled depth of field"
+      ],
+      "avoid": [
+        "modern cars",
+        "modern electronics",
+        "modern signage",
+        "postwar fashion",
+        "generic medieval styling",
+        "generic pan-European costume mixing",
+        "text artifacts",
+        "watermark"
+      ],
+      "casting_policy": "Character identity and ethnicity come from casting. This profile constrains Belle Époque Paris production design and does not imply a generic European facial type."
+    },
+    {
+      "schema_version": 1,
+      "profile_id": "europe_contemporary_berlin",
+      "setting_family": "european_cinema",
+      "country": "Germany",
+      "region": "Berlin",
+      "period": {
+        "mode": "contemporary",
+        "label": "contemporary Berlin"
+      },
+      "visual_language": [
+        "contemporary Berlin location realism with neighborhood-specific architecture and lived-in interiors",
+        "avoid reducing the city to a single tourist or nightclub aesthetic"
+      ],
+      "wardrobe_rules": [
+        "wardrobe follows character age, occupation, subculture, season and socioeconomic context rather than a generic European look"
+      ],
+      "architecture_rules": [
+        "select architecture by neighborhood and story need: prewar blocks, postwar housing, adaptive reuse, contemporary offices or transit"
+      ],
+      "prop_rules": [
+        "use contemporary European consumer objects, transit, signage and technology only when scene-relevant"
+      ],
+      "environment_rules": [
+        "weather, street density, bicycles, transit and public-space behavior should follow the chosen neighborhood and season"
+      ],
+      "cinematography": [
+        "grounded contemporary European drama photography with location-led color and practical lighting"
+      ],
+      "avoid": [
+        "generic pan-European landmark collage",
+        "tourist-postcard staging unless story-motivated",
+        "unmotivated historical costume",
+        "text artifacts",
+        "watermark"
+      ],
+      "casting_policy": "Character identity and ethnicity come from casting. This profile defines contemporary Berlin production context and never substitutes a generic European facial type."
+    }
+  ]
+}

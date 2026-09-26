@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "batch_id": "wan22-ti2v-5b-a40-smoke-20260926",
+  "stop_on_failure": true,
+  "jobs": [
+    {
+      "job_id": "wan22-ti2v-smoke-01",
+      "adapter": "wan22-ti2v-live",
+      "work_id": "wan22-ti2v-5b-a40-smoke-v1",
+      "receipt_path": "/workspace/runs/wan22-ti2v-live/wan22-ti2v-5b-a40-smoke-v1/evidence.json",
+      "model_dir": "/workspace/models/wan22-ti2v-5b",
+      "code_dir": "/workspace/wan2.2-src",
+      "reference_image": "/workspace/artifacts/blind-comparison/cmp_4720d9887d35.png",
+      "out_root": "/workspace/runs/wan22-ti2v-live",
+      "max_runtime_sec": 1800,
+      "skip_if_pass": true
+    }
+  ]
+}

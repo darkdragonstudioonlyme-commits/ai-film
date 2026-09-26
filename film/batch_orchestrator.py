@@ -24,6 +24,7 @@ ADAPTERS = {
     "flux2-klein-live": Adapter("tools/run_flux2_klein_live.py", "--job-id", ("PASS_RUNTIME",)),
     "z-image-live": Adapter("tools/run_z_image_live.py", "--job-id", ("PASS_RUNTIME",)),
     "voxcpm2-live": Adapter("tools/run_voxcpm2_live.py", "--request-id", ("PASS_RUNTIME",)),
+    "wan22-ti2v-live": Adapter("tools/run_wan22_ti2v_live.py", "--smoke-id", ("PASS_RUNTIME_SMOKE",)),
 }
 
 
@@ -67,6 +68,10 @@ def build_argv(job: dict[str,Any], *, root: Path, execute: bool) -> list[str]:
         argv += ["--model-dir",str(job["model_dir"])]
     if job.get("out_root"):
         argv += ["--out-root",str(job["out_root"])]
+    if job.get("code_dir"):
+        argv += ["--wan-repo-dir",str(job["code_dir"])]
+    if job.get("reference_image"):
+        argv += ["--reference-image",str(job["reference_image"])]
     if execute:
         argv.append("--execute")
     return argv

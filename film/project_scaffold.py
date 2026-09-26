@@ -3,6 +3,8 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any
 
+from .world_profile import validate_world_profile
+
 
 class ScaffoldError(ValueError):
     pass
@@ -20,6 +22,7 @@ def build_project_scaffold(
     target_seconds: float=75.0,
     master_aspect: str="9:16",
     secondary_aspect: str="16:9",
+    world_profile: dict[str, Any] | None=None,
 ) -> dict[str, Any]:
     if not project_id or "/" in project_id or ".." in project_id:
         raise ScaffoldError("invalid project_id")
@@ -29,6 +32,7 @@ def build_project_scaffold(
         raise ScaffoldError("source packet authority must be false")
     if not 60.0 <= float(target_seconds) <= 180.0:
         raise ScaffoldError("unsupported scaffold duration")
+    world = validate_world_profile(world_profile) if world_profile is not None else None
     project={
         "schema_version":1,
         "project_id":project_id,
@@ -42,6 +46,8 @@ def build_project_scaffold(
         "runtime_status":"NOT_INITIALIZED",
         "publish_clearance":"NOT_EVALUATED",
     }
+    if world is not None:
+        project["world_profile_id"] = world["profile_id"]
     files={
         "project.json":project,
         "source/source_packet.json":deepcopy(source_packet),
@@ -78,6 +84,8 @@ def build_project_scaffold(
             }]
         },
     }
+    if world is not None:
+        files["world/world_profile.json"] = deepcopy(world)
     for path in files:
         parts=set(path.split("/"))
         if parts & FORBIDDEN_PATH_PARTS:

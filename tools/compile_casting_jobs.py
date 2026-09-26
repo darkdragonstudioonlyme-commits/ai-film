@@ -21,16 +21,24 @@ def write_json(path: Path, value) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Compile deterministic casting-reference jobs without inference.")
-    parser.add_argument("--out-dir", default="projects/slice01/casting/generation")
+    parser.add_argument("--project-dir", default="projects/slice01")
+    parser.add_argument("--model-matrix", default="model-evaluations/slice01/model_matrix.json")
+    parser.add_argument("--out-dir")
     args = parser.parse_args()
 
-    contract = json.loads((ROOT / "projects/slice01/casting/reference_contract.json").read_text(encoding="utf-8"))
-    matrix = json.loads((ROOT / "model-evaluations/slice01/model_matrix.json").read_text(encoding="utf-8"))
-    jobs, public, private = compile_casting_jobs(contract, matrix)
+    project = Path(args.project_dir)
+    if not project.is_absolute():
+        project = ROOT / project
+    matrix_path = Path(args.model_matrix)
+    if not matrix_path.is_absolute():
+        matrix_path = ROOT / matrix_path
+    contract = json.loads((project / "casting/reference_contract.json").read_text(encoding="utf-8"))
+    matrix = json.loads(matrix_path.read_text(encoding="utf-8"))
+    world_path = project / "world/world_profile.json"
+    world = json.loads(world_path.read_text(encoding="utf-8")) if world_path.is_file() else None
+    jobs, public, private = compile_casting_jobs(contract, matrix, world_profile=world)
 
-    out = Path(args.out_dir)
-    if not out.is_absolute():
-        out = ROOT / out
+    out = Path(args.out_dir).resolve() if args.out_dir else project / "casting/generation"
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "casting_jobs.json", {
         "schema_version": 1,
@@ -55,6 +63,7 @@ def main() -> int:
         "blind_items": len(public["items"]),
         "active_models": sorted({job["model_id"] for job in jobs}),
         "out_dir": str(out),
+        "world_profile_id": world.get("profile_id") if world else None,
     }, sort_keys=True))
     return 0
 
