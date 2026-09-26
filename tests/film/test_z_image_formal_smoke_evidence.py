@@ -79,9 +79,9 @@ class ZImageFormalSmokeEvidenceTests(unittest.TestCase):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("zimage-formal-smoke-20260926",by_id)
         self.assertAlmostEqual(by_id["zimage-formal-smoke-20260926"]["amount_usd"],0.048111,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.166508,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.83)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.84)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.170799,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.829)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.83)["allowed"])
 
 
 if __name__=="__main__":

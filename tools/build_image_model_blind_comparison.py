@@ -22,7 +22,9 @@ def main() -> int:
     args=ap.parse_args()
     flux=json.loads((ROOT/"run-evidence/FLUX2_KLEIN_A40_FORMAL_SMOKE_20260925.json").read_text(encoding="utf-8"))
     zimg=json.loads((ROOT/"run-evidence/Z_IMAGE_A40_FORMAL_SMOKE_20260926.json").read_text(encoding="utf-8"))
-    public,private=build_comparison_packet(flux,zimg)
+    materialization_path=ROOT/"run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json"
+    materialization=json.loads(materialization_path.read_text(encoding="utf-8")) if materialization_path.is_file() else None
+    public,private=build_comparison_packet(flux,zimg,materialization)
     out=Path(args.out_dir)
     if not out.is_absolute():
         out=ROOT/out

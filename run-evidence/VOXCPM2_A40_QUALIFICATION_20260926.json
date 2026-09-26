@@ -1,0 +1,73 @@
+{
+  "formal_packet_status": "NOT_RUN_11_REMAINING_SAMPLES",
+  "gpu": "NVIDIA A40",
+  "measurements": {
+    "audio_duration_sec": 3.04,
+    "elapsed_sec": 31.527109,
+    "estimated_compute_cost_usd": 0.004291,
+    "gpu_peak_memory_mib": 5827.0,
+    "inference_sec": 3.452767,
+    "load_sec": 28.051135,
+    "sample_rate_hz": 48000
+  },
+  "model_id": "voxcpm2",
+  "model_repo": "openbmb/VoxCPM2",
+  "model_revision": "32279effe8c19989596f05d353d1447f51d9e915",
+  "model_snapshot_shape": {
+    "required_bytes": 4960722408,
+    "required_file_count": 7,
+    "required_gib": 4.620033
+  },
+  "observed_at_utc": "2026-09-26T01:59:24Z",
+  "output": {
+    "bytes": 291884,
+    "cue_fit": true,
+    "duration_sec": 3.04,
+    "pod_path": "/workspace/runs/voxcpm2-live/voxreq_7f50b3325b6132e8/voxreq_7f50b3325b6132e8.wav",
+    "sample_rate_hz": 48000,
+    "sha256": "f562abbb391460d4cda9f75c0930bfe8ccb603257fd971b6a8a19a33544d3940"
+  },
+  "package": "voxcpm==2.0.3",
+  "pod_id": "0h1twwxqw6yx0k",
+  "production_acceptance": false,
+  "provider": "RunPod",
+  "publish_authority": false,
+  "quality_status": "NOT_EVALUATED",
+  "raw_evidence": {
+    "bytes": 4372,
+    "pod_path": "/workspace/runs/voxcpm2-live/voxreq_7f50b3325b6132e8/evidence.json",
+    "sha256": "1fcda9770d3a4c9ef30a5362302cd32608f36462ad2bf166f50c8b7264aa69de"
+  },
+  "request": {
+    "blind_id": "vox_b5649d601f09",
+    "cfg_value": 2.0,
+    "cue_budget_sec": 3.5,
+    "dialogue_id": "dlg_001",
+    "inference_timesteps": 10,
+    "language": "en",
+    "reference_audio": null,
+    "request_digest": "7f50b3325b6132e86e6094c6c8f34400c7e45abbe6203295d8a8d9ca5af78039",
+    "request_id": "voxreq_7f50b3325b6132e8",
+    "seed": 41001,
+    "voice_cloning": false
+  },
+  "resource_admission_ready": true,
+  "runtime": {
+    "load_denoiser": false,
+    "optimize": false,
+    "package": "voxcpm==2.0.3",
+    "retry_badcase": false,
+    "torch": "2.8.0+cu128",
+    "torchaudio": "2.8.0+cu128"
+  },
+  "schema_version": 1,
+  "status": "PASS_SINGLE_SAMPLE_RUNTIME_QUALIFICATION",
+  "vram_policy": {
+    "admission_threshold_gb": 10.0,
+    "measured_peak_gib": 5.69043,
+    "measured_peak_mib": 5827,
+    "required_vram_gb": 6.0,
+    "reserve_gb": 4.0,
+    "rule": "ceil(measured_peak_mib/1024) required_vram_gb plus fixed 4 GiB reserve"
+  }
+}

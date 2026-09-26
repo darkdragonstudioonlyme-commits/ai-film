@@ -46,6 +46,15 @@
       "attempt_id": "z-image-casting-a40-v1",
       "asset_id": null,
       "note": "Estimated from measured 353.466833s formal smoke elapsed time at USD 0.49/h. Four smoke assets are individually hash-bound in formal smoke evidence."
+    },
+    {
+      "cost_id": "voxcpm2-voxreq_7f50b3325b6132e8-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.004291,
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "attempt_id": "voxreq_7f50b3325b6132e8",
+      "asset_id": null,
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
     }
   ]
 }

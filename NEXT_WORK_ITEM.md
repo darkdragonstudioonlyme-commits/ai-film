@@ -1,36 +1,38 @@
-# NEXT WORK ITEM — T-019 blind image comparison + VoxCPM2 qualification
+# NEXT WORK ITEM — T-019 VoxCPM2 formal packet + blind image scoring
 
 STATUS: READY
 MILESTONE: M2
 
-IMAGE EVIDENCE COMPLETE:
-- FLUX.2 klein 4B formal smoke: 4/4 PASS @ 1024×1024
-- Z-Image formal smoke: 4/4 PASS @ 1024×1024
-- Z-Image peak: 26,227 MiB nvidia-smi / 25,892 MiB Torch
-- Z-Image mean job: 86.360403s; total 353.466833s
-- Z-Image formal cost: USD 0.048111
-- canonical project execution ledger: USD 0.166508 / USD 60
-- both model resource profiles are admission-ready on this A40; model_matrix execution_ready remains false
+IMAGE BLIND MATERIALIZATION COMPLETE:
+- 8/8 neutral-name PNG copies exist under /workspace/artifacts/blind-comparison
+- every copy matches canonical asset_bytes + asset_sha256
+- public neutral manifest contains no model identity
+- scores.csv remains blank; selection_authorized=false
 
-BLIND COMPARISON READY:
-- projects/slice01/casting/formal_comparison/blind_items.json
-- projects/slice01/casting/formal_comparison/blind_map_private.json
-- projects/slice01/casting/formal_comparison/scores.csv
-- 8 samples = 2 models × 2 characters × 2 styles × face_front
-- public packet contains no model identity
-- scores are blank; selection_authorized=false
+VOXCPM2 QUALIFICATION COMPLETE:
+- exact model revision: 32279effe8c19989596f05d353d1447f51d9e915
+- package: voxcpm==2.0.3
+- exact snapshot: 7 required files / 4.620033 GiB
+- one EN request PASS_RUNTIME
+- peak VRAM: 5,827 MiB
+- inference: 3.452767s
+- audio: 3.04s at 48 kHz, cue-fit PASS against 3.5s
+- estimated qualification cost: USD 0.004291
+- no reference audio, no cloning, no production acceptance
+- canonical execution ledger: USD 0.170799 / USD 60
 
 NEXT:
-1. Materialize/copy the 8 Pod-local smoke PNGs into a neutral blind-ID directory without changing hashes.
-2. Verify each neutral copy against canonical asset_sha256 and expose them for blind review.
-3. Do not unblind/rank until all 8 score rows are complete.
-4. In parallel, qualify VoxCPM2 exact pinned runtime and fixed 12-sample EN/ZH/VI Voice Design packet under the same USD 60 budget.
-5. Keep voice cloning/reference_audio disabled.
+1. Execute the remaining 11 fixed VoxCPM2 requests with the same model revision/package/seed/descriptions.
+2. Do not rerun the already-qualified EN request unless a concrete runtime premise changes.
+3. Aggregate 12 output manifests, cue-fit, peak VRAM, elapsed and measured execution cost.
+4. Keep voice quality/identity status NOT_EVALUATED until the 12-sample packet is complete.
+5. Keep image model mapping blinded until all 8 image score rows are complete.
 
 DO NOT:
-- rerun FLUX2 or Z-Image formal smoke without a new explicit premise
+- modify voice descriptions/seeds between languages
+- enable reference_audio or cloning
 - select an image-model winner before complete blind scores
-- treat smoke images as production casting references
+- treat smoke/qualification assets as production casting/audio
 - create another Pod/resource
 - exceed USD 60
 - publish content

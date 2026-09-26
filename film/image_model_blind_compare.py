@@ -69,6 +69,7 @@ def _blind_id(asset_sha256: str) -> str:
 def build_comparison_packet(
     flux_evidence: dict[str,Any],
     zimage_evidence: dict[str,Any],
+    materialization_evidence: dict[str,Any] | None = None,
 ) -> tuple[dict[str,Any],dict[str,Any]]:
     flux_rows=_validate_evidence(flux_evidence,"flux2-klein-4b")
     z_rows=_validate_evidence(zimage_evidence,"z-image")
@@ -108,18 +109,46 @@ def build_comparison_packet(
         raise ImageModelComparisonError("comparison blind IDs are not unique")
     public.sort(key=lambda row:row["blind_id"])
     private.sort(key=lambda row:row["blind_id"])
+    public_packet={
+        "schema_version":1,
+        "comparison_id":COMPARISON_ID,
+        "status":"AWAITING_BLIND_SCORES",
+        "sample_count":8,
+        "criteria":list(SCORE_SCHEMA.criteria),
+        "blindness_note":"Process seal only: model identity is excluded from public packet but asset hashes also exist in private/canonical evidence.",
+        "items":public,
+        "selection_authorized":False,
+        "production_acceptance":False,
+    }
+    if materialization_evidence is not None:
+        if materialization_evidence.get("status")!="PASS_8_NEUTRAL_COPIES_VERIFIED":
+            raise ImageModelComparisonError("neutral materialization evidence not PASS")
+        if materialization_evidence.get("comparison_id")!=COMPARISON_ID or materialization_evidence.get("sample_count")!=8:
+            raise ImageModelComparisonError("neutral materialization identity/population mismatch")
+        manifest=materialization_evidence.get("manifest",{})
+        if manifest.get("model_identity_in_manifest") is not False:
+            raise ImageModelComparisonError("neutral materialization manifest leaks model identity")
+        evidence_items={row.get("blind_id"):row for row in materialization_evidence.get("items",[])}
+        if set(evidence_items)!={row["blind_id"] for row in public}:
+            raise ImageModelComparisonError("neutral materialization item population mismatch")
+        for row in public:
+            ev=evidence_items[row["blind_id"]]
+            if ev.get("asset_sha256")!=row["asset_sha256"] or ev.get("asset_bytes")!=row["asset_bytes"] or ev.get("verified") is not True:
+                raise ImageModelComparisonError("neutral materialization asset identity mismatch")
+            expected_path=f"/workspace/artifacts/blind-comparison/{row['blind_id']}.png"
+            if ev.get("pod_neutral_path")!=expected_path:
+                raise ImageModelComparisonError("neutral materialization path mismatch")
+            row["asset_locator_status"]="POD_LOCAL_NEUTRAL_COPY_VERIFIED"
+            row["pod_neutral_path"]=expected_path
+        public_packet["neutral_materialization"]={
+            "status":"PASS_8_VERIFIED_POD_LOCAL_NEUTRAL_COPIES",
+            "manifest_pod_path":manifest.get("pod_path"),
+            "manifest_sha256":manifest.get("sha256"),
+            "manifest_bytes":manifest.get("bytes"),
+            "model_identity_in_manifest":False,
+        }
     return (
-        {
-            "schema_version":1,
-            "comparison_id":COMPARISON_ID,
-            "status":"AWAITING_BLIND_SCORES",
-            "sample_count":8,
-            "criteria":list(SCORE_SCHEMA.criteria),
-            "blindness_note":"Process seal only: model identity is excluded from public packet but asset hashes also exist in private/canonical evidence.",
-            "items":public,
-            "selection_authorized":False,
-            "production_acceptance":False,
-        },
+        public_packet,
         {
             "schema_version":1,
             "comparison_id":COMPARISON_ID,

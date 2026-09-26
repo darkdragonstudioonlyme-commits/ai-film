@@ -613,8 +613,8 @@ def main() -> int:
         errors.append("cost-policy-binding")
     entries=cost_ledger.get("entries",[])
     by_cost_id={row.get("cost_id"):row for row in entries}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926"}
-    if len(entries)!=5 or set(by_cost_id)!=expected_cost_ids:
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926","voxcpm2-voxreq_7f50b3325b6132e8-pass"}
+    if len(entries)!=6 or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
         if by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("category")!="OTHER" or abs(float(by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("amount_usd",0))-0.11027)>1e-9:
@@ -627,8 +627,10 @@ def main() -> int:
             errors.append("cost-ledger-zimage-qualification-entry")
         if by_cost_id["zimage-formal-smoke-20260926"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["zimage-formal-smoke-20260926"].get("amount_usd",0))-0.048111)>1e-9:
             errors.append("cost-ledger-zimage-formal-smoke-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.166508)>1e-9:
-            errors.append("cost-ledger-total-after-zimage-formal")
+        if by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("amount_usd",0))-0.004291)>1e-9:
+            errors.append("cost-ledger-voxcpm2-qualification-entry")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.170799)>1e-9:
+            errors.append("cost-ledger-total-after-voxcpm2-qualification")
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -1097,6 +1099,11 @@ def main() -> int:
         errors.append("image-model-comparison-population")
     if any("model_id" in row or "job_id" in row or "model_revision" in row for row in comparison.get("items",[])):
         errors.append("image-model-comparison-public-leak")
+    materialization=comparison.get("neutral_materialization",{})
+    if materialization.get("status")!="PASS_8_VERIFIED_POD_LOCAL_NEUTRAL_COPIES" or materialization.get("manifest_sha256")!="2dbc18d0f9ebc56024980b864a7fc27d6633a18ed9741049f851404512fe2728" or materialization.get("model_identity_in_manifest") is not False:
+        errors.append("image-model-comparison-neutral-materialization")
+    if any(row.get("asset_locator_status")!="POD_LOCAL_NEUTRAL_COPY_VERIFIED" or row.get("pod_neutral_path")!=f"/workspace/artifacts/blind-comparison/{row.get('blind_id')}.png" for row in comparison.get("items",[])):
+        errors.append("image-model-comparison-neutral-paths")
     if {row.get("model_id") for row in comparison_private.get("mapping",[])}!={"flux2-klein-4b","z-image"}:
         errors.append("image-model-comparison-private-models")
     score_text=(root/"projects/slice01/casting/formal_comparison/scores.csv").read_text(encoding="utf-8")
@@ -1111,6 +1118,39 @@ def main() -> int:
     ):
         if not (root/rel).is_file():
             errors.append("zimage-formal-comparison-missing:"+rel)
+
+    blind_materialization=json.loads((root/"run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json").read_text(encoding="utf-8"))
+    if blind_materialization.get("status")!="PASS_8_NEUTRAL_COPIES_VERIFIED" or blind_materialization.get("sample_count")!=8 or blind_materialization.get("selection_authorized") is not False:
+        errors.append("image-model-blind-materialization-evidence")
+    if blind_materialization.get("manifest",{}).get("sha256")!="2dbc18d0f9ebc56024980b864a7fc27d6633a18ed9741049f851404512fe2728" or blind_materialization.get("manifest",{}).get("model_identity_in_manifest") is not False:
+        errors.append("image-model-blind-materialization-manifest")
+    vox_qual=json.loads((root/"run-evidence/VOXCPM2_A40_QUALIFICATION_20260926.json").read_text(encoding="utf-8"))
+    if vox_qual.get("status")!="PASS_SINGLE_SAMPLE_RUNTIME_QUALIFICATION" or vox_qual.get("request",{}).get("request_id")!="voxreq_7f50b3325b6132e8":
+        errors.append("voxcpm2-qualification-status")
+    if vox_qual.get("measurements",{}).get("gpu_peak_memory_mib")!=5827.0 or vox_qual.get("measurements",{}).get("estimated_compute_cost_usd")!=0.004291:
+        errors.append("voxcpm2-qualification-measurements")
+    if vox_qual.get("output",{}).get("cue_fit") is not True or vox_qual.get("output",{}).get("sha256")!="f562abbb391460d4cda9f75c0930bfe8ccb603257fd971b6a8a19a33544d3940":
+        errors.append("voxcpm2-qualification-output")
+    if vox_qual.get("request",{}).get("reference_audio") is not None or vox_qual.get("request",{}).get("voice_cloning") is not False or vox_qual.get("quality_status")!="NOT_EVALUATED":
+        errors.append("voxcpm2-qualification-boundary")
+    voice_profiles=json.loads((root/"model-evaluations/slice01/voice/resource_profiles.json").read_text(encoding="utf-8"))
+    vp=(voice_profiles.get("profiles") or [{}])[0]
+    if voice_profiles.get("status")!="VOXCPM2_QUALIFICATION_MEASURED_FORMAL_PACKET_PENDING" or vp.get("model_id")!="voxcpm2":
+        errors.append("voxcpm2-resource-profile-status")
+    if vp.get("required_vram_gb")!=6.0 or vp.get("vram_reserve_gb")!=4.0 or vp.get("admission_threshold_gb")!=10.0 or vp.get("admission_ready") is not True:
+        errors.append("voxcpm2-resource-profile-vram")
+    if vp.get("formal_packet_status")!="NOT_RUN_11_REMAINING_SAMPLES" or vp.get("quality_status")!="NOT_EVALUATED" or vp.get("production_acceptance") is not False:
+        errors.append("voxcpm2-resource-profile-boundary")
+
+    for rel in (
+        "run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json",
+        "run-evidence/VOXCPM2_A40_QUALIFICATION_20260926.json",
+        "model-evaluations/slice01/voice/resource_profiles.json",
+        "tests/film/test_voxcpm2_qualification_evidence.py",
+        "reviews/PRODUCT-V2-VOXCPM2-QUALIFICATION-REVIEW.md",
+    ):
+        if not (root/rel).is_file():
+            errors.append("voxcpm2-qualification-evidence-missing:"+rel)
 
     for rel in (
         "film/voxcpm2_live.py",
