@@ -57,6 +57,8 @@ REQUIRED_PRODUCT_FILES = [
     "model-evaluations/slice01/video/keyframe_probe_sc01_sh04.json",
     "model-evaluations/slice01/batches/sc01_sh04_portrait_keyframes_20260926.json",
     "tests/film/test_image_keyframe_live.py",
+    "film/scored_media_promotion.py",
+    "tools/build_scored_benchmark_plan.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
