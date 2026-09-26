@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "context_id": "tang-changan-motion-auto-eval",
+  "expected": {
+    "world_profile_id": "china_tang_changan_8c",
+    "setting": "Tang dynasty 8th-century Chang’an / Guanzhong courtyard gallery",
+    "character": "Chinese woman, 27, poised and observant, period-appropriate Tang grooming and wardrobe",
+    "action": "subtle natural motion while holding a folded paper message at waist level",
+    "camera": "static portrait framing",
+    "world_rules": [
+      "Tang-era Chinese material culture",
+      "no Qing/Japanese/Korean substitution",
+      "no modern objects"
+    ],
+    "prohibited": [
+      "extra person",
+      "identity drift",
+      "readable generated text on paper/signage",
+      "logo",
+      "watermark"
+    ]
+  },
+  "allowed_text_regex": []
+}

@@ -302,3 +302,8 @@
   goal: "Implement fail-closed scored-media promotion gate from complete owner voice/motion review to multi-shot benchmark configuration"
   status: DONE
   owner: executor
+- id: T-061
+  milestone: M3
+  goal: "Implement fail-closed multi-model automatic evaluation for short video and voice takes; defer owner review to longform rough cut/final cut"
+  status: IN_PROGRESS
+  owner: executor

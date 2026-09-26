@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "evidence_id": "auto-eval-voice-whisper-turbo-20260926",
+  "status": "PASS_AUTO_EVAL_COMPLETE",
+  "evaluator_id": "whisper-turbo-asr",
+  "model_name": "turbo",
+  "model_sha256": "aff26ae408abcba5fbf8813c21e62b0941638c5f6eebfb145be0c9839262a19a",
+  "runtime": "local CPU isolated venv",
+  "sample_count": 12,
+  "status_counts": {
+    "AUTO_SHORTLIST": 9,
+    "AUTO_REJECT_SCORE": 2,
+    "AUTO_RETRY": 1
+  },
+  "mean_score": 84.686959,
+  "human_review_required": false,
+  "production_acceptance": false,
+  "results": [
+    {
+      "asset_id": "vox_b5649d601f09",
+      "receipt_sha256": "1fce404aa689b0d9d7e86fea86c285e74e119c785ec7d6f691a9ce399b3fca3f",
+      "decision_sha256": "b4afcd46d37b7dd5bbffc6543afe507f927d33e8ae78b78804cbb8de6a6145c7",
+      "transcript": "Does the 1140 still stop here?",
+      "detected_language": "en",
+      "metrics": {
+        "asr_text_match": 71.428571,
+        "language_match": 99.940324
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 85.705334
+    },
+    {
+      "asset_id": "vox_ae6c3e5af03f",
+      "receipt_sha256": "65f312d8f0360b2c26d4635a930a437612f9db12d3b2f59f3221307cec72233d",
+      "decision_sha256": "ef815a9e2af5c0bc17c8a3cacaea40f8f17fe7539c998ad289d385b4320ea964",
+      "transcript": "11点40的末班车还停这里吗?",
+      "detected_language": "zh",
+      "metrics": {
+        "asr_text_match": 71.428571,
+        "language_match": 99.820364
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_REJECT_SCORE",
+      "score": 50.68734
+    },
+    {
+      "asset_id": "vox_52af55f53319",
+      "receipt_sha256": "124f5bdc612e8b78d4843486d1a4a5671130c22087757f669d14c097c28ed807",
+      "decision_sha256": "06e86f3603831ac2a998c8e7da26afeab4805d92fdaf01e1aaf9db9862cab63c",
+      "transcript": "Chuyến 11h40 vẫn dừng ở đây chứ.",
+      "detected_language": "vi",
+      "metrics": {
+        "asr_text_match": 54.545455,
+        "language_match": 99.874723
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_RETRY",
+      "score": 77.253936
+    },
+    {
+      "asset_id": "vox_9373295aa488",
+      "receipt_sha256": "5762e142c7f3a12048ef0c75b61dbbdcfdc69ee1a8f8877562fab8bf978f0947",
+      "decision_sha256": "2bf7b0c7308e23478de356e2d6d75a1cdfa9d337dd7ac7e60f30e0979676ddb2",
+      "transcript": "only if we bring the signal back",
+      "detected_language": "en",
+      "metrics": {
+        "asr_text_match": 100.0,
+        "language_match": 99.208295
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 99.881244
+    },
+    {
+      "asset_id": "vox_13399c04d206",
+      "receipt_sha256": "3dc44c79651b8efe91ce139e7f7024da9b8fb942e54a6602e8488340a40ce19f",
+      "decision_sha256": "559df3007107440f08d4a2ad5cdbe9ccd8e376d53488489213787d974301178f",
+      "transcript": "先把信号恢复",
+      "detected_language": "zh",
+      "metrics": {
+        "asr_text_match": 85.714286,
+        "language_match": 98.89853
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 92.691923
+    },
+    {
+      "asset_id": "vox_0b3a62fff486",
+      "receipt_sha256": "0e1dcb4e1193fe6e59ae17e31a456eb9b6574e9114fbe5db1f91c9a4fe93a9df",
+      "decision_sha256": "6654d15a65a8c1aa165644bb14defd98a5ef7daa6d1f12762a300fb42ab21eb3",
+      "transcript": "Chỉ khi mình khôi phục được tín hiệu.",
+      "detected_language": "vi",
+      "metrics": {
+        "asr_text_match": 100.0,
+        "language_match": 99.703205
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 99.955481
+    },
+    {
+      "asset_id": "vox_67cf87393d99",
+      "receipt_sha256": "917ed82c95cc75126d5050c9023bb2000430a55995560d8b0c23a88889db15b8",
+      "decision_sha256": "62b7f788ec9a787b97339de31ae0e81eabb33d8f54e1b6f28d3ab8701d291a33",
+      "transcript": "You came back for this station?",
+      "detected_language": "en",
+      "metrics": {
+        "asr_text_match": 100.0,
+        "language_match": 99.92004
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 99.988006
+    },
+    {
+      "asset_id": "vox_fd8d0508e077",
+      "receipt_sha256": "320af275cbc3c65ebf353941d0667006169ec2a7bddeb441b2c74d2890b2443c",
+      "decision_sha256": "f5f1dc988d2056bd68de335ac74720def57156def837ffed4cc7757d557d5c1a",
+      "transcript": "你是为了这个车站回来的",
+      "detected_language": "zh",
+      "metrics": {
+        "asr_text_match": 100.0,
+        "language_match": 99.82242
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 99.973363
+    },
+    {
+      "asset_id": "vox_94f82cfeb1e1",
+      "receipt_sha256": "a3ec3e65c25f82a9fee7a6af50e4d4f426aeb9abd053c5d44df3ff54e1dc2407",
+      "decision_sha256": "e4d5a47e3472e1db48ec99a1f4a8d7e1142edcb2ace81551a939b720988c1455",
+      "transcript": "Ăn khiên lại vì nhà ga này sao?",
+      "detected_language": "vi",
+      "metrics": {
+        "asr_text_match": 75.0,
+        "language_match": 99.884111
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 87.482617
+    },
+    {
+      "asset_id": "vox_539e9b43601d",
+      "receipt_sha256": "52f9e5fe43c7da6195c9cf3b7ec4dae3b898f0cec40b0a191edc7ee53d005dec",
+      "decision_sha256": "ccccff05cc45ac359712352deedc68c662669bf0d0d0ed28c74e6751e940f28e",
+      "transcript": "or a promise.",
+      "detected_language": "en",
+      "metrics": {
+        "asr_text_match": 66.666667,
+        "language_match": 99.364859
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 83.238062
+    },
+    {
+      "asset_id": "vox_6cd531479b73",
+      "receipt_sha256": "2d9aa7e8e239d24b32ff3e424d8ff753cc60a1650882db752b7bcc63ee8548ff",
+      "decision_sha256": "4c287e112c2eee086ca8cab48ada64f7cbcb6ed5eb8711dded757d600de2f1c5",
+      "transcript": "為了一個承諾",
+      "detected_language": "zh",
+      "metrics": {
+        "asr_text_match": 50.0,
+        "language_match": 96.029806
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_REJECT_SCORE",
+      "score": 39.404471
+    },
+    {
+      "asset_id": "vox_c18649999184",
+      "receipt_sha256": "9f163e6eea1bc9341ef0997f1f153c5f0610c269dce83b393e3392567e9fbe32",
+      "decision_sha256": "b34dcc3c4544cc98147360e6cfe2e58fcba838e72550502eceda5d6597d20f7f",
+      "transcript": "Vì một lời hứa.",
+      "detected_language": "vi",
+      "metrics": {
+        "asr_text_match": 100.0,
+        "language_match": 99.878174
+      },
+      "hard_fail_tags": [],
+      "status": "AUTO_SHORTLIST",
+      "score": 99.981726
+    }
+  ],
+  "local_receipt_root": "/home/dragon/ai-film-dev/run-evidence/auto-eval/voice-20260926"
+}

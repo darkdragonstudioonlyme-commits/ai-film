@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "ACTIVE_MULTI_MODEL_AUTO_EVAL",
+  "evaluators": [
+    {
+      "evaluator_id": "vbench-video-v0.1.5",
+      "family": "VBench",
+      "kind": "video_quality",
+      "enabled": true,
+      "required_for": [
+        "short_video_take",
+        "longform_rough_cut"
+      ],
+      "code_repo": "Vchitect/VBench",
+      "code_revision": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0",
+      "license_gate": "PASS",
+      "execution_ready": false,
+      "runtime_profile": "vbench-cu121",
+      "metrics": [
+        "subject_consistency",
+        "background_consistency",
+        "motion_smoothness",
+        "dynamic_degree",
+        "aesthetic_quality",
+        "imaging_quality"
+      ],
+      "notes": [
+        "Use custom_input mode only.",
+        "Separate CUDA<=12.1 runtime required by upstream setup.py."
+      ]
+    },
+    {
+      "evaluator_id": "qwen3-vl-2b-semantic",
+      "family": "Qwen3-VL",
+      "kind": "video_semantic_judge",
+      "enabled": true,
+      "required_for": [
+        "short_video_take",
+        "longform_rough_cut"
+      ],
+      "code_repo": "QwenLM/Qwen3-VL",
+      "code_revision": "96588727e44c78b25ba03ea03b8e12f7e64fd0da",
+      "model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+      "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "license": "Apache-2.0",
+      "license_gate": "PASS",
+      "execution_ready": true,
+      "runtime_profile": "qwen3vl-cpu-local",
+      "metrics": [
+        "semantic_adherence",
+        "character_consistency",
+        "continuity",
+        "world_period_consistency"
+      ],
+      "hard_fail_capabilities": [
+        "severe_identity_break",
+        "extra_person",
+        "severe_anatomy",
+        "scene_contradiction"
+      ],
+      "notes": [
+        "Qualified locally on CPU with pinned model revision and qwen-vl-utils decord video path."
+      ]
+    },
+    {
+      "evaluator_id": "paddleocr-text-artifact",
+      "family": "PaddleOCR",
+      "kind": "visual_text_artifact",
+      "enabled": true,
+      "required_for": [
+        "short_video_take",
+        "longform_rough_cut"
+      ],
+      "code_repo": "PaddlePaddle/PaddleOCR",
+      "code_revision": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "license": "Apache-2.0",
+      "license_gate": "PASS",
+      "execution_ready": true,
+      "runtime_profile": "paddleocr-cpu",
+      "metrics": [
+        "text_artifact_free"
+      ],
+      "hard_fail_capabilities": [
+        "unmotivated_readable_text",
+        "watermark_or_logo"
+      ],
+      "notes": [
+        "Qualified locally on CPU with PaddleOCR 3.7.0 / Paddle 3.3.1, imageio-ffmpeg 0.6.0, MKLDNN disabled."
+      ]
+    },
+    {
+      "evaluator_id": "whisper-turbo-asr",
+      "family": "Whisper",
+      "kind": "speech_content",
+      "enabled": true,
+      "required_for": [
+        "voice_take",
+        "longform_rough_cut_with_dialogue"
+      ],
+      "code_repo": "openai/whisper",
+      "code_revision": "86098128c0b4f24f0e2aa2994de830614b474227",
+      "model_name": "turbo",
+      "model_sha256": "aff26ae408abcba5fbf8813c21e62b0941638c5f6eebfb145be0c9839262a19a",
+      "license": "MIT",
+      "license_gate": "PASS",
+      "execution_ready": true,
+      "runtime_profile": "whisper-cpu-local",
+      "metrics": [
+        "asr_text_match",
+        "language_match"
+      ],
+      "notes": [
+        "Cue fit remains deterministic and is merged with ASR metrics.",
+        "Qualified locally on CPU with pinned turbo weight checksum and imageio-ffmpeg 0.6.0."
+      ]
+    },
+    {
+      "evaluator_id": "wespeaker-speaker-consistency",
+      "family": "WeSpeaker",
+      "kind": "speaker_identity",
+      "enabled": false,
+      "required_for": [],
+      "code_repo": "wenet-e2e/wespeaker",
+      "code_revision": "9fecd6cb4f47475d01761d87c826298dff4ef18c",
+      "license": "Apache-2.0",
+      "license_gate": "WEIGHT_LICENSE_REVIEW_REQUIRED",
+      "execution_ready": false,
+      "runtime_profile": "wespeaker",
+      "metrics": [
+        "voice_consistency",
+        "between_character_separation"
+      ],
+      "blockers": [
+        "PIN_EXACT_PRETRAINED_WEIGHT_AND_LICENSE"
+      ]
+    },
+    {
+      "evaluator_id": "dover-video-quality",
+      "family": "DOVER",
+      "kind": "video_quality",
+      "enabled": false,
+      "required_for": [],
+      "code_repo": "VQAssessment/DOVER",
+      "code_revision": "f1ddc96215bc7fbcf8f315c65d47905f339c3419",
+      "license": "S-Lab-1.0-NONCOMMERCIAL",
+      "license_gate": "BLOCKED_NONCOMMERCIAL",
+      "execution_ready": false,
+      "metrics": [
+        "technical_quality",
+        "aesthetic_quality"
+      ],
+      "blockers": [
+        "NONCOMMERCIAL_LICENSE"
+      ]
+    }
+  ]
+}

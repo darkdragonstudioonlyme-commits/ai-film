@@ -11,6 +11,7 @@ SPEC=json.loads((ROOT/"model-evaluations/slice01/video/wan22_quality_probe_sc01_
 BATCH=json.loads((ROOT/"model-evaluations/slice01/batches/wan22_sc01_sh04_balanced_motion_20260926.json").read_text())
 MATRIX=json.loads((ROOT/"model-evaluations/slice01/model_matrix.json").read_text())
 SESSION=json.loads((ROOT/"projects/slice01/runtime/gpu_session.json").read_text())
+RUNNING_SESSION={**SESSION,"provider_state":"RUNNING"}
 
 
 class Wan22QualityProbeTests(unittest.TestCase):
@@ -32,7 +33,7 @@ class Wan22QualityProbeTests(unittest.TestCase):
                 "reference_role":row["reference_role"],
                 "max_runtime_sec":row["max_runtime_sec"],
             })
-            plan=validate_smoke_spec(merged,matrix=MATRIX,gpu_session=SESSION)
+            plan=validate_smoke_spec(merged,matrix=MATRIX,gpu_session=RUNNING_SESSION)
             self.assertEqual(plan["frame_num"],25)
             self.assertEqual(plan["sample_steps"],8)
             self.assertFalse(plan["production_acceptance"])

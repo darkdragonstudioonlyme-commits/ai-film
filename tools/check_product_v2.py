@@ -60,6 +60,27 @@ REQUIRED_PRODUCT_FILES = [
     "film/scored_media_promotion.py",
     "tools/build_scored_benchmark_plan.py",
     "tools/serve_owner_review.py",
+    "model-evaluations/auto-eval/evaluator_registry.json",
+    "model-evaluations/auto-eval/policy.json",
+    "model-evaluations/auto-eval/runtime_profiles.json",
+    "model-evaluations/auto-eval/current_batch_20260926.json",
+    "film/auto_eval.py",
+    "film/qwen3vl_auto_eval.py",
+    "film/whisper_auto_eval.py",
+    "film/vbench_auto_eval.py",
+    "film/paddleocr_auto_eval.py",
+    "tools/build_auto_eval_plan.py",
+    "tools/aggregate_auto_eval.py",
+    "tools/run_qwen3vl_auto_eval.py",
+    "tools/run_whisper_auto_eval.py",
+    "tools/run_vbench_auto_eval.py",
+    "tools/run_paddleocr_auto_eval.py",
+    "tools/run_current_voice_auto_eval.py",
+    "tools/run_current_video_auto_eval.py",
+    "run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json",
+    "run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json",
+    "run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json",
+    "run-evidence/AUTO_EVAL_VIDEO_PARTIAL_ENSEMBLE_20260926.json",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -107,6 +128,81 @@ def main() -> int:
                 errors.append("world-profile-europe-specificity:"+str(row.get("profile_id")))
         if not row.get("casting_policy") or not row.get("avoid"):
             errors.append("world-profile-production-guards:"+str(row.get("profile_id")))
+
+    auto_registry=json.loads((root/"model-evaluations/auto-eval/evaluator_registry.json").read_text(encoding="utf-8"))
+    auto_policy=json.loads((root/"model-evaluations/auto-eval/policy.json").read_text(encoding="utf-8"))
+    auto_batch=json.loads((root/"model-evaluations/auto-eval/current_batch_20260926.json").read_text(encoding="utf-8"))
+    eval_rows=auto_registry.get("evaluators",[])
+    eval_by_id={row.get("evaluator_id"):row for row in eval_rows}
+    required_auto_ids={
+        "vbench-video-v0.1.5","qwen3-vl-2b-semantic","paddleocr-text-artifact","whisper-turbo-asr"
+    }
+    if auto_registry.get("schema_version")!=1 or not required_auto_ids.issubset(set(eval_by_id)):
+        errors.append("auto-eval-registry-required")
+    for eid in required_auto_ids:
+        row=eval_by_id.get(eid,{})
+        if row.get("enabled") is not True or row.get("license_gate")!="PASS":
+            errors.append("auto-eval-required-license:"+eid)
+    dover=eval_by_id.get("dover-video-quality")
+    if dover is None or dover.get("enabled") is not False or dover.get("license_gate")!="BLOCKED_NONCOMMERCIAL":
+        errors.append("auto-eval-dover-noncommercial-gate")
+    stages=auto_policy.get("stages",{})
+    short=stages.get("short_video_take",{})
+    voice_auto=stages.get("voice_take",{})
+    longform=stages.get("longform_rough_cut",{})
+    if set(short.get("required_evaluators",[]))!={"vbench-video-v0.1.5","qwen3-vl-2b-semantic","paddleocr-text-artifact"}:
+        errors.append("auto-eval-short-video-ensemble")
+    if short.get("min_model_evaluators")!=3 or float(short.get("auto_shortlist_min",-1))!=70.0:
+        errors.append("auto-eval-short-video-policy")
+    if voice_auto.get("required_evaluators")!=["whisper-turbo-asr"]:
+        errors.append("auto-eval-voice-whisper")
+    if longform.get("inherits")!="short_video_take" or longform.get("human_review_required") is not True:
+        errors.append("auto-eval-longform-human-gate")
+    human_policy=auto_policy.get("human_review_policy",{})
+    if human_policy.get("short_take_human_review_required") is not False or set(human_policy.get("human_review_required_at",[]))!={"longform_rough_cut","final_cut"}:
+        errors.append("auto-eval-human-review-boundary")
+    if auto_batch.get("human_review_required_for_this_batch") is not False or len(auto_batch.get("voice_assets",[]))!=12 or len(auto_batch.get("video_assets",[]))!=4:
+        errors.append("auto-eval-current-batch-population")
+    if auto_batch.get("production_acceptance") is not False or auto_batch.get("publish_authority") is not False:
+        errors.append("auto-eval-current-batch-authority")
+
+    # Runtime qualification/evidence must match actual current state.
+    if eval_by_id.get("whisper-turbo-asr",{}).get("execution_ready") is not True:
+        errors.append("auto-eval-whisper-not-ready")
+    if eval_by_id.get("qwen3-vl-2b-semantic",{}).get("execution_ready") is not True:
+        errors.append("auto-eval-qwen-not-ready")
+    if eval_by_id.get("paddleocr-text-artifact",{}).get("execution_ready") is not True:
+        errors.append("auto-eval-ocr-not-ready")
+    if eval_by_id.get("vbench-video-v0.1.5",{}).get("execution_ready") is not False:
+        errors.append("auto-eval-vbench-should-remain-pending")
+    runtime=json.loads((root/"model-evaluations/auto-eval/runtime_profiles.json").read_text(encoding="utf-8"))
+    runtime_by_id={row.get("runtime_profile"):row for row in runtime.get("profiles",[])}
+    for rp in ("whisper-cpu-local","qwen3vl-cpu-local","paddleocr-cpu"):
+        if runtime_by_id.get(rp,{}).get("setup_status")!="QUALIFIED_LOCAL_CPU_PASS":
+            errors.append("auto-eval-runtime-not-qualified:"+rp)
+    if runtime_by_id.get("vbench-cu121",{}).get("setup_status")!="PENDING_EXISTING_A40_RESTART":
+        errors.append("auto-eval-vbench-runtime-state")
+
+    voice_ev=json.loads((root/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text(encoding="utf-8"))
+    if voice_ev.get("status")!="PASS_AUTO_EVAL_COMPLETE" or voice_ev.get("sample_count")!=12:
+        errors.append("auto-eval-voice-runtime-evidence")
+    if voice_ev.get("status_counts")!={"AUTO_SHORTLIST":9,"AUTO_REJECT_SCORE":2,"AUTO_RETRY":1}:
+        errors.append("auto-eval-voice-runtime-disposition")
+
+    qwen_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json").read_text(encoding="utf-8"))
+    ocr_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json").read_text(encoding="utf-8"))
+    partial_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_PARTIAL_ENSEMBLE_20260926.json").read_text(encoding="utf-8"))
+    if qwen_ev.get("status")!="PASS_AUTO_EVAL_COMPLETE" or qwen_ev.get("sample_count")!=4:
+        errors.append("auto-eval-qwen-runtime-evidence")
+    if ocr_ev.get("status")!="PASS_AUTO_EVAL_COMPLETE" or ocr_ev.get("sample_count")!=4:
+        errors.append("auto-eval-ocr-runtime-evidence")
+    ocr_by_id={row.get("asset_id"):row for row in ocr_ev.get("results",[])}
+    if "UNMOTIVATED_READABLE_TEXT" not in ocr_by_id.get("wan22-sc01-sh04-zimage-ref-v1",{}).get("hard_fail_tags",[]):
+        errors.append("auto-eval-ocr-zimage-hard-fail")
+    if partial_ev.get("status")!="PARTIAL_EVALUATOR_RECEIPTS" or partial_ev.get("missing_evaluator")!="vbench-video-v0.1.5":
+        errors.append("auto-eval-partial-vbench-gap")
+    if partial_ev.get("production_acceptance") is not False or partial_ev.get("human_review_required") is not False:
+        errors.append("auto-eval-partial-authority")
 
     backlog=(root/"BACKLOG.yaml").read_text(encoding="utf-8")
     ids=re.findall(r"^- id: (T-[0-9]+)$",backlog,re.M)

@@ -47,15 +47,15 @@ class WorldCapabilityEvidenceTests(unittest.TestCase):
         self.assertFalse(EV["publish_authority"])
 
     def test_paid_runtime_state_uses_provider_bill_and_records_idle_gate(self):
-        self.assertEqual(SESSION["provider_state"],"RUNNING")
-        self.assertEqual(SESSION["operational_state"],"IDLE_OWNER_REVIEW_GATE")
+        self.assertEqual(SESSION["provider_state"],"EXITED")
+        self.assertEqual(SESSION["operational_state"],"AUTO_EVAL_VBENCH_CAPACITY_BLOCKED")
         self.assertAlmostEqual(SESSION["execution_cost_usd"],0.455474,places=6)
         self.assertGreaterEqual(SESSION["provider_billed_usd"],EV["provider_billed_snapshot_usd"])
         self.assertLess(SESSION["provider_billed_usd"],SESSION["budget_cap_usd"])
         self.assertEqual(SESSION["world_capability"]["generated_outputs"],5)
         self.assertEqual(SESSION["world_capability"]["synced_outputs"],5)
         self.assertEqual(SESSION["world_capability"]["unsynced_outputs"],0)
-        self.assertEqual(SESSION["stop_keep_decision"],"STOP_RECOMMENDED_OWNER_ACTION_AFTER_EVIDENCE_CLOSURE")
+        self.assertEqual(SESSION["stop_keep_decision"],"KEEP_EXITED_RETRY_EXISTING_POD_WHEN_A40_CAPACITY_RETURNS")
 
 
 if __name__=="__main__":

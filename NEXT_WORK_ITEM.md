@@ -1,36 +1,47 @@
-# NEXT WORK ITEM — complete owner media review, then promote scored benchmark inputs
+# NEXT WORK ITEM — complete the multi-model automatic evaluation gate
 
 STATUS: READY
-MILESTONE: M2 + M4
+MILESTONE: M2 + M3 + M4
 
-COMPLETED:
-- image owner score set complete 8/8 on the owner-defined 0–8 scale; FLUX2 and Z-Image tie;
-- VoxCPM2 fixed packet generated 12/12, 10/12 cue-fit, all WAVs synced/hash-verified;
-- Wan2.2 TI2V-5B admitted on A40 and balanced motion probes generated 2/2;
-- Tang Chang'an and Belle Époque Paris world profiles proven through generated image → Wan motion technical media;
-- all current generated binaries are synced off the root-only Pod.
+HUMAN REVIEW POLICY:
+- no owner scoring for current short voice/image/motion takes;
+- human review begins at LONGFORM_ROUGH_CUT and FINAL_CUT;
+- later owner 0–8 scores are calibration labels for evaluator weights, not prerequisites for short-take iteration.
 
-OWNER REVIEW:
-- local review page: http://localhost:8765/
-- required score set: 12 voice samples + blind motion_A/motion_B;
-- scale: integer 0–8;
-- click Submit & Save after all 14 scores; server writes /home/dragon/ai-film-dev/media/slice01/owner-review-20260926/owner_review_scores_20260926.json;
-- motion mapping stays sealed until the complete score set is ingested.
+COMPLETED AUTO_EVAL:
+- Whisper turbo exact-checksum CPU runtime: qualified;
+- 12/12 VoxCPM2 voice takes evaluated: 9 AUTO_SHORTLIST, 1 AUTO_RETRY, 2 AUTO_REJECT_SCORE;
+- Qwen3-VL-2B CPU runtime: qualified and evaluated 4/4 current video takes;
+- PaddleOCR CPU runtime: qualified and evaluated 4/4 current video takes;
+- Z-Image-reference motion is AUTO_REJECT_HARD_FAIL from UNMOTIVATED_READABLE_TEXT before weighted score;
+- DOVER remains disabled because its current upstream license is non-commercial.
 
-NEXT AFTER COMPLETE SCORES:
-1. ingest the server-saved owner review JSON with tools/ingest_owner_review_scores.py;
-2. unblind motion only after all 14 scores validate;
-3. build the fail-closed scored-media promotion plan with tools/build_scored_benchmark_plan.py; unique motion top score may configure the benchmark, while a tie blocks;
-4. promote only scored media/reference choices into the first multi-shot M3/M4 quality benchmark;
-5. keep 14B/LTX gated until measured admission/runtime evidence exists.
+REQUIRED VIDEO ENSEMBLE:
+- VBench: subject/background consistency, motion smoothness, dynamic degree, aesthetic and imaging quality;
+- Qwen3-VL-2B: semantic adherence, character consistency, continuity, world/period consistency;
+- PaddleOCR: generated text/logo artifact detection.
+
+FAIL-CLOSED RULES:
+- missing required evaluator => BLOCKED;
+- severe objective failure => AUTO_REJECT_HARD_FAIL before score;
+- high weighted score => AUTO_SHORTLIST only;
+- automatic evaluation never grants production acceptance or publish authority.
+
+CURRENT BLOCKER:
+- VBench is the only missing required evaluator;
+- VBench requires isolated CUDA <=12.1 runtime on the existing authorized A40;
+- Pod 0h1twwxqw6yx0k is EXITED; restart attempt failed because its retained host has no free A40;
+- do not create a new Pod/resource.
+
+NEXT:
+1. retry start on the same authorized A40 only;
+2. create/pin isolated VBench cu121 runtime and exact repo revision;
+3. run VBench on the 4 current video takes;
+4. aggregate 3-model video receipts and rank takes;
+5. promote only AUTO_SHORTLIST media into the first multi-shot M3/M4 benchmark;
+6. regenerate/retry the 1 voice AUTO_RETRY + 2 voice AUTO_REJECT_SCORE samples without asking the owner to score short takes.
 
 PAID RESOURCE:
 - existing RunPod A40 only, USD 0.49/h, hard cap USD 60;
-- lifetime provider bill snapshot USD 9.971950;
-- no useful GPU batch is queued while owner review is pending; stopping the existing Pod is recommended if review will pause.
-
-DO NOT:
-- generate more GPU benchmark media merely to keep the Pod busy;
-- treat technical world probes as historical-accuracy or production-quality approval;
-- promote voice or motion quality before complete owner scores;
-- create another paid resource or publish content.
+- provider lifetime bill snapshot USD 10.607923;
+- Pod is EXITED, so only retained disk is currently billable.

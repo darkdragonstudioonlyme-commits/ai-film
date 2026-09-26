@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "evidence_id": "auto-eval-video-paddleocr-20260926",
+  "status": "PASS_AUTO_EVAL_COMPLETE",
+  "evaluator_id": "paddleocr-text-artifact",
+  "runtime": "local CPU isolated venv, paddle 3.3.1, paddleocr 3.7.0, imageio-ffmpeg 0.6.0, MKLDNN disabled",
+  "sample_count": 4,
+  "production_acceptance": false,
+  "human_review_required": false,
+  "results": [
+    {
+      "asset_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "metrics": {
+        "text_artifact_free": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "a22d8ba6e62eb478726ed20d05df3d8cda989d2e2bb2786b4c05692c77577d49",
+      "evidence": {
+        "detections": [],
+        "unexpected": [],
+        "video_path": "/home/dragon/ai-film-dev/media/slice01/video-wan22-quality-20260926/flux2/wan22-sc01-sh04-flux2-ref-v1.mp4",
+        "sample_fps": 4.0,
+        "sampled_frames": 4,
+        "ffmpeg": "/home/dragon/ai-film-dev/venvs/paddleocr-cpu/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+      }
+    },
+    {
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "metrics": {
+        "text_artifact_free": 75.0
+      },
+      "hard_fail_tags": [
+        "UNMOTIVATED_READABLE_TEXT"
+      ],
+      "receipt_sha256": "cb056e9bd3b268121e158ba380926840fb1a23a779f935d2b485352e1afd7acb",
+      "evidence": {
+        "detections": [
+          {
+            "frame_index": 3,
+            "text": "CALL",
+            "confidence": 0.79483,
+            "allowed": false
+          }
+        ],
+        "unexpected": [
+          {
+            "frame_index": 3,
+            "text": "CALL",
+            "confidence": 0.79483,
+            "allowed": false
+          }
+        ],
+        "video_path": "/home/dragon/ai-film-dev/media/slice01/video-wan22-quality-20260926/zimage/wan22-sc01-sh04-zimage-ref-v1.mp4",
+        "sample_fps": 4.0,
+        "sampled_frames": 4,
+        "ffmpeg": "/home/dragon/ai-film-dev/venvs/paddleocr-cpu/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+      }
+    },
+    {
+      "asset_id": "world-paris-belle-epoque-motion-v1",
+      "metrics": {
+        "text_artifact_free": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "80fbf07d76b4a3a1b7eb52942e5b708294b4d110279fb74e966d2d62138be6ba",
+      "evidence": {
+        "detections": [],
+        "unexpected": [],
+        "video_path": "/home/dragon/ai-film-dev/media/world-capability-20260926/paris-motion/world-paris-belle-epoque-motion-v1.mp4",
+        "sample_fps": 4.0,
+        "sampled_frames": 3,
+        "ffmpeg": "/home/dragon/ai-film-dev/venvs/paddleocr-cpu/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+      }
+    },
+    {
+      "asset_id": "world-tang-changan-motion-v1",
+      "metrics": {
+        "text_artifact_free": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "1c818f4c2f72d52fb6fb9d339f32884d4d5d01ed886c5acf30acc29b0145e250",
+      "evidence": {
+        "detections": [],
+        "unexpected": [],
+        "video_path": "/home/dragon/ai-film-dev/media/world-capability-20260926/tang-motion/world-tang-changan-motion-v1.mp4",
+        "sample_fps": 4.0,
+        "sampled_frames": 3,
+        "ffmpeg": "/home/dragon/ai-film-dev/venvs/paddleocr-cpu/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+      }
+    }
+  ],
+  "local_receipt_root": "/home/dragon/ai-film-dev/run-evidence/auto-eval/video-20260926"
+}

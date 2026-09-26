@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "evidence_id": "auto-eval-video-partial-ensemble-20260926",
+  "status": "PARTIAL_EVALUATOR_RECEIPTS",
+  "required_evaluators": [
+    "vbench-video-v0.1.5",
+    "qwen3-vl-2b-semantic",
+    "paddleocr-text-artifact"
+  ],
+  "completed_evaluators": [
+    "qwen3-vl-2b-semantic",
+    "paddleocr-text-artifact"
+  ],
+  "missing_evaluator": "vbench-video-v0.1.5",
+  "blocker": "EXISTING_A40_HOST_CAPACITY",
+  "human_review_required": false,
+  "production_acceptance": false,
+  "results": [
+    {
+      "schema_version": 1,
+      "policy_id": "auto-eval-ensemble-v1",
+      "stage": "short_video_take",
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "required_evaluators": [
+        "vbench-video-v0.1.5",
+        "qwen3-vl-2b-semantic",
+        "paddleocr-text-artifact"
+      ],
+      "received_evaluators": [
+        "paddleocr-text-artifact",
+        "qwen3-vl-2b-semantic"
+      ],
+      "missing_evaluators": [
+        "vbench-video-v0.1.5"
+      ],
+      "failed_evaluators": [],
+      "hard_fail_tags": [
+        "UNMOTIVATED_READABLE_TEXT"
+      ],
+      "triggered_hard_fail_tags": [
+        "UNMOTIVATED_READABLE_TEXT"
+      ],
+      "human_review_required": false,
+      "automatic_only": true,
+      "production_acceptance": false,
+      "publish_authority": false,
+      "status": "AUTO_REJECT_HARD_FAIL",
+      "score": null,
+      "auto_shortlist": false,
+      "retry_recommended": false,
+      "auto_rank": 1
+    },
+    {
+      "schema_version": 1,
+      "policy_id": "auto-eval-ensemble-v1",
+      "stage": "short_video_take",
+      "asset_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "required_evaluators": [
+        "vbench-video-v0.1.5",
+        "qwen3-vl-2b-semantic",
+        "paddleocr-text-artifact"
+      ],
+      "received_evaluators": [
+        "paddleocr-text-artifact",
+        "qwen3-vl-2b-semantic"
+      ],
+      "missing_evaluators": [
+        "vbench-video-v0.1.5"
+      ],
+      "failed_evaluators": [],
+      "hard_fail_tags": [],
+      "triggered_hard_fail_tags": [],
+      "human_review_required": false,
+      "automatic_only": true,
+      "production_acceptance": false,
+      "publish_authority": false,
+      "status": "BLOCKED_EVALUATOR_GAP",
+      "score": null,
+      "auto_shortlist": false,
+      "retry_recommended": false,
+      "auto_rank": 2
+    },
+    {
+      "schema_version": 1,
+      "policy_id": "auto-eval-ensemble-v1",
+      "stage": "short_video_take",
+      "asset_id": "world-paris-belle-epoque-motion-v1",
+      "required_evaluators": [
+        "vbench-video-v0.1.5",
+        "qwen3-vl-2b-semantic",
+        "paddleocr-text-artifact"
+      ],
+      "received_evaluators": [
+        "paddleocr-text-artifact",
+        "qwen3-vl-2b-semantic"
+      ],
+      "missing_evaluators": [
+        "vbench-video-v0.1.5"
+      ],
+      "failed_evaluators": [],
+      "hard_fail_tags": [],
+      "triggered_hard_fail_tags": [],
+      "human_review_required": false,
+      "automatic_only": true,
+      "production_acceptance": false,
+      "publish_authority": false,
+      "status": "BLOCKED_EVALUATOR_GAP",
+      "score": null,
+      "auto_shortlist": false,
+      "retry_recommended": false,
+      "auto_rank": 3
+    },
+    {
+      "schema_version": 1,
+      "policy_id": "auto-eval-ensemble-v1",
+      "stage": "short_video_take",
+      "asset_id": "world-tang-changan-motion-v1",
+      "required_evaluators": [
+        "vbench-video-v0.1.5",
+        "qwen3-vl-2b-semantic",
+        "paddleocr-text-artifact"
+      ],
+      "received_evaluators": [
+        "paddleocr-text-artifact",
+        "qwen3-vl-2b-semantic"
+      ],
+      "missing_evaluators": [
+        "vbench-video-v0.1.5"
+      ],
+      "failed_evaluators": [],
+      "hard_fail_tags": [],
+      "triggered_hard_fail_tags": [],
+      "human_review_required": false,
+      "automatic_only": true,
+      "production_acceptance": false,
+      "publish_authority": false,
+      "status": "BLOCKED_EVALUATOR_GAP",
+      "score": null,
+      "auto_shortlist": false,
+      "retry_recommended": false,
+      "auto_rank": 4
+    }
+  ],
+  "local_receipt_root": "/home/dragon/ai-film-dev/run-evidence/auto-eval/video-20260926"
+}

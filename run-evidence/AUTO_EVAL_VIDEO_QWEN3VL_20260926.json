@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "evidence_id": "auto-eval-video-qwen3vl-2b-20260926",
+  "status": "PASS_AUTO_EVAL_COMPLETE",
+  "evaluator_id": "qwen3-vl-2b-semantic",
+  "model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "runtime": "local CPU isolated venv, transformers 4.57.6, qwen-vl-utils 0.0.14/decord",
+  "sample_count": 4,
+  "production_acceptance": false,
+  "human_review_required": false,
+  "results": [
+    {
+      "asset_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "metrics": {
+        "semantic_adherence": 90.0,
+        "character_consistency": 95.0,
+        "continuity": 90.0,
+        "world_period_consistency": 85.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "e00981cfdc866592c88daea36608f43c21fc21ab5609a943589cee115ebc5b57",
+      "observations": [
+        "The scene is set at night, with a flashlight beam illuminating Linh's face, creating a dramatic effect.",
+        "The uniform and name badge are consistent with a station or security personnel role.",
+        "The lighting and focus are appropriate for a close-up portrait, with the background blurred to emphasize the subject.",
+        "The action of raising the flashlight is coherent and matches the expected narrative."
+      ]
+    },
+    {
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "metrics": {
+        "semantic_adherence": 90.0,
+        "character_consistency": 95.0,
+        "continuity": 90.0,
+        "world_period_consistency": 85.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "2ae2b4407a226eef1b23952f0d1fded18e2d9d824816b511bcd2bebbbf107d26",
+      "observations": [
+        "The scene is a close-up portrait of a woman in a navy uniform, holding a flashlight.",
+        "The lighting is dramatic, with the flashlight providing a strong light source.",
+        "The woman's expression is alert and composed, consistent with the action of being on duty.",
+        "The uniform and name badge are consistent with a station or security role.",
+        "The background is a simple, possibly indoor setting, consistent with a railway station environment.",
+        "The camera remains static, maintaining a close-up framing.",
+        "The lighting and shadows are consistent with a single light source, the flashlight."
+      ]
+    },
+    {
+      "asset_id": "world-paris-belle-epoque-motion-v1",
+      "metrics": {
+        "semantic_adherence": 85.0,
+        "character_consistency": 90.0,
+        "continuity": 80.0,
+        "world_period_consistency": 80.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "6659bc1d2780c21da0e37529a912749f9b171da6b98f91e62b9a7b61816608f9",
+      "observations": [
+        "The man's posture and hand position are consistent with a natural, subtle motion, possibly adjusting his gloves or leaning against the window.",
+        "The lighting and shadows suggest a dusk setting, with the warm glow from the interior of the apartment contrasting with the cooler ambient light.",
+        "The attire is consistent with the Belle Époque period, featuring a three-piece suit, a bow tie, and a hat, with no modern or generic elements.",
+        "The background includes a cobblestone street and a vintage carriage, which aligns with the historical setting."
+      ]
+    },
+    {
+      "asset_id": "world-tang-changan-motion-v1",
+      "metrics": {
+        "semantic_adherence": 90.0,
+        "character_consistency": 95.0,
+        "continuity": 90.0,
+        "world_period_consistency": 95.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "541d9b4c931353e534e48006e4db3c0cc4352c3fc7a07a75fc64788f9a6ea33c",
+      "observations": [
+        "The woman's posture is stable, with a slight forward lean, consistent with holding a message.",
+        "The paper is held at waist level, and the hands are positioned naturally, with no visible motion.",
+        "The clothing and hair are consistent with Tang dynasty aesthetics, with no modern or anachronistic elements.",
+        "The background is a traditional courtyard with wooden architecture, consistent with the Tang dynasty setting.",
+        "No readable text is visible on the paper, and no modern objects are present."
+      ]
+    }
+  ],
+  "local_receipt_root": "/home/dragon/ai-film-dev/run-evidence/auto-eval/video-20260926"
+}

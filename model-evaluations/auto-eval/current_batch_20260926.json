@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "batch_id": "auto-eval-current-media-20260926",
+  "status": "PARTIAL_CPU_EVAL_COMPLETE_VBENCH_CAPACITY_BLOCKED",
+  "policy_ref": "model-evaluations/auto-eval/policy.json",
+  "registry_ref": "model-evaluations/auto-eval/evaluator_registry.json",
+  "voice_assets": [
+    {
+      "asset_id": "vox_b5649d601f09",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_7f50b3325b6132e8.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_7f50b3325b6132e8/voxreq_7f50b3325b6132e8.wav",
+      "target_text": "Does the 11:40 still stop here?",
+      "language": "en",
+      "dialogue_id": "dlg_001",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_ae6c3e5af03f",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_2f9a9f5030a611df.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_2f9a9f5030a611df/voxreq_2f9a9f5030a611df.wav",
+      "target_text": "十一点四十的末班车还停这里吗？",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_001",
+      "cue_fit_metric": 0.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_52af55f53319",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_b01817af14a9c0b2.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_b01817af14a9c0b2/voxreq_b01817af14a9c0b2.wav",
+      "target_text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+      "language": "vi",
+      "dialogue_id": "dlg_001",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_9373295aa488",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_63eab49f0b06cd8a.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_63eab49f0b06cd8a/voxreq_63eab49f0b06cd8a.wav",
+      "target_text": "Only if we bring the signal back.",
+      "language": "en",
+      "dialogue_id": "dlg_002",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_13399c04d206",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_184b88f92dc62a76.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_184b88f92dc62a76/voxreq_184b88f92dc62a76.wav",
+      "target_text": "得先把信号恢复。",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_002",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_0b3a62fff486",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_6fe1f8e8812f63da.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_6fe1f8e8812f63da/voxreq_6fe1f8e8812f63da.wav",
+      "target_text": "Chỉ khi mình khôi phục được tín hiệu.",
+      "language": "vi",
+      "dialogue_id": "dlg_002",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_67cf87393d99",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_95328dc8f6c74a2f.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_95328dc8f6c74a2f/voxreq_95328dc8f6c74a2f.wav",
+      "target_text": "You came back for this station?",
+      "language": "en",
+      "dialogue_id": "dlg_003",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_fd8d0508e077",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_8dfc521e00a730c6.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_8dfc521e00a730c6/voxreq_8dfc521e00a730c6.wav",
+      "target_text": "你是为了这个车站回来的？",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_003",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_94f82cfeb1e1",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_d9c6d5602404de34.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_d9c6d5602404de34/voxreq_d9c6d5602404de34.wav",
+      "target_text": "Anh quay lại vì nhà ga này sao?",
+      "language": "vi",
+      "dialogue_id": "dlg_003",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_539e9b43601d",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_0a18140a542860ca.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_0a18140a542860ca/voxreq_0a18140a542860ca.wav",
+      "target_text": "For a promise.",
+      "language": "en",
+      "dialogue_id": "dlg_004",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_6cd531479b73",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_0e05737a6a5bcf8f.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_0e05737a6a5bcf8f/voxreq_0e05737a6a5bcf8f.wav",
+      "target_text": "为了一个承诺。",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_004",
+      "cue_fit_metric": 0.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    },
+    {
+      "asset_id": "vox_c18649999184",
+      "kind": "voice",
+      "stage": "voice_take",
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_782df7a9a85203d1.wav",
+      "pod_path_ref": "/workspace/runs/voxcpm2-live/voxreq_782df7a9a85203d1/voxreq_782df7a9a85203d1.wav",
+      "target_text": "Vì một lời hứa.",
+      "language": "vi",
+      "dialogue_id": "dlg_004",
+      "cue_fit_metric": 100.0,
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ]
+    }
+  ],
+  "video_assets": [
+    {
+      "asset_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "kind": "video",
+      "stage": "short_video_take",
+      "local_path_ref": "../media/slice01/video-wan22-quality-20260926/flux2/wan22-sc01-sh04-flux2-ref-v1.mp4",
+      "pod_path_ref": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/wan22-sc01-sh04-flux2-ref-v1.mp4",
+      "context_ref": "model-evaluations/auto-eval/contexts/sc01_sh04.json"
+    },
+    {
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "kind": "video",
+      "stage": "short_video_take",
+      "local_path_ref": "../media/slice01/video-wan22-quality-20260926/zimage/wan22-sc01-sh04-zimage-ref-v1.mp4",
+      "pod_path_ref": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/wan22-sc01-sh04-zimage-ref-v1.mp4",
+      "context_ref": "model-evaluations/auto-eval/contexts/sc01_sh04.json"
+    },
+    {
+      "asset_id": "world-tang-changan-motion-v1",
+      "kind": "video",
+      "stage": "short_video_take",
+      "local_path_ref": "../media/world-capability-20260926/tang-motion/world-tang-changan-motion-v1.mp4",
+      "pod_path_ref": "/workspace/runs/world-capability-motion/world-tang-changan-motion-v1/world-tang-changan-motion-v1.mp4",
+      "context_ref": "model-evaluations/auto-eval/contexts/tang_changan.json"
+    },
+    {
+      "asset_id": "world-paris-belle-epoque-motion-v1",
+      "kind": "video",
+      "stage": "short_video_take",
+      "local_path_ref": "../media/world-capability-20260926/paris-motion/world-paris-belle-epoque-motion-v1.mp4",
+      "pod_path_ref": "/workspace/runs/world-capability-motion/world-paris-belle-epoque-motion-v1/world-paris-belle-epoque-motion-v1.mp4",
+      "context_ref": "model-evaluations/auto-eval/contexts/paris_belle_epoque.json"
+    }
+  ],
+  "human_review_required_for_this_batch": false,
+  "human_review_deferred_to": [
+    "longform_rough_cut",
+    "final_cut"
+  ],
+  "production_acceptance": false,
+  "publish_authority": false,
+  "completed_evaluators": [
+    "whisper-turbo-asr",
+    "qwen3-vl-2b-semantic",
+    "paddleocr-text-artifact"
+  ],
+  "pending_evaluators": [
+    "vbench-video-v0.1.5"
+  ],
+  "voice_auto_eval": {
+    "status": "PASS_AUTO_EVAL_COMPLETE",
+    "evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json",
+    "status_counts": {
+      "AUTO_SHORTLIST": 9,
+      "AUTO_RETRY": 1,
+      "AUTO_REJECT_SCORE": 2
+    }
+  },
+  "video_auto_eval": {
+    "status": "PARTIAL_EVALUATOR_RECEIPTS",
+    "completed_evaluators": [
+      "qwen3-vl-2b-semantic",
+      "paddleocr-text-artifact"
+    ],
+    "pending_evaluator": "vbench-video-v0.1.5",
+    "evidence_ref": "run-evidence/AUTO_EVAL_VIDEO_PARTIAL_ENSEMBLE_20260926.json",
+    "blocker": "EXISTING_A40_HOST_CAPACITY"
+  }
+}

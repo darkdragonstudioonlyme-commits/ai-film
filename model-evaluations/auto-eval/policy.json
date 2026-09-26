@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "policy_id": "auto-eval-ensemble-v1",
+  "status": "ACTIVE",
+  "human_review_policy": {
+    "short_take_human_review_required": false,
+    "human_review_required_at": [
+      "longform_rough_cut",
+      "final_cut"
+    ],
+    "human_score_scale": {
+      "min": 0,
+      "max": 8
+    }
+  },
+  "stages": {
+    "short_video_take": {
+      "required_evaluators": [
+        "vbench-video-v0.1.5",
+        "qwen3-vl-2b-semantic",
+        "paddleocr-text-artifact"
+      ],
+      "min_model_evaluators": 3,
+      "hard_fail_tags": [
+        "DECODE_FAILURE",
+        "BLACK_OR_EMPTY_VIDEO",
+        "SEVERE_IDENTITY_BREAK",
+        "EXTRA_PERSON",
+        "SEVERE_ANATOMY",
+        "SCENE_CONTRADICTION",
+        "UNMOTIVATED_READABLE_TEXT",
+        "WATERMARK_OR_LOGO"
+      ],
+      "metric_weights": {
+        "subject_consistency": 0.17,
+        "background_consistency": 0.07,
+        "motion_smoothness": 0.12,
+        "aesthetic_quality": 0.08,
+        "imaging_quality": 0.08,
+        "semantic_adherence": 0.15,
+        "character_consistency": 0.12,
+        "continuity": 0.08,
+        "world_period_consistency": 0.05,
+        "text_artifact_free": 0.08
+      },
+      "auto_shortlist_min": 70.0,
+      "auto_retry_min": 55.0
+    },
+    "voice_take": {
+      "required_evaluators": [
+        "whisper-turbo-asr"
+      ],
+      "min_model_evaluators": 1,
+      "hard_fail_tags": [
+        "AUDIO_DECODE_FAILURE",
+        "WRONG_LANGUAGE",
+        "SEVERE_TEXT_MISMATCH"
+      ],
+      "metric_weights": {
+        "asr_text_match": 0.5,
+        "language_match": 0.15,
+        "cue_fit": 0.35
+      },
+      "auto_shortlist_min": 80.0,
+      "auto_retry_min": 60.0
+    },
+    "longform_rough_cut": {
+      "inherits": "short_video_take",
+      "human_review_required": true,
+      "production_acceptance": false
+    }
+  },
+  "global_rules": {
+    "metric_scale": {
+      "min": 0.0,
+      "max": 100.0
+    },
+    "missing_required_metric": "BLOCKED",
+    "hard_fail_precedes_score": true,
+    "automatic_result_never_grants_production_acceptance": true,
+    "automatic_result_never_grants_publish_authority": true
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_CPU_EVALUATORS_QUALIFIED_VBENCH_GPU_PENDING",
+  "profiles": [
+    {
+      "runtime_profile": "qwen3vl-cpu-local",
+      "python": "3.12",
+      "base": "PyTorch CPU wheel",
+      "venv": "/home/dragon/ai-film-dev/venvs/qwen3vl-cpu",
+      "packages": {
+        "transformers": "4.57.6",
+        "qwen-vl-utils": "0.0.14",
+        "accelerate": "1.15.0",
+        "decord": "0.6.0"
+      },
+      "model_dir": "/home/dragon/ai-film-dev/models/qwen3-vl-2b-instruct",
+      "setup_status": "QUALIFIED_LOCAL_CPU_PASS",
+      "qualification_evidence": "run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json"
+    },
+    {
+      "runtime_profile": "whisper-cu128",
+      "python": "3.12",
+      "base": "existing RunPod torch 2.8.0+cu128",
+      "venv": "/workspace/venvs/whisper",
+      "packages": {
+        "openai-whisper": "git:86098128c0b4f24f0e2aa2994de830614b474227"
+      },
+      "model_dir": "/workspace/models/whisper",
+      "setup_status": "PENDING_A40_CAPACITY"
+    },
+    {
+      "runtime_profile": "whisper-cpu-local",
+      "python": "3.12",
+      "base": "PyTorch CPU wheel",
+      "venv": "/home/dragon/ai-film-dev/venvs/whisper-cpu",
+      "packages": {
+        "openai-whisper": "git:86098128c0b4f24f0e2aa2994de830614b474227",
+        "imageio-ffmpeg": "0.6.0"
+      },
+      "model_dir": "/home/dragon/ai-film-dev/models/whisper",
+      "setup_status": "QUALIFIED_LOCAL_CPU_PASS",
+      "qualification_evidence": "run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json"
+    },
+    {
+      "runtime_profile": "vbench-cu121",
+      "python": "3.11",
+      "base": "torch/torchvision CUDA 12.1 isolated from project cu128 runtime",
+      "venv": "/workspace/venvs/vbench",
+      "packages": {
+        "vbench": "0.1.5",
+        "transformers": "4.33.2",
+        "numpy": "<2.0.0"
+      },
+      "code_repo_dir": "/workspace/evaluators/VBench",
+      "code_revision": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "setup_status": "PENDING_EXISTING_A40_RESTART"
+    },
+    {
+      "runtime_profile": "paddleocr-cpu",
+      "python": "3.12",
+      "base": "CPU evaluator runtime",
+      "venv": "/home/dragon/ai-film-dev/venvs/paddleocr-cpu",
+      "packages": {
+        "paddleocr": "3.7.0",
+        "paddlepaddle": "3.3.1",
+        "imageio-ffmpeg": "0.6.0"
+      },
+      "setup_status": "QUALIFIED_LOCAL_CPU_PASS",
+      "runtime_flags": {
+        "enable_mkldnn": false
+      },
+      "qualification_evidence": "run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json"
+    }
+  ]
+}

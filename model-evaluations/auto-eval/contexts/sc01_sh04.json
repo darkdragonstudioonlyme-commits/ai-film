@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "context_id": "sc01_sh04-motion-auto-eval",
+  "expected": {
+    "shot_id": "sc01_sh04",
+    "setting": "small railway station desk/platform environment",
+    "action": "The lights blink out behind Linh; she raises the flashlight, alert but composed.",
+    "character": {
+      "id": "linh",
+      "description": "Vietnamese woman, 31, observant expression, shoulder-length black hair",
+      "costume": "navy station uniform with a silver name badge"
+    },
+    "camera": "static close-up, approximately 85mm portrait framing",
+    "continuity": [
+      "single Linh only",
+      "stable face/hair/age/costume",
+      "flashlight action remains coherent"
+    ],
+    "prohibited": [
+      "extra person",
+      "scene cut",
+      "identity drift",
+      "readable generated text",
+      "logo",
+      "watermark"
+    ]
+  },
+  "allowed_text_regex": []
+}

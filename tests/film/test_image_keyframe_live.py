@@ -12,6 +12,7 @@ MATRIX=json.loads((ROOT/"model-evaluations/slice01/model_matrix.json").read_text
 RESOURCES=json.loads((ROOT/"model-evaluations/slice01/resource_profiles.json").read_text())
 WORKER=json.loads((ROOT/"projects/slice01/runtime/worker_runpod_a40.json").read_text())
 SESSION=json.loads((ROOT/"projects/slice01/runtime/gpu_session.json").read_text())
+RUNNING_SESSION={**SESSION,"provider_state":"RUNNING"}
 BATCH=json.loads((ROOT/"model-evaluations/slice01/batches/sc01_sh04_portrait_keyframes_20260926.json").read_text())
 
 
@@ -35,7 +36,7 @@ class ImageKeyframeLiveTests(unittest.TestCase):
     def test_both_jobs_pass_current_a40_admission_and_budget_guard(self):
         for row in SPEC["jobs"]:
             plan=validate_probe_job(
-                SPEC,row,matrix=MATRIX,resources=RESOURCES,worker=WORKER,gpu_session=SESSION
+                SPEC,row,matrix=MATRIX,resources=RESOURCES,worker=WORKER,gpu_session=RUNNING_SESSION
             )
             self.assertEqual(plan["status"],"KEYFRAME_PROBE_AUTHORIZED_NOT_EXECUTED")
             self.assertLess(plan["provider_billed_snapshot_usd"]+plan["proposed_max_cost_usd"],plan["budget_cap_usd"])
@@ -44,7 +45,7 @@ class ImageKeyframeLiveTests(unittest.TestCase):
 
     def test_evidence_hash_binds_output_without_selecting_model(self):
         job=select_probe_job(SPEC,"sc01-sh04-flux2-portrait-v2")
-        plan=validate_probe_job(SPEC,job,matrix=MATRIX,resources=RESOURCES,worker=WORKER,gpu_session=SESSION)
+        plan=validate_probe_job(SPEC,job,matrix=MATRIX,resources=RESOURCES,worker=WORKER,gpu_session=RUNNING_SESSION)
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)/"x.png"; p.write_bytes(b"probe")
             ev=build_evidence(plan,artifact=p,elapsed_sec=2.5,peak_vram_mib=20000)

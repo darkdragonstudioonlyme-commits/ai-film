@@ -11,6 +11,7 @@ PARIS=json.loads((ROOT/"model-evaluations/world-capability/wan22_paris_motion_sm
 BATCH=json.loads((ROOT/"model-evaluations/world-capability/batch_historical_motion_20260926.json").read_text())
 MATRIX=json.loads((ROOT/"model-evaluations/slice01/model_matrix.json").read_text())
 SESSION=json.loads((ROOT/"projects/slice01/runtime/gpu_session.json").read_text())
+RUNNING_SESSION={**SESSION,"provider_state":"RUNNING"}
 
 
 class WorldCapabilityMotionTests(unittest.TestCase):
@@ -34,7 +35,7 @@ class WorldCapabilityMotionTests(unittest.TestCase):
 
     def test_both_specs_pass_existing_wan_admission_and_paid_guard(self):
         for spec in (TANG,PARIS):
-            plan=validate_smoke_spec(spec,matrix=MATRIX,gpu_session=SESSION)
+            plan=validate_smoke_spec(spec,matrix=MATRIX,gpu_session=RUNNING_SESSION)
             self.assertEqual(plan["status"],"SMOKE_AUTHORIZED_NOT_EXECUTED")
             self.assertEqual(plan["frame_num"],17)
             self.assertEqual(plan["sample_steps"],5)

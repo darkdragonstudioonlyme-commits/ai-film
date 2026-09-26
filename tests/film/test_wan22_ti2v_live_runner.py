@@ -15,11 +15,12 @@ ROOT = Path(__file__).resolve().parents[2]
 SPEC = json.loads((ROOT / "model-evaluations/slice01/video/wan22_ti2v_smoke.json").read_text())
 MATRIX = json.loads((ROOT / "model-evaluations/slice01/model_matrix.json").read_text())
 SESSION = json.loads((ROOT / "projects/slice01/runtime/gpu_session.json").read_text())
+RUNNING_SESSION={**SESSION,"provider_state":"RUNNING"}
 
 
 class Wan22TI2VLiveRunnerTests(unittest.TestCase):
     def test_plan_binds_exact_model_code_reference_and_paid_budget(self):
-        plan = validate_smoke_spec(SPEC, matrix=MATRIX, gpu_session=SESSION)
+        plan = validate_smoke_spec(SPEC, matrix=MATRIX, gpu_session=RUNNING_SESSION)
         self.assertEqual(plan["status"], "SMOKE_AUTHORIZED_NOT_EXECUTED")
         self.assertEqual(plan["model_revision"], MODEL_REVISION)
         self.assertEqual(plan["code_revision"], CODE_REVISION)
@@ -37,11 +38,11 @@ class Wan22TI2VLiveRunnerTests(unittest.TestCase):
         bad = copy.deepcopy(SPEC)
         bad["reference_role"] = "SELECTED_PRODUCTION_CAST"
         with self.assertRaisesRegex(Wan22TI2VError, "reference image role"):
-            validate_smoke_spec(bad, matrix=MATRIX, gpu_session=SESSION)
+            validate_smoke_spec(bad, matrix=MATRIX, gpu_session=RUNNING_SESSION)
         bad = copy.deepcopy(SPEC)
         bad["offload_model"] = False
         with self.assertRaisesRegex(Wan22TI2VError, "offload_model"):
-            validate_smoke_spec(bad, matrix=MATRIX, gpu_session=SESSION)
+            validate_smoke_spec(bad, matrix=MATRIX, gpu_session=RUNNING_SESSION)
 
     def test_generate_argv_is_official_single_gpu_i2v_shape(self):
         argv = build_generate_argv(

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "context_id": "paris-belle-epoque-motion-auto-eval",
+  "expected": {
+    "world_profile_id": "europe_belle_epoque_paris_1900s",
+    "setting": "Belle Époque Paris circa 1900, modest apartment near dusk",
+    "character": "French man, 34, lean, short dark-brown hair, neatly trimmed moustache, restrained expression",
+    "action": "subtle natural motion beside an apartment window",
+    "camera": "static portrait framing",
+    "world_rules": [
+      "turn-of-century French wardrobe/interior",
+      "no modern objects",
+      "no generic medieval styling"
+    ],
+    "prohibited": [
+      "extra person",
+      "identity drift",
+      "readable generated text on foreground props/signage",
+      "logo",
+      "watermark"
+    ]
+  },
+  "allowed_text_regex": []
+}

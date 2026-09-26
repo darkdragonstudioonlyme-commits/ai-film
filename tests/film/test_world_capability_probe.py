@@ -12,6 +12,7 @@ MATRIX=json.loads((ROOT/"model-evaluations/slice01/model_matrix.json").read_text
 RESOURCES=json.loads((ROOT/"model-evaluations/slice01/resource_profiles.json").read_text())
 WORKER=json.loads((ROOT/"projects/slice01/runtime/worker_runpod_a40.json").read_text())
 SESSION=json.loads((ROOT/"projects/slice01/runtime/gpu_session.json").read_text())
+RUNNING_SESSION={**SESSION,"provider_state":"RUNNING"}
 
 
 class WorldCapabilityProbeTests(unittest.TestCase):
@@ -47,7 +48,7 @@ class WorldCapabilityProbeTests(unittest.TestCase):
                 matrix=MATRIX,
                 resources=RESOURCES,
                 worker=WORKER,
-                gpu_session=SESSION,
+                gpu_session=RUNNING_SESSION,
             )
             self.assertEqual(plan["status"],"KEYFRAME_PROBE_AUTHORIZED_NOT_EXECUTED")
             self.assertEqual(plan["model_id"],"flux2-klein-4b")
