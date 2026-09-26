@@ -4,10 +4,10 @@
   "stop_on_failure": true,
   "jobs": [
     {
-      "job_id": "keyframe-flux2-sc01-sh04",
+      "job_id": "keyframe-flux2-sc01-sh04-v2",
       "adapter": "image-keyframe-live",
-      "work_id": "sc01-sh04-flux2-portrait-v1",
-      "receipt_path": "/workspace/runs/image-keyframe-live/sc01-sh04-flux2-portrait-v1/evidence.json",
+      "work_id": "sc01-sh04-flux2-portrait-v2",
+      "receipt_path": "/workspace/runs/image-keyframe-live/sc01-sh04-flux2-portrait-v2/evidence.json",
       "model_dir": "/workspace/models/flux2-klein-4b",
       "out_root": "/workspace/runs/image-keyframe-live",
       "max_runtime_sec": 300,
@@ -15,10 +15,10 @@
       "python_exe": "/workspace/venvs/aifilm/bin/python"
     },
     {
-      "job_id": "keyframe-zimage-sc01-sh04",
+      "job_id": "keyframe-zimage-sc01-sh04-v2",
       "adapter": "image-keyframe-live",
-      "work_id": "sc01-sh04-zimage-portrait-v1",
-      "receipt_path": "/workspace/runs/image-keyframe-live/sc01-sh04-zimage-portrait-v1/evidence.json",
+      "work_id": "sc01-sh04-zimage-portrait-v2",
+      "receipt_path": "/workspace/runs/image-keyframe-live/sc01-sh04-zimage-portrait-v2/evidence.json",
       "model_dir": "/workspace/models/z-image",
       "out_root": "/workspace/runs/image-keyframe-live",
       "max_runtime_sec": 600,

@@ -8,7 +8,7 @@ import unittest
 
 from film.casting_jobs import compile_casting_jobs
 from film.project_scaffold import build_project_scaffold
-from film.shot_compiler import compile_shot
+from film.shot_compiler import compile_shot, compile_visual_prompt
 from film.world_profile import (
     WorldProfileError,
     resolve_world_preset,
@@ -62,6 +62,16 @@ class WorldProfileTests(unittest.TestCase):
         legacy = compile_shot(SHOTS[5], LEDGER, CASTING)
         self.assertNotIn("world=", legacy["prompt"])
         self.assertNotIn("world_profile_id", legacy)
+
+    def test_visual_prompt_uses_world_context_without_dialogue_or_voice_metadata(self):
+        world = resolve_world_preset(CATALOG, "china_tang_changan_8c")
+        prompt = compile_visual_prompt(SHOTS[5], LEDGER, CASTING, world_profile=world, style_override="photoreal")
+        self.assertIn("Tang dynasty", prompt)
+        self.assertIn("Vietnamese", prompt)
+        self.assertNotIn("dialogue=", prompt)
+        self.assertNotIn("voice", prompt.lower())
+        self.assertNotIn("zh-CN", prompt)
+        self.assertIn("No written words", prompt)
 
     def test_casting_jobs_bind_world_and_anachronism_guards(self):
         world = resolve_world_preset(CATALOG, "europe_victorian_london_1890s")

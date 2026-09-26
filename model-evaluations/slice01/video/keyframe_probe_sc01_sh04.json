@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "probe_id": "sc01-sh04-portrait-photoreal-v1",
+  "probe_id": "sc01-sh04-portrait-photoreal-v2-no-text",
   "shot_id": "sc01_sh04",
   "status": "READY_NOT_EXECUTED",
-  "purpose": "balanced portrait keyframe inputs for first Wan2.2 quality-motion probe; no image-model winner implied",
+  "purpose": "balanced portrait keyframe inputs for first Wan2.2 quality-motion probe; visual-only prompt prevents dialogue/metadata text rendering; no image-model winner implied",
   "style": "photoreal",
   "width": 704,
   "height": 1280,
@@ -12,7 +12,7 @@
   "production_acceptance": false,
   "jobs": [
     {
-      "probe_job_id": "sc01-sh04-flux2-portrait-v1",
+      "probe_job_id": "sc01-sh04-flux2-portrait-v2",
       "model_id": "flux2-klein-4b",
       "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
       "style": "photoreal",
@@ -21,12 +21,12 @@
       "seed": 104,
       "num_inference_steps": 4,
       "guidance_scale": 1.0,
-      "prompt": "style=photoreal | aspect=9:16 | camera={\"framing\": \"close-up\", \"lens_mm\": 85, \"movement\": \"static\"} | action=The lights blink out behind Linh; she raises the flashlight, alert but composed. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Only if we bring the signal back.\", \"vi\": \"Chỉ khi mình khôi phục được tín hiệu.\", \"zh-CN\": \"得先把信号恢复。\"}",
-      "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts, watermark, duplicate person, malformed hands, deformed face",
+      "prompt": "Visual style: cinematic photorealism, realistic human skin and materials. Portrait-friendly 9:16 cinematic frame. Camera: close-up, 85mm lens, static movement. Scene action: The lights blink out behind Linh; she raises the flashlight, alert but composed. Linh is a Vietnamese woman, 31, observant expression, shoulder-length black hair. Wearing navy station uniform, silver name badge. Scene props include flashlight belt clip. Image only. No written words, subtitles, captions, dialogue text, speech bubbles, infographic panels, UI overlays, labels, logos, watermarks or typography.",
+      "negative_prompt": "identity drift, costume drift, extra fingers, malformed hands, deformed face, duplicate person, written text, subtitles, captions, dialogue text, speech bubbles, infographic, UI overlay, labels, logos, watermark, typography",
       "max_runtime_sec": 300
     },
     {
-      "probe_job_id": "sc01-sh04-zimage-portrait-v1",
+      "probe_job_id": "sc01-sh04-zimage-portrait-v2",
       "model_id": "z-image",
       "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
       "style": "photoreal",
@@ -36,8 +36,8 @@
       "num_inference_steps": 50,
       "guidance_scale": 4.0,
       "cfg_normalization": false,
-      "prompt": "style=photoreal | aspect=9:16 | camera={\"framing\": \"close-up\", \"lens_mm\": 85, \"movement\": \"static\"} | action=The lights blink out behind Linh; she raises the flashlight, alert but composed. | character_state={\"linh\": {\"costume\": \"navy station uniform, silver name badge\", \"identity\": {\"age\": 31, \"build\": \"average\", \"gender\": \"female\", \"hair\": \"shoulder-length black\"}, \"props\": {\"flashlight\": \"belt clip\"}}} | casting={\"linh\": {\"face_ref\": null, \"visual\": \"Vietnamese woman, 31, observant expression, shoulder-length black hair\", \"voice\": {\"en\": \"clear grounded alto\", \"vi\": \"giọng nữ rõ, trầm vừa\", \"zh-CN\": \"clear grounded alto\"}}} | dialogue={\"en\": \"Only if we bring the signal back.\", \"vi\": \"Chỉ khi mình khôi phục được tín hiệu.\", \"zh-CN\": \"得先把信号恢复。\"}",
-      "negative_prompt": "identity drift, costume drift, extra fingers, text artifacts, watermark, duplicate person, malformed hands, deformed face",
+      "prompt": "Visual style: cinematic photorealism, realistic human skin and materials. Portrait-friendly 9:16 cinematic frame. Camera: close-up, 85mm lens, static movement. Scene action: The lights blink out behind Linh; she raises the flashlight, alert but composed. Linh is a Vietnamese woman, 31, observant expression, shoulder-length black hair. Wearing navy station uniform, silver name badge. Scene props include flashlight belt clip. Image only. No written words, subtitles, captions, dialogue text, speech bubbles, infographic panels, UI overlays, labels, logos, watermarks or typography.",
+      "negative_prompt": "identity drift, costume drift, extra fingers, malformed hands, deformed face, duplicate person, written text, subtitles, captions, dialogue text, speech bubbles, infographic, UI overlay, labels, logos, watermark, typography",
       "max_runtime_sec": 600
     }
   ]

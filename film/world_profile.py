@@ -146,3 +146,23 @@ def resolve_world_preset(catalog: dict[str, Any], profile_id: str) -> dict[str, 
     if len(rows) != 1:
         raise WorldProfileError(f"unknown world preset: {profile_id}")
     return rows[0]
+
+def world_visual_prompt_fragment(profile: dict[str, Any]) -> str:
+    p = validate_world_profile(profile)
+    period = p["period"]
+    parts = [
+        f"Setting: {period['label']} in {p['region']}, {p['country']}.",
+        *p["visual_language"],
+    ]
+    if p["wardrobe_rules"]:
+        parts.append("Wardrobe: " + "; ".join(p["wardrobe_rules"]) + ".")
+    if p["architecture_rules"]:
+        parts.append("Architecture: " + "; ".join(p["architecture_rules"]) + ".")
+    if p["prop_rules"]:
+        parts.append("Props and material culture: " + "; ".join(p["prop_rules"]) + ".")
+    if p["environment_rules"]:
+        parts.append("Environment: " + "; ".join(p["environment_rules"]) + ".")
+    if p["cinematography"]:
+        parts.append("Cinematography: " + "; ".join(p["cinematography"]) + ".")
+    parts.append(p["casting_policy"])
+    return " ".join(parts)

@@ -24,6 +24,13 @@ class ImageKeyframeLiveTests(unittest.TestCase):
         self.assertEqual({j["seed"] for j in SPEC["jobs"]},{104})
         self.assertFalse(SPEC["selection_authorized"])
         self.assertFalse(SPEC["quality_acceptance"])
+        for job in SPEC["jobs"]:
+            self.assertNotIn("dialogue=",job["prompt"])
+            self.assertNotIn("voice",job["prompt"].lower())
+            self.assertNotIn("zh-CN",job["prompt"])
+            self.assertIn("No written words",job["prompt"])
+            self.assertIn("speech bubbles",job["prompt"])
+            self.assertIn("subtitles",job["negative_prompt"])
 
     def test_both_jobs_pass_current_a40_admission_and_budget_guard(self):
         for row in SPEC["jobs"]:
@@ -36,7 +43,7 @@ class ImageKeyframeLiveTests(unittest.TestCase):
             self.assertEqual(plan["quality_status"],"NOT_EVALUATED")
 
     def test_evidence_hash_binds_output_without_selecting_model(self):
-        job=select_probe_job(SPEC,"sc01-sh04-flux2-portrait-v1")
+        job=select_probe_job(SPEC,"sc01-sh04-flux2-portrait-v2")
         plan=validate_probe_job(SPEC,job,matrix=MATRIX,resources=RESOURCES,worker=WORKER,gpu_session=SESSION)
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)/"x.png"; p.write_bytes(b"probe")
