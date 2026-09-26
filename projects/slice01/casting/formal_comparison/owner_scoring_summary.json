@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "comparison_id": "slice01-face-front-flux2-vs-zimage-v1",
+  "score_basis": "owner single-score preference/quality screen",
+  "scale": {
+    "min": 0,
+    "max": 8
+  },
+  "score_set_complete": true,
+  "formal_multicriteria_scores_csv_1_5_unchanged": true,
+  "rows": [
+    {
+      "asset_id": "asset_flux2_8916d95f63bb5112",
+      "asset_sha256": "8916d95f63bb5112b36008155bf85ac19970cda478d2643c971302f676bbab8c",
+      "blind_id": "cmp_1075894217d7",
+      "character_id": "linh",
+      "job_id": "castjob_1952dc2f4a07acca",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "slot": "face_front",
+      "source_blind_id": "cast_10127a780c51",
+      "style": "photoreal",
+      "owner_score": 4
+    },
+    {
+      "asset_id": "asset_flux2_3681cb753c1eabcd",
+      "asset_sha256": "3681cb753c1eabcdeba187a4d6dce0b086eecac3fe8c0eb3d521a54fbe47d86c",
+      "blind_id": "cmp_4720d9887d35",
+      "character_id": "an",
+      "job_id": "castjob_d3ec86da4ca6b1fc",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "slot": "face_front",
+      "source_blind_id": "cast_d0117568f9ed",
+      "style": "photoreal",
+      "owner_score": 4
+    },
+    {
+      "asset_id": "asset_zimage_25ff2a658702760c",
+      "asset_sha256": "25ff2a658702760c07a4d4395f0746be6f889a06932db39d727fef43e95170ea",
+      "blind_id": "cmp_4aec71e23d09",
+      "character_id": "linh",
+      "job_id": "castjob_89f0558afef48759",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "slot": "face_front",
+      "source_blind_id": "cast_b503488d5306",
+      "style": "photoreal",
+      "owner_score": 4
+    },
+    {
+      "asset_id": "asset_zimage_8bdbbaff9534b04d",
+      "asset_sha256": "8bdbbaff9534b04dda80082e59811ea161cbcbb3230f297657c50ab8ed2ebe11",
+      "blind_id": "cmp_5b3a6b9f6a7f",
+      "character_id": "linh",
+      "job_id": "castjob_e7ea31ed5678b58a",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "slot": "face_front",
+      "source_blind_id": "cast_d30eaa3e6070",
+      "style": "stylized_3d",
+      "owner_score": 0
+    },
+    {
+      "asset_id": "asset_zimage_e5509ef7f4bd9016",
+      "asset_sha256": "e5509ef7f4bd9016179d2b1e485cfcfa83ad2e1e6bd2f2df66196c8dde32bc89",
+      "blind_id": "cmp_8d3dafe6afa1",
+      "character_id": "an",
+      "job_id": "castjob_8e02916e0db64eb6",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "slot": "face_front",
+      "source_blind_id": "cast_6a8ff509c1c1",
+      "style": "photoreal",
+      "owner_score": 4
+    },
+    {
+      "asset_id": "asset_flux2_05a4ae8aafe9c767",
+      "asset_sha256": "05a4ae8aafe9c7675f43170994c65eb1a77f444a18d3e83fc980e39141b767d1",
+      "blind_id": "cmp_bcb5b7623da6",
+      "character_id": "linh",
+      "job_id": "castjob_96706cd45a1c876e",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "slot": "face_front",
+      "source_blind_id": "cast_28f1dd7b2c4a",
+      "style": "stylized_3d",
+      "owner_score": 0
+    },
+    {
+      "asset_id": "asset_zimage_5e20fd1087a00e18",
+      "asset_sha256": "5e20fd1087a00e18670cd320f767a650985b6faa6d8454af8a08332980f8021c",
+      "blind_id": "cmp_c511ddee505c",
+      "character_id": "an",
+      "job_id": "castjob_cecf6c6fb3a15ee4",
+      "model_id": "z-image",
+      "model_revision": "04cc4abb7c5069926f75c9bfde9ef43d49423021",
+      "slot": "face_front",
+      "source_blind_id": "cast_b2cbd4f36cf4",
+      "style": "stylized_3d",
+      "owner_score": 0
+    },
+    {
+      "asset_id": "asset_flux2_18a2c2888a5e37c6",
+      "asset_sha256": "18a2c2888a5e37c615dc63329fe1458fde6483855885f096b2d4d81678b4eed8",
+      "blind_id": "cmp_dd8f09f694fa",
+      "character_id": "an",
+      "job_id": "castjob_f7ba9f7de5b19299",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "slot": "face_front",
+      "source_blind_id": "cast_bb18b00c95b6",
+      "style": "stylized_3d",
+      "owner_score": 0
+    }
+  ],
+  "aggregate_by_model": {
+    "flux2-klein-4b": {
+      "sample_count": 4,
+      "total": 8,
+      "mean": 2.0
+    },
+    "z-image": {
+      "sample_count": 4,
+      "total": 8,
+      "mean": 2.0
+    }
+  },
+  "aggregate_by_style": {
+    "photoreal": {
+      "sample_count": 4,
+      "total": 16,
+      "mean": 4.0
+    },
+    "stylized_3d": {
+      "sample_count": 4,
+      "total": 0,
+      "mean": 0.0
+    }
+  },
+  "model_winner": "TIE",
+  "selection_authorized": false,
+  "production_acceptance": false,
+  "notes": [
+    "Owner supplied a 0-8 single score, not the legacy 1-5 multi-criteria rubric.",
+    "Both image models tie on owner score; no model winner is selected.",
+    "Photoreal examples scored above stylized_3d examples in this round."
+  ]
+}

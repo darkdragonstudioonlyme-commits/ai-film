@@ -584,7 +584,7 @@ def main() -> int:
     worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
     if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
         errors.append("runpod-a40-worker-measurement")
-    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_1024_PASS_OTHER_ADAPTERS_PENDING":
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_VOXCPM2_PASS_VIDEO_PENDING":
         errors.append("runpod-a40-worker-binding")
     flux_worker=(worker.get("qualified_models") or {}).get("flux2-klein-4b",{})
     if flux_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_worker.get("peak_vram_mib")!=20415 or flux_worker.get("formal_1024_smoke_pending") is not False:
@@ -596,6 +596,11 @@ def main() -> int:
         errors.append("runpod-a40-worker-zimage-formal-smoke")
     if z_worker.get("admission_ready") is not True or z_worker.get("required_vram_gb")!=26.0 or z_worker.get("vram_reserve_gb")!=4.0:
         errors.append("runpod-a40-worker-zimage-admission")
+    v_worker=(worker.get("qualified_models") or {}).get("voxcpm2",{})
+    if v_worker.get("status")!="PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12" or v_worker.get("peak_vram_mib")!=5829:
+        errors.append("runpod-a40-worker-voxcpm2-formal-batch")
+    if v_worker.get("admission_ready") is not True or v_worker.get("required_vram_gb")!=6.0 or v_worker.get("vram_reserve_gb")!=4.0 or v_worker.get("quality_status")!="AWAITING_OWNER_SCORING":
+        errors.append("runpod-a40-worker-voxcpm2-admission")
 
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
@@ -613,8 +618,10 @@ def main() -> int:
         errors.append("cost-policy-binding")
     entries=cost_ledger.get("entries",[])
     by_cost_id={row.get("cost_id"):row for row in entries}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926","voxcpm2-voxreq_7f50b3325b6132e8-pass"}
-    if len(entries)!=6 or set(by_cost_id)!=expected_cost_ids:
+    vox_batch=json.loads((root/"run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json").read_text(encoding="utf-8"))
+    expected_vox_cost_ids={"voxcpm2-"+row["request_id"]+"-pass" for row in vox_batch.get("samples",[])}
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926"} | expected_vox_cost_ids
+    if len(entries)!=len(expected_cost_ids) or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
         if by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("category")!="OTHER" or abs(float(by_cost_id["runpod-a40-bootstrap-estimate-20260925"].get("amount_usd",0))-0.11027)>1e-9:
@@ -629,8 +636,19 @@ def main() -> int:
             errors.append("cost-ledger-zimage-formal-smoke-entry")
         if by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("amount_usd",0))-0.004291)>1e-9:
             errors.append("cost-ledger-voxcpm2-qualification-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.170799)>1e-9:
-            errors.append("cost-ledger-total-after-voxcpm2-qualification")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.27329)>1e-9:
+            errors.append("cost-ledger-total-after-voxcpm2-formal-batch")
+        if vox_batch.get("sample_count")!=12 or vox_batch.get("pass_runtime")!=12 or vox_batch.get("cue_fit_pass")!=10 or vox_batch.get("cue_fit_fail")!=2:
+            errors.append("voxcpm2-formal-batch-summary")
+        if vox_batch.get("all_media_synced_and_hash_verified") is not True or vox_batch.get("quality_status")!="AWAITING_OWNER_SCORING":
+            errors.append("voxcpm2-formal-batch-boundary")
+    for rel in ("film/batch_orchestrator.py","tools/run_model_batch.py","model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json","tests/film/test_batch_orchestrator.py"):
+        if not (root/rel).is_file():
+            errors.append("batch-orchestrator-missing:"+rel)
+    batch_cfg=json.loads((root/"model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json").read_text(encoding="utf-8"))
+    if batch_cfg.get("batch_id")!="voxcpm2-formal-12-20260926" or len(batch_cfg.get("jobs",[]))!=12:
+        errors.append("batch-orchestrator-voice-config")
+
     required_batch012=[
         "film/BATCH012_CONTRACT.md",
         "film/admission.py",
@@ -1135,11 +1153,11 @@ def main() -> int:
         errors.append("voxcpm2-qualification-boundary")
     voice_profiles=json.loads((root/"model-evaluations/slice01/voice/resource_profiles.json").read_text(encoding="utf-8"))
     vp=(voice_profiles.get("profiles") or [{}])[0]
-    if voice_profiles.get("status")!="VOXCPM2_QUALIFICATION_MEASURED_FORMAL_PACKET_PENDING" or vp.get("model_id")!="voxcpm2":
+    if voice_profiles.get("status")!="VOXCPM2_FORMAL_PACKET_MEASURED_QUALITY_PENDING" or vp.get("model_id")!="voxcpm2":
         errors.append("voxcpm2-resource-profile-status")
     if vp.get("required_vram_gb")!=6.0 or vp.get("vram_reserve_gb")!=4.0 or vp.get("admission_threshold_gb")!=10.0 or vp.get("admission_ready") is not True:
         errors.append("voxcpm2-resource-profile-vram")
-    if vp.get("formal_packet_status")!="NOT_RUN_11_REMAINING_SAMPLES" or vp.get("quality_status")!="NOT_EVALUATED" or vp.get("production_acceptance") is not False:
+    if vp.get("formal_packet_status")!="PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12" or vp.get("quality_status")!="AWAITING_OWNER_SCORING" or vp.get("production_acceptance") is not False:
         errors.append("voxcpm2-resource-profile-boundary")
 
     for rel in (

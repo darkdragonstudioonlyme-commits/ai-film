@@ -3,9 +3,9 @@
     {
       "admission_ready": true,
       "admission_threshold_gb": 10.0,
-      "formal_packet_status": "NOT_RUN_11_REMAINING_SAMPLES",
-      "measured_peak_vram_gib": 5.69043,
-      "measured_peak_vram_mib": 5827.0,
+      "formal_packet_status": "PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12",
+      "measured_peak_vram_gib": 5.692383,
+      "measured_peak_vram_mib": 5829.0,
       "model_id": "voxcpm2",
       "model_revision": "32279effe8c19989596f05d353d1447f51d9e915",
       "package": "voxcpm==2.0.3",
@@ -20,19 +20,25 @@
       "qualification_inference_sec": 3.452767,
       "qualification_language": "en",
       "qualification_request_id": "voxreq_7f50b3325b6132e8",
-      "quality_status": "NOT_EVALUATED",
+      "quality_status": "AWAITING_OWNER_SCORING",
       "required_capabilities": [
         "voice_generation",
         "cuda"
       ],
       "required_runtime_id": "runpod-a40-voxcpm2-v1",
       "required_vram_gb": 6.0,
-      "throughput_status": "MEASURED_SINGLE_EN_SAMPLE",
+      "throughput_status": "MEASURED_12_SAMPLE_PACKET",
       "vram_policy": "CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE",
       "vram_reserve_gb": 4.0,
-      "vram_status": "MEASURED_SINGLE_SAMPLE"
+      "vram_status": "MEASURED_12_SAMPLE_PACKET",
+      "formal_packet_evidence_ref": "run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json",
+      "formal_packet_sample_count": 12,
+      "formal_packet_cue_fit_pass": 10,
+      "formal_packet_cue_fit_fail": 2,
+      "formal_packet_runner_elapsed_sec": 784.510539,
+      "formal_packet_execution_cost_usd": 0.106782
     }
   ],
   "schema_version": 1,
-  "status": "VOXCPM2_QUALIFICATION_MEASURED_FORMAL_PACKET_PENDING"
+  "status": "VOXCPM2_FORMAL_PACKET_MEASURED_QUALITY_PENDING"
 }

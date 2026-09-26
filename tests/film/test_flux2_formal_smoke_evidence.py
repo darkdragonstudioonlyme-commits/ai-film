@@ -64,10 +64,13 @@ class Flux2FormalSmokeEvidenceTests(unittest.TestCase):
 
     def test_cost_runtime_worker_state_advance_without_winner_selection(self):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
-        self.assertEqual(set(by_id),{"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926","voxcpm2-voxreq_7f50b3325b6132e8-pass"})
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.170799,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.829)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.83)["allowed"])
+        historical={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926"}
+        self.assertTrue(historical.issubset(set(by_id)))
+        vox_ids={row["request_id"] for row in json.loads((ROOT/"model-evaluations/slice01/voice/requests/requests.json").read_text())["requests"]}
+        self.assertEqual({cid.removeprefix("voxcpm2-").removesuffix("-pass") for cid in by_id if cid.startswith("voxcpm2-")},vox_ids)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.27329,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.7267)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.727)["allowed"])
         self.assertEqual(LIVE_RUNTIME["flux2_qualification"]["status"],"PASS_FORMAL_1024_FOUR_JOB")
         self.assertTrue(LIVE_RUNTIME["flux2_qualification"]["admission_ready"])
         self.assertEqual(WORKER["qualified_models"]["flux2-klein-4b"]["status"],"PASS_FORMAL_1024_FOUR_JOB")

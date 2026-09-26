@@ -9,7 +9,7 @@
   "execution_authorization_ref": "model-evaluations/slice01/launch_authorization.active.json",
   "host_evidence_ref": "run-evidence/RUNPOD_A40_HOST_20260925.json",
   "host_evidence_sha256": "e3a8f2b4da3dece444cd9c96cf12d4c0f4067554b938914025d4a1fd76b50af5",
-  "model_profile_measurements_status": "FLUX2_ZIMAGE_1024_READY_OTHERS_PENDING",
+  "model_profile_measurements_status": "FLUX2_ZIMAGE_1024_VOXCPM2_12_READY_VIDEO_PENDING",
   "pod_id": "0h1twwxqw6yx0k",
   "provider": "RunPod",
   "qualified_models": {
@@ -30,13 +30,22 @@
       "required_vram_gb": 26.0,
       "status": "PASS_FORMAL_1024_FOUR_JOB",
       "vram_reserve_gb": 4.0
+    },
+    "voxcpm2": {
+      "status": "PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12",
+      "peak_vram_mib": 5829,
+      "required_vram_gb": 6.0,
+      "vram_reserve_gb": 4.0,
+      "admission_ready": true,
+      "quality_status": "AWAITING_OWNER_SCORING",
+      "evidence_ref": "run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json"
     }
   },
   "quarantined": false,
   "runtime_ids": [
     "gpu-worker-base-v1"
   ],
-  "runtime_status": "BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_1024_PASS_OTHER_ADAPTERS_PENDING",
+  "runtime_status": "BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_VOXCPM2_PASS_VIDEO_PENDING",
   "schema_version": 1,
   "vram_status": "MEASURED",
   "worker_id": "runpod-0h1twwxqw6yx0k-a40"

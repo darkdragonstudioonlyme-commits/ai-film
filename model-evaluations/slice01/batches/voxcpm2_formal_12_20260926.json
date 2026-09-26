@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "batch_id": "voxcpm2-formal-12-20260926",
+  "stop_on_failure": true,
+  "jobs": [
+    {
+      "job_id": "voxreq_7f50b3325b6132e8",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_7f50b3325b6132e8",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_7f50b3325b6132e8/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_2f9a9f5030a611df",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_2f9a9f5030a611df",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_2f9a9f5030a611df/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_b01817af14a9c0b2",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_b01817af14a9c0b2",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_b01817af14a9c0b2/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_63eab49f0b06cd8a",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_63eab49f0b06cd8a",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_63eab49f0b06cd8a/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_184b88f92dc62a76",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_184b88f92dc62a76",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_184b88f92dc62a76/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_6fe1f8e8812f63da",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_6fe1f8e8812f63da",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_6fe1f8e8812f63da/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_95328dc8f6c74a2f",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_95328dc8f6c74a2f",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_95328dc8f6c74a2f/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_8dfc521e00a730c6",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_8dfc521e00a730c6",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_8dfc521e00a730c6/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_d9c6d5602404de34",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_d9c6d5602404de34",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_d9c6d5602404de34/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_0a18140a542860ca",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_0a18140a542860ca",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_0a18140a542860ca/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_0e05737a6a5bcf8f",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_0e05737a6a5bcf8f",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_0e05737a6a5bcf8f/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxreq_782df7a9a85203d1",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxreq_782df7a9a85203d1",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-live",
+      "receipt_path": "/workspace/runs/voxcpm2-live/voxreq_782df7a9a85203d1/evidence.json",
+      "skip_if_pass": true
+    }
+  ]
+}

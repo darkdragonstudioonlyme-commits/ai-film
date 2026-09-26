@@ -8,6 +8,7 @@ BLIND_EV=json.loads((ROOT/"run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_202609
 VOX_EV=json.loads((ROOT/"run-evidence/VOXCPM2_A40_QUALIFICATION_20260926.json").read_text(encoding="utf-8"))
 VOICE_PROFILES=json.loads((ROOT/"model-evaluations/slice01/voice/resource_profiles.json").read_text(encoding="utf-8"))
 LEDGER=json.loads((ROOT/"projects/slice01/runtime/cost_ledger.json").read_text(encoding="utf-8"))
+VOX_BATCH=json.loads((ROOT/"run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json").read_text(encoding="utf-8"))
 
 
 class VoxCPM2QualificationEvidenceTests(unittest.TestCase):
@@ -54,7 +55,7 @@ class VoxCPM2QualificationEvidenceTests(unittest.TestCase):
     def test_voice_resource_profile_is_admission_ready_but_quality_pending(self):
         self.assertEqual(
             VOICE_PROFILES["status"],
-            "VOXCPM2_QUALIFICATION_MEASURED_FORMAL_PACKET_PENDING",
+            "VOXCPM2_FORMAL_PACKET_MEASURED_QUALITY_PENDING",
         )
         profile=VOICE_PROFILES["profiles"][0]
         self.assertEqual(profile["model_id"],"voxcpm2")
@@ -62,9 +63,19 @@ class VoxCPM2QualificationEvidenceTests(unittest.TestCase):
         self.assertEqual(profile["vram_reserve_gb"],4.0)
         self.assertEqual(profile["admission_threshold_gb"],10.0)
         self.assertTrue(profile["admission_ready"])
-        self.assertEqual(profile["formal_packet_status"],"NOT_RUN_11_REMAINING_SAMPLES")
-        self.assertEqual(profile["quality_status"],"NOT_EVALUATED")
+        self.assertEqual(profile["formal_packet_status"],"PASS_RUNTIME_12_SAMPLES_CUE_FIT_10_12")
+        self.assertEqual(profile["quality_status"],"AWAITING_OWNER_SCORING")
         self.assertFalse(profile["production_acceptance"])
+
+    def test_formal_batch_is_12_runtime_pass_with_two_cue_fit_failures(self):
+        self.assertEqual(VOX_BATCH["sample_count"],12)
+        self.assertEqual(VOX_BATCH["pass_runtime"],12)
+        self.assertEqual(VOX_BATCH["cue_fit_pass"],10)
+        self.assertEqual(VOX_BATCH["cue_fit_fail"],2)
+        self.assertTrue(VOX_BATCH["all_media_synced_and_hash_verified"])
+        self.assertEqual({row["language"] for row in VOX_BATCH["cue_fit_failures"]},{"zh-CN"})
+        self.assertEqual(VOX_BATCH["quality_status"],"AWAITING_OWNER_SCORING")
+        self.assertFalse(VOX_BATCH["production_acceptance"])
 
     def test_cost_ledger_includes_voxcpm2_qualification_once(self):
         rows=[row for row in LEDGER["entries"] if row["cost_id"]=="voxcpm2-voxreq_7f50b3325b6132e8-pass"]
@@ -72,7 +83,7 @@ class VoxCPM2QualificationEvidenceTests(unittest.TestCase):
         self.assertEqual(rows[0]["category"],"COMPUTE_ACCEPTED")
         self.assertEqual(rows[0]["logical_key"],"T-019-VOXCPM2-QUALIFICATION")
         self.assertAlmostEqual(rows[0]["amount_usd"],0.004291,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.170799,places=6)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.27329,places=6)
 
 
 if __name__=="__main__":

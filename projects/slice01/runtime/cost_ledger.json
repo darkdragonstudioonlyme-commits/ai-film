@@ -55,6 +55,105 @@
       "attempt_id": "voxreq_7f50b3325b6132e8",
       "asset_id": null,
       "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.004928,
+      "asset_id": null,
+      "attempt_id": "voxreq_2f9a9f5030a611df",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_2f9a9f5030a611df-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.008352,
+      "asset_id": null,
+      "attempt_id": "voxreq_b01817af14a9c0b2",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_b01817af14a9c0b2-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.010201,
+      "asset_id": null,
+      "attempt_id": "voxreq_63eab49f0b06cd8a",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_63eab49f0b06cd8a-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.008026,
+      "asset_id": null,
+      "attempt_id": "voxreq_184b88f92dc62a76",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_184b88f92dc62a76-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.009535,
+      "asset_id": null,
+      "attempt_id": "voxreq_6fe1f8e8812f63da",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_6fe1f8e8812f63da-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.009824,
+      "asset_id": null,
+      "attempt_id": "voxreq_95328dc8f6c74a2f",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_95328dc8f6c74a2f-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.009767,
+      "asset_id": null,
+      "attempt_id": "voxreq_8dfc521e00a730c6",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_8dfc521e00a730c6-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.010611,
+      "asset_id": null,
+      "attempt_id": "voxreq_d9c6d5602404de34",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_d9c6d5602404de34-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.010504,
+      "asset_id": null,
+      "attempt_id": "voxreq_0a18140a542860ca",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_0a18140a542860ca-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.010387,
+      "asset_id": null,
+      "attempt_id": "voxreq_0e05737a6a5bcf8f",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_0e05737a6a5bcf8f-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "amount_usd": 0.010356,
+      "asset_id": null,
+      "attempt_id": "voxreq_782df7a9a85203d1",
+      "category": "COMPUTE_ACCEPTED",
+      "cost_id": "voxcpm2-voxreq_782df7a9a85203d1-pass",
+      "logical_key": "T-019-VOXCPM2-QUALIFICATION",
+      "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
     }
   ]
 }
