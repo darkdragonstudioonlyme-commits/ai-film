@@ -44,7 +44,7 @@ class Flux2QualificationEvidenceTests(unittest.TestCase):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("flux2-castjob_d3ec86da4ca6b1fc-pass",by_id)
         self.assertAlmostEqual(by_id["flux2-castjob_d3ec86da4ca6b1fc-pass"]["amount_usd"],0.00138,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.382528,places=6)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.455474,places=6)
 
 
 if __name__=="__main__":

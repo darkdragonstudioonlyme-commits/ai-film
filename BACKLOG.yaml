@@ -292,3 +292,8 @@
   goal: "Generate a balanced Wan2.2 quality-motion probe from both photoreal image-model keyframes and sync outputs for owner scoring"
   status: DONE
   owner: executor
+- id: T-059
+  milestone: M4
+  goal: "Prove historical-China and European world profiles end-to-end with generated image + Wan2.2 motion media"
+  status: DONE
+  owner: executor

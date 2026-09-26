@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "capability_id": "historical-world-image-motion-v1",
+  "status": "PASS_TECHNICAL_PROOF_NOT_PRODUCTION_ACCEPTED",
+  "generated_output_count": 5,
+  "retained_output_count": 4,
+  "rejected_output_count": 1,
+  "all_generated_media_synced_and_hash_verified": true,
+  "profiles_proven": [
+    "china_tang_changan_8c",
+    "europe_belle_epoque_paris_1900s"
+  ],
+  "image_model_id": "flux2-klein-4b",
+  "motion_model_id": "wan22-ti2v-5b",
+  "execution_cost_usd_total": 0.072946,
+  "retained_execution_cost_usd": 0.071557,
+  "provider_billed_snapshot_usd": 9.710120756644756,
+  "provider_billing_observed_at_utc": "2026-09-26T06:26:03Z",
+  "quality_status": "TECHNICAL_PROOF_NOT_OWNER_SCORED",
+  "selection_authorized": false,
+  "production_acceptance": false,
+  "publish_authority": false,
+  "findings": [
+    "Tang Chang'an and Belle Epoque Paris each completed generated image plus Wan2.2 motion technical proof on the authorized A40.",
+    "Paris image v1 was runtime-valid but product-rejected because newspaper/storefront pseudo-text violated the visual-quality intent.",
+    "Paris image v2 removed foreground text-bearing props and was retained; its motion smoke preserved gross identity/world continuity across sampled frames.",
+    "Tang motion preserved gross identity/world continuity; the paper prop showed faint text-like markings, so text-bearing props remain a known generation risk and readable typography stays post-production.",
+    "These results prove pipeline capability only and do not approve historical accuracy or production quality without human review."
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "world-tang-changan-image-v1",
+      "kind": "image",
+      "world_profile_id": "china_tang_changan_8c",
+      "runtime_status": "PASS_RUNTIME",
+      "disposition": "RETAINED_TECHNICAL_PROOF",
+      "elapsed_sec": 13.38735,
+      "peak_vram_mib": 19797.0,
+      "estimated_execution_cost_usd": 0.001822,
+      "output": {
+        "sha256": "721368758c526c0200e7d436a4abc371de95474f26f068d98b17648107b83709",
+        "bytes": 1352950,
+        "width": 704,
+        "height": 1280,
+        "duration_sec": null,
+        "fps": null
+      },
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "path_ref": "../media/world-capability-20260926/tang/world-tang-changan-cast-v1.png",
+        "verified_at_utc": "2026-09-26T06:28:06Z"
+      }
+    },
+    {
+      "artifact_id": "world-paris-belle-epoque-image-v1",
+      "kind": "image",
+      "world_profile_id": "europe_belle_epoque_paris_1900s",
+      "runtime_status": "PASS_RUNTIME",
+      "disposition": "REJECTED_TEXT_ARTIFACT",
+      "elapsed_sec": 10.201918,
+      "peak_vram_mib": 19797.0,
+      "estimated_execution_cost_usd": 0.001389,
+      "output": {
+        "sha256": "87777aa16e06e9bbd85b4a12f5683a532d08476fdc1a3d073fa05eba1b05478b",
+        "bytes": 1365424,
+        "width": 704,
+        "height": 1280,
+        "duration_sec": null,
+        "fps": null
+      },
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "path_ref": "../media/world-capability-20260926/paris/world-paris-belle-epoque-cast-v1.png",
+        "verified_at_utc": "2026-09-26T06:28:06Z"
+      }
+    },
+    {
+      "artifact_id": "world-paris-belle-epoque-image-v2",
+      "kind": "image",
+      "world_profile_id": "europe_belle_epoque_paris_1900s",
+      "runtime_status": "PASS_RUNTIME",
+      "disposition": "RETAINED_TECHNICAL_PROOF",
+      "elapsed_sec": 9.516529,
+      "peak_vram_mib": 19797.0,
+      "estimated_execution_cost_usd": 0.001295,
+      "output": {
+        "sha256": "ead0cb694589453bf97832ae31cb848c94d5deabab289316982642655a18f1eb",
+        "bytes": 1325121,
+        "width": 704,
+        "height": 1280,
+        "duration_sec": null,
+        "fps": null
+      },
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "path_ref": "../media/world-capability-20260926/paris-v2/world-paris-belle-epoque-cast-v2.png",
+        "verified_at_utc": "2026-09-26T06:28:06Z"
+      }
+    },
+    {
+      "artifact_id": "world-tang-changan-motion-v1",
+      "kind": "video",
+      "world_profile_id": "china_tang_changan_8c",
+      "runtime_status": "PASS_RUNTIME_SMOKE",
+      "disposition": "RETAINED_TECHNICAL_PROOF",
+      "elapsed_sec": 253.121364,
+      "peak_vram_mib": 31143.0,
+      "estimated_execution_cost_usd": 0.034453,
+      "output": {
+        "sha256": "b626bcc293a8a0ad50f2e2515a67163a0801e293602f298c6c1b451374876ca7",
+        "bytes": 1088240,
+        "width": 704,
+        "height": 1280,
+        "duration_sec": 0.708333,
+        "fps": 24
+      },
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "path_ref": "../media/world-capability-20260926/tang-motion/world-tang-changan-motion-v1.mp4",
+        "verified_at_utc": "2026-09-26T06:28:06Z"
+      }
+    },
+    {
+      "artifact_id": "world-paris-belle-epoque-motion-v1",
+      "kind": "video",
+      "world_profile_id": "europe_belle_epoque_paris_1900s",
+      "runtime_status": "PASS_RUNTIME_SMOKE",
+      "disposition": "RETAINED_TECHNICAL_PROOF",
+      "elapsed_sec": 249.700748,
+      "peak_vram_mib": 31143.0,
+      "estimated_execution_cost_usd": 0.033987,
+      "output": {
+        "sha256": "8c41a3930df3de3dfb62d0483bd6b89ce45f228672481e7b723febb99c2ac0f7",
+        "bytes": 1637115,
+        "width": 704,
+        "height": 1280,
+        "duration_sec": 0.708333,
+        "fps": 24
+      },
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "path_ref": "../media/world-capability-20260926/paris-motion/world-paris-belle-epoque-motion-v1.mp4",
+        "verified_at_utc": "2026-09-26T06:28:06Z"
+      }
+    }
+  ]
+}

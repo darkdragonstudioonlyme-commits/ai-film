@@ -49,6 +49,7 @@ REQUIRED_PRODUCT_FILES = [
     "model-evaluations/slice01/voice/packet/blind_map_private.json",
     "model-evaluations/slice01/voice/packet/scores.csv",
     "production-profiles/world_profiles.json",
+    "run-evidence/WORLD_CAPABILITY_HISTORICAL_MEDIA_20260926.json",
     "film/world_profile.py",
     "tools/compile_project_shots.py",
     "film/image_keyframe_live.py",
@@ -675,7 +676,21 @@ def main() -> int:
     by_cost_id={row.get("cost_id"):row for row in entries}
     vox_batch=json.loads((root/"run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json").read_text(encoding="utf-8"))
     expected_vox_cost_ids={"voxcpm2-"+row["request_id"]+"-pass" for row in vox_batch.get("samples",[])}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926","wan22-ti2v-5b-a40-smoke-v1-pass","wan22-quality-wan22-sc01-sh04-flux2-ref-v1-pass","wan22-quality-wan22-sc01-sh04-zimage-ref-v1-pass"} | expected_vox_cost_ids
+    expected_cost_ids={
+        "runpod-a40-bootstrap-estimate-20260925",
+        "flux2-castjob_d3ec86da4ca6b1fc-pass",
+        "flux2-formal-smoke-20260925",
+        "zimage-castjob_8e02916e0db64eb6-pass",
+        "zimage-formal-smoke-20260926",
+        "wan22-ti2v-5b-a40-smoke-v1-pass",
+        "wan22-quality-wan22-sc01-sh04-flux2-ref-v1-pass",
+        "wan22-quality-wan22-sc01-sh04-zimage-ref-v1-pass",
+        "world-tang-changan-image-v1-pass",
+        "world-paris-belle-epoque-image-v1-rejected",
+        "world-paris-belle-epoque-image-v2-pass",
+        "world-tang-changan-motion-v1-pass",
+        "world-paris-belle-epoque-motion-v1-pass",
+    } | expected_vox_cost_ids
     if len(entries)!=len(expected_cost_ids) or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
@@ -697,12 +712,42 @@ def main() -> int:
             errors.append("cost-ledger-wan22-quality-flux2-entry")
         if abs(float(by_cost_id["wan22-quality-wan22-sc01-sh04-zimage-ref-v1-pass"].get("amount_usd",0))-0.035331)>1e-9:
             errors.append("cost-ledger-wan22-quality-zimage-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.382528)>1e-9:
-            errors.append("cost-ledger-total-after-wan22-balanced-motion")
+        world_expected={
+            "world-tang-changan-image-v1-pass":("COMPUTE_ACCEPTED",0.001822),
+            "world-paris-belle-epoque-image-v1-rejected":("COMPUTE_REJECTED_TAKE",0.001389),
+            "world-paris-belle-epoque-image-v2-pass":("COMPUTE_ACCEPTED",0.001295),
+            "world-tang-changan-motion-v1-pass":("COMPUTE_ACCEPTED",0.034453),
+            "world-paris-belle-epoque-motion-v1-pass":("COMPUTE_ACCEPTED",0.033987),
+        }
+        for cost_id,(category,amount) in world_expected.items():
+            row=by_cost_id[cost_id]
+            if row.get("category")!=category or abs(float(row.get("amount_usd",0))-amount)>1e-9:
+                errors.append("cost-ledger-world-capability:"+cost_id)
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.455474)>1e-9:
+            errors.append("cost-ledger-total-after-world-capability")
         if vox_batch.get("sample_count")!=12 or vox_batch.get("pass_runtime")!=12 or vox_batch.get("cue_fit_pass")!=10 or vox_batch.get("cue_fit_fail")!=2:
             errors.append("voxcpm2-formal-batch-summary")
         if vox_batch.get("all_media_synced_and_hash_verified") is not True or vox_batch.get("quality_status")!="AWAITING_OWNER_SCORING":
             errors.append("voxcpm2-formal-batch-boundary")
+    world_ev=json.loads((root/"run-evidence/WORLD_CAPABILITY_HISTORICAL_MEDIA_20260926.json").read_text(encoding="utf-8"))
+    if world_ev.get("status")!="PASS_TECHNICAL_PROOF_NOT_PRODUCTION_ACCEPTED":
+        errors.append("world-capability-evidence-status")
+    if set(world_ev.get("profiles_proven",[]))!={"china_tang_changan_8c","europe_belle_epoque_paris_1900s"}:
+        errors.append("world-capability-profile-population")
+    if world_ev.get("generated_output_count")!=5 or world_ev.get("retained_output_count")!=4 or world_ev.get("rejected_output_count")!=1:
+        errors.append("world-capability-output-population")
+    if world_ev.get("all_generated_media_synced_and_hash_verified") is not True:
+        errors.append("world-capability-media-sync")
+    if world_ev.get("execution_cost_usd_total")!=0.072946 or world_ev.get("retained_execution_cost_usd")!=0.071557:
+        errors.append("world-capability-execution-cost")
+    if world_ev.get("quality_status")!="TECHNICAL_PROOF_NOT_OWNER_SCORED" or world_ev.get("production_acceptance") is not False:
+        errors.append("world-capability-quality-boundary")
+    world_rows={row.get("artifact_id"):row for row in world_ev.get("artifacts",[])}
+    if len(world_rows)!=5 or world_rows.get("world-paris-belle-epoque-image-v1",{}).get("disposition")!="REJECTED_TEXT_ARTIFACT":
+        errors.append("world-capability-rejected-take")
+    if any(row.get("local_sync",{}).get("status")!="PASS_HASH_VERIFIED" for row in world_rows.values()):
+        errors.append("world-capability-local-sync")
+
     wan_ev=json.loads((root/"run-evidence/WAN22_TI2V_A40_SMOKE_20260926.json").read_text(encoding="utf-8"))
     if wan_ev.get("status")!="PASS_RUNTIME_SMOKE" or wan_ev.get("model_revision")!="921dbaf3f1674a56f47e83fb80a34bac8a8f203e":
         errors.append("wan22-ti2v-smoke-status")

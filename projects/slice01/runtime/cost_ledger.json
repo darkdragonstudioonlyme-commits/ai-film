@@ -181,6 +181,51 @@
       "attempt_id": "wan22-sc01-sh04-zimage-ref-v1",
       "asset_id": null,
       "note": "Balanced Wan2.2 25-frame/8-step quality-motion probe; runtime PASS, owner quality scoring pending. Provider billing remains budget truth."
+    },
+    {
+      "cost_id": "world-tang-changan-image-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.001822,
+      "logical_key": "T-059-WORLD-CAPABILITY-HISTORICAL",
+      "attempt_id": "world-tang-changan-cast-v1",
+      "asset_id": null,
+      "note": "Tang Chang'an image technical proof retained."
+    },
+    {
+      "cost_id": "world-paris-belle-epoque-image-v1-rejected",
+      "category": "COMPUTE_REJECTED_TAKE",
+      "amount_usd": 0.001389,
+      "logical_key": "T-059-WORLD-CAPABILITY-HISTORICAL",
+      "attempt_id": "world-paris-belle-epoque-cast-v1",
+      "asset_id": null,
+      "note": "Runtime PASS but product-rejected for pseudo-text in newspaper/storefront surfaces."
+    },
+    {
+      "cost_id": "world-paris-belle-epoque-image-v2-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.001295,
+      "logical_key": "T-059-WORLD-CAPABILITY-HISTORICAL",
+      "attempt_id": "world-paris-belle-epoque-cast-v2",
+      "asset_id": null,
+      "note": "Belle Epoque Paris image v2 retained after removing text-bearing foreground props."
+    },
+    {
+      "cost_id": "world-tang-changan-motion-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.034453,
+      "logical_key": "T-059-WORLD-CAPABILITY-HISTORICAL",
+      "attempt_id": "world-tang-changan-motion-v1",
+      "asset_id": null,
+      "note": "Wan2.2 17-frame/5-step Tang world motion technical proof; quality not production-approved."
+    },
+    {
+      "cost_id": "world-paris-belle-epoque-motion-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.033987,
+      "logical_key": "T-059-WORLD-CAPABILITY-HISTORICAL",
+      "attempt_id": "world-paris-belle-epoque-motion-v1",
+      "asset_id": null,
+      "note": "Wan2.2 17-frame/5-step Paris world motion technical proof; quality not production-approved."
     }
   ]
 }

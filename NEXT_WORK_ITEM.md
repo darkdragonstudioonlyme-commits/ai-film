@@ -1,38 +1,34 @@
-# NEXT WORK ITEM — T-019 VoxCPM2 formal packet + blind image scoring
+# NEXT WORK ITEM — complete owner media review, then promote scored benchmark inputs
 
 STATUS: READY
-MILESTONE: M2
+MILESTONE: M2 + M4
 
-IMAGE BLIND MATERIALIZATION COMPLETE:
-- 8/8 neutral-name PNG copies exist under /workspace/artifacts/blind-comparison
-- every copy matches canonical asset_bytes + asset_sha256
-- public neutral manifest contains no model identity
-- scores.csv remains blank; selection_authorized=false
+COMPLETED:
+- image owner score set complete 8/8 on the owner-defined 0–8 scale; FLUX2 and Z-Image tie;
+- VoxCPM2 fixed packet generated 12/12, 10/12 cue-fit, all WAVs synced/hash-verified;
+- Wan2.2 TI2V-5B admitted on A40 and balanced motion probes generated 2/2;
+- Tang Chang'an and Belle Époque Paris world profiles proven through generated image → Wan motion technical media;
+- all current generated binaries are synced off the root-only Pod.
 
-VOXCPM2 QUALIFICATION COMPLETE:
-- exact model revision: 32279effe8c19989596f05d353d1447f51d9e915
-- package: voxcpm==2.0.3
-- exact snapshot: 7 required files / 4.620033 GiB
-- one EN request PASS_RUNTIME
-- peak VRAM: 5,827 MiB
-- inference: 3.452767s
-- audio: 3.04s at 48 kHz, cue-fit PASS against 3.5s
-- estimated qualification cost: USD 0.004291
-- no reference audio, no cloning, no production acceptance
-- canonical execution ledger: USD 0.170799 / USD 60
+OWNER REVIEW:
+- local review page: http://localhost:8765/
+- required score set: 12 voice samples + blind motion_A/motion_B;
+- scale: integer 0–8;
+- motion mapping stays sealed until the complete score set is ingested.
 
-NEXT:
-1. Execute the remaining 11 fixed VoxCPM2 requests with the same model revision/package/seed/descriptions.
-2. Do not rerun the already-qualified EN request unless a concrete runtime premise changes.
-3. Aggregate 12 output manifests, cue-fit, peak VRAM, elapsed and measured execution cost.
-4. Keep voice quality/identity status NOT_EVALUATED until the 12-sample packet is complete.
-5. Keep image model mapping blinded until all 8 image score rows are complete.
+NEXT AFTER COMPLETE SCORES:
+1. ingest owner review JSON with tools/ingest_owner_review_scores.py;
+2. unblind motion only after all 14 scores validate;
+3. promote only scored media/reference choices into the first multi-shot M3/M4 quality benchmark;
+4. keep 14B/LTX gated until measured admission/runtime evidence exists.
+
+PAID RESOURCE:
+- existing RunPod A40 only, USD 0.49/h, hard cap USD 60;
+- lifetime provider bill snapshot USD 9.710121;
+- no useful GPU batch is queued while owner review is pending; stopping the existing Pod is recommended if review will pause.
 
 DO NOT:
-- modify voice descriptions/seeds between languages
-- enable reference_audio or cloning
-- select an image-model winner before complete blind scores
-- treat smoke/qualification assets as production casting/audio
-- create another Pod/resource
-- exceed USD 60
-- publish content
+- generate more GPU benchmark media merely to keep the Pod busy;
+- treat technical world probes as historical-accuracy or production-quality approval;
+- promote voice or motion quality before complete owner scores;
+- create another paid resource or publish content.
