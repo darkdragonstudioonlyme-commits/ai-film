@@ -78,6 +78,8 @@ def build_argv(job: dict[str,Any], *, root: Path, execute: bool) -> list[str]:
         argv += ["--wan-repo-dir",str(job["code_dir"])]
     if job.get("reference_image"):
         argv += ["--reference-image",str(job["reference_image"])]
+    if job.get("spec_path"):
+        argv += ["--spec-path",str(job["spec_path"])]
     if execute:
         argv.append("--execute")
     return argv

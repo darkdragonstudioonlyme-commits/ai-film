@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "probe_id": "world-capability-historical-v1",
+  "shot_id": "world_capability_portrait",
+  "status": "READY_NOT_EXECUTED",
+  "purpose": "prove reusable historical-China and European-cinema world profiles with real generated casting/keyframe media",
+  "quality_acceptance": false,
+  "selection_authorized": false,
+  "production_acceptance": false,
+  "jobs": [
+    {
+      "probe_job_id": "world-tang-changan-cast-v1",
+      "world_profile_id": "china_tang_changan_8c",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "style": "photoreal",
+      "width": 704,
+      "height": 1280,
+      "seed": 61001,
+      "num_inference_steps": 4,
+      "guidance_scale": 1.0,
+      "prompt": "Cinematic photorealism, realistic human skin, fabric and materials. Portrait-friendly 9:16 frame. A Chinese woman, 27, poised and observant, oval face, calm focused eyes, long black hair arranged in a period-appropriate Tang updo. She stands under the covered gallery of a Chang'an courtyard at early evening, holding a folded paper message at waist level. Her expression is composed and alert. Medium close portrait, static camera, natural posture. Setting: Tang dynasty, 8th century in Chang'an / Guanzhong, China. historically grounded Tang-dynasty Chinese setting rather than generic fantasy Asia materials, silhouettes and public spaces should read as a coherent 8th-century Chang'an production world Wardrobe: use Tang-period Chinese garment silhouettes, layering and accessories appropriate to character role and status; hair styling and headwear must be chosen per character role, gender presentation and social context. Architecture: use Tang-era Chinese timber architecture, courtyard planning, gates, tiled roofs and urban street logic appropriate to Chang'an; keep building scale and ornament consistent within the same social location. Props and material culture: use period-plausible lamps, ceramics, paper, writing implements, furnishings, transport and weapons only when story-relevant. Environment: weather, vegetation and street dressing should match the selected season and north-central China setting. Cinematography: cinematic composition with controlled production design; do not use theme-park or cosplay presentation unless explicitly requested. Character identity comes from casting. This profile constrains Tang-era Chinese wardrobe, environment and material culture; it does not copy any real person. Historically coherent wardrobe and grooming appropriate to the character's role and social context. Image only. No written words, subtitles, captions, speech bubbles, labels, logos, watermark or typography.",
+      "negative_prompt": "identity drift, age drift, anatomy errors, extra fingers, malformed hands, deformed face, duplicate person, written text, subtitles, captions, labels, logos, watermark, typography, modern clothing, modern electronics, modern signage, Qing queue hairstyle, Japanese kimono substitution, Korean hanbok substitution, generic pan-Asian costume mixing, unsupported fantasy armor, text artifacts, watermark",
+      "max_runtime_sec": 300
+    },
+    {
+      "probe_job_id": "world-paris-belle-epoque-cast-v1",
+      "world_profile_id": "europe_belle_epoque_paris_1900s",
+      "model_id": "flux2-klein-4b",
+      "model_revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "style": "photoreal",
+      "width": 704,
+      "height": 1280,
+      "seed": 62001,
+      "num_inference_steps": 4,
+      "guidance_scale": 1.0,
+      "prompt": "Cinematic photorealism, realistic human skin, fabric and materials. Portrait-friendly 9:16 frame. A French man, 34, lean, thoughtful, short dark-brown hair, neatly trimmed moustache, restrained expression. He stands beside the window of a modest Paris apartment near dusk, holding a folded newspaper at his side. Medium close portrait, static camera, natural posture, understated dramatic realism. Setting: Belle Époque Paris, circa 1900 in Paris, France. Belle Époque Paris production world with coherent boulevard, apartment, café and working-city material culture distinguish elegant, bourgeois and working environments by production design rather than mixing them Wardrobe: use turn-of-the-century French silhouettes, tailoring, dresses, hats, footwear and accessories appropriate to role and class. Architecture: use Haussmann-era streets and façades, period shopfronts, cafés and interiors when location-appropriate. Props and material culture: use period-plausible bicycles, carriages, early motor vehicles only where justified, printed matter, furniture and lighting. Environment: street activity, signage density and weather should be scene-specific and not a postcard caricature. Cinematography: cinematic historical realism with warm practicals where motivated and controlled depth of field. Character identity and ethnicity come from casting. This profile constrains Belle Époque Paris production design and does not imply a generic European facial type. Historically coherent wardrobe and grooming appropriate to the character's role and social context. Image only. No written words, subtitles, captions, speech bubbles, labels, logos, watermark or typography.",
+      "negative_prompt": "identity drift, age drift, anatomy errors, extra fingers, malformed hands, deformed face, duplicate person, written text, subtitles, captions, labels, logos, watermark, typography, modern cars, modern electronics, modern signage, postwar fashion, generic medieval styling, generic pan-European costume mixing, text artifacts, watermark",
+      "max_runtime_sec": 300
+    }
+  ]
+}

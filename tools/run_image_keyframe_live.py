@@ -40,13 +40,17 @@ def gpu_used_mib() -> float:
 def main() -> int:
     ap=argparse.ArgumentParser()
     ap.add_argument("--probe-job-id",required=True)
+    ap.add_argument("--spec-path",default="model-evaluations/slice01/video/keyframe_probe_sc01_sh04.json")
     ap.add_argument("--max-runtime-sec",type=float)
     ap.add_argument("--execute",action="store_true")
     ap.add_argument("--model-dir")
     ap.add_argument("--out-root",default="/workspace/runs/image-keyframe-live")
     args=ap.parse_args()
 
-    spec=load(ROOT/"model-evaluations/slice01/video/keyframe_probe_sc01_sh04.json")
+    spec_path=Path(args.spec_path)
+    if not spec_path.is_absolute():
+        spec_path=ROOT/spec_path
+    spec=load(spec_path)
     job=select_probe_job(spec,args.probe_job_id)
     if args.max_runtime_sec is not None:
         if args.max_runtime_sec<=0 or args.max_runtime_sec>float(job.get("max_runtime_sec",600)):
@@ -59,6 +63,7 @@ def main() -> int:
         worker=load(ROOT/"projects/slice01/runtime/worker_runpod_a40.json"),
         gpu_session=load(ROOT/"projects/slice01/runtime/gpu_session.json"),
     )
+    plan["spec_path"]=str(spec_path)
     if not args.execute:
         print(json.dumps(plan,ensure_ascii=False,sort_keys=True))
         return 0
