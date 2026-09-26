@@ -74,20 +74,22 @@ class RunPodA40LiveAuthorityTests(unittest.TestCase):
         self.assertTrue(decision["admitted"])
         self.assertEqual(decision["reasons"],[])
         self.assertEqual(WORKER["vram_status"],"MEASURED")
-        self.assertEqual(WORKER["runtime_status"],"BASE_RUNTIME_MEASURED_FLUX2_1024_PASS_ZIMAGE_512_PASS_OTHER_ADAPTERS_PENDING")
+        self.assertEqual(WORKER["runtime_status"],"BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_1024_PASS_OTHER_ADAPTERS_PENDING")
 
     def test_cost_policy_and_bootstrap_estimate_enforce_60_cap(self):
         self.assertEqual(COST_POLICY["status"],"AUTHORIZED_BOUNDED")
         self.assertEqual(COST_POLICY["current_authorized_budget_usd"],60.0)
-        self.assertEqual(len(COST_LEDGER["entries"]),4)
+        self.assertEqual(len(COST_LEDGER["entries"]),5)
         by_id={row["cost_id"]:row for row in COST_LEDGER["entries"]}
         self.assertAlmostEqual(by_id["runpod-a40-bootstrap-estimate-20260925"]["amount_usd"],0.11027,places=6)
         self.assertAlmostEqual(by_id["flux2-castjob_d3ec86da4ca6b1fc-pass"]["amount_usd"],0.00138,places=6)
         self.assertAlmostEqual(by_id["flux2-formal-smoke-20260925"]["amount_usd"],0.0021,places=6)
         self.assertAlmostEqual(by_id["zimage-castjob_8e02916e0db64eb6-pass"]["amount_usd"],0.004647,places=6)
-        ok=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.8)
+        self.assertAlmostEqual(by_id["zimage-formal-smoke-20260926"]["amount_usd"],0.048111,places=6)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in COST_LEDGER["entries"]),0.166508,places=6)
+        ok=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.83)
         self.assertTrue(ok["allowed"])
-        blocked=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.9)
+        blocked=budget_decision(COST_LEDGER,budget_usd=60.0,proposed_charge_usd=59.84)
         self.assertFalse(blocked["allowed"])
 
     def test_resource_profiles_record_a40_host_without_fake_model_measurements(self):
@@ -102,10 +104,13 @@ class RunPodA40LiveAuthorityTests(unittest.TestCase):
         self.assertTrue(flux["admission_ready"])
         self.assertEqual(flux["required_vram_gb"],20.0)
         self.assertEqual(flux["vram_reserve_gb"],4.0)
-        self.assertEqual(zimg["vram_status"],"MEASURED_512_QUALIFICATION")
+        self.assertEqual(zimg["vram_status"],"MEASURED")
         self.assertEqual(zimg["qualification_peak_vram_mib"],21913.0)
-        self.assertFalse(zimg["admission_ready"])
-        self.assertIsNone(zimg["required_vram_gb"])
+        self.assertEqual(zimg["formal_smoke_peak_nvidia_mib"],26227)
+        self.assertEqual(zimg["formal_smoke_peak_torch_mib"],25892.0)
+        self.assertTrue(zimg["admission_ready"])
+        self.assertEqual(zimg["required_vram_gb"],26.0)
+        self.assertEqual(zimg["vram_reserve_gb"],4.0)
         self.assertTrue(all(row["vram_status"]=="UNMEASURED" for row in others))
         self.assertTrue(all(row["admission_ready"] is False for row in others))
 

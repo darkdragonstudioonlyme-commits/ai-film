@@ -94,7 +94,7 @@
   owner: executor
 - id: T-019
   milestone: M2
-  goal: "Run bounded RunPod A40 Stage-A benchmark and first real generation evidence"
+  goal: "Complete blind FLUX2-vs-Z-Image comparison and qualify fixed VoxCPM2 multilingual voice packet on the authorized A40"
   status: READY
   owner: coordinator
 - id: T-020

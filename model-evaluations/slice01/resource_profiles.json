@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PARTIAL_MEASUREMENTS_FLUX2_1024_READY_ZIMAGE_512_PENDING_OTHERS_UNMEASURED",
+  "status": "PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_READY_OTHERS_UNMEASURED",
   "profiles": [
     {
       "profile_id": "model-z-image",
@@ -11,11 +11,11 @@
         "cuda"
       ],
       "required_runtime_id": "gpu-worker-base-v1",
-      "vram_status": "MEASURED_512_QUALIFICATION",
-      "required_vram_gb": null,
-      "vram_reserve_gb": null,
-      "admission_ready": false,
-      "throughput_status": "MEASURED_512_QUALIFICATION",
+      "vram_status": "MEASURED",
+      "required_vram_gb": 26.0,
+      "vram_reserve_gb": 4.0,
+      "admission_ready": true,
+      "throughput_status": "MEASURED_1024_FORMAL_SMOKE",
       "qualification_resolution": {
         "width": 512,
         "height": 512
@@ -30,7 +30,24 @@
       "qualification_elapsed_sec": 34.140679,
       "qualification_evidence_ref": "run-evidence/Z_IMAGE_A40_QUALIFICATION_20260925.json",
       "qualification_artifact_sha256": "682f2ae66cf262004e5487d809e7c840c8a4fc2e86ba8529f98a446294a2f567",
-      "production_resolution_vram_status": "UNMEASURED_1024_SMOKE_PENDING"
+      "production_resolution_vram_status": "MEASURED_1024_FOUR_JOB_SMOKE",
+      "formal_smoke_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "formal_smoke_jobs": 4,
+      "formal_smoke_steps": 50,
+      "formal_smoke_guidance_scale": 4.0,
+      "formal_smoke_cfg_normalization": false,
+      "formal_smoke_negative_prompt_applied": true,
+      "formal_smoke_peak_torch_mib": 25892.0,
+      "formal_smoke_peak_nvidia_mib": 26227,
+      "formal_smoke_mean_job_sec": 86.360403,
+      "formal_smoke_median_job_sec": 86.534926,
+      "formal_smoke_total_elapsed_sec": 353.466833,
+      "formal_smoke_cost_usd": 0.048111,
+      "formal_smoke_evidence_ref": "run-evidence/Z_IMAGE_A40_FORMAL_SMOKE_20260926.json",
+      "vram_policy": "CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE"
     },
     {
       "profile_id": "model-flux2-klein-4b",

@@ -38,13 +38,13 @@ class Flux2QualificationEvidenceTests(unittest.TestCase):
         worker=WORKER["qualified_models"]["flux2-klein-4b"]
         self.assertEqual(worker["status"],"PASS_FORMAL_1024_FOUR_JOB")
         self.assertTrue(worker["admission_ready"])
-        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_1024_READY_ZIMAGE_512_MEASURED_1024_PENDING_OTHERS_PENDING")
+        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_ZIMAGE_1024_READY_OTHERS_PENDING")
 
     def test_cost_ledger_preserves_512_entry_after_formal_smoke(self):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("flux2-castjob_d3ec86da4ca6b1fc-pass",by_id)
         self.assertAlmostEqual(by_id["flux2-castjob_d3ec86da4ca6b1fc-pass"]["amount_usd"],0.00138,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.118397,places=6)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.166508,places=6)
 
 
 if __name__=="__main__":
