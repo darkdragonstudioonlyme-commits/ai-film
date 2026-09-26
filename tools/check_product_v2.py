@@ -110,6 +110,9 @@ REQUIRED_PRODUCT_FILES = [
     "tools/validate_vbench_runtime.py",
     "tools/run_pending_vbench_plan.py",
     "tests/film/test_vbench_runtime_bundle.py",
+    "film/current_video_ensemble.py",
+    "tools/finalize_current_video_auto_eval.py",
+    "tests/film/test_current_video_ensemble.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {

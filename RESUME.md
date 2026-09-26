@@ -10,6 +10,7 @@ AUTO_EVAL_STACK: video=VBench + Qwen3-VL-2B + PaddleOCR; voice=Whisper turbo + d
 AUTO_EVAL_VOICE: canonical v2 COMPLETE 12/12 — 10 AUTO_SHORTLIST, 2 AUTO_RETRY, 0 reject; mean 89.854707/100. V1 is retained as superseded audit evidence.
 AUTO_EVAL_VIDEO: PARTIAL — Qwen3-VL 4/4 + PaddleOCR 4/4 complete; Z-Image-reference motion hard-fails UNMOTIVATED_READABLE_TEXT and is excluded from remaining GPU eval; VBench is pending for 3 eligible clips.
 VBENCH_BUNDLE: pinned portable cu121 setup/validation plan ready; execution remains blocked and no new resource is authorized.
+VIDEO_FINALIZER: ready — after 3 eligible VBench receipts are synced, it merges them with canonical Qwen/Paddle receipts, preserves the terminal Z-Image hard fail, and auto-ranks all 4 clips.
 AUTO_EVAL_POLICY: hard fail precedes weighted score; missing required evaluator blocks; automatic outcomes never grant production acceptance or publish authority.
 WORLD_CAPABILITY: Tang Chang'an and Belle Époque Paris image→motion technical proof PASS; no historical-accuracy or production-quality acceptance.
 MEDIA_SYNC: all previously generated slice/world media required for current auto-eval batch is local and hash-verified.

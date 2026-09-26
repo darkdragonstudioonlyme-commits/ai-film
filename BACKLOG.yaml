@@ -337,3 +337,8 @@
   goal: "Prepare a portable pinned VBench CUDA 12.1 runtime/setup/validation bundle for future authorized GPU execution"
   status: DONE
   owner: executor
+- id: T-068
+  milestone: M4
+  goal: "Implement fail-closed post-VBench current-video ensemble finalizer that ranks all four clips from three eligible VBench receipts plus canonical CPU evaluator receipts"
+  status: DONE
+  owner: executor

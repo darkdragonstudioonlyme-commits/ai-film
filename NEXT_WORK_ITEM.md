@@ -14,6 +14,7 @@ COMPLETED AUTO_EVAL:
 - unattended 2-job VoxCPM2 retry batch is dry-run validated and waits only for the same authorized A40;
 - rough-cut voice candidate indexes are hash-bound: EN/VI 4/4, ZH 2/4; rough lipsync plans now expose only real remaining media blockers;
 - portable VBench cu121 runtime bundle is pinned and dry-run validated; it can be used on a future explicitly authorized GPU resource without manual dependency reconstruction;
+- post-VBench finalizer is ready: 3 synced VBench receipts automatically complete/rank the 4-clip ensemble while preserving the terminal OCR hard fail;
 - longform rough-cut/final-cut owner review contract is ready; labels feed calibration only after at least 3 reviewed cuts and never mutate weights automatically.
 - Whisper turbo exact-checksum CPU runtime: qualified;
 - canonical Whisper v2 re-score: 12/12 voice takes => 10 AUTO_SHORTLIST, 2 AUTO_RETRY, 0 reject;
