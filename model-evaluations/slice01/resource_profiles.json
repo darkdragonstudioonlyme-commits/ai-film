@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_READY_OTHERS_UNMEASURED",
+  "status": "PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_WAN22_TI2V_SMOKE_READY_OTHERS_UNMEASURED",
   "profiles": [
     {
       "profile_id": "model-z-image",
@@ -101,11 +101,20 @@
         "cuda"
       ],
       "required_runtime_id": "gpu-worker-base-v1",
-      "vram_status": "UNMEASURED",
-      "required_vram_gb": null,
-      "vram_reserve_gb": null,
-      "admission_ready": false,
-      "throughput_status": "UNMEASURED"
+      "vram_status": "MEASURED",
+      "required_vram_gb": 32.0,
+      "vram_reserve_gb": 4.0,
+      "admission_ready": true,
+      "throughput_status": "MEASURED_TECHNICAL_SMOKE_17F_5STEP",
+      "smoke_frame_num": 17,
+      "smoke_sample_steps": 5,
+      "smoke_peak_vram_mib": 31883.0,
+      "smoke_elapsed_sec": 266.384005,
+      "smoke_output_duration_sec": 0.708333,
+      "smoke_output_fps": 24,
+      "smoke_evidence_ref": "run-evidence/WAN22_TI2V_A40_SMOKE_20260926.json",
+      "quality_status": "NOT_EVALUATED",
+      "production_acceptance": false
     },
     {
       "profile_id": "model-wan22-i2v-14b",

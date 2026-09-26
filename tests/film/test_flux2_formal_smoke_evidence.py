@@ -68,9 +68,9 @@ class Flux2FormalSmokeEvidenceTests(unittest.TestCase):
         self.assertTrue(historical.issubset(set(by_id)))
         vox_ids={row["request_id"] for row in json.loads((ROOT/"model-evaluations/slice01/voice/requests/requests.json").read_text())["requests"]}
         self.assertEqual({cid.removeprefix("voxcpm2-").removesuffix("-pass") for cid in by_id if cid.startswith("voxcpm2-")},vox_ids)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.27329,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.7267)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.727)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.309548,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6904)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6905)["allowed"])
         self.assertEqual(LIVE_RUNTIME["flux2_qualification"]["status"],"PASS_FORMAL_1024_FOUR_JOB")
         self.assertTrue(LIVE_RUNTIME["flux2_qualification"]["admission_ready"])
         self.assertEqual(WORKER["qualified_models"]["flux2-klein-4b"]["status"],"PASS_FORMAL_1024_FOUR_JOB")

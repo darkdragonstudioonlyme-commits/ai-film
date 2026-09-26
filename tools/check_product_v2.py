@@ -558,7 +558,7 @@ def main() -> int:
 
     resources=json.loads((root/"model-evaluations/slice01/resource_profiles.json").read_text(encoding="utf-8"))
     profiles=resources.get("profiles",[])
-    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_READY_OTHERS_UNMEASURED" or len(profiles)!=5:
+    if resources.get("status")!="PARTIAL_MEASUREMENTS_FLUX2_ZIMAGE_1024_WAN22_TI2V_SMOKE_READY_OTHERS_UNMEASURED" or len(profiles)!=5:
         errors.append("resource-profile-state")
     flux_profile=next((row for row in profiles if row.get("model_id")=="flux2-klein-4b"),None)
     if flux_profile is None:
@@ -594,7 +594,21 @@ def main() -> int:
             errors.append("resource-profile-zimage-production-boundary")
         if z_profile.get("vram_policy")!="CEIL_MEASURED_PEAK_GIB_PLUS_4_GIB_RESERVE":
             errors.append("resource-profile-zimage-vram-policy-name")
-    other_profiles=[row for row in profiles if row.get("model_id") not in {"flux2-klein-4b","z-image"}]
+    wan_profile=next((row for row in profiles if row.get("model_id")=="wan22-ti2v-5b"),None)
+    if wan_profile is None:
+        errors.append("resource-profile-wan22-missing")
+    else:
+        if wan_profile.get("admission_ready") is not True or wan_profile.get("vram_status")!="MEASURED":
+            errors.append("resource-profile-wan22-admission-state")
+        if wan_profile.get("required_vram_gb")!=32.0 or wan_profile.get("vram_reserve_gb")!=4.0:
+            errors.append("resource-profile-wan22-vram-policy")
+        if wan_profile.get("throughput_status")!="MEASURED_TECHNICAL_SMOKE_17F_5STEP":
+            errors.append("resource-profile-wan22-throughput-state")
+        if wan_profile.get("smoke_peak_vram_mib")!=31883.0 or wan_profile.get("smoke_elapsed_sec")!=266.384005:
+            errors.append("resource-profile-wan22-smoke-measurements")
+        if wan_profile.get("quality_status")!="NOT_EVALUATED" or wan_profile.get("production_acceptance") is not False:
+            errors.append("resource-profile-wan22-quality-boundary")
+    other_profiles=[row for row in profiles if row.get("model_id") not in {"flux2-klein-4b","z-image","wan22-ti2v-5b"}]
     if any(row.get("admission_ready") is not False or row.get("vram_status")!="UNMEASURED" or row.get("required_vram_gb") is not None for row in other_profiles):
         errors.append("resource-profile-other-unmeasured-boundary")
     if any(row.get("throughput_status")!="UNMEASURED" for row in other_profiles):
@@ -613,7 +627,7 @@ def main() -> int:
     worker=json.loads((root/"projects/slice01/runtime/worker_runpod_a40.json").read_text(encoding="utf-8"))
     if worker.get("vram_status")!="MEASURED" or worker.get("available_vram_gb")!=44.988281 or worker.get("quarantined") is not False:
         errors.append("runpod-a40-worker-measurement")
-    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_VOXCPM2_PASS_VIDEO_PENDING":
+    if worker.get("host_evidence_sha256")!=host_sha or worker.get("runtime_status")!="BASE_RUNTIME_MEASURED_FLUX2_ZIMAGE_VOXCPM2_WAN22_TI2V_SMOKE_PASS":
         errors.append("runpod-a40-worker-binding")
     flux_worker=(worker.get("qualified_models") or {}).get("flux2-klein-4b",{})
     if flux_worker.get("status")!="PASS_FORMAL_1024_FOUR_JOB" or flux_worker.get("peak_vram_mib")!=20415 or flux_worker.get("formal_1024_smoke_pending") is not False:
@@ -630,6 +644,13 @@ def main() -> int:
         errors.append("runpod-a40-worker-voxcpm2-formal-batch")
     if v_worker.get("admission_ready") is not True or v_worker.get("required_vram_gb")!=6.0 or v_worker.get("vram_reserve_gb")!=4.0 or v_worker.get("quality_status")!="AWAITING_OWNER_SCORING":
         errors.append("runpod-a40-worker-voxcpm2-admission")
+    wan_worker=(worker.get("qualified_models") or {}).get("wan22-ti2v-5b",{})
+    if wan_worker.get("status")!="PASS_RUNTIME_SMOKE_17F_5STEP" or wan_worker.get("peak_vram_mib")!=31883:
+        errors.append("runpod-a40-worker-wan22-smoke")
+    if wan_worker.get("admission_ready") is not True or wan_worker.get("required_vram_gb")!=32.0 or wan_worker.get("vram_reserve_gb")!=4.0:
+        errors.append("runpod-a40-worker-wan22-admission")
+    if wan_worker.get("quality_status")!="NOT_EVALUATED" or wan_worker.get("production_acceptance") is not False:
+        errors.append("runpod-a40-worker-wan22-quality-boundary")
 
     queue_policy=json.loads((root/"projects/slice01/runtime/queue_policy.json").read_text(encoding="utf-8"))
     queue_state=json.loads((root/"projects/slice01/runtime/queue_state.json").read_text(encoding="utf-8"))
@@ -649,7 +670,7 @@ def main() -> int:
     by_cost_id={row.get("cost_id"):row for row in entries}
     vox_batch=json.loads((root/"run-evidence/VOXCPM2_FORMAL_BATCH_20260926.json").read_text(encoding="utf-8"))
     expected_vox_cost_ids={"voxcpm2-"+row["request_id"]+"-pass" for row in vox_batch.get("samples",[])}
-    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926"} | expected_vox_cost_ids
+    expected_cost_ids={"runpod-a40-bootstrap-estimate-20260925","flux2-castjob_d3ec86da4ca6b1fc-pass","flux2-formal-smoke-20260925","zimage-castjob_8e02916e0db64eb6-pass","zimage-formal-smoke-20260926","wan22-ti2v-5b-a40-smoke-v1-pass"} | expected_vox_cost_ids
     if len(entries)!=len(expected_cost_ids) or set(by_cost_id)!=expected_cost_ids:
         errors.append("cost-ledger-entry-population")
     else:
@@ -665,13 +686,31 @@ def main() -> int:
             errors.append("cost-ledger-zimage-formal-smoke-entry")
         if by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["voxcpm2-voxreq_7f50b3325b6132e8-pass"].get("amount_usd",0))-0.004291)>1e-9:
             errors.append("cost-ledger-voxcpm2-qualification-entry")
-        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.27329)>1e-9:
-            errors.append("cost-ledger-total-after-voxcpm2-formal-batch")
+        if by_cost_id["wan22-ti2v-5b-a40-smoke-v1-pass"].get("category")!="COMPUTE_ACCEPTED" or abs(float(by_cost_id["wan22-ti2v-5b-a40-smoke-v1-pass"].get("amount_usd",0))-0.036258)>1e-9:
+            errors.append("cost-ledger-wan22-smoke-entry")
+        if abs(sum(float(row.get("amount_usd",0)) for row in entries)-0.309548)>1e-9:
+            errors.append("cost-ledger-total-after-wan22-smoke")
         if vox_batch.get("sample_count")!=12 or vox_batch.get("pass_runtime")!=12 or vox_batch.get("cue_fit_pass")!=10 or vox_batch.get("cue_fit_fail")!=2:
             errors.append("voxcpm2-formal-batch-summary")
         if vox_batch.get("all_media_synced_and_hash_verified") is not True or vox_batch.get("quality_status")!="AWAITING_OWNER_SCORING":
             errors.append("voxcpm2-formal-batch-boundary")
-    for rel in ("film/batch_orchestrator.py","tools/run_model_batch.py","model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json","tests/film/test_batch_orchestrator.py"):
+    wan_ev=json.loads((root/"run-evidence/WAN22_TI2V_A40_SMOKE_20260926.json").read_text(encoding="utf-8"))
+    if wan_ev.get("status")!="PASS_RUNTIME_SMOKE" or wan_ev.get("model_revision")!="921dbaf3f1674a56f47e83fb80a34bac8a8f203e":
+        errors.append("wan22-ti2v-smoke-status")
+    if wan_ev.get("code_revision")!="1ea34ff48f87168174e12956e200b1d908b1c5ff" or wan_ev.get("returncode")!=0:
+        errors.append("wan22-ti2v-smoke-runtime-pin")
+    if wan_ev.get("peak_vram_mib")!=31883.0 or wan_ev.get("elapsed_sec")!=266.384005 or wan_ev.get("estimated_execution_cost_usd")!=0.036258:
+        errors.append("wan22-ti2v-smoke-measurements")
+    out=wan_ev.get("output",{})
+    if out.get("sha256")!="7d672b975757e2f6472ec9652a2af7e3611f2fa7f1dfba59995b18d4855e8366" or out.get("bytes")!=985395:
+        errors.append("wan22-ti2v-smoke-output")
+    sync=wan_ev.get("local_sync",{})
+    if sync.get("status")!="PASS_HASH_VERIFIED" or sync.get("sha256")!=out.get("sha256") or sync.get("bytes")!=out.get("bytes"):
+        errors.append("wan22-ti2v-smoke-local-sync")
+    if wan_ev.get("quality_status")!="NOT_EVALUATED" or wan_ev.get("quality_acceptance") is not False or wan_ev.get("production_acceptance") is not False:
+        errors.append("wan22-ti2v-smoke-quality-boundary")
+
+    for rel in ("film/batch_orchestrator.py","tools/run_model_batch.py","model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json","tests/film/test_batch_orchestrator.py","run-evidence/WAN22_TI2V_A40_SMOKE_20260926.json","tests/film/test_wan22_ti2v_smoke_evidence.py"):
         if not (root/rel).is_file():
             errors.append("batch-orchestrator-missing:"+rel)
     batch_cfg=json.loads((root/"model-evaluations/slice01/batches/voxcpm2_formal_12_20260926.json").read_text(encoding="utf-8"))

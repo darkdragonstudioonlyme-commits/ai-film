@@ -44,7 +44,7 @@ class Flux2KleinLiveRunnerTests(unittest.TestCase):
         self.assertEqual(q["qualification"]["num_inference_steps"],4)
         self.assertEqual(q["qualification"]["guidance_scale"],1.0)
         self.assertAlmostEqual(q["proposed_max_cost_usd"],0.245,places=6)
-        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.27329,places=6)
+        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.309548,places=6)
         self.assertFalse(q["new_resource_creation_authorized"])
         self.assertFalse(q["publish_authority"])
         self.assertFalse(q["request"]["execution_permitted"])

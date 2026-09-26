@@ -154,6 +154,15 @@
       "cost_id": "voxcpm2-voxreq_782df7a9a85203d1-pass",
       "logical_key": "T-019-VOXCPM2-QUALIFICATION",
       "note": "Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP."
+    },
+    {
+      "cost_id": "wan22-ti2v-5b-a40-smoke-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.036258,
+      "logical_key": "T-057-WAN22-TI2V-SMOKE",
+      "attempt_id": "wan22-ti2v-5b-a40-smoke-v1",
+      "asset_id": null,
+      "note": "Accepted technical runtime smoke only: 17 frames, 5 steps, quality not evaluated. Provider billing remains the budget truth and includes setup/failed attempts/idle/storage."
     }
   ]
 }

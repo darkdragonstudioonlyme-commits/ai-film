@@ -6,28 +6,30 @@
   "provider_state": "RUNNING",
   "rate_usd_per_hour": 0.49,
   "budget_cap_usd": 60.0,
-  "execution_cost_usd": 0.27329,
-  "paid_runtime_estimate_usd": 8.223297,
+  "execution_cost_usd": 0.309548,
+  "paid_runtime_estimate_usd": 8.74799962155521,
   "paid_runtime_estimate_basis": "provider pod billing snapshot via RunPod MCP; includes GPU + container disk",
-  "provider_billed_usd": 8.223296997137368,
-  "current_batch": "voxcpm2 formal batch complete; batch-orchestrator validation then staged video smoke",
-  "last_live_refresh": "2026-09-26T03:40:30Z",
+  "provider_billed_usd": 8.74799962155521,
+  "current_batch": null,
+  "last_live_refresh": "2026-09-26T04:41:34Z",
   "media_sync": {
-    "expected_current_round": 20,
-    "synced": 20,
+    "expected_current_round": 21,
+    "synced": 21,
     "unsynced": 0,
-    "last_sync": "2026-09-26T03:40:30Z",
+    "last_sync": "2026-09-26T04:41:34Z",
     "images": 8,
-    "voice_wavs": 12
+    "voice_wavs": 12,
+    "video_clips": 1
   },
   "notes": [
-    "Provider billing is now available through RunPod MCP; use provider_billed_usd when fresher than estimates.",
+    "Provider billing is available through RunPod MCP; use provider_billed_usd as budget truth.",
     "Execution cost remains a secondary metric and is not the budget-cap basis.",
-    "Pod is intentionally kept running for the immediately-following batch-orchestrator validation and staged video smoke."
+    "Wan2.2 TI2V-5B technical smoke output is synced off the Pod and hash-verified.",
+    "No GPU batch is currently running after the smoke; Pod is idle and still billable."
   ],
   "provider_billing_components_usd": {
-    "gpu": 7.679315533488989,
-    "disk": 0.5439814636483788,
+    "gpu": 8.169295936822891,
+    "disk": 0.5787036847323179,
     "cpu": 0.0
   }
 }

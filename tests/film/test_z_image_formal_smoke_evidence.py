@@ -73,15 +73,15 @@ class ZImageFormalSmokeEvidenceTests(unittest.TestCase):
         self.assertEqual(zw["status"],"PASS_FORMAL_1024_FOUR_JOB")
         self.assertFalse(zw["formal_1024_smoke_pending"])
         self.assertTrue(zw["admission_ready"])
-        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_ZIMAGE_1024_VOXCPM2_12_READY_VIDEO_PENDING")
+        self.assertEqual(WORKER["model_profile_measurements_status"],"FLUX2_ZIMAGE_1024_VOXCPM2_12_WAN22_TI2V_SMOKE_READY")
 
     def test_cost_ledger_advances_without_winner_selection(self):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("zimage-formal-smoke-20260926",by_id)
         self.assertAlmostEqual(by_id["zimage-formal-smoke-20260926"]["amount_usd"],0.048111,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.27329,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.7267)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.727)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.309548,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6904)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6905)["allowed"])
 
 
 if __name__=="__main__":

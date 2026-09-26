@@ -1,0 +1,110 @@
+{
+  "argv": [
+    "/workspace/venvs/wan22/bin/python",
+    "/workspace/wan2.2-src/generate.py",
+    "--task",
+    "ti2v-5B",
+    "--size",
+    "704*1280",
+    "--ckpt_dir",
+    "/workspace/models/wan22-ti2v-5b",
+    "--offload_model",
+    "True",
+    "--convert_model_dtype",
+    "--t5_cpu",
+    "--image",
+    "/workspace/artifacts/blind-comparison/cmp_4720d9887d35.png",
+    "--prompt",
+    "A restrained technical motion test. The same adult man remains centered and recognizable, subtle natural breathing and a small head turn, stable facial identity, stable hair, stable black shirt, neutral studio background, locked camera, realistic motion, no scene change.",
+    "--frame_num",
+    "17",
+    "--sample_steps",
+    "5",
+    "--base_seed",
+    "51001",
+    "--save_file",
+    "/workspace/runs/wan22-ti2v-live/wan22-ti2v-5b-a40-smoke-v1/wan22-ti2v-5b-a40-smoke-v1.mp4"
+  ],
+  "base_seed": 51001,
+  "budget_cap_usd": 60.0,
+  "code_repo": "Wan-Video/Wan2.2",
+  "code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+  "elapsed_sec": 266.384005,
+  "estimated_execution_cost_usd": 0.036258,
+  "ffprobe": {
+    "format": {
+      "duration": "0.708333"
+    },
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "height": 928,
+        "r_frame_rate": "24/1",
+        "width": 960
+      }
+    ]
+  },
+  "frame_num": 17,
+  "model_id": "wan22-ti2v-5b",
+  "model_repo": "Wan-AI/Wan2.2-TI2V-5B",
+  "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+  "new_resource_creation_authorized": false,
+  "output": {
+    "bytes": 985395,
+    "path": "/workspace/runs/wan22-ti2v-live/wan22-ti2v-5b-a40-smoke-v1/wan22-ti2v-5b-a40-smoke-v1.mp4",
+    "sha256": "7d672b975757e2f6472ec9652a2af7e3611f2fa7f1dfba59995b18d4855e8366"
+  },
+  "peak_vram_mib": 31883.0,
+  "production_acceptance": false,
+  "proposed_max_cost_usd": 0.245,
+  "provider_billed_snapshot_usd": 8.223296997137368,
+  "publish_authority": false,
+  "quality_acceptance": false,
+  "quality_status": "NOT_EVALUATED",
+  "rate_usd_per_hour": 0.49,
+  "reference_image_sha256": "3681cb753c1eabcdeba187a4d6dce0b086eecac3fe8c0eb3d521a54fbe47d86c",
+  "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+  "returncode": 0,
+  "sample_steps": 5,
+  "schema_version": 1,
+  "size": "704*1280",
+  "smoke_id": "wan22-ti2v-5b-a40-smoke-v1",
+  "status": "PASS_RUNTIME_SMOKE",
+  "stderr_log": "/workspace/runs/wan22-ti2v-live/wan22-ti2v-5b-a40-smoke-v1/runner.stderr.log",
+  "stdout_log": "/workspace/runs/wan22-ti2v-live/wan22-ti2v-5b-a40-smoke-v1/runner.stdout.log",
+  "task": "ti2v-5B",
+  "local_sync": {
+    "status": "PASS_HASH_VERIFIED",
+    "local_path": "/home/dragon/ai-film-dev/media/slice01/video-wan22-20260926/wan22-ti2v-5b-a40-smoke-v1.mp4",
+    "sha256": "7d672b975757e2f6472ec9652a2af7e3611f2fa7f1dfba59995b18d4855e8366",
+    "bytes": 985395,
+    "synced_at_utc": "2026-09-26T04:41:34Z"
+  },
+  "gross_frame_check": {
+    "frames_checked": [
+      0,
+      8,
+      16
+    ],
+    "status": "PASS_NO_GROSS_IDENTITY_BREAK_OBSERVED",
+    "quality_acceptance": false,
+    "note": "Three extracted frames preserve the source identity without an obvious gross deformation. This 5-step technical smoke is not a quality benchmark."
+  },
+  "runtime_setup": {
+    "base": "torch 2.8.0+cu128 / CUDA 12.8",
+    "wan_code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+    "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+    "required_additions": [
+      "einops",
+      "decord",
+      "librosa",
+      "peft",
+      "flash-attn==2.8.3.post1"
+    ],
+    "setup_failures_before_pass": [
+      "missing einops/decord/librosa/peft imports discovered by import preflight",
+      "FlashAttention v2 assertion discovered by first full generation path; upstream flash-attn installed without source patch"
+    ]
+  }
+}
