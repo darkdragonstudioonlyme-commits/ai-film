@@ -4,6 +4,9 @@ GOAL: ship a measurable 60–90 second vertical slice before adding more infrast
 MILESTONE: M2 blind image-model comparison + multilingual voice qualification on RunPod A40.
 LIVE_GPU: RunPod Pod 0h1twwxqw6yx0k, NVIDIA A40, 46068 MiB, USD 0.49/h.
 AUTHORITY: maximum USD 60; existing A40 Pod only; no new resource or publication authority.
+OWNER_ACTION: score image batch after media sync.
+PAID_RESOURCE: source=projects/slice01/runtime/gpu_session.json | pod=0h1twwxqw6yx0k | state=UNKNOWN_LIVE_REFRESH_PENDING | rate=USD 0.49/h | paid_est_snapshot≈USD 7.6/USD 60 | batch=unknown.
+MEDIA_SYNC: source=projects/slice01/runtime/gpu_session.json | 0/9 current-round media synced | unsynced=9 | last_sync=none.
 FLUX2_FORMAL_1024_SMOKE: PASS 4/4; required 20 GiB + 4 GiB reserve.
 ZIMAGE_FORMAL_1024_SMOKE: PASS 4/4; required 26 GiB + 4 GiB reserve.
 IMAGE_MODEL_COMPARISON: 8 neutral Pod-local blind-ID PNG copies verified byte/hash against canonical public packet; scores remain blank; selection_authorized=false.

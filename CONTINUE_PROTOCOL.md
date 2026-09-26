@@ -10,5 +10,9 @@
 8. End the turn by updating BACKLOG, RESUME, milestone checkboxes and one PROGRESS_LOG.jsonl record.
 9. A normal turn should produce product/code/test/benchmark delta. Two consecutive no-delta turns trigger a workflow correction.
 10. Every 10 turns compute task/turn, no-delta turns, cost/task and recurring blockers; keep only changes that improve a measured KPI.
+11. If a paid Pod is RUNNING, end the turn with a useful batch running or with media synced and an explicit stop/keep decision.
+12. Budget guard uses paid RUNNING intervals plus known storage/transfer; execution cost is a secondary metric, not the cap basis.
+13. Binary media is available only after sync off an ephemeral/root-only Pod; blind mapping must not be committed publicly before scoring.
+14. Review prose by batch, not by individual runner/job; keep per-job evidence in machine-readable receipts.
 
 Historical Phase00 material remains evidence at archive ref archive/p00-governance-2026-09-24 and is not the active router.

@@ -17,3 +17,12 @@ Preserve P00 history and WIP. No destructive cleanup, publication, or unbounded 
 
 ## D-006 — Freeze legacy P00 background timers (2026-09-24)
 After PRODUCT_V2 activation, re-audit found 11 legacy aifilm-p00 user timers still enabled and active. They were disabled and stopped with systemctl --user disable --now. Unit files/evidence were preserved; this is reversible and prevents the frozen P00 control plane from generating new background state/evidence.
+
+## D-007 — Existing RunPod A40 authority (2026-09-25)
+Owner authorized the existing RunPod A40 Pod only, with a hard cap of USD 60 and no authority to create a new paid resource.
+
+## D-008 — Paid-runtime cost accounting (2026-09-26)
+Track execution cost separately from paid-runtime estimate and provider billing. Budget guard follows a conservative estimate of paid RUNNING intervals plus known storage/transfer, not model execution time alone.
+
+## D-009 — Future blind mapping seal (2026-09-26)
+For future blind rounds, keep the model-to-blind mapping outside public Git until the score set is complete. The current round is treated as owner-blind/semi-blind because mapping already exists in public Git history.
