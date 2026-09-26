@@ -112,8 +112,10 @@
       ],
       "notes": [
         "Cue fit remains deterministic and is merged with ASR metrics.",
-        "Qualified locally on CPU with pinned turbo weight checksum and imageio-ffmpeg 0.6.0."
-      ]
+        "Qualified locally on CPU with pinned turbo weight checksum and imageio-ffmpeg 0.6.0.",
+        "Canonical voice scoring uses whisper-text-normalizer-v2; v1 evidence is retained as superseded audit history."
+      ],
+      "normalizer_revision": "whisper-text-normalizer-v2"
     },
     {
       "evaluator_id": "wespeaker-speaker-consistency",

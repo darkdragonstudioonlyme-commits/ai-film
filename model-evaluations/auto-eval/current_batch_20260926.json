@@ -224,13 +224,15 @@
     "vbench-video-v0.1.5"
   ],
   "voice_auto_eval": {
-    "status": "PASS_AUTO_EVAL_COMPLETE",
-    "evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json",
+    "status": "PASS_AUTO_EVAL_RECOMPUTE_COMPLETE",
+    "normalizer_revision": "whisper-text-normalizer-v2",
+    "evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
     "status_counts": {
-      "AUTO_SHORTLIST": 9,
-      "AUTO_RETRY": 1,
-      "AUTO_REJECT_SCORE": 2
-    }
+      "AUTO_SHORTLIST": 10,
+      "AUTO_RETRY": 2
+    },
+    "retry_plan_ref": "model-evaluations/auto-eval/voice_retry_plan_20260926.json",
+    "shortlist_ref": "model-evaluations/auto-eval/voice_shortlist_20260926.json"
   },
   "video_auto_eval": {
     "status": "PARTIAL_EVALUATOR_RECEIPTS",

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "AUTO_SHORTLIST_READY_NOT_PRODUCTION_ACCEPTED",
+  "sample_count": 10,
+  "required_sample_count": 12,
+  "missing_due_retry": [
+    "vox_6cd531479b73",
+    "vox_ae6c3e5af03f"
+  ],
+  "human_review_required": false,
+  "production_acceptance": false,
+  "publish_authority": false,
+  "samples": [
+    {
+      "asset_id": "vox_b5649d601f09",
+      "language": "en",
+      "dialogue_id": "dlg_001",
+      "target_text": "Does the 11:40 still stop here?",
+      "score": 85.705331,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_7f50b3325b6132e8.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_52af55f53319",
+      "language": "vi",
+      "dialogue_id": "dlg_001",
+      "target_text": "Chuyến mười một giờ bốn mươi vẫn dừng ở đây chứ?",
+      "score": 99.981205,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_b01817af14a9c0b2.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_9373295aa488",
+      "language": "en",
+      "dialogue_id": "dlg_002",
+      "target_text": "Only if we bring the signal back.",
+      "score": 99.881245,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_63eab49f0b06cd8a.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_0b3a62fff486",
+      "language": "vi",
+      "dialogue_id": "dlg_002",
+      "target_text": "Chỉ khi mình khôi phục được tín hiệu.",
+      "score": 99.95548,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_6fe1f8e8812f63da.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_13399c04d206",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_002",
+      "target_text": "得先把信号恢复。",
+      "score": 92.691918,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_184b88f92dc62a76.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_67cf87393d99",
+      "language": "en",
+      "dialogue_id": "dlg_003",
+      "target_text": "You came back for this station?",
+      "score": 99.988,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_95328dc8f6c74a2f.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_94f82cfeb1e1",
+      "language": "vi",
+      "dialogue_id": "dlg_003",
+      "target_text": "Anh quay lại vì nhà ga này sao?",
+      "score": 87.482615,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_d9c6d5602404de34.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_fd8d0508e077",
+      "language": "zh-CN",
+      "dialogue_id": "dlg_003",
+      "target_text": "你是为了这个车站回来的？",
+      "score": 99.97336,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_8dfc521e00a730c6.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_539e9b43601d",
+      "language": "en",
+      "dialogue_id": "dlg_004",
+      "target_text": "For a promise.",
+      "score": 83.238068,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_0a18140a542860ca.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    },
+    {
+      "asset_id": "vox_c18649999184",
+      "language": "vi",
+      "dialogue_id": "dlg_004",
+      "target_text": "Vì một lời hứa.",
+      "score": 99.98173,
+      "cue_fit": 100.0,
+      "local_path_ref": "../media/slice01/voice-voxcpm2-20260926/voxreq_782df7a9a85203d1.wav",
+      "auto_eval_evidence_ref": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "production_acceptance": false
+    }
+  ]
+}

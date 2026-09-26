@@ -47,6 +47,32 @@ class AutoEvalAdapterTests(unittest.TestCase):
         self.assertEqual(text_match_score("为了一个承诺。", "为了一个承诺", "zh-CN"), 100.0)
         self.assertLess(text_match_score("For a promise.", "Different sentence", "en"), 50)
 
+    def test_whisper_normalizes_equivalent_clock_and_chinese_variants(self):
+        self.assertEqual(
+            text_match_score(
+                "\u5341\u4e00\u70b9\u56db\u5341\u7684\u672b\u73ed\u8f66\u8fd8\u505c\u8fd9\u91cc\u5417\uff1f",
+                "11\u70b940\u7684\u672b\u73ed\u8f66\u8fd8\u505c\u8fd9\u91cc\u5417?",
+                "zh-CN",
+            ),
+            100.0,
+        )
+        self.assertEqual(
+            text_match_score(
+                "Chuy\u1ebfn m\u01b0\u1eddi m\u1ed9t gi\u1edd b\u1ed1n m\u01b0\u01a1i v\u1eabn d\u1eebng \u1edf \u0111\u00e2y ch\u1ee9?",
+                "Chuy\u1ebfn 11h40 v\u1eabn d\u1eebng \u1edf \u0111\u00e2y ch\u1ee9.",
+                "vi",
+            ),
+            100.0,
+        )
+        self.assertEqual(
+            text_match_score(
+                "\u4e3a\u4e86\u4e00\u4e2a\u627f\u8bfa\u3002",
+                "\u70ba\u4e86\u4e00\u500b\u627f\u8afe",
+                "zh-CN",
+            ),
+            100.0,
+        )
+
     def test_whisper_receipt_flags_severe_content_mismatch(self):
         rec = build_whisper_receipt(
             asset_id="voice-a",

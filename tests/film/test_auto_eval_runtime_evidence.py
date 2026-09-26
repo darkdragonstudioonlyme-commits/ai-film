@@ -3,7 +3,8 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[2]
-VOICE=json.loads((ROOT/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text())
+VOICE_V1=json.loads((ROOT/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text())
+VOICE=json.loads((ROOT/"run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json").read_text())
 OCR=json.loads((ROOT/"run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json").read_text())
 QWEN=json.loads((ROOT/"run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json").read_text())
 VIDEO=json.loads((ROOT/"run-evidence/AUTO_EVAL_VIDEO_PARTIAL_ENSEMBLE_20260926.json").read_text())
@@ -12,14 +13,18 @@ RUNTIME=json.loads((ROOT/"model-evaluations/auto-eval/runtime_profiles.json").re
 
 
 class AutoEvalRuntimeEvidenceTests(unittest.TestCase):
-    def test_voice_whisper_batch_is_complete_and_non_accepting(self):
-        self.assertEqual(VOICE["status"],"PASS_AUTO_EVAL_COMPLETE")
+    def test_voice_whisper_v1_is_retained_and_v2_is_canonical(self):
+        self.assertEqual(VOICE_V1["status"],"PASS_AUTO_EVAL_COMPLETE")
+        self.assertEqual(VOICE_V1["sample_count"],12)
+        self.assertEqual(VOICE["status"],"PASS_AUTO_EVAL_RECOMPUTE_COMPLETE")
         self.assertEqual(VOICE["sample_count"],12)
         self.assertEqual(VOICE["status_counts"],{
-            "AUTO_SHORTLIST":9,
-            "AUTO_REJECT_SCORE":2,
-            "AUTO_RETRY":1,
+            "AUTO_SHORTLIST":10,
+            "AUTO_RETRY":2,
         })
+        self.assertEqual(VOICE["rejected_asset_ids"],[])
+        self.assertEqual(VOICE["normalizer_revision"],"whisper-text-normalizer-v2")
+        self.assertTrue(VOICE["recomputed_without_inference"])
         self.assertFalse(VOICE["human_review_required"])
         self.assertFalse(VOICE["production_acceptance"])
         self.assertEqual(len(VOICE["results"]),12)

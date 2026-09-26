@@ -23,4 +23,4 @@ North-star metrics: seconds of finished film/week, usable-take ratio, human qual
 
 Owner review policy: short-take quality gates use multi-model automatic evaluation; owner 0–8 review begins at longform rough cut/final cut and is later used to calibrate evaluator weights.
 
-Current AUTO_EVAL evidence: Whisper 12/12 voice complete (9 shortlist / 1 retry / 2 reject); Qwen3-VL + PaddleOCR video 4/4 complete; VBench pending due existing A40 host capacity. Short-take owner review is not required.
+Current AUTO_EVAL evidence: Whisper v2 12/12 voice complete (10 shortlist / 2 retry / 0 reject); v1 false negatives are retained for audit. Qwen3-VL + PaddleOCR video 4/4 complete; VBench pending due existing A40 host capacity. Short-take owner review is not required.

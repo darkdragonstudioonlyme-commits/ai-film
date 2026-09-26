@@ -39,7 +39,8 @@
       },
       "model_dir": "/home/dragon/ai-film-dev/models/whisper",
       "setup_status": "QUALIFIED_LOCAL_CPU_PASS",
-      "qualification_evidence": "run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json"
+      "qualification_evidence": "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+      "normalizer_revision": "whisper-text-normalizer-v2"
     },
     {
       "runtime_profile": "vbench-cu121",

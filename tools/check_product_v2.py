@@ -81,6 +81,16 @@ REQUIRED_PRODUCT_FILES = [
     "run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json",
     "run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json",
     "run-evidence/AUTO_EVAL_VIDEO_PARTIAL_ENSEMBLE_20260926.json",
+    "run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json",
+    "model-evaluations/auto-eval/voice_retry_plan_20260926.json",
+    "model-evaluations/auto-eval/voice_shortlist_20260926.json",
+    "model-evaluations/auto-eval/longform_review_policy.json",
+    "film/voice_retry.py",
+    "film/longform_review.py",
+    "tools/recompute_current_voice_auto_eval.py",
+    "tools/build_voice_retry_plan.py",
+    "tools/prepare_longform_review.py",
+    "tools/ingest_longform_owner_review.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -183,11 +193,40 @@ def main() -> int:
     if runtime_by_id.get("vbench-cu121",{}).get("setup_status")!="PENDING_EXISTING_A40_RESTART":
         errors.append("auto-eval-vbench-runtime-state")
 
-    voice_ev=json.loads((root/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text(encoding="utf-8"))
-    if voice_ev.get("status")!="PASS_AUTO_EVAL_COMPLETE" or voice_ev.get("sample_count")!=12:
-        errors.append("auto-eval-voice-runtime-evidence")
-    if voice_ev.get("status_counts")!={"AUTO_SHORTLIST":9,"AUTO_REJECT_SCORE":2,"AUTO_RETRY":1}:
-        errors.append("auto-eval-voice-runtime-disposition")
+    voice_ev_v1=json.loads((root/"run-evidence/AUTO_EVAL_VOICE_WHISPER_20260926.json").read_text(encoding="utf-8"))
+    if voice_ev_v1.get("status")!="PASS_AUTO_EVAL_COMPLETE" or voice_ev_v1.get("sample_count")!=12:
+        errors.append("auto-eval-voice-v1-history")
+    voice_ev=json.loads((root/"run-evidence/AUTO_EVAL_VOICE_WHISPER_V2_20260926.json").read_text(encoding="utf-8"))
+    if voice_ev.get("schema_version")!=2 or voice_ev.get("status")!="PASS_AUTO_EVAL_RECOMPUTE_COMPLETE" or voice_ev.get("sample_count")!=12:
+        errors.append("auto-eval-voice-v2-runtime-evidence")
+    if voice_ev.get("status_counts")!={"AUTO_SHORTLIST":10,"AUTO_RETRY":2} or voice_ev.get("rejected_asset_ids")!=[]:
+        errors.append("auto-eval-voice-v2-disposition")
+    if voice_ev.get("normalizer_revision")!="whisper-text-normalizer-v2" or voice_ev.get("recomputed_without_inference") is not True:
+        errors.append("auto-eval-voice-v2-normalizer")
+    retry_plan=json.loads((root/"model-evaluations/auto-eval/voice_retry_plan_20260926.json").read_text(encoding="utf-8"))
+    if retry_plan.get("status")!="READY_GPU_EXECUTION_PENDING" or retry_plan.get("retry_count")!=2:
+        errors.append("auto-eval-voice-retry-plan")
+    retry_rows=retry_plan.get("requests",[])
+    if {row.get("blind_id") for row in retry_rows}!={"vox_ae6c3e5af03f","vox_6cd531479b73"}:
+        errors.append("auto-eval-voice-retry-population")
+    if any(row.get("language")!="zh-CN" or row.get("retry_reason")!="CUE_OVERFLOW" or row.get("reference_audio") is not None for row in retry_rows):
+        errors.append("auto-eval-voice-retry-boundary")
+    shortlist=json.loads((root/"model-evaluations/auto-eval/voice_shortlist_20260926.json").read_text(encoding="utf-8"))
+    if shortlist.get("status")!="AUTO_SHORTLIST_READY_NOT_PRODUCTION_ACCEPTED" or shortlist.get("sample_count")!=10:
+        errors.append("auto-eval-voice-shortlist")
+    if set(shortlist.get("missing_due_retry",[]))!={"vox_ae6c3e5af03f","vox_6cd531479b73"}:
+        errors.append("auto-eval-voice-shortlist-retry-gap")
+
+    longform_policy=json.loads((root/"model-evaluations/auto-eval/longform_review_policy.json").read_text(encoding="utf-8"))
+    if longform_policy.get("scale")!={"min":0,"max":8}:
+        errors.append("longform-review-scale")
+    for stage_name in ("longform_rough_cut","final_cut"):
+        stage_row=longform_policy.get("stages",{}).get(stage_name,{})
+        if stage_row.get("human_review_required") is not True or stage_row.get("production_acceptance") is not False or stage_row.get("publish_authority") is not False:
+            errors.append("longform-review-boundary:"+stage_name)
+    calibration=longform_policy.get("calibration",{})
+    if calibration.get("automatic_policy_mutation") is not False or int(calibration.get("minimum_reviewed_cuts_for_weight_suggestion",0))<3:
+        errors.append("longform-review-calibration-boundary")
 
     qwen_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_QWEN3VL_20260926.json").read_text(encoding="utf-8"))
     ocr_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_PADDLEOCR_20260926.json").read_text(encoding="utf-8"))

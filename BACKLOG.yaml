@@ -307,3 +307,13 @@
   goal: "Implement fail-closed multi-model automatic evaluation for short video and voice takes; defer owner review to longform rough cut/final cut"
   status: IN_PROGRESS
   owner: executor
+- id: T-062
+  milestone: M2
+  goal: "Correct Whisper text-equivalence normalization, recompute voice AUTO_EVAL without inference, and produce deterministic retry/shortlist artifacts"
+  status: DONE
+  owner: executor
+- id: T-063
+  milestone: M6
+  goal: "Implement hash-bound longform rough-cut/final-cut owner review contract and calibration-label dataset"
+  status: DONE
+  owner: executor

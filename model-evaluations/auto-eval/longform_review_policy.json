@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "policy_id": "longform-owner-review-v1",
+  "status": "ACTIVE",
+  "scale": {"min": 0, "max": 8},
+  "stages": {
+    "longform_rough_cut": {
+      "human_review_required": true,
+      "criteria": [
+        "story_coherence",
+        "pacing",
+        "emotional_engagement",
+        "character_consistency",
+        "visual_quality",
+        "motion_naturalness",
+        "dialogue_voice",
+        "audio_mix",
+        "world_period_consistency",
+        "overall"
+      ],
+      "production_acceptance": false,
+      "publish_authority": false
+    },
+    "final_cut": {
+      "human_review_required": true,
+      "criteria": [
+        "story_coherence",
+        "pacing",
+        "emotional_engagement",
+        "character_consistency",
+        "visual_quality",
+        "motion_naturalness",
+        "dialogue_voice",
+        "audio_mix",
+        "world_period_consistency",
+        "overall"
+      ],
+      "production_acceptance": false,
+      "publish_authority": false
+    }
+  },
+  "calibration": {
+    "dataset_path": "model-evaluations/auto-eval/calibration/owner_longform_reviews.jsonl",
+    "minimum_reviewed_cuts_for_weight_suggestion": 3,
+    "automatic_policy_mutation": false,
+    "notes": [
+      "Owner longform scores are calibration labels, not short-take prerequisites.",
+      "Weight changes are suggestions until separately validated; no automatic production acceptance."
+    ]
+  }
+}
