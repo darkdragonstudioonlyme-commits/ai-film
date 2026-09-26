@@ -25,6 +25,7 @@ ADAPTERS = {
     "z-image-live": Adapter("tools/run_z_image_live.py", "--job-id", ("PASS_RUNTIME",)),
     "voxcpm2-live": Adapter("tools/run_voxcpm2_live.py", "--request-id", ("PASS_RUNTIME",)),
     "wan22-ti2v-live": Adapter("tools/run_wan22_ti2v_live.py", "--smoke-id", ("PASS_RUNTIME_SMOKE",)),
+    "image-keyframe-live": Adapter("tools/run_image_keyframe_live.py", "--probe-job-id", ("PASS_RUNTIME",)),
 }
 
 
