@@ -12,6 +12,7 @@ AUTO_EVAL_VIDEO: PARTIAL — Qwen3-VL 4/4 + PaddleOCR 4/4 complete; Z-Image-refe
 AUTO_EVAL_POLICY: hard fail precedes weighted score; missing required evaluator blocks; automatic outcomes never grant production acceptance or publish authority.
 WORLD_CAPABILITY: Tang Chang'an and Belle Époque Paris image→motion technical proof PASS; no historical-accuracy or production-quality acceptance.
 MEDIA_SYNC: all previously generated slice/world media required for current auto-eval batch is local and hash-verified.
+ROUGH_CUT_AUDIO: 10 hash-verified voice candidates prepared; EN/VI have 4/4 dialogue candidates, ZH has dlg_002/dlg_003 while dlg_001 waits for retry. Candidate-only, not production-final.
 COST_LEDGER: measured generation execution remains USD 0.455474; provider lifetime bill is the paid-budget truth.
 NEXT: VBench still waits for the same A40. The 10 voice shortlist is locked; the 2-request zh-CN cue-overflow retry plan is wired into an unattended VoxCPM2 batch and ready when the same A40 returns; longform review contract is ready.
 SAFETY: no short-take human gate, no automatic production acceptance, no publish, no new paid resource, hard cap USD 60.

@@ -95,6 +95,15 @@ REQUIRED_PRODUCT_FILES = [
     "tests/film/test_voice_retry_batch.py",
     "model-evaluations/auto-eval/vbench_pending_20260926.json",
     "tests/film/test_video_eval_short_circuit.py",
+    "projects/slice01/audio/rough_cut_voice_candidates.json",
+    "projects/slice01/lipsync/media_index.rough_en.json",
+    "projects/slice01/lipsync/media_index.rough_vi.json",
+    "projects/slice01/lipsync/media_index.rough_zh-CN.json",
+    "projects/slice01/lipsync/plan_rough_en.json",
+    "projects/slice01/lipsync/plan_rough_vi.json",
+    "projects/slice01/lipsync/plan_rough_zh-CN.json",
+    "tools/build_rough_voice_candidate_indexes.py",
+    "tests/film/test_rough_voice_candidates.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -264,6 +273,33 @@ def main() -> int:
         errors.append("auto-eval-vbench-hard-fail-short-circuit")
     if vbench_pending.get("new_resource_creation_authorized") is not False or vbench_pending.get("production_acceptance") is not False:
         errors.append("auto-eval-vbench-pending-authority")
+
+    rough_voice=json.loads((root/"projects/slice01/audio/rough_cut_voice_candidates.json").read_text(encoding="utf-8"))
+    if rough_voice.get("status")!="ROUGH_CUT_CANDIDATES_HASH_VERIFIED" or rough_voice.get("sample_count")!=10:
+        errors.append("rough-cut-voice-candidate-catalog")
+    if rough_voice.get("production_acceptance") is not False or rough_voice.get("publish_authority") is not False:
+        errors.append("rough-cut-voice-candidate-authority")
+    rough_by_lang={}
+    for row in rough_voice.get("samples",[]):
+        rough_by_lang.setdefault(row.get("language"),set()).add(row.get("dialogue_id"))
+    if rough_by_lang.get("en")!={"dlg_001","dlg_002","dlg_003","dlg_004"} or rough_by_lang.get("vi")!={"dlg_001","dlg_002","dlg_003","dlg_004"}:
+        errors.append("rough-cut-voice-en-vi-population")
+    if rough_by_lang.get("zh-CN")!={"dlg_002","dlg_003"}:
+        errors.append("rough-cut-voice-zh-population")
+    for lang in ("en","vi","zh-CN"):
+        rough_plan=json.loads((root/f"projects/slice01/lipsync/plan_rough_{lang}.json").read_text(encoding="utf-8"))
+        if rough_plan.get("execution_permitted") is not False:
+            errors.append("rough-cut-lipsync-authority:"+lang)
+        video_blockers={b for b in rough_plan.get("blockers",[]) if str(b).startswith("missing-video:")}
+        if video_blockers!={"missing-video:sc01_sh03","missing-video:sc01_sh04","missing-video:sc01_sh06"}:
+            errors.append("rough-cut-lipsync-video-blockers:"+lang)
+    if {b for b in json.loads((root/"projects/slice01/lipsync/plan_rough_en.json").read_text()).get("blockers",[]) if str(b).startswith("missing-audio:")}:
+        errors.append("rough-cut-lipsync-en-audio")
+    if {b for b in json.loads((root/"projects/slice01/lipsync/plan_rough_vi.json").read_text()).get("blockers",[]) if str(b).startswith("missing-audio:")}:
+        errors.append("rough-cut-lipsync-vi-audio")
+    zh_audio={b for b in json.loads((root/"projects/slice01/lipsync/plan_rough_zh-CN.json").read_text()).get("blockers",[]) if str(b).startswith("missing-audio:")}
+    if zh_audio!={"missing-audio:dlg_001:zh-CN"}:
+        errors.append("rough-cut-lipsync-zh-audio")
 
     backlog=(root/"BACKLOG.yaml").read_text(encoding="utf-8")
     ids=re.findall(r"^- id: (T-[0-9]+)$",backlog,re.M)

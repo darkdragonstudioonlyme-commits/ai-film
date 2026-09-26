@@ -1,0 +1,76 @@
+{
+  "blockers": [
+    "missing-audio:dlg_001:zh-CN",
+    "missing-video:sc01_sh03",
+    "missing-video:sc01_sh04",
+    "missing-video:sc01_sh06"
+  ],
+  "execution_permitted": false,
+  "language": "zh-CN",
+  "project_id": "slice01",
+  "requests": [
+    {
+      "audio": null,
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_001",
+      "execution_permitted": false,
+      "language": "zh-CN",
+      "mouth_visibility": "CLEAR_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh03",
+      "speaker_id": "an",
+      "video": null
+    },
+    {
+      "audio": {
+        "asset_id": "vox_13399c04d206",
+        "manifest_sha256": "39878d335c1fdbb65ef331149c522158b0baa7cc41816ce6576a3a3683da0cc6",
+        "sha256": "2cf8ed3bac6fcbf24943e1991a1ea4db17c10dc518966550a3cad2ed3b3a7b05"
+      },
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_002",
+      "execution_permitted": false,
+      "language": "zh-CN",
+      "mouth_visibility": "CLEAR_CLOSE_UP",
+      "schema_version": 1,
+      "shot_id": "sc01_sh04",
+      "speaker_id": "linh",
+      "video": null
+    },
+    {
+      "audio": {
+        "asset_id": "vox_fd8d0508e077",
+        "manifest_sha256": "9557f9ba32635e87860ecaf8da2f591a1d84514345c8a72f421813e445b4aa02",
+        "sha256": "fe952a272ee6701f05f53c47c42db8c03b4468bd4a222de8e9e27b8b7b5d56cd"
+      },
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_003",
+      "execution_permitted": false,
+      "language": "zh-CN",
+      "mouth_visibility": "CLEAR_CLOSE_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh06",
+      "speaker_id": "linh",
+      "video": null
+    }
+  ],
+  "schema_version": 1,
+  "skipped": [
+    {
+      "dialogue_id": "dlg_004",
+      "reason": "MOUTH_NOT_CLEAR_ENOUGH_FOR_REQUIRED_LIPSYNC",
+      "shot_id": "sc01_sh07",
+      "speaker_id": "an"
+    }
+  ],
+  "status": "BLOCKED_MISSING_MEDIA"
+}

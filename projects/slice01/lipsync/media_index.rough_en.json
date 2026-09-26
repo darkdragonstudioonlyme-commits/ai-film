@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "ROUGH_CUT_CANDIDATE_ONLY",
+  "language": "en",
+  "videos": {},
+  "dialogue_audio": {
+    "dlg_001": {
+      "asset_id": "vox_b5649d601f09",
+      "sha256": "f562abbb391460d4cda9f75c0930bfe8ccb603257fd971b6a8a19a33544d3940",
+      "manifest_sha256": "1fcda9770d3a4c9ef30a5362302cd32608f36462ad2bf166f50c8b7264aa69de",
+      "language": "en",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_7f50b3325b6132e8.wav",
+      "candidate_only": true
+    },
+    "dlg_002": {
+      "asset_id": "vox_9373295aa488",
+      "sha256": "a5b10ed7c895062487dd1b127e9c1e40d75b86e5174b749ab73b7a020476ea8a",
+      "manifest_sha256": "355a53275415fdb5ab030ef75fdbef70886178e7e99cf5ad1a2aa8311a36ad45",
+      "language": "en",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_63eab49f0b06cd8a.wav",
+      "candidate_only": true
+    },
+    "dlg_003": {
+      "asset_id": "vox_67cf87393d99",
+      "sha256": "661be5414f0157018e6e244c3cf321d3767e1ddfadac00c5b5f63a5879d6c9e2",
+      "manifest_sha256": "c96c2ada21ad32263f158810526d66b3eb4aa5890eb1906479293a0e5a3069f2",
+      "language": "en",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_95328dc8f6c74a2f.wav",
+      "candidate_only": true
+    },
+    "dlg_004": {
+      "asset_id": "vox_539e9b43601d",
+      "sha256": "fe7299e0720a59b25a5964b9e1cbd162869d125fba07f66052144bd663d1f8de",
+      "manifest_sha256": "b84a109f86fcd92d5a20a03885b9f3cbe8f7510853f11b9cce0244a745e45f19",
+      "language": "en",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_0a18140a542860ca.wav",
+      "candidate_only": true
+    }
+  },
+  "execution_permitted": false,
+  "production_acceptance": false
+}

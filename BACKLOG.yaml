@@ -327,3 +327,8 @@
   goal: "Short-circuit remaining video evaluators after terminal hard fail and reduce pending VBench GPU work from four clips to three"
   status: DONE
   owner: executor
+- id: T-066
+  milestone: M5
+  goal: "Materialize hash-bound rough-cut voice candidate indexes from AUTO_SHORTLIST media and recompile non-executing lip-sync plans"
+  status: DONE
+  owner: executor

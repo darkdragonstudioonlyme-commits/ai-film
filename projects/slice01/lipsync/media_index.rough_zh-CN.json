@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "project_id": "slice01",
+  "status": "ROUGH_CUT_CANDIDATE_ONLY",
+  "language": "zh-CN",
+  "videos": {},
+  "dialogue_audio": {
+    "dlg_002": {
+      "asset_id": "vox_13399c04d206",
+      "sha256": "2cf8ed3bac6fcbf24943e1991a1ea4db17c10dc518966550a3cad2ed3b3a7b05",
+      "manifest_sha256": "39878d335c1fdbb65ef331149c522158b0baa7cc41816ce6576a3a3683da0cc6",
+      "language": "zh-CN",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_184b88f92dc62a76.wav",
+      "candidate_only": true
+    },
+    "dlg_003": {
+      "asset_id": "vox_fd8d0508e077",
+      "sha256": "fe952a272ee6701f05f53c47c42db8c03b4468bd4a222de8e9e27b8b7b5d56cd",
+      "manifest_sha256": "9557f9ba32635e87860ecaf8da2f591a1d84514345c8a72f421813e445b4aa02",
+      "language": "zh-CN",
+      "path_ref": "/home/dragon/ai-film-dev/media/slice01/voice-voxcpm2-20260926/voxreq_8dfc521e00a730c6.wav",
+      "candidate_only": true
+    }
+  },
+  "execution_permitted": false,
+  "production_acceptance": false
+}

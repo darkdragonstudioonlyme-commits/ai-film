@@ -1,0 +1,79 @@
+{
+  "blockers": [
+    "missing-video:sc01_sh03",
+    "missing-video:sc01_sh04",
+    "missing-video:sc01_sh06"
+  ],
+  "execution_permitted": false,
+  "language": "vi",
+  "project_id": "slice01",
+  "requests": [
+    {
+      "audio": {
+        "asset_id": "vox_52af55f53319",
+        "manifest_sha256": "0d9864664b757a1cf9250b0136eca2bfd297d6ea3c6c15f7f0344b6a8f0d6281",
+        "sha256": "8bdb0ac170b7ccd1038cc4f2357601c4584dedb39f665cd43a8bf1d3f61740e7"
+      },
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_001",
+      "execution_permitted": false,
+      "language": "vi",
+      "mouth_visibility": "CLEAR_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh03",
+      "speaker_id": "an",
+      "video": null
+    },
+    {
+      "audio": {
+        "asset_id": "vox_0b3a62fff486",
+        "manifest_sha256": "b46c68aa9368606deed7b8c2eb1b93e78da3345a4e8818e101b96d7f799e4ab6",
+        "sha256": "d32ecc3dc7fe1d0263ca2d865271dce0286288b751e849689cc22e31d0f7fff6"
+      },
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_002",
+      "execution_permitted": false,
+      "language": "vi",
+      "mouth_visibility": "CLEAR_CLOSE_UP",
+      "schema_version": 1,
+      "shot_id": "sc01_sh04",
+      "speaker_id": "linh",
+      "video": null
+    },
+    {
+      "audio": {
+        "asset_id": "vox_94f82cfeb1e1",
+        "manifest_sha256": "6b44dc7f99486d5050ff0028954ac38a6a97071f865726a743b8f9d98ca3ddd3",
+        "sha256": "959771448ef3088331b1cda506b1fd89a6a7322e4829651cfe349eda8a984b5d"
+      },
+      "backend_candidates": [
+        "latentsync-1.6",
+        "musetalk"
+      ],
+      "dialogue_id": "dlg_003",
+      "execution_permitted": false,
+      "language": "vi",
+      "mouth_visibility": "CLEAR_CLOSE_TWO_SHOT",
+      "schema_version": 1,
+      "shot_id": "sc01_sh06",
+      "speaker_id": "linh",
+      "video": null
+    }
+  ],
+  "schema_version": 1,
+  "skipped": [
+    {
+      "dialogue_id": "dlg_004",
+      "reason": "MOUTH_NOT_CLEAR_ENOUGH_FOR_REQUIRED_LIPSYNC",
+      "shot_id": "sc01_sh07",
+      "speaker_id": "an"
+    }
+  ],
+  "status": "BLOCKED_MISSING_MEDIA"
+}
