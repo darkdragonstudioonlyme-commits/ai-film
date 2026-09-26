@@ -72,6 +72,7 @@ class WorldProfileTests(unittest.TestCase):
         self.assertNotIn("voice", prompt.lower())
         self.assertNotIn("zh-CN", prompt)
         self.assertIn("No written words", prompt)
+        self.assertIn("Text-bearing props and signage should be avoided", prompt)
         self.assertIn("badge, sign or label surface is blank and unlettered", prompt)
 
     def test_casting_jobs_bind_world_and_anachronism_guards(self):

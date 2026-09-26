@@ -164,5 +164,6 @@ def world_visual_prompt_fragment(profile: dict[str, Any]) -> str:
         parts.append("Environment: " + "; ".join(p["environment_rules"]) + ".")
     if p["cinematography"]:
         parts.append("Cinematography: " + "; ".join(p["cinematography"]) + ".")
+    parts.append("Text-bearing props and signage should be avoided unless story-essential; otherwise keep those surfaces blank or defocused and add readable typography in post-production.")
     parts.append(p["casting_policy"])
     return " ".join(parts)

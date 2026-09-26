@@ -24,7 +24,7 @@ class WorldCapabilityProbeTests(unittest.TestCase):
 
     def test_world_prompts_are_specific_and_text_free(self):
         tang=select_probe_job(SPEC,"world-tang-changan-cast-v1")
-        paris=select_probe_job(SPEC,"world-paris-belle-epoque-cast-v1")
+        paris=select_probe_job(SPEC,"world-paris-belle-epoque-cast-v2")
         self.assertIn("Tang dynasty",tang["prompt"])
         self.assertIn("Chang'an",tang["prompt"])
         self.assertIn("Chinese woman",tang["prompt"])
@@ -33,6 +33,8 @@ class WorldCapabilityProbeTests(unittest.TestCase):
         self.assertIn("Paris",paris["prompt"])
         self.assertIn("French man",paris["prompt"])
         self.assertIn("modern cars",paris["negative_prompt"])
+        self.assertIn("No newspaper",paris["prompt"])
+        self.assertIn("readable typography is added only in post-production",paris["prompt"])
         for row in (tang,paris):
             self.assertIn("No written words",row["prompt"])
             self.assertNotIn("voice",row["prompt"].lower())

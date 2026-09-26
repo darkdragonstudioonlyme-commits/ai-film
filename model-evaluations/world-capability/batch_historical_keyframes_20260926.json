@@ -16,10 +16,10 @@
       "spec_path": "model-evaluations/world-capability/image_probe_historical_v1.json"
     },
     {
-      "job_id": "world-paris-belle-epoque-cast-v1",
+      "job_id": "world-paris-belle-epoque-cast-v2",
       "adapter": "image-keyframe-live",
-      "work_id": "world-paris-belle-epoque-cast-v1",
-      "receipt_path": "/workspace/runs/world-capability/world-paris-belle-epoque-cast-v1/evidence.json",
+      "work_id": "world-paris-belle-epoque-cast-v2",
+      "receipt_path": "/workspace/runs/world-capability/world-paris-belle-epoque-cast-v2/evidence.json",
       "model_dir": "/workspace/models/flux2-klein-4b",
       "out_root": "/workspace/runs/world-capability",
       "max_runtime_sec": 300,
