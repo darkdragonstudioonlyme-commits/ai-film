@@ -113,8 +113,16 @@
       "smoke_output_duration_sec": 0.708333,
       "smoke_output_fps": 24,
       "smoke_evidence_ref": "run-evidence/WAN22_TI2V_A40_SMOKE_20260926.json",
-      "quality_status": "NOT_EVALUATED",
-      "production_acceptance": false
+      "quality_status": "AWAITING_OWNER_SCORING",
+      "production_acceptance": false,
+      "quality_probe_status": "GENERATED_2_BALANCED_REFERENCES_AWAITING_OWNER_SCORING",
+      "quality_probe_jobs": 2,
+      "quality_probe_frame_num": 25,
+      "quality_probe_sample_steps": 8,
+      "quality_probe_peak_vram_mib": 31249.0,
+      "quality_probe_total_elapsed_sec": 536.179733,
+      "quality_probe_execution_cost_usd": 0.07298,
+      "quality_probe_evidence_ref": "run-evidence/WAN22_BALANCED_MOTION_20260926.json"
     },
     {
       "profile_id": "model-wan22-i2v-14b",

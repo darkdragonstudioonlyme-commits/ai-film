@@ -83,7 +83,7 @@ class VoxCPM2QualificationEvidenceTests(unittest.TestCase):
         self.assertEqual(rows[0]["category"],"COMPUTE_ACCEPTED")
         self.assertEqual(rows[0]["logical_key"],"T-019-VOXCPM2-QUALIFICATION")
         self.assertAlmostEqual(rows[0]["amount_usd"],0.004291,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.309548,places=6)
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.382528,places=6)
 
 
 if __name__=="__main__":

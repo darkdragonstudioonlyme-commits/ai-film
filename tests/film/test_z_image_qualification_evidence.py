@@ -66,9 +66,9 @@ class ZImageQualificationEvidenceTests(unittest.TestCase):
         by_id={row["cost_id"]:row for row in LEDGER["entries"]}
         self.assertIn("zimage-castjob_8e02916e0db64eb6-pass",by_id)
         self.assertAlmostEqual(by_id["zimage-castjob_8e02916e0db64eb6-pass"]["amount_usd"],0.004647,places=6)
-        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.309548,places=6)
-        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6904)["allowed"])
-        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6905)["allowed"])
+        self.assertAlmostEqual(sum(float(row["amount_usd"]) for row in LEDGER["entries"]),0.382528,places=6)
+        self.assertTrue(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6174)["allowed"])
+        self.assertFalse(budget_decision(LEDGER,budget_usd=60.0,proposed_charge_usd=59.6175)["allowed"])
 
 
 if __name__=="__main__":

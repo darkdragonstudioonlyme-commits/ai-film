@@ -287,3 +287,8 @@
   goal: "Qualify Wan2.2 TI2V-5B on the authorized A40 with a bounded staged runtime smoke before quality benchmark"
   status: DONE
   owner: executor
+- id: T-058
+  milestone: M4
+  goal: "Generate a balanced Wan2.2 quality-motion probe from both photoreal image-model keyframes and sync outputs for owner scoring"
+  status: DONE
+  owner: executor

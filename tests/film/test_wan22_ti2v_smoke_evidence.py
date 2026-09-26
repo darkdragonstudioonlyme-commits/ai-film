@@ -45,7 +45,7 @@ class Wan22TI2VSmokeEvidenceTests(unittest.TestCase):
         self.assertEqual(profile["vram_reserve_gb"],4.0)
         self.assertEqual(profile["smoke_peak_vram_mib"],31883.0)
         self.assertTrue(profile["admission_ready"])
-        self.assertEqual(profile["quality_status"],"NOT_EVALUATED")
+        self.assertEqual(profile["quality_status"],"AWAITING_OWNER_SCORING")
         self.assertFalse(profile["production_acceptance"])
         decision=evaluate_admission(profile,WORKER)
         self.assertTrue(decision["admitted"])
@@ -59,7 +59,7 @@ class Wan22TI2VSmokeEvidenceTests(unittest.TestCase):
         rows=[r for r in LEDGER["entries"] if r["cost_id"]=="wan22-ti2v-5b-a40-smoke-v1-pass"]
         self.assertEqual(len(rows),1)
         self.assertAlmostEqual(rows[0]["amount_usd"],0.036258,places=6)
-        self.assertAlmostEqual(sum(float(r["amount_usd"]) for r in LEDGER["entries"]),0.309548,places=6)
+        self.assertAlmostEqual(sum(float(r["amount_usd"]) for r in LEDGER["entries"]),0.382528,places=6)
 
 
 if __name__=="__main__":

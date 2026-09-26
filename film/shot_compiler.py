@@ -44,6 +44,7 @@ def compile_visual_prompt(shot, ledger, casting, aspect="9:16", style_override=N
                 char.append("Scene props include " + "; ".join(vals) + ".")
         parts.append(" ".join(char))
     parts.append(
+        "Any badge, sign or label surface is blank and unlettered; add readable typography later in post-production. "
         "Image only. No written words, subtitles, captions, dialogue text, speech bubbles, "
         "infographic panels, UI overlays, labels, logos, watermarks or typography."
     )

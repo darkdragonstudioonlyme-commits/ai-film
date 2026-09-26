@@ -53,7 +53,7 @@ class ZImageLiveRunnerTests(unittest.TestCase):
         self.assertEqual(q["negative_prompt_handling"],"APPLIED_NATIVE_ZIMAGE_PIPELINE_STRING")
         self.assertEqual(q["production_gate"],"PENDING_DEPENDENCY_DATASET_AND_PUBLICATION_REVIEW")
         self.assertAlmostEqual(q["proposed_max_cost_usd"],0.245,places=6)
-        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.309548,places=6)
+        self.assertAlmostEqual(q["current_ledger_cost_usd"],0.382528,places=6)
         self.assertFalse(q["new_resource_creation_authorized"])
         self.assertFalse(q["production_acceptance"])
         self.assertFalse(q["selection_authorized"])

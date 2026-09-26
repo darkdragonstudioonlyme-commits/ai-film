@@ -163,6 +163,24 @@
       "attempt_id": "wan22-ti2v-5b-a40-smoke-v1",
       "asset_id": null,
       "note": "Accepted technical runtime smoke only: 17 frames, 5 steps, quality not evaluated. Provider billing remains the budget truth and includes setup/failed attempts/idle/storage."
+    },
+    {
+      "cost_id": "wan22-quality-wan22-sc01-sh04-flux2-ref-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.037649,
+      "logical_key": "T-058-WAN22-BALANCED-MOTION",
+      "attempt_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "asset_id": null,
+      "note": "Balanced Wan2.2 25-frame/8-step quality-motion probe; runtime PASS, owner quality scoring pending. Provider billing remains budget truth."
+    },
+    {
+      "cost_id": "wan22-quality-wan22-sc01-sh04-zimage-ref-v1-pass",
+      "category": "COMPUTE_ACCEPTED",
+      "amount_usd": 0.035331,
+      "logical_key": "T-058-WAN22-BALANCED-MOTION",
+      "attempt_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "asset_id": null,
+      "note": "Balanced Wan2.2 25-frame/8-step quality-motion probe; runtime PASS, owner quality scoring pending. Provider billing remains budget truth."
     }
   ]
 }

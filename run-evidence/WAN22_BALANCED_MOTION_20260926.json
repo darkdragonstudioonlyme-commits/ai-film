@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "batch_id": "wan22-sc01-sh04-balanced-motion-20260926",
+  "status": "PASS_RUNTIME_AWAITING_OWNER_QUALITY_SCORING",
+  "probe_id": "sc01-sh04-wan22-balanced-motion-v1",
+  "sample_count": 2,
+  "passed_runtime": 2,
+  "frame_num": 25,
+  "sample_steps": 8,
+  "fps": 24,
+  "total_elapsed_sec": 536.179733,
+  "max_peak_vram_mib": 31249.0,
+  "estimated_execution_cost_usd": 0.07298,
+  "quality_status": "AWAITING_OWNER_SCORING",
+  "selection_authorized": false,
+  "production_acceptance": false,
+  "findings": [
+    "Both branches preserve gross identity across sampled first/middle/last frames.",
+    "Both branches show pseudo-text on the name badge; future visual prompts should keep badge/signage surfaces blank and add typography in post."
+  ],
+  "jobs": [
+    {
+      "argv": [
+        "/workspace/venvs/wan22/bin/python",
+        "/workspace/wan2.2-src/generate.py",
+        "--task",
+        "ti2v-5B",
+        "--size",
+        "704*1280",
+        "--ckpt_dir",
+        "/workspace/models/wan22-ti2v-5b",
+        "--offload_model",
+        "True",
+        "--convert_model_dtype",
+        "--t5_cpu",
+        "--image",
+        "/workspace/runs/image-keyframe-live/sc01-sh04-flux2-portrait-v2/sc01-sh04-flux2-portrait-v2.png",
+        "--prompt",
+        "Cinematic photoreal close-up of Linh at a railway station desk as the lights flicker out behind her. She raises a flashlight, alert but composed. Preserve the exact face, age, shoulder-length black hair, navy station uniform and silver name badge from the reference image. Subtle natural breathing, one small eye movement and a slight controlled head adjustment only. Static 85mm camera, stable background, realistic skin and fabric motion, no camera shake, no scene cut, no new person, no written text, no subtitles, no logos or watermark.",
+        "--frame_num",
+        "25",
+        "--sample_steps",
+        "8",
+        "--base_seed",
+        "52004",
+        "--save_file",
+        "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/wan22-sc01-sh04-flux2-ref-v1.mp4"
+      ],
+      "base_seed": 52004,
+      "budget_cap_usd": 60.0,
+      "code_repo": "Wan-Video/Wan2.2",
+      "code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+      "elapsed_sec": 276.602905,
+      "estimated_execution_cost_usd": 0.037649,
+      "ffprobe": {
+        "format": {
+          "duration": "1.041667"
+        },
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "height": 1280,
+            "r_frame_rate": "24/1",
+            "width": 704
+          }
+        ]
+      },
+      "frame_num": 25,
+      "model_id": "wan22-ti2v-5b",
+      "model_repo": "Wan-AI/Wan2.2-TI2V-5B",
+      "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "new_resource_creation_authorized": false,
+      "output": {
+        "bytes": 1842869,
+        "path": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/wan22-sc01-sh04-flux2-ref-v1.mp4",
+        "sha256": "683bc5bdadf896fe23795839872c55b5c129c5c77cad3c12ff69d82525e59a09"
+      },
+      "peak_vram_mib": 31249.0,
+      "probe_id": "sc01-sh04-wan22-balanced-motion-v1",
+      "probe_job_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "production_acceptance": false,
+      "proposed_max_cost_usd": 0.163333,
+      "provider_billed_snapshot_usd": 8.74799962155521,
+      "publish_authority": false,
+      "quality_acceptance": false,
+      "quality_status": "NOT_EVALUATED",
+      "rate_usd_per_hour": 0.49,
+      "reference_image_sha256": "04095985c12f274c589e9a65787a6750f20c3d991371d1acfb1a3a54a24d66c2",
+      "reference_model_id": "flux2-klein-4b",
+      "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+      "returncode": 0,
+      "sample_steps": 8,
+      "schema_version": 1,
+      "size": "704*1280",
+      "smoke_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "status": "PASS_RUNTIME_QUALITY_PROBE",
+      "stderr_log": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/runner.stderr.log",
+      "stdout_log": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-flux2-ref-v1/runner.stdout.log",
+      "task": "ti2v-5B",
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "local_path": "/home/dragon/ai-film-dev/media/slice01/video-wan22-quality-20260926/flux2/wan22-sc01-sh04-flux2-ref-v1.mp4",
+        "sha256": "683bc5bdadf896fe23795839872c55b5c129c5c77cad3c12ff69d82525e59a09",
+        "bytes": 1842869,
+        "synced_at_utc": "2026-09-26T05:37:25Z"
+      },
+      "gross_frame_check": {
+        "frames_checked": [
+          0,
+          12,
+          24
+        ],
+        "status": "PASS_IDENTITY_STABLE_TEXT_ARTIFACT_OBSERVED",
+        "quality_acceptance": false,
+        "failure_tags": [
+          "TEXT_ARTIFACT_BADGE"
+        ],
+        "note": "Three sampled frames preserve the reference identity without an obvious gross deformation. Pseudo-text remains visible on the name badge; owner quality scoring is still required."
+      }
+    },
+    {
+      "argv": [
+        "/workspace/venvs/wan22/bin/python",
+        "/workspace/wan2.2-src/generate.py",
+        "--task",
+        "ti2v-5B",
+        "--size",
+        "704*1280",
+        "--ckpt_dir",
+        "/workspace/models/wan22-ti2v-5b",
+        "--offload_model",
+        "True",
+        "--convert_model_dtype",
+        "--t5_cpu",
+        "--image",
+        "/workspace/runs/image-keyframe-live/sc01-sh04-zimage-portrait-v2/sc01-sh04-zimage-portrait-v2.png",
+        "--prompt",
+        "Cinematic photoreal close-up of Linh at a railway station desk as the lights flicker out behind her. She raises a flashlight, alert but composed. Preserve the exact face, age, shoulder-length black hair, navy station uniform and silver name badge from the reference image. Subtle natural breathing, one small eye movement and a slight controlled head adjustment only. Static 85mm camera, stable background, realistic skin and fabric motion, no camera shake, no scene cut, no new person, no written text, no subtitles, no logos or watermark.",
+        "--frame_num",
+        "25",
+        "--sample_steps",
+        "8",
+        "--base_seed",
+        "52004",
+        "--save_file",
+        "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/wan22-sc01-sh04-zimage-ref-v1.mp4"
+      ],
+      "base_seed": 52004,
+      "budget_cap_usd": 60.0,
+      "code_repo": "Wan-Video/Wan2.2",
+      "code_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+      "elapsed_sec": 259.576828,
+      "estimated_execution_cost_usd": 0.035331,
+      "ffprobe": {
+        "format": {
+          "duration": "1.041667"
+        },
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "height": 1280,
+            "r_frame_rate": "24/1",
+            "width": 704
+          }
+        ]
+      },
+      "frame_num": 25,
+      "model_id": "wan22-ti2v-5b",
+      "model_repo": "Wan-AI/Wan2.2-TI2V-5B",
+      "model_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "new_resource_creation_authorized": false,
+      "output": {
+        "bytes": 2952073,
+        "path": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/wan22-sc01-sh04-zimage-ref-v1.mp4",
+        "sha256": "618995be4b8f74384608a0631e5cb73d878201499651b9e4866ec12f86bae2a2"
+      },
+      "peak_vram_mib": 31249.0,
+      "probe_id": "sc01-sh04-wan22-balanced-motion-v1",
+      "probe_job_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "production_acceptance": false,
+      "proposed_max_cost_usd": 0.163333,
+      "provider_billed_snapshot_usd": 8.74799962155521,
+      "publish_authority": false,
+      "quality_acceptance": false,
+      "quality_status": "NOT_EVALUATED",
+      "rate_usd_per_hour": 0.49,
+      "reference_image_sha256": "bee38a1fdb6a0984773704f43389d1eb1658b639ee70f65abd64d8b0aff7a5c4",
+      "reference_model_id": "z-image",
+      "reference_role": "TECHNICAL_SMOKE_INPUT_NOT_MODEL_SELECTION",
+      "returncode": 0,
+      "sample_steps": 8,
+      "schema_version": 1,
+      "size": "704*1280",
+      "smoke_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "status": "PASS_RUNTIME_QUALITY_PROBE",
+      "stderr_log": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/runner.stderr.log",
+      "stdout_log": "/workspace/runs/wan22-quality-live/wan22-sc01-sh04-zimage-ref-v1/runner.stdout.log",
+      "task": "ti2v-5B",
+      "local_sync": {
+        "status": "PASS_HASH_VERIFIED",
+        "local_path": "/home/dragon/ai-film-dev/media/slice01/video-wan22-quality-20260926/zimage/wan22-sc01-sh04-zimage-ref-v1.mp4",
+        "sha256": "618995be4b8f74384608a0631e5cb73d878201499651b9e4866ec12f86bae2a2",
+        "bytes": 2952073,
+        "synced_at_utc": "2026-09-26T05:37:25Z"
+      },
+      "gross_frame_check": {
+        "frames_checked": [
+          0,
+          12,
+          24
+        ],
+        "status": "PASS_IDENTITY_STABLE_TEXT_ARTIFACT_OBSERVED",
+        "quality_acceptance": false,
+        "failure_tags": [
+          "TEXT_ARTIFACT_BADGE"
+        ],
+        "note": "Three sampled frames preserve the reference identity without an obvious gross deformation. Pseudo-text remains visible on the name badge; owner quality scoring is still required."
+      }
+    }
+  ]
+}
