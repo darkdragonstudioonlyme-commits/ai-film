@@ -53,6 +53,7 @@ class ImageKeyframeLiveTests(unittest.TestCase):
         self.assertEqual({j["adapter"] for j in jobs},{"image-keyframe-live"})
         for job in jobs:
             argv=build_argv(job,root=ROOT,execute=True)
+            self.assertEqual(argv[0],"/workspace/venvs/aifilm/bin/python")
             self.assertEqual(argv[1],str(ROOT/"tools/run_image_keyframe_live.py"))
             self.assertIn("--probe-job-id",argv)
             self.assertIn("--execute",argv)

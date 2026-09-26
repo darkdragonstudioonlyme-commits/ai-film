@@ -55,6 +55,9 @@ def validate_config(config: dict[str,Any]) -> list[dict[str,Any]]:
         timeout=float(job.get("max_runtime_sec",900.0))
         if timeout<=0 or timeout>7200:
             raise BatchOrchestratorError("invalid max_runtime_sec")
+        python_exe=job.get("python_exe")
+        if python_exe is not None and (not isinstance(python_exe,str) or not python_exe.startswith("/")):
+            raise BatchOrchestratorError("python_exe must be an absolute path")
         ids.append(job["job_id"])
     if len(ids)!=len(set(ids)):
         raise BatchOrchestratorError("duplicate job_id")
@@ -63,7 +66,8 @@ def validate_config(config: dict[str,Any]) -> list[dict[str,Any]]:
 
 def build_argv(job: dict[str,Any], *, root: Path, execute: bool) -> list[str]:
     adapter=ADAPTERS[job["adapter"]]
-    argv=[sys.executable,str(root/adapter.runner),adapter.id_arg,job["work_id"],
+    python_exe=str(job.get("python_exe") or sys.executable)
+    argv=[python_exe,str(root/adapter.runner),adapter.id_arg,job["work_id"],
           "--max-runtime-sec",str(float(job.get("max_runtime_sec",900.0)))]
     if job.get("model_dir"):
         argv += ["--model-dir",str(job["model_dir"])]

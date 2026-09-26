@@ -11,7 +11,8 @@
       "model_dir": "/workspace/models/flux2-klein-4b",
       "out_root": "/workspace/runs/image-keyframe-live",
       "max_runtime_sec": 300,
-      "skip_if_pass": true
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/aifilm/bin/python"
     },
     {
       "job_id": "keyframe-zimage-sc01-sh04",
@@ -21,7 +22,8 @@
       "model_dir": "/workspace/models/z-image",
       "out_root": "/workspace/runs/image-keyframe-live",
       "max_runtime_sec": 600,
-      "skip_if_pass": true
+      "skip_if_pass": true,
+      "python_exe": "/workspace/venvs/aifilm/bin/python"
     }
   ]
 }
