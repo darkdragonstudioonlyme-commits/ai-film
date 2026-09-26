@@ -155,6 +155,27 @@
       "blockers": [
         "NONCOMMERCIAL_LICENSE"
       ]
+    },
+    {
+      "evaluator_id": "deterministic-video-qc",
+      "family": "DeterministicFFmpegQC",
+      "kind": "technical_video_qc",
+      "enabled": true,
+      "required_for": [],
+      "license": "N/A_LOCAL_DETERMINISTIC",
+      "license_gate": "PASS",
+      "execution_ready": true,
+      "runtime_profile": "paddleocr-cpu",
+      "metrics": [
+        "decode_integrity",
+        "non_black_frames"
+      ],
+      "hard_fail_capabilities": [
+        "DECODE_FAILURE",
+        "BLACK_OR_EMPTY_VIDEO"
+      ],
+      "counts_toward_min_model_evaluators": false,
+      "supplemental_only": true
     }
   ]
 }

@@ -113,6 +113,11 @@ REQUIRED_PRODUCT_FILES = [
     "film/current_video_ensemble.py",
     "tools/finalize_current_video_auto_eval.py",
     "tests/film/test_current_video_ensemble.py",
+    "film/video_technical_auto_eval.py",
+    "tools/run_video_technical_auto_eval.py",
+    "tools/run_current_video_technical_auto_eval.py",
+    "run-evidence/AUTO_EVAL_VIDEO_TECHNICAL_QC_20260926.json",
+    "tests/film/test_video_technical_auto_eval.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -178,6 +183,11 @@ def main() -> int:
     dover=eval_by_id.get("dover-video-quality")
     if dover is None or dover.get("enabled") is not False or dover.get("license_gate")!="BLOCKED_NONCOMMERCIAL":
         errors.append("auto-eval-dover-noncommercial-gate")
+    technical=eval_by_id.get("deterministic-video-qc")
+    if technical is None or technical.get("enabled") is not True or technical.get("execution_ready") is not True:
+        errors.append("auto-eval-technical-qc-registry")
+    if technical and (technical.get("supplemental_only") is not True or technical.get("counts_toward_min_model_evaluators") is not False or technical.get("required_for")!=[]):
+        errors.append("auto-eval-technical-qc-supplemental-boundary")
     stages=auto_policy.get("stages",{})
     short=stages.get("short_video_take",{})
     voice_auto=stages.get("voice_take",{})
@@ -272,6 +282,13 @@ def main() -> int:
         errors.append("auto-eval-partial-vbench-gap")
     if partial_ev.get("production_acceptance") is not False or partial_ev.get("human_review_required") is not False:
         errors.append("auto-eval-partial-authority")
+    technical_ev=json.loads((root/"run-evidence/AUTO_EVAL_VIDEO_TECHNICAL_QC_20260926.json").read_text(encoding="utf-8"))
+    if technical_ev.get("status")!="PASS_TECHNICAL_QC_COMPLETE" or technical_ev.get("sample_count")!=4:
+        errors.append("auto-eval-technical-qc-evidence")
+    if technical_ev.get("supplemental_only") is not True or technical_ev.get("counts_toward_min_model_evaluators") is not False:
+        errors.append("auto-eval-technical-qc-evidence-boundary")
+    if any(row.get("hard_fail_tags") for row in technical_ev.get("results",[])):
+        errors.append("auto-eval-current-technical-hard-fail")
     vbench_pending=json.loads((root/"model-evaluations/auto-eval/vbench_pending_20260926.json").read_text(encoding="utf-8"))
     if vbench_pending.get("status")!="READY_GPU_PENDING" or vbench_pending.get("evaluator_id")!="vbench-video-v0.1.5":
         errors.append("auto-eval-vbench-pending-state")

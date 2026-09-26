@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "evidence_id": "auto-eval-video-technical-qc-20260926",
+  "status": "PASS_TECHNICAL_QC_COMPLETE",
+  "evaluator_id": "deterministic-video-qc",
+  "sample_count": 4,
+  "supplemental_only": true,
+  "counts_toward_min_model_evaluators": false,
+  "hard_fail_scope": [
+    "DECODE_FAILURE",
+    "BLACK_OR_EMPTY_VIDEO"
+  ],
+  "notes": [
+    "Freeze/motion diagnostics are descriptive only and do not hard-fail subtle-motion shots.",
+    "This evaluator does not replace or satisfy VBench/Qwen3-VL/PaddleOCR model-evaluator requirements."
+  ],
+  "human_review_required": false,
+  "production_acceptance": false,
+  "publish_authority": false,
+  "results": [
+    {
+      "asset_id": "wan22-sc01-sh04-flux2-ref-v1",
+      "metrics": {
+        "decode_integrity": 100.0,
+        "non_black_frames": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "f0a1a162ff7ee222ab0bd2068d09fa083c231b17c7a9e50484b260f9462ed076",
+      "frame_count": 25,
+      "black_frame_ratio": 0.0,
+      "freeze_transition_ratio": 0.833333,
+      "mean_frame_delta_0_255": 0.532379,
+      "max_frame_delta_0_255": 1.981445,
+      "mean_luma_0_255": 25.944902
+    },
+    {
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "metrics": {
+        "decode_integrity": 100.0,
+        "non_black_frames": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "173b3eb2855c924e64577e264d86061539a547a0b4b411a132d077b712ebe3cd",
+      "frame_count": 25,
+      "black_frame_ratio": 0.0,
+      "freeze_transition_ratio": 0.041667,
+      "mean_frame_delta_0_255": 1.606232,
+      "max_frame_delta_0_255": 3.151855,
+      "mean_luma_0_255": 58.857559
+    },
+    {
+      "asset_id": "world-tang-changan-motion-v1",
+      "metrics": {
+        "decode_integrity": 100.0,
+        "non_black_frames": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "89167129315ece456e14640f66797d3d5a30b9b72d334be825c80c9701184a26",
+      "frame_count": 17,
+      "black_frame_ratio": 0.0,
+      "freeze_transition_ratio": 0.75,
+      "mean_frame_delta_0_255": 0.431366,
+      "max_frame_delta_0_255": 1.162109,
+      "mean_luma_0_255": 49.199863
+    },
+    {
+      "asset_id": "world-paris-belle-epoque-motion-v1",
+      "metrics": {
+        "decode_integrity": 100.0,
+        "non_black_frames": 100.0
+      },
+      "hard_fail_tags": [],
+      "receipt_sha256": "d47801b375e842a0b1e86e242d99bbdb3245d7f75a72db934705c1321c121cd8",
+      "frame_count": 17,
+      "black_frame_ratio": 0.0,
+      "freeze_transition_ratio": 0.125,
+      "mean_frame_delta_0_255": 0.975601,
+      "max_frame_delta_0_255": 1.411621,
+      "mean_luma_0_255": 56.960236
+    }
+  ],
+  "local_receipt_root": "/home/dragon/ai-film-dev/run-evidence/auto-eval/video-20260926"
+}

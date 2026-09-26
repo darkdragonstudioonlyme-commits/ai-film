@@ -59,6 +59,9 @@ def finalize_current_video_ensemble(
         }
         if asset_id in eligible:
             paths["vbench-video-v0.1.5"]=base/"vbench.json"
+        technical_path=base/"technical.json"
+        if technical_path.is_file():
+            paths["deterministic-video-qc"]=technical_path
         receipts=[]
         for evaluator_id,path in paths.items():
             rec=_load_receipt(path)

@@ -342,3 +342,8 @@
   goal: "Implement fail-closed post-VBench current-video ensemble finalizer that ranks all four clips from three eligible VBench receipts plus canonical CPU evaluator receipts"
   status: DONE
   owner: executor
+- id: T-069
+  milestone: M4
+  goal: "Add supplemental deterministic CPU technical video QC for decode/black-frame failures and motion/freeze diagnostics without replacing model evaluators"
+  status: DONE
+  owner: executor

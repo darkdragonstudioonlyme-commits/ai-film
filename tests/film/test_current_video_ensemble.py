@@ -6,6 +6,7 @@ import unittest
 
 from film.current_video_ensemble import CurrentVideoEnsembleError, finalize_current_video_ensemble
 from film.vbench_auto_eval import DIMENSIONS, build_receipt
+from film.video_technical_auto_eval import build_receipt as build_technical_receipt
 
 ROOT=Path(__file__).resolve().parents[2]
 POLICY=json.loads((ROOT/"model-evaluations/auto-eval/policy.json").read_text())
@@ -47,6 +48,31 @@ class CurrentVideoEnsembleTests(unittest.TestCase):
             self.assertEqual(z["vbench_execution"],"SKIPPED_TERMINAL_HARD_FAIL")
             self.assertFalse(result["human_review_required"])
             self.assertFalse(result["production_acceptance"])
+
+    def test_supplemental_technical_hard_fail_is_preserved_without_counting_as_model(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=make_root(Path(td))
+            aid=PENDING["eligible_asset_ids"][0]
+            tech=build_technical_receipt(
+                asset_id=aid,
+                frame_count=10,
+                black_frame_count=9,
+                freeze_transition_count=9,
+                mean_frame_delta=0.0,
+                max_frame_delta=0.0,
+                mean_luma=0.1,
+                ffmpeg_path="/tmp/ffmpeg",
+            )
+            (root/aid/"technical.json").write_text(json.dumps(tech))
+            result=finalize_current_video_ensemble(
+                policy=POLICY,batch=BATCH,pending=PENDING,receipt_root=root
+            )
+            row=next(r for r in result["results"] if r["asset_id"]==aid)
+            self.assertEqual(row["status"],"AUTO_REJECT_HARD_FAIL")
+            self.assertIn("BLACK_OR_EMPTY_VIDEO",row["triggered_hard_fail_tags"])
+            self.assertEqual(result["required_video_evaluators"],[
+                "vbench-video-v0.1.5","qwen3-vl-2b-semantic","paddleocr-text-artifact"
+            ])
 
     def test_missing_vbench_receipt_fails_closed(self):
         with tempfile.TemporaryDirectory() as td:
