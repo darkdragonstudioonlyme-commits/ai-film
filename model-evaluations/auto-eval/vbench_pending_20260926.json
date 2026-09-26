@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "READY_GPU_PENDING",
+  "evaluator_id": "vbench-video-v0.1.5",
+  "eligible_asset_ids": [
+    "wan22-sc01-sh04-flux2-ref-v1",
+    "world-paris-belle-epoque-motion-v1",
+    "world-tang-changan-motion-v1"
+  ],
+  "eligible_count": 3,
+  "skipped_assets": [
+    {
+      "asset_id": "wan22-sc01-sh04-zimage-ref-v1",
+      "reason": "AUTO_REJECT_HARD_FAIL",
+      "hard_fail_tags": [
+        "UNMOTIVATED_READABLE_TEXT"
+      ]
+    }
+  ],
+  "skip_reason": "hard-failed assets do not require remaining weighted evaluators",
+  "pod_id": "0h1twwxqw6yx0k",
+  "new_resource_creation_authorized": false,
+  "production_acceptance": false,
+  "publish_authority": false
+}

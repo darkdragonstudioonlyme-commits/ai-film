@@ -26,8 +26,12 @@ def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def pick_request(request_id: str) -> dict:
-    rows=load(ROOT/"model-evaluations/slice01/voice/requests/requests.json")["requests"]
+def pick_request(request_id: str, request_file: Path | None=None) -> dict:
+    source=request_file or (ROOT/"model-evaluations/slice01/voice/requests/requests.json")
+    payload=load(source)
+    rows=payload.get("requests")
+    if not isinstance(rows,list):
+        raise SystemExit(f"VoxCPM2 request file has no requests list: {source}")
     found=[row for row in rows if row.get("request_id")==request_id]
     if len(found)!=1:
         raise SystemExit(f"unknown/duplicate VoxCPM2 request: {request_id}")
@@ -55,13 +59,22 @@ def atomic_json(path: Path,value) -> None:
 def main() -> int:
     ap=argparse.ArgumentParser(description="Plan or execute one exact VoxCPM2 Voice Design qualification request on the authorized RunPod A40.")
     ap.add_argument("--request-id",required=True)
+    ap.add_argument("--request-file",help="optional JSON containing a requests array; defaults to canonical fixed packet")
     ap.add_argument("--max-runtime-sec",type=float,default=900.0)
     ap.add_argument("--execute",action="store_true")
     ap.add_argument("--model-dir")
     ap.add_argument("--out-root",default="/workspace/runs/voxcpm2-live")
     args=ap.parse_args()
 
-    request=pick_request(args.request_id)
+    request_file=None
+    if args.request_file:
+        request_file=Path(args.request_file)
+        if not request_file.is_absolute():
+            request_file=ROOT/request_file
+        request_file=request_file.resolve()
+        if not request_file.is_file():
+            raise SystemExit(f"request file missing: {request_file}")
+    request=pick_request(args.request_id,request_file=request_file)
     matrix=load(ROOT/"model-evaluations/slice01/model_matrix.json")
     config=load(ROOT/"model-evaluations/slice01/voice/voxcpm2_eval_config.json")
     live_runtime=load(ROOT/"model-evaluations/slice01/gpu-worker/runtime_lock.runpod_a40.json")
@@ -84,6 +97,7 @@ def main() -> int:
         cost_ledger=cost_ledger,
         max_runtime_sec=args.max_runtime_sec,
     )
+    qual["request_source"]=str(request_file) if request_file else "model-evaluations/slice01/voice/requests/requests.json"
     if not args.execute:
         print(json.dumps(qual,ensure_ascii=False,sort_keys=True))
         return 0

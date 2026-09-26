@@ -11,6 +11,7 @@ HUMAN REVIEW POLICY:
 COMPLETED AUTO_EVAL:
 - voice evaluator v1 false negatives from clock notation and Traditional/Simplified variants are preserved as audit history; v2 normalization corrected them without inference;
 - 10 voice AUTO_SHORTLIST samples are locked in model-evaluations/auto-eval/voice_shortlist_20260926.json;
+- unattended 2-job VoxCPM2 retry batch is dry-run validated and waits only for the same authorized A40;
 - longform rough-cut/final-cut owner review contract is ready; labels feed calibration only after at least 3 reviewed cuts and never mutate weights automatically.
 - Whisper turbo exact-checksum CPU runtime: qualified;
 - canonical Whisper v2 re-score: 12/12 voice takes => 10 AUTO_SHORTLIST, 2 AUTO_RETRY, 0 reject;
@@ -39,7 +40,7 @@ CURRENT BLOCKER:
 NEXT:
 1. retry start on the same authorized A40 only;
 2. create/pin isolated VBench cu121 runtime and exact repo revision;
-3. run VBench on the 4 current video takes;
+3. run VBench only on the 3 eligible video takes; the Z-Image-reference clip is already terminal AUTO_REJECT_HARD_FAIL;
 4. aggregate 3-model video receipts and rank takes;
 5. promote only AUTO_SHORTLIST media into the first multi-shot M3/M4 benchmark;
 6. execute the 2-request zh-CN cue-overflow retry plan when the same A40 is available; do not ask the owner to score short takes.

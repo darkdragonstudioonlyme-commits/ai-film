@@ -218,7 +218,7 @@ def build_cost_entry(
         "cost_id":"voxcpm2-"+qualification["request"]["request_id"]+"-"+("pass" if passed else "failed"),
         "category":"COMPUTE_ACCEPTED" if passed else "COMPUTE_FAILED",
         "amount_usd":amount,
-        "logical_key":"T-019-VOXCPM2-QUALIFICATION",
+        "logical_key":"T-064-VOXCPM2-AUTO-EVAL-RETRY" if qualification["request"].get("retry_of_request_id") else "T-019-VOXCPM2-QUALIFICATION",
         "attempt_id":qualification["request"]["request_id"],
         "asset_id":None,
         "note":"Estimated from measured runner elapsed time at the active RunPod A40 hourly rate; provider accrued bill is not exposed by MCP.",

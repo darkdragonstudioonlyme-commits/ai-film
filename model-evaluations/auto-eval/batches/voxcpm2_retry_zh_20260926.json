@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "batch_id": "voxcpm2-auto-eval-retry-zh-20260926",
+  "stop_on_failure": true,
+  "jobs": [
+    {
+      "job_id": "voxretry_1fd139f4ed273c10",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxretry_1fd139f4ed273c10",
+      "request_file": "model-evaluations/auto-eval/voice_retry_plan_20260926.json",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-retry",
+      "receipt_path": "/workspace/runs/voxcpm2-retry/voxretry_1fd139f4ed273c10/evidence.json",
+      "skip_if_pass": true
+    },
+    {
+      "job_id": "voxretry_76b776cf1cf7fede",
+      "adapter": "voxcpm2-live",
+      "work_id": "voxretry_76b776cf1cf7fede",
+      "request_file": "model-evaluations/auto-eval/voice_retry_plan_20260926.json",
+      "max_runtime_sec": 900,
+      "model_dir": "/workspace/models/voxcpm2",
+      "out_root": "/workspace/runs/voxcpm2-retry",
+      "receipt_path": "/workspace/runs/voxcpm2-retry/voxretry_76b776cf1cf7fede/evidence.json",
+      "skip_if_pass": true
+    }
+  ]
+}

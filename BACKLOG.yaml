@@ -317,3 +317,13 @@
   goal: "Implement hash-bound longform rough-cut/final-cut owner review contract and calibration-label dataset"
   status: DONE
   owner: executor
+- id: T-064
+  milestone: M2
+  goal: "Wire the two zh-CN cue-overflow voice retries into the existing VoxCPM2 batch orchestrator without creating a new GPU resource"
+  status: DONE
+  owner: executor
+- id: T-065
+  milestone: M4
+  goal: "Short-circuit remaining video evaluators after terminal hard fail and reduce pending VBench GPU work from four clips to three"
+  status: DONE
+  owner: executor

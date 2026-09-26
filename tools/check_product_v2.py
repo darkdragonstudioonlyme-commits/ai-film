@@ -91,6 +91,10 @@ REQUIRED_PRODUCT_FILES = [
     "tools/build_voice_retry_plan.py",
     "tools/prepare_longform_review.py",
     "tools/ingest_longform_owner_review.py",
+    "model-evaluations/auto-eval/batches/voxcpm2_retry_zh_20260926.json",
+    "tests/film/test_voice_retry_batch.py",
+    "model-evaluations/auto-eval/vbench_pending_20260926.json",
+    "tests/film/test_video_eval_short_circuit.py",
 ]
 LANGS = {"en","zh-CN","vi"}
 REQUIRED_WORLD_PRESETS = {
@@ -216,6 +220,14 @@ def main() -> int:
         errors.append("auto-eval-voice-shortlist")
     if set(shortlist.get("missing_due_retry",[]))!={"vox_ae6c3e5af03f","vox_6cd531479b73"}:
         errors.append("auto-eval-voice-shortlist-retry-gap")
+    retry_batch=json.loads((root/"model-evaluations/auto-eval/batches/voxcpm2_retry_zh_20260926.json").read_text(encoding="utf-8"))
+    retry_jobs=retry_batch.get("jobs",[])
+    if retry_batch.get("batch_id")!="voxcpm2-auto-eval-retry-zh-20260926" or len(retry_jobs)!=2:
+        errors.append("auto-eval-voice-retry-batch")
+    if any(job.get("adapter")!="voxcpm2-live" or job.get("request_file")!="model-evaluations/auto-eval/voice_retry_plan_20260926.json" for job in retry_jobs):
+        errors.append("auto-eval-voice-retry-batch-routing")
+    if any(job.get("receipt_path","").find("/workspace/runs/voxcpm2-retry/")!=0 for job in retry_jobs):
+        errors.append("auto-eval-voice-retry-batch-output")
 
     longform_policy=json.loads((root/"model-evaluations/auto-eval/longform_review_policy.json").read_text(encoding="utf-8"))
     if longform_policy.get("scale")!={"min":0,"max":8}:
@@ -242,6 +254,16 @@ def main() -> int:
         errors.append("auto-eval-partial-vbench-gap")
     if partial_ev.get("production_acceptance") is not False or partial_ev.get("human_review_required") is not False:
         errors.append("auto-eval-partial-authority")
+    vbench_pending=json.loads((root/"model-evaluations/auto-eval/vbench_pending_20260926.json").read_text(encoding="utf-8"))
+    if vbench_pending.get("status")!="READY_GPU_PENDING" or vbench_pending.get("evaluator_id")!="vbench-video-v0.1.5":
+        errors.append("auto-eval-vbench-pending-state")
+    if vbench_pending.get("eligible_count")!=3 or set(vbench_pending.get("eligible_asset_ids",[]))!={"wan22-sc01-sh04-flux2-ref-v1","world-tang-changan-motion-v1","world-paris-belle-epoque-motion-v1"}:
+        errors.append("auto-eval-vbench-pending-population")
+    skipped=vbench_pending.get("skipped_assets",[])
+    if len(skipped)!=1 or skipped[0].get("asset_id")!="wan22-sc01-sh04-zimage-ref-v1" or "UNMOTIVATED_READABLE_TEXT" not in skipped[0].get("hard_fail_tags",[]):
+        errors.append("auto-eval-vbench-hard-fail-short-circuit")
+    if vbench_pending.get("new_resource_creation_authorized") is not False or vbench_pending.get("production_acceptance") is not False:
+        errors.append("auto-eval-vbench-pending-authority")
 
     backlog=(root/"BACKLOG.yaml").read_text(encoding="utf-8")
     ids=re.findall(r"^- id: (T-[0-9]+)$",backlog,re.M)

@@ -59,6 +59,9 @@ def validate_config(config: dict[str,Any]) -> list[dict[str,Any]]:
         python_exe=job.get("python_exe")
         if python_exe is not None and (not isinstance(python_exe,str) or not python_exe.startswith("/")):
             raise BatchOrchestratorError("python_exe must be an absolute path")
+        request_file=job.get("request_file")
+        if request_file is not None and (not isinstance(request_file,str) or not request_file.strip()):
+            raise BatchOrchestratorError("request_file must be non-empty text")
         ids.append(job["job_id"])
     if len(ids)!=len(set(ids)):
         raise BatchOrchestratorError("duplicate job_id")
@@ -80,6 +83,8 @@ def build_argv(job: dict[str,Any], *, root: Path, execute: bool) -> list[str]:
         argv += ["--reference-image",str(job["reference_image"])]
     if job.get("spec_path"):
         argv += ["--spec-path",str(job["spec_path"])]
+    if job.get("request_file"):
+        argv += ["--request-file",str(job["request_file"])]
     if execute:
         argv.append("--execute")
     return argv

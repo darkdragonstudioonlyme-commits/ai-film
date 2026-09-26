@@ -23,9 +23,32 @@ def resolve_asset_path(row: dict, mode: str) -> str:
         return str((ROOT / value).resolve())
     return value
 
+EVALUATOR_ORDER=("ocr","qwen","vbench")
+
+def load_receipts(jobs: dict) -> list[dict]:
+    rows=[]
+    for job in jobs.values():
+        path=Path(job["receipt"])
+        if path.is_file():
+            rows.append(load(path))
+    return rows
+
+def hard_fail_precheck(policy: dict, *, asset_id: str, jobs: dict) -> dict | None:
+    receipts=load_receipts(jobs)
+    if not receipts:
+        return None
+    decision=aggregate_auto_eval(
+        policy,
+        stage="short_video_take",
+        asset_id=asset_id,
+        receipts=receipts,
+    )
+    return decision if decision.get("status")=="AUTO_REJECT_HARD_FAIL" else None
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Run/resume multi-model auto-eval over current video takes.")
     ap.add_argument("--asset-path-mode", choices=["local", "pod"], default="local")
+    ap.add_argument("--asset-id", action="append", help="optional asset filter; may be repeated")
     ap.add_argument("--run-evaluator", action="append", choices=["qwen", "vbench", "ocr"], default=[])
     ap.add_argument("--qwen-python")
     ap.add_argument("--qwen-model-dir")
@@ -42,8 +65,16 @@ def main() -> int:
     selected = set(args.run_evaluator)
     plan = []
 
+    requested_assets=set(args.asset_id or [])
+    known_assets={row["asset_id"] for row in batch["video_assets"]}
+    unknown=requested_assets-known_assets
+    if unknown:
+        raise SystemExit("unknown --asset-id values: "+",".join(sorted(unknown)))
+
     for row in batch["video_assets"]:
         asset_id = row["asset_id"]
+        if requested_assets and asset_id not in requested_assets:
+            continue
         video = resolve_asset_path(row, args.asset_path_mode)
         context = str((ROOT / row["context_ref"]).resolve())
         base = out_root / asset_id
@@ -100,28 +131,43 @@ def main() -> int:
     for asset in plan:
         base = out_root / asset["asset_id"]
         base.mkdir(parents=True, exist_ok=True)
-        for name, job in asset["jobs"].items():
-            receipt_path = Path(job["receipt"])
-            if name not in selected or receipt_path.is_file():
-                continue
-            argv = [str(x) for x in job["argv"]]
-            proc = subprocess.run(argv, cwd=ROOT, text=True, capture_output=True, timeout=3600, check=False)
-            (base / f"{name}.stdout.log").write_text(proc.stdout, encoding="utf-8")
-            (base / f"{name}.stderr.log").write_text(proc.stderr, encoding="utf-8")
-            if proc.returncode != 0:
-                raise SystemExit(f"{name} evaluator failed for {asset['asset_id']}: {proc.stderr[-3000:]}")
+        skipped_due_hard_fail=[]
+        pre=hard_fail_precheck(policy,asset_id=asset["asset_id"],jobs=asset["jobs"])
+        if pre is not None:
+            skipped_due_hard_fail=[
+                name for name in EVALUATOR_ORDER
+                if name in selected and not Path(asset["jobs"][name]["receipt"]).is_file()
+            ]
+        else:
+            for name in EVALUATOR_ORDER:
+                job=asset["jobs"][name]
+                receipt_path = Path(job["receipt"])
+                if name not in selected or receipt_path.is_file():
+                    continue
+                argv = [str(x) for x in job["argv"]]
+                proc = subprocess.run(argv, cwd=ROOT, text=True, capture_output=True, timeout=3600, check=False)
+                (base / f"{name}.stdout.log").write_text(proc.stdout, encoding="utf-8")
+                (base / f"{name}.stderr.log").write_text(proc.stderr, encoding="utf-8")
+                if proc.returncode != 0:
+                    raise SystemExit(f"{name} evaluator failed for {asset['asset_id']}: {proc.stderr[-3000:]}")
+                post=hard_fail_precheck(policy,asset_id=asset["asset_id"],jobs=asset["jobs"])
+                if post is not None:
+                    skipped_due_hard_fail=[
+                        later for later in EVALUATOR_ORDER
+                        if later in selected and EVALUATOR_ORDER.index(later)>EVALUATOR_ORDER.index(name)
+                        and not Path(asset["jobs"][later]["receipt"]).is_file()
+                    ]
+                    break
 
-        receipts = []
-        for job in asset["jobs"].values():
-            path = Path(job["receipt"])
-            if path.is_file():
-                receipts.append(load(path))
+        receipts = load_receipts(asset["jobs"])
         decision = aggregate_auto_eval(
             policy,
             stage="short_video_take",
             asset_id=asset["asset_id"],
             receipts=receipts,
         )
+        if skipped_due_hard_fail:
+            decision["skipped_evaluators_due_hard_fail"]=skipped_due_hard_fail
         decision_path = base / "decision.json"
         decision_path.write_text(json.dumps(decision, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         results.append(decision)

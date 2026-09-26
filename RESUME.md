@@ -8,10 +8,10 @@ OWNER_ACTION: none for current short voice/motion takes. Human 0–8 scoring res
 PAID_RESOURCE: provider_billed=USD 10.607923/USD 60 | GPU compute stopped | retained 250 GB disk still bills.
 AUTO_EVAL_STACK: video=VBench + Qwen3-VL-2B + PaddleOCR; voice=Whisper turbo + deterministic cue-fit. DOVER stays disabled because the current upstream license is non-commercial.
 AUTO_EVAL_VOICE: canonical v2 COMPLETE 12/12 — 10 AUTO_SHORTLIST, 2 AUTO_RETRY, 0 reject; mean 89.854707/100. V1 is retained as superseded audit evidence.
-AUTO_EVAL_VIDEO: PARTIAL — Qwen3-VL 4/4 + PaddleOCR 4/4 complete; Z-Image-reference motion hard-fails UNMOTIVATED_READABLE_TEXT; VBench is the only missing required evaluator.
+AUTO_EVAL_VIDEO: PARTIAL — Qwen3-VL 4/4 + PaddleOCR 4/4 complete; Z-Image-reference motion hard-fails UNMOTIVATED_READABLE_TEXT and is excluded from remaining GPU eval; VBench is pending for 3 eligible clips.
 AUTO_EVAL_POLICY: hard fail precedes weighted score; missing required evaluator blocks; automatic outcomes never grant production acceptance or publish authority.
 WORLD_CAPABILITY: Tang Chang'an and Belle Époque Paris image→motion technical proof PASS; no historical-accuracy or production-quality acceptance.
 MEDIA_SYNC: all previously generated slice/world media required for current auto-eval batch is local and hash-verified.
 COST_LEDGER: measured generation execution remains USD 0.455474; provider lifetime bill is the paid-budget truth.
-NEXT: VBench still waits for the same A40. Meanwhile the 10 voice shortlist is locked and a 2-request zh-CN cue-overflow retry plan is ready; owner review contract is ready for longform rough cut/final cut.
+NEXT: VBench still waits for the same A40. The 10 voice shortlist is locked; the 2-request zh-CN cue-overflow retry plan is wired into an unattended VoxCPM2 batch and ready when the same A40 returns; longform review contract is ready.
 SAFETY: no short-take human gate, no automatic production acceptance, no publish, no new paid resource, hard cap USD 60.
