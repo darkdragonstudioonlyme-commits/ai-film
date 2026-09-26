@@ -21,11 +21,12 @@ ZIMG=json.loads((ROOT/"run-evidence/Z_IMAGE_A40_FORMAL_SMOKE_20260926.json").rea
 PUBLIC=json.loads((ROOT/"projects/slice01/casting/formal_comparison/blind_items.json").read_text(encoding="utf-8"))
 PRIVATE=json.loads((ROOT/"projects/slice01/casting/formal_comparison/blind_map_private.json").read_text(encoding="utf-8"))
 SCORES=(ROOT/"projects/slice01/casting/formal_comparison/scores.csv").read_text(encoding="utf-8")
+MATERIALIZATION=json.loads((ROOT/"run-evidence/IMAGE_MODEL_BLIND_MATERIALIZATION_20260926.json").read_text(encoding="utf-8"))
 
 
 class ImageModelBlindComparisonTests(unittest.TestCase):
     def test_packet_is_deterministic_eight_sample_and_model_opaque_publicly(self):
-        public,private=build_comparison_packet(FLUX,ZIMG)
+        public,private=build_comparison_packet(FLUX,ZIMG,MATERIALIZATION)
         self.assertEqual(public,PUBLIC)
         self.assertEqual(private,PRIVATE)
         self.assertEqual(public["status"],"AWAITING_BLIND_SCORES")
